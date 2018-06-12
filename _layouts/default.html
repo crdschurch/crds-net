@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>crds-net</title>
+
+  {% asset application.scss !integrity %}
+</head>
+<body>
+
+  <div class="crds-shared-header">
+    <div data-header></div>
+  </div>
+
+  {{ content }}
+
+  <script src="https://use.typekit.net/ccb3vpa.js"></script>
+  <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//d1tmclqz61gqwd.cloudfront.net/javascripts/crds-shared-header-v0.6.0.min.js"></script>
+  <script>
+    (function(){
+      var options = { el: '[data-header]' };
+      var header = new CRDS.SharedHeader(options);
+          header.render();
+    })();
+  </script>
+
+</body>
+</html>

@@ -26,18 +26,19 @@ github_username:  jekyll
 
 # Build settings
 markdown: kramdown
-theme: minima
-plugins:
-  - jekyll-feed
 
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+assets:
+  source_maps: true # false on JEKYLL_ENV=production
+  destination: "/assets"
+  compression: true
+  sources:
+  - _assets/stylesheets
+  - _assets/javascripts
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - README.md
+  - _migrations
+  - vendor
