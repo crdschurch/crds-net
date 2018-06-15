@@ -29,20 +29,34 @@ This will build the site and start up a preview server that allows you to view t
 work that you have done.
 
 ### Windows
-First, make sure you have Ruby installed on your machine. There is a proven guide
+First, make sure you have Ruby v2.5.1 installed on your machine. There is a proven guide
 for getting Ruby installed on your machine that you can read
 [here](https://gorails.com/setup/windows/10#ruby). This particular
 guide only needs to be followed up until the `Configuring Git` heading. Everything
 from `Configuring Git` onward is unnecessary to follow.
 
-At this point you are ready to build the project:
+Once you have Ruby v.2.5.1 installed on your machine, you are ready to build the project:
 
 `bundle exec jekyll serve`
 
 This will build the site and start up a preview server that allows you to view the
 work that you have done.
 
-# Downloading Content
+### Linux
+First, make sure you have Ruby v2.5.1 installed on your machine. There is a proven guide
+for getting Ruby installed on your machine that you can read
+[here](https://gorails.com/setup/ubuntu/16.04). This particular
+guide only needs to be followed up until the `Configuring Git` heading. Everything
+from `Configuring Git` onward is unnecessary to follow.
+
+Once you have Ruby v.2.5.1 installed on your machine, you are ready to build the project:
+
+`bundle exec jekyll serve`
+
+This will build the site and start up a preview server that allows you to view the
+work that you have done.
+
+## Downloading Content
 
 First, you need to export the following environment variables (you can get these
 values directly from Contentful)...
