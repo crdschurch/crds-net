@@ -56,3 +56,20 @@ Once you have Ruby v.2.5.1 installed on your machine, you are ready to build the
 This will build the site and start up a preview server that allows you to view the
 work that you have done.
 
+## Downloading Content
+
+First, you need to export the following environment variables (you can get these
+values directly from Contentful)...
+
+```bash
+CONTENTFUL_SPACE_ID=
+CONTENTFUL_ENV=
+CONTENTFUL_ACCESS_TOKEN=
+```
+
+Then run the following command in your bash prompt to download content to your local
+`collections` directory.
+
+```bash
+bundle exec jekyll contentful
+```

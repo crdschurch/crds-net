@@ -1,3 +1,9 @@
+[build]
+  command = '''
+    bundle exec jekyll contentful &&
+    bundle exec jekyll build
+  '''
+
 [[redirects]]
   from = "/*"
   to = "https://int.crossroads.net/:splat"
