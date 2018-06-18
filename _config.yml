@@ -35,6 +35,9 @@ assets:
   - _assets/stylesheets
   - _assets/javascripts
 
+include:
+  - _redirects
+
 exclude:
   - Gemfile
   - Gemfile.lock
