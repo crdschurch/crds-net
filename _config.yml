@@ -59,4 +59,5 @@ contentful:
         entry_mappings:
           title: title
           slug: slug
+          permalink: slug
           layout: layout
