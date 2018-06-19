@@ -19,18 +19,19 @@
     {{ content }}
   </div>
 
+  <script>
+  var CRDS = {
+    media: {
+      cms: '{{ site.shared_header.cms }}',
+      app: '{{ site.shared_header.app }}',
+      img: '{{ site.shared_header.img }}',
+      prefix: '{{ site.shared_header.prefix }}'
+    }
+  };
+  </script>
+  <script type="text/javascript" src="{% asset application.js @path %}"></script>
   <script src="https://use.typekit.net/ccb3vpa.js"></script>
   <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="//d1tmclqz61gqwd.cloudfront.net/javascripts/crds-shared-header-v0.6.0.min.js"></script>
-  <script>
-    (function(){
-      var options = { el: '[data-header]' };
-      var header = new CRDS.SharedHeader(options);
-          header.render();
-    })();
-  </script>
 
 </body>
 </html>
