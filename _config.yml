@@ -46,3 +46,5 @@ contentful:
           slug: slug
           permalink: slug
           layout: layout
+          show_header: show_header
+          show_footer: show_footer
