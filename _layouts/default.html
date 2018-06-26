@@ -10,14 +10,16 @@
 </head>
 <body>
 
-  <div class="crds-shared-header">
-    <div data-header></div>
-  </div>
 
-  <div class="container">
-    <h1 class="page-header">{{ page.title }}</h1>
-    {{ content }}
-  </div>
+  {% if page.show_header == true %}
+    {% include _shared-header.html %}
+  {% endif %}
+
+  {{ content }}
+
+  {% if page.show_footer == true %}
+    {% include _shared-footer.html %}
+  {% endif %}
 
   <script>
   var CRDS = {

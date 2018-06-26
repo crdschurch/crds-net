@@ -7,4 +7,5 @@
   };
   var header = new CRDS.SharedHeader(options);
       header.render();
+  var footer = new CRDS.SharedFooter();
 })();
