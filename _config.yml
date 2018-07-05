@@ -30,10 +30,14 @@ exclude:
   - netlify.toml
 
 collections_dir: collections
+
 collections:
   pages:
     output: true
     permalink: /:slug
+  locations:
+    output: true
+    permalink: /locations/:slug
 
 contentful:
   content_types:
@@ -48,3 +52,19 @@ contentful:
           layout: layout
           show_header: show_header
           show_footer: show_footer
+    locations:
+      id: location
+      body: description
+      frontmatter:
+        entry_mappings:
+          name: name
+          slug: slug
+          address: address
+          service_times: service_times
+          additional_info: additional_info
+          image: image/url
+          bg_image: bg_image/url
+          map_url: map_url
+        other:
+          layout: location
+          draft: false
