@@ -80,7 +80,6 @@ contentful:
       body: description
       associations:
         videos:
-          - videos
           - messages
       frontmatter:
         entry_mappings:
