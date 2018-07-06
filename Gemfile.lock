@@ -9,10 +9,10 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-contentful.git
-  revision: 8e667c554aadf0059124b5d7cbe48e0d945ffd1e
-  branch: development
+  revision: 849804d5bd20159bf71cb67874d24c42196d24ac
+  branch: master
   specs:
-    jekyll-contentful (0.0.2)
+    jekyll-contentful (0.0.7)
       activesupport
       contentful (>= 2.6.0)
       dotenv
@@ -40,7 +40,7 @@ GEM
       multi_json (~> 1)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    dotenv (2.4.0)
+    dotenv (2.5.0)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)

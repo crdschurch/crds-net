@@ -1,0 +1,8 @@
+<div id="section-locations" class="card-deck carousel" data-crds-carousel="mobile-scroll">
+  <div class="feature-cards card-deck--expanded-layout">
+    {% assign sorted_locations = site.locations | sort: 'name' %}
+    {% for location in sorted_locations %}
+      {% include _location-card.html %} 
+    {% endfor %}
+  </div>
+</div>
