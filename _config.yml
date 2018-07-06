@@ -39,12 +39,11 @@ collections:
     output: true
     permalink: /:collection/:slug
   series:
-    output: true
+    output: false
     permalink: /:collection/:slug
   messages:
-    output: true
-    # permalink: /series/:series_slug/:slug
-    permalink: /:slug
+    output: false
+    permalink: /series/:series_slug/:slug
 
 contentful:
   content_types:
@@ -80,7 +79,6 @@ contentful:
       body: description
       associations:
         videos:
-          - videos
           - messages
       frontmatter:
         entry_mappings:
