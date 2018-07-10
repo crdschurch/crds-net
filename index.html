@@ -9,12 +9,12 @@ title: Home | Crossroads
 {% assign latest_message = site.messages | sort: 'date' | reverse | first %}
 <div class="jumbotron bg-video jumbotron-xl flush-bottom" style="padding-top: 152px; padding-bottom: 152px;" data-aspect-ratio="2.34615">
   <div class="jumbotron-overlay" id="overlay" data-automation-id="jumbotron-overlay">
-    <svg class="icon jumbotron-overlayClose" id="overlay-close" data-automation-id="overlay-close" viewBox="0 0 256 256">
+    <svg class="icon jumbotron-overlayClose text-white block" id="overlay-close" data-automation-id="overlay-close" viewBox="0 0 256 256">
       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#close-thin"></use>
     </svg>
-    <div class="jumbotron-overlayContent">
+    <div class="jumbotron-overlayContent d-flex align-items-center justify-content-center flex-column-reverse flex-sm-row">
       <div class="recentService" data-automation-id="recentService">
-        <h3 class="component-header font-size-base">Get Caught Up</h3>
+        <h3 class="component-header font-size-base flush-top text-gray-light">Get Caught Up</h3>
         <div class="card" data-automation-id="last-message-card">
           <a href="/message/3916/Not Needed, but Wanted | SPIRIT REALM: Week 4">
             <div class="card-img-top aspect-16x9" id="lastMessageImg" style="background-image: url('{{ latest_message.image }}');"></div>
@@ -30,8 +30,8 @@ title: Home | Crossroads
       </div>
       <div class="divider"></div>
       <div class="streamService" data-automation-id="stream-service">
-        <h3 class="component-header font-size-base" data-automation-id="coming-soon-header" data-stream-live="hide">Coming Soon</h3>
-        <h3 class="component-header font-size-base hide" data-stream-live="show" data-automation-id="watch-now-header">Watch Now!</h3>
+        <h3 class="component-header font-size-base flush-top text-gray-light" data-automation-id="coming-soon-header" data-stream-live="hide">Coming Soon</h3>
+        <h3 class="component-header font-size-base flush-top text-gray-light hide" data-stream-live="show" data-automation-id="watch-now-header">Watch Now!</h3>
         <div class="card" data-automation-id="stream-card">
           <div class="card-img-container">
             <div class="off-container" data-stream-off="show" data-automation-id="offState">
@@ -39,7 +39,7 @@ title: Home | Crossroads
               <h3>Saturday at 4:30pm ET</h3>
             </div>
             <div class="countdown-container crds-countdown hide" data-stream-upcoming="show" data-automation-id="upcomingState">
-              <ul class="countdown-timer list-inline">
+              <ul class="countdown-timer list-inline hard">
                 <li class="countdown-days days"></li>
                 <li class="countdown-hours hours"></li>
                 <li class="countdown-minutes minutes"></li>
@@ -98,9 +98,7 @@ title: Home | Crossroads
   </div>
 </div>
 
-
 <!-- Current Series -->
-
 <section class="container">
   <h2 class="section-header text-uppercase text-center flush-top soft-half-top">Be a part of this</h2>
   {% include _current-series.html %}
