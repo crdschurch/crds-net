@@ -11,6 +11,11 @@ module Jekyll
         "img" => "https://#{env_prefix}.crossroads.net/proxy/gateway/api/image/profile/",
         "prefix" => "#{env_prefix unless @site.config['env'] == 'production' }"
       }
+      @site.config['imgix'] = {
+        'find': ENV['IMGIX_SRC'],
+        'replace': ENV['IMGIX_DOMAIN'],
+      }
+      @site.config['default_image'] = "//#{ENV['IMGIX_DOMAIN']}/default-image.jpg"
     end
 
     private
