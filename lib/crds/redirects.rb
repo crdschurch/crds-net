@@ -6,13 +6,14 @@ module CRDS
 
     attr_accessor :output, :src, :csv
 
-    def initialize
-      @output = File.new(File.join(Dir.pwd, '_redirects'), "w")
+    def initialize(dest_dir=nil)
+      FileUtils.mkdir_p dest_dir unless dest_dir.nil?
+      @output = File.new(File.join(dest_dir || Dir.pwd, '_redirects'), "w")
       @src = File.join(Dir.pwd, 'redirects.csv')
     end
 
-    def write!
-      log "Writing _redirects...", :green
+    def write!(silence=false)
+      log "Writing _redirects...", :green unless silence
 
       i = 0
       @csv = CSV.read(src)
@@ -26,12 +27,13 @@ module CRDS
       @csv.each do |row|
         path, dest, status = row
         dest = replace(dest)
-        printf ColorizedString.new("\s\s%-#{tabs[0]}s %-#{tabs[1]}s %s\n").send(:yellow), path, dest, status
+
+        printf ColorizedString.new("\s\s%-#{tabs[0]}s %-#{tabs[1]}s %s\n").send(:yellow), path, dest, status unless silence
         @output.puts("#{path}\t#{dest}\t#{status}")
         i += 1
       end
 
-      log "#{i} rows written to _redirects file", :green
+      log "#{i} rows written to _redirects file", :green unless silence
       @output.close
     end
 
