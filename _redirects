@@ -1,4 +1,0 @@
-/connect/*  https://deploy-preview-949--crds-connect.netlify.com/connect/:splat  200
-/groups/search/*  https://deploy-preview-949--crds-connect.netlify.com/groups/search/:splat  200
-/proxy/*  https://int.crossroads.net/proxy/:splat 200
-/*  https://int.crossroads.net/:splat 200
