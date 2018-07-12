@@ -1,4 +1,4 @@
-require 'utils/colorized_string'
+require_relative '../utils/colorized_string'
 require 'csv'
 
 module CRDS
@@ -7,8 +7,8 @@ module CRDS
     attr_accessor :output, :src, :csv
 
     def initialize
-      @output = File.new(File.join(Rake.application.original_dir, '_redirects'), "w")
-      @src = File.join(Rake.application.original_dir, 'redirects.csv')
+      @output = File.new(File.join(Dir.pwd, '_redirects'), "w")
+      @src = File.join(Dir.pwd, 'redirects.csv')
     end
 
     def write!
