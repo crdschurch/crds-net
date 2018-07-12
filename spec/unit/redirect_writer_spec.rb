@@ -23,12 +23,14 @@ describe CRDS::RedirectWriter do
     FileUtils.rm_r File.join(Dir.pwd, 'tmp', '_redirects')
     expect(File.exist?(@redir.output.to_path)).to be(false)
     @redir = CRDS::RedirectWriter.new(@dest_dir)
-    @redir.write!(true)
+    @redir.debug = false
+    @redir.write!
     expect(File.exist?(@redir.output.to_path)).to be(true)
   end
 
   it 'should contain evaluated ENV variables in output' do
-    @redir.write!(true)
+    @redir.debug = false
+    @redir.write!
     expect(File.read(@redir.output)).to include(ENV['CRDS_MAESTRO_CLIENT_ENDPOINT'])
   end
 
