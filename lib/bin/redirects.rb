@@ -1,2 +1,2 @@
-require_relative '../crds/redirects'
-CRDS::Redirects.new().write!
+require_relative '../crds/redirect_writer'
+CRDS::RedirectWriter.new().write!

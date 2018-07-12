@@ -2,7 +2,7 @@ require_relative '../utils/colorized_string'
 require 'csv'
 
 module CRDS
-  class Redirects
+  class RedirectWriter
 
     attr_accessor :output, :src, :csv
 

@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'crds/redirects'
+require 'crds/redirect_writer'
 
-describe CRDS::Redirects do
+describe CRDS::RedirectWriter do
 
   before do
     @dest_dir = File.join(Dir.pwd, 'tmp')
-    @redir = CRDS::Redirects.new(@dest_dir)
+    @redir = CRDS::RedirectWriter.new(@dest_dir)
   end
 
   it 'should populate some instance variables' do
@@ -22,7 +22,7 @@ describe CRDS::Redirects do
   it 'should write _redirects' do
     FileUtils.rm_r File.join(Dir.pwd, 'tmp', '_redirects')
     expect(File.exist?(@redir.output.to_path)).to be(false)
-    @redir = CRDS::Redirects.new(@dest_dir)
+    @redir = CRDS::RedirectWriter.new(@dest_dir)
     @redir.write!(true)
     expect(File.exist?(@redir.output.to_path)).to be(true)
   end
