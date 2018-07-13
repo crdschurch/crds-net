@@ -5,3 +5,4 @@ _site
 .envrc
 .env
 collections
+node_modules

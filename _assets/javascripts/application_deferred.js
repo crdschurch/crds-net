@@ -3,3 +3,5 @@
 //= require ./vendor/bootstrap.min
 //= require ./components/header
 //= require ./components/carousels
+//= require ./lib/location-finder
+//= require ./lib/distance-sorter
