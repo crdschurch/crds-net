@@ -9,6 +9,7 @@ CRDS.DistanceSorter = class DistanceSorter {
     this.locationDistances = [];
     this.searchForm = undefined;
     this.searchInput = undefined;
+    this.formSubmitButton = undefined;
     this.cards = undefined;
     this.locationFinder = undefined;
     this.init();
@@ -18,45 +19,76 @@ CRDS.DistanceSorter = class DistanceSorter {
     this.searchForm = document.getElementById('locations-address-input');
     this.searchForm.addEventListener('submit', this.handleFormSubmit.bind(this));
     this.searchInput = this.searchForm.getElementsByTagName('input')[0];
+    this.formSubmit = this.searchForm.getElementsByTagName('button')[0];
+    this.formSubmit.disabled = false;
     this.locationsCarousel = DistanceSorter.getLocationsCarousel();
     this.cards = this.locationsCarousel.cards;
     this.locationFinder = new CRDS.LocationFinder();
   }
 
   static getLocationsCarousel() {
-    return Object.values(CRDS._instances).find( (instance) => instance.carousel !== undefined && instance.carousel.id === 'section-locations');
+    return Object.values(CRDS._instances).find(
+      (instance) => DistanceSorter._isSectionLocationsCarousel(instance)
+    );
+  }
+
+  static _isSectionLocationsCarousel(instance) {
+    return instance.carousel !== undefined && instance.carousel.id === 'section-locations';
   }
 
   handleFormSubmit(event) {
-    event.preventDefault();
-    const formSubmit = this.searchForm.getElementsByTagName('button')[0];
-    formSubmit.disabled = true;
+    this._disableForm();
     this.getDistance()
-      .done((locationDistances) => {
-        for (let i = 0; i < locationDistances.length; i += 1) {
-          const locationName = locationDistances[i].location.location;
-          const distance = locationDistances[i].distance;
-          const locationDistance = { location: locationName, distance };
-          this.locationDistances.push(locationDistance);
-        }
-        this.createDataAttributes();
-        this.appendDistances();
-        this.locationsCarousel.sortBy('distance');
-  //      this.anywhereCheck();
-        this.clearError();
-        formSubmit.disabled = false;
-      })
+      .done((locationDistances) => { this._updateDomWithSortedCards(locationDistances); })
       .fail((xhr, ajaxOptions, thrownError) => {
         console.log(thrownError);
         this.showError();
-        formSubmit.disabled = false;
+        this.formSubmit.disabled = false;
         this.removeLabels();
       });
+  }
+
+  _disableForm() {
+    event.preventDefault();
+    this.formSubmit.disabled = true;
   }
 
   getDistance() {
     this.locationDistances = [];
     return this.locationFinder.getLocationDistances(this.searchInput.value);
+  }
+
+  _updateDomWithSortedCards(locationDistances) {
+    this._updateLocationDistancesArray(locationDistances);
+    this._display_sorted_locations_carousel();
+    this._resetFormOnSuccess();
+  }
+
+  _updateLocationDistancesArray(locationDistances) {
+    locationDistances.forEach(
+      locationObject => this._addToLocationDistancesArray(locationObject)
+    );
+  }
+
+  _addToLocationDistancesArray(locationObject) {
+    const locationDistance = this._createLocationDistanceObject(locationObject);
+    this.locationDistances.push(locationDistance);
+  }
+
+  _createLocationDistanceObject(locationObject) {
+    return {
+      location: locationObject.location.location,
+      distance: locationObject.distance
+    };
+  }
+
+  _display_sorted_locations_carousel() {
+    this.createDataAttributes();
+    this.appendDistances();
+    this.locationsCarousel.sortBy('distance');
+//  A anywhere card needs to be created in Contenful before
+//  this line will run correctly.
+//  this.anywhereCheck();
   }
 
   createDataAttributes() {
@@ -94,6 +126,11 @@ CRDS.DistanceSorter = class DistanceSorter {
       anywhere.parentNode.appendChild(anywhere);
     }
     this.locationsCarousel.reload();
+  }
+
+  _resetFormOnSuccess() {
+    this.clearError();
+    this.formSubmit.disabled = false;
   }
 
   showError() {
