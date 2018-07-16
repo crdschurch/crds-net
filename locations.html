@@ -27,10 +27,10 @@ permalink: /locations/
     </div>
   </div>
   <div class="card-deck carousel" data-crds-carousel="mobile-scroll"
-                              data-filterable=""
-                              data-filter-label="All Locations"
-                              data-filter-parent="#locations-filter-label"
-                              data-filter-reset-label="All Locations">
+                                  data-filterable=""
+                                  data-filter-label="All Locations"
+                                  data-filter-parent="#locations-filter-label"
+                                  data-filter-reset-label="All Locations">
     <div id="section-locations" class="feature-cards card-deck--expanded-layout">
       {% assign sorted_locations = site.locations | sort: 'name' %}
       {% for location in sorted_locations %}
