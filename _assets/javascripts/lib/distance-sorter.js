@@ -60,7 +60,7 @@ CRDS.DistanceSorter = class DistanceSorter {
 
   _updateDomWithSortedCards(locationDistances) {
     this._updateLocationDistancesArray(locationDistances);
-    this._display_sorted_locations_carousel();
+    this._displaySortedLocationsCarousel();
     this._resetFormOnSuccess();
   }
 
@@ -82,7 +82,7 @@ CRDS.DistanceSorter = class DistanceSorter {
     };
   }
 
-  _display_sorted_locations_carousel() {
+  _displaySortedLocationsCarousel() {
     this.createDataAttributes();
     this.appendDistances();
     this.locationsCarousel.sortBy('distance');
@@ -104,7 +104,7 @@ CRDS.DistanceSorter = class DistanceSorter {
       if (locationMatch !== undefined) {
         this.cards[i].dataset.distance = locationMatch.distance;
         const span = document.createElement('span');
-        span.classList.add('distance', 'label', 'font-family-base');
+        span.classList.add('distance', 'label', 'soft-half', 'push-half');
         span.textContent = `${locationMatch.distance} miles`;
         const oldSpan = this.cards[i].getElementsByClassName('distance');
         if (oldSpan.length === 0) {
