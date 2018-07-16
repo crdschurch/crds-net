@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 /* eslist no-plusplus: 0 */
 /* global CRDS */
 
@@ -5,7 +6,7 @@ window.CRDS = window.CRDS || {};
 
 CRDS.LocationFinder = class LocationFinder {
   constructor() {
-    this.gatewayAPIEndpoint = 'https://gatewayint.crossroads.net/gateway/api/v1.0.0';
+    this.gatewayAPIEndpoint = `${window.CRDS.env.gatewayServerEndpoint}api/v1.0.0`;
   }
 
   getLocationDistances(origin) {
