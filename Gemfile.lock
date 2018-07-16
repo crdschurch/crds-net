@@ -139,7 +139,7 @@ DEPENDENCIES
   crds-styles!
   jekyll (~> 3.7.3)
   jekyll-assets
-  jekyll-contentful!
+  jekyll-contentful (~> 0.0.7)!
   tzinfo-data
 
 BUNDLED WITH
