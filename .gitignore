@@ -1,7 +1,9 @@
 _site
+_redirects
 .sass-cache
 .jekyll-metadata
 .jekyll-cache
 .envrc
 .env
 collections
+node_modules

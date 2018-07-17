@@ -5,3 +5,5 @@
 //= require ./components/header
 //= require ./components/images
 //= require ./components/carousels
+//= require ./lib/location-finder
+//= require ./lib/distance-sorter

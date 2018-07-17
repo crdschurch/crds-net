@@ -1,5 +1,7 @@
 [build]
   command = '''
+    bundle exec rspec &&
+    ruby lib/bin/redirects.rb &&
     bundle exec jekyll contentful &&
     bundle exec jekyll build
   '''
