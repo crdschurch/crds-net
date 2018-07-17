@@ -1,0 +1,4 @@
+/connect/*,${env:CRDS_CONNECT_CLIENT_ENDPOINT}/connect/:splat,200
+/groups/search/*,${env:CRDS_CONNECT_CLIENT_ENDPOINT}/groups/search/:splat,200
+/proxy/*,${env:CRDS_MAESTRO_CLIENT_ENDPOINT}/proxy/:splat,200
+/*,${env:CRDS_MAESTRO_CLIENT_ENDPOINT}/:splat,200
