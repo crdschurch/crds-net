@@ -6,3 +6,4 @@ _redirects
 .envrc
 .env
 collections
+node_modules
