@@ -3,3 +3,4 @@
 //= require ./vendor/bootstrap.min
 //= require ./components/header
 //= require ./components/carousels
+//= require ./components/countdown
