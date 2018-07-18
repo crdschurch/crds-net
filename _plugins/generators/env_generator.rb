@@ -31,20 +31,8 @@ module Jekyll
       end
 
       def configure_streamspot_credentials
-        if env_is_production?
-          set_streamspot_credentials({id: 'crossr4915', key: '82437b4d-4e38-42e2-83b6-148fcfaf36fb'})
-        else
-          set_streamspot_credentials({id: 'crossr30e3', key: 'a0cb38cb-8146-47c2-b11f-6d93f4647389'})
-        end
-      end
-
-      def env_is_production?
-        @site.config['jekyll_env'] == 'production'
-      end
-
-      def set_streamspot_credentials(credentials)
-        @site.config['streamspotId'] = credentials[:id]
-        @site.config['streamspotKey'] = credentials[:key]
+        @site.config['streamspotId'] = ENV['STREAMSPOT_ID']
+        @site.config['streamspotKey'] = ENV['STREAMSPOT_API_KEY']
       end
   end
 end
