@@ -30,7 +30,10 @@
       prefix: '{{ site.shared_header.prefix }}'
     },
     streamspotId: '{{ site.streamspotId }}',
-    streamspotKey: '{{ site.streamspotKey }}'
+    streamspotKey: '{{ site.streamspotKey }}',
+    env: {
+      gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}'
+    }
   };
   </script>
   <script type="text/javascript" src="{% asset application.js @path %}"></script>
