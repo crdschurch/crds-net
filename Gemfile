@@ -5,7 +5,7 @@ gem "jekyll", "~> 3.7.3"
 group :jekyll_plugins do
   gem 'jekyll-assets'
   gem 'crds-styles', git: 'https://github.com/crdschurch/crds-styles.git', branch: 'development'
-  gem "jekyll-contentful", git: 'https://github.com/crdschurch/jekyll-contentful.git', branch: 'development'
+  gem "jekyll-contentful", "~> 0.0.7", git: 'https://github.com/crdschurch/jekyll-contentful.git', branch: 'master'
 end
 
 group :test do
