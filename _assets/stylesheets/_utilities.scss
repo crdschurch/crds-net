@@ -48,3 +48,9 @@
     flex-direction: row;
   }
 }
+
+.flex-xs-row {
+  @media (min-width: $screen-xs) {
+    flex-direction: row;
+  }
+}

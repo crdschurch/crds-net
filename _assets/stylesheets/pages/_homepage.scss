@@ -45,6 +45,10 @@
       justify-content: center;
       background-color: rgba(0, 0, 0, 0.6);
 
+      h3 {
+        margin-top: 0;
+      }
+
       .countdown-timer {
         li {
           font-size: 1.875rem;
@@ -148,6 +152,7 @@
       }
 
       .card-title {
+        font-size: 1rem;
         @media (min-width: $screen-xs-min) {
           font-size: 1.25rem;
         }
