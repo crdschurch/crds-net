@@ -12,6 +12,12 @@ module Jekyll
     def generate(site)
       @site = site
       @site.config['jekyll_env'] = ENV['JEKYLL_ENV'] || 'development'
+      @site.config['gateway_server_endpoint'] = "https://gateway#{env_prefix}.crossroads.net/gateway/"
+      @site.config['imgix'] = {
+        'find': ENV['IMGIX_SRC'],
+        'replace': ENV['IMGIX_DOMAIN'],
+      }
+      @site.config['default_image'] = "//#{ENV['IMGIX_DOMAIN']}/default-image.jpg"
       configure_shared_header
       configure_streamspot_credentials
     end
