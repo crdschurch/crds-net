@@ -6,6 +6,7 @@
 //= require ./components/header
 //= require ./components/images
 //= require ./components/carousels
+//= require ./components/countdown
 //= require ./components/jumbotron-video
 //= require ./lib/location-finder
 //= require ./lib/distance-sorter

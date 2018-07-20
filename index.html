@@ -12,16 +12,16 @@ title: Home | Crossroads
     <svg class="icon jumbotron-overlayClose text-white block" id="overlay-close" data-automation-id="overlay-close" viewBox="0 0 256 256">
       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#close-thin"></use>
     </svg>
-    <div class="jumbotron-overlayContent d-flex align-items-center justify-content-center flex-column-reverse flex-sm-row">
+    <div class="jumbotron-overlayContent d-flex align-items-center justify-content-center flex-column-reverse flex-xs-row">
       <div class="recentService" data-automation-id="recentService">
-        <h3 class="component-header font-size-base flush-top text-gray-light">Get Caught Up</h3>
+        <h3 class="component-header flush-top text-gray-light">Get Caught Up</h3>
         <div class="card" data-automation-id="last-message-card">
-          <a href="/message/3916/Not Needed, but Wanted | SPIRIT REALM: Week 4">
+          <a href="/series/{{ latest_message.series_slug }}/{{ latest_message.slug }}">
             <div class="card-img-top aspect-16x9" id="lastMessageImg" style="background-image: url('{{ latest_message.image }}');"></div>
           </a>
-          <div class="card-block flush-bottom hard text-center">
+          <div class="card-block flush-bottom hard">
             <a href="/series/{{ latest_message.series_slug }}/{{ latest_message.slug }}">
-              <h4 class="card-title flush-top font-size-smaller block text-gray-lighter" id="lastMessageTitle">{{ latest_message.title }}</h4>
+              <h4 class="card-title flush-top block text-gray-lighter" id="lastMessageTitle">{{ latest_message.title }}</h4>
             </a>
             <h5 class="flush-top text-gray-light font-size-small" id="lastMessageSubtitle">{{ latest_message.date | date: "%m.%d.%Y" }}</h5>
             <a href="/series" class="card-link" id="lastMessageCTA">View more messages</a>
@@ -30,14 +30,11 @@ title: Home | Crossroads
       </div>
       <div class="divider"></div>
       <div class="streamService" data-automation-id="stream-service">
-        <h3 class="component-header font-size-base flush-top text-gray-light" data-automation-id="coming-soon-header" data-stream-live="hide">Coming Soon</h3>
-        <h3 class="component-header font-size-base flush-top text-gray-light hide" data-stream-live="show" data-automation-id="watch-now-header">Watch Now!</h3>
+        <h3 class="component-header flush-top text-gray-light" data-automation-id="coming-soon-header" data-stream-live="hide">Coming Soon</h3>
+        <h3 class="component-header flush-top text-gray-light hide" data-stream-live="show" data-automation-id="watch-now-header">Watch Now!</h3>
         <div class="card" data-automation-id="stream-card">
-          <div class="card-img-container">
-            <div class="off-container" data-stream-off="show" data-automation-id="offState">
-              <h4 class="font-size-base">Next Live Stream</h4>
-              <h3 class="flush-top">Saturday at 4:30pm ET</h3>
-            </div>
+          <div class="card-img-container relative">
+            <div class="off-container" data-stream-off="show" data-automation-id="offState"></div>
             <div class="countdown-container crds-countdown hide" data-stream-upcoming="show" data-automation-id="upcomingState">
               <ul class="countdown-timer list-inline hard">
                 <li class="countdown-days days"></li>
@@ -56,8 +53,8 @@ title: Home | Crossroads
             </div>
             <div class="card-img-top aspect-16x9" id="upcomingImg" data-automation-id="upcomingImg" style="background-image: url('{{ current_series.image }}'); z-index: -1;"></div>
           </div>
-          <div class="card-block flush-bottom hard text-center">
-            <h4 class="card-title push-quarter-top font-size-smaller block text-gray-lighter">{{ current_series.title }}</h4>
+          <div class="card-block flush-bottom hard">
+            <h4 class="card-title push-quarter-top block text-gray-lighter">{{ current_series.title }}</h4>
             <h5 class="flush-top text-gray-light font-size-small">{{ current_series.start_date | date: "%m.%d.%Y" }} — {{ current_series.end_date | date: "%m.%d.%Y" }}</h5>
               {% if current_series.youtube_url != nil %}
                 <div class="card-link-container">
