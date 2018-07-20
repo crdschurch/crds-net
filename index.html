@@ -58,7 +58,7 @@ title: Home | Crossroads
             <h5 class="flush-top text-gray-light font-size-small">{{ current_series.start_date | date: "%m.%d.%Y" }} — {{ current_series.end_date | date: "%m.%d.%Y" }}</h5>
               {% if current_series.youtube_url != nil %}
                 <div class="card-link-container">
-                  <a href="{{ current_series.youtube_url }}" target="_blank">Watch the trailer</a>
+                  <a class="card-link" href="{{ current_series.youtube_url }}" target="_blank">Watch the trailer</a>
                 </div>
               {% endif %}
           </div>
@@ -166,8 +166,8 @@ title: Home | Crossroads
         </li>
       </ul>
     </div>happening at crossroads</h3>
-  <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-filterable="" data-filter-label="Churchwide" data-filter-parent="#happening-filter-label"
-    data-filter-reset-label="Churchwide" data-carousel-id="carousel-89fje">
+  <div class="card-deck carousel" data-filterable="" data-filter-label="Churchwide" data-filter-parent="#happening-filter-label"
+    data-filter-reset-label="Churchwide">
     <div id="section-what-s-happening" class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
 
       <div class="card" data-filter="Churchwide,Uptown,Oxford,Oakley,Florence,West Side,East Side,Dayton,Mason,Columbus,Georgetown,Andover,Richmond"
