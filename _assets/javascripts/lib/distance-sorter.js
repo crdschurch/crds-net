@@ -33,7 +33,7 @@ CRDS.DistanceSorter = class DistanceSorter {
   }
 
   static _isSectionLocationsCarousel(instance) {
-    return instance.carousel !== undefined && instance.carousel.id === 'section-locations';
+    return instance.carousel !== undefined && instance.carousel !== null && instance.carousel.id === 'section-locations';
   }
 
   handleFormSubmit(event) {
