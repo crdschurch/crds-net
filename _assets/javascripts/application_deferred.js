@@ -4,6 +4,7 @@
 //= require ./vendor/crds-jumbotron-video-v0.0.2.min
 //= require ./components/header
 //= require ./components/carousels
+//= require ./components/countdown
 //= require ./components/jumbotron-video
 //= require ./lib/location-finder
 //= require ./lib/distance-sorter
