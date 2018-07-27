@@ -1,9 +1,39 @@
 ---
 layout: default 
 --- 
+<!-- create a var called promos, split it into an array -->
+{% assign promos = "" | split: "" %}
+<!-- loop on the page's happenings (locations) -->
+{% for happening in page.happenings %}
+  <!-- search through the promos collection for the specific happening and assign to promo -->
+  {% assign promo = site.promos | where: "title", happening["raw"]["fields"]["title"] | first %}
+  <!-- add back to new array called promos -->
+  {% assign promos = promos | push: promo %}
+{% endfor %}
 
 {% include _shared-header.html %}
 
-{{ page.name }}
+<div class="container">
+  <div class="card-deck cards-4x">
+    <div class="row">
+    <!-- Happenings -->
+    {% for happening in promos %}
+      <div class="card" data-filter="Columbus" style="display: block;">
+        <a href="{{ happening.link_url }}" class="block">
+          <img alt="{{ happening.title }}" class="card-img-top imgix-fluid card-img-constrained" src="{{ happening.image }}" />
+        </a>  
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+            <a href="https://www.crossroads.net/connect/add-me-to-the-map">{{ happening.title }}</a>
+          </h4>
+          <div class="card-text">
+          {{ happening.content }}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
 
 {% include _shared-footer.html %}
