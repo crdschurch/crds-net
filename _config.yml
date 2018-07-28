@@ -1,4 +1,4 @@
-title: Crossroads Media
+title: Crossroads
 email: info@crossroads.net
 description: No matter what your beliefs, you are welcome here.
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -52,6 +52,9 @@ contentful:
           layout: layout
           show_header: show_header
           show_footer: show_footer
+          meta_image: meta_image/url
+          meta_description: meta_description
+
     locations:
       id: location
       body: description
