@@ -47,11 +47,13 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
     eventmachine (1.2.7)
+    eventmachine (1.2.7-x64-mingw32)
     execjs (2.7.0)
     extras (0.3.0)
       forwardable-extended (~> 2.5)
     fastimage (2.1.3)
     ffi (1.9.25)
+    ffi (1.9.25-x64-mingw32)
     formatador (0.2.5)
     forwardable-extended (2.6.0)
     guard (2.14.2)
@@ -127,6 +129,8 @@ GEM
     nenv (0.3.0)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
+    nokogiri (1.8.4-x64-mingw32)
+      mini_portile2 (~> 2.3.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
@@ -169,12 +173,17 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2018.5)
+      tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
+    unf_ext (0.0.7.5-x64-mingw32)
+    wdm (0.1.1)
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   crds-styles!
@@ -184,6 +193,7 @@ DEPENDENCIES
   jekyll-contentful (~> 0.0.7)!
   rspec
   tzinfo-data
+  wdm (~> 0.1.0)
 
 BUNDLED WITH
    1.16.2
