@@ -118,7 +118,8 @@ title: Home | Crossroads
   <h3 id="happening-filter-label" class="collection-header clearfix">happening at crossroads</h3>
   <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-filterable data-filter-label="Churchwide" data-filter-parent="#happening-filter-label" data-filter-reset-label="Churchwide">
     <div id="section-what-s-happening" class="feature-cards">
-      {% for happening in site.promos %}
+      {% assign date_sorted_promos = site.promos | sort: "published_at" | reverse %}
+      {% for happening in date_sorted_promos %}
         {% assign targets = happening.target_audience | join: ',' %}
         <div class="card" data-filter="{{ targets }}">  
           <a href="{{ happening.link_url }}">
@@ -145,7 +146,7 @@ title: Home | Crossroads
       </div>
     </div>
   </div>
-  <div class="container push-bottom">
+  <div class="container pu sh-bottom">
     <div class="row push-bottom">
       <div class="col-sm-4 push-bottom">
         <img data-src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-1-1.jpg?r&amp;auto=format,compress"
