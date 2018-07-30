@@ -71,6 +71,7 @@ contentful:
           image: image/url
           bg_image: bg_image/url
           map_url: map_url
+          hubspot_form_id: hubspot_form_id
         other:
           layout: location
           draft: false
