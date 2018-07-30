@@ -25,7 +25,7 @@ module Jekyll
 
 
     def get_meta_title(page, site)
-      get_title(page['title'], site['title'])
+      Jekyll::CRDS::HtmlUtil.get_title(page['title'], site['title'])
     end
 
 
