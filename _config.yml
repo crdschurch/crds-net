@@ -53,6 +53,7 @@ contentful:
       frontmatter:
         entry_mappings:
           title: title
+          description: body
           slug: slug
           permalink: slug
           layout: layout
@@ -67,6 +68,7 @@ contentful:
       frontmatter:
         entry_mappings:
           name: name
+          description: description
           slug: slug
           address: address
           service_times: service_times
@@ -86,6 +88,7 @@ contentful:
       frontmatter:
         entry_mappings:
           title: title
+          description: description
           slug: slug
           image: image/url
           bg_image: background_image/url
@@ -110,6 +113,7 @@ contentful:
       frontmatter:
         entry_mappings:
           title: title
+          description: description
           authors: author/full_name
           image: image/url
           source_url: source_url
