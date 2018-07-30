@@ -10,11 +10,11 @@ describe 'Html Meta Util' do
   it 'should return the page meta_image url' do
     expect(
       Jekyll::CRDS::MetaUtil.get_meta_image(
-        "https://page-meta-image.jpg",
-        "https://page-image.jpg",
-        "https://page-bg-image.jpg",
-        "<p><div>Some text and stuff</div><div>< img src='https://page-content-image.jpg'></div><div><img src='https://page-content-image-2.jpg'></div></p>",
-        "https://site-image.jpg")).to eq "https://page-meta-image.jpg"
+        'https://page-meta-image.jpg',
+        'https://page-image.jpg',
+        'https://page-bg-image.jpg',
+        '<p><div>Some text and stuff</div><div>< img src="https://page-content-image.jpg"></div><div><img src="https://page-content-image-2.jpg"></div></p>',
+        'https://site-image.jpg')).to eq 'https://page-meta-image.jpg'
   end
 
 
@@ -22,10 +22,10 @@ describe 'Html Meta Util' do
     expect(
       Jekyll::CRDS::MetaUtil.get_meta_image(
         nil,
-        "https://page-image.jpg",
-        "https://page-bg-image.jpg",
-        "<p><div>Some text and stuff</div><div>< img src='https://page-content-image.jpg'></div><div><img src='https://page-content-image-2.jpg'></div></p>",
-        "https://site-image.jpg")).to eq "https://page-image.jpg"
+        'https://page-image.jpg',
+        'https://page-bg-image.jpg',
+        '<p><div>Some text and stuff</div><div>< img src="https://page-content-image.jpg"></div><div><img src="https://page-content-image-2.jpg"></div></p>',
+        'https://site-image.jpg')).to eq 'https://page-image.jpg'
   end
 
 
@@ -34,9 +34,9 @@ describe 'Html Meta Util' do
       Jekyll::CRDS::MetaUtil.get_meta_image(
         nil,
         nil,
-        "https://page-bg-image.jpg",
-        "<p><div>Some text and stuff</div><div>< img src='https://page-content-image.jpg'></div><div><img src='https://page-content-image-2.jpg'></div></p>",
-        "https://site-image.jpg")).to eq "https://page-bg-image.jpg"
+        'https://page-bg-image.jpg',
+        '<p><div>Some text and stuff</div><div>< img src="https://page-content-image.jpg"></div><div><img src="https://page-content-image-2.jpg"></div></p>',
+        'https://site-image.jpg')).to eq 'https://page-bg-image.jpg'
   end
 
 
@@ -46,19 +46,19 @@ describe 'Html Meta Util' do
         nil,
         nil,
         nil,
-        "<p><div>Some text and stuff</div><div>< img src='https://page-content-image.jpg'></div><div><img src='https://page-content-image-2.jpg'></div></p>",
-        "https://site-image.jpg")).to eq "https://page-content-image.jpg"
+        '<p><div>Some text and stuff</div><div>< img src="https://page-content-image.jpg"></div><div><img src="https://page-content-image-2.jpg"></div></p>',
+        'https://site-image.jpg')).to eq 'https://page-content-image.jpg'
   end
 
 
-  it 'should return the 1st image in the page content with double quotes' do
+  it 'should return the 1st image in the page content with single quotes' do
     expect(
       Jekyll::CRDS::MetaUtil.get_meta_image(
         nil,
         nil,
         nil,
-        "<p><div>Some text and stuff</div><div>< img src=""https://page-content-image.jpg""></div><div><img src='https://page-content-image-2.jpg'></div></p>",
-        "https://site-image.jpg")).to eq "https://page-content-image.jpg"
+        '<p><div>Some text and stuff</div><div>< img src=''https://page-content-image.jpg''></div><div><img src=''https://page-content-image-2.jpg''></div></p>',
+        'https://site-image.jpg')).to eq 'https://page-content-image.jpg'
   end
 
 
@@ -68,8 +68,8 @@ describe 'Html Meta Util' do
         nil,
         nil,
         nil,
-        "<p><div>Some text and stuff</div><div>< img src=  https://page-content-image.jpg  ></div><div><img src='https://page-content-image-2.jpg'></div></p>",
-        "https://site-image.jpg")).to eq "https://page-content-image.jpg"
+        '<p><div>Some text and stuff</div><div>< img src=  https://page-content-image.jpg  ></div><div><img src="https://page-content-image-2.jpg"></div></p>',
+        'https://site-image.jpg')).to eq 'https://page-content-image.jpg'
   end
 
 
@@ -79,8 +79,8 @@ describe 'Html Meta Util' do
         nil,
         nil,
         nil,
-        "<p><div>Some text and stuff</div><div></div><div></div></p>",
-        "https://site-image.jpg")).to eq "https://site-image.jpg"
+        '<p><div>Some text and stuff</div><div></div><div></div></p>',
+        'https://site-image.jpg')).to eq 'https://site-image.jpg'
   end
 
   context 
@@ -92,18 +92,18 @@ describe 'Html Meta Util' do
         nil,
         nil,
         nil,
-        "https://site-image.jpg")).to eq "https://site-image.jpg"
+        'https://site-image.jpg')).to eq 'https://site-image.jpg'
   end
 
 
   it 'should return the site image url when all other options are empty strings' do
     expect(
       Jekyll::CRDS::MetaUtil.get_meta_image(
-        "",
-        "",
-        "",
-        "",
-        "https://site-image.jpg")).to eq "https://site-image.jpg"
+        '',
+        '',
+        '',
+        '',
+        'https://site-image.jpg')).to eq 'https://site-image.jpg'
   end
 
 
@@ -114,7 +114,7 @@ describe 'Html Meta Util' do
         nil,
         nil,
         nil,
-        "//site-image.jpg")).to eq "https://site-image.jpg"
+        '//site-image.jpg')).to eq 'https://site-image.jpg'
   end
 
 
@@ -125,7 +125,7 @@ describe 'Html Meta Util' do
         nil,
         nil,
         nil,
-        "/site-image.jpg")).to eq "/site-image.jpg"
+        '/site-image.jpg')).to eq '/site-image.jpg'
   end
 
 
@@ -136,46 +136,80 @@ describe 'Html Meta Util' do
         "     \t\r\n   ",
         "     \t\r\n   ",
         "     \t\r\n   ",
-        "https://site-image.jpg")).to eq "https://site-image.jpg"
+        'https://site-image.jpg')).to eq 'https://site-image.jpg'
   end
 
 
   it 'should return the page meta description' do
     expect(
       Jekyll::CRDS::MetaUtil.get_meta_description(
-        "Page meta description",
-        "Site description"
-      )).to eq "Page meta description"
+        'Page meta description',
+        'Page description',
+        'Site description'
+      )).to eq 'Page meta description'
   end
 
 
-  it 'should return the site description meta description is nil' do
+  it 'should return the page description when meta description is nil' do
     expect(
       Jekyll::CRDS::MetaUtil.get_meta_description(
         nil,
-        "Site description"
-      )).to eq "Site description"
+        'Page description',
+        'Site description'
+      )).to eq 'Page description'
   end
 
 
-  it 'should return the site description meta description is an empty string' do
+  it 'should return the page description when meta description is an empty string' do
     expect(
       Jekyll::CRDS::MetaUtil.get_meta_description(
-        "",
-        "Site description"
-      )).to eq "Site description"
+        '',
+        'Page description',
+        'Site description'
+      )).to eq 'Page description'
   end
 
 
-  it 'should return the site description meta description is white space' do
+  it 'should return the page description when meta description is white space' do
     expect(
       Jekyll::CRDS::MetaUtil.get_meta_description(
-        " \t\r\n",
-        "Site description"
-      )).to eq "Site description"
+        "    \t\r\n    ",
+        'Page description',
+        'Site description'
+      )).to eq 'Page description'
   end
 
-  
+
+  it 'should return the site description when page description is nil' do
+    expect(
+      Jekyll::CRDS::MetaUtil.get_meta_description(
+        nil,
+        nil,
+        'Site description'
+      )).to eq 'Site description'
+  end
+
+
+  it 'should return the site description when page description is an empty string' do
+    expect(
+      Jekyll::CRDS::MetaUtil.get_meta_description(
+        nil,
+        '',
+        'Site description'
+      )).to eq 'Site description'
+  end
+
+
+  it 'should return the site description when page description is white space' do
+    expect(
+      Jekyll::CRDS::MetaUtil.get_meta_description(
+        nil,
+        "    \t\r\n    ",
+        'Site description'
+      )).to eq 'Site description'
+  end
+
+
   # would love to strip_html, strip_newlines and truncate in the Ruby code directly to simplify
   # declarative expression in the liquid template, but... i don't know how yet in a clean way
   # that could potentially leverage the "helpers"/filters already provided
