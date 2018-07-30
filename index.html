@@ -1,0 +1,1280 @@
+---
+layout: default
+title: Home | Crossroads
+--- 
+
+{% include _shared-header.html %}
+<!-- Jumbotron Section  -->
+{% assign current_series = site.series | sort: 'start_date' | reverse | first %}
+{% assign latest_message = site.messages | sort: 'date' | reverse | first %}
+<div class="jumbotron bg-video jumbotron-xl flush-bottom" style="padding-top: 152px; padding-bottom: 152px;" data-aspect-ratio="2.34615">
+  <div class="jumbotron-overlay" id="overlay" data-automation-id="jumbotron-overlay">
+    <svg class="icon jumbotron-overlayClose text-white block" id="overlay-close" data-automation-id="overlay-close" viewBox="0 0 256 256">
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#close-thin"></use>
+    </svg>
+    <div class="jumbotron-overlayContent d-flex align-items-center justify-content-center flex-column-reverse flex-xs-row">
+      <div class="recentService" data-automation-id="recentService">
+        <h3 class="component-header flush-top text-gray-light">Get Caught Up</h3>
+        <div class="card" data-automation-id="last-message-card">
+          <a href="/series/{{ latest_message.series_slug }}/{{ latest_message.slug }}">
+            <div class="card-img-top aspect-16x9" id="lastMessageImg" style="background-image: url('{{ latest_message.image }}');"></div>
+          </a>
+          <div class="card-block flush-bottom hard">
+            <a href="/series/{{ latest_message.series_slug }}/{{ latest_message.slug }}">
+              <h4 class="card-title flush-top block text-gray-lighter" id="lastMessageTitle">{{ latest_message.title }}</h4>
+            </a>
+            <h5 class="flush-top text-gray-light font-size-small" id="lastMessageSubtitle">{{ latest_message.date | date: "%m.%d.%Y" }}</h5>
+            <a href="/series" class="card-link" id="lastMessageCTA">View more messages</a>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="streamService" data-automation-id="stream-service">
+        <h3 class="component-header flush-top text-gray-light" data-automation-id="coming-soon-header" data-stream-live="hide">Coming Soon</h3>
+        <h3 class="component-header flush-top text-gray-light hide" data-stream-live="show" data-automation-id="watch-now-header">Watch Now!</h3>
+        <div class="card" data-automation-id="stream-card">
+          <div class="card-img-container relative">
+            <div class="off-container" data-stream-off="show" data-automation-id="offState"></div>
+            <div class="countdown-container crds-countdown hide" data-stream-upcoming="show" data-automation-id="upcomingState">
+              <ul class="countdown-timer list-inline hard">
+                <li class="countdown-days days"></li>
+                <li class="countdown-hours hours"></li>
+                <li class="countdown-minutes minutes"></li>
+                <li class="countdown-seconds seconds"></li>
+              </ul>
+            </div>
+            <div class="live-container hide" data-stream-live="show" data-automation-id="liveState">
+              <a href="/live/stream">
+                <svg class="icon" viewBox="0 0 256 256">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#play-thin"></use>
+                </svg>
+                <h4 class="font-size-base">Watch Live Service</h4>
+              </a>
+            </div>
+            <div class="card-img-top aspect-16x9" id="upcomingImg" data-automation-id="upcomingImg" style="background-image: url('{{ current_series.image }}'); z-index: -1;"></div>
+          </div>
+          <div class="card-block flush-bottom hard">
+            <h4 class="card-title push-quarter-top block text-gray-lighter">{{ current_series.title }}</h4>
+            <h5 class="flush-top text-gray-light font-size-small">{{ current_series.start_date | date: "%m.%d.%Y" }} — {{ current_series.end_date | date: "%m.%d.%Y" }}</h5>
+              {% if current_series.youtube_url != nil %}
+                <div class="card-link-container">
+                  <a class="card-link" href="{{ current_series.youtube_url }}" target="_blank">Watch the trailer</a>
+                </div>
+              {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-video-player">
+    <video id="main-jumbotron-video" height width class="bg-jumbotron-video hide" autoplay="autoplay"
+      loop="loop" muted="" playsinline="" src="https://s3.amazonaws.com/crds-cms-uploads/media/video/loop-video.mp4">
+      <object id="main-jumbotron-video" width="320" height="240" data="https://content.crossroads.net/framework/thirdparty/tinymce/plugins/media/moxieplayer.swf"
+        type="application/x-shockwave-flash">
+        <param name="src" value="https://content.crossroads.net/framework/thirdparty/tinymce/plugins/media/moxieplayer.swf">
+        <param name="flashvars" value="url=https%3A//s3.amazonaws.com/crds-cms-uploads/media/video/loop-video.mp4&amp;poster=/">
+        <param name="allowfullscreen" value="true">
+        <param name="allowscriptaccess" value="true">
+      </object>
+    </video>
+  </div>
+  <div class="jumbotron-content">
+    <h1 class="title hidden-xs">welcome to crossroads</h1>
+    <h2 class="visible-xs font-size-h1" style="color: #fff;">welcome to crossroads</h2>
+    <span class="font-family-base lead">This is a real place for real people. All are welcome. No belief systems required, no admission at the door.</span>
+    <p class="text-center" data-stream-status-loading="hide">
+      <button id="find-location" class="btn btn-primary btn-lg" data-track-click="homeFindLocationCTA">Find a location</button>
+      <a href="#" class="btn btn-secondary btn-lg" id="watch-cta" data-automation-id="watch-cta"
+        data-stream-live="hide" data-track-click="homeWatchMessageCTA">Watch Now</a>
+      <a href="/live/stream" class="btn btn-secondary btn-lg hide" id="live-stream" data-stream-live="show"
+        data-track-click="homeWatchLiveCTA">LIVE! Watch now</a>
+    </p>
+    <span class="font-family-base font-size-small text-gray-lighter">Have more questions?
+      <a href="/explore" data-track-click="homeExploreCTA">Get to know us</a>
+    </span>
+  </div>
+</div>
+
+<!-- Current Series -->
+<section class="container">
+  <h2 class="section-header text-uppercase text-center flush-top soft-half-top">Be a part of this</h2>
+  {% include _current-series.html %}
+</section>
+<section class="container">
+  <div class="row push-bottom">
+    <div class="col-xs-12 text-center">
+      <div class="btn-group">
+        {% if current_series.youtube_url != nil %}
+        <a class="btn btn-blue" href="{{ current_series.youtube_url }}" target="_blank">Watch the trailer</a>
+        {% endif %}
+        <a href="/series/{{ latest_message.series_slug }}/{{ latest_message.slug}}" class="btn btn-blue" data-role="recent-message">View latest now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Happenings -->
+<section class="container">
+  <h3 id="happening-filter-label" class="collection-header clearfix">
+    <div class="dropdown pull-right" data-automation-id="happenings-dropdown">
+      <button class="btn btn-outline btn-gray-light dropdown-toggle soft-half-sides soft-quarter-ends" type="button" id="dropdownMenu-qtdlin"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <svg class="icon icon-1 pull-right push-left" viewBox="0 0 256 256">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#chevron-down"></use>
+        </svg>
+        <span data-current-label="">Churchwide</span>
+      </button>
+      <ul class="crds-list dropdown-menu" aria-labelledby="dropdownMenu-qtdlin">
+        <li>
+          <a href="#" data-filter-select="Churchwide" class="block">Churchwide</a>
+        </li>
+        <li>
+          <a href="#" data-filter-select="Uptown" class="block">Uptown</a>
+        </li>
+        <li>
+          <a href="#" data-filter-select="Oxford" class="block">Oxford</a>
+        </li>
+        <li>
+          <a href="#" data-filter-select="Oakley" class="block">Oakley</a>
+        </li>
+        <li>
+          <a href="#" data-filter-select="Florence" class="block">Florence</a>
+        </li>
+        <li>
+          <a href="#" data-filter-select="West Side" class="block">West Side</a>
+        </li>
+        <li>
+          <a href="#" data-filter-select="East Side" class="block">East Side</a>
+        </li>
+        <li>
+          <a href="#" data-filter-select="Dayton" class="block">Dayton</a>
+        </li>
+        <li>
+          <a href="#" data-filter-select="Mason" class="block">Mason</a>
+        </li>
+        <li>
+          <a href="#" data-filter-select="Columbus" class="block">Columbus</a>
+        </li>
+        <li>
+          <a href="#" data-filter-select="Georgetown" class="block">Georgetown</a>
+        </li>
+        <li>
+          <a href="#" data-filter-select="Andover" class="block">Andover</a>
+        </li>
+        <li>
+          <a href="#" data-filter-select="Richmond" class="block">Richmond</a>
+        </li>
+      </ul>
+    </div>happening at crossroads</h3>
+  <div class="card-deck carousel" data-filterable="" data-filter-label="Churchwide" data-filter-parent="#happening-filter-label"
+    data-filter-reset-label="Churchwide">
+    <div id="section-what-s-happening" class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
+
+      <div class="card" data-filter="Churchwide,Uptown,Oxford,Oakley,Florence,West Side,East Side,Dayton,Mason,Columbus,Georgetown,Andover,Richmond"
+        style="display: block;">
+
+        <a href="https://open.spotify.com/track/7FJbbJN3fk4tzYaKSC6STz" class="block">
+          <img alt="Crossroads Music" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/crossroads-music-single-faithful-con03.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format"
+            src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-music-single-faithful-con03.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=270">
+        </a>
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://open.spotify.com/track/7FJbbJN3fk4tzYaKSC6STz">Crossroads Music</a>
+
+          </h4>
+          <div class="card-text">
+            <p>Listen to the latest single from Crossroads Music on Spotify, Apple Music, or other major music platforms.&nbsp;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-filter="Churchwide,Oakley,Mason,West Side,East Side,Florence,Dayton,Oxford,Uptown,Columbus,Andover,Georgetown,Richmond"
+        style="display: block;">
+
+        <a href="https://media.crossroads.net/podcasts/spirit-stories" class="block">
+          <img alt="Spirit Stories Podcast" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/spiritrealm270x180-01.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format"
+            src="https://crds-cms-uploads.imgix.net/Uploads/spiritrealm270x180-01.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=270">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://media.crossroads.net/podcasts/spirit-stories">Spirit Stories Podcast</a>
+
+          </h4>
+          <div class="card-text">
+            <p>A storytelling podcast where everyday people share their close encounters with the spiritual realm. Subscribe
+              <a href="https://media.crossroads.net/podcasts/spirit-stories" target="_blank">
+                <strong>here</strong>
+              </a> or on other major podcast platforms.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <img alt="Baptisms" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/baptism.png?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            Baptisms
+
+          </h4>
+          <div class="card-text">
+            <p>Anyone who commits his or her life to following Jesus is ready to be baptized. If you’re ready to make a public
+              declaration, we’re ready to baptize you.
+              <strong>
+                <a href="https://www.crossroads.net/baptism" target="_blank" title="Baptisms">Find upcoming baptisms.</a>&nbsp;</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <img alt="College Night" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Crossroads-church-happening-college.png?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            College Night
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>Every Thursday&nbsp;</strong>
+              <br>
+              <strong>7:00-8:30pm</strong>
+              <br>Meet people. Know God. A place for college students to get in groups and to grow deeper in relationship with
+              God and other students.&nbsp;</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <a href="https://crossroads.net/uptown" class="block">
+          <img alt="Extended Open Hours" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Screen-Shot-2018-04-15-at-7.45.26-PM.png?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://crossroads.net/uptown">Extended Open Hours</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>UC Finals Week</strong>
+              <br>
+              <strong>April 22-26</strong>
+              <br>We're extending hours to give you a great place to study.&nbsp;
+              <span class="aBn" data-term="goog_1186879455" tabindex="0">
+                <span class="aQJ">Sunday</span>
+              </span>&nbsp;-&nbsp;
+              <span class="aBn" data-term="goog_1186879456" tabindex="0">
+                <span class="aQJ">Wednesday</span>
+              </span>:&nbsp;
+              <span class="aBn" data-term="goog_1186879457" tabindex="0">
+                <span class="aQJ">8am - 3am&nbsp;</span>
+              </span>and&nbsp;
+              <span class="aBn" data-term="goog_1186879459" tabindex="0">
+                <span class="aQJ">Thursday</span>
+              </span>:&nbsp;
+              <span class="aBn" data-term="goog_1186879460" tabindex="0">
+                <span class="aQJ">8am - 5pm.&nbsp;</span>
+              </span>
+              <span class="aBn" data-term="goog_1186879460" tabindex="0">
+                <span class="aQJ">Student ID required after 9pm.</span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <a href="https://www.crossroads.net/golocal" class="block">
+          <img alt="Pick Your Project" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Untitled-design-13.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://www.crossroads.net/golocal">Pick Your Project</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>May 12-13, 2018</strong>
+            </p>
+            <p>
+              <span id="docs-internal-guid-de7aa7bc-ceb5-58cb-d670-54e5925a6eaf">Join this weekend blitz of community service projects and help transform our communities. We'll be doing things
+                like construction, gardening, painting, hosting events, and more.
+                <a href="https://golocal.crossroads.net/" target="_blank">
+                  <strong>Sign-ups&nbsp;are open.</strong>
+                </a>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <a href="https://www.crossroads.net/reachout/go/south-africa/" class="block">
+          <img alt="New GO Trips" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Untitled-design-18.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://www.crossroads.net/reachout/go/south-africa/">New GO Trips</a>
+
+          </h4>
+          <div class="card-text">
+            <p>There are two new South Africa trips available this fall. See construction progress for the new Center Of Hope
+              in the community of Motsoaledi, Soweto, or take part in the first ever GO Trip to Durban on the coast of the
+              Indian Ocean.
+              <a href="https://www.crossroads.net/reachout/go/south-africa" target="_blank">
+                <strong>Get more information.</strong>
+              </a>
+            </p>
+            <p>
+              <span>&nbsp;</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="Oxford" style="display: none;">
+
+        <a href="https://www.crossroads.net/baptism/infant-baptism-and-dedication/" class="block">
+          <img alt="Infant Baptism and Dedication" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Infant-Dedication.png?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://www.crossroads.net/baptism/infant-baptism-and-dedication/">Infant Baptism and Dedication</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>July 8</strong>
+              <br>
+              <strong>Following 11am&nbsp;Service</strong>
+            </p>
+            <p>Interested in dedicating or baptizing your infant? Great!&nbsp;
+              <a href="https://www.crossroads.net/baptism/infant-baptism-and-dedication/">Click here</a>&nbsp;for a packet containing all the information you need or to sign up. Spots are&nbsp;limited
+              and reserved on a first-come, first-served basis.&nbsp;</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <a href="https://www.crossroads.net/adoption/group/adoptionfoster-parent-group-west-side/" class="block">
+          <img alt="Adoptive &amp; Foster Parent Group Event" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Untitled-design-2.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://www.crossroads.net/adoption/group/adoptionfoster-parent-group-west-side/">Adoptive &amp; Foster Parent Group Event</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>
+                <strong>Thursday, May 10 6:30pm</strong>
+                <br>Special Guest&nbsp;
+                <span>Amber Dawn Welch
+                  <br>
+                </span>
+              </strong>
+            </p>
+            <p>
+              <span>Join us to hear from Amber, a foster and adoptive care advocate that spent her childhood in the foster care
+                system.&nbsp;
+                <a href="https://www.crossroads.net/adoption/group/adoptionfoster-parent-group-west-side/" target="_blank" title="West Side Foster and Adoption Group">Find out more information and RSVP.&nbsp;</a>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <img alt="Join Us" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Pig-Roast.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            Join Us
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>Sunday, May 20
+                <br>After the 11am Service</strong>
+            </p>
+            <p>Join us for the 5th Annual West Side Pig Roast. No RSVP needed!&nbsp;</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="East Side" style="display: none;">
+
+        <a href="https://www.crossroads.net/eastside/eastsideonsitegroups" class="block">
+          <img alt="Onsite Groups" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/crossroads-happening-onsite-groups.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://www.crossroads.net/eastside/eastsideonsitegroups">Onsite Groups</a>
+
+          </h4>
+          <div class="card-text">
+            <p>Stepping into a group for the first time can be intimidating. Try an Onsite Group for a season to meet new people,
+              and get specific content and training from experts before considering a neighborhood group.&nbsp;
+              <a href="https://www.crossroads.net/eastside/eastsideonsitegroups/" target="_blank">
+                <strong>View East Side onsite groups.</strong>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="Dayton" style="display: none;">
+
+        <a href="https://www.crossroads.net/worshiptraining" class="block">
+          <img alt="Worship Training" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/happening-worshiptraining.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://www.crossroads.net/worshiptraining">Worship Training</a>
+
+          </h4>
+          <div class="card-text">
+            <p dir="ltr">We believe that everyone has the potential to be great. Whether a musician or technician, you’ll get reps on
+              our stages with our gear and training from our team.
+              <strong>
+                <a href="https://www.crossroads.net/worshiptraining" target="_blank">Learn more and sign up.</a>
+              </strong>
+            </p>
+            <p>
+              <span>&nbsp;</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="Columbus" style="display: none;">
+
+        <img alt="Worship &amp; World Cup" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Untitled-design-12.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            Worship &amp; World Cup
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>Sunday, July 15</strong>
+              <br>
+              <strong>Special Time 9am</strong>
+            </p>
+            <p>We're gathering as a community at&nbsp;
+              <span>
+                <a href="https://www.google.com/maps/dir/''/studio+35+columbus/data=!4m5!4m4!1m0!1m2!1m1!1s0x88388c057c2f3547:0xcb67e10059f3176c?sa=X&amp;ved=0ahUKEwiYk6bjpJzaAhVKy1MKHWHMDB8Q9RcIwAEwDw">Studio 35 Cinema </a>for worship and a service. Stay after service to watch the World Cup.&nbsp;</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <img alt="West Side Fireworks" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Fireworks-happ270x180.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            West Side Fireworks
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>June 30, 7pm</strong>
+            </p>
+            <p>
+              <span>Kick off your holiday weekend with this family-friendly event.</span>&nbsp;The fun starts at 7pm, with fireworks
+              at dusk.
+              <strong>
+                <a href="https://www.facebook.com/events/440846116357767/" target="_blank">Find out more here</a>.</strong>
+              <br>
+              <strong></strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="Uptown" style="display: none;">
+
+        <img alt="Family Party" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/UptownBalloons.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            Family Party
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <span>Saturday, July 21
+                <br>4-8pm </span>
+            </p>
+            <p>
+              <span>Join us for a family party at Crossroads Uptown and meet other families in the community. Food, drinks and
+                kid-friendly fun provided. Email
+                <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=uptown@crossroads.net" target="_blank">here</a> to RSVP.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScEHU3FYYhibyLGsaBIQTjIbfP-xZt7eMRumU7uOmsNP7NvAw/viewform?c=0&amp;w=1"
+          class="block">
+          <img alt="Clippers Game" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Untitled-design.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScEHU3FYYhibyLGsaBIQTjIbfP-xZt7eMRumU7uOmsNP7NvAw/viewform?c=0&amp;w=1">Clippers Game</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>June 10th
+                <br>12:30 Lunch 2:05 Game</strong>
+            </p>
+            <p>Our Treat! Bring your family, invite a friend, and join us in rooting for the home team. Tickets are limited.
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLScEHU3FYYhibyLGsaBIQTjIbfP-xZt7eMRumU7uOmsNP7NvAw/viewform?c=0&amp;w=1"
+                target="_blank" title="Clippers Ticket Request">Get your seats here.</a>
+            </p>
+            <p>
+              <strong>
+                <span id="docs-internal-guid-fdd3e9de-fa1d-32c1-6abb-eef03393bc76">
+                  <span>&nbsp;</span>
+                </span>
+              </strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <img alt="Snow Cone Summer Pool Party" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Oxford-Snow-Cone-Summer-Party.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            Snow Cone Summer Pool Party
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>Saturday, June 23
+                <br>12–2pm</strong>
+            </p>
+            <p>Stay cool by the pool this summer with FREE Kona snow cones. We'll be at
+              <a href="https://www.google.com/maps/place/TRI+Community+Center/@39.5079731,-84.7536489,17z/data=!4m12!1m6!3m5!1s0x88403d3de0e3b8d3:0x2d24a89b87e8e67!2sTRI+Community+Center!8m2!3d39.5076789!4d-84.7536045!3m4!1s0x88403d3de0e3b8d3:0x2d24a89b87e8e67!8m2!3d39.5076789!4d-84.7536045">TRI Community Pool</a>, so come hangout and have a free snow cone on us.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="Richmond" style="display: none;">
+
+        <a href="https://www.eventbrite.com/e/crossroads-fireworks-in-lexington-tickets-46656244082?aff=happeningsrichmond" class="block">
+          <img alt="FIREWORKS" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Fireworks-happ270x180.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://www.eventbrite.com/e/crossroads-fireworks-in-lexington-tickets-46656244082?aff=happeningsrichmond">FIREWORKS</a>
+
+          </h4>
+          <div class="card-text">
+            <p>Crossroads Fireworks, July 4 at Whitaker Bank Ballpark, 6:30pm.
+              <span>Invite your friends and neighbors to the ballpark for FREE fireworks!&nbsp;</span>Get your FREE tickets&nbsp;
+              <a href="https://www.eventbrite.com/e/crossroads-fireworks-in-lexington-tickets-46656244082?aff=happeningsrichmond" target="_blank">here</a>.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <img alt="Night of Prayer and Worship" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/happening-NOP2.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            Night of Prayer and Worship
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>Monday, June 4&nbsp;
+                <br>6:30pm–8:30pm</strong>
+            </p>
+            <p>
+              <span>We believe God listens to our prayers and desires to heal us. Join us for a night of prayer and worship. Come
+                be prayed for and pray to heal others. Learn more
+                <a href="[sitetree_link,id=2333]">here</a>.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <a href="http://onelink.to/9k3bdd" class="block">
+          <img alt="Anywhere App" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Screen-Shot-2017-05-30-at-1.02.40-PM.png?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="http://onelink.to/9k3bdd">Anywhere App</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <span></span>
+              <span>Want to develop a daily rhythm of connecting with God? There's an app for that. Spend time with God in the
+                Today Experience, find a guide to use as content for your group or watch a live service to catch up on a
+                past weekend in the Crossroads Anywhere App.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="Richmond" style="display: none;">
+
+        <img alt="Men's Group" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/men-Onsite.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            Men's Group
+
+          </h4>
+          <div class="card-text">
+            <p>Dig a little deeper with other men in the Richmond community. We'll meet for an hour on Tuesday mornings starting
+              June 5, 6:30-7:30am at Crossroads Richmond.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <a href="https://www.crossroads.net/openhours/" class="block">
+          <img alt="Open Hours" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/open-270x180-01.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://www.crossroads.net/openhours/">Open Hours</a>
+
+          </h4>
+          <div class="card-text">
+            <p>Need a place to study or to have a meeting? Andover is Open, Monday through Friday, 7am - 2pm. Free coffee. Free
+              wifi.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="Churchwide,Oakley,Mason,Dayton,Oxford,West Side,Uptown,East Side,Florence,Columbus,Andover,Richmond,Georgetown"
+        style="display: block;">
+
+        <a href="http://www.facebook.com/crdschurch" class="block">
+          <img alt="Daily Worship and Prayer" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/facebooklive270x180.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format"
+            src="https://crds-cms-uploads.imgix.net/Uploads/facebooklive270x180.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=270">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="http://www.facebook.com/crdschurch">Daily Worship and Prayer</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <span>Join us every weekday for live worship at 7:30am on Facebook Live. You can also tune&nbsp;in any time throughout
+                the day
+                <strong>
+                  <a href="http://www.facebook.com/crdschurch">here</a>.</strong>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="Andover" style="display: none;">
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYFkpG0uQHtvpE5U1TVHo5LeCa_QcY1yEl6n_sN1RvarUVMg/viewform" class="block">
+          <img alt="Undivided" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Undivided-happening.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYFkpG0uQHtvpE5U1TVHo5LeCa_QcY1yEl6n_sN1RvarUVMg/viewform">Undivided</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>July 10 - August 7</strong>
+              <br>
+              <strong>Tuesdays 6:30-8:30</strong>
+            </p>
+            <p class="p1">
+              <a href="http://crossroads.net/undivided">Undivided</a>, a six-week spiritual experience, bringing people together for a meaningful conversation on race,
+              relationship, and reconciliation.
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYFkpG0uQHtvpE5U1TVHo5LeCa_QcY1yEl6n_sN1RvarUVMg/viewform" target="_blank">Register here</a>.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <a href="https://www.crossroads.net/nightofprayer" class="block">
+          <img alt="Night of Prayer" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/happening-NOP3.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://www.crossroads.net/nightofprayer">Night of Prayer</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>June 19, 7pm</strong>
+              <strong>
+                <br>
+              </strong>
+            </p>
+            <p>
+              <span>We believe God listens to our prayers and desires to heal us. Join us for a night of prayer.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <a href="http://events.thecurestartsnow.org/hyde-park-blast-2018/" class="block">
+          <img alt="Hyde Park Blast" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/HydeParkBlast270x180.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="http://events.thecurestartsnow.org/hyde-park-blast-2018/">Hyde Park Blast</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>June 30</strong>
+              <br>
+              <strong>Event begins at 7:30am</strong>
+            </p>
+            <p>We'll be at the Hyde Park Blast to support their cancer-fighting mission. Find us for a free cup of coffee, or
+              cheer us on during the chariot races!
+              <strong>
+                <a href="http://events.thecurestartsnow.org/hyde-park-blast-2018/event-details/about-the-blast/" target="_blank">See the schedule of events.</a>
+              </strong>&nbsp;</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <img alt="Derby Color Fun Run" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/KC-Derby-Color-Run-270x180-01.png?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            Derby Color Fun Run
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>June 2</strong>
+            </p>
+            <p>A free event for the family at Crossroads Andover. Fun activities for the kiddos and a color run, registration
+              starts at 10am.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <a href="http://crossroadschurch1.volunteerlocal.com/volunteer/?id=29254" class="block">
+          <img alt="Fireworks Volunteers" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/FireworkVol-270x180.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="http://crossroadschurch1.volunteerlocal.com/volunteer/?id=29254">Fireworks Volunteers</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>June 30</strong>
+            </p>
+            <p>Help us make the best fireworks on the West Side even better by volunteering! You'll still get to enjoy the show
+              and make someone's day.
+              <a href="http://crossroadschurch1.volunteerlocal.com/volunteer/?id=29254" target="_blank">
+                <strong>Volunteer here.</strong>
+              </a>&nbsp;</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <a href="https://www.crossroads.net/baptism" class="block">
+          <img alt="Open Baptisms" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/baptism.png?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://www.crossroads.net/baptism">Open Baptisms</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>March 24 &amp; 25</strong>
+            </p>
+            <p class="p1">
+              <span class="s1">Anyone who commits his or her life to following Jesus is ready to be baptized. If you’re ready to make a public
+                declaration, we’re ready to baptize you.
+                <span class="Apple-converted-space">&nbsp;</span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="Churchwide,Mason,Oakley,Florence,Andover,Oxford,West Side,East Side,Dayton,Uptown" style="display: block;">
+
+        <a href="https://www.crossroads.net/nextsteps" class="block">
+          <img alt="Next Steps" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/FI-oak13-JimG-6-9-51-1.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format"
+            src="https://crds-cms-uploads.imgix.net/Uploads/FI-oak13-JimG-6-9-51-1.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=270">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://www.crossroads.net/nextsteps">Next Steps</a>
+
+          </h4>
+          <div class="card-text">
+            <p>Everyone has a place here. Our team is here to help you find the right place to connect with a serving team or
+              community.
+              <strong>
+                <a href="https://www.crossroads.net/nextsteps" target="_blank">Find more information on our next session.&nbsp;</a>
+              </strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="Andover" style="display: none;">
+
+        <a href="https://www.eventbrite.com/e/crossroads-fireworks-in-lexington-tickets-46656244082?aff=happeningsandover" class="block">
+          <img alt="Lexington Fireworks" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Fireworks-happ270x180.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://www.eventbrite.com/e/crossroads-fireworks-in-lexington-tickets-46656244082?aff=happeningsandover">Lexington Fireworks</a>
+
+          </h4>
+          <div class="card-text">
+            <p>Crossroads Fireworks, July 4 at Whitaker Bank Ballpark, 6:30pm.
+              <span>Invite your friends and neighbors to the ballpark for FREE fireworks!&nbsp;</span>Get your FREE tickets
+              <a href="https://www.eventbrite.com/e/crossroads-fireworks-in-lexington-tickets-46656244082?aff=happeningsandover" target="_blank">here</a>.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="Churchwide,Uptown,Oxford,Oakley,Mason,Florence,West Side,East Side,Columbus,Andover,Georgetown,Richmond,Dayton"
+        style="display: block;">
+
+        <a href="http://www.crossroads.net/live" class="block">
+          <img alt="Crossroads Anywhere" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Screen-Shot-2018-06-14-at-2.28.58-PM.png?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format"
+            src="https://crds-cms-uploads.imgix.net/Uploads/Screen-Shot-2018-06-14-at-2.28.58-PM.png?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=270">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="http://www.crossroads.net/live">Crossroads Anywhere</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <span id="docs-internal-guid-33a13cef-ff90-83d5-b815-c47a20758ec7">
+                <span>You can stay connected to Crossroads wherever you are this summer</span>
+              </span>
+              <span id="docs-internal-guid-937a13c1-ff90-c787-6055-43eca3948777">
+                <span>. Watch service live or catch up on past messages
+                  <a href="http://www.crossroads.net/live">here.</a>
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="Andover" style="display: none;">
+
+        <img alt="Fireworks Volunteers" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/FireworkVol-270x180.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            Fireworks Volunteers
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>July 4</strong>
+            </p>
+            <p>Help us make the best fireworks in Lexington even better by volunteering! You'll still get to enjoy the show
+              and make someone's day.&nbsp;
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQWwypy21OPYA7DBrsrIzpFpHJwbT7nsNgkvoLX6HZTUvweg/viewform?usp=send_form"
+                target="_blank">
+                <strong>Volunteer here.</strong>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="" style="display: none;">
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeE1G1icEmV84alckw8XmRTTgqFPixSAL2bI1QZ83mqfyYhmg/viewform" class="block">
+          <img alt="Picnic in the Park" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Untitled-design.png?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeE1G1icEmV84alckw8XmRTTgqFPixSAL2bI1QZ83mqfyYhmg/viewform">Picnic in the Park</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>July 8</strong>
+              <br>
+              <strong>10am-2pm</strong>
+            </p>
+            <div>Join us at the Whetstone Park of Roses Shelter 1. We're providing lunch, games, and a place to hang out. Bring
+              your family and friends and
+              <strong>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeE1G1icEmV84alckw8XmRTTgqFPixSAL2bI1QZ83mqfyYhmg/viewform" target="_blank">RSVP here.&nbsp;</a>
+              </strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="Mason" style="display: none;">
+
+        <a href="https://racepenguin.com/events/crossroadswerun/" class="block">
+          <img alt="Mason 5k/10k" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Untitled-design-1.png?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://racepenguin.com/events/crossroadswerun/">Mason 5k/10k</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>September 29</strong>
+              <br>
+              <strong>8:30am</strong>
+            </p>
+            <p>
+              <a href="https://racepenguin.com/events/crossroadswerun/" target="_blank">Register</a> for the 2nd annual Mason 5k/10k Run and Walk to support the building of the Common Ground Playground
+              in Mason. There will also be a kids' race and coffee experience as part of the event.&nbsp;</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="Mason" style="display: none;">
+
+        <a href="https://goo.gl/forms/fsCotNt4UOhyGsct1" class="block">
+          <img alt="Welcome to the Revolution " class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/welcomerevolution270x180.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://goo.gl/forms/fsCotNt4UOhyGsct1">Welcome to the Revolution </a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>Starts Sunday, July 8
+                <br>11:15am</strong>
+            </p>
+            <p>Were you recently baptized or are you in a new relationship with God and are now wondering what's next? Join
+              us for a 6-week study that will help you understand your new connection with God and have all of your questions
+              answered.
+              <a href="https://goo.gl/forms/fsCotNt4UOhyGsct1" target="_blank">Sign up.</a>&nbsp;</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" data-filter="Oakley" style="display: none;">
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeGnGMPIIge1mxcP5_-a9bSWfF0qWn0UnofshSGHVVifBmkYw/viewform" class="block">
+          <img alt="Oracion y Alabanza" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/image-123986672-1.JPG?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format">
+        </a>
+
+
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeGnGMPIIge1mxcP5_-a9bSWfF0qWn0UnofshSGHVVifBmkYw/viewform">Oracion y Alabanza</a>
+
+          </h4>
+          <div class="card-text">
+            <p>
+              <strong>Saturday, July 7</strong>
+              <br>
+              <strong>10:30am-12:30pm</strong>
+            </p>
+            <p>
+              <span color="#000000" style="color: #000000;">Amigos&nbsp;y Amigas, you are invited to a time of Prayer and Worship in Spanish. Our hearts are with the people&nbsp;of
+                Nicaragua, Guatemala, Puerto&nbsp;Rico, Venezuela, as well as many of the other&nbsp;Spanish speaking communities
+                facing hardships and difficulties and we'll be praying for them during this time.
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeGnGMPIIge1mxcP5_-a9bSWfF0qWn0UnofshSGHVVifBmkYw/viewform" target="_blank">
+                  <strong>RSVP here.</strong>
+                </a>&nbsp;</span>
+            </p>
+            <p></p>
+            <div>
+              <span color="#000000" style="color: #000000;">
+                <span>&nbsp;</span>
+              </span>
+            </div>
+            <p></p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- What To Expect -->
+<section class="container-fluid bg-primary soft-ends">
+  <div class="container push-ends">
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+        <h2 class="text-white soft-top">what to expect</h2>
+        <p class="lead">Acceptance. Crossroads is for anyone who wants to seek God - from those exploring whether or not God even exists,
+          to committed Christ-followers. Wherever you are, we're happy to have you.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container push-bottom">
+    <div class="row push-bottom">
+      <div class="col-sm-4 push-bottom">
+        <img data-src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-1-1.jpg?r&amp;auto=format,compress"
+          width="400" height="200" class="imgix-fluid img-responsive" alt="" title="" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-1-1.jpg?auto=format,compress&amp;ixjsv=2.2.3&amp;w=390">
+        <h4 class="text-uppercase text-white font-family-condensed-extra">Coffee</h4>
+        <p>It's free, so grab a cup before you sit down. We believe that God is generous and we want to reflect that in all
+          things.
+        </p>
+      </div>
+      <div class="col-sm-4 push-bottom">
+        <img data-src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-2-1.jpg?r&amp;auto=format,compress"
+          width="400" height="200" class="imgix-fluid img-responsive" alt="" title="" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-2-1.jpg?auto=format,compress&amp;ixjsv=2.2.3&amp;w=390">
+        <h4 class="text-uppercase text-white font-family-condensed-extra">Loud Music</h4>
+        <p>This is not your grandma's church. But you should bring her anyway. Music brings us all together and closer to God
+          - so we can turn it up to 11.</p>
+      </div>
+      <div class="col-sm-4 push-bottom">
+        <img data-src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-3-1.jpg?r&amp;auto=format,compress"
+          width="400" height="200" class="img-responsive imgix-fluid" alt="" title="" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-3-1.jpg?auto=format,compress&amp;ixjsv=2.2.3&amp;w=390">
+        <h4 class="text-uppercase text-white font-family-condensed-extra">Something Unexpected</h4>
+        <p>We present biblical truths and show how they apply to our everyday lives. And we have a lot of fun while doing it.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Locations -->
+<section class="container">
+  <div class="locations-header push-bottom" data-locations-section>
+    <h3 class="component-header push-bottom push-top">locations</h3>
+    <form class="searchbar" id="locations-address-input" data-track-search="locationsLocationSearch">
+      <div class="input-group">
+        <input class="form-control" placeholder="Search by address or zipcode" type="text" />
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="submit">
+            <svg class="icon icon-1" viewBox="0 0 256 256">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#search"></use>
+            </svg>
+          </button>
+        </span>
+      </div>
+    </form>
+  </div>
+  {% include _locations-grid.html %}
+</section>
+
+<!-- Contact Us -->
+<section class="container-fluid bg-blue-dark soft-ends">
+  <div class="container push-ends">
+    <div class="text-center font-family-base soft-top">
+      <h2 class="text-lowercase text-white">contact us</h2>
+      <p class="lead">Have a prayer or a question you need answered? We're here for you. Seriously, ask us anything.</p>
+    </div>
+    <div class="row push-bottom">
+      <div class="col-xs-12 text-center font-family-base">
+        <a href="/contactus" class="btn btn-primary" type="button">Contact us</a>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="modal fade video-modal" id="crds-home-trailer-modal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+        <iframe width="320" height="240" data-src="https://www.youtube.com/embed/H9Z3GGf7nWQ" allowfullscreen="" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="//d1tmclqz61gqwd.cloudfront.net/javascripts/crds-jumbotron-video-v0.2.0.min.js"></script>
+<script type="text/javascript">
+
+  // Scroll Locations
+  var locationButton = document.getElementById('find-location');
+  var locationScroll = function (event) {
+    event.preventDefault();
+    document.querySelector('[data-locations-section]').scrollIntoView(true);
+  }
+
+  locationButton.addEventListener('click', locationScroll);
+
+  // Jumbotron Overlay
+  var watchButton = document.getElementById('watch-cta');
+  var closeButton = document.getElementById('overlay-close');
+  var overlay = document.getElementById('overlay');
+
+  function showOverlay(event) {
+    event.preventDefault();
+    overlay.classList.add('visible');
+  }
+
+  function hideOverlay() {
+    overlay.classList.remove('visible');
+  }
+
+  watchButton.addEventListener('click', showOverlay);
+  closeButton.addEventListener('click', hideOverlay);
+
+  var trackerInt;
+  var buildTracker = function () {
+    if (typeof analytics !== "undefined") {
+      clearInterval(trackerInt);
+      new CRDS.DataTracker();
+    }
+  };
+  trackerInt = setInterval(function () {
+    buildTracker();
+  }, 250);
+</script>
+
+{% include _shared-footer.html %}

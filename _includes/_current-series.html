@@ -1,0 +1,17 @@
+<div class="card current-series">
+  <div>
+    <img class="card-img-top img-responsive imgix-fluid card-img-unrestrained" data-src="//crds-cms-uploads.imgix.net/media/messages/stills/crossroads-spark-2018.jpg"
+      src="{{ current_series.image }}">
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="card-block text-center card-caption">
+        <h3>{{ current_series.title }}</h3>
+        <h5 class="card-subtitle">{{ current_series.start_date | date: "%m.%d.%Y" }} — {{ current_series.end_date | date: "%m.%d.%Y" }}</h5>
+        <div class="card-text">
+          <div class="font-size-base">{{ current_series.content }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

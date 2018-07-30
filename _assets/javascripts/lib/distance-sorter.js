@@ -33,7 +33,7 @@ CRDS.DistanceSorter = class DistanceSorter {
   }
 
   static _isSectionLocationsCarousel(instance) {
-    return instance.carousel !== undefined && instance.carousel.id === 'section-locations';
+    return instance.carousel !== undefined && instance.carousel !== null && instance.carousel.id === 'section-locations';
   }
 
   handleFormSubmit(event) {
@@ -86,9 +86,7 @@ CRDS.DistanceSorter = class DistanceSorter {
     this.createDataAttributes();
     this.appendDistances();
     this.locationsCarousel.sortBy('distance');
-//  A anywhere card needs to be created in Contenful before
-//  this line will run correctly.
-//  this.anywhereCheck();
+    this.anywhereCheck();
   }
 
   createDataAttributes() {

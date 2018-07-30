@@ -37,7 +37,13 @@ collections:
     permalink: /:slug
   locations:
     output: true
-    permalink: /locations/:slug
+    permalink: /:collection/:slug
+  series:
+    output: false
+    permalink: /:collection/:slug
+  messages:
+    output: false
+    permalink: /series/:series_slug/:slug
 
 contentful:
   content_types:
@@ -71,3 +77,65 @@ contentful:
         other:
           layout: location
           draft: false
+    series:
+      id: series
+      body: description
+      associations:
+        videos:
+          - messages
+      frontmatter:
+        entry_mappings:
+          title: title
+          slug: slug
+          image: image/url
+          bg_image: background_image/url
+          start_date: starts_at
+          end_date: ends_at
+          youtube_url: youtube_url
+          apple_podcasts_url: apple_podcasts_url
+          google_play_url: google_play_url
+          year: "{{ starts_at | date: '%Y' }}"
+          videos: videos/id
+        other:
+          layout: series
+          draft: false
+    messages:
+      id: message
+      body: description
+      links:
+        series_slug:
+          content_type: series
+          field: videos
+          value: slug
+      frontmatter:
+        entry_mappings:
+          title: title
+          authors: author/full_name
+          image: image/url
+          source_url: source_url
+          program: program/url
+          video_duration: video_duration
+          topic: category/title
+          topic_slug: category/slug
+          tags: tags
+          transcription: transcription
+          apple_podcasts_url: apple_podcasts_url
+          google_play_url: google_play_url
+          date: published_at
+          slug: slug
+        other:
+          layout: video
+          draft: false
+
+imgix_params:
+  placeholder: "auto=format,compress&w=10"
+  placeholder_card: "auto=format,compress&w=12&h=9&fit=crop"
+  placeholder_square: "auto=format,compress&w=10&h=10&fit=crop"
+  placeholder_sixteen_nine: "auto=format,compress&w=16&h=9&fit=crop"
+
+image_sizes:
+  cards_6x: "(min-width: 992px) 165px, (min-width: 0px) 50vw"
+  cards_4x: "(min-width: 992px) 212.5px, (min-width: 768px) 345px, (min-width: 0px) 100vw"
+  cards_3x: "(min-width: 992px) 390px, (min-width: 0px) 100vw"
+  cards_3x_centered_carousel: "(min-width: 1200px) 232.5px, (min-width: 992px) 191px, (min-width: 768px) 146px, (min-width: 0px) 270px"
+  cards_2x: "(min-width: 768px) 345px, (min-width: 0px) 100vw"
