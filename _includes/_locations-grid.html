@@ -1,9 +1,5 @@
 <div class="card-deck carousel locations" 
-  data-crds-carousel="mobile-scroll"
-  data-filterable=""
-  data-filter-label="All Locations"
-  data-filter-parent="#locations-filter-label"
-  data-filter-reset-label="All Locations">
+  data-crds-carousel="mobile-scroll">
   <div id="section-locations" class="feature-cards card-deck--expanded-layout">
     {% assign sorted_locations = site.locations | sort: 'name' %}
     {% for location in sorted_locations %}

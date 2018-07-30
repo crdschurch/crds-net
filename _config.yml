@@ -40,10 +40,10 @@ collections:
     permalink: /:collection/:slug
   series:
     output: false
-    permalink: /:collection/:slug
   messages:
     output: false
-    permalink: /series/:series_slug/:slug
+  promos:
+    output: false
 
 contentful:
   content_types:
@@ -123,6 +123,19 @@ contentful:
         other:
           layout: video
           draft: false
+    promos:
+        id: promo
+        body: description
+        frontmatter:
+          entry_mappings:
+            title: title
+            image: image/url
+            link_url: link_url
+            cta: cta
+            target_audience: target_audience
+            published_at: published_at
+          other:
+            draft: false
 
 imgix_params:
   placeholder: "auto=format,compress&w=10"
