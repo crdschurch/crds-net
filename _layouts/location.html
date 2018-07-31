@@ -1,34 +1,24 @@
----
-layout: default 
 --- 
-
+layout: default 
+---
 {% include _shared-header.html %}
-
 <div class="jumbotron jumbotron-xl flush-bottom" style="background-image: url('{{ page.bg_image }}');">
   <div class="push-ends mobile-soft-sides">
     <span class="font-family-base text-uppercase">
       <strong>welcome to</strong>
     </span>
     <h1 class="title hidden-xs" style="font-size: 5.0rem;">crossroads
-      <br>{{ page.name }}</h1>
+      <br>{{ page.name | downcase }}</h1>
     <h2 class="title font-size-h1 text-white visible-xs">crossroads
-      <br>{{ page.name }}</h2>
+      <br>{{ page.name | downcase }}</h2>
   </div>
 </div>
-
 <section class="bg-blue-dark soft-ends">
   <div class="container push-ends">
     <div class="row push-ends soft-ends mobile-flush-top mobile-hard-top">
       <div class="col-sm-6 soft-sides">
-        <p class="lead">{{ page.content }}</p>
+        <div class="lead">{{ page.content }}</div>
         <div class="row push-ends soft-half-top mobile-hard-bottom">
-          <div class="col-sm-6">
-            <p>
-              <strong>Service Times</strong>
-              <br>
-              {{ page.service_times }}
-            </p>
-          </div>
           <div class="col-sm-6">
             <p>
               <strong>Address</strong>
@@ -42,27 +32,9 @@ layout: default
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <a class="btn btn-primary" data-role="recent-series" href="/series/271/Spark">Check out our latest series</a>
-            <p></p>
-            <script type="text/javascript">
-              // <![CDATA[
-              jQuery(document).ready(function ($) {
-                $.getJSON("//www.crossroads.net/proxy/content/api/series?startDate__sort=DESC&__limit=1", function (
-                  data) {
-                  var links = $('a[data-role=recent-series]');
-                  $.each(links, function (i, el) {
-                    if (data.series) {
-                      $.each(data.series, function (key, val) {
-                        var title = val.title;
-                        var href = "/series/" + val.id + "/" + encodeURIComponent(title);
-                        $(el).attr('href', href);
-                      });
-                    }
-                  });
-                })
-              });
-              // ]]>
-            </script>
+            {% for series in site.series limit: 1 %}
+              <a class="btn btn-primary" data-role="recent-series" href="/series/{{ series.slug }}">Check out our latest series</a>
+            {% endfor %}
           </div>
           <div class="col-sm-12 push-top">
             <p>Sign Language
@@ -86,6 +58,50 @@ layout: default
           });
           </script>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container push-top">
+  <div class="row push-top soft-top">
+    <div class="card col-sm-4">
+      <img alt="come as you are" class="imgix-fluid card-img-top img-responsive img-circle card-img-unrestrained" data-src="//crds-cms-uploads.imgix.net/content/images/crossroads-church-come-as-you-are.jpg" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-come-as-you-are2.jpg?dpr=2&h=660&ixjsv=2.2.3&q=50">
+      <div class="card-block text-left">
+        <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">Come as you are</h4>
+        <p class="card-text">Seriously. This is a real place for real people. Regardless of what you think about God, you are welcome here. In
+          a nutshell, you can wear jeans, or dress up if you want. The coffee is free, so grab a cup before you sit down.
+          The music is great and you’ll hear straight up Biblical truth that you can apply to your everyday life. The rest
+          is up to you.
+        </p>
+        {% if page.virtual_tour_url %}
+          <a href="{{ page.virtual_tour_url }}">Take a virtual tour</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="card col-sm-4">
+      <img alt="meet chuck mingo" class="imgix-fluid card-img-top img-responsive img-circle card-img-unrestrained" data-src="//crds-cms-uploads.imgix.net/content/images/crossroads-church-chuck-mingo.jpg"
+        title="" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-chuck-mingo.jpg?h=740&amp;ixjsv=2.2.3">
+      <div class="card-block text-left">
+        <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">Meet {{ page.community_pastor_name }}</h4>
+        <p class="card-text">{{ page.community_pastor_bio }}</p>
+      </div>
+    </div>
+    <div class="card col-sm-4">
+      <img alt="weekday hours" class="imgix-fluid card-img-top img-responsive img-circle card-img-unrestrained" data-src="//crds-cms-uploads.imgix.net/content/images/crossroads-church-open.jpg"
+        title="" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-open.jpg?h=740&amp;ixjsv=2.2.3">
+      <div class="card-block text-left">
+        <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">Campus Hours</h4>
+        <p class="card-text">Our building is open to the public six days a week. Enjoy free coffee, free wi-fi and plenty of couches. Come for
+          a meeting, just to hang out with friends, or even for a quiet place to read or pray.
+          <br>
+          <br>Hours:
+          <br>Monday-Thursday: 6am-9pm
+          <br>Friday: 6am-6pm
+          <br>Saturday: 7am-8pm
+          <br>
+          <br>
+        </p>
       </div>
     </div>
   </div>
