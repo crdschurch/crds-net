@@ -1,8 +1,22 @@
 ---
 layout: default 
 --- 
+<!-- create a var called promos, split it into an array -->
+{% assign promos = "" | split: "" %}
+<!-- loop on the page's happenings (locations) -->
+{% for happening in site.promos %}
+  <!-- search through the promos collection for the specific happening and assign to promo -->
+  {% if happening.target_audience contains page.title %}
+  <!-- add back to new array called promos -->
+    {% assign promos = promos | push: happening %}
+  {% endif %}
+{% endfor %}
+
+{% assign spotlight = "" | split: "" %}
+{% for spotlight in l%}
 
 {% include _shared-header.html %}
+
 
 <div class="jumbotron jumbotron-xl flush-bottom" style="background-image: url('{{ page.bg_image }}');">
   <div class="push-ends mobile-soft-sides">
@@ -90,5 +104,47 @@ layout: default
     </div>
   </div>
 </section>
+
+<!-- Add circle promo section -->
+<section>
+  <section class="container push-top">
+    <div class="row push-top soft-top">
+      <div class="card col-sm-4">
+        <img alt="meet chuck mingo" class="imgix-fluid card-img-top img-responsive img-circle card-img-unrestrained" data-src="//crds-cms-uploads.imgix.net/content/images/crossroads-church-chuck-mingo.jpg" title="" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-chuck-mingo.jpg?dpr=1.75&amp;h=740&amp;ixjsv=2.2.3&amp;q=57">
+        <div class="card-block text-left">
+          <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">Meet Chuck Mingo</h4>
+          <p class="card-text">Chuck is the Oakley Community Pastor. He spent nine years at Procter &amp; Gamble before taking a leap of faith to work in ministry. He grew up in Philadelphia but now calls Cincinnati home. He even roots for the Bengals on occasion. He has been married to his wife Maria for 15 years, and they have three children, Nathan, Samuel, and Isabel. Chuck is passionate about his relationship with Jesus, his family, running, and performing as the lead singer with the Man Camp band.</p>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+</section>
+
+
+<div class="container">
+  <h3 class="collection-header">happening at {{ page.title | downcase }}</h3>
+  <div class="card-deck cards-4x">
+    <div class="row">
+    <!-- Happenings -->
+    {% assign date_sorted_promos = promos | sort: "published_at" | reverse %}
+    {% for happening in date_sorted_promos %}
+      <div class="card">
+        <a href="{{ happening.link_url }}" class="block">
+          <img alt="{{ happening.title }}" class="card-img-top imgix-fluid card-img-constrained" src="{{ happening.image }}" />
+        </a>  
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+            <a href="https://www.crossroads.net/connect/add-me-to-the-map">{{ happening.title }}</a>
+          </h4>
+          <div class="card-text">
+          {{ happening.content }}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
 
 {% include _shared-footer.html %}
