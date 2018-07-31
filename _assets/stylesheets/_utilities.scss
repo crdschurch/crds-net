@@ -1,0 +1,56 @@
+.aspect-16x9 {
+  position: relative;
+  height: 0;
+  padding-top: 56.25%;
+}
+
+.text-gray-lighter {
+  color: $cr-gray-lighter !important;
+}
+
+// Bootstrap 4
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-start {
+  align-items: start;
+}
+
+.flex-column-reverse {
+  flex-direction: column-reverse;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.flex-md-row {
+  @media (min-width: $screen-md) {
+    flex-direction: row;
+  }
+}
+
+.flex-sm-row {
+  @media (min-width: $screen-sm) {
+    flex-direction: row;
+  }
+}
+
+.flex-xs-row {
+  @media (min-width: $screen-xs) {
+    flex-direction: row;
+  }
+}

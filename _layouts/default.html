@@ -1,40 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>crds-net</title>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="title" content="{{ page | get_meta_title: site }}">
+    <meta name="description" content="{{ page | get_meta_description: site | truncate: 155 }}">
+    <meta name="image" content="{{ page | get_meta_image: content, site }}">
+    <meta property="og:description" content="{{ page | get_meta_description: site | truncate: 155 }}">
+    <meta property="og:title" content="{{ page | get_meta_title: site }}">
+    <meta property="og:image" content="{{ page | get_meta_image: content, site }}">
+    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <meta property="og:site_name" content="{{ site.title | escape }}">
 
-  {% asset application.scss !integrity %}
-</head>
-<body>
+    <title>{{ page | get_title: site }}</title>
+    {% asset application.scss !integrity %}
+  </head>
+  <body>
+    {% if page.show_header == true %}
+      {% include _shared-header.html %}
+    {% endif %}
 
+    {{ content }}
 
-  {% if page.show_header == true %}
-    {% include _shared-header.html %}
-  {% endif %}
+    {% if page.show_footer == true %}
+      {% include _shared-footer.html %}
+    {% endif %}
 
-  {{ content }}
+    <script>
+    var CRDS = {
+      media: {
+        cms: '{{ site.shared_header.cms }}',
+        app: '{{ site.shared_header.app }}',
+        img: '{{ site.shared_header.img }}',
+        prefix: '{{ site.shared_header.prefix }}'
+      },
+      streamspotId: '{{ site.streamspotId }}',
+      streamspotKey: '{{ site.streamspotKey }}',
+      env: {
+        gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}'
+      }
+    };
+    </script>
+    <script type="text/javascript" src="{% asset application.js @path %}"></script>
+    <script async type="text/javascript" src="{% asset application_deferred.js @path %}"></script>
+    <script src="https://use.typekit.net/ccb3vpa.js"></script>
+    <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
 
-  {% if page.show_footer == true %}
-    {% include _shared-footer.html %}
-  {% endif %}
-
-  <script>
-  var CRDS = {
-    media: {
-      cms: '{{ site.shared_header.cms }}',
-      app: '{{ site.shared_header.app }}',
-      img: '{{ site.shared_header.img }}',
-      prefix: '{{ site.shared_header.prefix }}'
-    }
-  };
-  </script>
-  <script type="text/javascript" src="{% asset application.js @path %}"></script>
-  <script async type="text/javascript" src="{% asset application_deferred.js @path %}"></script>
-  <script src="https://use.typekit.net/ccb3vpa.js"></script>
-  <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
-
-</body>
+  </body>
 </html>

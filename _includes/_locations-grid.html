@@ -1,0 +1,28 @@
+<div class="card-deck carousel locations" 
+  data-crds-carousel="mobile-scroll"
+  data-filterable=""
+  data-filter-label="All Locations"
+  data-filter-parent="#locations-filter-label"
+  data-filter-reset-label="All Locations">
+  <div id="section-locations" class="feature-cards card-deck--expanded-layout">
+    {% assign sorted_locations = site.locations | sort: 'name' %}
+    {% for location in sorted_locations %}
+      {% include _location-card.html %} 
+    {% endfor %}
+    <!-- Anywhere card -->
+    <div class="card" data-location="Anywhere">
+      <a href="/live" class="block">
+        <img alt="" src="https://crds-cms-uploads.imgix.net/Uploads/anywhere-thumbnail.jpg?auto=format&crop=top&fit=clamp&ixjsv=2.2.3&w=270">
+      </a>
+      <div class="card-block">
+        <h4 class="card-title card-title--overlap text-uppercase">
+          <a href="https://www.crossroads.net/live/">Anywhere</a>
+        </h4>
+        <div class="card-text">
+          <p>Experience Crossroads anywhere in the world.</p>
+          <p><a class="btn btn-primary" href="/live">Learn more</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
