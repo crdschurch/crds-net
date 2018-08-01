@@ -33,12 +33,21 @@ layout: default
         <div class="row push-ends soft-half-top mobile-hard-bottom">
           <div class="col-sm-6">
             <p>
+              <strong>Service Times</strong>
+              <br>
+              {{ page.service_times }}
+              <br>
+            </p>
+          </div>
+          <div class="col-sm-6">
+            <p>
               <strong>Address</strong>
               <br>
               {{ page.address }}
               <br>
-              <a href="{{ page.map_url }}"
-                target="_blank">Get directions</a>
+              {% if page.map_url %}
+                <a href="{{ page.map_url }}" target="_blank">Get directions</a>
+              {% endif %}
             </p>
           </div>
         </div>
@@ -59,16 +68,17 @@ layout: default
         <div class="col-sm-offset-1 col-sm-5 mobile-push-top soft bg-gray">
           <p class="list-header">Stay in the know. Get the latest Crossroads updates.</p>
           <div class="form">
-            <!--[if lte IE 8]>
+            <!-- 
+            [if lte IE 8]>
             <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
-            <![endif]-->
+            <![endif] -->
             <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
             <script>
               hbspt.forms.create({
-              portalId: "3993985",
-              formId: "{{ page.hubspot_form_id }}",
-              css: ""
-            });
+                portalId: "3993985",
+                formId: "{{ page.hubspot_form_id }}",
+                css: ""
+              });
             </script>
           </div>
         </div>
