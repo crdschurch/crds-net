@@ -43,22 +43,24 @@ layout: default
           </div>
         </div>
       </div>
-      <div class="col-sm-offset-1 col-sm-5 mobile-push-top soft bg-gray">
-        <p class="list-header">Stay in the know. Get the latest Crossroads updates.</p>
-        <div class="form">
-          <!--[if lte IE 8]>
-          <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
-          <![endif]-->
-          <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
-          <script>
-            hbspt.forms.create({
-            portalId: "3993985",
-            formId: "{{ page.hubspot_form_id }}",
-            css: ""
-          });
-          </script>
+      {% if page.hubspot_form_id %}
+        <div class="col-sm-offset-1 col-sm-5 mobile-push-top soft bg-gray">
+          <p class="list-header">Stay in the know. Get the latest Crossroads updates.</p>
+          <div class="form">
+            <!--[if lte IE 8]>
+            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+            <![endif]-->
+            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+            <script>
+              hbspt.forms.create({
+              portalId: "3993985",
+              formId: "{{ page.hubspot_form_id }}",
+              css: ""
+            });
+            </script>
+          </div>
         </div>
-      </div>
+      {% endif %}
     </div>
   </div>
 </section>
