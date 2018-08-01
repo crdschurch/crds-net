@@ -74,8 +74,11 @@ contentful:
           hubspot_form_id: hubspot_form_id
           community_pastor_name: community_pastor_name
           community_pastor_bio: community_pastor_bio
-          community_pastor_image: community_pastor_image
+          community_pastor_image: community_pastor_image/url
           campus_info: campus_info
+          weekday_hours: weekday_hours
+          kids_club: kids_club
+          student_ministry: student_ministry
         other:
           layout: location
           draft: false
