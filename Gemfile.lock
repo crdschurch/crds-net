@@ -1,21 +1,31 @@
 GIT
   remote: https://github.com/crdschurch/crds-styles.git
-  revision: 9a733a24fe699dfd71cfd0d792fa0a0375085ece
+  revision: b64eba247a4ad4219d30c79ad0327c1618af4ced
   branch: development
   specs:
-    crds-styles (3.0.1)
+    crds-styles (3.0.2)
       bootstrap-sass (~> 3.3)
       sass (~> 3.2)
 
 GIT
   remote: https://github.com/crdschurch/jekyll-contentful.git
-  revision: 58eeabd0007250ebe435e3f82627257f89299fa0
+  revision: b39caa3f9ee2d868270b74f6c63d7bd971acd30e
   branch: master
   specs:
     jekyll-contentful (0.0.8)
       activesupport
       contentful (>= 2.6.0)
       dotenv
+      jekyll
+
+GIT
+  remote: https://github.com/crdschurch/jekyll-crds.git
+  revision: 3dd10b23f30c44ce5ccd2f38e61213e5452623ea
+  branch: master
+  specs:
+    jekyll-crds (0.0.1)
+      activesupport
+      httparty
       jekyll
 
 GEM
@@ -28,7 +38,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    autoprefixer-rails (9.0.0)
+    autoprefixer-rails (9.0.2)
       execjs
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -77,6 +87,8 @@ GEM
       domain_name (~> 0.5)
     http-form_data (1.0.3)
     http_parser.rb (0.6.0)
+    httparty (0.16.2)
+      multi_xml (>= 0.5.2)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     jekyll (3.7.3)
@@ -124,6 +136,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    multi_xml (0.6.0)
     nenv (0.3.0)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
@@ -156,7 +169,7 @@ GEM
     rspec-support (3.7.1)
     ruby_dep (1.5.0)
     safe_yaml (1.0.4)
-    sass (3.5.6)
+    sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -182,8 +195,9 @@ DEPENDENCIES
   jekyll (~> 3.7.3)
   jekyll-assets
   jekyll-contentful (~> 0.0.7)!
+  jekyll-crds (~> 0.0.1)!
   rspec
   tzinfo-data
 
 BUNDLED WITH
-   1.16.2
+   1.16.1
