@@ -30,15 +30,16 @@ layout: default
           <div class="col-sm-6">
             <p>
               <strong>Service Times</strong>
-              {{ page.service_times }}
+              </br>
+              {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
             </p>
           </div>
           <div class="col-sm-6">
             <p>
               <strong>Address</strong>
-              <br>
-              {{ page.address }}
-              <br>
+              </br>
+              {{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}
+              </br>
               <a href="{{ page.map_url }}"
                 target="_blank">Get directions</a>
             </p>
