@@ -2,11 +2,8 @@
 layout: default 
 ---
 
-{% for happening in site.promos %}
-  {% if happening.target_audience contains page.name %}
-    {% assign happenings_section = true %}
-  {% endif %}
-{% endfor %}
+{% assign location_happenings = site.promos | where: "target_audience", page.title %}
+
 
 {% include _shared-header.html %}
 
@@ -179,14 +176,12 @@ layout: default
 
 
 <!-- Happenings -->
-<div class="container">
-  {% if happenings_section == true %}
+{% if location_happenings.size > 0 %}
+  <div class="container">
     <h3 id="happening-filter-label" class="collection-header clearfix"> happening at {{ page.name | downcase }} <h3>
-  {% endif %}
-  <div class="card-deck cards-4x">
-    <div class="row">    
-    {% for happening in site.promos %}
-      {% if happening.target_audience contains page.name %}
+    <div class="card-deck cards-4x">
+      <div class="row">    
+      {% for happening in location_happenings %}
         <div class="card" data-filter="Columbus" style="display: block;">
           <a href="{{ happening.link_url }}" class="block">
             <img alt="{{ happening.title }}" class="card-img-top imgix-fluid card-img-constrained" src="{{ happening.image }}" />
@@ -200,11 +195,11 @@ layout: default
             </div>
           </div>
         </div>
-      {% endif %}
-    {% endfor %}
+      {% endfor %}
+      </div>
     </div>
   </div>
-</div>
+{% endif %}
 
 <section class="container" ng-non-bindable=""><h3 class="collection-header clearfix push-bottom">go deeper</h3>
   <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-ef9d5oj">
