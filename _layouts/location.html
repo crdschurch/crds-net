@@ -29,6 +29,12 @@ layout: default
         <div class="row push-ends soft-half-top mobile-hard-bottom">
           <div class="col-sm-6">
             <p>
+              <strong>Service Times</strong>
+              {{ page.service_times }}
+            </p>
+          </div>
+          <div class="col-sm-6">
+            <p>
               <strong>Address</strong>
               <br>
               {{ page.address }}
@@ -90,13 +96,13 @@ layout: default
         {% endif %}
       </div>
     </div>
-    {% if page.community_pastor_image and page.community_pastor_name and page.community_pastor_bio %}
+    {% if page.community_pastor_image && page.community_pastor_name && page.community_pastor_bio %}
       <div class="card col-sm-4">
         <img class="imgix-fluid card-img-top img-responsive img-circle card-img-unrestrained" data-src="{{ page.community_pastor_image }}"
           title="" src="{{ page.community_pastor_image }}">
         <div class="card-block text-left">
           <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">Meet {{ page.community_pastor_name }}</h4>
-          <p class="card-text">{{ page.community_pastor_bio }}</p>
+          <p class="card-text">{{ page.community_pastor_bio | markdownify }}</p>
         </div>
       </div>
     {% endif %}
@@ -106,13 +112,10 @@ layout: default
           title="" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-open.jpg?h=740&amp;ixjsv=2.2.3">
         <div class="card-block text-left">
           <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">Campus Info</h4>
-          <p class="card-text">{{ page.campus_info }}
+          <p class="card-text">{{ page.campus_info | markdownify }}
             {% if page.weekday_hours %}
-              <br>
               <br>Hours:
-              {{ page.weekday_hours }}
-              <br>
-              <br>
+              {{ page.weekday_hours | markdownify }}
             {% endif %}
           </p>
         </div>
@@ -121,12 +124,44 @@ layout: default
   </div>
 </section>
 
+<!-- Uptown College Student section -->
+  {% if page.title == 'Uptown' %}
+    <div class="container push-bottom">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h3 class="section-header text-center push-half-bottom">College Students</h3>
+          <p class="lead">Hear stories from some of the UC students who call this place home.</p>
+        </div>
+      </div>
+      <div class="row push-ends soft-bottom">
+        <div class="col-md-4">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe width="320" height="240" src="https://www.youtube.com/embed/Qd88hxRNtNM" frameborder="0" allowfullscreen=""></iframe>
+          </div>
+          <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Stella</h4>
+        </div>
+        <div class="col-md-4">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe width="320" height="240" src="https://www.youtube.com/embed/Ee43lkJr7as" frameborder="0" allowfullscreen=""></iframe>
+          </div>
+          <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Joe</h4>
+        </div>
+        <div class="col-md-4">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe width="320" height="240" src="https://www.youtube.com/embed/2pf0b35BMS0" frameborder="0" allowfullscreen=""></iframe>
+          </div>
+          <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Dana</h4>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
 <!-- Kids club / Student ministry-->
-{% if page.kids_club or page.student_ministry %}
+{% if page.kids_club_hours || page.student_ministry_hours %}
   <section class="bg-gray">
     <div class="container">
-      {% if page.kids_club %}
-        <div class="row">
+      {% if page.kids_club_hours %}
+        <div class="row push-ends soft-bottom">
           <div class="col-md-12">
             <h3 class="section-header text-center">For Kids &amp; Students</h3>
           </div>
@@ -142,12 +177,12 @@ layout: default
             <div></div>
             <a class="btn btn-primary" href="http://crossroadskidsclub.net/" target="_blank">Check out Kids' Club</a>
             <p class="font-size-small push-half-top">
-              <em>Kids' Club is available during all service times</em>
+              <em>{{ page.kids_club_hours | markdownify }}</em>
             </p>
           </div>
         </div>
       {% endif %}
-      {% if page.student_ministry %}
+      {% if page.student_ministry_hours %}
         <div class="row push-ends soft-bottom">
           <div class="col-sm-push-6 col-sm-6 soft-sides">
             <img data-src="//crds-cms-uploads.imgix.net/content/images/crossroads-church-sites-sm.jpg" class="imgix-fluid img-responsive" alt="" title="" 
@@ -159,13 +194,8 @@ layout: default
               through relevant teaching and fun events. Opportunities are provided for them to grow as they connect with God and with each other.&nbsp;
               </p>
             <p>
-              <strong>Middle School Ministry Hours</strong>:
-              <br>Saturday at 4:30pm
-              <br>Sunday at 8:30, 10:05 &amp; 11:45am
-              <br>(Student Section)</p>
-            <p>
-              <strong>High School Ministry Hours</strong>:
-              <br>Thursday from 7-8:30pm</p>
+              {{ page.student_ministry_hours | markdownify }}
+            </p>
             <a href="https://www.crossroads.net/studentministry/" class="btn btn-primary">Get more info on student ministry</a>
           </div>
         </div>
@@ -201,7 +231,8 @@ layout: default
   </div>
 {% endif %}
 
-<section class="container" ng-non-bindable=""><h3 class="collection-header clearfix push-bottom">go deeper</h3>
+<!-- Go Deeper -->
+<section class="container"><h3 class="collection-header clearfix push-bottom">go deeper</h3>
   <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-ef9d5oj">
     <div id="section-" class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">  
       <div class="card">    

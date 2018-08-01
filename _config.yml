@@ -77,8 +77,8 @@ contentful:
           community_pastor_image: community_pastor_image/url
           campus_info: campus_info
           weekday_hours: weekday_hours
-          kids_club: kids_club
-          student_ministry: student_ministry
+          kids_club_hours: kids_club_hours
+          student_ministry_hours: student_ministry_hours
         other:
           layout: location
           draft: false
