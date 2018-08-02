@@ -177,6 +177,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport
   crds-styles!
   guard-rspec
   jekyll (~> 3.7.3)
