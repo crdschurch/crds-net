@@ -17,7 +17,7 @@
           page_meta_image,
           page_image,
           page_bg_image,
-          search_for_first_image_url_in_page_content(page_content), #invoking the regex this way returns the FIRST match
+          search_for_first_image_url_in_page_content(page_content),
           site_image
         ].find{|image_under_review| has_value?(image_under_review)}.to_s.strip
         prepend_url_protocol(image_url)
