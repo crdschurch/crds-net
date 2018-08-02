@@ -68,10 +68,9 @@ contentful:
           address: address
           service_times: service_times
           additional_info: additional_info
-          image: image/url
           bg_image: bg_image/url
           map_url: map_url
-          hubspot_form_id: hubspot_form_id
+          virtual_tour_url: virtual_tour_url
           community_pastor_name: community_pastor_name
           community_pastor_bio: community_pastor_bio
           community_pastor_image: community_pastor_image/url
@@ -79,6 +78,7 @@ contentful:
           weekday_hours: weekday_hours
           kids_club_hours: kids_club_hours
           student_ministry_hours: student_ministry_hours
+          hubspot_form_id: hubspot_form_id
         other:
           layout: location
           draft: false
