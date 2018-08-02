@@ -68,7 +68,7 @@ contentful:
           address: address
           service_times: service_times
           additional_info: additional_info
-          bg_image: bg_image/url
+          jumbotron_image: jumbotron_image/url
           map_url: map_url
           virtual_tour_url: virtual_tour_url
           community_pastor_name: community_pastor_name
