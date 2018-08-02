@@ -3,7 +3,7 @@ require_relative '../../lib/utils/html_util'
 
 module CRDS
   module Filters
-    class HtmlAndMetaUtilFilter
+    module HtmlAndMetaUtilFilter
 
       def get_meta_image(page, page_content, site)
         ::Utils::MetaUtil.get_meta_image_url(
@@ -39,4 +39,4 @@ module CRDS
   end
 end
 
-Liquid::Template.register_filter(CRDS::Filters)
+Liquid::Template.register_filter(CRDS::Filters::HtmlAndMetaUtilFilter)
