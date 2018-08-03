@@ -186,6 +186,7 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
+  activesupport
   crds-styles!
   guard-rspec
   jekyll (~> 3.7.3)
