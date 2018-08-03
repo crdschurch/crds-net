@@ -37,7 +37,7 @@ collections:
     permalink: /:slug
   locations:
     output: true
-    permalink: /:collection/:slug
+    permalink: /:slug
   series:
     output: false
   messages:
