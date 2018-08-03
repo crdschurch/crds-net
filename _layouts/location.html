@@ -46,9 +46,8 @@ layout: default
         </div>
         <div class="row">
           <div class="col-sm-12">
-            {% for series in site.series limit: 1 %}
-              <a class="btn btn-primary" data-role="recent-series" href="/series/{{ series.slug }}">Check out our latest series</a>
-            {% endfor %}
+            {% assign current_series = site.series | sort: "date" | reverse | first %}
+            <a class="btn btn-primary" data-role="recent-series" href="{{ current_series.url }}">Check out our latest series</a>
           </div>
           <div class="col-sm-12 push-top">
             {{ page.additional_info }}
