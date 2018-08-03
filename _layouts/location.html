@@ -75,7 +75,9 @@ layout: default
         </div>
       {% else %}
         <div class="col-sm-offset-1 col-sm-5 mobile-push-top soft">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/geNzLq664rk?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <div style="position: relative; height: 0; padding-top: 56.25%;">
+            <iframe src="https://www.youtube.com/embed/geNzLq664rk?rel=0" frameborder="0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
         </div>
       {% endif %}
     </div>
