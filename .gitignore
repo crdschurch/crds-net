@@ -7,4 +7,3 @@ _redirects
 .env
 collections
 node_modules
-.DS_Store
