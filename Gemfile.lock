@@ -175,7 +175,6 @@ GEM
 
 PLATFORMS
   ruby
-  x64-mingw32
 
 DEPENDENCIES
   activesupport
@@ -186,7 +185,6 @@ DEPENDENCIES
   jekyll-contentful (~> 0.0.7)!
   rspec
   tzinfo-data
-  wdm (~> 0.1.0)
 
 BUNDLED WITH
    1.16.2
