@@ -37,7 +37,7 @@ collections:
     permalink: /:slug
   locations:
     output: true
-    permalink: /:collection/:slug
+    permalink: /:slug
   series:
     output: false
   messages:
@@ -76,6 +76,18 @@ contentful:
           image: image/url
           bg_image: bg_image/url
           map_url: map_url
+          virtual_tour_url: virtual_tour_url
+          come_as_you_are: come_as_you_are/url
+          community_pastor_name: community_pastor_name
+          community_pastor_bio: community_pastor_bio
+          community_pastor_image: community_pastor_image/url
+          spotlight_image: spotlight_image/url
+          spotlight_title: spotlight_title
+          spotlight_text: spotlight_text
+          kids_club_hours: kids_club_hours
+          student_ministry_hours: student_ministry_hours
+          serve_url: serve_url
+          hubspot_form_id: hubspot_form_id
         other:
           layout: location
           draft: false
