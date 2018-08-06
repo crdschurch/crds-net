@@ -50,7 +50,7 @@ layout: default
             <a class="btn btn-primary" data-role="recent-series" href="{{ current_series.url }}">Check out our latest series</a>
           </div>
           <div class="col-sm-12 push-top">
-            {{ page.additional_info }}
+            {{ page.additional_info | markdownify }}
           </div>
         </div>
       </div>
