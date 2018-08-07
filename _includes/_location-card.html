@@ -1,5 +1,5 @@
 <div class="card">
-  <a href="/locations/{{ location.slug }}" class="block">
+  <a href="{{ location.url }}" class="block">
     <img src="{{ location.image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.card_4x }}" alt="{{ location.title }}" data-optimize-img>
   </a>
   <div class="card-block">

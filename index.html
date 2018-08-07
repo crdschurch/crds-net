@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Home | Crossroads
---- 
+title: Home
+---
 
 {% include _shared-header.html %}
 <!-- Jumbotron Section  -->
@@ -120,16 +120,7 @@ title: Home | Crossroads
     <div id="section-what-s-happening" class="feature-cards">
       {% assign date_sorted_promos = site.promos | sort: "published_at" | reverse %}
       {% for happening in date_sorted_promos %}
-        {% assign targets = happening.target_audience | join: ',' %}
-        <div class="card" data-filter="{{ targets }}">  
-          <a href="{{ happening.link_url }}">
-            <img alt="{{ happening.title }}" class="card-img-top imgix-fluid card-img-constrained" src="{{ happening.image }}">
-          </a>
-          <div class="card-block">
-            <h4 class="card-title card-title--overlap text-uppercase">{{ happening.title }}</h4>
-            <div class="card-text">{{ happening.content }}</div>
-          </div>
-        </div>
+        {% include _happening-card.html %}
       {% endfor %}
     </div>
   </div>

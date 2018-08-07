@@ -1,0 +1,11 @@
+{% assign targets = happening.target_audience | join: ',' %}
+
+<div class="card" data-filter="{{ targets }}">  
+  <a href="{{ happening.link_url }}">
+    <img alt="{{ happening.title }}" class="card-img-top imgix-fluid card-img-constrained" src="{{ happening.image }}">
+  </a>
+  <div class="card-block">
+    <h4 class="card-title card-title--overlap text-uppercase">{{ happening.title }}</h4>
+    <div class="card-text">{{ happening.content }}</div>
+  </div>
+</div>
