@@ -104,6 +104,7 @@ contentful:
           slug: slug
           image: image/url
           bg_image: background_image/url
+          date: starts_at
           start_date: starts_at
           end_date: ends_at
           youtube_url: youtube_url
