@@ -3,7 +3,7 @@ layout: default
 title: Home
 ---
 
-{% include _shared-header.html %}
+{% include _shared_global_header.html %}
 <!-- Jumbotron Section  -->
 {% assign current_series = site.series | sort: 'start_date' | reverse | first %}
 {% assign latest_message = site.messages | sort: 'date' | reverse | first %}
@@ -253,4 +253,4 @@ title: Home
   }, 250);
 </script>
 
-{% include _shared-footer.html %}
+{% include _footer.html %}

@@ -18,13 +18,17 @@
   </head>
   <body>
     {% if page.show_header == true %}
-      {% include _shared-header.html %}
+      <div class="crds-shared-header">
+        <div data-header>
+          {% include _shared_global_header.html %}
+        </div>
+      </div>
     {% endif %}
 
     {{ content }}
 
     {% if page.show_footer == true %}
-      {% include _shared-footer.html %}
+      {% include _footer.html %}
     {% endif %}
 
     <script>
