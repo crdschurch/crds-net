@@ -2,7 +2,6 @@
   command = '''
     bundle exec rspec &&
     ruby lib/bin/redirects.rb &&
-    sudo gem install --user-install executable-hooks &&
     bundle exec jekyll crds &&
     bundle exec jekyll contentful &&
     bundle exec jekyll build
