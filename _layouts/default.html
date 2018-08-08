@@ -16,15 +16,15 @@
     <title>{{ page | get_title: site }}</title>
     {% asset application.scss !integrity %}
   </head>
-  <body>
+  <body class="crds-styles">
     {% if page.show_header == true %}
-      {% include _shared-header.html %}
+      {% include header.html %}
     {% endif %}
 
     {{ content }}
 
     {% if page.show_footer == true %}
-      {% include _shared-footer.html %}
+      {% include footer.html %}
     {% endif %}
 
     <script>

@@ -1,8 +1,8 @@
 {% assign targets = happening.target_audience | join: ',' %}
 
 <div class="card" data-filter="{{ targets }}">  
-  <a href="{{ happening.link_url }}">
-    <img alt="{{ happening.title }}" class="card-img-top imgix-fluid card-img-constrained" src="{{ happening.image }}">
+  <a href="{{ happening.link_url }}" class="block">
+    <img src="{{ happening.image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" sizes="{{ site.image_sizes.cards_4x }}" alt="{{ happening.title }}" data-optimize-img>
   </a>
   <div class="card-block">
     <h4 class="card-title card-title--overlap text-uppercase">{{ happening.title }}</h4>

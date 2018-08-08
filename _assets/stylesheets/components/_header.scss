@@ -1,0 +1,9 @@
+.crds-shared-header {
+  div[data-header] {
+    visibility: hidden;
+    height: 54px;
+    @media only screen and (min-width: $screen-md) {
+      height: 64px;
+    }
+  }
+}
