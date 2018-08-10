@@ -15,8 +15,15 @@
 //= require ./components/filters
 
 (function () {
+<<<<<<< HEAD
     var defJSLoaded = new Event('deferred-js-ready');
     console.log('event fired');
     document.dispatchEvent(defJSLoaded);
     window.deferredJSReady = true;
   })();
+=======
+  var defJSLoaded = new Event('deferred-js-ready');
+  document.dispatchEvent(defJSLoaded);
+  window.deferredJSReady = true;
+})();
+>>>>>>> master

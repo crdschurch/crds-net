@@ -161,6 +161,7 @@ CRDS.DistanceSorter = class DistanceSorter {
     }
   }
 };
+<<<<<<< HEAD
 
 
 $(document).ready(function(){
@@ -168,3 +169,5 @@ $(document).ready(function(){
     new CRDS.DistanceSorter();
   }
 });
+=======
+>>>>>>> master
