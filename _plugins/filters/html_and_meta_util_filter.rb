@@ -15,10 +15,10 @@ module CRDS
         )
       end
 
-      def get_meta_description(page, site)
+      def get_meta_description(page, page_content, site)
         ::Utils::MetaUtil.get_meta_description(
           page['meta_description'],
-          page['description'],
+          page_content,
           site['description']
         )
       end
