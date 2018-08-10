@@ -112,6 +112,7 @@ contentful:
           google_play_url: google_play_url
           year: "{{ starts_at | date: '%Y' }}"
           videos: videos/id
+          
         other:
           draft: false
     messages:

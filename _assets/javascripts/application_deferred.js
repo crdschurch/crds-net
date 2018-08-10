@@ -10,10 +10,9 @@
 //= require ./components/jumbotron-video
 //= require ./lib/location-finder
 //= require ./lib/distance-sorter
+//= require ./lib/data-tracker
 //= require ./lib/card-filters
 //= require ./components/filters
-//= require ./lib/smooth-scroller
-//= require ./components/livestream-reminder
 
 (function () {
     var defJSLoaded = new Event('deferred-js-ready');
