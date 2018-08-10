@@ -12,4 +12,5 @@
 //= require ./lib/distance-sorter
 //= require ./lib/card-filters
 //= require ./components/filters
-//= require ./components/smooth-scroller
+//= require ./lib/smooth-scroller
+//= require ./components/livestream-reminder
