@@ -161,13 +161,3 @@ CRDS.DistanceSorter = class DistanceSorter {
     }
   }
 };
-<<<<<<< HEAD
-
-
-$(document).ready(function(){
-  if(document.querySelector('locations-address-input')) {
-    new CRDS.DistanceSorter();
-  }
-});
-=======
->>>>>>> master
