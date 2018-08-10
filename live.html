@@ -5,12 +5,12 @@ permalink: /live/
 meta_description: Crossroads Live
 ---
 
-{% include _shared-header.html %}
+{% include _header.html %}
 
 <div class="sticky-top" id="live-stream-countdown-bar">
     <div class="container-fluid sticky-top">
         <div class="row">
-            <a href="#live-stream-schedule" data-scroll class="btn btn-live-schedule-trigger hidden-xs" data-smooth-scroll-to="live-stream-schedule" data-smooth-scroll-offset="92" data-track-click="liveSeeScheduleClicked">
+            <a href="javascript:void(0)" class="btn btn-live-schedule-trigger hidden-xs" data-smooth-scroll-to="live-stream-schedule" data-smooth-scroll-offset="92" data-track-click="liveSeeScheduleClicked">
                 <span>See Schedule</span>
                 <svg class="icon icon-1" viewbox="0 0 256 256">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#chevron-down"></use>
@@ -250,94 +250,39 @@ meta_description: Crossroads Live
     </div>
 </section>
 
-<!-- Past weekends section -->
-
+<!-- Past weekend Section TODO: liquidify -->
 <section class="container">
-    <h3 class="collection-header push-bottom">
-        <a href="/media" class="pull-right font-size-small push-half-top">View All Past Weekends</a> Past Weekends
-    </h3>
-    <div class="row">
-        <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
-            <div class="feature-cards card-deck--expanded-layout" data-media-snippet="get_recent_message_cards"></div>
-        </div>
-    </div>
+<h3 class="collection-header push-bottom"><a href="/media" class="pull-right font-size-small push-half-top">View All Past Weekends</a> Past Weekends</h3>
+<div class="row">
+<div class="card-deck carousel" data-crds-carousel="mobile-scroll">
+<div class="feature-cards card-deck--expanded-layout" data-media-snippet="get_recent_message_cards"></div>
+</div>
+</div>
 </section>
 <div class="modal modal-video fade" id="trailer-video-modal" tabindex="-1" role="dialog" aria-labelledby="trailer-video-modal-label" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close"> 
-                    <span aria-hidden="true">&times;</span> 
-                </button>
-            </div>
-            <div class="modal-body">
-                <iframe id="modal-video-src" width="320" height="240" data-media-snippet="get_current_series_trailer_link:attr[data-src]" allowfullscreen="" frameborder="0"></iframe>
-            </div>
-        </div>
-    </div>
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header"><button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button></div>
+<div class="modal-body"><iframe id="modal-video-src" width="320" height="240" data-media-snippet="get_current_series_trailer_link:attr[data-src]" allowfullscreen="" frameborder="0"></iframe></div>
 </div>
-
+</div>
+</div>
 <div class="crds-countdown hide"></div>
 
-<!-- Ways to Watch section -->
-
+<!-- Ways to watch section -->
 <section class="bg-gray wow fadeIn soft-ends">
     <div class="container">
         <header class="text-center">
             <h2 class="font-size-h4 text-gray-light">Ways to Watch</h2>
         </header>
         <div class="row">
-            <div>
-                <section class="soft-top mobile-hard font-size-smaller font-family-condensed text-center">
-                    <figure class="wow fadeIn col-sm-2 col-sm-offset-1 mobile-push-half-bottom">
-                        <div class="push-center w-60">
-                            <img src="//crds-cms-uploads.imgix.net/content/images/streaming--watch-desktop.png" alt="" class="img-responsive imgix-fluid" title="" />
-                        </div>
-                        <figcaption>Laptops &amp; Desktop Computers</figcaption>
-                    </figure>
-                    <figure class="wow fadeIn col-sm-2 mobile-push-half-bottom">
-                        <div class="push-center w-60">
-                            <img src="//crds-cms-uploads.imgix.net/content/images/streaming--watch-smart-tv.png" alt="" class="img-responsive imgix-fluid" title="" />
-                        </div>
-                        <figcaption>Smart TVs <span class="font-family-base">(Web Capable)</span> </figcaption>
-                    </figure>
-                    <figure class="wow fadeIn col-sm-2 mobile-push-half-bottom">
-                        <div class="push-center w-60">
-                            <img src="//crds-cms-uploads.imgix.net/content/images/streaming--watch-mobile.png" alt="" class="img-responsive imgix-fluid" title="" />
-                        </div>
-                        <figcaption>Phones &amp; Tablets</figcaption>
-                    </figure>
-                    <figure class="wow fadeIn col-sm-2 mobile-push-half-bottom">
-                        <div class="push-center w-60">
-                            <img src="//crds-cms-uploads.imgix.net/content/images/streaming--watch-roku.png" alt="" class="img-responsive imgix-fluid" title="" />
-                        </div>
-                        <figcaption>Roku</figcaption>
-                    </figure>
-                    <figure class="wow fadeIn col-sm-2 mobile-push-half-bottom">
-                        <div class="push-center w-60">
-                            <img src="//crds-cms-uploads.imgix.net/content/images/streaming--watch-apple-tv.png" alt="" class="img-responsive imgix-fluid" title="" />
-                        </div>
-                        <figcaption>Apple TV <span class="font-family-base">(Version 4) <br />Download app in App Store, search "Crossroads Anywhere"</span> </figcaption>
-                    </figure>
-                </section>
-            </div>
+            <div>[get_content_block_by_id id="327"]</div>
         </div>
     </div>
 </section>
 
-<!-- Create a community section -->
+<div>[get_content_block_by_id id="323"]</div>
 
-<div>
-    <section class="text-center soft-ends">
-        <div class="container">
-            <h2 class="font-size-h3 soft-half-top soft-bottom">Create a Community Where You Are</h2>
-            <p>We believe growth happens in community. It's kinda our thing.</p>
-            <p class="soft-half-top">
-                <a href="/connect" class="btn btn-blue btn-block-mobile">Start yours here</a>
-            </p>
-        </div>
-    </section>
-</div>
 
 <script type="text/javascript">// <![CDATA[
 $(document).ready(function () {
@@ -374,9 +319,5 @@ $(document).ready(function () {
 // ]]></script>
 <script src="https://crds-media-snippets.netlify.com/media-snippets.js" type="text/javascript"></script>
 <script src="//d1tmclqz61gqwd.cloudfront.net/javascripts/crds-livestream-reminder-v0.0.11.js" type="text/javascript"></script>
-<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@14/dist/smooth-scroll.polyfills.min.js"></script>
-<script>
-    var scroll = new SmoothScroll('a[href*="#"]', {speed: 1250});
-</script>
 
-{% include _shared-footer.html%}
+{% include _shared-footer.html %}
