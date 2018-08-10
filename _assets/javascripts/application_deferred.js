@@ -12,3 +12,9 @@
 //= require ./lib/distance-sorter
 //= require ./lib/card-filters
 //= require ./components/filters
+
+(function () {
+  var defJSLoaded = new Event('deferred-js-ready');
+  document.dispatchEvent(defJSLoaded);
+  window.deferredJSReady = true;
+})();
