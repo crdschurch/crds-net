@@ -14,3 +14,10 @@
 //= require ./components/filters
 //= require ./lib/smooth-scroller
 //= require ./components/livestream-reminder
+
+(function () {
+    var defJSLoaded = new Event('deferred-js-ready');
+    console.log('event fired');
+    document.dispatchEvent(defJSLoaded);
+    window.deferredJSReady = true;
+  })();

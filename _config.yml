@@ -113,7 +113,6 @@ contentful:
           year: "{{ starts_at | date: '%Y' }}"
           videos: videos/id
         other:
-          layout: series
           draft: false
     messages:
       id: message

@@ -1,8 +1,7 @@
-
-if(document.querySelector('[data-smooth-scroll-to]')){
-  $(document).ready(function(event) {
+  if(document.querySelectorAll('[data-smooth-scroll-to]').length > 0){
+    $(document).ready(function(event) {
       $('[data-smooth-scroll-to]').click(function(event) {
-        event.preventDefault();
+        event.preventDefault();    
         var targetId = $(this).data('smooth-scroll-to');
         var target = document.getElementById(targetId)
         if (target) {
