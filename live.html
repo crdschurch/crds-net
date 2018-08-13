@@ -272,7 +272,7 @@ meta_description: Crossroads Live
                     <div class="card-block">
                       <a href="/series/{{ message.series_slug }}/{{ message.slug }}" class="block">
                         {% assign series_object = site.series | where: "slug" , message.series_slug | first %}
-                        <h4 class="card-title card-title--overlap text-uppercase"> {{ series_object.title }} </h4>
+                        <h4 class="card-title card-title--overlap"> {{ series_object.title | upcase }} </h4>
                       </a>                        
                       <h6>{{ message.title }}</h6>
                       <div class="card-text">{{ message.content }}</div>
