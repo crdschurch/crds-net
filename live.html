@@ -268,11 +268,11 @@ meta_description: Crossroads Live
                   <div class="card">  
                     <a href="/series/{{ message.series_slug }}/{{ message.slug }}" class="block">
                       <img src="{{ message.image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" sizes="{{ site.image_sizes.cards_4x }}" alt="{{ message.title }}" data-optimize-img>
+                      <div class="card-block">
+                        <h4 class="card-title card-title--overlap text-uppercase">{{ message.title }}</h4>
+                        <div class="card-text">{{ message.content }}</div>
+                      </div>
                     </a>
-                    <div class="card-block">
-                      <h4 class="card-title card-title--overlap text-uppercase">{{ message.title }}</h4>
-                      <div class="card-text">{{ message.content }}</div>
-                    </div>
                   </div>
                 {% endfor %}
             </div>
