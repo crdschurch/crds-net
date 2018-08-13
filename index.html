@@ -118,7 +118,7 @@ title: Home
   <h3 id="happening-filter-label" class="collection-header clearfix">happening at crossroads</h3>
   <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-filterable data-filter-label="Churchwide" data-filter-parent="#happening-filter-label" data-filter-reset-label="Churchwide">
     <div id="section-what-s-happening" class="feature-cards">
-      {% assign date_sorted_promos = site.promos | sort: "published_at" | reverse %}
+      {% assign date_sorted_promos = site.promos | sort: "date" | reverse %}
       {% for happening in date_sorted_promos %}
         {% include _happening-card.html %}
       {% endfor %}

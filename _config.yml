@@ -152,8 +152,9 @@ contentful:
             image: image/url
             link_url: link_url
             cta: cta
+            section: section
             target_audience: target_audience
-            published_at: published_at
+            date: published_at
           other:
             draft: false
 

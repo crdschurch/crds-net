@@ -118,7 +118,7 @@ permalink: /live/stream
         <h3 class="font-size-h4">be the church</h3>
       </div>
       <div class="row">
-        {% assign be_the_church_promos = site.promos | where: "section", "Be The Church" %}
+        {% assign be_the_church_promos = site.promos | where: "section", "Be The Church" | sort: "date" | reverse %}
         {% for item in be_the_church_promos %}
           <article>
             <div class="col-md-4 col-sm-6 media mobile-push-bottom">
