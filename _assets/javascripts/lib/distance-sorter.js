@@ -16,7 +16,7 @@ CRDS.DistanceSorter = class DistanceSorter {
   }
 
   init() {
-    this.searchForm = document.getElementById('locations-address-input');
+    this.searchForm =  document.getElementById('locations-address-input');
     this.searchForm.addEventListener('submit', this.handleFormSubmit.bind(this));
     this.searchInput = this.searchForm.getElementsByTagName('input')[0];
     this.formSubmit = this.searchForm.getElementsByTagName('button')[0];

@@ -11,6 +11,7 @@
 //= require ./components/jumbotron-video
 //= require ./lib/location-finder
 //= require ./lib/distance-sorter
+//= require ./lib/data-tracker
 //= require ./lib/card-filters
 //= require ./components/filters
 
