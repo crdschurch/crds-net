@@ -31,12 +31,7 @@
       def self.get_meta_description(*meta_description_args)
 
         # returns the first text in the array that has a value
-        meta_description = meta_description_args.find{|description| has_value?(description)}.to_s.strip
-        if meta_description && meta_description.length > 155
-          meta_description = meta_description[0..155].gsub(/\s\w+\s*$/, '...')
-        end
-
-        meta_description
+        meta_description_args.find{|description| has_value?(description)}.to_s.strip
       end
 
       def self.build_page_url(site_url, page_url)

@@ -161,5 +161,3 @@ CRDS.DistanceSorter = class DistanceSorter {
     }
   }
 };
-
-new CRDS.DistanceSorter();
