@@ -17,7 +17,7 @@
           page_meta_image,
           page_image,
           page_bg_image,
-          search_for_first_image_url_in_page_content(page_content),
+          search_for_first_image_in_content(page_content),
           site_image
         ].find{|image_under_review| has_value?(image_under_review)}.to_s.strip
         prepend_url_protocol(image_url)
@@ -50,13 +50,31 @@
           uri.to_s
         end
 
-        #returns the value in the 'src' attribute of the first occurence of an 'img' element
-        def self.search_for_first_image_url_in_page_content(page_content)
+        #
+        def self.search_for_first_image_in_content(content)
+          search_for_first_markdownified_image_url_in_content(content) ||
+          search_for_first_html_image_url_in_page_content(content)
+        end
 
-          if page_content.nil? || page_content.to_s.strip.empty?
+        #
+        def self.search_for_first_markdownified_image_url_in_content(content)
+          if content.nil? || content.to_s.strip.empty?
             nil
           else
-            matches = /<\s*img .*?src=["']?[\s]*([^'">\s]+)/.match(page_content)
+            matches = /!\[[^\]]*\][\s]*\(([^\)]+)\)/.match(content)
+            matches.nil? ? nil : matches[1]
+          end
+        end
+
+#        ![famous-dripping-clocks-dali-painting-persistence-of-memory1](//images.ctfassets.net/p9oq1ve41d7r/53Ilga1G40Sewck6YYOWcI/8ae18b94d0e3aad990c0fff3b440bbda/famous-dripping-clocks-dali-painting-persistence-of-memory1.jpg)
+
+        #returns the value in the 'src' attribute of the first occurence of an 'img' element
+        def self.search_for_first_html_image_url_in_page_content(content)
+
+          if content.nil? || content.to_s.strip.empty?
+            nil
+          else
+            matches = /<\s*img .*?src=["']?[\s]*([^'">\s]+)/.match(content)
             matches.nil? ? nil : matches[1]
           end
         end

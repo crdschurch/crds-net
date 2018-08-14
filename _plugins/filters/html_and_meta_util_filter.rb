@@ -1,24 +1,25 @@
 require_relative '../../lib/utils/meta_util'
 require_relative '../../lib/utils/html_util'
+require 'pry'
 
 module CRDS
   module Filters
     module HtmlAndMetaUtilFilter
 
-      def get_meta_image(page, page_content, site)
+      def get_meta_image(page, site)
         ::Utils::MetaUtil.get_meta_image_url(
           page['meta_image'],
           page['image'],
           page['bg_image'],
-          page_content,
+          page['description'],
           site['image']
         )
       end
 
-      def get_meta_description(page, page_content, site)
+      def get_meta_description(page, site)
         ::Utils::MetaUtil.get_meta_description(
           page['meta_description'],
-          page_content,
+          page['excerpt'],
           site['description']
         )
       end
