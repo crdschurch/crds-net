@@ -17,7 +17,7 @@
           page_meta_image,
           page_image,
           page_bg_image,
-          search_for_first_image_url_in_page_content(page_content),
+          search_for_first_image_in_content(page_content),
           site_image
         ].find{|image_under_review| has_value?(image_under_review)}.to_s.strip
         prepend_url_protocol(image_url)
@@ -50,13 +50,29 @@
           uri.to_s
         end
 
-        #returns the value in the 'src' attribute of the first occurence of an 'img' element
-        def self.search_for_first_image_url_in_page_content(page_content)
+        # Attempts to parse an image from either markdownified or html-rendered content
+        def self.search_for_first_image_in_content(content)
+          search_for_first_markdownified_image_url_in_content(content) ||
+          search_for_first_html_image_url_in_page_content(content)
+        end
 
-          if page_content.nil? || page_content.to_s.strip.empty?
+        # Attempts to parse an image from markdownified content
+        def self.search_for_first_markdownified_image_url_in_content(content)
+          if content.nil? || content.to_s.strip.empty?
             nil
           else
-            matches = /<\s*img .*?src=["']?[\s]*([^'">\s]+)/.match(page_content)
+            matches = /!\[[^\]]*\][\s]*\(([^\)]+)\)/.match(content)
+            matches.nil? ? nil : matches[1]
+          end
+        end
+
+        #returns the value in the 'src' attribute of the first occurence of an 'img' element
+        def self.search_for_first_html_image_url_in_page_content(content)
+
+          if content.nil? || content.to_s.strip.empty?
+            nil
+          else
+            matches = /<\s*img .*?src=["']?[\s]*([^'">\s]+)/.match(content)
             matches.nil? ? nil : matches[1]
           end
         end
