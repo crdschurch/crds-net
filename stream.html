@@ -84,14 +84,14 @@ permalink: /live/stream
               {% for item in dont_miss_promos %}
               <div class="card carousel-cell">
                   <a href="{{ item.link_url | default: '' }}" class="block">
-                    <img src="{{ item.image }}" alt="Explore Crossroads" class="card-img-top imgix-fluid card-img-constrained">
+                    <img src="{{ item.image.url }}" alt="Explore Crossroads" class="card-img-top imgix-fluid card-img-constrained">
                   </a>
                   <div class="card-block">
                     <h4 class="card-title card-title--overlap text-uppercase">
-                      <a href="{{ item.link_url  | default: '' }}">{{ item.title }}</a>
+                      <a href="{{ item.link_url | default: '' }}">{{ item.title }}</a>
                     </h4>
                     <div class="card-text">
-                      {{ item.content | markdownify }}
+                      {{ item.description | markdownify }}
                     </div>
                   </div>
                 </div>
@@ -125,13 +125,13 @@ permalink: /live/stream
                 <div class="media-img-wrapper">
                   <div class="img-size-5">
                     <a href="{{ item.link_url }}" target="_blank">
-                      <img src="{{ item.image }}" alt="{{ item.title }}" class="img-border" />
+                      <img src="{{ item.image.url }}" alt="{{ item.title }}" class="img-border" />
                     </a>
                   </div>
                 </div>
                 <div class="media-body">
                   <p class="list-header flush-bottom">{{ item.title }}</p>
-                  {{ item.content }}
+                  {{ item.description | markdownify }}
                 </div>
               </div>
             </article>

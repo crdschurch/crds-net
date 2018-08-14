@@ -39,7 +39,7 @@ collections:
     output: true
     permalink: /:slug
   series:
-    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
+    filename: "{{ starts_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
   messages:
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"

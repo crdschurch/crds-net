@@ -127,7 +127,9 @@ layout: default
   <h3 id="happening-filter-label" class="collection-header clearfix"> happening at {{ page.name | downcase }}</h3>
   <div class="card-deck cards-4x">
     <div class="row">
-      {% for happening in location_happenings %} {% include _happening-card.html %} {% endfor %}
+      {% for item in location_happenings %} 
+        {% include _happening-card.html %}
+      {% endfor %}
     </div>
   </div>
 </div>

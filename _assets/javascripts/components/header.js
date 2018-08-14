@@ -1,4 +1,4 @@
-(function(){
+$(document).ready(function(){
   var options = {
     cmsEndpoint: CRDS.media.cms,
     appEndpoint: CRDS.media.app,
@@ -7,5 +7,6 @@
   };
   var header = new CRDS.SharedHeader(options);
       header.render();
-  var footer = new CRDS.SharedFooter();
-})();
+
+  $('div[data-header]').css('visibility', 'visible');
+});

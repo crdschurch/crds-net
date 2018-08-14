@@ -6,8 +6,8 @@ meta_description: Crossroads Live
 ---
 
 {% include header.html %}
-{% assign latest_message = site.messages | sort: 'date' | reverse | first %}
-{% assign current_series = site.series | sort: 'start_date' | reverse | first %}
+{% assign latest_message = site.messages | reverse | first %}
+{% assign current_series = site.series | reverse | first %}
 
 <div class="sticky-top" id="live-stream-countdown-bar">
     <div class="container-fluid sticky-top">
@@ -82,7 +82,7 @@ meta_description: Crossroads Live
                     <h1 class="title">Hi. Welcome to Crossroads Anywhere!</h1>
                     <p>No matter what you believe, we built this for you - and the thousands like you - who want to live by a different set of rules.</p>
                     <div id="recent-message-btn">
-                        <a href="/series/{{ latest_message.series_slug }}/{{ latest_message.slug }}" class="btn btn-lg btn-primary push-bottom"> Watch This Week's Service </a>
+                        <a data-media-snippet="get_current_message_url:attr[href]" class="btn btn-blue" data-role="recent-message">Watch This Week's Service</a>
                     </div>
                 </div>
             </div>
@@ -178,7 +178,7 @@ meta_description: Crossroads Live
     <div class="container">
         <div class="card">
             <div class="card-img-caption">
-                <img alt="Current Series Image" class="card-img-top img-responsive imgix-fluid" src="{{ current_series.image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.podcast_thumb }}" data-optimize-img>
+                <img alt="Current Series Image" class="card-img-top img-responsive imgix-fluid" src="{{ current_series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.podcast_thumb }}" data-optimize-img>
                 <div class="img-caption img-caption--left">Current Series</div>
             </div>
             <div class="row push-top soft-half-sides soft-ends">
@@ -267,7 +267,7 @@ meta_description: Crossroads Live
                 {% for message in recent_messages %}
                   <div class="card">  
                     <a href="/series/{{ message.series_slug }}/{{ message.slug }}" class="block">
-                      <img src="{{ message.image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" sizes="{{ site.image_sizes.cards_4x }}" alt="{{ message.title }}" data-optimize-img>
+                      <img src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" sizes="{{ site.image_sizes.cards_4x }}" alt="{{ message.title }}" data-optimize-img>
                     </a>
                     <div class="card-block">
                       <a href="/series/{{ message.series_slug }}/{{ message.slug }}" class="block">
@@ -275,7 +275,7 @@ meta_description: Crossroads Live
                         <h4 class="card-title card-title--overlap"> {{ series_object.title | upcase }} </h4>
                       </a>                        
                       <h6>{{ message.title }}</h6>
-                      <div class="card-text">{{ message.content }}</div>
+                      <div class="card-text">{{ message.description }}</div>
                     </div>
                   </div>
                 {% endfor %}
