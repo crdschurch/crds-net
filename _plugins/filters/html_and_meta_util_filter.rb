@@ -8,9 +8,9 @@ module CRDS
 
       def get_meta_image(page, site)
         ::Utils::MetaUtil.get_meta_image_url(
-          page['meta_image'],
-          page['image'],
-          page['bg_image'],
+          page['meta_image'].nil? ? nil : page['meta_image']['url'],
+          page['image'].nil? ? nil : page['image']['url'],
+          page['bg_image'].nil? ? nil : page['bg_image']['url'],
           page['description'],
           site['image']
         )
