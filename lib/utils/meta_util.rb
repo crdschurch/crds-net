@@ -50,13 +50,13 @@
           uri.to_s
         end
 
-        #
+        # Attempts to parse an image from either markdownified or html-rendered content
         def self.search_for_first_image_in_content(content)
           search_for_first_markdownified_image_url_in_content(content) ||
           search_for_first_html_image_url_in_page_content(content)
         end
 
-        #
+        # Attempts to parse an image from markdownified content
         def self.search_for_first_markdownified_image_url_in_content(content)
           if content.nil? || content.to_s.strip.empty?
             nil
@@ -65,8 +65,6 @@
             matches.nil? ? nil : matches[1]
           end
         end
-
-#        ![famous-dripping-clocks-dali-painting-persistence-of-memory1](//images.ctfassets.net/p9oq1ve41d7r/53Ilga1G40Sewck6YYOWcI/8ae18b94d0e3aad990c0fff3b440bbda/famous-dripping-clocks-dali-painting-persistence-of-memory1.jpg)
 
         #returns the value in the 'src' attribute of the first occurence of an 'img' element
         def self.search_for_first_html_image_url_in_page_content(content)
