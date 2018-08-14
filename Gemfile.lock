@@ -1,15 +1,15 @@
 GIT
   remote: https://github.com/crdschurch/crds-styles.git
-  revision: 9a733a24fe699dfd71cfd0d792fa0a0375085ece
+  revision: b64eba247a4ad4219d30c79ad0327c1618af4ced
   branch: development
   specs:
-    crds-styles (3.0.1)
+    crds-styles (3.0.2)
       bootstrap-sass (~> 3.3)
       sass (~> 3.2)
 
 GIT
   remote: https://github.com/crdschurch/jekyll-contentful.git
-  revision: 58eeabd0007250ebe435e3f82627257f89299fa0
+  revision: b39caa3f9ee2d868270b74f6c63d7bd971acd30e
   branch: master
   specs:
     jekyll-contentful (0.0.8)
@@ -18,17 +18,27 @@ GIT
       dotenv
       jekyll
 
+GIT
+  remote: https://github.com/crdschurch/jekyll-crds.git
+  revision: 1ad5d12ad2bdc965c248363e0197edddb824f904
+  branch: master
+  specs:
+    jekyll-crds (0.0.1)
+      activesupport
+      httparty
+      jekyll
+
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.0)
+    activesupport (5.2.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    autoprefixer-rails (9.0.0)
+    autoprefixer-rails (9.0.2)
       execjs
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -47,11 +57,13 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
     eventmachine (1.2.7)
+    eventmachine (1.2.7-x64-mingw32)
     execjs (2.7.0)
     extras (0.3.0)
       forwardable-extended (~> 2.5)
     fastimage (2.1.3)
     ffi (1.9.25)
+    ffi (1.9.25-x64-mingw32)
     formatador (0.2.5)
     forwardable-extended (2.6.0)
     guard (2.14.2)
@@ -77,6 +89,8 @@ GEM
       domain_name (~> 0.5)
     http-form_data (1.0.3)
     http_parser.rb (0.6.0)
+    httparty (0.16.2)
+      multi_xml (>= 0.5.2)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     jekyll (3.7.3)
@@ -124,8 +138,11 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    multi_xml (0.6.0)
     nenv (0.3.0)
     nokogiri (1.8.4)
+      mini_portile2 (~> 2.3.0)
+    nokogiri (1.8.4-x64-mingw32)
       mini_portile2 (~> 2.3.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
@@ -140,7 +157,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    rouge (3.1.1)
+    rouge (3.2.0)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -156,7 +173,7 @@ GEM
     rspec-support (3.7.1)
     ruby_dep (1.5.0)
     safe_yaml (1.0.4)
-    sass (3.5.6)
+    sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -169,21 +186,27 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2018.5)
+      tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
+    unf_ext (0.0.7.5-x64-mingw32)
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
+  activesupport
   crds-styles!
   guard-rspec
   jekyll (~> 3.7.3)
   jekyll-assets
   jekyll-contentful (~> 0.0.7)!
+  jekyll-crds (~> 0.0.1)!
   rspec
   tzinfo-data
 
 BUNDLED WITH
-   1.16.2
+   1.16.3

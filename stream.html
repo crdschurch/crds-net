@@ -1,0 +1,144 @@
+--- 
+layout: default 
+title: Stream | Crossroads 
+permalink: /live/stream 
+---
+<style>
+  iframe {width: 1px;min-width: 100%;}
+</style>
+
+<div class="dark-theme page--live-stream">
+  <!-- Live Stream Header -->
+  <div class="crds-shared-header">
+    <div class="header">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <ul class="nav nav-pills nav-primary pull-left visible-xs-block visible-sm-block">
+              <li>
+                <a href="/live/" data-automation-id="go-back-link-mobile" class="link-icon">
+                  <svg class="icon icon-1" viewBox="0 0 256 256">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#chevron-left"></use>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+            <a id="crds-shared-header-logo" href="/" class="navbar-brand logo">
+              <img src="//d1tmclqz61gqwd.cloudfront.net/images/crossroads-church-logo-white.svg" alt="" title="">
+            </a>
+            <ul class="nav nav-pills nav-primary pull-right hidden-xs hidden-sm">
+              <li>
+                <a href="/live/" data-automation-id="go-back-link-desktop" class="link-icon">
+                  <svg class="icon icon-1" viewBox="0 0 256 256">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#chevron-left"></use>
+                  </svg>
+                  <span class="link-icon-text">Go Back</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container push-bottom">
+    <div class="crds-countdown"></div>
+    <div class="row">
+      <iframe width="640" height="360" allowfullscreen="" data-streamspot-player="1adb55de" data-watch-height-ratio=".547"
+        frameborder="0" style="height: 639.99px;"></iframe>
+    </div>
+  </div>
+  <!-- Rollcall -->
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        {% include _rollcall.html %}
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+
+      <!-- Don't Miss -->
+      <div class="col-md-8">
+        <div class="well">
+          <div class="clearfix push-half-bottom">
+            <h2 class="font-size-h4 flush-top pull-left">don't miss</h2>
+            <div aria-label="carousel-controls" class="btn-group text-right pull-right" role="group">
+              <button class="btn btn-gray active btn-sm flush-top carousel-prev" type="button">
+                <svg class="icon icon-1" viewBox="0 0 256 256">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#chevron-left">&nbsp;</use>
+                </svg>
+              </button>
+              <button class="btn btn-gray active btn-sm flush-top carousel-next" type="button">
+                <svg class="icon icon-1" viewBox="0 0 256 256">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#chevron-right">&nbsp;</use>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="card-deck carousel carousel--dont-miss" data-crds-carousel="always-scroll">
+            <div id="section-" class="feature-cards is-draggable" data-crds-carousel="always-scroll" tabindex="0">
+              {% assign dont_miss_promos = site.promos | where: "section", "Don't Miss" %}
+              {% for item in dont_miss_promos %}
+              <div class="card carousel-cell">
+                  <a href="{{ item.link_url }}" class="block">
+                    <img src="{{ item.image }}" alt="Explore Crossroads" class="card-img-top imgix-fluid card-img-constrained">
+                  </a>
+                  <div class="card-block">
+                    <h4 class="card-title card-title--overlap text-uppercase">
+                      <a href="{{ item.link_url }}}">{{ item.title }}</a>
+                    </h4>
+                    <div class="card-text">
+                      {{ item.content | markdownify }}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Give Widget -->
+      <div class="col-md-4">
+        <div class="well">
+          <h2 class="font-size-h4 flush-top">give</h2>
+          <div class="row">
+            <iframe id="giveIframe" width="320" height="240" src="https://embed.crossroads.net/give?type=donation&amp;theme=dark"
+              frameborder="0" scrolling="no" style="overflow: hidden; min-height: 350px; height: 350px;"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Be The Church -->
+    <div class="container">
+      <div class="md-text-left">
+        <h3 class="font-size-h4">be the church</h3>
+      </div>
+      <div class="row">
+        {% assign be_the_church_promos = site.promos | where: "section", "Be The Church" | sort: "date" | reverse %}
+        {% for item in be_the_church_promos %}
+          <article>
+            <div class="col-md-4 col-sm-6 media mobile-push-bottom">
+                <div class="media-img-wrapper">
+                  <div class="img-size-5">
+                    <a href="{{ item.link_url }}" target="_blank">
+                      <img src="{{ item.image }}" alt="{{ item.title }}" class="img-border" />
+                    </a>
+                  </div>
+                </div>
+                <div class="media-body">
+                  <p class="list-header flush-bottom">{{ item.title }}</p>
+                  {{ item.content }}
+                </div>
+              </div>
+            </article>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.6.1/iframeResizer.min.js"></script>
+<script async type="text/javascript" src="{% asset views/live-stream.js @path %}"></script>

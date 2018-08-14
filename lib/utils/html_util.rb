@@ -1,8 +1,7 @@
 # traverses the page and site objects to find the most appropriate
 # meta data tags based on a predetermined priority
 
-module Jekyll
-  module CRDS
+  module Utils
     class HtmlUtil
       # (if the web page title is specified)
       # Retrieves the web page's title, appending the site title separated by a pipe (e.g. Super Sweet Songs | Crossroads)
@@ -20,4 +19,3 @@ module Jekyll
       end
     end
   end
-end
