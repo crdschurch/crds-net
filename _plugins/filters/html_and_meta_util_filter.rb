@@ -1,6 +1,5 @@
 require_relative '../../lib/utils/meta_util'
 require_relative '../../lib/utils/html_util'
-require 'pry'
 
 module CRDS
   module Filters
@@ -11,7 +10,7 @@ module CRDS
           page['meta_image'].nil? ? nil : page['meta_image']['url'],
           page['image'].nil? ? nil : page['image']['url'],
           page['bg_image'].nil? ? nil : page['bg_image']['url'],
-          page['description'],
+          page['description'].nil? ? page['body'] : page['description'],
           site['image']
         )
       end
@@ -20,6 +19,8 @@ module CRDS
         ::Utils::MetaUtil.get_meta_description(
           page['meta_description'],
           page['excerpt'],
+          page['description'],
+          page['body'],
           site['description']
         )
       end
