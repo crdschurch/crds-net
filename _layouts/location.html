@@ -46,7 +46,7 @@ layout: default
         <div class="row">
           <div class="col-sm-12">
             {% assign current_series = site.series | reverse | first %}
-            <a class="btn btn-primary" data-role="recent-series" href="{{ current_series.url }}">Check out our latest series</a>
+            <a data-media-snippet="get_current_message_url:attr[href]" class="btn btn-primary" data-role="recent-series">Check out our latest series</a>
           </div>
           <div class="col-sm-12 push-top">
             {{ page.additional_info | markdownify }}
