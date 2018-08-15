@@ -39,11 +39,11 @@ CRDS.Countdown = class Countdown {
 
   static setLoadingStatus(loading) {
     if (loading) {
-      $("[data-stream-status-loading='hide']").addClass('hide');
-      $("[data-stream-status-loading='show']").removeClass('hide');
+      $("[data-stream-status-loading='hide']").addClass('visually-hidden');
+      $("[data-stream-status-loading='show']").removeClass('visually-hidden');
     } else {
-      $("[data-stream-status-loading='show']").addClass('hide');
-      $("[data-stream-status-loading='hide']").removeClass('hide');
+      $("[data-stream-status-loading='show']").addClass('visually-hidden');
+      $("[data-stream-status-loading='hide']").removeClass('visually-hidden');
     }
   }
 
