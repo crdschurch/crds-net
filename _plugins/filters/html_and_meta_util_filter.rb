@@ -5,12 +5,12 @@ module CRDS
   module Filters
     module HtmlAndMetaUtilFilter
 
-      def get_meta_image(page, page_content, site)
+      def get_meta_image(page, site)
         ::Utils::MetaUtil.get_meta_image_url(
-          page['meta_image'],
-          page['image'],
-          page['bg_image'],
-          page_content,
+          page['meta_image'].nil? ? nil : page['meta_image']['url'],
+          page['image'].nil? ? nil : page['image']['url'],
+          page['bg_image'].nil? ? nil : page['bg_image']['url'],
+          page['description'].nil? ? page['body'] : page['description'],
           site['image']
         )
       end
@@ -18,7 +18,9 @@ module CRDS
       def get_meta_description(page, site)
         ::Utils::MetaUtil.get_meta_description(
           page['meta_description'],
+          page['excerpt'],
           page['description'],
+          page['body'],
           site['description']
         )
       end

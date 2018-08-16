@@ -82,7 +82,17 @@ describe 'Html Meta Util' do
         'https://site-image.jpg')).to eq 'https://site-image.jpg'
   end
 
-  context 
+
+  it 'should parse and return the markdownified image url' do
+    expect(
+      Utils::MetaUtil.get_meta_image_url(
+        nil,
+        nil,
+        nil,
+        'some text to the left ![famous-dripping-clocks-dali-painting-persistence-of-memory1](//images.ctfassets.net/p9oq1ve41d7r/53Ilga1G40Sewck6YYOWcI/8ae18b94d0e3aad990c0fff3b440bbda/famous-dripping-clocks-dali-painting-persistence-of-memory1.jpg) some text to the right',
+        'https://site-image.jpg')).to eq 'https://images.ctfassets.net/p9oq1ve41d7r/53Ilga1G40Sewck6YYOWcI/8ae18b94d0e3aad990c0fff3b440bbda/famous-dripping-clocks-dali-painting-persistence-of-memory1.jpg'
+  end
+
 
   it 'should return the site image url' do
     expect(
@@ -217,19 +227,6 @@ describe 'Html Meta Util' do
         "    \t\r\n    ",
         'Site description'
       )).to eq 'Site description'
-  end
-
-
-  # would love to strip_html, strip_newlines and truncate in the Ruby code directly to simplify
-  # declarative expression in the liquid template, but... i don't know how yet in a clean way
-  # that could potentially leverage the "helpers"/filters already provided
-  it 'should return a site description truncated to 155 characters at the nearest word' do
-    expect(
-      Utils::MetaUtil.get_meta_description(
-        nil,
-        nil,
-        "Let's write some text that exceeds 155 characters. It needn't be meaningful text, so we'll blather on a bit. Getting close now, but not quite there yet. Now we have exceeded. Great job, team!"
-      )).to eq "Let's write some text that exceeds 155 characters. It needn't be meaningful text, so we'll blather on a bit. Getting close now, but not quite there yet...."
   end
 
 

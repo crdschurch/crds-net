@@ -1,11 +1,12 @@
 ---
 layout: default
 title: Locations
-permalink: /locations/ 
+permalink: /locations/
+meta_image: http://crds-cms-uploads.imgix.net/content/images/cr-social-sharing-still-bg.jpg
 meta_description: Crossroads Locations
 ---
 
-{% include _shared-header.html %}
+{% include header.html %}
 
 <div class="container">
   <div class="row">
@@ -80,5 +81,7 @@ meta_description: Crossroads Locations
   </div>
 </div>
 
-{% include _shared-footer.html %}
+<script async type="text/javascript" src="{% asset components/location-search.js @path %}"></script>
+
+{% include footer.html %}
 

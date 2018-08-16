@@ -1,0 +1,1 @@
+module.exports = {"content":["_site/**/*.html"],"css":["_site/assets/application-484fa5b04c5ec8303fbc737352a2f1d4e256ee54bfe2df49fb20c9e0483352e5.css"],"whitelist":["pull-right","border-bottom","flickity-viewport","tmp-img-placeholder","card-deck--expanded-layout","carousel-cell"]}
