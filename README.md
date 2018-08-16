@@ -55,7 +55,7 @@ Once you have Ruby v.2.5.1 installed on your machine, you are ready to build the
 This will build the site and start up a preview server that allows you to view the
 work that you have done.
 
-## Downloading Content
+## Requesting Content
 
 First, you need to export the following environment variables (you can get these
 values directly from Contentful)...
