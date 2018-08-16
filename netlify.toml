@@ -1,3 +1,23 @@
+[context.int.environment]
+  CONTENTFUL_ENV = master
+  CONTENTFUL_SPACE_ID = p9oq1ve41d7r
+  CRDS_APP_CLIENT_ENDPOINT = https://int.static.crossroads.net
+  CRDS_CMS_ENDPOINT = https://contentint.crossroads.net
+  CRDS_MAESTRO_CLIENT_ENDPOINT = https://int.crossroads.net
+  IMGIX_DOMAIN = crds-media-int.imgix.net
+  IMGIX_SRC = images.ctfassets.net/p9oq1ve41d7r
+  STREAMSPOT_ID = crossr30e3
+
+[context.deploy-preview.environment]
+  CONTENTFUL_ENV = master
+  CONTENTFUL_SPACE_ID = p9oq1ve41d7r
+  CRDS_APP_CLIENT_ENDPOINT = https://int.static.crossroads.net
+  CRDS_CMS_ENDPOINT = https://contentint.crossroads.net
+  CRDS_MAESTRO_CLIENT_ENDPOINT = https://int.crossroads.net
+  IMGIX_DOMAIN = crds-media-int.imgix.net
+  IMGIX_SRC = images.ctfassets.net/p9oq1ve41d7r
+  STREAMSPOT_ID = crossr30e3
+
 [build]
   command = '''
     bundle exec rspec &&
