@@ -39,3 +39,15 @@
   IMGIX_DOMAIN = "crds-media-int.imgix.net"
   IMGIX_SRC = "images.ctfassets.net/p9oq1ve41d7r"
   STREAMSPOT_ID = "crossr30e3"
+
+[context.deploy-preview.build]
+  command = '''
+    export CONTENTFUL_ACCESS_TOKEN=CONTENTFUL_ACCESS_TOKEN_INT &&
+    export CONTENTFUL_MANAGEMENT_TOKEN=CONTENTFUL_MANAGEMENT_TOKEN_INT &&
+    export STREAMSPOT_API_KEY=STREAMSPOT_API_KEY_INT &&
+    bundle exec rspec &&
+    ruby lib/bin/redirects.rb &&
+    bundle exec jekyll crds &&
+    bundle exec jekyll contentful --collections pages,promos,locations,series,messages
+    bundle exec jekyll build
+  '''
