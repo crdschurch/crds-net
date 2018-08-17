@@ -40,7 +40,7 @@
   IMGIX_SRC = "images.ctfassets.net/p9oq1ve41d7r"
   STREAMSPOT_ID = "crossr30e3"
 
-[context.deploy-preview.build]
+[context.deploy-preview]
   command = '''
     export CONTENTFUL_ACCESS_TOKEN=CONTENTFUL_ACCESS_TOKEN_INT &&
     export CONTENTFUL_MANAGEMENT_TOKEN=CONTENTFUL_MANAGEMENT_TOKEN_INT &&
