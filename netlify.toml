@@ -1,5 +1,8 @@
 [build]
   command = '''
+    export CONTENTFUL_ACCESS_TOKEN=CONTENTFUL_ACCESS_TOKEN_${branch} &&
+    export CONTENTFUL_MANAGEMENT_TOKEN=CONTENTFUL_MANAGEMENT_TOKEN_${branch} &&
+    export STREAMSPOT_API_KEY=STREAMSPOT_API_KEY_${branch} &&
     bundle exec rspec &&
     ruby lib/bin/redirects.rb &&
     bundle exec jekyll crds &&
