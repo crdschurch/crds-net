@@ -1,4 +1,4 @@
-# default build settings for int, etc
+# default build settings for int, preview deploys etc
 [build]
   command = '''
     export CONTENTFUL_SPACE_ID=$CONTENTFUL_SPACE_ID_int &&
