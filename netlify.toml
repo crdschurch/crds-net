@@ -1,31 +1,33 @@
-# int & deploy preview build settings
+# default build settings for int, etc
 [build]
   command = '''
+    export COTENTFUL_SPACE_ID=$CONTENTFUL_SPACE_ID_int
     export CONTENTFUL_ACCESS_TOKEN=$CONTENTFUL_ACCESS_TOKEN_int &&
     export CONTENTFUL_MANAGEMENT_TOKEN=$CONTENTFUL_MANAGEMENT_TOKEN_int &&
     export STREAMSPOT_API_KEY=$STREAMSPOT_API_KEY_int &&
+    export STREAMSPOT_ID=$STREAMSPOT_ID_int &&
     bundle exec rspec &&
     ruby lib/bin/redirects.rb &&
     bundle exec jekyll crds &&
     bundle exec jekyll contentful --collections pages,promos,locations,series,messages
     bundle exec jekyll build
   '''
-# int & deploy preview env
+
 [build.environment]
   CONTENTFUL_ENV = "master"
-  CONTENTFUL_SPACE_ID = "p9oq1ve41d7r"
   CRDS_APP_CLIENT_ENDPOINT = "https://int.static.crossroads.net"
   CRDS_CMS_ENDPOINT = "https://contentint.crossroads.net"
   CRDS_MAESTRO_CLIENT_ENDPOINT = "https://int.crossroads.net"
   IMGIX_DOMAIN = "crds-media-int.imgix.net"
   IMGIX_SRC = "images.ctfassets.net/p9oq1ve41d7r"
-  STREAMSPOT_ID = "crossr30e3"
 
 [context.demo]
   command = '''
+    export COTENTFUL_SPACE_ID=$CONTENTFUL_SPACE_ID_demo
     export CONTENTFUL_ACCESS_TOKEN=$CONTENTFUL_ACCESS_TOKEN_demo &&
     export CONTENTFUL_MANAGEMENT_TOKEN=$CONTENTFUL_MANAGEMENT_TOKEN_demo &&
-    export STREAMSPOT_API_KEY=$STREAMSPOT_API_KEY_demo &&
+    export STREAMSPOT_API_KEY=$STREAMSPOT_API_KEY_int &&
+    export STREAMSPOT_ID=$STREAMSPOT_ID_int &&
     bundle exec rspec &&
     ruby lib/bin/redirects.rb &&
     bundle exec jekyll crds &&
@@ -35,10 +37,30 @@
 
 [context.demo.environment]
   CONTENTFUL_ENV = "master"
-  CONTENTFUL_SPACE_ID = "hcu01lso1fic"
   CRDS_APP_CLIENT_ENDPOINT = "https://demo.static.crossroads.net"
   CRDS_CMS_ENDPOINT = "https://contentdemo.crossroads.net"
   CRDS_MAESTRO_CLIENT_ENDPOINT = "https://demo.crossroads.net"
-  IMGIX_DOMAIN = "crds-media-int.imgix.net"
-  IMGIX_SRC = "images.ctfassets.net/p9oq1ve41d7r"
-  STREAMSPOT_ID = "crossr30e3"
+  IMGIX_DOMAIN = "crds-media-demo.imgix.net"
+  IMGIX_SRC = "images.ctfassets.net/hcu01lso1fic"
+
+[context.production]
+  command = '''
+    export COTENTFUL_SPACE_ID=$CONTENTFUL_SPACE_ID_www
+    export CONTENTFUL_ACCESS_TOKEN=$CONTENTFUL_ACCESS_TOKEN_www &&
+    export CONTENTFUL_MANAGEMENT_TOKEN=$CONTENTFUL_MANAGEMENT_TOKEN_www &&
+    export STREAMSPOT_API_KEY=$STREAMSPOT_API_KEY_www &&
+    export STREAMSPOT_ID=$STREAMSPOT_ID_www &&
+    bundle exec rspec &&
+    ruby lib/bin/redirects.rb &&
+    bundle exec jekyll crds &&
+    bundle exec jekyll contentful --collections pages,promos,locations,series,messages
+    bundle exec jekyll build
+  '''
+
+[context.production.environment]
+  CONTENTFUL_ENV = "master"
+  CRDS_APP_CLIENT_ENDPOINT = "https://www.static.crossroads.net"
+  CRDS_CMS_ENDPOINT = "https://content.crossroads.net"
+  CRDS_MAESTRO_CLIENT_ENDPOINT = "https://www.crossroads.net"
+  IMGIX_DOMAIN = "crds-media.imgix.net"
+  IMGIX_SRC = "images.ctfassets.net/y3a9myzsdjan"
