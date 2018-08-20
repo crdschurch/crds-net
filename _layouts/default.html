@@ -15,12 +15,13 @@
     {% endif %}
 
     <script>
+    //exist as duplicates due to external dependencies on structure
     window.env = {
       gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}',
       streamspotId: '{{ site.streamspotId }}',
       streamspotKey: '{{ site.streamspotKey }}'
     };
-      
+
     var CRDS = {
       media: {
         cms: '{{ site.shared_header.cms }}',
@@ -30,7 +31,7 @@
       },
       streamspotId: '{{ site.streamspotId }}',
       streamspotKey: '{{ site.streamspotKey }}',
-      env: window.env
+      env: window.env.gatewayServerEndpoint
     };
     </script>
 
