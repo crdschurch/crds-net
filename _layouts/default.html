@@ -15,6 +15,10 @@
     {% endif %}
 
     <script>
+    window.env = {
+      gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}'
+    };
+      
     var CRDS = {
       media: {
         cms: '{{ site.shared_header.cms }}',
@@ -24,9 +28,7 @@
       },
       streamspotId: '{{ site.streamspotId }}',
       streamspotKey: '{{ site.streamspotKey }}',
-      env: {
-        gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}'
-      }
+      env: window.env
     };
     </script>
 
