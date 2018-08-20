@@ -3,6 +3,7 @@
 //= require ./vendor/flickity.pkgd.min
 //= require ./vendor/crds-card-carousel-v0.2.0.min
 //= require ./vendor/crds-jumbotron-video-v0.0.2.min
+//= require ./vendor/crds-livestream-reminder-v0.0.16.min
 //= require ./vendor/crds-rollcall.min
 //= require ./components/header
 //= require ./components/images
