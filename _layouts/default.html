@@ -15,19 +15,17 @@
     {% endif %}
 
     <script>
-    var CRDS = {
-      media: {
-        cms: '{{ site.shared_header.cms }}',
-        app: '{{ site.shared_header.app }}',
-        img: '{{ site.shared_header.img }}',
-        prefix: '{{ site.shared_header.prefix }}'
-      },
-      streamspotId: '{{ site.streamspotId }}',
-      streamspotKey: '{{ site.streamspotKey }}',
-      env: {
-        gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}'
-      }
-    };
+      var CRDS = {
+        media: {
+          cms: '{{ site.shared_header.cms }}',
+          app: '{{ site.shared_header.app }}',
+          img: '{{ site.shared_header.img }}',
+          prefix: '{{ site.shared_header.prefix }}'
+        },
+        streamspotId: '{{ site.streamspotId }}',
+        streamspotKey: '{{ site.streamspotKey }}',
+        env: '{{ site.gateway_server_endpoint }}'
+      };
     </script>
 
     <script type="text/javascript" src="{% asset application.js @path %}"></script>
