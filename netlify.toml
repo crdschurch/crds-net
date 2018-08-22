@@ -39,7 +39,7 @@
   CONTENTFUL_ENV = "master"
   CRDS_APP_CLIENT_ENDPOINT = "https://demo.static.crossroads.net"
   CRDS_CMS_ENDPOINT = "https://contentdemo.crossroads.net"
-  CRDS_MAESTRO_CLIENT_ENDPOINT = "https://demo.crossroads.net"
+  CRDS_MAESTRO_CLIENT_ENDPOINT = "https://legacy-demo.crossroads.net"
   IMGIX_DOMAIN = "crds-media-demo.imgix.net"
   IMGIX_SRC = "images.ctfassets.net/hcu01lso1fic"
 
