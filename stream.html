@@ -1,6 +1,6 @@
 --- 
 layout: default 
-title: Stream | Crossroads 
+title: Stream
 permalink: /live/stream 
 ---
 <style>
@@ -80,18 +80,18 @@ permalink: /live/stream
           </div>
           <div class="card-deck carousel carousel--dont-miss" data-crds-carousel="always-scroll">
             <div id="section-" class="feature-cards is-draggable" data-crds-carousel="always-scroll" tabindex="0">
-              {% assign dont_miss_promos = site.promos | where: "section", "Don't Miss" %}
+              {% assign dont_miss_promos = site.promos | where: "section", "Don't Miss" | sort: "date" | reverse %}
               {% for item in dont_miss_promos %}
               <div class="card carousel-cell">
-                  <a href="{{ item.link_url }}" class="block">
-                    <img src="{{ item.image }}" alt="Explore Crossroads" class="card-img-top imgix-fluid card-img-constrained">
+                  <a href="{{ item.link_url | default: '' }}" class="block">
+                    <img src="{{ item.image.url }}" alt="Explore Crossroads" class="card-img-top imgix-fluid card-img-constrained">
                   </a>
                   <div class="card-block">
                     <h4 class="card-title card-title--overlap text-uppercase">
-                      <a href="{{ item.link_url }}}">{{ item.title }}</a>
+                      <a href="{{ item.link_url | default: '' }}">{{ item.title }}</a>
                     </h4>
                     <div class="card-text">
-                      {{ item.content | markdownify }}
+                      {{ item.description | markdownify }}
                     </div>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ permalink: /live/stream
         <div class="well">
           <h2 class="font-size-h4 flush-top">give</h2>
           <div class="row">
-            <iframe id="giveIframe" width="320" height="240" src="https://embed.crossroads.net/give?type=donation&amp;theme=dark"
+            <iframe id="giveIframe" width="320" height="240" src="https://embedint.crossroads.net/give?type=donation&amp;theme=dark"
               frameborder="0" scrolling="no" style="overflow: hidden; min-height: 350px; height: 350px;"></iframe>
           </div>
         </div>
@@ -125,13 +125,13 @@ permalink: /live/stream
                 <div class="media-img-wrapper">
                   <div class="img-size-5">
                     <a href="{{ item.link_url }}" target="_blank">
-                      <img src="{{ item.image }}" alt="{{ item.title }}" class="img-border" />
+                      <img src="{{ item.image.url }}" alt="{{ item.title }}" class="img-border" />
                     </a>
                   </div>
                 </div>
                 <div class="media-body">
                   <p class="list-header flush-bottom">{{ item.title }}</p>
-                  {{ item.content }}
+                  {{ item.description | markdownify }}
                 </div>
               </div>
             </article>

@@ -39,124 +39,21 @@ collections:
     output: true
     permalink: /:slug
   series:
+    filename: "{{ starts_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
   messages:
+    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
   promos:
+    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ title }}"
     output: false
-
-contentful:
-  content_types:
-    pages:
-      id: page
-      body: body
-      frontmatter:
-        entry_mappings:
-          title: title
-          description: body
-          slug: slug
-          permalink: slug
-          layout: layout
-          show_header: show_header
-          show_footer: show_footer
-          meta_image: meta_image/url
-          meta_description: meta_description
-
-    locations:
-      id: location
-      body: description
-      frontmatter:
-        entry_mappings:
-          name: name
-          description: description
-          slug: slug
-          address: address
-          service_times: service_times
-          additional_info: additional_info
-          image: image/url
-          bg_image: bg_image/url
-          map_url: map_url
-          virtual_tour_url: virtual_tour_url
-          come_as_you_are: come_as_you_are/url
-          community_pastor_name: community_pastor_name
-          community_pastor_bio: community_pastor_bio
-          community_pastor_image: community_pastor_image/url
-          spotlight_image: spotlight_image/url
-          spotlight_title: spotlight_title
-          spotlight_text: spotlight_text
-          kids_club_hours: kids_club_hours
-          student_ministry_hours: student_ministry_hours
-          serve_url: serve_url
-          hubspot_form_id: hubspot_form_id
-        other:
-          layout: location
-          draft: false
-    series:
-      id: series
-      body: description
-      associations:
-        videos:
-          - messages
-      frontmatter:
-        entry_mappings:
-          title: title
-          description: description
-          slug: slug
-          image: image/url
-          bg_image: background_image/url
-          date: starts_at
-          start_date: starts_at
-          end_date: ends_at
-          youtube_url: youtube_url
-          apple_podcasts_url: apple_podcasts_url
-          google_play_url: google_play_url
-          year: "{{ starts_at | date: '%Y' }}"
-          videos: videos/id
-          
-        other:
-          draft: false
-    messages:
-      id: message
-      body: description
-      links:
-        series_slug:
-          content_type: series
-          field: videos
-          value: slug
-      frontmatter:
-        entry_mappings:
-          title: title
-          description: description
-          authors: author/full_name
-          image: image/url
-          source_url: source_url
-          program: program/url
-          video_duration: video_duration
-          topic: category/title
-          topic_slug: category/slug
-          tags: tags
-          transcription: transcription
-          apple_podcasts_url: apple_podcasts_url
-          google_play_url: google_play_url
-          date: published_at
-          slug: slug
-        other:
-          layout: video
-          draft: false
-    promos:
-        id: promo
-        body: description
-        frontmatter:
-          entry_mappings:
-            title: title
-            image: image/url
-            link_url: link_url
-            cta: cta
-            section: section
-            target_audience: target_audience
-            date: published_at
-          other:
-            draft: false
+  
+defaults:
+  - scope:
+      path: ""
+      type: "locations"
+    values:
+      layout: location
 
 imgix_params:
   placeholder: "auto=format,compress&w=10"
@@ -168,3 +65,6 @@ image_sizes:
   cards_4x: "(min-width: 992px) 212.5px, (min-width: 768px) 345px, (min-width: 0px) 100vw"
   cards_3x: "(min-width: 992px) 390px, (min-width: 0px) 100vw"
   cards_2x: "(min-width: 768px) 345px, (min-width: 0px) 100vw"
+  one_hundred: "100%"
+
+typekit_url: https://use.typekit.net/ccb3vpa.css

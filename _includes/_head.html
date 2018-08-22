@@ -3,11 +3,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="title" content="{{ page | get_meta_title: site }}">
-  <meta name="description" content="{{ page | get_meta_description: content, site | strip_html | strip | truncate: 155 }}">
-  <meta name="image" content="{{ page | get_meta_image: content, site }}">
-  <meta property="og:description" content="{{ page | get_meta_description: content, site | strip_html | strip | truncate: 155 }}">
+  <meta name="description" content="{{ page | get_meta_description: site | markdownify | strip_html | strip_newlines | truncate: 155 }}">
+  <meta name="image" content="{{ page | get_meta_image: site }}">
+  <meta property="og:description" content="{{ page | get_meta_description: site | markdownify | strip_html | strip_newlines | truncate: 155 }}">
   <meta property="og:title" content="{{ page | get_meta_title: site }}">
-  <meta property="og:image" content="{{ page | get_meta_image: content, site }}">
+  <meta property="og:image" content="{{ page | get_meta_image: site }}">
   <meta property="og:url" content="{{ page | build_page_url: site }}">
   <meta property="og:site_name" content="{{ site.title | escape }}">
   <link rel="stylesheet" type="text/css" href="https://crossroads-media.s3.amazonaws.com/documents/styles/hotfix-seventy-six.css">
