@@ -1,11 +1,6 @@
 # default build settings for int, etc
 [build]
   command = '''
-    export CONTENTFUL_SPACE_ID=$CONTENTFUL_SPACE_ID_int &&
-    export CONTENTFUL_ACCESS_TOKEN=$CONTENTFUL_ACCESS_TOKEN_int &&
-    export CONTENTFUL_MANAGEMENT_TOKEN=$CONTENTFUL_MANAGEMENT_TOKEN_int &&
-    export STREAMSPOT_API_KEY=$STREAMSPOT_API_KEY_int &&
-    export STREAMSPOT_ID=$STREAMSPOT_ID_int &&
     bundle exec rspec &&
     ruby lib/bin/redirects.rb &&
     bundle exec jekyll crds &&
