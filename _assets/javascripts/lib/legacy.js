@@ -1,0 +1,1 @@
+document.getElementsByClassName("crds-styles")[0].className =  "crds-legacy-styles";
