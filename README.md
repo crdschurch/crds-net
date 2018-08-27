@@ -12,7 +12,7 @@ to manage your Ruby versions. You can read about that [here](https://github.com/
 Once you have Ruby version >= 2.5.1 installed, make sure you have Ruby bundler
 installed.
 
-`gem install bundler`
+ `gem install bundler`
 
 After installing bundler, you will be able to install the project's dependencies that
 are defined in the `Gemfile`. You can do that by running
