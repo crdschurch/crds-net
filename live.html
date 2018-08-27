@@ -267,21 +267,25 @@ meta_description: Crossroads Live
   <div class="row">
     <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
       <div class="feature-cards card-deck--expanded-layout">
-        {% assign recent_messages = site.messages | sort: 'date' | reverse | slice: 0,4 %} {% for message in recent_messages %}
-        <div class="card">
-          <a href="/series/{{ message.series_slug }}/{{ message.slug }}" class="block">
-            <img src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" sizes="{{ site.image_sizes.cards_4x }}"
-              alt="{{ message.title }}" data-optimize-img>
-          </a>
-          <div class="card-block">
-            <a href="/series/{{ message.series_slug }}/{{ message.slug }}" class="block">
-              {% assign series_object = site.series | where: "slug" , message.series_slug | first %}
-              <h4 class="card-title card-title--overlap"> {{ series_object.title | upcase }} </h4>
+        {% assign recent_messages = site.messages | sort: 'date' | reverse | slice: 0,4 %} 
+        {% for message in recent_messages %}
+          {% for series in site.series %}
+            {% assign series_slug = series.slug | where: "videos.slug", message.slug %}
+          {% endfor %}
+          <div class="card">
+            <a href="/series/{{ series_slug }}/{{ message.slug }}" class="block">
+              <img src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" sizes="{{ site.image_sizes.cards_4x }}"
+                alt="{{ message.title }}" data-optimize-img>
             </a>
-            <h6>{{ message.title }}</h6>
-            <div class="card-text">{{ message.description | markdownify }}</div>
+            <div class="card-block">
+              <a href="/series/{{ series_slug }}/{{ message.slug }}" class="block">
+                {% assign series_object = site.series | where: "slug" , message.series_slug | first %}
+                <h4 class="card-title card-title--overlap"> {{ series_object.title | upcase }} </h4>
+              </a>
+              <h6>{{ message.title }}</h6>
+              <div class="card-text">{{ message.description | markdownify }}</div>
+            </div>
           </div>
-        </div>
         {% endfor %}
       </div>
     </div>
