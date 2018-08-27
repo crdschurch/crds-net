@@ -1,3 +1,3 @@
-/proxy/content,${env:CRDS_CMS_ENDPOINT},200
-/proxy/gateway,${env:CRDS_GATEWAY_ENDPOINT},200
+/proxy/content/*,${env:CRDS_CMS_ENDPOINT}/:splat,200
+/proxy/gateway/*,${env:CRDS_GATEWAY_ENDPOINT}/:splat,200
 /*,${env:CRDS_MAESTRO_CLIENT_ENDPOINT}/:splat,200
