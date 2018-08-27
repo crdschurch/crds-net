@@ -270,7 +270,6 @@ meta_description: Crossroads Live
         {% assign recent_messages = site.messages | sort: 'date' | reverse | slice: 0,4 %} 
         {% for message in recent_messages %}
           {% for series in site.series %}
-            <!-- {{ series.videos | where: "slug", "week-1-how-do-we-think-about-depression" }} -->
             {% assign series_slug = series.slug | where: "videos.slug", message.slug %}
           {% endfor %}
           <div class="card">
