@@ -19,22 +19,22 @@ module CRDS
         cfg.dig('has_many').each do |name|
           if doc.data[name].present?
             collection_name = doc.collection.label
-            doc.data[name].collect(&associate_doc(collection_name))
+            doc.data[name].collect(&associate_doc(doc, collection_name))
           end
         end
       }
     end
 
-    def associate_doc(collection_name)
+    def associate_doc(parent, collection_name)
       -> (doc) {
         id = doc.dig('id')
         content_type = doc.dig('content_type').pluralize
         if collection = site.collections[content_type]
           child = collection.docs.detect{|e| e.data.dig('id') == id }
           child.data[collection_name] = {
-            'id' => doc.dig('id'),
-            'slug' => doc.dig('slug'),
-            'title' => doc.dig('title')
+            'id' => parent.data.dig('id'),
+            'slug' => parent.data.dig('slug'),
+            'title' => parent.data.dig('title')
           }
         end
       }
