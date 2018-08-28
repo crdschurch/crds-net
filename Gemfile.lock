@@ -1,16 +1,4 @@
 GIT
-  remote: https://github.com/ample/jekyll-contentful.git
-  revision: 67a80efaf17da4a2efbf62ac92023b6f491d05e2
-  branch: master
-  specs:
-    jekyll-contentful (1.0.1)
-      activesupport
-      contentful (>= 2.6.0)
-      contentful-management (~> 1.10.1)
-      dotenv
-      jekyll
-
-GIT
   remote: https://github.com/crdschurch/crds-styles.git
   revision: b64eba247a4ad4219d30c79ad0327c1618af4ced
   branch: development
@@ -18,6 +6,18 @@ GIT
     crds-styles (3.0.2)
       bootstrap-sass (~> 3.3)
       sass (~> 3.2)
+
+GIT
+  remote: https://github.com/crdschurch/jekyll-contentful.git
+  revision: 136bd4aa170ab52381c39dc46740f96595771e77
+  branch: defect/DE5832-filenames
+  specs:
+    jekyll-contentful (1.0.3)
+      activesupport
+      contentful (>= 2.6.0)
+      contentful-management (~> 1.10.1)
+      dotenv
+      jekyll
 
 GIT
   remote: https://github.com/crdschurch/jekyll-crds.git
@@ -47,7 +47,7 @@ GEM
     coderay (1.1.2)
     colorator (1.1.0)
     concurrent-ruby (1.0.5)
-    contentful (2.8.0)
+    contentful (2.9.1)
       http (> 0.8, < 3.0)
       multi_json (~> 1)
     contentful-management (1.10.1)
@@ -198,7 +198,6 @@ GEM
       unf_ext
     unf_ext (0.0.7.5)
     unf_ext (0.0.7.5-x64-mingw32)
-    wdm (0.1.1)
 
 PLATFORMS
   ruby
@@ -214,7 +213,6 @@ DEPENDENCIES
   jekyll-crds (~> 0.0.1)!
   rspec
   tzinfo-data
-  wdm (~> 0.1.0)
 
 BUNDLED WITH
    1.16.3
