@@ -5,6 +5,6 @@ window.onload = function() {
     if(window.location.hostname.includes('crossroads')){
         domain = '.crossroads.net';
     }
-
-    document.cookie = "redirectUrl=" + window.location.pathname + ";domain=" + domain + ";Path=/";
+    var uri = encodeURIComponent(window.location.href);
+    document.cookie = "redirectUrl=" + uri + ";domain=" + domain + ";Path=/";
 };
