@@ -41,13 +41,15 @@ collections:
   series:
     filename: "{{ starts_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
+    has_many:
+      - videos
   messages:
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
   promos:
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ title }}"
     output: false
-  
+
 defaults:
   - scope:
       path: ""
