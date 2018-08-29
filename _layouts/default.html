@@ -15,25 +15,25 @@
     {% endif %}
 
     <script>
-    var CRDS = {
-      media: {
-        cms: '{{ site.shared_header.cms }}',
-        app: '{{ site.shared_header.app }}',
-        img: '{{ site.shared_header.img }}',
-        prefix: '{{ site.shared_header.prefix }}'
-      },
-      streamspotId: '{{ site.streamspotId }}',
-      streamspotKey: '{{ site.streamspotKey }}',
-      env: {
-        gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}'
-      }
-    };
+      var CRDS = {
+        media: {
+          cms: '{{ site.shared_header.cms }}',
+          app: '{{ site.shared_header.app }}',
+          img: '{{ site.shared_header.img }}',
+          prefix: '{{ site.shared_header.prefix }}'
+        },
+        streamspotId: '{{ site.streamspotId }}',
+        streamspotKey: '{{ site.streamspotKey }}',
+        env: {
+          "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}'
+        }
+      };
     </script>
 
     <script type="text/javascript" src="{% asset application.js @path %}"></script>
     <script async type="text/javascript" src="{% asset application_deferred.js @path %}"></script>
     <script src="https://use.typekit.net/ccb3vpa.js"></script>
     <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
-
+    
   </body>
 </html>

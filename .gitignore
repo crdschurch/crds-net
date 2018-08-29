@@ -8,3 +8,4 @@ _redirects
 collections
 node_modules
 .DS_Store
+loadenv.ps1
