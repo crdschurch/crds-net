@@ -9,8 +9,8 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-contentful.git
-  revision: 136bd4aa170ab52381c39dc46740f96595771e77
-  branch: defect/DE5832-filenames
+  revision: 1971d6ca98a0cce98f573d6adbe6af1d64b15f37
+  branch: master
   specs:
     jekyll-contentful (1.0.3)
       activesupport
@@ -198,6 +198,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.5)
     unf_ext (0.0.7.5-x64-mingw32)
+    wdm (0.1.1)
 
 PLATFORMS
   ruby
@@ -213,6 +214,7 @@ DEPENDENCIES
   jekyll-crds (~> 0.0.1)!
   rspec
   tzinfo-data
+  wdm (~> 0.1.0)
 
 BUNDLED WITH
-   1.16.3
+   1.16.4
