@@ -21,6 +21,7 @@ include:
   - _redirects
 
 exclude:
+  - lib
   - Gemfile
   - Gemfile.lock
   - package.json
