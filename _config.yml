@@ -36,7 +36,7 @@ collections:
   pages:
     filename: "{{ slug }} index"
     output: true
-    permalink: /:slug/index.html
+    permalink: /:permalink/index.html
   locations:
     output: true
     permalink: /:slug

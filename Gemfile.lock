@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/ample/jekyll-placeholders.git
+  revision: 503eef68d21b020b8d611025ab7029c80e569186
+  branch: master
+  specs:
+    jekyll-placeholders (0.0.1)
+      activesupport
+      jekyll
+
+GIT
   remote: https://github.com/crdschurch/crds-styles.git
   revision: b64eba247a4ad4219d30c79ad0327c1618af4ced
   branch: development
@@ -198,7 +207,6 @@ GEM
       unf_ext
     unf_ext (0.0.7.5)
     unf_ext (0.0.7.5-x64-mingw32)
-    wdm (0.1.1)
 
 PLATFORMS
   ruby
@@ -212,9 +220,9 @@ DEPENDENCIES
   jekyll-assets
   jekyll-contentful (~> 1.0.0)!
   jekyll-crds (~> 0.0.1)!
+  jekyll-placeholders (~> 0.0.1)!
   rspec
   tzinfo-data
-  wdm (~> 0.1.0)
 
 BUNDLED WITH
    1.16.4
