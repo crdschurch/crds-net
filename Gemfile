@@ -5,7 +5,7 @@ gem 'activesupport'
 
 group :jekyll_plugins do
   gem 'jekyll-assets'
-  gem 'crds-styles', git: 'https://github.com/crdschurch/crds-styles.git', branch: 'development'
+  gem 'crds-styles', '~> 3.0.4', git: 'https://github.com/crdschurch/crds-styles.git'
   gem "jekyll-contentful", "~> 1.0.0", git: 'https://github.com/crdschurch/jekyll-contentful.git', branch: 'master'
   gem "jekyll-crds", "~> 0.0.1", git: 'https://github.com/crdschurch/jekyll-crds.git', branch: 'master'
 end
