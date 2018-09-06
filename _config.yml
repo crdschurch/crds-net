@@ -21,6 +21,7 @@ include:
   - _redirects
 
 exclude:
+  - lib
   - Gemfile
   - Gemfile.lock
   - package.json
@@ -33,8 +34,9 @@ collections_dir: collections
 
 collections:
   pages:
+    filename: "{{ slug }} index"
     output: true
-    permalink: /:slug
+    permalink: /:permalink/index.html
   locations:
     output: true
     permalink: /:slug
