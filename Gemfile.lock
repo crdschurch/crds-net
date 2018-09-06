@@ -1,19 +1,17 @@
 GIT
-  remote: https://github.com/ample/jekyll-crds.git
-  revision: fcdbfba154a18a575d6a2d0a8bd1e00de96de41b
+  remote: https://github.com/ample/jekyll-placeholders.git
+  revision: 503eef68d21b020b8d611025ab7029c80e569186
   branch: master
   specs:
-    jekyll-crds (0.0.1)
+    jekyll-placeholders (0.0.1)
       activesupport
-      httparty
       jekyll
 
 GIT
   remote: https://github.com/crdschurch/crds-styles.git
-  revision: b64eba247a4ad4219d30c79ad0327c1618af4ced
-  branch: development
+  revision: 444ed3820911b730c3be54f86132f205b3d2a31f
   specs:
-    crds-styles (3.0.2)
+    crds-styles (3.0.4)
       bootstrap-sass (~> 3.3)
       sass (~> 3.2)
 
@@ -39,7 +37,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    autoprefixer-rails (9.0.2)
+    autoprefixer-rails (9.1.3)
       execjs
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -205,12 +203,13 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
-  crds-styles!
+  crds-styles (~> 3.0.4)!
   guard-rspec
   jekyll (~> 3.7.3)
   jekyll-assets
   jekyll-contentful (~> 1.0.0)!
   jekyll-crds (~> 0.0.1)!
+  jekyll-placeholders (~> 0.0.1)!
   rspec
   tzinfo-data
 
