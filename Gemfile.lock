@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/ample/jekyll-crds.git
+  revision: fcdbfba154a18a575d6a2d0a8bd1e00de96de41b
+  branch: master
+  specs:
+    jekyll-crds (0.0.1)
+      activesupport
+      httparty
+      jekyll
+
+GIT
   remote: https://github.com/crdschurch/crds-styles.git
   revision: b64eba247a4ad4219d30c79ad0327c1618af4ced
   branch: development
@@ -17,16 +27,6 @@ GIT
       contentful (>= 2.6.0)
       contentful-management (~> 1.10.1)
       dotenv
-      jekyll
-
-GIT
-  remote: https://github.com/crdschurch/jekyll-crds.git
-  revision: 1ad5d12ad2bdc965c248363e0197edddb824f904
-  branch: master
-  specs:
-    jekyll-crds (0.0.1)
-      activesupport
-      httparty
       jekyll
 
 GEM
@@ -198,7 +198,6 @@ GEM
       unf_ext
     unf_ext (0.0.7.5)
     unf_ext (0.0.7.5-x64-mingw32)
-    wdm (0.1.1)
 
 PLATFORMS
   ruby
@@ -214,7 +213,6 @@ DEPENDENCIES
   jekyll-crds (~> 0.0.1)!
   rspec
   tzinfo-data
-  wdm (~> 0.1.0)
 
 BUNDLED WITH
    1.16.4
