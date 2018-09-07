@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/ample/jekyll-crds.git
+  revision: b890799df1e42f1d2421a68645fffb46b8ffd1ad
+  branch: master
+  specs:
+    jekyll-crds (0.0.1)
+      activesupport
+      httparty
+      jekyll
+
+GIT
   remote: https://github.com/ample/jekyll-placeholders.git
   revision: 503eef68d21b020b8d611025ab7029c80e569186
   branch: master
