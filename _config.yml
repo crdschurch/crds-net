@@ -19,6 +19,7 @@ assets:
 
 include:
   - _redirects
+  - _headers
 
 exclude:
   - lib
