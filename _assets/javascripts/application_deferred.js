@@ -1,3 +1,4 @@
+//= require ./vendor/webcomponents-lite.min
 //= require ./vendor/imgix.min
 //= require ./vendor/bootstrap.min
 //= require ./vendor/flickity.pkgd.min
