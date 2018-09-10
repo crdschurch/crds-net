@@ -52,7 +52,7 @@ meta_description: Crossroads Live
             <p>No matter what you believe, we built this for you - and the thousands like you - who want to live by a different
               set of rules.</p>
             <div id="recent-message-btn">
-              <a data-media-snippet="get_current_message_url:attr[href]" class="btn btn-blue" data-role="recent-message">Watch This Week's Service</a>
+              <a href="/series/{{ latest_message.series.slug }}/{{ latest_message.slug }}" class="btn btn-blue" data-role="recent-message">Watch This Week's Service</a>
             </div>
           </div>
           <div class="content-upcoming hide" data-stream-upcoming="show">
@@ -187,8 +187,8 @@ meta_description: Crossroads Live
       <div class="row push-top soft-half-sides soft-ends">
         <div class="col-md-6 push-bottom">
           <h3 class="flush-top">{{ current_series.title }}</h3>
-          <h5 class="card-subtitle" data-media-snippet="get_current_series_dates">{{ current_series.start_date }} - {{ current_series.end_date }}</h5>
-          <div class="card-text" data-media-snippet="get_current_series_description">{{ current_series.description | markdownify }}</div>
+          <h5 class="card-subtitle">{{ current_series.starts_at | date: "%m.%d.%Y" }} - {{ current_series.ends_at | date: "%m.%d.%Y"}}</h5>
+          <div class="card-text">{{ current_series.description | markdownify }}</div>
           {% if current_series.youtube_url %}
           <div class="push-top">
             <a href="{{ current_series.youtube_url }}" class="btn btn-primary" data-toggle="modal" data-target="#trailer-video-modal">
