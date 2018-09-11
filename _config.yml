@@ -34,7 +34,7 @@ collections_dir: collections
 
 collections:
   pages:
-    filename: "{{ slug }} index"
+    filename: "{{ permalink }} index"
     output: true
     permalink: /:permalink/index.html
   locations:
