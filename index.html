@@ -134,7 +134,7 @@ title: Home
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
         <h2 class="text-white soft-top">what to expect</h2>
-        <p class="lead">Acceptance. Crossroads is for anyone who wants to seek God - from those exploring whether or not God even exists,
+        <p class="font-size-large">Acceptance. Crossroads is for anyone who wants to seek God - from those exploring whether or not God even exists,
           to committed Christ-followers. Wherever you are, we're happy to have you.</p>
       </div>
     </div>
@@ -214,44 +214,5 @@ title: Home
   </div>
 </div>
 <script async type="text/javascript" src="{% asset components/location-search.js @path %}"></script>
-<script type="text/javascript">
-
-  // Scroll Locations
-  var locationButton = document.getElementById('find-location');
-  var locationScroll = function (event) {
-    event.preventDefault();
-    document.querySelector('[data-locations-section]').scrollIntoView(true);
-  }
-
-  locationButton.addEventListener('click', locationScroll);
-
-  // Jumbotron Overlay
-  var watchButton = document.getElementById('watch-cta');
-  var closeButton = document.getElementById('overlay-close');
-  var overlay = document.getElementById('overlay');
-
-  function showOverlay(event) {
-    event.preventDefault();
-    overlay.classList.add('visible');
-  }
-
-  function hideOverlay() {
-    overlay.classList.remove('visible');
-  }
-
-  watchButton.addEventListener('click', showOverlay);
-  closeButton.addEventListener('click', hideOverlay);
-
-  var trackerInt;
-  var buildTracker = function () {
-    if (typeof analytics !== "undefined") {
-      clearInterval(trackerInt);
-      new CRDS.DataTracker();
-    }
-  };
-  trackerInt = setInterval(function () {
-    buildTracker();
-  }, 250);
-</script>
-
+<script async type="text/javascript" src="{% asset views/home.js @path %}"></script>
 {% include footer.html %}
