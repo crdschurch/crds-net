@@ -38,24 +38,6 @@
       });
     } catch (e) {}
   </script>
-
-  <script src="https://chat-assets.frontapp.com/v1/chat.bundle.js"></script>
-  <script>
-    new Promise((resolve, reject) => {
-      window.FrontChat('init', {
-        chatId: '7a380dfd7cc7e308342a0545ff337bb9',
-        useDefaultLauncher: true
-      })
-      if (window.FrontChat) {
-        console.log('chat loaded');
-        const chatContainer = document.getElementById('front-chat-container');
-        resolve(chatContainer);
-      }
-    }).then((elm) => {
-      setTimeout(console.log(elm), 2000);
-    }) 
-
-  </script>
 </body>
 
 </html>
