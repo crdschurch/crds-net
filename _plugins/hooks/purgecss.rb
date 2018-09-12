@@ -16,7 +16,21 @@ Jekyll::Hooks.register(:site, :post_write) do |_site|
   config_text = """module.exports = #{{
     content: ['_site/**/*.html'],
     css: [Dir.glob('_site/assets/*.css').first],
-    whitelist: %w(pull-right border-bottom flickity-viewport tmp-img-placeholder card-deck--expanded-layout carousel-cell)
+    whitelist: [
+      'pull-right',
+      'border-bottom',
+      'flickity-viewport',
+      'tmp-img-placeholder',
+      'card-deck--expanded-layout',
+      'carousel-cell',
+      'distance',
+      'label',
+      'push-half',
+      'btn',
+      'btn-outline',
+      'btn-gray-light',
+      'dropdown-toggle'
+    ]
   }.stringify_keys.to_json}"""
   # Write configuration file.
   File.open(config_file, 'w+') { |f| f.write(config_text) }
