@@ -1,0 +1,25 @@
+{
+  "name": "crds-net",
+  "version": "1.0.0",
+  "description": "## Setup",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "cypress:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crdschurch/crds-net.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crdschurch/crds-net/issues"
+  },
+  "homepage": "https://github.com/crdschurch/crds-net#readme",
+  "devDependencies": {
+    "cypress": "^3.1.0"
+  }
+}
