@@ -29,7 +29,14 @@ Jekyll::Hooks.register(:site, :post_write) do |_site|
       'btn',
       'btn-outline',
       'btn-gray-light',
-      'dropdown-toggle'
+      'dropdown-toggle',
+      'explore-content',
+      'vertical-centered',
+      'hs-form',
+      'hs-form-field',
+      'hs-error-msgs',
+      'hs-button',
+      'trips-map'
     ]
   }.stringify_keys.to_json}"""
   # Write configuration file.
