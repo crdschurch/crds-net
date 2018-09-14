@@ -30,6 +30,13 @@ Jekyll::Hooks.register(:site, :post_write) do |_site|
       'btn-outline',
       'btn-gray-light',
       'dropdown-toggle',
+      'explore-content',
+      'vertical-centered',
+      'hs-form',
+      'hs-form-field',
+      'hs-error-msgs',
+      'hs-button',
+      'trips-map',
       'visible'
     ]
   }.stringify_keys.to_json}"""
