@@ -37,6 +37,7 @@ Jekyll::Hooks.register(:site, :post_write) do |_site|
       'hs-error-msgs',
       'hs-button',
       'trips-map'
+      'visible'
     ]
   }.stringify_keys.to_json}"""
   # Write configuration file.
