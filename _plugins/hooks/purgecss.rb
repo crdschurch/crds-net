@@ -23,7 +23,7 @@ Jekyll::Hooks.register(:site, :post_write) do |_site|
       'tmp-img-placeholder',
       'card-deck--expanded-layout',
       'carousel-cell',
-      'close-video'
+      'close-video',
       'distance',
       'label',
       'soft-half',
