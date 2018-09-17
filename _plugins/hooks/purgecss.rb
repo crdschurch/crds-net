@@ -27,7 +27,10 @@ Jekyll::Hooks.register(:site, :post_write) do |_site|
       'label',
       'push-half',
       'btn',
+      'btn-default',
       'btn-outline',
+      'btn-group-bar',
+      'btn-group-bar-flexbox',
       'btn-gray-light',
       'dropdown-toggle',
       'explore-content',
@@ -37,7 +40,12 @@ Jekyll::Hooks.register(:site, :post_write) do |_site|
       'hs-error-msgs',
       'hs-button',
       'trips-map',
-      'visible'
+      'visible',
+      'visually-hidden',
+      'hide',
+      'active',
+      'noscroll',
+      'expanded'
     ]
   }.stringify_keys.to_json}"""
   # Write configuration file.
