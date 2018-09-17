@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   {% include _head.html %}
-  {% include _gtm.html %}
+  
 
   <body class="crds-styles">
+    {% include _gtm.html %}
+    
     {% if page.show_header == true %}
       {% include header.html %}
     {% endif %}
