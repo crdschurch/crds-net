@@ -10,4 +10,3 @@ node_modules
 .DS_Store
 loadenv.ps1
 tmp
-tmp/purgecss.js
