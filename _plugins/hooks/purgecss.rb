@@ -45,7 +45,12 @@ Jekyll::Hooks.register(:site, :post_write) do |_site|
       'hide',
       'active',
       'noscroll',
-      'expanded'
+      'expanded',
+      'alert',
+      'alert-danger',
+      'alert-success',
+      'alert-info',
+      'alert-warning'
     ]
   }.stringify_keys.to_json}"""
   # Write configuration file.
