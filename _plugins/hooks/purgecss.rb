@@ -50,7 +50,9 @@ Jekyll::Hooks.register(:site, :post_write) do |_site|
       'alert-danger',
       'alert-success',
       'alert-info',
-      'alert-warning'
+      'alert-warning',
+      'dropdown-menu',
+      'crds-list'
     ]
   }.stringify_keys.to_json}"""
   # Write configuration file.
