@@ -60,7 +60,7 @@ Jekyll::Hooks.register(:site, :post_write) do |_site|
       'alert-info',
       'alert-warning',
       'dropdown-menu',
-      'crds-list'
+      'crds-list',
       'on',
       'error',
       'modal-open'
