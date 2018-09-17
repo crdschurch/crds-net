@@ -167,6 +167,33 @@ layout: default
 </div>
 {% endif %}
 
+<!-- Oxford College Student section -->
+{% if page.name == 'Oxford' %}
+<div class="container push-bottom">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3 class="section-header text-center push-half-bottom">College Students</h3>
+      <p class="lead">Hear stories from some of the Miami students who call this place home.</p>
+    </div>
+  </div>
+  <div class="row push-ends soft-bottom">
+    <div class="col-md-6">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe width="320" height="240" src="https://youtu.be/j7VEsRktPxY" frameborder="0" allowfullscreen=""></iframe>
+      </div>
+      <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Alyssa</h4>
+    </div>
+    <div class="col-md-6">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe width="320" height="240" src="https://youtu.be/p9U8TpfEfWs" frameborder="0" allowfullscreen=""></iframe>
+      </div>
+      <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Animaesh</h4>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
 <!-- Kids club / Student ministry-->
 {% if page.kids_club_hours or page.student_ministry_hours %}
 <section class="bg-gray">
