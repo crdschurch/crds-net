@@ -23,9 +23,17 @@ Jekyll::Hooks.register(:site, :post_write) do |_site|
       'tmp-img-placeholder',
       'card-deck--expanded-layout',
       'carousel-cell',
+      'close-video'
       'distance',
       'label',
+      'soft-half',
       'push-half',
+      'is-selected',
+      'flickity-enabled',
+      'flickity-rtl',
+      'is-draggable',
+      'is-pointer-down',
+      'is-nav-selected',
       'btn',
       'btn-default',
       'btn-outline',
@@ -53,6 +61,9 @@ Jekyll::Hooks.register(:site, :post_write) do |_site|
       'alert-warning',
       'dropdown-menu',
       'crds-list'
+      'on',
+      'error',
+      'modal-open'
     ]
   }.stringify_keys.to_json}"""
   # Write configuration file.
