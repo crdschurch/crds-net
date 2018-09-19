@@ -1,182 +1,99 @@
-$screen-xs-min: 0;
-$screen-md: 768px;
-$cr-gray-lighter: gray;
-$cr-white: white;
+$cr-white: #FFFFFF;
+$base-font-face: 'acumin-pro', helvetica, arial, sans-serif;
 
-.jumbotron-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.95);
-  z-index: -1;
-  opacity: 0;
-  -webkit-transition: 0.45s all ease-in-out;
-  transition: 0.45s all ease-in-out;
+.jumbotron {
+  position: relative;
+  text-align: center;
+  padding-top: 48px;
+  padding-bottom: 48px;
 
-  &.visible {
-    opacity: 1;
-    z-index: 10;
+  &[style*='background-image'],
+  &.bg-video {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: $cr-white;
+
+    a {
+      display: inline-block;
+      color: $cr-white;
+    }
   }
 
-  .jumbotron-overlayContent {
-    margin: 0 auto;
+  &.bg-video {
+    position: relative;
+    background-color: transparent;
+    overflow: hidden;
+  }
+
+
+  &.jumbotron-xl {
+    padding-top: 112px;
+    padding-bottom: 112px;
+  }
+
+  .container &,
+  .container-fluid & {
+    border-radius: 0;
+  }
+
+  .jumbotron-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .bg-video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    max-width: 17.5rem;
+    z-index: -3;
 
-    @media screen and (min-width: $screen-xs-min) {
-      width: 90%;
-      max-width: 64rem;
-    }
-
-    h3 {
-      margin-bottom: 1rem;
-      @media (min-width: $screen-md) {
-        margin-bottom: 2rem;
-      }
-    }
-
-    .off-container,
-    .countdown-container,
-    .live-container {
+    &:after {
+      content: ' ';
       position: absolute;
       top: 0;
-      right: 0;
-      bottom: 0;
       left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(0, 0, 0, 0.6);
-
-      h3 {
-        margin-top: 0;
-      }
-
-      .countdown-timer {
-        li {
-          font-size: 1.875rem;
-        }
-      }
-    }
-
-    .off-container,
-    .live-container {
-      flex-direction: column;
-    }
-
-    .off-container {
-      h4 {
-        color: $cr-gray-lighter;
-      }
-
-      h3 {
-        font-size: 1.25rem;
-        color: $cr-white;
-
-        @media screen and (min-width: $screen-xs-min) {
-          font-size: 1.5rem;
-        }
-      }
-    }
-
-    .live-container {
-      background-color: rgba(24, 150, 214, 0.95);
-      cursor: pointer;
-
-      h4 {
-        font-size: 1.5rem;
-        color: $cr-white;
-      }
-
-      .icon {
-        height: 5rem;
-      }
-    }
-
-    .divider {
-      margin: 0.5rem 0 1rem;
-      width: 20%;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      @media screen and (min-width: $screen-xs-min) {
-        margin: 3rem;
-        width: 1px;
-        height: 10%;
-      }
-    }
-
-    .recentService,
-    .streamService {
-      margin: 0;
       width: 100%;
-
-      @media screen and (min-width: $screen-xs-min) {
-        width: 50%;
-      }
-    }
-
-    .card {
-      margin-bottom: 0;
-
-      a {
-        width: 100%;
-      }
-
-      .aspect-16x9 {
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-      }
-
-      a:hover {
-        text-decoration: none;
-      }
-
-      .card-block {
-        @media screen and (min-width: $screen-xs-min) {
-          padding: 1rem;
-          text-align: left;
-        }
-      }
-
-      .card-link-container {
-        height: 1.5rem; // 24px
-      }
-
-      .card-link {
-        display: none;
-
-        &:hover {
-          text-decoration: underline;
-        }
-
-        @media (min-width: $screen-xs-min) {
-          display: block;
-        }
-      }
-
-      .card-title {
-        font-size: 1rem;
-        @media (min-width: $screen-xs-min) {
-          font-size: 1.25rem;
-        }
-      }
+      height: 100%;
+      z-index: -2;
     }
   }
 
-  .jumbotron-overlayClose {
-    position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
-    width: 1.25rem;
-    height: 1.25rem;
-    fill: #ffffff;
-    opacity: 1;
-    pointer-events: all;
-
-    &:hover {
-      cursor: pointer;
-    }
+  .title {
+    margin: 1rem 0;
+    font-family: $base-font-face;
+    font-weight: 100;
+    font-size: 4.25rem;
+    line-height: 1;
   }
+
+  > p {
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .small-heading {
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-size: .85rem;
+    line-height: 1;
+    opacity: .8;
+  }
+
+  a.btn,
+  .btn {
+    margin: 1rem .25rem 0;
+  }
+
+  a.btn-large,
+  .btn-large {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+  }
+}
+
+.flush-bottom {
+  margin-bottom: 0;
 }
