@@ -1,0 +1,109 @@
+---
+layout: default
+paginate:
+  recent_media:
+    collections:
+      - articles
+      - songs
+    per: 12
+    limit: 1
+    sort: date desc
+  series:
+    per: 1
+    limit: 1
+    sort: start_date desc
+---
+
+{% assign feature_obj = site.features | where: 'page_path', page.url | first %}
+{% assign managed_features = feature_obj.docs %}
+
+{% if managed_features.size > 0 %}
+  {% assign item = feature_obj.docs | first %}
+{% else %}
+  {% assign item = page.recent_media.docs | first %}
+{% endif %}
+{% include _overlay-feature-card.html %}
+
+<div class="container push-top">
+  <div class="row">
+    <div class="col-md-8">
+      {% if managed_features.size > 0 %}
+        {% assign features = feature_obj.docs | slice: 1, 100 %}
+      {% else %}
+        {% assign features = page.recent_media.docs | slice: 1, 3 %}
+      {% endif %}
+      {% if features.size > 0 %}
+        <div class="push-bottom">
+          <h2 class="collection-header push-bottom text-gray-light">featured</h2>
+          {% for card in recent_media %}
+            {% include _media-card.html carousel=true %}
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% if managed_features.size > 0 %}
+        {% assign recent_media = page.recent_media.docs | slice: 0, 8 %}
+      {% else %}
+        {% assign recent_media = page.recent_media.docs | slice: 4, 8 %}
+      {% endif %}
+      {% if recent_media.size > 0 %}
+      {% endif %}
+    </div>
+    <div class="col-md-4">
+      {% if page.series.docs.size != 0 %}
+        <div class="push-bottom soft-bottom">
+          <h2 class="collection-header push-bottom text-gray-light">series</h2>
+
+          {% assign featured = page.series.docs | first %}
+          {% assign unfeatured_series = page.series.docs | slice: 1, 3 %}
+          {% include _media-object-featured.html %}
+          <hr>
+          {% for media in unfeatured_series %}
+          {% include _media-object.html count="6 episodes" media_type="series" %}
+          {% unless forloop.last %}
+          <hr>
+          {% endunless %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if page.podcasts.docs.size != 0 %}
+        <div class="push-bottom soft-bottom">
+          <h2 class="collection-header push-bottom text-gray-light">podcasts</h2>
+          {% assign featured = page.podcasts.docs | first %}
+          {% assign unfeatured_podcasts = page.podcasts.docs | slice: 1, 3 %}
+          {% include _media-object-featured.html media_type="podcast" %}
+          <hr>
+          {% for media in unfeatured_podcasts %}
+            {% include _media-object.html count="7 episodes" media_type="podcast" %}
+            {% unless forloop.last %}
+              <hr>
+            {% endunless %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div>
+        <h2 class="collection-header push-bottom text-gray-light">by media type</h2>
+        <div class="card-deck">
+          <ul class="list-unstyled font-size-base flush-bottom">
+            <li>
+              <a href="/series">Series</a>
+            </li>
+            <li>
+              <a href="/music">Music</a>
+            </li>
+            <li>
+              <a href="/podcasts">Podcasts</a>
+            </li>
+            <li>
+              <a href="/articles">Articles</a>
+            </li>
+            <li>
+              <a href="/videos">Videos</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
