@@ -24,12 +24,18 @@ permalink: /the-chaser/
         <div class="col-sm-offset-2 col-sm-8">
           <p class="lead">Three questions to help you and your friends get the most out of this week's message.</p>
           <p class="bg-gray soft metadata push-ends">For the Weekend of {{ latest_message.date | date: '%B %-d, %Y'}}</p>
-          {% for question in latest_discussion.discussion_questions %}
-            <p class="font-size-base">
-              <strong class="text-uppercase font-size-small">Question {{ forloop.index }}</strong>:<br>
-              <span>{{ question.question }}</span>
-            </p>
-          {% endfor %}
+          <!-- loop through all the questions in the latest_discussion  -->
+          {% if latest_discussion.discussion_questions.size > 0 %}
+            {% for question in latest_discussion.discussion_questions %}
+              <p class="font-size-base">
+                <!-- Use forloop number instead of actual title -->
+                <strong class="text-uppercase font-size-small">Question {{ forloop.index }}</strong>:<br>
+                <span>{{ question.question }}</span>
+              </p>
+            {% endfor %}
+          {% else %}
+            <p>Sorry, this message doesn't have chaser questions. Check back soon for more questions.</p>
+          {% endif %}
 
           <hr><p class="font-size-base"><strong class="text-uppercase font-size-small">Don't belong to a group yet?</strong></p>
           <a href="https://www.crossroads.net/groups/search/create-group" class="btn btn-md btn-secondary">Start a Chaser Group</a> <a href="http://crossroads.net/groups/search/?categories=Chaser" class="btn btn-md btn-secondary">Find a Chaser Group</a><hr><div class="bg-gray soft">
