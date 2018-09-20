@@ -127,7 +127,7 @@ permalink: /live/stream
                 <div class="media-img-wrapper">
                   <div class="img-size-5">
                     <a href="{{ item.link_url }}" target="_blank">
-                      <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}" alt="{{ item.title }}" class="img-border width-100"
+                      <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" alt="{{ item.title }}" class="img-border width-100"
                         data-optimize-img />
                     </a>
                   </div>
