@@ -87,8 +87,6 @@ collections:
   messages:
     output: true
     permalink: /series/:series_slug/:title
-  features:
-    output: false
 
 defaults:
   - scope:
