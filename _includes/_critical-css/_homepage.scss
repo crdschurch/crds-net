@@ -95,5 +95,50 @@ $base-font-face: 'acumin-pro', helvetica, arial, sans-serif;
 }
 
 .flush-bottom {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.jumbotron-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: -1;
+  opacity: 0;
+  -webkit-transition: 0.45s all ease-in-out;
+  transition: 0.45s all ease-in-out;
+
+  &.visible {
+    opacity: 1;
+    z-index: 10;
+  }
+}
+
+.btn {
+  border-radius: $border-radius-base;
+  line-height: 1;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  &.btn-lg {
+    font-size: $base-font-size;
+    padding: 14px 20px 16px;
+  }
+
+  &.btn-primary {
+    color: white;
+    background-color: #3b6e8f;
+    border-color: #3b6e8f
+  }
+}
+
+.lead {
+  font-size: 1.5rem; // 24px
+  line-height: 1.5;
 }
