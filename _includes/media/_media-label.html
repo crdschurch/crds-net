@@ -1,0 +1,24 @@
+<div class="media-label bg-charcoal text-white">
+
+  {% if include.source.collection == "articles" %}
+    {% assign words = include.source.content | number_of_words %}
+    {% assign read_time = words | divided_by: 184.0 | ceil %}
+    {% if read_time > 0 %}
+      <span class="font-size-smallest">{{ source.content_type }}{{ read_time }} min read</span>
+    {% endif %}
+  {% else %}
+    <span class="font-size-smallest">{{ include.source.duration }}</span>
+  {% endif %}
+
+  <svg class="icon" viewBox="0 0 256 256">
+    {% if include.source.collection == "articles" %}
+      <use xlink:href="/assets/svgs/icons.svg#media-article"></use>
+    {% elsif include.source.collection == "videos" %}
+      <use xlink:href="/assets/svgs/icons.svg#media-video"></use>
+    {% elsif include.source.collection == "songs" %}
+      <use xlink:href="/assets/svgs/icons.svg#media-music"></use>
+    {% elsif include.source.collection == "podcasts" or include.source.collection == "episodes" %}
+      <use xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
+    {% endif %}
+  </svg>
+</div>

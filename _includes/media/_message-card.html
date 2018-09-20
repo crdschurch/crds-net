@@ -1,0 +1,19 @@
+{% if message.image %}
+  {% assign image = message.image %}
+{% else %}
+  {% assign image = page.image %}
+{% endif %}
+
+<div class="card">
+  <a class="relative block" href="{{ message.url }}" title="{{ message.title }}">
+    <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" alt="{{ message.title }}" data-optimize-img>
+  </a>
+  <div class="card-block hard">
+    <h3 class="card-title font-size-smaller font-family-condensed push-half-top push-quarter-bottom">
+      {{ message.title }}
+    </h3>
+    {% if include.series != false %}
+    <p class="font-size-smaller text-gray push-quarter-top">{{ page.title }}</p>
+    {% endif %}
+  </div>
+</div>

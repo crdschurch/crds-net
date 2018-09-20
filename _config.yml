@@ -51,6 +51,44 @@ collections:
   promos:
     filename: "{{ published_at | date: '%Y-%m-%d-%H:%M:%S' }}-{{ title | slugify }}"
     output: false
+  articles:
+    output: true
+    permalink: /:collection/:title
+  topics:
+    output: true
+    permalink: /:collection/:title
+  authors:
+    output: true
+    permalink: /:collection/:title
+  podcasts:
+    output: true
+    permalink: /:collection/:title
+  episodes:
+    output: true
+    permalink: /podcasts/:podcast_slug/:title
+  albums:
+    output: true
+    permalink: /:collection/:title
+  songs:
+    output: true
+    permalink: /:collection/:title
+  videos:
+    output: true
+    permalink: /:collection/:title
+  series:
+    output: true
+    permalink: /:collection/:title
+  tags:
+    output: false
+  features:
+    output: false
+  discussions:
+    output: false
+  messages:
+    output: true
+    permalink: /series/:series_slug/:title
+  features:
+    output: false
 
 defaults:
   - scope:

@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /ag-home
+permalink: "/ag-home/"
 paginate:
   recent_media:
     collections:
@@ -23,7 +23,7 @@ paginate:
 {% else %}
   {% assign item = page.recent_media.docs | first %}
 {% endif %}
-{% include _overlay-feature-card.html %}
+{% include media/_overlay-feature-card.html %}
 
 <div class="container push-top">
   <div class="row">
@@ -37,7 +37,7 @@ paginate:
         <div class="push-bottom">
           <h2 class="collection-header push-bottom text-gray-light">featured</h2>
           {% for card in recent_media %}
-            {% include _media-card.html carousel=true %}
+            {% include media/_media-card.html carousel=true %}
           {% endfor %}
         </div>
       {% endif %}
@@ -56,10 +56,10 @@ paginate:
 
           {% assign featured = page.series.docs | first %}
           {% assign unfeatured_series = page.series.docs | slice: 1, 3 %}
-          {% include _media-object-featured.html %}
+          {% include media/_media-object-featured.html %}
           <hr>
           {% for media in unfeatured_series %}
-          {% include _media-object.html count="6 episodes" media_type="series" %}
+          {% include media/_media-object.html count="6 episodes" media_type="series" %}
           {% unless forloop.last %}
           <hr>
           {% endunless %}
@@ -72,10 +72,10 @@ paginate:
           <h2 class="collection-header push-bottom text-gray-light">podcasts</h2>
           {% assign featured = page.podcasts.docs | first %}
           {% assign unfeatured_podcasts = page.podcasts.docs | slice: 1, 3 %}
-          {% include _media-object-featured.html media_type="podcast" %}
+          {% include media/_media-object-featured.html media_type="podcast" %}
           <hr>
           {% for media in unfeatured_podcasts %}
-            {% include _media-object.html count="7 episodes" media_type="podcast" %}
+            {% include media/_media-object.html count="7 episodes" media_type="podcast" %}
             {% unless forloop.last %}
               <hr>
             {% endunless %}

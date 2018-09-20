@@ -1,0 +1,36 @@
+{% assign author = site.authors | where: "name", card.author | first %}
+{% assign topic = site.topics | where: "title", card.topic | first %}
+
+{% if include.carousel == true %}
+<div class="card carousel-cell card-2x">
+{% else %}
+<div class="card">
+{% endif %}
+  <a class="relative" href="{{ card.url }}">
+    {% if card.content_type != nil %}
+      {% include media/_media-label.html source=card %}
+    {% else %}
+      {% include media/_media-label.html source=card content_type=include.content_type %}
+    {% endif %}
+    {% if card.image %}
+      <img src="{{ card.image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
+    {% else %}
+      <img src="{{ site.default_image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
+    {% endif %}
+  </a>
+  <div class="card-block hard soft-quarter-top">
+    <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ topic.url }}">{{ topic.title }}</a>
+    <h3 class="component-header flush">
+      <a href="{{ card.url }}">{{ card.title }}</a>
+    </h3>
+    <p class="card-text soft-quarter-top">
+      {% for person in card.author %}
+        {% assign author = site.authors | where: "name", person | first %}
+          <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ person }}</a>
+        {% unless forloop.last %}
+          <span class="text-gray-light">&amp;</span>
+        {% endunless %}
+      {% endfor %}
+    </p>
+  </div>
+</div>

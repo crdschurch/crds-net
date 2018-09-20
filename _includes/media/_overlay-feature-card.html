@@ -1,0 +1,29 @@
+
+{% comment %}
+// This assures the songs content type uses the background image instead of the thumbnail image like all other content types.
+{% endcomment %}
+{% assign handle = item.collection %}
+{% case handle %}
+  {% when 'songs' %}
+     {% assign image_source = item.bg_image %}
+  {% else %}
+     {% assign image_source = item.image %}
+{% endcase %}
+
+
+<a href="{{ item.url }}" class="overlay-feature-card-link">
+  <div class="overlay-feature-card"
+  style="background-image: url('{% if item.image %}{{ image_source | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}');" data-optimize-bg-img data-hero-image>
+    <div class="bg-overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="overlay-feature-card-content">
+          <p class="overlay-feature-card-category">{{ item.topic }}</p>
+          <h1 class="overlay-feature-card-title">{{ item.title | truncate: 55 }}</h1>
+          <p class="overlay-feature-card-author">{{ item.author }}</p>
+        </div>
+      </div>
+    </div>
+    {% include media/_media-label.html source=item %}
+  </div>
+</a>

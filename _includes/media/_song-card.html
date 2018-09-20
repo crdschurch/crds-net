@@ -1,0 +1,14 @@
+<div class="card">
+  <a href="{{ song.url }}">
+    {% if include.imgix_size == "2x" %}
+      <img src="{{ song.image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
+    {% else %}
+      <img src="{{ song.image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img>
+    {% endif %}
+  </a>
+  <div class="card-block hard">
+    <a href="{{ song.url }}">
+      <h5 class="card-title">{{ song.title }}</h5>
+    </a>
+  </div>
+</div>

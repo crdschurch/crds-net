@@ -1,0 +1,7 @@
+<a href="{{ item.url }}" title="{{ item.title }}">
+  {% if item.image %}
+    <img class="push-bottom img-full-width" src="{{ item.image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ item.title }}" data-optimize-img>
+  {% else %}
+    <img class="push-bottom img-full-width" src="{{ site.default_image }}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ item.title }}" data-optimize-img>
+  {% endif %}
+</a>
