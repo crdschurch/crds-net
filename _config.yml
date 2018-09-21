@@ -30,6 +30,12 @@ exclude:
   - vendor
   - netlify.toml
 
+contentful:
+  exclude:
+    - song
+    - topic
+    - episode
+
 collections_dir: collections
 
 collections:
@@ -95,6 +101,15 @@ defaults:
     values:
       layout: location
 
+assets:
+  source_maps: true # false on JEKYLL_ENV=production
+  destination: "/assets"
+  compression: true
+  js_compressor: uglifier
+  sources:
+  - _assets/stylesheets
+  - _assets/javascripts
+
 imgix_params:
   placeholder: "auto=format,compress&w=10"
   placeholder_card: "auto=format,compress&w=12&h=9&fit=crop"
@@ -102,9 +117,21 @@ imgix_params:
   placeholder_sixteen_nine: "auto=format,compress&w=16&h=9&fit=crop"
 
 image_sizes:
+  media_object: "(min-width: 768px) 140px, (min-width: 0px) 100px"
+  cards_6x: "(min-width: 992px) 165px, (min-width: 0px) 50vw"
   cards_4x: "(min-width: 992px) 212.5px, (min-width: 768px) 345px, (min-width: 0px) 100vw"
   cards_3x: "(min-width: 992px) 390px, (min-width: 0px) 100vw"
+  cards_3x_centered_carousel: "(min-width: 1200px) 232.5px, (min-width: 992px) 191px, (min-width: 768px) 146px, (min-width: 0px) 270px"
   cards_2x: "(min-width: 768px) 345px, (min-width: 0px) 100vw"
+  music_thumb: "(min-width: 768px) 360px, (min-width: 0px) 323px"
+  podcast_thumb: "(min-width: 768px) 330px, (min-width: 480px) 200px, (min-width: 0px) 100vw"
+  episode_thumb: "(min-width: 768px) 120px, (min-width: 0px) 80px"
+  album_thumb: "96px"
+  song_artwork: "(min-width: 992px) 360px, (min-width: 0px) 100vw"
+  avatar: "80px"
+  full_width: "100vw"
+  half_width: "50vw"
   one_hundred: "100%"
+  topic_feature_sub: "(min-width: 992px) 370px, (min-width: 0px) 100px"
 
 typekit_url: https://use.typekit.net/ccb3vpa.css
