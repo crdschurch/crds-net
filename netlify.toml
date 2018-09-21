@@ -1,7 +1,6 @@
 # default build settings for int, preview deploys etc
 [build]
   command = '''
-    npm i -g purgecss &&
     bundle exec rspec &&
     ruby lib/bin/redirects.rb &&
     bundle exec jekyll crds &&
