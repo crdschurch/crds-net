@@ -33,6 +33,8 @@ exclude:
 collections_dir: collections
 
 collections:
+  discussions:
+    output: false
   pages:
     filename: "{{ permalink }} index"
     output: true
