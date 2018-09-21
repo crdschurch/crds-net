@@ -24,7 +24,7 @@ permalink: /the-chaser/
     <div class="container push-bottom">
       <div class="row soft-sides push-bottom">
         <div class="col-sm-offset-2 col-sm-8">
-          <p class="lead">Three questions to help you and your friends get the most out of this week's message.</p>
+          <p class="lead">{{ latest_discussion.discussion_questions | size | capitalize }} questions to help you and your friends get the most out of this week's message.</p>
           <p class="bg-gray soft metadata push-ends">For the Weekend of {{ latest_message.date | date: '%B %-d, %Y'}}</p>
           <!-- loop through all the questions in the latest_discussion  -->
           {% if latest_discussion.discussion_questions.size > 0 %}
