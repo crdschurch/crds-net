@@ -51,6 +51,8 @@ collections:
   promos:
     filename: "{{ published_at | date: '%Y-%m-%d-%H:%M:%S' }}-{{ title | slugify }}-{{ slug }}"
     output: false
+  discussions:
+    output: false
 
 defaults:
   - scope:
