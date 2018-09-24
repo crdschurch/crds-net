@@ -56,7 +56,7 @@ layout: default
       {% if page.hubspot_form_id %}
       <div class="col-sm-offset-1 col-sm-5 mobile-push-top soft bg-gray">
         <p class="list-header">Stay in the know. Get the latest Crossroads updates.</p>
-        <div class="form">
+        <div class="form" data-role="hsform">
           <!-- 
           [if lte IE 8]>
           <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
@@ -66,7 +66,8 @@ layout: default
             hbspt.forms.create({
               portalId: "3993985",
               formId: "{{ page.hubspot_form_id }}",
-              css: ""
+              css: "",
+              target: "[data-role=hsform]"
             });
           </script>
         </div>
@@ -166,6 +167,33 @@ layout: default
   </div>
 </div>
 {% endif %}
+
+<!-- Oxford College Student section -->
+{% if page.name == 'Oxford' %}
+<div class="container push-bottom">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3 class="section-header text-center push-half-bottom">College Students</h3>
+      <p class="lead">Hear stories from some of the Miami students who call this place home.</p>
+    </div>
+  </div>
+  <div class="row push-ends soft-bottom">
+    <div class="col-md-6">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe width="320" height="240" src="https://www.youtube.com/embed/j7VEsRktPxY" frameborder="0" allowfullscreen=""></iframe>
+      </div>
+      <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Alyssa</h4>
+    </div>
+    <div class="col-md-6">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe width="320" height="240" src="https://www.youtube.com/embed/p9U8TpfEfWs" frameborder="0" allowfullscreen=""></iframe>
+      </div>
+      <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Animaesh</h4>
+    </div>
+  </div>
+</div>
+{% endif %}
+
 
 <!-- Kids club / Student ministry-->
 {% if page.kids_club_hours or page.student_ministry_hours %}
