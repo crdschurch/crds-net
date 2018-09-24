@@ -25,17 +25,21 @@ permalink: /the-chaser/
       <div class="row soft-sides push-bottom">
         <div class="col-sm-offset-2 col-sm-8">
           {% if latest_discussion.discussion_questions.size > 0 %}
-            <p class="lead">Here are {{ latest_discussion.discussion_questions.size }} questions to help you and your friends get the most out of this week's message:</p>
+            <p class="lead">{{ latest_discussion.discussion_questions.size }} questions to help you and your friends get the most out of this week's message.</p>
             <p class="bg-gray soft metadata push-ends">For the Weekend of {{ latest_message.date | date: '%B %-d, %Y'}}</p>
             <!-- loop through all the questions in the latest_discussion  -->
             {% for question in latest_discussion.discussion_questions %}
-            <p class="font-size-base">
-              <!-- Use forloop number instead of actual title -->
-              <strong class="text-uppercase font-size-small">Question {{ forloop.index }}</strong>:<br>
-              <span>{{ question.question }}</span>
-            </p>
+              <p class="font-size-base">
+                <!-- Use forloop number instead of actual title -->
+                <strong class="text-uppercase font-size-small">Question {{ forloop.index }}</strong>:<br>
+                <div class="font-size-base">{{ question.question | markdownify }}</div>
+              </p>
             {% endfor %}
-            {% else %}
+            {% if latest_discussion.challenge %}
+              <strong class="text-uppercase font-size-small">Challenge</strong>:<br>
+              <div class="font-size-base">{{ latest_discussion.challenge | markdownify }}</div>
+            {% endif %}
+          {% else %}
             <p>Sorry, there currently aren't any chaser questions. Check back soon for more questions.</p>
           {% endif %}
           <hr>
