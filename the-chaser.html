@@ -1,0 +1,78 @@
+---
+layout: default
+title: The Chaser
+permalink: /the-chaser/
+---
+{% include header.html %}
+{% assign latest_message = site.messages | reverse | first %}
+{% assign latest_discussion = site.discussions | where: "title", latest_message.discussion.title | first %}
+
+<div class="crds-styles">
+  <section>
+    <div class="jumbotron jumbotron-lg" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-guide-the-chaser-bg.jpg');">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 class="title" style="color: white;">the chaser</h1>
+            <br><span class="small-heading text-uppercase">Post-Weekend Convo Starters</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container push-bottom">
+      <div class="row soft-sides push-bottom">
+        <div class="col-sm-offset-2 col-sm-8">
+          {% if latest_discussion.discussion_questions.size > 0 %}
+            <p class="lead">{{ latest_discussion.discussion_questions.size }} questions to help you and your friends get the most out of this week's message.</p>
+            <p class="bg-gray soft metadata push-ends">For the Weekend of {{ latest_message.date | date: '%B %-d, %Y'}}</p>
+            <!-- loop through all the questions in the latest_discussion  -->
+            {% for question in latest_discussion.discussion_questions %}
+              <p class="font-size-base">
+                <!-- Use forloop number instead of actual title -->
+                <strong class="text-uppercase font-size-small">Question {{ forloop.index }}</strong>:<br>
+                <div class="font-size-base">{{ question.question | markdownify }}</div>
+              </p>
+            {% endfor %}
+            {% if latest_discussion.challenge %}
+              <strong class="text-uppercase font-size-small">Challenge</strong>:<br>
+              <div class="font-size-base">{{ latest_discussion.challenge | markdownify }}</div>
+            {% endif %}
+          {% else %}
+            <p>Sorry, there currently aren't any chaser questions. Check back soon for more questions.</p>
+          {% endif %}
+          <hr>
+          <p class="font-size-base"><strong class="text-uppercase font-size-small">Don't belong to a group yet?</strong></p>
+          <a href="https://www.crossroads.net/groups/search/create-group" class="btn btn-md btn-secondary">Start a
+            Chaser Group</a> <a href="http://crossroads.net/groups/search/?categories=Chaser" class="btn btn-md btn-secondary">Find
+            a Chaser Group</a>
+          <hr>
+          <div class="bg-gray soft">
+            <p class="font-size-base">Use these Groups basics as you start your group:</p>
+            <ol class="font-size-base crds-list">
+              <li><strong>Be great listeners</strong>. Pay attention when someone else is talking instead of thinking
+                of what you’ll say next.</li>
+              <li><strong>Give examples, not advice</strong>. We’ve all gotten that not-so-helpful advice we wish
+                someone would have just kept to themself. Don’t be that person. Instead of advice, try sharing an
+                example from your life that relates to what someone else is talking about. Empower them to decide
+                what’s best for them. And keep it in the group — what’s said in the group stays in the group.</li>
+              <li><strong>Be there</strong>. Commit to watching the weekend and participating in the Chaser
+                conversation for the entire series. Be real in your group. No one has it all together (even if it looks
+                like they do) and you’ll connect better with the people in your group if everyone brings their
+                authentic self every week.</li>
+            </ol>
+          </div>
+          <hr>
+          <p class="metadata"></p>
+          <p class="metadata"><strong>Missed the message? Want to watch it?</strong></p>
+          <a class="btn btn-primary" href="/series/{{ latest_message.series.slug }}/{{ latest_message.slug }}">
+            Click here to watch
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% include footer.html %}
