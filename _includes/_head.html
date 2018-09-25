@@ -32,4 +32,14 @@
   <meta name="theme-color" content="#ffffff">
 
   {% asset application.scss !integrity %}
+  
+    {% if page.title == "Home" %}
+      <style>
+        {% capture home_css %}
+          {% include _critical-css/_homepage.scss %}
+        {% endcapture %}
+        {{ home_css | scssify | strip_newlines %}}
+      </style>
+    {% endif %}
+  
 </head>
