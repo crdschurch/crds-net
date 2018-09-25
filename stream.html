@@ -1,7 +1,7 @@
---- 
-layout: default 
+---
+layout: default
 title: Stream
-permalink: /live/stream 
+permalink: /live/stream
 ---
 <style>
   iframe {width: 1px;min-width: 100%;}
@@ -82,15 +82,27 @@ permalink: /live/stream
             <div id="section-" class="feature-cards is-draggable" data-crds-carousel="always-scroll" tabindex="0">
               {% assign dont_miss_promos = site.promos | where: "section", "Don't Miss" | sort: "date" | reverse %}
               {% for item in dont_miss_promos %}
-              <div class="card carousel-cell">
-                  <a href="{{ item.link_url | default: '' }}" class="block">
-                    <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" 
-                      alt="Explore Crossroads" class="card-img-top imgix-fluid card-img-constrained"
-                      data-optimize-img>
+                <div class="card carousel-cell">
+                  {% if item.link_url %}
+                  <a href="{{ item.link_url }}" class="block">
+                    <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" alt="{{ item.title }}"
+                      class="card-img-top imgix-fluid card-img-constrained" data-optimize-img>
                   </a>
+                  {% else %}
+                  <div class="block">
+                    <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" alt="{{ item.title }}"
+                      class="card-img-top imgix-fluid card-img-constrained" data-optimize-img>
+                  </div>
+                  {% endif %}
                   <div class="card-block">
                     <h4 class="card-title card-title--overlap text-uppercase">
-                      <a href="{{ item.link_url | default: '' }}">{{ item.title }}</a>
+                      {% if item.link_url %}
+                      <a href="{{ item.link_url }}">
+                        {{ item.title }}
+                      </a>
+                      {% else %}
+                      {{ item.title }}
+                      {% endif %}
                     </h4>
                     <div class="card-text">
                       {{ item.description | markdownify }}
@@ -103,7 +115,7 @@ permalink: /live/stream
         </div>
       </div>
     </div>
-    
+
     <!-- Be The Church -->
     <div class="container">
       <div class="md-text-left">
@@ -112,22 +124,22 @@ permalink: /live/stream
       <div class="row">
         {% assign be_the_church_promos = site.promos | where: "section", "Be The Church" | sort: "date" | reverse %}
         {% for item in be_the_church_promos %}
-          <article>
-            <div class="col-md-4 col-sm-6 media mobile-push-bottom">
-                <div class="media-img-wrapper">
-                  <div class="img-size-5">
-                    <a href="{{ item.link_url }}" target="_blank">
-                      <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" alt="{{ item.title }}" class="img-border width-100"
-                        data-optimize-img />
-                    </a>
-                  </div>
-                </div>
-                <div class="media-body">
-                  <p class="list-header flush-bottom">{{ item.title }}</p>
-                  {{ item.description | markdownify }}
-                </div>
+        <article>
+          <div class="col-md-4 col-sm-6 media mobile-push-bottom">
+            <div class="media-img-wrapper">
+              <div class="img-size-5">
+                <a href="{{ item.link_url }}" target="_blank">
+                  <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" alt="{{ item.title }}"
+                    class="img-border width-100" data-optimize-img />
+                </a>
               </div>
-            </article>
+            </div>
+            <div class="media-body">
+              <p class="list-header flush-bottom">{{ item.title }}</p>
+              {{ item.description | markdownify }}
+            </div>
+          </div>
+        </article>
         {% endfor %}
       </div>
     </div>
