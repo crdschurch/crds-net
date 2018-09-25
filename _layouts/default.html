@@ -4,16 +4,7 @@
   {% include _gtm.html %}
 
   <body class="crds-styles">
-    {% if page.show_header == true %}
-      {% include header.html %}
-    {% endif %}
-
     {{ content }}
-
-    {% if page.show_footer == true %}
-      {% include footer.html %}
-    {% endif %}
-
     <script>
       var CRDS = {
         media: {
