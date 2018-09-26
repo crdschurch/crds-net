@@ -13,10 +13,15 @@
   }
 
   function legacyImageCheck() {
-    document.getElementsByClassName('imgix-fluid').length > 0 
-      ? injectLegacyScript(imgixSrc, function() {
+    const hasLegacyImages = document.getElementsByClassName('imgix-fluid').length > 0;
+    const hasOptimizedImages = document.querySelectorAll('[data-optimize-img]').length > 0;
+    // load the script if the page only requires legacy support 
+    // and has no images using new techniques
+    if (hasLegacyImages && !hasOptimizedImages) {
+      injectLegacyScript(imgixSrc, function() {
         imgix.fluid()
-      }) : '';
+      });
+    }
   }
 
   legacyImageCheck();
