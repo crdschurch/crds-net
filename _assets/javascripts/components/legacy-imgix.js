@@ -7,10 +7,12 @@
 
   function findLegacyImages() {
     // imgix 2.2.3 uses data-src instead of ix-src
-    const legacyImages = document.querySelectorAll('[data-src]');
-    console.warn(`${legacyImages.length} images might be using an outdated version of imgix`);
-    for (var i = 0; i < legacyImages.length; i += 1) {
-      transformSource(legacyImages[i]);
+    const legacyImages = document.querySelectorAll('img[data-src]');
+    if (legacyImages.length !== 0) {
+      console.warn(`${legacyImages.length} images might be using an outdated version of imgix`);
+      for (var i = 0; i < legacyImages.length; i += 1) {
+        transformSource(legacyImages[i]);
+      }
     }
   }
 
