@@ -17,6 +17,7 @@
 //= require ./lib/card-filters
 //= require ./components/filters
 //= require ./vendor/imgix-optimizer
+//= require ./components/legacy-imgix
 
 (function () {
   var defJSLoaded = new Event('deferred-js-ready');
