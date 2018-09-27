@@ -89,4 +89,18 @@
     width: 100%;
   }*/
 
+  @media (min-width: $screen-sm) {
+    width: calc(20% - 4px);
+  }
+
+  @media (min-width: $screen-md) {
+    width: calc(20% - 4px);
+  }
+
+}
+
+@media (min-width: 768px) {
+  .card-deck--expanded-layout .card .topic-card-simple {
+    max-width: 20%;
+  }
 }
