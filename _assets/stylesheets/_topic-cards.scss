@@ -104,3 +104,15 @@
     max-width: 20%;
   }
 }
+
+.media {
+
+  .media-img-simple {
+    max-width: 11.25rem;
+
+    @media (min-width: $screen-md) {
+      width: 6.25rem; // 260px
+    }
+  }
+
+}
