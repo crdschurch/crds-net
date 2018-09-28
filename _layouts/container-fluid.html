@@ -1,5 +1,6 @@
 ---
 layout: default
 ---
-
-{{ page.content | markdownify }}
+{% include header.html %}
+{{ page.body | markdownify }}
+{% include footer.html %}

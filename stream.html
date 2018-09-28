@@ -1,7 +1,7 @@
---- 
-layout: default 
-title: Stream | Crossroads 
-permalink: /live/stream 
+---
+layout: default
+title: Stream
+permalink: /live/stream
 ---
 <style>
   iframe {width: 1px;min-width: 100%;}
@@ -61,7 +61,7 @@ permalink: /live/stream
     <div class="row">
 
       <!-- Don't Miss -->
-      <div class="col-md-8">
+      <div class="col-md-12">
         <div class="well">
           <div class="clearfix push-half-bottom">
             <h2 class="font-size-h4 flush-top pull-left">don't miss</h2>
@@ -80,153 +80,71 @@ permalink: /live/stream
           </div>
           <div class="card-deck carousel carousel--dont-miss" data-crds-carousel="always-scroll">
             <div id="section-" class="feature-cards is-draggable" data-crds-carousel="always-scroll" tabindex="0">
-              <div class="card carousel-cell is-selected">
-                <a href="https://www.crossroads.net/explore" class="block">
-                  <img alt="Explore Crossroads" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/Screen-Shot-2017-01-07-at-5.24.06-PM.png?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format"
-                    src="https://crds-cms-uploads.imgix.net/Uploads/Screen-Shot-2017-01-07-at-5.24.06-PM.png?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=310">
-                </a>
-                <div class="card-block">
-                  <h4 class="card-title card-title--overlap text-uppercase">
-                    <a href="https://www.crossroads.net/explore">Explore Crossroads</a>
-                  </h4>
-                  <div class="card-text">
-                    <p>We started this church for our friends who didn’t like church. Today, Crossroads Church is a melting
-                      pot of folks who meet all over the country—and&nbsp;the more the merrier. No memberships or&nbsp;awkward
-                      hand-holding.&nbsp;</p>
-                    <p></p>
+              {% assign dont_miss_promos = site.promos | where: "section", "Don't Miss" | sort: "date" | reverse %}
+              {% for item in dont_miss_promos %}
+                <div class="card carousel-cell">
+                  {% if item.link_url %}
+                  <a href="{{ item.link_url }}" class="block">
+                    <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" 
+                      sizes="{{ site.image_sizes.cards_4x }}"
+                      alt="{{ item.title }}"
+                      data-optimize-img>
+                  </a>
+                  {% else %}
+                  <div class="block">
+                    <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" 
+                      sizes="{{ site.image_sizes.cards_4x }}"
+                      alt="{{ item.title }}"
+                      data-optimize-img>
                   </div>
-                </div>
-              </div>
-              <div class="card carousel-cell" data-filter="" style="position: absolute; left: 45%;">
-                <a href="http://youtube.com/crdschurch" class="block">
-                  <img alt="Watch on Youtube" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/maxresdefault.png?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format"
-                    src="https://crds-cms-uploads.imgix.net/Uploads/maxresdefault.png?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=310">
-                </a>
-                <div class="card-block">
-                  <h4 class="card-title card-title--overlap text-uppercase">
-                    <a href="http://youtube.com/crdschurch">Watch on Youtube</a>
-                  </h4>
-                  <div class="card-text">
-                    <p>Live videos once a week are only part of what we do. We've got tons more videos made just for you!
-                      Check us out on youtube @crdschurch and share!</p>
-                    <script src="https://apis.google.com/js/platform.js"
-                      type="text/javascript" gapi_processed="true"></script>
-                    <div id="___ytsubscribe_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 116px; height: 24px;">
-                      <iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no"
-                        style="position: static; top: 0px; width: 116px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;"
-                        tabindex="0" vspace="0" width="100%" id="I0_1533742905976" name="I0_1533742905976" src="https://www.youtube.com/subscribe_embed?usegapi=1&amp;channelid=UCEdRBpSpVgfuybR3lzgxa-Q&amp;layout=default&amp;theme=dark&amp;count=default&amp;origin=https%3A%2F%2Fwww.crossroads.net&amp;gsrc=3p&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en.VSNwzqJqsxY.O%2Fam%3DwQ%2Frt%3Dj%2Fd%3D1%2Frs%3DAGLTcCMNIxmO7WeFkpI0ah9Jnl5MjZ5n5w%2Fm%3D__features__#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1533742905976&amp;_gfid=I0_1533742905976&amp;parent=https%3A%2F%2Fwww.crossroads.net&amp;pfname=&amp;rpctoken=29814714"
-                        data-gapiattached="true"></iframe>
+                  {% endif %}
+                  <div class="card-block">
+                    <h4 class="card-title card-title--overlap text-uppercase">
+                      {% if item.link_url %}
+                      <a href="{{ item.link_url }}">
+                        {{ item.title }}
+                      </a>
+                      {% else %}
+                      {{ item.title }}
+                      {% endif %}
+                    </h4>
+                    <div class="card-text">
+                      {{ item.description | markdownify }}
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="card carousel-cell" data-filter="" style="position: absolute; left: 90%;">
-                <a href="https://media.crossroads.net/podcasts/spirit-stories" class="block">
-                  <img alt="Spirit Stories Podcast" class="card-img-top imgix-fluid card-img-constrained" data-src="//crds-cms-uploads.imgix.net/Uploads/spiritrealm270x180-01.jpg?h=200&amp;max-h=200w=300&amp;&amp;crop=top&amp;fit=clamp&amp;auto=format"
-                    src="https://crds-cms-uploads.imgix.net/Uploads/spiritrealm270x180-01.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=310">
-                </a>
-                <div class="card-block">
-                  <h4 class="card-title card-title--overlap text-uppercase">
-                    <a href="https://media.crossroads.net/podcasts/spirit-stories">Spirit Stories Podcast</a>
-                  </h4>
-                  <div class="card-text">
-                    <p>A storytelling podcast where everyday people share their close encounters with the spiritual realm.
-                      Subscribe
-                      <a href="https://media.crossroads.net/podcasts/spirit-stories" target="_blank">
-                        <strong>here</strong>
-                      </a> or on other major podcast platforms.</p>
-                  </div>
-                </div>
-              </div>
+              {% endfor %}
             </div>
           </div>
         </div>
       </div>
-      <!-- Give Widget -->
-      <div class="col-md-4">
-        <div class="well">
-          <h2 class="font-size-h4 flush-top">give</h2>
-          <div class="row">
-            <iframe id="giveIframe" width="320" height="240" src="https://embed.crossroads.net/give?type=donation&amp;theme=dark"
-              frameborder="0" scrolling="no" style="overflow: hidden; min-height: 350px; height: 350px;"></iframe>
-          </div>
-        </div>
-      </div>
     </div>
-    
+
     <!-- Be The Church -->
     <div class="container">
       <div class="md-text-left">
         <h3 class="font-size-h4">be the church</h3>
       </div>
       <div class="row">
+        {% assign be_the_church_promos = site.promos | where: "section", "Be The Church" | sort: "date" | reverse %}
+        {% for item in be_the_church_promos %}
         <article>
           <div class="col-md-4 col-sm-6 media mobile-push-bottom">
             <div class="media-img-wrapper">
               <div class="img-size-5">
-                <a href="/groups" target="_blank">
-                  <img src="//crds-cms-uploads.imgix.net/Uploads/leadagroup.jpg?w=190&amp;h=190&amp;fit=fillmax&amp;bg=B7BEC6"
-                    alt="lead a group" class="img-border" title="">
+                <a href="{{ item.link_url }}" target="_blank">
+                  <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" alt="{{ item.title }}"
+                    class="img-border width-100" data-optimize-img />
                 </a>
               </div>
             </div>
             <div class="media-body">
-              <p class="list-header flush-bottom">Groups</p>
-              <p>
-                <span>Find the group that is right for you or start a group of your own! You don’t have to be a spiritual guru,
-                  just interested in following God or helping others do the same.</span>
-              </p>
+              <p class="list-header flush-bottom">{{ item.title }}</p>
+              {{ item.description | markdownify }}
             </div>
           </div>
         </article>
-        <article>
-          <div class="col-md-4 col-sm-6 media">
-            <div class="media-img-wrapper">
-              <div class="img-size-5">
-                <a href="/prayer" target="_blank">
-                  <img src="//crds-cms-uploads.imgix.net/Uploads/Screen-Shot-2016-08-27-at-1.25.04-PM.png?w=190&amp;h=190&amp;fit=crop&amp;fp-x=.85"
-                    alt="prayer" class="img-border" title="">
-                </a>
-              </div>
-            </div>
-            <div class="media-body">
-              <p class="list-header flush-bottom">Prayer</p>
-              <p>
-                <span>We are here to pray for you, email us at prayer@crossroads.net and someone from our team will pray for
-                  you.</span>
-              </p>
-              <p>
-                <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=prayer@crossroads.net" target="_blank">
-                  <button class="btn btn-sm btn-gray-light btn-outline" type="button">Email Us</button>
-                </a>
-              </p>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div class="col-md-4 col-sm-6 media">
-            <div class="media-img-wrapper">
-              <div class="img-size-5">
-                <a href="//www.facebook.com/sharer/sharer.php?u=crossroads.net/live/stream" target="_blank">
-                  <img src="//crds-cms-uploads.imgix.net/Uploads/Screen-Shot-2016-08-26-at-11.30.39-AM.png?w=190&amp;h=190&amp;fit=crop&amp;fp-x=.25"
-                    alt="digital crossroads map" class="img-border" title="">
-                </a>
-              </div>
-            </div>
-            <div class="media-body">
-              <p class="list-header flush-bottom">Invite</p>
-              <p>
-                <span>We made this place for our friends who had given up on church but not on God. If you like Crossroads,
-                  share it with your friends and family!</span>
-              </p>
-              <p>
-                <a href="//www.facebook.com/sharer/sharer.php?u=crossroads.net/live/stream" target="_blank">
-                  <button class="btn btn-sm btn-gray-light btn-outline" type="button">Share on Facebook</button>
-                </a>
-              </p>
-            </div>
-          </div>
-        </article>
+        {% endfor %}
       </div>
     </div>
   </div>

@@ -1,0 +1,85 @@
+.btn-live-schedule-trigger {
+    color: $cr-white;
+    display: flex;
+    margin: -1.375rem 0 0;
+    padding-left: .75rem;
+    padding-right: .75rem;
+    position: absolute;
+    right: 0;
+    text-transform: uppercase;
+    top: 50%;
+  
+    > * {
+      margin: 0 .25rem;
+    }
+  
+    &:active,
+    &:focus,
+    &:hover,
+    &.active {
+      color: $cr-white;
+      text-decoration: none;
+    }
+  }
+  
+  .container-fluid.sticky-top {
+    .countdown-component {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+    }
+    @media screen and (max-width: $screen-sm + 100) {
+      .btn-live-schedule-trigger {
+        display: none;
+      }
+      .countdown {
+        flex-direction: row;
+        align-items: center;
+        padding: 0.5em 0;
+  
+        .countdown-timer {
+          padding: 0;
+          li {
+            font-size: 100%;
+          }
+        }
+        .countdown-component {
+          flex-direction: column;
+          > span {
+            font-size: 90%;
+          }
+        }
+      }
+    }    
+    button.btn.btn-secondary.btn-reminder:hover {
+      background-color: #3b6e8f;
+    }
+  }
+  
+  //had to remove & after .page--live and I'm not sure what bad things that might cause
+  .page--live {
+    .card-deck {
+      .card-img-top {
+        object-fit: cover;
+        width: 100%;
+        max-height: 151px;
+  
+        @media screen and (min-width: $screen-sm + 1) {
+          max-height: 95px;
+        }
+  
+        @media screen and (min-width: $screen-md + 1) {
+          max-height: 124px;
+        }
+  
+        @media screen and (min-width: $screen-lg) {
+          max-height: 152px;
+        }
+      }
+    }
+  
+    .list-header {
+      line-height: $headings-line-height;
+    }
+  }
+  

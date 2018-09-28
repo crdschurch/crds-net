@@ -1,0 +1,107 @@
+---
+layout: default
+title: Updates
+permalink: /updates
+---
+{% include header.html %}
+<section>
+  <div class="jumbotron jumbotron-xl" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-church-updates2.jpg?auto=format,compress&w=200');" data-optimize-bg-img>
+    <h1 class="title">updates</h1>
+    <p>Stay in the know and get engaged with what’s going on</p>
+  </div>
+</section>
+<!-- Happenings -->
+<section class="container">
+  <h3 id="happening-filter-label" class="collection-header clearfix">happening at crossroads</h3>
+  <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-filterable data-filter-label="Churchwide"
+    data-filter-parent="#happening-filter-label" data-filter-reset-label="Churchwide">
+    <div id="section-what-s-happening" class="feature-cards">
+      {% assign date_sorted_promos = site.promos | sort: "date" | reverse %}
+      {% for item in date_sorted_promos %}
+        {% include _promo-card.html %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row bg-cyan soft">
+      <div class="col-sm-6 col-md-5 push-ends">
+        <img alt="The Chaser" class="width-100" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-the-chaser-2.jpg?ixjsv=2.2.3&amp;w=10&amp;h=10" data-optimize-img>
+      </div>
+      <div class="col-sm-6 col-md-7 push-ends soft-top mobile-hard-top mobile-flush-top">
+        <p class="metadata text-white">Engage Deeper</p>
+        <h3 class="font-family-condensed-extra font-size-h2 text-uppercase text-white">the chaser</h3>
+        <p class="lead">Three questions to help you and your friends get the most out of the last week's message.</p>
+        <a href="/app/" class="btn btn-primary">Get the Crossroads app</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container" ng-non-bindable="">
+  <h3 class="collection-header clearfix push-bottom">stretch yourself</h3>
+  <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
+    <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
+      <div class="card">
+        <a href="https://www.crossroads.net/serve/" class="block">
+          <img src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-serve.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.33&amp;w=27&amp;h=20" alt="Serve" data-optimize-img/>
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+            <a href="https://www.crossroads.net/serve/">Serve</a>
+          </h4>
+          <div class="card-text">
+            <p>God calls us to serve others. You can serve inside a Crossroads site, on our city streets, or in
+              another country. Bottom line, we need you.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="https://www.crossroads.net/groups" class="block">
+          <img src="//crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-groups.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27&amp;h=20" alt="Get in a Group" data-optimize-img />
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+            <a href="https://www.crossroads.net/groups">Get in a Group</a>
+          </h4>
+          <div class="card-text">
+            <p>Doing life alone is no fun. In fact, people are made to be with people. You have a lot of interests so
+              it’s a good thing there are a lot of groups for you to check out.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="https://www.crossroads.net/give" class="block">
+          <img src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-give.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.33&amp;w=27&amp;h=20" alt="Give" data-optimize-img />
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+            <a href="https://www.crossroads.net/give">Give</a>
+          </h4>
+          <div class="card-text">
+            <p>Your generosity fuels the life change we experience around here. One way to show gratitude for what
+              God is doing in our life is to give back to Him.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="https://itunes.apple.com/us/app/crossroads-anywhere/id1029478803?mt=8" class="block">
+          <img src="//crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-app.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.33&amp;w=27&amp;h=20" alt="Download the App" data-optimize-img/>
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase">
+            <a href="https://itunes.apple.com/us/app/crossroads-anywhere/id1029478803?mt=8">Download the App</a>
+          </h4>
+          <div class="card-text">
+            <p>Build your spiritual fitness. Create a positive daily experience. Go deeper on a topic. Receive
+              prayer. Journal your heart out. Never miss the live stream. Available on the App Store or Google Play.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% include footer.html %}
