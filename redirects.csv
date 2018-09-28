@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 /*,${env:CRDS_MAESTRO_CLIENT_ENDPOINT}/:splat,200
+=======
+/undivided-training,https://undivided.netlify.com,301
+/the-chaser,${env:CRDS_MEDIA_ENDPOINT}/the-chaser,200!
+/proxy/content/*,${env:CRDS_CMS_ENDPOINT}/:splat,200!
+/proxy/gateway/*,${env:CRDS_GATEWAY_ENDPOINT}/:splat,200!
+/*,${env:CRDS_MAESTRO_CLIENT_ENDPOINT}/:splat,200
+>>>>>>> 1a3c0fe... US15178 The Chaser
