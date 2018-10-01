@@ -82,7 +82,17 @@ describe 'Html Meta Util' do
         'https://site-image.jpg')).to eq 'https://site-image.jpg'
   end
 
-  context 
+
+  it 'should parse and return the markdownified image url' do
+    expect(
+      Utils::MetaUtil.get_meta_image_url(
+        nil,
+        nil,
+        nil,
+        'some text to the left ![famous-dripping-clocks-dali-painting-persistence-of-memory1](//images.ctfassets.net/p9oq1ve41d7r/53Ilga1G40Sewck6YYOWcI/8ae18b94d0e3aad990c0fff3b440bbda/famous-dripping-clocks-dali-painting-persistence-of-memory1.jpg) some text to the right',
+        'https://site-image.jpg')).to eq 'https://images.ctfassets.net/p9oq1ve41d7r/53Ilga1G40Sewck6YYOWcI/8ae18b94d0e3aad990c0fff3b440bbda/famous-dripping-clocks-dali-painting-persistence-of-memory1.jpg'
+  end
+
 
   it 'should return the site image url' do
     expect(

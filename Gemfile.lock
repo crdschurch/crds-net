@@ -1,26 +1,6 @@
 GIT
-  remote: https://github.com/crdschurch/crds-styles.git
-  revision: b64eba247a4ad4219d30c79ad0327c1618af4ced
-  branch: development
-  specs:
-    crds-styles (3.0.2)
-      bootstrap-sass (~> 3.3)
-      sass (~> 3.2)
-
-GIT
-  remote: https://github.com/crdschurch/jekyll-contentful.git
-  revision: b39caa3f9ee2d868270b74f6c63d7bd971acd30e
-  branch: master
-  specs:
-    jekyll-contentful (0.0.8)
-      activesupport
-      contentful (>= 2.6.0)
-      dotenv
-      jekyll
-
-GIT
-  remote: https://github.com/crdschurch/jekyll-crds.git
-  revision: 3dd10b23f30c44ce5ccd2f38e61213e5452623ea
+  remote: https://github.com/ample/jekyll-crds.git
+  revision: b890799df1e42f1d2421a68645fffb46b8ffd1ad
   branch: master
   specs:
     jekyll-crds (0.0.1)
@@ -28,17 +8,46 @@ GIT
       httparty
       jekyll
 
+GIT
+  remote: https://github.com/ample/jekyll-placeholders.git
+  revision: 503eef68d21b020b8d611025ab7029c80e569186
+  branch: master
+  specs:
+    jekyll-placeholders (0.0.1)
+      activesupport
+      jekyll
+
+GIT
+  remote: https://github.com/crdschurch/crds-styles.git
+  revision: 444ed3820911b730c3be54f86132f205b3d2a31f
+  specs:
+    crds-styles (3.0.4)
+      bootstrap-sass (~> 3.3)
+      sass (~> 3.2)
+
+GIT
+  remote: https://github.com/crdschurch/jekyll-contentful.git
+  revision: 1971d6ca98a0cce98f573d6adbe6af1d64b15f37
+  branch: master
+  specs:
+    jekyll-contentful (1.0.3)
+      activesupport
+      contentful (>= 2.6.0)
+      contentful-management (~> 1.10.1)
+      dotenv
+      jekyll
+
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.0)
+    activesupport (5.2.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    autoprefixer-rails (9.0.2)
+    autoprefixer-rails (9.1.3)
       execjs
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -46,8 +55,12 @@ GEM
     coderay (1.1.2)
     colorator (1.1.0)
     concurrent-ruby (1.0.5)
-    contentful (2.8.0)
+    contentful (2.9.1)
       http (> 0.8, < 3.0)
+      multi_json (~> 1)
+    contentful-management (1.10.1)
+      http (> 1.0, < 3.0)
+      json (~> 1.8)
       multi_json (~> 1)
     diff-lcs (1.3)
     domain_name (0.5.20180417)
@@ -123,6 +136,7 @@ GEM
       sass (~> 3.4)
     jekyll-watch (2.0.0)
       listen (~> 3.0)
+    json (1.8.6)
     kramdown (1.17.0)
     liquid (4.0.0)
     liquid-tag-parser (1.9.0)
@@ -157,7 +171,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    rouge (3.1.1)
+    rouge (3.2.0)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -199,14 +213,15 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
-  crds-styles!
+  crds-styles (~> 3.0.4)!
   guard-rspec
   jekyll (~> 3.7.3)
   jekyll-assets
-  jekyll-contentful (~> 0.0.7)!
+  jekyll-contentful (~> 1.0.0)!
   jekyll-crds (~> 0.0.1)!
+  jekyll-placeholders (~> 0.0.1)!
   rspec
   tzinfo-data
 
 BUNDLED WITH
-   1.16.1
+   1.16.4

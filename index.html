@@ -5,8 +5,10 @@ title: Home
 
 {% include header.html %}
 <!-- Jumbotron Section  -->
-{% assign current_series = site.series | sort: 'start_date' | reverse | first %}
-{% assign latest_message = site.messages | sort: 'date' | reverse | first %}
+{% assign current_series = site.series | reverse | first %}
+{% assign latest_message = site.messages | reverse | first %}
+
+
 <div class="jumbotron bg-video jumbotron-xl flush-bottom" style="padding-top: 152px; padding-bottom: 152px;" data-aspect-ratio="2.34615">
   <div class="jumbotron-overlay" id="overlay" data-automation-id="jumbotron-overlay">
     <svg class="icon jumbotron-overlayClose text-white block" id="overlay-close" data-automation-id="overlay-close" viewBox="0 0 256 256">
@@ -16,11 +18,11 @@ title: Home
       <div class="recentService" data-automation-id="recentService">
         <h3 class="component-header flush-top text-gray-light">Get Caught Up</h3>
         <div class="card" data-automation-id="last-message-card">
-          <a href="/series/{{ latest_message.series_slug }}/{{ latest_message.slug }}">
-            <div class="card-img-top aspect-16x9" id="lastMessageImg" style="background-image: url('{{ latest_message.image }}');"></div>
+          <a href="/series/{{ latest_message.series.slug }}/{{ latest_message.slug }}">
+            <div class="card-img-top aspect-16x9" id="lastMessageImg" style="background-image: url('{{ latest_message.image.url }}');"></div>
           </a>
           <div class="card-block flush-bottom hard">
-            <a href="/series/{{ latest_message.series_slug }}/{{ latest_message.slug }}">
+            <a href="/series/{{ latest_message.series.slug }}/{{ latest_message.slug }}">
               <h4 class="card-title flush-top block text-gray-lighter" id="lastMessageTitle">{{ latest_message.title }}</h4>
             </a>
             <h5 class="flush-top text-gray-light font-size-small" id="lastMessageSubtitle">{{ latest_message.date | date: "%m.%d.%Y" }}</h5>
@@ -51,11 +53,11 @@ title: Home
                 <h4 class="font-size-base">Watch Live Service</h4>
               </a>
             </div>
-            <div class="card-img-top aspect-16x9" id="upcomingImg" data-automation-id="upcomingImg" style="background-image: url('{{ current_series.image }}'); z-index: -1;"></div>
+            <div class="card-img-top aspect-16x9" id="upcomingImg" data-automation-id="upcomingImg" style="background-image: url('{{ current_series.image.url }}'); z-index: -1;"></div>
           </div>
           <div class="card-block flush-bottom hard">
             <h4 class="card-title push-quarter-top block text-gray-lighter">{{ current_series.title }}</h4>
-            <h5 class="flush-top text-gray-light font-size-small">{{ current_series.start_date | date: "%m.%d.%Y" }} — {{ current_series.end_date | date: "%m.%d.%Y" }}</h5>
+            <h5 class="flush-top text-gray-light font-size-small">{{ current_series.starts_at | date: "%m.%d.%Y" }} — {{ current_series.ends_at | date: "%m.%d.%Y" }}</h5>
               {% if current_series.youtube_url != nil %}
                 <div class="card-link-container">
                   <a class="card-link" href="{{ current_series.youtube_url }}" target="_blank">Watch the trailer</a>
@@ -104,10 +106,10 @@ title: Home
   <div class="row push-bottom">
     <div class="col-xs-12 text-center">
       <div class="btn-group">
-        {% if current_series.youtube_url != nil %}
+        {% if current_series.youtube_url %}
         <a class="btn btn-blue" href="{{ current_series.youtube_url }}" target="_blank">Watch the trailer</a>
         {% endif %}
-        <a href="/series/{{ latest_message.series_slug }}/{{ latest_message.slug}}" class="btn btn-blue" data-role="recent-message">View latest now</a>
+        <a href="/series/{{ latest_message.series.slug }}/{{ latest_message.slug }}" class="btn btn-blue" data-role="recent-message">View latest now</a>
       </div>
     </div>
   </div>
@@ -118,8 +120,8 @@ title: Home
   <h3 id="happening-filter-label" class="collection-header clearfix">happening at crossroads</h3>
   <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-filterable data-filter-label="Churchwide" data-filter-parent="#happening-filter-label" data-filter-reset-label="Churchwide">
     <div id="section-what-s-happening" class="feature-cards">
-      {% assign date_sorted_promos = site.promos | sort: "published_at" | reverse %}
-      {% for happening in date_sorted_promos %}
+      {% assign date_sorted_promos = site.promos | sort: "date" | reverse %}
+      {% for item in date_sorted_promos %}
         {% include _happening-card.html %}
       {% endfor %}
     </div>
@@ -132,7 +134,7 @@ title: Home
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
         <h2 class="text-white soft-top">what to expect</h2>
-        <p class="lead">Acceptance. Crossroads is for anyone who wants to seek God - from those exploring whether or not God even exists,
+        <p class="font-size-large">Acceptance. Crossroads is for anyone who wants to seek God - from those exploring whether or not God even exists,
           to committed Christ-followers. Wherever you are, we're happy to have you.</p>
       </div>
     </div>
@@ -212,44 +214,5 @@ title: Home
   </div>
 </div>
 <script async type="text/javascript" src="{% asset components/location-search.js @path %}"></script>
-<script type="text/javascript">
-
-  // Scroll Locations
-  var locationButton = document.getElementById('find-location');
-  var locationScroll = function (event) {
-    event.preventDefault();
-    document.querySelector('[data-locations-section]').scrollIntoView(true);
-  }
-
-  locationButton.addEventListener('click', locationScroll);
-
-  // Jumbotron Overlay
-  var watchButton = document.getElementById('watch-cta');
-  var closeButton = document.getElementById('overlay-close');
-  var overlay = document.getElementById('overlay');
-
-  function showOverlay(event) {
-    event.preventDefault();
-    overlay.classList.add('visible');
-  }
-
-  function hideOverlay() {
-    overlay.classList.remove('visible');
-  }
-
-  watchButton.addEventListener('click', showOverlay);
-  closeButton.addEventListener('click', hideOverlay);
-
-  var trackerInt;
-  var buildTracker = function () {
-    if (typeof analytics !== "undefined") {
-      clearInterval(trackerInt);
-      new CRDS.DataTracker();
-    }
-  };
-  trackerInt = setInterval(function () {
-    buildTracker();
-  }, 250);
-</script>
-
+<script async type="text/javascript" src="{% asset views/home.js @path %}"></script>
 {% include footer.html %}

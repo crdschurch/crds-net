@@ -31,10 +31,6 @@ function liveStreamInit() {
     carousel.flickity.next();
   })
 
-  // Countdown gives us the streamspot information we need to init the video
-  // window.countdown = new CRDS.Countdown();
-
-
   var search = window.location.search.substring(1);
   var debug = false;
   if (search) {
