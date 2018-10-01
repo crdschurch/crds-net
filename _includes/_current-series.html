@@ -1,7 +1,6 @@
 <div class="card current-series">
   <div>
-    <img class="card-img-top img-responsive imgix-fluid card-img-unrestrained" data-src="//crds-cms-uploads.imgix.net/media/messages/stills/crossroads-spark-2018.jpg"
-      src="{{ current_series.image.url }}">
+    <img src="{{ current_series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" data-optimize-img>
   </div>
   <div class="container">
     <div class="row">

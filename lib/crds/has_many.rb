@@ -28,14 +28,18 @@ module CRDS
     def associate_doc(parent, collection_name)
       -> (doc) {
         id = doc.dig('id')
+
+        
         content_type = doc.dig('content_type').pluralize
         if collection = site.collections[content_type]
           child = collection.docs.detect{|e| e.data.dig('id') == id }
-          child.data[collection_name] = {
-            'id' => parent.data.dig('id'),
-            'slug' => parent.data.dig('slug'),
-            'title' => parent.data.dig('title')
-          }
+          unless child.nil?
+            child.data[collection_name] = {
+              'id' => parent.data.dig('id'),
+              'slug' => parent.data.dig('slug'),
+              'title' => parent.data.dig('title')
+            } 
+          end
         end
       }
     end

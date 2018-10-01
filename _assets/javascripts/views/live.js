@@ -6,7 +6,7 @@ if (window.deferredJSReady) {
   liveInit();
 }
 
-function liveInit(){
+function liveInit() {
   // Live stream reminder
   $(document).ready(function () {
     var el = document.querySelector('livestream-reminder');

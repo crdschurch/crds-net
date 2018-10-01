@@ -19,7 +19,10 @@ title: Home
         <h3 class="component-header flush-top text-gray-light">Get Caught Up</h3>
         <div class="card" data-automation-id="last-message-card">
           <a href="/series/{{ latest_message.series.slug }}/{{ latest_message.slug }}">
-            <div class="card-img-top aspect-16x9" id="lastMessageImg" style="background-image: url('{{ latest_message.image.url }}');"></div>
+            <div id="lastMessageImg">
+              <img class="width-100" src="{{ latest_message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+              data-optimize-img />
+            </div>
           </a>
           <div class="card-block flush-bottom hard">
             <a href="/series/{{ latest_message.series.slug }}/{{ latest_message.slug }}">
@@ -53,7 +56,11 @@ title: Home
                 <h4 class="font-size-base">Watch Live Service</h4>
               </a>
             </div>
-            <div class="card-img-top aspect-16x9" id="upcomingImg" data-automation-id="upcomingImg" style="background-image: url('{{ current_series.image.url }}'); z-index: -1;"></div>
+            <div id="upcomingImg" data-automation-id="upcomingImg">
+              <img class="width-100" 
+              src="{{ current_series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+              data-optimize-img>
+            </div>
           </div>
           <div class="card-block flush-bottom hard">
             <h4 class="card-title push-quarter-top block text-gray-lighter">{{ current_series.title }}</h4>
@@ -122,7 +129,7 @@ title: Home
     <div id="section-what-s-happening" class="feature-cards">
       {% assign date_sorted_promos = site.promos | sort: "date" | reverse %}
       {% for item in date_sorted_promos %}
-        {% include _happening-card.html %}
+        {% include _promo-card.html %}
       {% endfor %}
     </div>
   </div>
@@ -134,7 +141,7 @@ title: Home
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
         <h2 class="text-white soft-top">what to expect</h2>
-        <p class="lead">Acceptance. Crossroads is for anyone who wants to seek God - from those exploring whether or not God even exists,
+        <p class="font-size-large">Acceptance. Crossroads is for anyone who wants to seek God - from those exploring whether or not God even exists,
           to committed Christ-followers. Wherever you are, we're happy to have you.</p>
       </div>
     </div>
@@ -142,23 +149,26 @@ title: Home
   <div class="container pu sh-bottom">
     <div class="row push-bottom">
       <div class="col-sm-4 push-bottom">
-        <img data-src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-1-1.jpg?r&amp;auto=format,compress"
-          width="400" height="200" class="imgix-fluid img-responsive" alt="" title="" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-1-1.jpg?auto=format,compress&amp;ixjsv=2.2.3&amp;w=390">
+        <img class="width-100" 
+          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-1-1.jpg?w=20&h=10&fit=crop"
+          data-optimize-img>
         <h4 class="text-uppercase text-white font-family-condensed-extra">Coffee</h4>
         <p>It's free, so grab a cup before you sit down. We believe that God is generous and we want to reflect that in all
           things.
         </p>
       </div>
       <div class="col-sm-4 push-bottom">
-        <img data-src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-2-1.jpg?r&amp;auto=format,compress"
-          width="400" height="200" class="imgix-fluid img-responsive" alt="" title="" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-2-1.jpg?auto=format,compress&amp;ixjsv=2.2.3&amp;w=390">
+        <img class="width-100" 
+          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-2-1.jpg?w=20&h=10&fit=crop"
+          data-optimize-img>
         <h4 class="text-uppercase text-white font-family-condensed-extra">Loud Music</h4>
         <p>This is not your grandma's church. But you should bring her anyway. Music brings us all together and closer to God
           - so we can turn it up to 11.</p>
       </div>
       <div class="col-sm-4 push-bottom">
-        <img data-src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-3-1.jpg?r&amp;auto=format,compress"
-          width="400" height="200" class="img-responsive imgix-fluid" alt="" title="" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-3-1.jpg?auto=format,compress&amp;ixjsv=2.2.3&amp;w=390">
+        <img class="width-100" 
+          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-3-1.jpg?w=20&h=10&fit=crop"
+          data-optimize-img>
         <h4 class="text-uppercase text-white font-family-condensed-extra">Something Unexpected</h4>
         <p>We present biblical truths and show how they apply to our everyday lives. And we have a lot of fun while doing it.
         </p>
@@ -214,44 +224,5 @@ title: Home
   </div>
 </div>
 <script async type="text/javascript" src="{% asset components/location-search.js @path %}"></script>
-<script type="text/javascript">
-
-  // Scroll Locations
-  var locationButton = document.getElementById('find-location');
-  var locationScroll = function (event) {
-    event.preventDefault();
-    document.querySelector('[data-locations-section]').scrollIntoView(true);
-  }
-
-  locationButton.addEventListener('click', locationScroll);
-
-  // Jumbotron Overlay
-  var watchButton = document.getElementById('watch-cta');
-  var closeButton = document.getElementById('overlay-close');
-  var overlay = document.getElementById('overlay');
-
-  function showOverlay(event) {
-    event.preventDefault();
-    overlay.classList.add('visible');
-  }
-
-  function hideOverlay() {
-    overlay.classList.remove('visible');
-  }
-
-  watchButton.addEventListener('click', showOverlay);
-  closeButton.addEventListener('click', hideOverlay);
-
-  var trackerInt;
-  var buildTracker = function () {
-    if (typeof analytics !== "undefined") {
-      clearInterval(trackerInt);
-      new CRDS.DataTracker();
-    }
-  };
-  trackerInt = setInterval(function () {
-    buildTracker();
-  }, 250);
-</script>
-
+<script async type="text/javascript" src="{% asset views/home.js @path %}"></script>
 {% include footer.html %}

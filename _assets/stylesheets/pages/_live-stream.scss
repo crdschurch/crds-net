@@ -44,10 +44,6 @@
   }
 
   .carousel-cell {
-    @media (min-width: $screen-md) {
-      width: calc(45% - 1rem);
-    }
-
     img {
       height: 130px;
       object-fit: cover;
@@ -62,6 +58,12 @@
 
   [data-streamspot-player] {
     width: 100%;
+  }
+
+  [aria-label="carousel-controls"] {
+    @media (min-width: $screen-md) {
+      visibility: hidden;
+    }
   }
 
   .list-header {

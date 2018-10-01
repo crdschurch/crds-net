@@ -34,7 +34,7 @@ collections_dir: collections
 
 collections:
   pages:
-    filename: "{{ slug }} index"
+    filename: "{{ permalink }} index"
     output: true
     permalink: /:permalink/index.html
   locations:
@@ -49,7 +49,9 @@ collections:
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
   promos:
-    filename: "{{ published_at | date: '%Y-%m-%d-%H:%M:%S' }}-{{ title | slugify }}"
+    filename: "{{ published_at | date: '%Y-%m-%d-%H:%M:%S' }}-{{ title | slugify }}-{{ slug }}"
+    output: false
+  discussions:
     output: false
 
 defaults:
