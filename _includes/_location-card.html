@@ -7,7 +7,7 @@
       <a href="{{ location.url }}">{{ location.name }}</a>
     </h4>
     <div class="card-text">
-      <p>{{ location.address }} (<a target="_blank" href="{{ location.map_url }}">Map</a>)</p>
+      {{ location.address | markdownify }} (<a target="_blank" href="{{ location.map_url }}">Map</a>)
       <p><strong>Service Times:</strong><br>{{ location.service_times }}</p>
     </div>
   </div>

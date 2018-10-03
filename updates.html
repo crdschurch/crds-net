@@ -5,7 +5,7 @@ permalink: /updates
 ---
 {% include header.html %}
 <section>
-  <div class="jumbotron jumbotron-xl" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-church-updates2.jpg');" data-optimize-bg-img>
+  <div class="jumbotron jumbotron-xl" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-church-updates2.jpg?auto=format,compress&w=200');" data-optimize-bg-img>
     <h1 class="title">updates</h1>
     <p>Stay in the know and get engaged with what’s going on</p>
   </div>
@@ -18,7 +18,7 @@ permalink: /updates
     <div id="section-what-s-happening" class="feature-cards">
       {% assign date_sorted_promos = site.promos | sort: "date" | reverse %}
       {% for item in date_sorted_promos %}
-        {% include _happening-card.html %}
+        {% include _promo-card.html %}
       {% endfor %}
     </div>
   </div>
