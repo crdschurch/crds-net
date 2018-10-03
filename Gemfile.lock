@@ -1,17 +1,6 @@
 GIT
-  remote: https://github.com/ample/jekyll-crds.git
-  revision: b890799df1e42f1d2421a68645fffb46b8ffd1ad
-  branch: master
-  specs:
-    jekyll-crds (0.0.1)
-      activesupport
-      httparty
-      jekyll
-
-GIT
-  remote: https://github.com/ample/jekyll-placeholders.git
+  remote: git://github.com/ample/jekyll-placeholders.git
   revision: 503eef68d21b020b8d611025ab7029c80e569186
-  branch: master
   specs:
     jekyll-placeholders (0.0.1)
       activesupport
@@ -36,6 +25,16 @@ GIT
       contentful (>= 2.6.0)
       contentful-management (~> 1.10.1)
       dotenv
+      jekyll
+
+GIT
+  remote: https://github.com/crdschurch/jekyll-crds.git
+  revision: 160c8c2a32f63a96deeb2e1fa8f3d773bc20411a
+  branch: master
+  specs:
+    jekyll-crds (0.0.1)
+      activesupport
+      httparty
       jekyll
 
 GEM
