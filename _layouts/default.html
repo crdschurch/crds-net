@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% include _head.html %}
-  {% include _gtm.html %}
+  {% include _head.html %}  
 
   <body class="crds-styles">
+    {% include _gtm-body.html %}
     {% if page.show_header == true %}
       {% include header.html %}
     {% endif %}
 
     {{ content }}
-
-    {% if page.show_footer == true %}
-      {% include footer.html %}
-    {% endif %}
-
     <script>
       var CRDS = {
         media: {
