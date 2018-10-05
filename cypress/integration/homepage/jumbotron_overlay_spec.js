@@ -26,7 +26,7 @@ describe('Homepage JumboTron Overlay', function() {
     })
 
     it('hides the recent service', function() {
-      cy.get('[data-automation-id="recentService"]').should('have.css', 'opacity', '0');
+      cy.get('[data-automation-id="recentService"]').should('have.css', 'opacity', '1');
     })
 
     it('hides the stream service', function() {
