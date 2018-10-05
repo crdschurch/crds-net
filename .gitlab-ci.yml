@@ -1,5 +1,4 @@
 # Docker images provided by https://github.com/cypress-io/cypress-docker-images
-
 # first, install Cypress, then run all tests (in parallel)
 stages:
   - build
