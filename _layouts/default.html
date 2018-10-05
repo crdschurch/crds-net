@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% include _head.html %}
-  {% include _gtm.html %}
+  {% include _head.html %}  
 
   <body class="crds-styles">
+    {% include _gtm-body.html %}
     {{ content }}
     <script>
       var CRDS = {
@@ -15,6 +15,7 @@
         },
         streamspotId: '{{ site.streamspotId }}',
         streamspotKey: '{{ site.streamspotKey }}',
+        streamspotPlayerId: '{{ site.streamspotPlayerId }}',
         env: {
           "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}'
         }
