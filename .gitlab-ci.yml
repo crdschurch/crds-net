@@ -17,7 +17,7 @@ cache:
   paths:
     - .npm
     - cache/Cypress
-    - node_modules
+    - node_modules/
 
 # this job installs NPM dependencies and Cypress
 install:
