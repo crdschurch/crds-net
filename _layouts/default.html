@@ -5,13 +5,6 @@
 <body class="crds-styles">
   {% include _gtm-body.html %}
   {{ content }}
-  {% if page.requires_auth %}
-    <script>
-      if (!document.cookie.includes('userId')) {
-        window.location.href = '/signin';
-      }
-    </script>
-  {% endif %}
   <script>
     var CRDS = {
       media: {
@@ -30,6 +23,13 @@
   </script>
   <script type="text/javascript" src="{% asset application.js @path %}"></script>
   <script async type="text/javascript" src="{% asset application_deferred.js @path %}"></script>
+  {% if page.requires_auth %}
+    <script>
+      if (!document.cookie.includes('userId')) {
+        window.location.href = '/signin';
+      }
+    </script>
+  {% endif %}
 </body>
 
 </html>
