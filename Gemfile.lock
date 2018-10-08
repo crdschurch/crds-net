@@ -1,17 +1,6 @@
 GIT
-  remote: https://github.com/ample/jekyll-crds.git
-  revision: b890799df1e42f1d2421a68645fffb46b8ffd1ad
-  branch: master
-  specs:
-    jekyll-crds (0.0.1)
-      activesupport
-      httparty
-      jekyll
-
-GIT
-  remote: https://github.com/ample/jekyll-placeholders.git
+  remote: git://github.com/ample/jekyll-placeholders.git
   revision: 503eef68d21b020b8d611025ab7029c80e569186
-  branch: master
   specs:
     jekyll-placeholders (0.0.1)
       activesupport
@@ -19,10 +8,10 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/crds-styles.git
-  revision: 4ab5aed2836566f378406433013235d2893b00db
-  branch: development
+  revision: 26e644317981c6338372ac51e494c39351b81ac0
+  tag: v3.0.6
   specs:
-    crds-styles (3.0.5)
+    crds-styles (3.0.6)
       bootstrap-sass (~> 3.3)
       sass (~> 3.2)
 
@@ -36,6 +25,16 @@ GIT
       contentful (>= 2.6.0)
       contentful-management (~> 1.10.1)
       dotenv
+      jekyll
+
+GIT
+  remote: https://github.com/crdschurch/jekyll-crds.git
+  revision: 160c8c2a32f63a96deeb2e1fa8f3d773bc20411a
+  branch: master
+  specs:
+    jekyll-crds (0.0.1)
+      activesupport
+      httparty
       jekyll
 
 GEM
@@ -107,7 +106,7 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
-    jekyll (3.7.3)
+    jekyll (3.7.4)
       addressable (~> 2.4)
       colorator (~> 1.0)
       em-websocket (~> 0.5)
@@ -167,12 +166,12 @@ GEM
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    public_suffix (3.0.2)
+    public_suffix (3.0.3)
     rack (2.0.5)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    rouge (3.2.0)
+    rouge (3.3.0)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -214,9 +213,9 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
-  crds-styles (~> 3.0.0)!
+  crds-styles!
   guard-rspec
-  jekyll (~> 3.7.3)
+  jekyll (~> 3.7.4)
   jekyll-assets
   jekyll-contentful (~> 1.0.0)!
   jekyll-crds (~> 0.0.1)!
