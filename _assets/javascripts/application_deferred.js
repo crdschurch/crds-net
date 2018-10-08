@@ -19,6 +19,7 @@
 //= require ./components/filters
 //= require ./components/legacy-imgix
 //= require ./vendor/imgix-optimizer
+//= require ./simple-fred
 
 (function () {
   var defJSLoaded = new Event('deferred-js-ready');
