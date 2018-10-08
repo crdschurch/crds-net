@@ -25,8 +25,14 @@
   <script async type="text/javascript" src="{% asset application_deferred.js @path %}"></script>
   {% if page.requires_auth %}
     <script>
-      if (!document.cookie.includes('userId')) {
-        window.location.href = '/signin';
+      function redirectUnauthenticated() {
+        if (!document.cookie.includes('userId')) {
+          window.location.href = '/signin';
+        }
+      }
+      document.addEventListener("redirect-url-set", redirectUnauthenticated);
+      if (window.redirectUrlSet) {
+        redirectUnauthenticated();
       }
     </script>
   {% endif %}
