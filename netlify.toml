@@ -7,17 +7,5 @@
     bundle exec jekyll contentful --collections pages,promos,locations && 
     bundle exec jekyll contentful --collections series --limit 2 &&
     bundle exec jekyll contentful --collections messages --limit 4 &&
-    bundle exec jekyll build
-  '''
-
-# master branch builds enable cloudsearch
-[context.master]
-   command = '''
-    bundle exec rspec &&
-    ruby lib/bin/redirects.rb &&
-    bundle exec jekyll crds &&
-    bundle exec jekyll contentful --collections pages,promos,locations && 
-    bundle exec jekyll contentful --collections series --limit 2 &&
-    bundle exec jekyll contentful --collections messages --limit 4 &&
     bundle exec jekyll build -- --cloudsearch
   '''
