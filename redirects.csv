@@ -1,5 +1,5 @@
 /undivided-training,https://undivided.netlify.com,301
-/people,https://crdspeople.netlify.com/:splat,200
+/people/*,https://crdspeople.netlify.com/:splat,200!
 /map,https://crdspeople.netlify.com/:splat,200
 /thechaser,${env:CRDS_MEDIA_ENDPOINT}/the-chaser,302
 /the-chaser,${env:CRDS_MEDIA_ENDPOINT}/the-chaser,302
