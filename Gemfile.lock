@@ -29,7 +29,7 @@ GIT
 GIT
   remote: https://github.com/crdschurch/jekyll-contentful.git
   revision: 1971d6ca98a0cce98f573d6adbe6af1d64b15f37
-  branch: master
+  tag: 1.0.3
   specs:
     jekyll-contentful (1.0.3)
       activesupport
@@ -56,7 +56,7 @@ GEM
     coderay (1.1.2)
     colorator (1.1.0)
     concurrent-ruby (1.0.5)
-    contentful (2.9.1)
+    contentful (2.9.4)
       http (> 0.8, < 3.0)
       multi_json (~> 1)
     contentful-management (1.10.1)
@@ -218,7 +218,7 @@ DEPENDENCIES
   guard-rspec
   jekyll (~> 3.7.3)
   jekyll-assets
-  jekyll-contentful (~> 1.0.0)!
+  jekyll-contentful!
   jekyll-crds (~> 0.0.1)!
   jekyll-placeholders (~> 0.0.1)!
   rspec
