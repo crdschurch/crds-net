@@ -31,10 +31,24 @@ exclude:
   - netlify.toml
 
 contentful:
+  series:
+    limit: 2
+  message:
+    limit: 4
   exclude:
+    - author
+    - album
+    - commentary
+    - discussion
+    - discussion_question
+    - episode
+    - featured_media
+    - migrations
+    - podcast
+    - sign_off
     - song
     - topic
-    - episode
+    - video
 
 collections_dir: collections
 

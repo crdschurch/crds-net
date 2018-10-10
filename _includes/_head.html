@@ -33,5 +33,10 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="theme-color" content="#ffffff">
 
+  {% if page.search_excluded %}
+    <meta name="robots" content="noindex" />
+    <meta name="AdsBot-Google" content="noindex" />
+  {% endif %}
+
   {% asset application.scss !integrity %}
 </head>

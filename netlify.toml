@@ -4,8 +4,6 @@
     bundle exec rspec &&
     ruby lib/bin/redirects.rb &&
     bundle exec jekyll crds &&
-    bundle exec jekyll contentful --collections pages,promos,locations,discussions,discussion_questions && 
-    bundle exec jekyll contentful --collections series --limit 2 &&
-    bundle exec jekyll contentful --collections messages --limit 4 &&
-    bundle exec jekyll build
+    bundle exec jekyll contentful &&
+    bundle exec jekyll build -- --cloudsearch
   '''
