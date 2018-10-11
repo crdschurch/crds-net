@@ -31,10 +31,17 @@ exclude:
   - netlify.toml
 
 contentful:
+  message:
+    limit: 4
+    order: published_at
+  series:
+    limit: 4
+    order: published_at
   exclude:
     - album
     - article
     - author
+    - category
     - commentary
     - discussion
     - discussion_question
