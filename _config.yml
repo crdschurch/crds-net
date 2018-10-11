@@ -30,6 +30,23 @@ exclude:
   - vendor
   - netlify.toml
 
+contentful:
+  exclude:
+    - album
+    - article
+    - author
+    - commentary
+    - discussion
+    - discussion_question
+    - episode
+    - featured_media
+    - migration
+    - perspective
+    - podcast
+    - sign_off
+    - song
+    - video
+
 collections_dir: collections
 
 collections:
