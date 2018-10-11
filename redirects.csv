@@ -1,3 +1,4 @@
+http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /undivided-training,https://undivided.netlify.com,301
 /people/*,https://crdspeople.netlify.com/:splat,200!
 /map/*,https://crdsmap.netlify.com/:splat,200!
