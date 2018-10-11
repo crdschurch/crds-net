@@ -17,6 +17,15 @@ GIT
       nokogiri
 
 GIT
+  remote: https://github.com/ample/paging-mister-hyde.git
+  revision: 57e00057075dc5615262b595777f3816fd5bbfa3
+  branch: master
+  specs:
+    paging-mister-hyde (0.2.0)
+      activesupport
+      jekyll
+
+GIT
   remote: https://github.com/crdschurch/crds-styles.git
   revision: 26e644317981c6338372ac51e494c39351b81ac0
   tag: v3.0.6
@@ -235,6 +244,7 @@ DEPENDENCIES
   jekyll-contentful!
   jekyll-crds (~> 0.0.1)!
   jekyll-placeholders (~> 0.0.1)!
+  paging-mister-hyde!
   rspec
   tzinfo-data
 

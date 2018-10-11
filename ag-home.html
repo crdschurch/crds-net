@@ -1,6 +1,12 @@
 ---
 layout: default
 permalink: "/ag-home/"
+paginate:
+  articles:
+    per: 5
+    offset: 1
+    limit: 1
+    sort: published_at desc
 ---
 
 {% include header.html %}
@@ -18,23 +24,20 @@ permalink: "/ag-home/"
   <div class="container">
     <div class="row">
       <div class="col-sm-12 col-md-8">
-        <a href="/articles/tackling-technology" class="overlay-card">
-          <div class="bg-overlay"></div>
-          <div class="overlay-card-image">
-            <img data-src="//crds-media.imgix.net/4oHFyddZ2wSiCSogWc4gUo/134ba3f4c2a938ccce725752ea88afc6/crossroads-tackling-technology-unsplash.jpg?auto=format,compress&amp;w=750&amp;h=421.875&amp;fit=crop" sizes="100vw" alt="" ix-src="//crds-media.imgix.net/4oHFyddZ2wSiCSogWc4gUo/134ba3f4c2a938ccce725752ea88afc6/crossroads-tackling-technology-unsplash.jpg?auto=format,compress&amp;w=750&amp;h=421.875&amp;fit=crop" class="img-responsive" >
-          </div>
-          <div class="overlay-card-content">
-            <p class="overlay-card-category">Culture</p>
-            <h2 class="overlay-card-title">Tackling Technology</h2>
-            <p class="overlay-card-author">Eric Ankenman</p>
-            <div class="media-label bg-charcoal text-white">
-              <span class="font-size-smallest">3 min read</span>
-              <svg class="icon" viewBox="0 0 256 256">
-                <use xlink:href="/assets/svgs/icons.svg#media-article"></use>
-              </svg>
+        {% for article in page.articles.offset %}
+          <a href="{{ article.url }}" class="overlay-card">
+            <div class="bg-overlay"></div>
+            <div class="overlay-card-image">
+              <img src="{{ article.image.url }}" alt="" class="img-responsive" >
             </div>
-          </div>
-        </a>
+            <div class="overlay-card-content">
+              <p class="overlay-card-category">Culture</p>
+              <h2 class="overlay-card-title">{{ article.title }}</h2>
+              <p class="overlay-card-author">{{ article.author }}</p>
+              {% include media/_media-label.html %}
+            </div>
+          </a>
+        {% endfor %}
         <div class="row">
           <div class="col-sm-12">
             <h2 class="flush-top font-size-base text-gray-light" style="border-top:2px solid #757575; padding-top:6px;">most recent</h2>
