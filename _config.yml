@@ -33,10 +33,10 @@ exclude:
 contentful:
   message:
     limit: 4
-    order: published_at
+    order: 'published_at desc'
   series:
     limit: 4
-    order: published_at
+    order: 'published_at desc'
   exclude:
     - album
     - article
