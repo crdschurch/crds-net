@@ -3,9 +3,21 @@ layout: default
 permalink: "/ag-home/"
 paginate:
   articles:
-    per: 4
+    per: 15
     offset: 1
     limit: 1
+    sort: published_at desc
+  commentaries:
+    per: 3
+    limit: 1
+    sort: date desc
+  home_collection:
+    collections:
+      - articles
+      - series
+    per: 10
+    limit: 1
+    offset: 1
     sort: published_at desc
 ---
 
@@ -24,7 +36,7 @@ paginate:
   <div class="container">
     <div class="row">
       <div class="col-sm-12 col-md-8">
-        {% for article in page.articles.offset %}
+        {% for article in page.home_collection.offset %}
           <a href="{{ article.url }}" class="overlay-card">
             <div class="bg-overlay"></div>
             <div class="overlay-card-image">
@@ -45,7 +57,9 @@ paginate:
         </div>
         <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
           <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
-            {% for article in page.articles.docs %}
+            {% assign above_the_fold = page.home_collection.docs | slice: 0, 4 %}
+
+            {% for article in above_the_fold %}
             <div class="card carousel-cell card-2x">
               <a class="relative" href="{{ article.url }}">
                 {% include media/_media-label.html %}
@@ -85,47 +99,19 @@ paginate:
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <h2 class="flush-bottom flush-top font-size-base text-gray-light" style="border-top:2px solid #757575; padding-top:6px;">most viewed</h2>
+            <h2 class="flush-top font-size-base text-gray-light" style="border-top:2px solid #757575; padding-top:6px;">fresh perspectives</h2>
           </div>
         </div>
-        <div class="media">
-          <div class="media-body soft-half-right">
-            <h5 class="font-family-condensed-extra text-uppercase flush-ends" style="line-height:.9em;">
-              <a href="">THE MAKINGS OF A MOM TRIBE</a>
-            </h5>
-            <p class="soft-quarter-top font-size-smaller flush-bottom">Just last Saturday, I saw my dear friend’s new...</p>
-            <p class="font-size-smaller text-gray-light">Vicki Diller</p>
+        {% if page.commentaries.docs.size != 0 %}
+          <div class="push-bottom soft-bottom">
+            {% for featured in page.commentaries.docs %}
+              {% include media/_media-object-list.html media_type="commentary" %}
+            {% endfor %}
+            <a class="font-size-small" href="/commentaries">See all commentaries</a>
           </div>
-          <a href="" class="soft-quarter-left">
-            <img src="//crds-media.imgix.net/7DvNbBlfWg6kOYyGSYuu48/d2af9bfee2370e2b2d5e4529d126638a/abdomen-anticipation-awaiting-1253592.jpg?auto=format,compress&amp;w=360&amp;h=202.5&amp;fit=crop" sizes="(min-width: 768px) 345px, (min-width: 0px) 100vw" ix-src="//crds-media.imgix.net/7DvNbBlfWg6kOYyGSYuu48/d2af9bfee2370e2b2d5e4529d126638a/abdomen-anticipation-awaiting-1253592.jpg?auto=format,compress&amp;w=360&amp;h=202.5&amp;fit=crop" class="media-img-simple img-responsive">
-          </a>
-        </div>
-        <hr class="flush-ends" />
-        <div class="media">
-          <div class="media-body soft-half-right">
-            <h5 class="font-family-condensed-extra text-uppercase flush-ends" style="line-height:.9em;">
-              <a href="">MY KID HAS GOD QUESTIONS. SO DO I.</a>
-            </h5>
-            <p class="soft-quarter-top font-size-smaller flush-bottom">I have a 5-year-old son who asks a lot of...</p>
-            <p class="font-size-smaller text-gray-light">Lindsey Himmler</p>
-          </div>
-          <a href="" class="soft-quarter-left">
-            <img data-src="//crds-media.imgix.net/5TNnMwUU9OWgQyIGeSaYcq/82f284f23ac5006593595cd057a73f8a/sai-de-silva-41030-unsplash.jpg?auto=format,compress&amp;w=360&amp;h=202.5&amp;fit=crop" sizes="(min-width: 768px) 345px, (min-width: 0px) 100vw" ix-src="//crds-media.imgix.net/5TNnMwUU9OWgQyIGeSaYcq/82f284f23ac5006593595cd057a73f8a/sai-de-silva-41030-unsplash.jpg?auto=format,compress&amp;w=360&amp;h=202.5&amp;fit=crop" class="media-img-simple img-responsive">
-          </a>
-        </div>
-        <hr class="flush-ends" />
-        <div class="media">
-          <div class="media-body soft-half-right">
-            <h5 class="font-family-condensed-extra text-uppercase flush-ends" style="line-height:.9em;">
-              <a href="">TALKING WITH OUR KIDS ABOUT TRAGEDY.</a>
-            </h5>
-            <p class="soft-quarter-top font-size-smaller flush-bottom">This world is broken. And because of the...</p>
-            <p class="font-size-smaller text-gray-light">Kim Botto</p>
-          </div>
-          <a href="" class="soft-quarter-left">
-            <img data-src="//crds-media.imgix.net/2GBWKzcWKcagoIOE6um8Wi/7f447d0b12389321489923493617de57/55793628130__67602C22-26FA-4670-9C50-FA6F45B3CB9B.jpg?auto=format,compress&amp;w=360&amp;h=202.5&amp;fit=crop" sizes="(min-width: 768px) 345px, (min-width: 0px) 100vw" ix-src="//crds-media.imgix.net/2GBWKzcWKcagoIOE6um8Wi/7f447d0b12389321489923493617de57/55793628130__67602C22-26FA-4670-9C50-FA6F45B3CB9B.jpg?auto=format,compress&amp;w=360&amp;h=202.5&amp;fit=crop" class="media-img-simple img-responsive">
-          </a>
-        </div>
+        {% endif %}
+
+
       </div>
     </div>
   </div>

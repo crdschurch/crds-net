@@ -1,0 +1,11 @@
+<div class="culture-column soft-half-bottom">
+  <h5 class="font-family-condensed-extra text-uppercase flush-ends">
+    <a href="{{ featured.url }}">{{ featured.title }}</a>
+  </h5>
+  <p class="font-size-smaller flush-bottom">
+    {{ featured.content | strip_html | truncatewords: 25 }}
+  </p>
+  <p class="font-size-smaller text-gray-light">
+    <time is="time-ago" datetime="{{ featured.date | date: "%FT%T%z" }}" title="{{ featured.date | date: "%FT%T%z" }}"></time>
+  </p>
+</div>
