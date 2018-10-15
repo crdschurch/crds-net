@@ -13,3 +13,7 @@ tmp
 cypress/videos
 cypress/screenshots
 cypress.env.json
+.gitlab-ci.yml
+cypress/fixtures/example.json
+cypress/fixtures/profile.json
+cypress/fixtures/users.json
