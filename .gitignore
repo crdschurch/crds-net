@@ -10,6 +10,7 @@ node_modules
 .DS_Store
 loadenv.ps1
 tmp
+.vscode
 cypress/videos
 cypress/screenshots
 cypress.env.json

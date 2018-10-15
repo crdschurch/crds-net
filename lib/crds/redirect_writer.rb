@@ -26,6 +26,7 @@ module CRDS
 
       def parse_row(row)
         path, dest, status = row
+        path = replace(path)
         dest = replace(dest)
         printf colorized_s, path, dest, status if @debug
         @output.puts("#{path}\t#{dest}\t#{status}")
