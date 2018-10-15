@@ -1,20 +1,10 @@
 GIT
-  remote: git://github.com/ample/jekyll-placeholders.git
+  remote: https://github.com/ample/jekyll-placeholders
   revision: 503eef68d21b020b8d611025ab7029c80e569186
   specs:
     jekyll-placeholders (0.0.1)
       activesupport
       jekyll
-
-GIT
-  remote: git://github.com/crdschurch/jekyll-cloudsearch.git
-  revision: 7e36695f47eb07a3848343fd5b0a1d9aa77b5238
-  specs:
-    jekyll-cloudsearch (0.0.2)
-      aws-sdk-cloudsearchdomain
-      contentful-management (~> 1.10.1)
-      jekyll
-      nokogiri
 
 GIT
   remote: https://github.com/crdschurch/crds-styles.git
@@ -24,6 +14,17 @@ GIT
     crds-styles (3.0.6)
       bootstrap-sass (~> 3.3)
       sass (~> 3.2)
+
+GIT
+  remote: https://github.com/crdschurch/jekyll-cloudsearch.git
+  revision: 7e36695f47eb07a3848343fd5b0a1d9aa77b5238
+  tag: 0.0.1
+  specs:
+    jekyll-cloudsearch (0.0.2)
+      aws-sdk-cloudsearchdomain
+      contentful-management (~> 1.10.1)
+      jekyll
+      nokogiri
 
 GIT
   remote: https://github.com/crdschurch/jekyll-contentful.git
@@ -39,8 +40,8 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-crds.git
-  revision: 160c8c2a32f63a96deeb2e1fa8f3d773bc20411a
-  branch: master
+  revision: 9e7ea6ae39adef8a4e30d82baba43e4339137e15
+  tag: 0.0.1
   specs:
     jekyll-crds (0.0.1)
       activesupport
@@ -239,9 +240,9 @@ DEPENDENCIES
   guard-rspec
   jekyll (~> 3.7.4)
   jekyll-assets
-  jekyll-cloudsearch (~> 0.0.1)!
+  jekyll-cloudsearch!
   jekyll-contentful!
-  jekyll-crds (~> 0.0.1)!
+  jekyll-crds!
   jekyll-placeholders (~> 0.0.1)!
   rspec
   tzinfo-data
