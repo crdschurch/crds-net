@@ -12,3 +12,4 @@ loadenv.ps1
 tmp
 cypress/videos
 cypress/screenshots
+cypress.env.json

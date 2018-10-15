@@ -1,4 +1,4 @@
-describe('Homepage JumboTron Overlay', function() {    
+describe('Homepage JumboTron Overlay', function() {
 
     it('Visits Crossroads Homepage', function() {
       cy.visit('https://int.crossroads.net');
