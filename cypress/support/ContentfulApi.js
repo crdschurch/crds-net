@@ -13,7 +13,7 @@ class ContentfulApi {
     }
 
     retrieveCurrentSeries() {
-        cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=series&select=fields.title,fields.slug,fields.starts_at,fields.ends_at,fields.image&order=-fields.starts_at`)
+        cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=series&select=fields.title,fields.slug,fields.starts_at,fields.ends_at,fields.youtube_url,fields.image,fields.description&order=-fields.starts_at`)
             .then((response) => {
                 const rawResponse = JSON.parse(response.body);
                 const seriesList = rawResponse.items;
@@ -33,6 +33,10 @@ class ContentfulApi {
         this.currentSeries.title = rawCurSeries.fields.title;
         this.currentSeries.slug = rawCurSeries.fields.slug;
         this.currentSeries.imageId = rawCurSeries.fields.image.sys.id;
+        this.currentSeries.starts_at = rawCurSeries.fields.starts_at;
+        this.currentSeries.ends_at = rawCurSeries.fields.ends_at;
+        this.currentSeries.description = rawCurSeries.fields.description;
+        this.currentSeries.youtube_url = rawCurSeries.fields.youtube_url;
     }
 
     _storeImageData(imageId, assetList) {
