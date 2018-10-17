@@ -99,6 +99,6 @@ This would translate to something like the following (before processing):
 
 Background images work similarly, with three exceptions:
 
-- A `data-optimize-bg-img` attribute is required for the processing.
+- A `data-optimize-bg-img` attribute is required for processing.
 - The dimensions of the imgix image are set automatically based on the container (i.e. it assumes a _cover_ background approach).
 - The script watches for changes to the size of the window and will update the background image appropriately.
