@@ -41,16 +41,23 @@ describe CRDS::RedirectWriter::Redirect do
       end
     end
 
-    context 'when CONTEXT is production or deploy-preview' do
-      it 'should default to current git branch when context is production or deploy-preview' do
+    context 'when CONTEXT is production' do
+      it 'should default to current git branch' do
         branch = @redirect.class.git_branch
         ENV['CONTEXT'] = 'production'
         expect(@redirect.deployment_context).to eq(branch)
+      end
+    end
+
+    context 'when CONTEXT is deploy-preview' do
+      it 'should default to development' do
         ENV['CONTEXT'] = 'deploy-preview'
-        expect(@redirect.deployment_context).to eq(branch)
+        expect(@redirect.deployment_context).to eq('development')
       end
     end
   end
+
+
 
   it 'should include rules with context specified' do
     src = "/undivided-training,https://undivided.netlify.com,301,release"

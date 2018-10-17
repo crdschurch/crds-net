@@ -29,10 +29,10 @@ module CRDS
       @redirs.each do |redir|
         if redir.context_included?
           printf colorized_s, redir.path, redir.dest, redir.status if @debug
+          @output.puts(redir.to_s)
         else
           log "\s\s#{redir.error}", :red
         end
-        @output.puts(redir.to_s)
         @total += 1
       end
       @output.close
@@ -79,8 +79,11 @@ module CRDS
         end
 
         def deployment_context
-          if ENV['CONTEXT'].nil? || %w(production deploy-preview).include?(ENV['CONTEXT'])
+          if ENV['CONTEXT'].nil? || ENV['CONTEXT'] == 'production'
             ENV['BRANCH'].nil? ? self.class.git_branch : ENV['BRANCH']
+          elsif ENV['CONTEXT'] == 'deploy-preview'
+            # If deploy preview, build against 'development' branch
+            'development'
           else
             ENV['CONTEXT']
           end
