@@ -1,0 +1,47 @@
+# Docker images provided by https://github.com/cypress-io/cypress-docker-images
+# first, install Cypress, then run all tests (in parallel)
+stages:
+  - build
+  - test
+
+# to cache both npm modules and Cypress binary we use environment variables
+# to point at the folders we can list as paths in "cache" job settings
+variables:
+  npm_config_cache: /builds/cypress-io/cypress-example-docker-gitlab/.npm
+  CYPRESS_CACHE_FOLDER: /builds/cypress-io/cypress-example-docker-gitlab/cache/Cypress
+
+# cache using branch name
+# https://gitlab.com/help/ci/caching/index.md
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - cache/Cypress
+    - node_modules/
+
+# this job installs NPM dependencies and Cypress
+install:
+  image: cypress/base:8
+  stage: build
+  only: 
+    - cypress_io
+
+  script:
+    - npm ci
+    - $(npm bin)/cypress verify
+
+# job that runs after "install" job finishes
+# NPM dependencies and Cypress binary should be already installed
+cypress-e2e:
+  image: cypress/base:8
+  stage: test
+  only:
+    - cypress_io
+  script:
+    - $(npm bin)/cypress run --record --key f9895842-b05f-494c-9010-b87b26527851
+  artifacts:
+    expire_in: 1 week
+    when: always
+    paths:
+    - cypress/screenshots
+    - cypress/videos
