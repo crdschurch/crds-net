@@ -30,6 +30,30 @@ exclude:
   - vendor
   - netlify.toml
 
+contentful:
+  message:
+    limit: 4
+    order: 'published_at desc'
+  series:
+    limit: 4
+    order: 'published_at desc'
+  exclude:
+    - album
+    - article
+    - author
+    - category
+    - commentary
+    - discussion
+    - discussion_question
+    - episode
+    - featured_media
+    - migration
+    - perspective
+    - podcast
+    - sign_off
+    - song
+    - video
+
 collections_dir: collections
 
 collections:
@@ -50,8 +74,6 @@ collections:
     output: false
   promos:
     filename: "{{ published_at | date: '%Y-%m-%d-%H:%M:%S' }}-{{ title | slugify }}-{{ slug }}"
-    output: false
-  discussions:
     output: false
 
 defaults:
