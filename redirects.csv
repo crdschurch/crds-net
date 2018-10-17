@@ -1,7 +1,7 @@
 http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /undivided-training,https://undivided.netlify.com,301
 /people/*,https://crdspeople.netlify.com/:splat,200!,"development,release"
-/map/*,https://crdsmap.netlify.com/:splat,200!,development
+/map/*,https://crdsmap.netlify.com/:splat,200!,"development,release"
 /thechaser,${env:CRDS_MEDIA_ENDPOINT}/the-chaser,302
 /the-chaser,${env:CRDS_MEDIA_ENDPOINT}/the-chaser,302
 /proxy/content/*,${env:CRDS_CMS_ENDPOINT}/:splat,200!
