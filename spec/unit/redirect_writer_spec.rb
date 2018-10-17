@@ -90,7 +90,8 @@ describe CRDS::RedirectWriter do
   end
 
   it 'should write _redirects' do
-    FileUtils.rm_r File.join(Dir.pwd, 'tmp', '_redirects')
+    dest = File.join(Dir.pwd, 'tmp', '_redirects')
+    FileUtils.rm(dest) if File.exist?(dest)
     @redir = CRDS::RedirectWriter.new(@dest_dir)
     @redir.debug = false
     @redir.write!

@@ -1,6 +1,5 @@
 require_relative '../utils/colorized_string'
 require 'csv'
-require 'pry'
 
 module CRDS
   class RedirectWriter
