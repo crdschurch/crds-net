@@ -1,6 +1,6 @@
 import {ContentfulApi} from '../../support/ContentfulApi';
 
-describe("Checks Media/Series page contains correct information ", function(){
+describe("Checks Media landing page contains correct information ", function(){
     let content;
     before(function() {
         content = new ContentfulApi();
