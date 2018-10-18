@@ -336,18 +336,7 @@ layout: default
     </div>
   </div>
 </section>
-<script type="text/javascript">// <![CDATA[
-  new CRDS.CardCarousels('[data-crds-carousel]');
-  new CRDS.CardFilters();
 
-  function scrollToSection() {
-    var section = document.getElementById('happenings')
-    section.scrollIntoView({behavior: "smooth"});
-  }
+<script async type="text/javascript" src="{% asset views/locations.js @path %}"></script>
 
-  function scroll(myID){
-    var offset = jQuery("#"+myID).offset()
-    window.scrollTo(0,offset.top);
-  }
-  // ]]></script>
 {% include footer.html %}
