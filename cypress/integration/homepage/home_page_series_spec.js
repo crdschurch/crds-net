@@ -15,42 +15,39 @@ describe("Checks all series information is correct on Homepage", function () {
         const startDate = moment(content.currentSeries.starts_at);
         const endDate = moment(content.currentSeries.ends_at);
 
-        cy.get('@currentSeriesBlock').find('div.container > div > div').then(($textBlock)=> {
-            expect($textBlock.find('h3')).to.have.text(content.currentSeries.title);
-            expect($textBlock.find('.card-subtitle')).to.have.text(`${startDate.format('MM.DD.YYYY')} — ${endDate.format('MM.DD.YYYY')}`);
-            expect($textBlock.find('.card-text > div > p')).to.have.text(content.currentSeries.description);
+        cy.get('@currentSeriesBlock').then(($textBlock)=> {
+            expect($textBlock.find('[data-automation-id="series-title"]')).to.have.text(content.currentSeries.title);
+            expect($textBlock.find('[data-automation-id="series-dates"]')).to.have.text(`${startDate.format('MM.DD.YYYY')} — ${endDate.format('MM.DD.YYYY')}`);
+            expect($textBlock.find('[data-automation-id="series-description"] > p')).to.have.text(content.currentSeries.description);
         })
 
-        cy.get('@currentSeriesBlock').find('div > img').then(($imageBlock)=> {
-            expect($imageBlock).to.have.attr('src').contains(`${content.currentSeries.imageFileName}`);
+        cy.get('@currentSeriesBlock').then(($imageBlock)=> {
+            expect($imageBlock.find('[data-automation-id="series-image"]')).to.have.attr('src').contains(`${content.currentSeries.imageFileName}`);
         })
     })
 
-    //TODO this way of finding the link isn't unique - may find the Jumbotron link instead of main. Need to add animation id
     it('Checks current series trailer button link', function () {
-        cy.contains('Watch the trailer').then(($trailerButton) => { //and is visible?
+        cy.get('[data-automation-id="series-youtube"]').then(($trailerButton) => {
             expect($trailerButton).to.have.attr('href', content.currentSeries.youtube_url);
         })
     })
 
     it('Checks jumbotron current series: title, dates, image and description', function () {
-        cy.get('div[data-automation-id="upcomingImg"] > img').then(($seriesImage) => {
-            expect($seriesImage).to.have.attr('src').contains(`${content.currentSeries.imageFileName}`);
-        })
+        cy.get('[data-automation-id="jumbotron-series-title"]').should('have.text', content.currentSeries.title);
 
         const startDate = moment(content.currentSeries.starts_at);
         const endDate = moment(content.currentSeries.ends_at);
+        cy.get('[data-automation-id="jumbotron-series-dates"]').should('have.text', `${startDate.format('MM.DD.YYYY')} — ${endDate.format('MM.DD.YYYY')}`);
 
-        cy.get('div[data-automation-id="stream-card"]').then(($seriesText) => {
-            expect($seriesText.find('div.card-block.flush-bottom.hard > .card-title')).to.have.text(content.currentSeries.title);
-            expect($seriesText.find('div.card-block.flush-bottom.hard > h5')).to.have.text(`${startDate.format('MM.DD.YYYY')} — ${endDate.format('MM.DD.YYYY')}`);
+        cy.get('[data-automation-id="jumbotron-series-image"]').then(($seriesImage) => {
+            expect($seriesImage).to.have.attr('src').contains(`${content.currentSeries.imageFileName}`);
         })
     })
 
-    //TODO add automation id to differentiate links
     it('Checks current series trailer button link in Jumbotron', function () {
-        cy.contains('Watch the trailer').then(($trailerButton) => {
+        cy.get('[data-automation-id="jumbotron-series-youtube"]').then(($trailerButton) => {
             expect($trailerButton).to.have.attr('href', content.currentSeries.youtube_url);
         })
     })
+    //TODO remove data-automation-id="upcomingImg" and update code from automation
 })
