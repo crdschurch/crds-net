@@ -6,7 +6,6 @@ describe("Checks Media/Series page contains correct information ", function(){
     before(function() {
         content = new ContentfulApi();
         content.retrieveCurrentSeries();
-        //content.retrieveLocations();
 
         cy.visit('https://mediaint.crossroads.net/series/');
     })
