@@ -15,6 +15,10 @@ paginate:
     per: 5
     limit: 1
     sort: published_at
+  series:
+    per: 1
+    limit: 1
+    sort: published_at desc
   home_collection:
     collections:
       - articles
@@ -91,18 +95,22 @@ paginate:
             <h2 class="flush-bottom flush-top font-size-base text-gray-light" style="">current series</h2>
           </div>
         </div>
+        {% for series in site.series %}
         <div class="media featured">
           <div class="media-body">
             <h5 class="component-header flush-ends">
-              <a href="/series/progress">Progress</a>
+              <a href="{{ featured.url }}">{{ series.title }}</a>
             </h5>
-            <p class="soft-quarter-top font-size-smaller flush-bottom">We’re surrounded by technology that is changing how we work, think, play, and feel. Yet...</p>
-            <p class="font-size-smaller text-gray-light"></p>
+            <div class="soft-quarter-top font-size-smaller flush-bottom">
+              {{ series.description | markdownify | strip_html | truncatewords: 15 }}
+            </div>
           </div>
-          <a href="/series/progress" class="push-half-bottom">
-            <img class="media-img img-responsive" src="//crds-media.imgix.net/2JLI0lOB9KyYSosWAI0Kem/3cb63e6279d39699255ed96ee1e04cec/PROGRESS_series_slide_2.jpg?auto=format,compress&amp;w=360&amp;h=202.5&amp;fit=crop" sizes="100%" ix-src="//crds-media.imgix.net/2JLI0lOB9KyYSosWAI0Kem/3cb63e6279d39699255ed96ee1e04cec/PROGRESS_series_slide_2.jpg?auto=format,compress&amp;w=360&amp;h=202.5&amp;fit=crop">
+          <a href="{{ series.url }}" class="push-half-bottom">
+            <img class="media-img" src="{{ site.default_image }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
           </a>
         </div>
+        {% endfor %}
+
         <div class="row">
           <div class="col-sm-12">
             <hr>
@@ -118,73 +126,15 @@ paginate:
           </div>
         {% endif %}
 
-
       </div>
     </div>
   </div>
 </section>
 
 <section class="soft-half push-bottom">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <hr>
-          <h2 class="flush-top font-size-base text-gray-light" style="">browse our topics</h2>
-        </div>
-      </div>
-
-        <div class="card-deck carousel text-center" data-crds-carousel="mobile-scroll">
-          <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
-          <div class="card carousel-cell topic-card-simple" style="background-image: url(&quot;//crds-media.imgix.net/2OvGsOxo8Ews602GS0OQYA/052c941d2cc9774b070f7de0c6c6a935/Steven_20Blog.jpeg&quot;);">
-            <div class="bg-overlay"></div>
-            <div class="topic-card-content">
-              <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
-                <a href="/topics/culture">Culture</a>
-              </h2>
-            </div>
-          </div>
-
-          <div class="card carousel-cell topic-card-simple" style="background-image: url(&quot;//crds-media.imgix.net/6zkZRejmKs88gauaAwSuis/2d2625c6478c112bbafd72937e6be36f/image__2_.png&quot;);">
-            <div class="bg-overlay"></div>
-            <div class="topic-card-content">
-              <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
-                <a href="/topics/faith">Faith</a>
-              </h2>
-            </div>
-          </div>
-
-          <div class="card carousel-cell topic-card-simple" style="background-image: url(&quot;//crds-media.imgix.net/6sps7YTn5CQyYekkG8UmKK/b129f42f47309a92f988b304b0dbeb5d/olga-delawrence-386839-unsplash.jpg&quot;);">
-            <div class="bg-overlay"></div>
-            <div class="topic-card-content">
-              <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
-                <a href="/topics/finances">Finances</a>
-              </h2>
-            </div>
-          </div>
-
-          <div class="card carousel-cell topic-card-simple" style="background-image: url(&quot;//crds-media.imgix.net/21oiK83D4ksYQOUiGGs48Q/481af2c54fd5acf9f8e33e48e132df4e/tanja-heffner-259382-unsplash.jpg&quot;);">
-            <div class="bg-overlay"></div>
-            <div class="topic-card-content">
-              <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
-                <a href="/topics/relationships">Relationships</a>
-              </h2>
-            </div>
-          </div>
-
-          <div class="card carousel-cell topic-card-simple" style="background-image: url(&quot;//crds-media.imgix.net/79PEUuOHlYoGeEgw0I628s/685fcbb46944b7d4e519708b31a7d9fa/tamarcus-brown-134928-unsplash.jpg&quot;);">
-            <div class="bg-overlay"></div>
-            <div class="topic-card-content">
-              <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
-                <a href="/topics/leadership">Leadership</a>
-              </h2>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <p>new topics section</p>
+  <div class="container">
+    <hr>
+    <h2 class="flush-top font-size-base text-gray-light" style="">dynamic topics section</h2>
     <div class="card-deck carousel text-center" data-crds-carousel="mobile-scroll">
       <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
 
@@ -192,7 +142,7 @@ paginate:
           <div class="card carousel-cell topic-card-simple" style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');">
             <div class="bg-overlay"></div>
             <div class="topic-card-content">
-              <h2 class="section-header topic-card-title">
+              <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
                 <a href="{{ topic.url }}">{{ topic.title }}</a>
               </h2>
             </div>
@@ -200,8 +150,7 @@ paginate:
         {% endfor %}
       </div>
     </div>
-
-
+  </div>
 </section>
 
 <!-- About Crossroads -->
