@@ -8,9 +8,10 @@ GIT
 
 GIT
   remote: git://github.com/crdschurch/jekyll-cloudsearch.git
-  revision: 7e36695f47eb07a3848343fd5b0a1d9aa77b5238
+  revision: 99fb7a1a3a1abb85add187739692ba8222776c0c
+  tag: 0.0.3
   specs:
-    jekyll-cloudsearch (0.0.2)
+    jekyll-cloudsearch (0.0.3)
       aws-sdk-cloudsearchdomain
       contentful-management (~> 1.10.1)
       jekyll
@@ -64,7 +65,7 @@ GEM
     aws-sdk-cloudsearchdomain (1.3.0)
       aws-sdk-core (~> 3, >= 3.26.0)
       aws-sigv4 (~> 1.0)
-    aws-sdk-core (3.30.0)
+    aws-sdk-core (3.32.0)
       aws-eventstream (~> 1.0)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.0)
@@ -239,7 +240,7 @@ DEPENDENCIES
   guard-rspec
   jekyll (~> 3.7.4)
   jekyll-assets
-  jekyll-cloudsearch (~> 0.0.1)!
+  jekyll-cloudsearch!
   jekyll-contentful!
   jekyll-crds (~> 0.0.1)!
   jekyll-placeholders (~> 0.0.1)!
