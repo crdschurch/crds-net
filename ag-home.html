@@ -11,6 +11,10 @@ paginate:
     per: 3
     limit: 1
     sort: date desc
+  topics:
+    per: 5
+    limit: 1
+    sort: published_at
   home_collection:
     collections:
       - articles
@@ -25,7 +29,7 @@ paginate:
 
 <section class="push-bottom" style="background-color: #c5c5c5;">
   <div class="container">
-    <div class="row soft">
+    <div class="row soft-half">
       <div class="col-sm-12">
         <p class="font-family-base-light font-size-h5 text-center text-white">— A place for real talk about the topics that matter —</p>
       </div>
@@ -52,7 +56,8 @@ paginate:
         {% endfor %}
         <div class="row">
           <div class="col-sm-12">
-            <h2 class="flush-top font-size-base text-gray-light" style="border-top:2px solid #757575; padding-top:6px;">most recent</h2>
+            <hr class="flush-top">
+            <h2 class="flush-top font-size-base text-gray-light" style="">most recent</h2>
           </div>
         </div>
         <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
@@ -82,7 +87,8 @@ paginate:
       <div class="col-sm-12 col-md-4 push-bottom">
         <div class="row">
           <div class="col-sm-12">
-            <h2 class="flush-bottom flush-top font-size-base text-gray-light" style="border-top:2px solid #757575; padding-top:6px;">current series</h2>
+            <hr class="flush-top">
+            <h2 class="flush-bottom flush-top font-size-base text-gray-light" style="">current series</h2>
           </div>
         </div>
         <div class="media featured">
@@ -99,7 +105,8 @@ paginate:
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <h2 class="flush-top font-size-base text-gray-light" style="border-top:2px solid #757575; padding-top:6px;">fresh perspectives</h2>
+            <hr>
+            <h2 class="flush-top font-size-base text-gray-light" style="">fresh perspectives</h2>
           </div>
         </div>
         {% if page.commentaries.docs.size != 0 %}
@@ -121,7 +128,8 @@ paginate:
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <h2 class="flush-top font-size-base text-gray-light" style="border-top:2px solid #757575; padding-top:6px;">browse our topics</h2>
+          <hr>
+          <h2 class="flush-top font-size-base text-gray-light" style="">browse our topics</h2>
         </div>
       </div>
 
@@ -130,12 +138,6 @@ paginate:
           <div class="card carousel-cell topic-card-simple" style="background-image: url(&quot;//crds-media.imgix.net/2OvGsOxo8Ews602GS0OQYA/052c941d2cc9774b070f7de0c6c6a935/Steven_20Blog.jpeg&quot;);">
             <div class="bg-overlay"></div>
             <div class="topic-card-content">
-              <!--<a class="topic-card-link link-icon font-family-base-mid" href="/topics/culture">
-                <span class="link-icon-text">Best of this topic</span>
-                <svg class="icon icon-1" viewBox="0 0 256 256">
-                  <use xlink:href="/assets/svgs/icons.svg#chevron-right"></use>
-                </svg>
-              </a>-->
               <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
                 <a href="/topics/culture">Culture</a>
               </h2>
@@ -145,12 +147,6 @@ paginate:
           <div class="card carousel-cell topic-card-simple" style="background-image: url(&quot;//crds-media.imgix.net/6zkZRejmKs88gauaAwSuis/2d2625c6478c112bbafd72937e6be36f/image__2_.png&quot;);">
             <div class="bg-overlay"></div>
             <div class="topic-card-content">
-              <!--<a class="topic-card-link link-icon font-family-base-mid" href="/topics/culture">
-                <span class="link-icon-text">Best of this topic</span>
-                <svg class="icon icon-1" viewBox="0 0 256 256">
-                  <use xlink:href="/assets/svgs/icons.svg#chevron-right"></use>
-                </svg>
-              </a>-->
               <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
                 <a href="/topics/faith">Faith</a>
               </h2>
@@ -160,12 +156,6 @@ paginate:
           <div class="card carousel-cell topic-card-simple" style="background-image: url(&quot;//crds-media.imgix.net/6sps7YTn5CQyYekkG8UmKK/b129f42f47309a92f988b304b0dbeb5d/olga-delawrence-386839-unsplash.jpg&quot;);">
             <div class="bg-overlay"></div>
             <div class="topic-card-content">
-              <!--<a class="topic-card-link link-icon font-family-base-mid" href="/topics/culture">
-                <span class="link-icon-text">Best of this topic</span>
-                <svg class="icon icon-1" viewBox="0 0 256 256">
-                  <use xlink:href="/assets/svgs/icons.svg#chevron-right"></use>
-                </svg>
-              </a>-->
               <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
                 <a href="/topics/finances">Finances</a>
               </h2>
@@ -175,12 +165,6 @@ paginate:
           <div class="card carousel-cell topic-card-simple" style="background-image: url(&quot;//crds-media.imgix.net/21oiK83D4ksYQOUiGGs48Q/481af2c54fd5acf9f8e33e48e132df4e/tanja-heffner-259382-unsplash.jpg&quot;);">
             <div class="bg-overlay"></div>
             <div class="topic-card-content">
-              <!--<a class="topic-card-link link-icon font-family-base-mid" href="/topics/culture">
-                <span class="link-icon-text">Best of this topic</span>
-                <svg class="icon icon-1" viewBox="0 0 256 256">
-                  <use xlink:href="/assets/svgs/icons.svg#chevron-right"></use>
-                </svg>
-              </a>-->
               <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
                 <a href="/topics/relationships">Relationships</a>
               </h2>
@@ -190,12 +174,6 @@ paginate:
           <div class="card carousel-cell topic-card-simple" style="background-image: url(&quot;//crds-media.imgix.net/79PEUuOHlYoGeEgw0I628s/685fcbb46944b7d4e519708b31a7d9fa/tamarcus-brown-134928-unsplash.jpg&quot;);">
             <div class="bg-overlay"></div>
             <div class="topic-card-content">
-              <!--<a class="topic-card-link link-icon font-family-base-mid" href="/topics/culture">
-                <span class="link-icon-text">Best of this topic</span>
-                <svg class="icon icon-1" viewBox="0 0 256 256">
-                  <use xlink:href="/assets/svgs/icons.svg#chevron-right"></use>
-                </svg>
-              </a>-->
               <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
                 <a href="/topics/leadership">Leadership</a>
               </h2>
@@ -205,8 +183,28 @@ paginate:
         </div>
       </div>
     </div>
+
+    <p>new topics section</p>
+    <div class="card-deck carousel text-center" data-crds-carousel="mobile-scroll">
+      <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
+
+        {% for topic in site.categories %}
+          <div class="card carousel-cell topic-card-simple" style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');">
+            <div class="bg-overlay"></div>
+            <div class="topic-card-content">
+              <h2 class="section-header topic-card-title">
+                <a href="{{ topic.url }}">{{ topic.title }}</a>
+              </h2>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+
 </section>
 
+<!-- About Crossroads -->
 <section>
   <div class="jumbotron inline-video jumbotron-xl" style="background-image: url('//crds-cms-uploads.imgix.net/media/stills/crossroads-church-home.jpg');">
      <div class="inline-video-player"></div>
@@ -229,11 +227,25 @@ paginate:
   </div>
 </section>
 
+<!-- Happenings -->
+<section class="container">
+  <h3 id="happening-filter-label" class="collection-header clearfix">happening at crossroads</h3>
+  <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-filterable data-filter-label="Churchwide" data-filter-parent="#happening-filter-label" data-filter-reset-label="Churchwide">
+    <div id="section-what-s-happening" class="feature-cards">
+      {% assign date_sorted_promos = site.promos | sort: "date" | reverse %}
+      {% for item in date_sorted_promos %}
+        {% include _promo-card.html %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h2 class="flush-top font-size-base text-gray-light" style="border-top:2px solid #757575; padding-top:6px;">most popular</h2>
+        <hr>
+        <h2 class="flush-top font-size-base text-gray-light" style="">most popular</h2>
       </div>
     </div>
     <div class="row">

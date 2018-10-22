@@ -40,13 +40,11 @@ contentful:
     - album
     - discussion
     - discussion_question
-    - episode
     - featured_media
     - migrations
     - podcast
     - sign_off
     - song
-    - topic
     - video
 
 collections_dir: collections
@@ -66,7 +64,7 @@ collections:
       - videos
   messages:
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
-    output: false
+    output: true
   promos:
     filename: "{{ published_at | date: '%Y-%m-%d-%H:%M:%S' }}-{{ title | slugify }}-{{ slug }}"
     output: false
@@ -110,6 +108,10 @@ collections:
   messages:
     output: true
     permalink: /series/:series_slug/:title
+  categories:
+    output: true
+    permalink: /topics/:title
+
 
 defaults:
   - scope:
@@ -117,6 +119,12 @@ defaults:
       type: "locations"
     values:
       layout: location
+  - scope:
+      path: ""
+      type: categories
+    values:
+      layout: topic
+
 
 assets:
   source_maps: true # false on JEKYLL_ENV=production
