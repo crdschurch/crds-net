@@ -12,7 +12,7 @@ describe("Checks Locations pages served from Netlify display correct information
         assert.isAbove(content.locationList.length, 1, 'Sanity check: More than one location is served from Contentful');
 
         cy.visit(content.locationList[0].fields.slug);
-        cy.contains('Check out our latest series').then(($seriesButton) => {
+        cy.get('[data-automation-id="series-slug"]').then(($seriesButton) => {
             expect($seriesButton).to.have.attr('href', `/series/${content.currentSeries.slug}`);
         })
     })
