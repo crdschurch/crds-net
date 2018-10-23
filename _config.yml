@@ -36,7 +36,6 @@ contentful:
   message:
     limit: 4
   exclude:
-    - author
     - album
     - discussion
     - discussion_question
