@@ -1,0 +1,58 @@
+#goTripsNav {
+
+  @media screen and (max-width: $screen-sm-min) {
+    background-color: #fff;
+  }
+
+  .navbar-nav {
+    > li {
+      > a {
+        color: #fff;
+
+        @media screen and (max-width: $screen-sm-min) {
+          color: #4D4D4D;
+          font-size: 1em;
+        }
+      }
+
+      &:not(:last-child) {
+        > a:hover,
+        > a:focus,
+        > a:active {
+          background-color: transparent;
+          border-color: #fff;
+          text-decoration: none;
+
+          @media screen and (max-width: $screen-sm-min) {
+            border-color: transparent;
+          }
+        }
+      }
+
+      &:last-child {
+        > a,
+        > a:hover,
+        > a:focus,
+        > a:active {
+          background-color: #0095D9;
+          border-color: #0095D9;
+
+          @media screen and (max-width: $screen-sm-min) {
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: $screen-sm-min) {
+      .open {
+        > a,
+        > a:focus,
+        > a:hover {
+          background-color: transparent;
+          border-color: transparent;
+        }
+      }
+    }
+  }
+}
