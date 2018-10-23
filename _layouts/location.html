@@ -16,6 +16,10 @@ layout: default
       <br>{{ page.name | downcase }}</h1>
     <h2 class="title font-size-h1 text-white visible-xs">crossroads
       <br>{{ page.name | downcase }}</h2>
+      {% if location_happenings.size > 0 %}
+        </br>
+        <a href="javascript:void(0)" class="btn btn-primary" data-smooth-scroll-to="happenings">See what's happening at {{ page.name | downcase }}</a>
+      {% endif %}
   </div>
 </div>
 
@@ -124,7 +128,7 @@ layout: default
 
 <!-- Happenings -->
 {% if location_happenings.size > 0 %}
-<div class="container">
+<div class="container" id="happenings">
   <h3 id="happening-filter-label" class="collection-header clearfix"> happening at {{ page.name | downcase }}</h3>
   <div class="card-deck cards-4x">
     <div class="row">

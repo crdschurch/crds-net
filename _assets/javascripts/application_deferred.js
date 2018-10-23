@@ -20,6 +20,7 @@
 //= require ./components/legacy-imgix
 //= require ./vendor/imgix-optimizer
 //= require ./components/simple-fred
+//= require ./lib/smooth-scroller
 
 (function () {
   var defJSLoaded = new Event('deferred-js-ready');
