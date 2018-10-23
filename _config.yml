@@ -36,6 +36,7 @@ contentful:
   message:
     limit: 4
   exclude:
+    - author
     - album
     - discussion
     - discussion_question
@@ -98,7 +99,7 @@ collections:
     output: false
   discussions:
     output: false
-  commentaries:
+  perspectives:
     output: false
   messages:
     output: true

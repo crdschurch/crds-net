@@ -1,5 +1,4 @@
 <div class="media-label bg-charcoal text-white">
-
   {% if include.source.collection == "articles" %}
     {% assign words = include.source.content | number_of_words %}
     {% assign read_time = words | divided_by: 184.0 | ceil %}

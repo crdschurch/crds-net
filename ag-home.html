@@ -7,7 +7,7 @@ paginate:
     offset: 1
     limit: 1
     sort: published_at desc
-  commentaries:
+  perspectives:
     per: 3
     limit: 1
     sort: date desc
@@ -51,7 +51,7 @@ paginate:
       <!-- Big Content Feature -->
       <div class="col-sm-12 col-md-8">
         {% for article in page.home_collection.offset %}
-          <a href="{{ article.url }}" class="overlay-card">
+          <a href="{{ article.url | media_url }}" class="overlay-card">
             <div class="bg-overlay"></div>
             <div class="overlay-card-image">
               <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
@@ -60,7 +60,7 @@ paginate:
               <p class="overlay-card-category">{{ article.category.title }}</p>
               <h2 class="overlay-card-title">{{ article.title }}</h2>
               <p class="overlay-card-author">{{ article.author.full_name }}</p>
-              {% include media/_media-label.html %}
+              {% include media/_media-label.html source=article %}
             </div>
           </a>
         {% endfor %}
@@ -142,6 +142,10 @@ paginate:
           </a>
         </div>
         {% endfor %}
+
+        <a class="btn btn-primary" data-media-snippet="get_current_series_trailer_link:attr[href]">
+          Watch Trailer
+        </a>
       </div>
     </div>
 
@@ -161,7 +165,7 @@ paginate:
             {% for article in above_the_fold %}
             <div class="card carousel-cell card-2x">
               <a class="relative" href="{{ article.url }}">
-                {% include media/_media-label.html %}
+                {% include media/_media-label.html source=article %}
                 <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
               </a>
               <div class="card-block hard soft-quarter-top">
@@ -186,17 +190,17 @@ paginate:
             <h2 class="flush-top font-size-base text-gray-light" style="">another perspective</h2>
           </div>
         </div>
-        {% if page.commentaries.docs.size != 0 %}
-        <div class="push-bottom soft-bottom">
-          {% for featured in page.commentaries.docs %}
-            {% include media/_media-object-list.html media_type="commentary" %}
-          {% endfor %}
-          <a class="font-size-small" href="/commentaries">See all commentaries</a>
-        </div>
+
+
+        {% if page.perspectives.docs.size != 0 %}
+          <div class="push-bottom soft-bottom">
+            {% for featured in page.perspectives.docs %}
+              {% include media/_media-object-list.html media_type="perspective" %}
+            {% endfor %}
+            <a class="font-size-small" href="/perspectives">see all</a>
+          </div>
         {% endif %}
       </div>
-
-
 
   </div>
 </section>
@@ -233,7 +237,7 @@ paginate:
            <div class="jumbotron-content">
              <a href="#" class="inline-video-trigger" data-video-id="geNzLq664rk"></a>
              <h1 class="font-family-condensed-extra text-uppercase">What is Crossroads</h1>
-             <p>A real place for real people. All are welcome. No belief systems required, no admission at the door. We believe in helping you break through and leave your mark on the world.</p>
+             <p>A real place for real people. All are welcome. We believe in helping you break through and leave your mark on the world.</p>
              <p class="text-center">
                <a class="btn btn-secondary" href="">More about us</a>
                <a class="btn btn-gray" href="">View our church locations</a>
