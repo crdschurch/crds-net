@@ -36,12 +36,10 @@ contentful:
   message:
     limit: 4
   exclude:
-    - author
     - album
     - discussion
     - discussion_question
     - migrations
-    - podcast
     - sign_off
     - song
     - video
@@ -108,18 +106,77 @@ collections:
     output: true
     permalink: /topics/:title
 
+contentful:
+  article:
+    map:
+      date: published_at
+  discussion:
+    map:
+      date: published_at
+  episode:
+    map:
+      date: published_at
+  featured_media:
+    map:
+      page_path: path
+  message:
+    belongs_to:
+      series: videos
+  series:
+    map:
+      date: starts_at
+  song:
+    map:
+      date: published_at
+  video:
+    map:
+      date: published_at
+  perspective:
+    map:
+      date: published_at
+    exclude:
+      - category
+  exclude:
+    - location
+    - migrations
+    - page
+    - promo
 
 defaults:
   - scope:
       path: ""
-      type: "locations"
     values:
-      layout: location
+      js_manifest: application_deferred
+  - scope:
+      path: ""
+      type: articles
+    values:
+      layout: article
   - scope:
       path: ""
       type: categories
     values:
       layout: topic
+  - scope:
+      path: ""
+      type: authors
+    values:
+      layout: author
+  - scope:
+      path: ""
+      type: podcasts
+    values:
+      layout: podcast
+  - scope:
+      path: ""
+      type: episodes
+    values:
+      layout: episode
+  - scope:
+      path: ""
+      type: videos
+    values:
+      layout: video
   - scope:
       path: ""
       type: series
@@ -130,6 +187,22 @@ defaults:
       type: messages
     values:
       layout: message
+  - scope:
+      path: ""
+      type: albums
+    values:
+      layout: album
+  - scope:
+      path: ""
+      type: songs
+    values:
+      layout: song
+  - scope:
+      path: ""
+      type: perspectives
+    values:
+      layout: perspective
+
 
 assets:
   source_maps: true # false on JEKYLL_ENV=production
