@@ -1,5 +1,3 @@
-// document.getElementsByTagName("html")[0].style.visibility = "hidden";
-
 function redirectUnauthenticated() {
   if (!document.cookie.includes('userId')) {
     window.location.href = '/signin';
