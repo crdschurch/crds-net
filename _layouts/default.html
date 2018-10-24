@@ -3,6 +3,9 @@
 {% include _head.html %}
   <body class="crds-styles">
     {% include _gtm-body.html %}
+    {% if page.requires_auth %}
+      {% include _preloader.html %}
+    {% endif %}
     {{ content }}
     <script>
       var CRDS = {

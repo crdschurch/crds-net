@@ -4,10 +4,6 @@
 
   {% if page.requires_auth %}
     <script type="text/javascript" src="{% asset lib/auth-required.js @path %}"></script>
-    <style>
-      html {visibility: hidden !important;}
-      div.header[data-header] {visibility: hidden !important;}
-    </style>
   {% endif %}
 
   {% include _gtm-head.html %}  

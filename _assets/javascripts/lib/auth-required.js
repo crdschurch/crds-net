@@ -2,7 +2,8 @@ function redirectUnauthenticated() {
   if (!document.cookie.includes('userId')) {
     window.location.href = '/signin';
   } else {
-    document.getElementsByTagName("html")[0].style.visibility = "visible";
+    document.querySelector('[data-preloader]').style.opacity = 0;
+    document.querySelector('[data-preloader]').style.zIndex = -1;
   }
 }
 
