@@ -30,8 +30,8 @@ function liveInit() {
       var match = origSrc.match(regExp);
       if (match[1] !== undefined) {
         var ytId = match[1];
+        $('#modal-video-src').attr('src', 'https://www.youtube.com/embed/' + ytId);
       }
-      $('#modal-video-src').attr('src', 'https://www.youtube.com/embed/' + ytId);
     });
     $('div.modal-video').on('hidden.bs.modal', function (event) {
       $('#modal-video-src').attr('src', '');
