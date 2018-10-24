@@ -1,0 +1,88 @@
+---
+layout: default
+---
+
+<div class="media-music-album">
+  <div class="jumbotron jumbotron-xl" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+    <div class="bg-overlay"></div>
+    <div class="jumbotron-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-2 text-left md-text-center">
+            <!-- album image -->
+            <div class="album-artwork">
+              <img class="img-full-width" src="{{ page.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.song_artwork }}" data-optimize-img>
+            </div>
+
+            <!-- breadcrumb navigation -->
+            <ol class="breadcrumb hard-sides push-top">
+              <li><a href="/">Media</a></li>
+              <li><a href="/music">Music</a></li>
+            </ol>
+
+            <!-- album title -->
+            <h1 class="font-family-condensed-extra text-uppercase flush-top push-bottom">
+              {{ page.title }}
+            </h1>
+
+            <!-- album description -->
+            <div class="font-size-base white-faded">{{ page.content }}</div>
+
+            {% include media/_external-music-links.html %}
+
+            {% assign album = site.songs | where: 'album_title', page.title %}
+            {% if album.size > 0 %}
+            <div class="tracks text-center">
+              <h3 class="font-size-large font-family-base-light text-white">tracklist</h3>
+              <ul class="list-unstyled">
+                {% for song in album %}
+                <li><a href="{{ song.url }}">{{ song.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+
+        {% if site.albums.size > 1 %}
+        <section class="push-bottom">
+          <h2 class="component-header flush-top">More Albums</h2>
+
+          <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
+            <div class="feature-cards">
+              {% assign limited = site.albums | sort: 'date' | reverse | slice: 0, 4 | exclude: album.title %}
+              {% for album in limited limit: 3 %}
+                {% include media/_album-card.html title=false %}
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+        {% endif %}
+
+        {% if site.songs.size > 1 %}
+          <section>
+            <h2 class="component-header flush-top">Recent Songs</h2>
+            <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
+              <div class="feature-cards">
+
+                {% assign recent = site.songs | sort: 'date' | reverse %}
+                {% for song in recent limit: 9 %}
+                  {% include media/_song-card.html %}
+                {% endfor %}
+
+              </div>
+            </div>
+          </section>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>

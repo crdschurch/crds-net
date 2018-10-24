@@ -1,22 +1,29 @@
 <div class="media-label bg-charcoal text-white">
-  {% if include.source.collection == "articles" %}
+
+  {% if include.source.collection %}
+    {% assign content_type = include.source.collection | singularize %}
+  {% else %}
+    {% assign content_type = include.source.content_type | singularize %}
+  {% endif %}
+
+  {% if content_type == "article" %}
     {% assign words = include.source.content | number_of_words %}
     {% assign read_time = words | divided_by: 184.0 | ceil %}
     {% if read_time > 0 %}
-      <span class="font-size-smallest">{{ source.content_type }}{{ read_time }} min read</span>
+      <span class="font-size-smallest">{{ read_time }} min read</span>
     {% endif %}
   {% else %}
     <span class="font-size-smallest">{{ include.source.duration }}</span>
   {% endif %}
 
   <svg class="icon" viewBox="0 0 256 256">
-    {% if include.source.collection == "articles" %}
+    {% if content_type == "article" %}
       <use xlink:href="/assets/svgs/icons.svg#media-article"></use>
-    {% elsif include.source.collection == "videos" %}
+    {% elsif content_type == "video" %}
       <use xlink:href="/assets/svgs/icons.svg#media-video"></use>
-    {% elsif include.source.collection == "songs" %}
+    {% elsif content_type == "song" %}
       <use xlink:href="/assets/svgs/icons.svg#media-music"></use>
-    {% elsif include.source.collection == "podcasts" or include.source.collection == "episodes" %}
+    {% elsif content_type == "podcast" or content_type == "episode" %}
       <use xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
     {% endif %}
   </svg>

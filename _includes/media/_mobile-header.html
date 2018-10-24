@@ -1,0 +1,202 @@
+{% assign data = site.data.navigation %}
+{% assign page_url = page.url | split: '/' %}
+
+<header class="media-header">
+  <div>
+    <a href="{{ site.shared_header.app }}" class="brand">
+      <svg class="icon" height="81px" viewBox="0 0 308 81" width="308px">
+        <use xlink:href="/assets/svgs/crossroads-church-logo.svg#crossroads-church-logo"></use>
+      </svg>
+    </a>
+  </div>
+  <nav class="secondary-nav">
+    <ul class="list-unstyled">
+      {% for topic in data.topics %}
+      {% assign topic_url = topic.url | split: '/' %}
+      <li><a href="{{ topic.url }}" class="{% if topic_url == page_url %}active{% endif %}">{{ topic.title }}</a></li>
+      {% endfor %}
+      <li class="divider" role="separator"></li>
+      {% for media in data.media_types %}
+      {% assign media_url = media.url | split: '/' %}
+      <li><a href="{{ media.url }}" class="{% if media_url == page_url %}active{% endif %}">{{ media.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+</header>
+
+<nav class="primary-nav">
+  <button role="button" data-menu-trigger>
+    <!-- If menu is closed, this icon appears -->
+    <div data-menu-close>
+      <span>
+        <svg class="icon icon-1" viewBox="0 0 256 256">
+          <use xlink:href="/assets/svgs/icons.svg#menu-thin"></use>
+        </svg>
+      </span>
+      <span>Menu</span>
+    </div>
+    <!-- If menu is open, this icon appears -->
+    <div data-menu-open>
+      <span>
+        <svg class="icon icon-1" viewBox="0 0 256 256">
+          <use xlink:href="/assets/svgs/icons.svg#close-thin"></use>
+        </svg>
+      </span>
+      <span>Close</span>
+    </div>
+  </button>
+  <a href="{{ site.shared_header.app }}signin" data-bind="visible: !is_authenticated()">
+    <span>
+      <svg class="icon icon-1" viewBox="0 0 256 256">
+        <use xlink:href="/assets/svgs/icons.svg#account-thin"></use>
+      </svg>
+    </span>
+    <span>Sign in</span>
+  </a>
+  <a href="{{ site.shared_header.app }}profile/personal" data-bind="visible: is_authenticated()">
+    <span>
+      <img class="img-circle img-size-20" alt="profile image" data-bind="attr: { src: profile_image }">
+    </span>
+    <span>Account</span>
+  </a>
+  <a href="{{ site.shared_header.app }}search">
+    <span>
+      <svg class="icon icon-1" viewBox="0 0 256 256">
+        <use xlink:href="/assets/svgs/icons.svg#search-thin"></use>
+      </svg>
+    </span>
+    <span>Search</span>
+  </a>
+  <button role="button" data-chat-trigger>
+    <span>
+      <svg class="icon icon-1" viewBox="0 0 256 256">
+        <use xlink:href="/assets/svgs/icons.svg#chat-thin"></use>
+      </svg>
+    </span>
+    <span>Chat</span>
+  </button>
+</nav>
+
+<div class="mobile-megamenu" data-menu-modal>
+  <div class="screwhead">
+    <a href="{{ site.shared_header.app }}">
+    <svg class="icon icon-3" height="300" viewBox="0 0 300 300" width="300">
+      <use xlink:href="/assets/svgs/screwhead-crds.svg#screwhead-crds"></use>
+      </svg>
+    </a>
+  </div>
+
+  <ul class="list-unstyled">
+    <li data-bind="visible: is_authenticated">
+      <a class="megamenu-header collapsed" role="button" data-toggle="collapse" href="#megamenu-profile" aria-expanded="false" aria-controls="#megamenu-profile">
+        <img class="img-circle img-size-3 push-half-right" alt="profile image" data-bind="attr: { src: profile_image }">
+        <span data-bind="text: name"></span>
+        <svg class="icon icon-1" viewBox="0 0 256 256">
+          <use xlink:href="/assets/svgs/icons.svg#chevron-right-thin"></use>
+        </svg>
+      </a>
+      <ul class="subnav collapse list-unstyled" id="megamenu-profile">
+        <li><a href="{{ site.shared_header.app }}profile/personal">My Profile</a></li>
+        <li><a href="{{ site.shared_header.app }}me/giving">Giving History</a></li>
+        <li><a href="{{ site.shared_header.app }}serve-signup">Sign Up to Serve</a></li>
+        <li><a href="{{ site.shared_header.app }}groups/search/my">My Groups</a></li>
+        <li><a href="{{ site.shared_header.app }}trips/mytrips">My Trips</a></li>
+        <li><a href="{{ site.shared_header.app }}mycamps">My Students Camps</a></li>
+        <li><a href="{{ site.shared_header.app }}childcare">Childcare</a></li>
+        <li><a href="{{ site.shared_header.app }}signout">Sign Out</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a class="megamenu-header collapsed" role="button" data-toggle="collapse" href="#megamenu-crossroads" aria-expanded="false" aria-controls="#megamenu-crossroads">
+          Crossroads
+        <svg class="icon icon-1" viewBox="0 0 256 256">
+          <use xlink:href="/assets/svgs/icons.svg#chevron-right-thin"></use>
+        </svg>
+      </a>
+      <ul class="subnav collapse list-unstyled" id="megamenu-crossroads">
+        {% for option in data.megamenu.crossroads %}
+        <li><a href="{{ option.url | replace: '(CRDS_DOMAIN)', site.crds_domain }}">{{ option.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+    <li>
+      <a class="megamenu-header collapsed" role="button" data-toggle="collapse" href="#megamenu-about" aria-expanded="false" aria-controls="#megamenu-about">
+          About
+        <svg class="icon icon-1" viewBox="0 0 256 256">
+          <use xlink:href="/assets/svgs/icons.svg#chevron-right-thin"></use>
+        </svg>
+      </a>
+      <ul class="subnav collapse list-unstyled" id="megamenu-about">
+        {% for option in data.megamenu.about %}
+        <li><a href="{{ option.url | replace: '(CRDS_DOMAIN)', site.crds_domain }}">{{ option.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+    <li>
+      <a class="megamenu-header collapsed" role="button" data-toggle="collapse" href="#megamenu-media" aria-expanded="false" aria-controls="#megamenu-media">
+          Media
+        <svg class="icon icon-1" viewBox="0 0 256 256">
+          <use xlink:href="/assets/svgs/icons.svg#chevron-right-thin"></use>
+        </svg>
+      </a>
+      <ul class="subnav collapse list-unstyled" id="megamenu-media">
+        {% for option in data.megamenu.media %}
+        <li><a href="{{ option.url | replace: '(CRDS_DOMAIN)', site.crds_domain }}">{{ option.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+    <li>
+      <a class="megamenu-header collapsed" role="button" data-toggle="collapse" href="#megamenu-grow" aria-expanded="false" aria-controls="#megamenu-grow">
+          Grow
+        <svg class="icon icon-1" viewBox="0 0 256 256">
+          <use xlink:href="/assets/svgs/icons.svg#chevron-right-thin"></use>
+        </svg>
+      </a>
+      <ul class="subnav collapse list-unstyled" id="megamenu-grow">
+        {% for option in data.megamenu.grow %}
+        <li><a href="{{ option.url | replace: '(CRDS_DOMAIN)', site.crds_domain }}">{{ option.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+    <li>
+      <a class="megamenu-header collapsed" role="button" data-toggle="collapse" href="#megamenu-care" aria-expanded="false" aria-controls="#megamenu-care">
+          Care
+        <svg class="icon icon-1" viewBox="0 0 256 256">
+          <use xlink:href="/assets/svgs/icons.svg#chevron-right-thin"></use>
+        </svg>
+      </a>
+      <ul class="subnav collapse list-unstyled" id="megamenu-care">
+        {% for option in data.megamenu.care %}
+        <li><a href="{{ option.url | replace: '(CRDS_DOMAIN)', site.crds_domain }}">{{ option.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+    <li>
+      <a class="megamenu-header collapsed" role="button" data-toggle="collapse" href="#megamenu-ministry" aria-expanded="false" aria-controls="#megamenu-ministry">
+          Ministry
+        <svg class="icon icon-1" viewBox="0 0 256 256">
+          <use xlink:href="/assets/svgs/icons.svg#chevron-right-thin"></use>
+        </svg>
+      </a>
+      <ul class="subnav collapse list-unstyled" id="megamenu-ministry">
+        {% for option in data.megamenu.ministry %}
+        <li><a href="{{ option.url | replace: '(CRDS_DOMAIN)', site.crds_domain }}">{{ option.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+    <li>
+      <a class="megamenu-header collapsed" role="button" data-toggle="collapse" href="#megamenu-contact" aria-expanded="false" aria-controls="#megamenu-contact">
+          Contact
+        <svg class="icon icon-1" viewBox="0 0 256 256">
+          <use xlink:href="/assets/svgs/icons.svg#chevron-right-thin"></use>
+        </svg>
+      </a>
+      <ul class="subnav collapse list-unstyled" id="megamenu-contact">
+        {% for option in data.megamenu.contact %}
+        <li><a href="{{ option.url | replace: '(CRDS_DOMAIN)', site.crds_domain }}">{{ option.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+  </ul>
+</div>

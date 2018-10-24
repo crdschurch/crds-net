@@ -1,0 +1,81 @@
+---
+layout: default
+---
+
+{% assign author = site.authors | where: 'full_name', page.title | first %}
+
+<div class="container">
+  {% include media/_author-bio.html %}
+
+  <!-- Articles -->
+  {% assign articles = site.articles | filter: 'author.full_name', author.full_name %}
+
+  {% if articles.size > 0 %}
+    <div class="push-ends">
+      <h2 class="page-header font-size-h2 flush-top">Articles</h2>
+    </div>
+    <div data-card-deck class="card-deck">
+      <div class="cards-4x">
+        <div class="row">
+          {% for post in articles %}
+            {% include media/_article-card.html %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Podcasts -->
+  {% assign podcasts = site.podcasts | filter: 'author.full_name', author.full_name %}
+
+  {% if podcasts.size > 0 %}
+    <div class="push-ends">
+      <h2 class="page-header font-size-h2 flush-top">Podcasts</h2>
+    </div>
+    <div data-card-deck class="card-deck">
+      <div class="cards-4x">
+        <div class="row">
+          {% for podcast in podcasts %}
+            {% include media/_podcast-card.html %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Albums -->
+  {% assign albums = site.albums | filter: 'author.full_name', author.full_name %}
+
+  {% if albums.size > 0 %}
+    <div class="push-ends">
+      <h2 class="page-header font-size-h2 flush-top">Albums</h2>
+    </div>
+    <div data-card-deck class="card-deck">
+      <div class="cards-4x">
+        <div class="row">
+          {% for album in albums %}
+            {% include media/_album-card.html %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Videos -->
+  {% assign videos = site.videos | filter: 'author.full_name', author.full_name %}
+
+  {% if videos.size > 0 %}
+    <div class="push-ends">
+      <h2 class="page-header font-size-h2 flush-top">Videos</h2>
+    </div>
+    <div data-card-deck class="card-deck">
+      <div class="cards-4x">
+        <div class="row">
+          {% for video in videos %}
+            {% include media/_video-card.html %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>

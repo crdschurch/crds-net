@@ -1,7 +1,7 @@
-{% if message.image %}
-  {% assign image = message.image %}
+{% if message.image.url %}
+  {% assign image = message.image.url %}
 {% else %}
-  {% assign image = page.image %}
+  {% assign image = page.image.url %}
 {% endif %}
 
 <div class="card">
@@ -13,7 +13,7 @@
       {{ message.title }}
     </h3>
     {% if include.series != false %}
-    <p class="font-size-smaller text-gray push-quarter-top">{{ page.title }}</p>
+      <p class="font-size-smaller text-gray push-quarter-top">{{ page.title }}</p>
     {% endif %}
   </div>
 </div>

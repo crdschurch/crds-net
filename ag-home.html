@@ -18,12 +18,10 @@ paginate:
   series:
     per: 1
     limit: 1
-    offset: 1
     sort: published_at desc
   messages:
     per: 1
     limit: 1
-    offset: 1
     sort: published_at desc
   home_collection:
     collections:
@@ -34,6 +32,10 @@ paginate:
     sort: published_at desc
   episodes:
     per: 4
+    limit: 1
+    sort: published_at desc
+  podcasts:
+    per: 5
     limit: 1
     sort: published_at desc
 ---
@@ -181,6 +183,7 @@ paginate:
   </div>
 </section>
 
+
 <section class="soft-half push-bottom">
   <div class="container">
     <hr class="push-half-bottom">
@@ -298,11 +301,28 @@ paginate:
             <hr class="push-half-bottom">
             <h2 class="flush-top font-size-base text-gray-light" style="">recent podcast episodes</h2>
           </div>
-          <div class="push-bottom soft-bottom">
+        </div>
+          <div class="push-ends soft-bottom">
+            {% assign home_episodes = page.episodes.docs %}
+
+            {% for episodes in home_episodes %}
+
+            <div class="media">
+              <div class="media-body">
+                <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ episodes.url }}">
+                  Episode {{ episodes.episode_number }}: {{ episodes.title }}</a>
+                </h5>
+                <div class="soft-quarter-top font-size-smaller flush-bottom">
+                  <p class="episode-description">{{ episodes.description | markdownify | strip_html | truncatewords: 15 }}</p>
+                </div>
+              </div>
+              <a href="{{ episodes.url }}" class="soft-quarter-left">
+                <img src="{{ episodes.podcast.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img>
+              </a>
+            </div>
+            <hr>
+            {% endfor %}
           </div>
-
-      </div>
-
 
 
     </div>

@@ -1,6 +1,7 @@
-{% assign topic = site.topics | where: "title", video.topic | first %}
-{% if video.image %}
-  {% assign image = video.image %}
+{% assign topic = site.topics | where: 'title', video.topic | first %}
+
+{% if video.image.url %}
+  {% assign image = video.image.url %}
 {% else %}
   {% assign image = site.default_image %}
 {% endif %}
