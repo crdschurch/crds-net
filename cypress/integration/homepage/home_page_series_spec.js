@@ -49,5 +49,4 @@ describe("Checks all series information is correct on Homepage", function () {
             expect($trailerButton).to.have.attr('href', content.currentSeries.youtube_url);
         })
     })
-    //TODO remove data-automation-id="upcomingImg" and update code from automation
 })
