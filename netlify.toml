@@ -2,7 +2,7 @@
 [build]
   command = '''
     bundle exec rspec &&
-    ruby lib/bin/redirects.rb &&
+    ./bin/netlify-redirector &&
     bundle exec jekyll crds &&
     bundle exec jekyll contentful -f &&
     bundle exec jekyll build -- --cloudsearch
