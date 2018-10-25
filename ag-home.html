@@ -196,7 +196,7 @@ paginate:
             <div class="bg-overlay"></div>
             <div class="topic-card-content">
               <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
-                <a href="{{ topic.url }}">{{ topic.title }}</a>
+                <a href="{{ topic.url | media_url }}">{{ topic.title }}</a>
               </h2>
             </div>
           </div>
@@ -309,14 +309,14 @@ paginate:
 
             <div class="media">
               <div class="media-body">
-                <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ episodes.url }}">
+                <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ episodes.url | media_url}}">
                   Episode {{ episodes.episode_number }}: {{ episodes.title }}</a>
                 </h5>
                 <div class="soft-quarter-top font-size-smaller flush-bottom">
                   <p class="episode-description">{{ episodes.description | markdownify | strip_html | truncatewords: 15 }}</p>
                 </div>
               </div>
-              <a href="{{ episodes.url }}" class="soft-quarter-left">
+              <a href="{{ episodes.url | media_url }}" class="soft-quarter-left">
                 <img src="{{ episodes.podcast.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img>
               </a>
             </div>
