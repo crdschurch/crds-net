@@ -7,11 +7,19 @@
     bundle exec jekyll contentful -f &&
     bundle exec jekyll build -- --cloudsearch
   '''
-
-[context.development]
+  
+[context.branch-deploy.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
   CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
 
-[context.release]
+[context.deploy-preview.environment]
+  CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
+  CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
+
+[context.development.environment]
+  CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
+  CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
+
+[context.release.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-prod.netlify.com"
   CRDS_MAP_DOMAIN = "crds-map-prod.netlify.com"
