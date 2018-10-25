@@ -103,22 +103,6 @@ collections:
     output: true
     permalink: /topics/:title
 
-defaults:
-  - scope:
-      path: ""
-    values:
-      js_manifest: application_deferred
-  - scope:
-      path: ""
-      type: articles
-    values:
-      layout: article
-  - scope:
-      path: ""
-      type: categories
-    values:
-      layout: topic
-
 
 assets:
   source_maps: true # false on JEKYLL_ENV=production
