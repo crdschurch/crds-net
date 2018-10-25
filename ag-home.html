@@ -42,7 +42,6 @@ paginate:
 
 {% include header.html %}
 
-
 <section class="push-bottom" style="background-color: #c5c5c5;">
   <div class="container">
     <div class="row soft-half">
@@ -278,18 +277,20 @@ paginate:
             {% assign above_the_fold = page.home_collection.docs | slice: 3, 4 %}
 
             {% for article in above_the_fold %}
+            {% assign author = article.author | get_doc %}
+            {% assign category = article.category | get_doc %}
             <div class="card carousel-cell card-2x">
               <a class="relative" href="{{ article.url | media_url }}">
                 {% include media/_media-label.html source=article %}
                 <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
               </a>
               <div class="card-block hard soft-quarter-top">
-                <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ article.category.title.url }}">{{ article.category.title }}</a>
+                <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url | media_url }}">{{ category.title }}</a>
                 <h3 class="component-header flush">
                   <a href="{{ article.url | media_url }}">{{ article.title }}</a>
                 </h3>
                 <p class="card-text soft-quarter-top">
-                  <a class="text-gray-light font-size-smaller" href="{{ article.author.full_name.url }}">{{ article.author.full_name }}</a>
+                  <a class="text-gray-light font-size-smaller" href="{{ author.url | media_url }}">{{ author.full_name }}</a>
                 </p>
               </div>
             </div>
@@ -347,4 +348,14 @@ paginate:
     </div>
   </div>
 </section>
+
+<script>
+  window.env = {
+    gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}',
+    streamspotId: '{{ site.streamspotId }}',
+    streamspotKey: '{{ site.streamspotKey }}'
+  };
+</script>
+<script async type="text/javascript" src="{% asset views/live.js @path %}"></script>
+
 {% include footer.html %}

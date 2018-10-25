@@ -12,14 +12,20 @@
     {% if read_time > 0 %}
       <span class="font-size-smallest">{{ read_time }} min read</span>
     {% endif %}
-  {% else %}
-    <span class="font-size-smallest">{{ include.source.duration }}</span>
+  {% elsif content_type == "video" or content_type == "message" %}
+    {% if include.source.video_duration %}<span class="font-size-smallest">{{ include.source.video_duration }}</span>{% endif %}
+  {% elsif content_type == "song" %}
+    {% if include.source.audio_duration %}<span class="font-size-smallest">{{ include.source.audio_duration }}</span>{% endif %}
+  {% elsif content_type == "episode" %}
+    {% if include.source.audio_duration %}
+      <span class="font-size-smallest">{{ include.source.audio_duration }} min</span>
+    {% endif %}
   {% endif %}
 
   <svg class="icon" viewBox="0 0 256 256">
     {% if content_type == "article" %}
       <use xlink:href="/assets/svgs/icons.svg#media-article"></use>
-    {% elsif content_type == "video" %}
+    {% elsif content_type == "video" or content_type == "message" %}
       <use xlink:href="/assets/svgs/icons.svg#media-video"></use>
     {% elsif content_type == "song" %}
       <use xlink:href="/assets/svgs/icons.svg#media-music"></use>
