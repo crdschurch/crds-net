@@ -143,18 +143,20 @@ paginate:
             {% assign above_the_fold = page.home_collection.docs | slice: 0, 2 %}
 
             {% for article in above_the_fold %}
+              {% assign author = article.author | get_doc %}
+              {% assign category = article.category | get_doc %}
             <div class="card carousel-cell card-2x">
               <a class="relative" href="{{ article.url | media_url }}">
                 {% include media/_media-label.html source=article %}
                 <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
               </a>
               <div class="card-block hard soft-quarter-top">
-                <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ article.category.title.url }}">{{ article.category.title }}</a>
+                <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url | media_url }}">{{ category.title }}</a>
                 <h3 class="component-header flush">
                   <a href="{{ article.url | media_url }}">{{ article.title }}</a>
                 </h3>
                 <p class="card-text soft-quarter-top">
-                  <a class="text-gray-light font-size-smaller" href="{{ article.author.full_name.url }}">{{ article.author.full_name }}</a>
+                  <a class="text-gray-light font-size-smaller" href="{{ author.url | media_url }}">{{ author.full_name }}</a>
                 </p>
               </div>
             </div>
@@ -175,7 +177,7 @@ paginate:
             {% for featured in page.perspectives.docs %}
               {% include media/_media-object-list.html media_type="perspective" %}
             {% endfor %}
-            <a class="font-size-small" href="/perspectives">see all</a>
+            <a class="font-size-small" href="{{ '/perspectives' | media_url }}">see all</a>
           </div>
         {% endif %}
       </div>
