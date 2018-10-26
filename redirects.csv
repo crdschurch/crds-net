@@ -8,7 +8,7 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /proxy/gateway/*,${env:CRDS_GATEWAY_ENDPOINT}/:splat,200!
 /give,${env:PUSHPAY_GIVE_ENDPOINT},301
 /givinghistory,/me/giving,301
-/*,${env:CRDS_MAESTRO_CLIENT_ENDPOINT}/:splat,200,
+/*,${env:CRDS_MAESTRO_CLIENT_ENDPOINT}/:splat,200
 /podcasts/ikr/episode-0-the-one-about-us-and-text-abbreviations/,${env:CRDS_APP_CLIENT_ENDPOINT}/podcasts/ikr/the-one-about-us-and-text-abbreviations,
 /podcasts/too-long-didnt-read/episode-1-ehud-and-the-fat-king/,${env:CRDS_APP_CLIENT_ENDPOINT}/podcasts/too-long-didnt-read/ehud-and-the-fat-king,
 /podcast/podcasts/,${env:CRDS_APP_CLIENT_ENDPOINT}/podcasts,
