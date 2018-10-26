@@ -36,8 +36,8 @@ paginate:
     sort: published_at desc
   podcasts:
     per: 6
+    offset: 1
     limit: 1
-    sort: published_at desc
 ---
 
 {% include header.html %}
@@ -235,7 +235,6 @@ paginate:
          </div>
        </div>
      </div>
-   </div>
   </div>
 </section>
 
@@ -307,35 +306,82 @@ paginate:
           </div>
         </div>
       </div>
-      <div class="col-sm-12 col-md-4">
+      <!--<div class="col-sm-12 col-md-4">
         <div class="row">
           <div class="col-sm-12">
             <hr class="push-half-bottom">
             <h2 class="flush-top font-size-base text-gray-light" style="">recent podcast episodes</h2>
           </div>
         </div>
-          <div class="push-ends soft-bottom">
-            {% assign home_episodes = page.episodes.docs %}
+        <div class="push-ends soft-bottom">
+          {% assign home_episodes = page.episodes.docs %}
 
-            {% for episodes in home_episodes %}
+          {% for episodes in home_episodes %}
 
-            <div class="media">
-              <div class="media-body">
-                <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ episodes.url | media_url}}">
-                  Episode {{ episodes.episode_number }}: {{ episodes.title }}</a>
-                </h5>
-                <div class="soft-quarter-top font-size-smaller flush-bottom">
-                  <p class="episode-description">{{ episodes.description | markdownify | strip_html | truncatewords: 15 }}</p>
-                </div>
+          <div class="media">
+            <div class="media-body">
+              <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ episodes.url | media_url}}">
+                Episode {{ episodes.episode_number }}: {{ episodes.title }}</a>
+              </h5>
+              <div class="soft-quarter-top font-size-smaller flush-bottom">
+                <p class="episode-description">{{ episodes.description | markdownify | strip_html | truncatewords: 15 }}</p>
               </div>
-              <a href="{{ episodes.url | media_url }}" class="soft-quarter-left">
-                <img src="{{ episodes.podcast.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img>
-              </a>
             </div>
-            <hr>
-            {% endfor %}
+            <a href="{{ episodes.url | media_url }}" class="soft-quarter-left">
+              <img src="{{ episodes.podcast.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img>
+            </a>
           </div>
+          <hr>
+          {% endfor %}
+        </div>
+      </div>-->
 
+      <div class="col-sm-12 col-md-4">
+        <div class="row">
+          <div class="col-sm-12">
+            <hr class="push-half-bottom">
+            <h2 class="flush-top font-size-base text-gray-light" style="">our podcasts</h2>
+          </div>
+        </div>
+        <div class="push-ends soft-bottom">
+          {% for podcasts in page.podcasts.offset %}
+          <div class="media featured">
+            <div class="media-body">
+              <h5 class="component-header flush-ends">
+                <a href="{{ podcasts.url | media_url }}">{{ podcasts.title }}</a>
+              </h5>
+              <div class="soft-quarter-top font-size-smaller flush-bottom">
+                {{ podcasts.description | markdownify | strip_html | truncatewords: 15 }}
+              </div>
+              <p class="font-size-smaller text-gray-light">{% include media/_count.html key="podcast.title" subject=featured.title collection=site.episodes label="episode" %}</p>
+            </div>
+            <a href="{{ podcasts.url | media_url }}" class="push-half-bottom">
+              <img class="media-img" src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
+            </a>
+          </div>
+          <hr>
+          {% endfor %}
+
+          {% assign home_podcasts = page.podcasts.docs | slice: 2, 6 %}
+          {% for podcasts in home_podcasts %}
+          <div class="media">
+            <div class="media-body">
+              <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ podcasts.url | media_url }}">
+                {{ podcasts.title }}</a>
+              </h5>
+              <div class="soft-quarter-top font-size-smaller flush-bottom">
+                <p class="podcasts-description">{{ podcasts.description | markdownify | strip_html | truncatewords: 15 }}</p>
+              </div>
+            </div>
+            <a href="{{ podcasts.url | media_url }}" class="soft-quarter-left">
+              <img src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img>
+            </a>
+          </div>
+          <hr>
+          {% endfor %}
+
+        </div>
+      </div>
 
     </div>
   </div>
