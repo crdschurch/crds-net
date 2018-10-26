@@ -13,6 +13,7 @@ describe("Checks latest message is correct on Home page", function () {
         cy.get('[data-automation-id="last-message-card"] > a').then(($messageImage) => {
             expect($messageImage).to.have.attr('href').contains(content.latestMessage.slug);
             expect($messageImage.find('#lastMessageImg > img')).to.have.attr('src').contains(content.latestMessage.imageFileName);
+            expect($messageImage.find('#lastMessageImg > img')).to.have.attr('srcset')
         })
 
         cy.get('[data-automation-id="last-message-card"] > div > a').then(($messageTitle) => {

@@ -25,7 +25,7 @@ describe("Checks all series information is correct on Homepage", function () {
         cy.get('[data-automation-id="series-image"]').then(($imageBlock)=> {
             expect($imageBlock).to.be.visible;
             expect($imageBlock).to.have.attr('src').contains(`${content.currentSeries.imageFileName}`);
-            expect($imageBlock).to.have.attr('srcset'); //will tell if link is broken
+            expect($imageBlock).to.have.attr('srcset'); //If fails, image was not found
         })
     })
 
@@ -45,6 +45,7 @@ describe("Checks all series information is correct on Homepage", function () {
 
         cy.get('[data-automation-id="jumbotron-series-image"]').then(($seriesImage) => {
             expect($seriesImage).to.have.attr('src').contains(`${content.currentSeries.imageFileName}`);
+            expect($seriesImage).to.have.attr('srcset'); //If fails, image was not found
         })
     })
 
