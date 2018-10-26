@@ -27,9 +27,13 @@ describe("Checks all series information is correct on Live", function () {
         })
     })
 
-    it('Checks current series trailer button link', function () {
+    it('Checks current series trailer link and modal source', function () {
         cy.get('[data-automation-id="series-youtube"]').then(($trailerButton) => {
             expect($trailerButton).to.have.attr('href', content.currentSeries.youtube_url);
+        })
+
+        cy.get('#modal-video-src').then(($youtubeModal) => {
+            expect($youtubeModal).to.have.attr('data-src', content.currentSeries.youtube_url);
         })
     })
 })

@@ -4,6 +4,7 @@
 */
 class ContentfulApi {
     currentSeries = {};
+    latestMessage = {};
 
     retrieveLocations() {
         cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=location&select=fields.name,fields.slug`)
@@ -20,8 +21,20 @@ class ContentfulApi {
                 const assetList = rawResponse.includes.Asset;
 
                 this._storeCurrentSeries(seriesList);
-                this._storeImageData(this.currentSeries.imageId, assetList);
+                this._storeImageData(this.currentSeries.imageId, 'currentSeries', assetList);
             });
+    }
+
+    retrieveLatestMessage() {
+        cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=message&select=fields.title,fields.slug,fields.published_at,fields.image,fields.description&include=1&order=-fields.published_at`)
+            .then((response) => {
+                const rawResponse = JSON.parse(response.body);
+                const messageList = rawResponse.items;
+                const assetList = rawResponse.includes.Asset;
+
+                this._storeLatestMessage(messageList[0]);
+                this._storeImageData(this.latestMessage.imageId, 'latestMessage', assetList);
+            })
     }
 
     _storeCurrentSeries(seriesListDescending) {
@@ -39,12 +52,20 @@ class ContentfulApi {
         this.currentSeries.youtube_url = rawCurSeries.fields.youtube_url;
     }
 
-    _storeImageData(imageId, assetList) {
+    _storeLatestMessage(firstMessage){
+        this.latestMessage.title = firstMessage.fields.title;
+        this.latestMessage.slug = firstMessage.fields.slug;
+        this.latestMessage.published_at = firstMessage.fields.published_at;
+        this.latestMessage.imageId = firstMessage.fields.image.sys.id;
+        this.latestMessage.description = firstMessage.fields.description;
+    }
+
+    _storeImageData(imageId, targetObjectName, assetList) {
         const imageAsset = assetList.find(img => {
             return img.sys.id === imageId;
         })
 
-        this.currentSeries.imageFileName = imageAsset.fields.file.fileName;
+        this[targetObjectName].imageFileName = imageAsset.fields.file.fileName;
     }
 }
 
