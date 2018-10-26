@@ -1,4 +1,5 @@
 {
   "projectId": "dnbm5t",
-  "baseUrl": "https://int.crossroads.net"
+  "baseUrl": "http://127.0.0.1:4000/",
+  "numTestsKeptInMemory": 0
 }

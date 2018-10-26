@@ -165,17 +165,17 @@ meta_description: Crossroads Live
   <div class="container">
     <div class="card">
       <div class="card-img-caption">
-        <img alt="Current Series Image" src="{{ current_series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"  data-optimize-img>
+        <img alt="Current Series Image" data-automation-id="series-image" src="{{ current_series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"  data-optimize-img>
         <div class="img-caption img-caption--left">Current Series</div>
       </div>
       <div class="row push-top soft-half-sides soft-ends">
         <div class="col-md-6 push-bottom">
-          <h3 class="flush-top">{{ current_series.title }}</h3>
-          <h5 class="card-subtitle">{{ current_series.starts_at | date: "%m.%d.%Y" }} - {{ current_series.ends_at | date: "%m.%d.%Y"}}</h5>
-          <div class="card-text">{{ current_series.description | markdownify }}</div>
+          <h3 class="flush-top" data-automation-id="series-title">{{ current_series.title }}</h3>
+          <h5 class="card-subtitle" data-automation-id="series-dates">{{ current_series.starts_at | date: "%m.%d.%Y" }} - {{ current_series.ends_at | date: "%m.%d.%Y"}}</h5>
+          <div class="card-text" data-automation-id="series-description">{{ current_series.description | markdownify }}</div>
           {% if current_series.youtube_url %}
           <div class="push-top">
-            <a href="{{ current_series.youtube_url }}" class="btn btn-primary" data-toggle="modal" data-target="#trailer-video-modal">
+            <a href="{{ current_series.youtube_url }}" class="btn btn-primary" data-toggle="modal" data-target="#trailer-video-modal" data-automation-id="series-youtube">
             Watch Trailer </a>
           </div>
           {% endif %}
