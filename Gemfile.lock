@@ -48,6 +48,15 @@ GIT
       httparty
       jekyll
 
+GIT
+  remote: https://github.com/crdschurch/netlify-redirector.git
+  revision: 8869f37bf026701e04f5a56f2be994d0c5efc36a
+  specs:
+    netlify-redirector (0.0.1)
+      activesupport
+      colorize
+      rake
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -76,6 +85,7 @@ GEM
       sass (>= 3.3.4)
     coderay (1.1.2)
     colorator (1.1.0)
+    colorize (0.8.1)
     concurrent-ruby (1.0.5)
     contentful (2.9.4)
       http (> 0.8, < 3.0)
@@ -191,6 +201,7 @@ GEM
       method_source (~> 0.9.0)
     public_suffix (3.0.3)
     rack (2.0.5)
+    rake (12.3.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -229,7 +240,6 @@ GEM
       unf_ext
     unf_ext (0.0.7.5)
     unf_ext (0.0.7.5-x64-mingw32)
-    wdm (0.1.1)
 
 PLATFORMS
   ruby
@@ -245,9 +255,9 @@ DEPENDENCIES
   jekyll-contentful!
   jekyll-crds (~> 0.0.1)!
   jekyll-placeholders (~> 0.0.1)!
+  netlify-redirector!
   rspec
   tzinfo-data
-  wdm (~> 0.1.0)
 
 BUNDLED WITH
    1.16.6

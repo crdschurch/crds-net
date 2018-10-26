@@ -21,6 +21,7 @@ include:
   - _redirects
 
 exclude:
+  - bin
   - lib
   - Gemfile
   - Gemfile.lock
