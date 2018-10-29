@@ -5,7 +5,7 @@ describe("Checks latest message is correct on Home page", function () {
     let content;
     before(function () {
         content = new ContentfulApi();
-        content.retrieveLatestMessage();
+        content.retrieveMessages();
         cy.visit('');
     })
 

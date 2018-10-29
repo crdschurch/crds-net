@@ -4,7 +4,7 @@
 */
 class ContentfulApi {
     currentSeries = {};
-    latestMessage = {};
+    messages = []; //shortcut: latestMessage property = messages[0]
 
     retrieveLocations() {
         cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=location&select=fields.name,fields.slug`)
@@ -16,57 +16,73 @@ class ContentfulApi {
     retrieveCurrentSeries() {
         cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=series&select=fields.title,fields.slug,fields.starts_at,fields.ends_at,fields.youtube_url,fields.image,fields.description&order=-fields.starts_at`)
             .then((response) => {
-                const rawResponse = JSON.parse(response.body);
-                const seriesList = rawResponse.items;
-                const assetList = rawResponse.includes.Asset;
+                const jsonResponse = JSON.parse(response.body);
+                const seriesList = jsonResponse.items;
+                const assetList = jsonResponse.includes.Asset;
 
-                this._storeCurrentSeries(seriesList);
-                this._storeImageData(this.currentSeries.imageId, 'currentSeries', assetList);
+                this._storeCurrentSeries(seriesList, assetList);
             });
     }
 
-    retrieveLatestMessage() {
-        cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=message&select=fields.title,fields.slug,fields.published_at,fields.image,fields.description&include=1&order=-fields.published_at`)
+    retrieveMessages() {
+        cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=message&select=fields.title,fields.slug,fields.published_at,fields.image,fields.description&order=-fields.published_at`)
             .then((response) => {
-                const rawResponse = JSON.parse(response.body);
-                const messageList = rawResponse.items;
-                const assetList = rawResponse.includes.Asset;
+                const jsonResponse = JSON.parse(response.body);
+                const messageList = jsonResponse.items;
+                const assetList = jsonResponse.includes.Asset;
 
-                this._storeLatestMessage(messageList[0]);
-                this._storeImageData(this.latestMessage.imageId, 'latestMessage', assetList);
+                this._storeRecentMessages(messageList, assetList, 5);
+                this.latestMessage = this.messages[0];
             })
     }
 
-    _storeCurrentSeries(seriesListDescending) {
+    _storeCurrentSeries(seriesListDescending, assetList) {
         //Get series most recently started
         const rawCurSeries = seriesListDescending.find(s => {
             return (Date.now() > new Date(s.fields.starts_at));
         })
 
-        this.currentSeries.title = rawCurSeries.fields.title;
-        this.currentSeries.slug = rawCurSeries.fields.slug;
-        this.currentSeries.imageId = rawCurSeries.fields.image.sys.id;
+        this._storeStandardProperties(rawCurSeries, assetList, this.currentSeries);
         this.currentSeries.starts_at = rawCurSeries.fields.starts_at;
         this.currentSeries.ends_at = rawCurSeries.fields.ends_at;
-        this.currentSeries.description = rawCurSeries.fields.description;
         this.currentSeries.youtube_url = rawCurSeries.fields.youtube_url;
     }
 
-    _storeLatestMessage(firstMessage){
-        this.latestMessage.title = firstMessage.fields.title;
-        this.latestMessage.slug = firstMessage.fields.slug;
-        this.latestMessage.published_at = firstMessage.fields.published_at;
-        this.latestMessage.imageId = firstMessage.fields.image.sys.id;
-        this.latestMessage.description = firstMessage.fields.description;
+    _storeRecentMessages(messageListDescending, assetList, numToStore) {
+        numToStore = messageListDescending.length < numToStore ? messageListDescending.length : numToStore;
+
+        for(let i = 0; i < numToStore; i++){
+            this.messages[i] = {};
+            this._storeStandardProperties(messageListDescending[i], assetList, this.messages[i]);
+            this.messages[i].published_at = messageListDescending[i].fields.published_at;
+        }
     }
 
-    _storeImageData(imageId, targetObjectName, assetList) {
+    //Stores title, slug, description and imageFileName (if content has image)
+    _storeStandardProperties(jsonObject, assetList, saveObject){
+        saveObject.title = jsonObject.fields.title;
+        saveObject.slug = jsonObject.fields.slug;
+        saveObject.description = jsonObject.fields.description;
+
+        if(jsonObject.fields.image){
+            this._storeImageData(jsonObject.fields.image.sys.id, assetList, saveObject);
+        }
+    }
+
+    _storeImageData(imageId, assetList, saveObject) {
         const imageAsset = assetList.find(img => {
             return img.sys.id === imageId;
         })
 
-        this[targetObjectName].imageFileName = imageAsset.fields.file.fileName;
+        saveObject.imageFileName = imageAsset.fields.file.fileName;
     }
+
+    //TODO need a way to remove the markdown from the descriptions - is there already a library installed that can do that?
 }
+
+//Do this in future pr
+//TODO what if have Message/Series class? retrieveMessages creates an instance of a Message and returns that object - which is populated async like currently
+// it should probably parse the JS
+// this would let ContentfulAPI be the getter, and the structural understanding of Messages/Series could be handled elsewhere
 
 export { ContentfulApi };

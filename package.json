@@ -9,7 +9,8 @@
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:run": "cypress run --record --key f9895842-b05f-494c-9010-b87b26527851",
-    "cypress:runlocal": "cypress run"
+    "cypress:runlocal": "cypress run",
+    "cypress:runexperimental": "cypress run --spec .\\cypress\\integration\\experimental_spec.js"
   },
   "repository": {
     "type": "git",

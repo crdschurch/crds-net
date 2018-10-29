@@ -252,18 +252,18 @@ meta_description: Crossroads Live
     <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
       <div class="feature-cards card-deck--expanded-layout">
         {% assign recent_messages = site.messages | sort: 'date' | reverse | slice: 0,4 %} {% for message in recent_messages %}
-        <div class="card">
-          <a href="/series/{{ message.series.slug }}/{{ message.slug }}" class="block">
+        <div class="card" data-automation-id="recent-message-card">
+          <a href="/series/{{ message.series.slug }}/{{ message.slug }}" class="block" data-automation-id="recent-message-image-link">
             <img src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" sizes="{{ site.image_sizes.cards_4x }}"
-              alt="{{ message.title }}" data-optimize-img>
+              alt="{{ message.title }}" data-automation-id="recent-message-image"  data-optimize-img>
           </a>
           <div class="card-block">
             <a href="/series/{{ message.series.slug }}/{{ message.slug }}" class="block">
               {% assign series_object = site.series | where: "slug" , message.series_slug | first %}
               <h4 class="card-title card-title--overlap"> {{ series_object.title | upcase }} </h4>
             </a>
-            <h6>{{ message.title }}</h6>
-            <div class="card-text">{{ message.description | markdownify }}</div>
+            <h6  data-automation-id="recent-message-title">{{ message.title }}</h6>
+            <div class="card-text"  data-automation-id="recent-message-description">{{ message.description | markdownify }}</div>
           </div>
         </div>
         {% endfor %}

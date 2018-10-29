@@ -10,8 +10,7 @@ describe("Checks all series information is correct on Homepage", function () {
     })
 
     it('Checks main current series: title, dates, image and description', function () {
-        cy.get('.current-series').as('currentSeriesBlock');//.should('be.visible');
-
+        cy.get('.current-series').as('currentSeriesBlock');
         const startDate = moment(content.currentSeries.starts_at);
         const endDate = moment(content.currentSeries.ends_at);
 
@@ -21,7 +20,6 @@ describe("Checks all series information is correct on Homepage", function () {
             expect($textBlock.find('[data-automation-id="series-description"] > p')).to.be.visible.and.have.text(content.currentSeries.description);
         })
 
-        //cy.get('[data-automation-id="series-image"]').should('have.attr("src").contains', content.currentSeries.imageFileName);
         cy.get('[data-automation-id="series-image"]').then(($imageBlock)=> {
             expect($imageBlock).to.be.visible;
             expect($imageBlock).to.have.attr('src').contains(`${content.currentSeries.imageFileName}`);
