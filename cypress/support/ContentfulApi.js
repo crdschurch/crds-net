@@ -80,9 +80,4 @@ class ContentfulApi {
     //TODO need a way to remove the markdown from the descriptions - is there already a library installed that can do that?
 }
 
-//Do this in future pr
-//TODO what if have Message/Series class? retrieveMessages creates an instance of a Message and returns that object - which is populated async like currently
-// it should probably parse the JS
-// this would let ContentfulAPI be the getter, and the structural understanding of Messages/Series could be handled elsewhere
-
 export { ContentfulApi };
