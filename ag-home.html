@@ -94,6 +94,10 @@ paginate:
             <a href="{{ messages.url }}" class="btn btn-primary btn-sm push-half-top">Watch now</a>
           </div>
           <a href="{{ messages.url }}" class="push-half-bottom">
+            <div style="display: -webkit-box; color: white; position: absolute; top: 13%; left: 36%;"><svg class="icon icon-5" viewBox="0 0 256 256">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#play-thin"></use>
+            </svg>
+            </div>
             <img class="media-img" src="{{ messages.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
           </a>
         </div>
@@ -184,7 +188,7 @@ paginate:
   </div>
 </section>
 
-
+<!-- Topics -->
 <section class="soft-half push-bottom">
   <div class="container">
     <hr class="push-half-bottom">
@@ -222,7 +226,7 @@ paginate:
               <div class="col-sm-3 col-sm-offset-3 text-right soft-sides">
                 <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-light">Watch a service</span><br><span class="text-white">online</span></h4>
                 <span class="font-size-small">Take a look at last week’s service. Go ahead and get some coffee while we’re firing it up.</span><br>
-                <a href="" class="btn btn-secondary">Watch the latest service</a>
+                <a class="btn btn-secondary" data-media-snippet="get_current_series_url:attr[src]">Watch the latest service</a>
               </div>
               <div class="col-sm-3 text-left soft-sides border-left">
                 <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-light">Watch a service</span><br><span class="text-white">in person</span></h4>
@@ -238,19 +242,7 @@ paginate:
   </div>
 </section>
 
-<!-- Happenings -->
-<section class="container">
-  <h3 id="happening-filter-label" class="collection-header clearfix">happening at crossroads</h3>
-  <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-filterable data-filter-label="Churchwide" data-filter-parent="#happening-filter-label" data-filter-reset-label="Churchwide">
-    <div id="section-what-s-happening" class="feature-cards">
-      {% assign date_sorted_promos = site.promos | sort: "date" | reverse %}
-      {% for item in date_sorted_promos %}
-        {% include _promo-card.html %}
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
+<!-- More Content -->
 <section>
   <div class="container">
 
@@ -387,6 +379,20 @@ paginate:
   </div>
 </section>
 
+<!-- Happenings -->
+<section class="container">
+  <h3 id="happening-filter-label" class="collection-header clearfix">happening at crossroads</h3>
+  <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-filterable data-filter-label="Churchwide" data-filter-parent="#happening-filter-label" data-filter-reset-label="Churchwide">
+    <div id="section-what-s-happening" class="feature-cards">
+      {% assign date_sorted_promos = site.promos | sort: "date" | reverse %}
+      {% for item in date_sorted_promos %}
+        {% include _promo-card.html %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Community Jumbotron -->
 <section>
   <div class="jumbotron jumbotron-xl push-top" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-groups-header3.jpg');">
     <div class="container-fluid">
