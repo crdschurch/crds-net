@@ -1,11 +1,9 @@
 document.addEventListener("deferred-js-ready", function() {
-  console.log('a');
   familyMeetingStreamInit();
 });
 
 // if app-deferred loads first
 if (window.deferredJSReady) {
-  console.log('b');
   familyMeetingStreamInit();
 }
 
