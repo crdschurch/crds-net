@@ -356,6 +356,7 @@ meta_description: Crossroads Live
     </div>
   </section>
 </div>
+{% include footer.html %}
 <script>
   window.env = {
     gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}',
@@ -364,4 +365,3 @@ meta_description: Crossroads Live
   };
 </script>
 <script async type="text/javascript" src="{% asset views/live.js @path %}"></script>
-{% include footer.html %}
