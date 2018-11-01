@@ -1,11 +1,7 @@
-document.addEventListener("deferred-js-ready", function() {
-  console.log('a');
-  familyMeetingStreamInit();
-});
+document.addEventListener("deferred-js-ready", familyMeetingStreamInit);
 
 // if app-deferred loads first
 if (window.deferredJSReady) {
-  console.log('b');
   familyMeetingStreamInit();
 }
 
@@ -13,7 +9,7 @@ function familyMeetingStreamInit() {
   var passwordModule = {
     password: "familytime",
     errorCount: 0,
-    container: $(".container"),
+    container: $(".container").first(),
     inputWrapper: $(".inputWrapper"),
     inputBox: $(".passwordInput"),
     submitButton: $(".passwordSubmit"),
