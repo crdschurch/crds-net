@@ -21,11 +21,11 @@ permalink: /family-meeting-stream/
   var passwordModule = {
     password: "familytime",
     errorCount: 0,
-    container: $(".container"),
-    inputWrapper: $(".inputWrapper"),
-    inputBox: $(".passwordInput"),
-    submitButton: $(".passwordSubmit"),
-    errorBox: $(".passwordError"),
+    container: document.querySelector('.container'),
+    inputWrapper: document.querySelector('.inputWrapper'),
+    inputBox: document.querySelector('.passwordInput'),
+    submitButton: document.querySelector('.passwordSubmit'),
+    errorBox: document.querySelector('.passwordError'),
     videoDiv: '<div class="embed-responsive embed-responsive-16by9"><iframe width="640" height="360" src="https://player2.streamspot.com/?playerId=f4c6e1c5" frameborder="0" allowfullscreen>',
       lockedOutDiv: "<h1>You have been locked out!" +
         "<p>Please try again later",
@@ -109,7 +109,7 @@ permalink: /family-meeting-stream/
         };
 
         //init on load
-        $(function() {
+        (function() {
           passwordModule.init();
         })
         // ]]></script>
