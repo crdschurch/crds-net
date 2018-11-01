@@ -1,6 +1,6 @@
 $(document).ready(function(event) {
   $('[data-smooth-scroll-to]').click(function(event) {
-    event.preventDefault();    
+    event.preventDefault();
     var targetId = $(this).data('smooth-scroll-to');
     var target = document.getElementById(targetId)
     if (target) {

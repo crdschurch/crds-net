@@ -1,0 +1,23 @@
+.group-content-active {
+  background-color: #b9b9b9;
+  padding: 4px 0px 5px 10px;
+  border-radius: 50%;
+  display: inline-flex;
+  font-size: 12px;
+  width: 28px;
+  font-weight: bold;
+}
+.group-content-inactive {
+  background-color: #e7e7e7;
+  padding: 4px 0px 5px 10px;
+  border-radius: 50%;
+  display: inline-flex;
+  font-size: 12px;
+  width: 28px;
+  font-weight: bold;
+  color: #8a8a8a;
+}
+
+.allgroupcontent > .grid-item {
+  min-width: 173px;
+}

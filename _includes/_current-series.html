@@ -1,14 +1,14 @@
 <div class="card current-series">
   <div>
-    <img src="{{ current_series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" data-optimize-img>
+    <img data-automation-id="series-image" src="{{ current_series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" data-optimize-img>
   </div>
   <div class="container">
     <div class="row">
       <div class="card-block text-center card-caption">
-        <h3>{{ current_series.title }}</h3>
-        <h5 class="card-subtitle">{{ current_series.starts_at | date: "%m.%d.%Y" }} — {{ current_series.ends_at | date: "%m.%d.%Y" }}</h5>
+        <h3 data-automation-id="series-title">{{ current_series.title }}</h3>
+        <h5 class="card-subtitle" data-automation-id="series-dates">{{ current_series.starts_at | date: "%m.%d.%Y" }} — {{ current_series.ends_at | date: "%m.%d.%Y" }}</h5>
         <div class="card-text">
-          <div class="font-size-base">{{ current_series.description | markdownify }}</div>
+          <div class="font-size-base" data-automation-id="series-description">{{ current_series.description | markdownify }}</div>
         </div>
       </div>
     </div>

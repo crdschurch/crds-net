@@ -1,0 +1,38 @@
+---
+layout: default
+---
+{% include header.html %}
+<div class="container push-top">
+  <div class="col-xs-12">
+    <h1 class="text-lowercase page-header">Oops</h1>
+    <h2 class="tagline push-bottom">We're sorry. This page doesn't seem to exist.</h2>
+  </div>
+  <div class="col-sm-6">
+    <p>Please use the navigation above or search here.</p>
+    <form role="form" action="{{ site.search_domain }}/search">
+      <div class="form-group">
+        <div class="input-group input-group-lg">
+          <input class="form-control input-lg" placeholder="Search..." type="search" name="q">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-blue">
+              <svg class="icon icon-1" viewbox="0 0 256 256">
+                <use xlink:href="/assets/svgs/icons.svg#search"></use>
+              </svg>
+            </button>
+          </span>
+        </div>
+      </div>
+    </form>
+    <p class="push-top">
+      <strong>Still need help?</strong>
+      <br />Browse our
+      <a href="help">help section</a>,
+      <a href='m&#97;&#105;lto&#58;websu&#112;po&#114;&#116;&#64;%&#54;3&#114;os&#37;73r&#111;%&#54;1ds%2E&#110;et'>email us</a> or give us a call at 513‑731‑7400.
+    </p>
+  </div>
+
+  <div class="col-sm-6 mobile-push-top">
+    <img class="img-responsive imgix-fluid full-width" title="404 Page Not Found Crushed Coffee Cup" src="//crossroads-media.imgix.net/images/coffee-cup-crushed.jpg?auto=compress,format" alt="Page not found!">
+  </div>
+</div>
+<div class="push-top">{% include footer.html %}</div>
