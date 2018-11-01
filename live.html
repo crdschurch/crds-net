@@ -1,11 +1,11 @@
---- 
-layout: default 
-title: Live 
-permalink: /live/ 
-meta_description: Crossroads Live 
---- 
-{% include header.html %} 
-{% assign latest_message = site.messages | reverse | first %} 
+---
+layout: default
+title: Live
+permalink: /live/
+meta_description: Crossroads Live
+---
+{% include header.html %}
+{% assign latest_message = site.messages | reverse | first %}
 {% assign current_series = site.series | reverse | first %}
 
 <div class="sticky-top" id="live-stream-countdown-bar">
@@ -76,7 +76,7 @@ meta_description: Crossroads Live
             <p>
               <a class="btn btn-lg btn-primary" ui-sref="livestream" href="/live/stream">Watch Now</a>
             </p>
-          </div>  
+          </div>
         </div>
       </div>
     </div>
@@ -105,8 +105,8 @@ meta_description: Crossroads Live
               <div>
                 <div class="img-size-7 img-border">
                   <a href="/connect">
-                    <img class="width-100" 
-                      src="//crds-cms-uploads.imgix.net/content/images/crossroads-anywhere-connect-map.jpg?auto=format,compress&h=10&w=10&fit=crop" 
+                    <img class="width-100"
+                      src="//crds-cms-uploads.imgix.net/content/images/crossroads-anywhere-connect-map.jpg?auto=format,compress&h=10&w=10&fit=crop"
                       alt="crossroads connect map"
                       data-optimize-img />
                   </a>
@@ -125,7 +125,7 @@ meta_description: Crossroads Live
                   <a href="/connect">
                     <img class="width-100" src="//crds-cms-uploads.imgix.net/content/images/crossroads-anywhere-connect-hi.jpg?auto=format,compress&h=10&w=10&fit=crop&facepad=5&fp-x=.25""
                       alt="crossroads connect profile"
-                      title="" 
+                      title=""
                       data-optimize-img />
                   </a>
                 </div>
@@ -142,7 +142,7 @@ meta_description: Crossroads Live
                 <div class="img-size-7 img-border">
                   <a href="/connect">
                     <img class="width-100" src="//crds-cms-uploads.imgix.net/content/images/crossroads-anywhere-connect-together.jpg?auto=format,compress&h=10&w=10&fit=crop&fp-x=1"
-                      alt="connect group watching crossroads service" 
+                      alt="connect group watching crossroads service"
                       title=""
                       data-optimize-img />
                   </a>
@@ -165,17 +165,17 @@ meta_description: Crossroads Live
   <div class="container">
     <div class="card">
       <div class="card-img-caption">
-        <img alt="Current Series Image" src="{{ current_series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"  data-optimize-img>
+        <img alt="Current Series Image" data-automation-id="series-image" src="{{ current_series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"  data-optimize-img>
         <div class="img-caption img-caption--left">Current Series</div>
       </div>
       <div class="row push-top soft-half-sides soft-ends">
         <div class="col-md-6 push-bottom">
-          <h3 class="flush-top">{{ current_series.title }}</h3>
-          <h5 class="card-subtitle">{{ current_series.starts_at | date: "%m.%d.%Y" }} - {{ current_series.ends_at | date: "%m.%d.%Y"}}</h5>
-          <div class="card-text">{{ current_series.description | markdownify }}</div>
+          <h3 class="flush-top" data-automation-id="series-title">{{ current_series.title }}</h3>
+          <h5 class="card-subtitle" data-automation-id="series-dates">{{ current_series.starts_at | date: "%m.%d.%Y" }} - {{ current_series.ends_at | date: "%m.%d.%Y"}}</h5>
+          <div class="card-text" data-automation-id="series-description">{{ current_series.description | markdownify }}</div>
           {% if current_series.youtube_url %}
           <div class="push-top">
-            <a href="{{ current_series.youtube_url }}" class="btn btn-primary" data-toggle="modal" data-target="#trailer-video-modal">
+            <a href="{{ current_series.youtube_url }}" class="btn btn-primary" data-toggle="modal" data-target="#trailer-video-modal" data-automation-id="series-youtube">
             Watch Trailer </a>
           </div>
           {% endif %}
@@ -331,15 +331,15 @@ meta_description: Crossroads Live
             </div>
             <figcaption>Amazon Fire Stick &amp; Alexa<br />
               <span class="font-family-base">
-                <a href="https://www.amazon.com/Crossroads-Church/dp/B07D83Z1JB">Amazon Fire App</a> 
+                <a href="https://www.amazon.com/Crossroads-Church/dp/B07D83Z1JB">Amazon Fire App</a>
                 </br>
                 <a href="https://www.amazon.com/dp/B07HRPW8L2?keywords=crossroads+anywhere&qid=1538139831&s=STRING%28skills-store-name%29&sr=1-2-catcorr&ref=sr_1_2">Alexa</a>
-              </span> 
+              </span>
             </figcaption>
           </figure>
 
         </section>
-                    
+
       </div>
     </div>
   </div>
@@ -356,6 +356,7 @@ meta_description: Crossroads Live
     </div>
   </section>
 </div>
+{% include footer.html %}
 <script>
   window.env = {
     gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}',
@@ -364,4 +365,3 @@ meta_description: Crossroads Live
   };
 </script>
 <script async type="text/javascript" src="{% asset views/live.js @path %}"></script>
-{% include footer.html %}

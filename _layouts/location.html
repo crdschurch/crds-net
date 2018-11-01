@@ -1,9 +1,9 @@
---- 
+---
 layout: default
 ---
 
 <!-- Pull only the promos that exist for the specific location if any -->
-{% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %} 
+{% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
 {% include header.html %}
 
 <!-- Jumbotron section -->
@@ -16,6 +16,10 @@ layout: default
       <br>{{ page.name | downcase }}</h1>
     <h2 class="title font-size-h1 text-white visible-xs">crossroads
       <br>{{ page.name | downcase }}</h2>
+      {% if location_happenings.size > 0 %}
+        </br>
+        <a href="javascript:void(0)" class="btn btn-primary" data-smooth-scroll-to="happenings">See what's happening at {{ page.name | downcase }}</a>
+      {% endif %}
   </div>
 </div>
 
@@ -46,7 +50,7 @@ layout: default
         <div class="row">
           <div class="col-sm-12">
             {% assign current_series = site.series | reverse | first %}
-            <a class="btn btn-primary" data-role="recent-series" href="/series/{{ current_series.slug }}">Check out our latest series</a>
+            <a class="btn btn-primary" data-automation-id="series-slug" data-role="recent-series" href="/series/{{ current_series.slug }}">Check out our latest series</a>
           </div>
           <div class="col-sm-12 push-top">
             {{ page.additional_info | markdownify }}
@@ -57,7 +61,7 @@ layout: default
       <div class="col-sm-offset-1 col-sm-5 mobile-push-top soft bg-gray">
         <p class="list-header">Stay in the know. Get the latest Crossroads updates.</p>
         <div class="form" data-role="hsform">
-          <!-- 
+          <!--
           [if lte IE 8]>
           <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
           <![endif] -->
@@ -109,7 +113,7 @@ layout: default
         <p class="card-text">{{ page.community_pastor_bio | markdownify }}</p>
       </div>
     </div>
-    {% endif %} 
+    {% endif %}
     {% if page.spotlight_text and page.spotlight_title and page.spotlight_image.url %}
     <div class="card col-sm-4">
       <img class="img-circle" src="{{ page.spotlight_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
@@ -124,11 +128,11 @@ layout: default
 
 <!-- Happenings -->
 {% if location_happenings.size > 0 %}
-<div class="container">
+<div class="container" id="happenings">
   <h3 id="happening-filter-label" class="collection-header clearfix"> happening at {{ page.name | downcase }}</h3>
   <div class="card-deck cards-4x">
     <div class="row">
-      {% for item in location_happenings %} 
+      {% for item in location_happenings %}
         {% include _promo-card.html %}
       {% endfor %}
     </div>
@@ -220,7 +224,7 @@ layout: default
       </div>
 
     </div>
-    {% endif %} 
+    {% endif %}
     {% if page.kids_club_hours %}
     <div class="row push-ends soft-bottom">
       <div class="col-sm-6 soft-sides">
@@ -240,7 +244,7 @@ layout: default
         </p>
       </div>
     </div>
-    {% endif %} 
+    {% endif %}
     {% if page.student_ministry_hours %}
     <div class="row push-ends soft-bottom">
       <div class="col-sm-push-6 col-sm-6 soft-sides">
@@ -286,7 +290,7 @@ layout: default
       </div>
       <div class="card">
         <a href="https://www.crossroads.net/groups" class="block">
-          <img alt="Get in a Group" class="card-img-top card-img-constrained" 
+          <img alt="Get in a Group" class="card-img-top card-img-constrained"
             src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-groups.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27"
             data-optimize-img>
         </a>
