@@ -43,14 +43,3 @@ function liveInit() {
     new CRDS.DataTracker();
   });
 }
-
-    $('div.modal-video').on('hidden.bs.modal', function (event) {
-      $('#modal-video-src').attr('src', '');
-    });
-  });
-  $(document).ready(function () {
-    new CRDS.Countdown();
-    new CRDS.CardCarousels();
-    new CRDS.DataTracker();
-  });
-}
