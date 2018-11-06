@@ -240,7 +240,6 @@ GEM
       unf_ext
     unf_ext (0.0.7.5)
     unf_ext (0.0.7.5-x64-mingw32)
-    wdm (0.1.1)
 
 PLATFORMS
   ruby
@@ -250,6 +249,7 @@ DEPENDENCIES
   activesupport
   crds-styles!
   guard-rspec
+  httparty
   jekyll (~> 3.7.4)
   jekyll-assets
   jekyll-cloudsearch!
@@ -259,7 +259,6 @@ DEPENDENCIES
   netlify-redirector!
   rspec
   tzinfo-data
-  wdm (~> 0.1.0)
 
 BUNDLED WITH
    1.16.6
