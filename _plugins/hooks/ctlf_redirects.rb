@@ -1,19 +1,15 @@
 require 'pry'
 
-Jekyll::Hooks.register(:site, :post_read) do |site|
-  # old redirects CSV
-  file_path = './redirects.csv'
+Jekyll::Hooks.register(:site, :post_render) do |site|
+  # read hardcoded redirects file & seperate into first line / rest of file
+  file_path = './hardcoded-redirects.csv'
   redirects_file = File.read(file_path)
-
-  # split file on \n and remove first line
   split_redirects = redirects_file.split("\n")
   first_line = split_redirects.shift
   first_line = first_line + "\n"
-
-  # add newlines and join back into string
   redirects_minus_first = split_redirects.join("\n")
 
-  # get all redirects from Contentful
+  # gather all redirects from Contentful
   ctfl_redirects = site.collections["redirects"].docs
 
   # create empty string to store redirects
@@ -31,6 +27,8 @@ Jekyll::Hooks.register(:site, :post_read) do |site|
     x += 1
   end
 
-  # write final file = first line from old file, new 
-  File.open('./tmp/redirects.csv', 'w+') { |f| f.write(first_line, parsed_ctfl_redirects, redirects_minus_first) }
+  # write new redirects file only if new redirects appear
+  current_file = File.read('./redirects.csv')
+  new_file = first_line + parsed_ctfl_redirects + redirects_minus_first
+  File.open('redirects.csv', 'w+') { |f| f.write(new_file) } unless new_file == current_file
 end
