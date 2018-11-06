@@ -1,4 +1,5 @@
 http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
+/test/,/testing/,302
 /undivided-training,https://undivided.netlify.com,301
 /people/*,https://${env:CRDS_PEOPLE_DOMAIN}/:splat,200!,"development"
 /map/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!,"development"

@@ -1,5 +1,3 @@
-require 'pry'
-
 Jekyll::Hooks.register(:site, :post_render) do |site|
   # read hardcoded redirects file & seperate into first line / rest of file
   file_path = './hardcoded-redirects.csv'
