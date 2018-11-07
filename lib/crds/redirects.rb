@@ -9,13 +9,14 @@ class Redirects
     @options = {
       query: {
         access_token: ENV['CONTENTFUL_ACCESS_TOKEN'],
-        content_type: 'redirects'
+        content_type: 'redirect'
       }
     }
   end
 
   def redirects
     JSON.parse(get_redirects).dig('items').collect do |item|
+      item['fields']['status'] = parse_status(item['fields']['status'])
       item.dig('fields').values
     end
   end
@@ -32,4 +33,7 @@ class Redirects
       self.class.get("/spaces/#{ENV['CONTENTFUL_SPACE_ID']}/environments/master/entries", @options)
     end
 
+    def parse_status(s)
+      s == 'permanent' ? s = 301 : s = 302
+    end
 end
