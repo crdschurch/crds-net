@@ -1,4 +1,5 @@
 require 'httparty'
+require 'colorize'
 require "csv"
 
 class Redirects
@@ -17,7 +18,7 @@ class Redirects
   def redirects
     JSON.parse(get_redirects).dig('items').collect do |item|
       item['fields']['status'] = parse_status(item['fields']['status'])
-      item.dig('fields').values
+      item.dig('fields').values 
     end
   end
 
@@ -25,6 +26,7 @@ class Redirects
     rows = CSV.read('./redirects.csv')
     rows.insert(1, *redirects)
     File.write('./redirects.csv', rows.map(&:to_csv).join)
+    puts "+ #{redirects.size} redirects from Contentful".colorize(:cyan)
   end
 
   private
