@@ -11,9 +11,10 @@
       # 5) site variable's image
       # Don't love it -- some pretty brittle checks based on the naming conventions of present day
       # method for getting the url for the <meta name="image" content="{{ meta_image }}"> tag in the head of a SSG html page
-      def self.get_meta_image_url(page_meta_image, page_image, page_bg_image, page_content, site_image)
+      def self.get_meta_image_url(page_meta, page_meta_image, page_image, page_bg_image, page_content, site_image)
         # returns the first image url in the array that has a value
         image_url = [
+          page_meta,
           page_meta_image,
           page_image,
           page_bg_image,
