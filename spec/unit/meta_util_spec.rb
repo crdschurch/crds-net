@@ -160,73 +160,73 @@ describe 'Html Meta Util' do
   end
 
 
-  it 'should return the page meta description' do
+  it 'should return the first item' do
     expect(
-      Utils::MetaUtil.get_meta_description(
-        'Page meta description',
-        'Page description',
-        'Site description'
-      )).to eq 'Page meta description'
+      Utils::MetaUtil.get_first_item_with_value(
+        'First Item',
+        'Second Item',
+        'Third Item'
+      )).to eq 'First Item'
   end
 
 
-  it 'should return the page description when meta description is nil' do
+  it 'should return the second item when the first item is nil' do
     expect(
-      Utils::MetaUtil.get_meta_description(
+      Utils::MetaUtil.get_first_item_with_value(
         nil,
-        'Page description',
-        'Site description'
-      )).to eq 'Page description'
+        'Second Item',
+        'Third Item'
+      )).to eq 'Second Item'
   end
 
 
-  it 'should return the page description when meta description is an empty string' do
+  it 'should return the second item when first item is an empty string' do
     expect(
-      Utils::MetaUtil.get_meta_description(
+      Utils::MetaUtil.get_first_item_with_value(
         '',
-        'Page description',
-        'Site description'
-      )).to eq 'Page description'
+        'Second Item',
+        'Third Item'
+      )).to eq 'Second Item'
   end
 
 
-  it 'should return the page description when meta description is white space' do
+  it 'should return the second item when the first item is white space' do
     expect(
-      Utils::MetaUtil.get_meta_description(
+      Utils::MetaUtil.get_first_item_with_value(
         "    \t\r\n    ",
-        'Page description',
-        'Site description'
-      )).to eq 'Page description'
+        'Second Item',
+        'Third Item'
+      )).to eq 'Second Item'
   end
 
 
-  it 'should return the site description when page description is nil' do
+  it 'should return the third item when the first two are nil' do
     expect(
-      Utils::MetaUtil.get_meta_description(
+      Utils::MetaUtil.get_first_item_with_value(
         nil,
         nil,
-        'Site description'
-      )).to eq 'Site description'
+        'Third Item'
+      )).to eq 'Third Item'
   end
 
 
-  it 'should return the site description when page description is an empty string' do
+  it 'should return the third item when first is nil and second is an empty string' do
     expect(
-      Utils::MetaUtil.get_meta_description(
+      Utils::MetaUtil.get_first_item_with_value(
         nil,
         '',
-        'Site description'
-      )).to eq 'Site description'
+        'Third Item'
+      )).to eq 'Third Item'
   end
 
 
-  it 'should return the site description when page description is white space' do
+  it 'should return the third item when first is nil and second is white space' do
     expect(
-      Utils::MetaUtil.get_meta_description(
+      Utils::MetaUtil.get_first_item_with_value(
         nil,
         "    \t\r\n    ",
-        'Site description'
-      )).to eq 'Site description'
+        'Third Item'
+      )).to eq 'Third Item'
   end
 
 
