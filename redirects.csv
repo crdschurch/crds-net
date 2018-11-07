@@ -1,4 +1,6 @@
 http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
+/fun/,/not-fun/,301
+/cool/,/coolest/,302
 /about,/about-us,302
 /contact,/contact-us,301
 /undivided-training,https://undivided.netlify.com,301

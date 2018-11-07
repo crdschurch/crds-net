@@ -13,10 +13,13 @@ describe 'Redirects' do
   end
 
   it 'should write rows to a csv after the first line' do
-    current = @csv
-    @redirects.to_csv!
-    future = CSV.read('./redirects.csv')
-    expect(current[0] == future[0]).to eq true
-    expect(current == future).to eq false
+    VCR.use_cassette 'contentful/redirects' do
+      current = @csv
+      @redirects.to_csv!
+      future = CSV.read('./redirects.csv')
+      expect(current[0] == future[0]).to eq true
+      expect(current == future).to eq false
+    end
+    
   end
 end

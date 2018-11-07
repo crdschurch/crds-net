@@ -4,6 +4,8 @@ gem "jekyll", "~> 3.7.4"
 gem 'activesupport'
 gem 'netlify-redirector', git: 'https://github.com/crdschurch/netlify-redirector.git'
 gem 'httparty'
+gem 'vcr'
+gem 'webmock'
 
 group :jekyll_plugins do
   gem 'jekyll-assets'
