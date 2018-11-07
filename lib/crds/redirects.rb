@@ -29,13 +29,13 @@ class Redirects
     puts "+ #{redirects.size} redirects from Contentful".colorize(:cyan)
   end
 
+  def parse_status(s)
+    s == 'permanent' ? s = 301 : s = 302
+  end
+
   private
 
     def get_redirects
       self.class.get("/spaces/#{ENV['CONTENTFUL_SPACE_ID']}/environments/master/entries", @options)
-    end
-
-    def parse_status(s)
-      s == 'permanent' ? s = 301 : s = 302
     end
 end
