@@ -89,6 +89,7 @@ imgix_params:
   placeholder_card: "auto=format,compress&w=12&h=9&fit=crop"
   placeholder_square: "auto=format,compress&w=10&h=10&fit=crop"
   placeholder_sixteen_nine: "auto=format,compress&w=16&h=9&fit=crop"
+  meta_image: "w=1200&h=630&fit=crop"
 
 image_sizes:
   cards_4x: "(min-width: 992px) 212.5px, (min-width: 768px) 345px, (min-width: 0px) 100vw"
