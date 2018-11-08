@@ -1,0 +1,521 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://cdn.contentful.com/spaces/p9oq1ve41d7r/environments/master/entries?access_token=813af7d0df1d660fdf5e71010997a4fe621848aa225fa3e6f4fad2b50e6cdce2&content_type=redirect
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature
+      Access-Control-Allow-Methods:
+      - GET,HEAD,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '86400'
+      Contentful-Api:
+      - cda_cached
+      X-Contentful-Region:
+      - us-east-1
+      X-Contentful-Request-Id:
+      - 2ea2f0f1dbc520f3095d72d63afd4bcb
+      X-Served-By:
+      - cache-mdw17363-MDW
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      Cache-Control:
+      - max-age=0
+      Content-Type:
+      - application/vnd.contentful.delivery.v1+json
+      Etag:
+      - W/"6d77aa1f4d43c4b7c70807e3f211bd87"
+      Server:
+      - Contentful
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '710'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 08 Nov 2018 19:30:21 GMT
+      Via:
+      - 1.1 varnish
+      Age:
+      - '262'
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "sys": {
+            "type": "Array"
+          },
+          "total": 5,
+          "skip": 0,
+          "limit": 100,
+          "items": [
+            {
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "p9oq1ve41d7r"
+                  }
+                },
+                "id": "1bnKipbDV02WUiwwuEGgec",
+                "type": "Entry",
+                "createdAt": "2018-11-07T15:22:11.116Z",
+                "updatedAt": "2018-11-08T19:25:44.688Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 2,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "redirect"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "from": "/fun/",
+                "to": "/not-fun/",
+                "status": "permanent"
+              }
+            },
+            {
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "p9oq1ve41d7r"
+                  }
+                },
+                "id": "3tYq9R8F28EAiYMuMGQOeK",
+                "type": "Entry",
+                "createdAt": "2018-11-08T18:54:07.086Z",
+                "updatedAt": "2018-11-08T18:56:56.172Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 2,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "redirect"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "from": "/not-fun",
+                "to": "/olga_test",
+                "status": "temporary"
+              }
+            },
+            {
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "p9oq1ve41d7r"
+                  }
+                },
+                "id": "4Km4prmwacI0MQss62WESg",
+                "type": "Entry",
+                "createdAt": "2018-11-06T20:54:25.926Z",
+                "updatedAt": "2018-11-08T18:50:24.573Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 5,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "redirect"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "from": "/cool/very-cool",
+                "to": "/coolest/or-not/or-it-is",
+                "status": "temporary"
+              }
+            },
+            {
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "p9oq1ve41d7r"
+                  }
+                },
+                "id": "7kONR3ojbGyKCs0q0mmgQe",
+                "type": "Entry",
+                "createdAt": "2018-11-08T18:36:33.474Z",
+                "updatedAt": "2018-11-08T18:36:33.474Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 1,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "redirect"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "from": "/redirect/*",
+                "to": "/whatever",
+                "status": "temporary"
+              }
+            },
+            {
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "p9oq1ve41d7r"
+                  }
+                },
+                "id": "5jxNjPBLwIwwksya6yQ0mC",
+                "type": "Entry",
+                "createdAt": "2018-11-08T18:22:00.032Z",
+                "updatedAt": "2018-11-08T18:34:28.110Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 4,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "redirect"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "from": "https://int.crossroads.net/jake",
+                "to": "https://google.com",
+                "status": "temporary"
+              }
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Thu, 08 Nov 2018 19:30:21 GMT
+- request:
+    method: get
+    uri: http://cdn.contentful.com/spaces/p9oq1ve41d7r/environments/master/entries?access_token=813af7d0df1d660fdf5e71010997a4fe621848aa225fa3e6f4fad2b50e6cdce2&content_type=redirect
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature
+      Access-Control-Allow-Methods:
+      - GET,HEAD,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '86400'
+      Contentful-Api:
+      - cda_cached
+      X-Contentful-Region:
+      - us-east-1
+      X-Contentful-Request-Id:
+      - 2ea2f0f1dbc520f3095d72d63afd4bcb
+      X-Served-By:
+      - cache-mdw17349-MDW
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      Cache-Control:
+      - max-age=0
+      Content-Type:
+      - application/vnd.contentful.delivery.v1+json
+      Etag:
+      - W/"6d77aa1f4d43c4b7c70807e3f211bd87"
+      Server:
+      - Contentful
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '710'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 08 Nov 2018 19:30:21 GMT
+      Via:
+      - 1.1 varnish
+      Age:
+      - '262'
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "sys": {
+            "type": "Array"
+          },
+          "total": 5,
+          "skip": 0,
+          "limit": 100,
+          "items": [
+            {
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "p9oq1ve41d7r"
+                  }
+                },
+                "id": "1bnKipbDV02WUiwwuEGgec",
+                "type": "Entry",
+                "createdAt": "2018-11-07T15:22:11.116Z",
+                "updatedAt": "2018-11-08T19:25:44.688Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 2,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "redirect"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "from": "/fun/",
+                "to": "/not-fun/",
+                "status": "permanent"
+              }
+            },
+            {
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "p9oq1ve41d7r"
+                  }
+                },
+                "id": "3tYq9R8F28EAiYMuMGQOeK",
+                "type": "Entry",
+                "createdAt": "2018-11-08T18:54:07.086Z",
+                "updatedAt": "2018-11-08T18:56:56.172Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 2,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "redirect"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "from": "/not-fun",
+                "to": "/olga_test",
+                "status": "temporary"
+              }
+            },
+            {
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "p9oq1ve41d7r"
+                  }
+                },
+                "id": "4Km4prmwacI0MQss62WESg",
+                "type": "Entry",
+                "createdAt": "2018-11-06T20:54:25.926Z",
+                "updatedAt": "2018-11-08T18:50:24.573Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 5,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "redirect"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "from": "/cool/very-cool",
+                "to": "/coolest/or-not/or-it-is",
+                "status": "temporary"
+              }
+            },
+            {
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "p9oq1ve41d7r"
+                  }
+                },
+                "id": "7kONR3ojbGyKCs0q0mmgQe",
+                "type": "Entry",
+                "createdAt": "2018-11-08T18:36:33.474Z",
+                "updatedAt": "2018-11-08T18:36:33.474Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 1,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "redirect"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "from": "/redirect/*",
+                "to": "/whatever",
+                "status": "temporary"
+              }
+            },
+            {
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "p9oq1ve41d7r"
+                  }
+                },
+                "id": "5jxNjPBLwIwwksya6yQ0mC",
+                "type": "Entry",
+                "createdAt": "2018-11-08T18:22:00.032Z",
+                "updatedAt": "2018-11-08T18:34:28.110Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 4,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "redirect"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "from": "https://int.crossroads.net/jake",
+                "to": "https://google.com",
+                "status": "temporary"
+              }
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Thu, 08 Nov 2018 19:30:21 GMT
+recorded_with: VCR 4.0.0
