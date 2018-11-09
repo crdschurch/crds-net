@@ -1,11 +1,12 @@
 const moment = require('moment');
-import {ContentfulApi} from '../../support/ContentfulApi';
+import {ContentfulApi, SeriesModel} from '../../support/ContentfulApi';
 
 describe("Checks Media/Series page contains correct information ", function(){
-    let content;
+    let series;
     before(function() {
-        content = new ContentfulApi();
-        content.retrieveCurrentSeries();
+        const content = new ContentfulApi();
+        series = new SeriesModel();
+        content.retrieveCurrentSeries(series);
 
         cy.visit('https://mediaint.crossroads.net/series/');
     })
@@ -14,25 +15,25 @@ describe("Checks Media/Series page contains correct information ", function(){
     it('Checks current series: title, dates, image and description', function(){
         cy.get('.current-series').as('currentSeriesBlock').should('be.visible');
 
-        const startDate = moment(content.currentSeries.starts_at);
-        const endDate = moment(content.currentSeries.ends_at);
+        const startDate = moment(series.currentSeries.starts_at);
+        const endDate = moment(series.currentSeries.ends_at);
 
         cy.get('@currentSeriesBlock').find('div.col-xs-12.col-md-5').then(($seriesText) => {
-            expect($seriesText.find('h1')).to.have.text(content.currentSeries.title);
+            expect($seriesText.find('h1')).to.have.text(series.currentSeries.title);
             expect($seriesText.find('date')).to.have.text(`${startDate.format('MM.DD.YYYY')} — ${endDate.format('MM.DD.YYYY')}`);
-            expect($seriesText.find('div > p')).to.have.text(content.currentSeries.description);
+            expect($seriesText.find('div > p')).to.have.text(series.currentSeries.description);
         })
 
         cy.get('@currentSeriesBlock').find('div > a').then(($seriesImage) => {
-            expect($seriesImage).to.have.attr('href').contains(`/series/${content.currentSeries.slug}`);
-            expect($seriesImage).to.have.attr('title').contains(`${content.currentSeries.title}`);
-            expect($seriesImage.find('img')).to.have.attr('src').contains(`${content.currentSeries.imageFileName}`);
+            expect($seriesImage).to.have.attr('href').contains(`/series/${series.currentSeries.slug}`);
+            expect($seriesImage).to.have.attr('title').contains(`${series.currentSeries.title}`);
+            expect($seriesImage.find('img')).to.have.attr('src').contains(`${series.currentSeries.imageFileName}`);
         })
     })
 
     it('Checks view the series button link', function () {
         cy.contains('View the series').then(($linkButton) => {
-            expect($linkButton).to.have.attr('href', `/series/${content.currentSeries.slug}`);
+            expect($linkButton).to.have.attr('href', `/series/${series.currentSeries.slug}`);
         })
     })
 })
