@@ -14,6 +14,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 1;
 
   &.show {
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;

@@ -181,6 +181,22 @@ paginate:
             <a class="font-size-small" href="{{ '/perspectives' | media_url }}">see all</a>
           </div>
         {% endif %}
+        <hr>
+        {% if page.perspectives.docs.size > 0 %}
+          <section class="perspectives-landing">
+            <a href="/perspectives">
+              <header style="background-image: url('//crds-cms-uploads.imgix.net/content/images/another-perspective-bg.png?blend64=MTUxNTE1&balph=60&bm=normal&w=10')" data-optimize-bg-img>
+                <img class="branding" src="//crds-cms-uploads.imgix.net/content/images/logo-another-perspective.svg" alt="another perspective">
+              </header>
+            </a>
+            <div class="perspectives-list">
+              {% for perspective in page.perspectives.docs %}
+                {% include media/_perspective.html perspective=perspective exclude_footer=true %}
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+
       </div>
 
   </div>
@@ -407,7 +423,7 @@ paginate:
             </div>
             <div class="col-sm-4 text-left soft-sides">
               <h4 class="component-header text-white">1. Engage with our content</h4>
-              <span class="">We have articles, podcasts, and more on a variety of topics.</span><br />
+              <span class="">We have articles, podcasts, and more on a wide range of topics.</span><br />
               <a href="" class="btn btn-secondary btn-md">Explore more content</a>
             </div>
             <div class="col-sm-4 text-left soft-sides">
