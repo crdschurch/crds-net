@@ -10,7 +10,7 @@ paginate:
   perspectives:
     per: 3
     limit: 1
-    sort: date desc
+    sort: published_at desc
   topics:
     per: 5
     limit: 1
@@ -46,7 +46,7 @@ paginate:
   <div class="container">
     <div class="row soft-half">
       <div class="col-sm-12">
-        <p class="font-family-base-light font-size-h5 text-center text-white">— A place for real talk about the topics that matter —</p>
+        <p class="font-family-base-light font-size-h5 text-center text-white">— A real place for real people. —</p>
       </div>
     </div>
   </div>
@@ -54,25 +54,8 @@ paginate:
 <section>
   <div class="container">
     <div class="row">
-      <!-- Big Content Feature -->
-      <div class="col-sm-12 col-md-8">
-        {% for article in page.home_collection.offset %}
-          <a href="{{ article.url | media_url }}" class="overlay-card">
-            <div class="bg-overlay"></div>
-            <div class="overlay-card-image">
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
-            </div>
-            <div class="overlay-card-content">
-              <p class="overlay-card-category">{{ article.category.title }}</p>
-              <h2 class="overlay-card-title">{{ article.title }}</h2>
-              <p class="overlay-card-author">{{ article.author.full_name }}</p>
-              {% include media/_media-label.html source=article %}
-            </div>
-          </a>
-        {% endfor %}
-      </div>
 
-      <div class="col-sm-12 col-md-4 push-bottom">
+      <div class="col-md-push-8 col-md-4 push-bottom">
         <!-- Current Message -->
         <div class="row">
           <div class="col-sm-12">
@@ -130,17 +113,32 @@ paginate:
 
         <a class="btn btn-primary btn-sm" target="_blank" data-media-snippet="get_current_series_trailer_link:attr[href]">Watch Trailer</a>
       </div>
+
+      <!-- Big Content Feature -->
+      <div class="col-md-8 col-md-pull-4">
+          <hr class="push-half-bottom flush-top">
+          <h2 class="flush-top font-size-base text-gray-light" style="">recent articles</h2>
+        {% for article in page.home_collection.offset %}
+          <a href="{{ article.url | media_url }}" class="overlay-card">
+            <div class="bg-overlay"></div>
+            <div class="overlay-card-image">
+              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
+            </div>
+            <div class="overlay-card-content">
+              <p class="overlay-card-category">{{ article.category.title }}</p>
+              <h2 class="overlay-card-title">{{ article.title }}</h2>
+              <p class="overlay-card-author">{{ article.author.full_name }}</p>
+              {% include media/_media-label.html source=article %}
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+
     </div>
 
     <div class="row">
       <div class="col-sm-12 col-md-8">
         <!-- More Content Cards -->
-        <div class="row">
-          <div class="col-sm-12">
-            <hr class="push-half-bottom">
-            <h2 class="flush-top font-size-base text-gray-light" style="">most recent</h2>
-          </div>
-        </div>
         <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
           <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
             {% assign above_the_fold = page.home_collection.docs | slice: 0, 2 %}
@@ -171,7 +169,7 @@ paginate:
         <!-- Another Perspective -->
         <div class="row">
           <div class="col-sm-12">
-            <hr class="push-half-bottom">
+            <hr class="push-half-bottom flush-top">
             <h2 class="flush-top font-size-base text-gray-light" style="">another perspective</h2>
           </div>
         </div>
@@ -221,17 +219,17 @@ paginate:
            <div class="jumbotron-content">
              <a href="#" class="inline-video-trigger" data-video-id="geNzLq664rk"></a>
              <h1 class="font-family-condensed-extra text-uppercase">What is Crossroads</h1>
-             <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod ipsum doolore sitem.</p>
+             <p>An authentic community of Christ-followers who believe that your life is made for more.</p>
              <div class="row push-top soft-top">
-              <div class="col-sm-3 col-sm-offset-3 text-right soft-sides">
-                <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-light">Watch a service</span><br><span class="text-white">online</span></h4>
+              <div class="col-sm-4 col-sm-offset-2 text-right soft-sides">
+                <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
                 <span class="font-size-small">Take a look at last week’s service. Go ahead and get some coffee while we’re firing it up.</span><br>
-                <a class="btn btn-secondary" data-media-snippet="get_current_series_url:attr[src]">Watch the latest service</a>
+                <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[src]">Watch the latest service</a>
               </div>
-              <div class="col-sm-3 text-left soft-sides border-left">
-                <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-light">Watch a service</span><br><span class="text-white">in person</span></h4>
+              <div class="col-sm-4 text-left soft-sides border-left">
+                <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">in person</span></h4>
                 <span class="font-size-small">You look great. Jeans are fine. Bring the kids. We have multiple locations and service times.</span><br>
-                <a href="" class="btn btn-secondary">Find a location</a>
+                <a href="" class="btn btn-secondary btn-lg">Find a location</a>
               </div>
              </div>
 
@@ -252,7 +250,7 @@ paginate:
         <div class="row">
           <div class="col-sm-12">
             <hr class="push-half-bottom">
-            <h2 class="flush-top font-size-base text-gray-light" style="">most recent</h2>
+            <h2 class="flush-top font-size-base text-gray-light" style="">recent articles</h2>
           </div>
         </div>
 
@@ -398,13 +396,34 @@ paginate:
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
-          <h2 class="font-family-condensed-extra text-uppercase font-size-h1 text-white" style="line-height:.95em;">We're a growing community &amp;<br />we need you</h2>
-          <p>
-            We aren’t designed to go through life alone. Opening up and being vulnerable is intimidating, but that bravery leads to some of the best things in life.
-          </p>
-          <a class="btn btn-lg btn-secondary" href="#">Find people close to you</a><br />
-          <a href="" class="text-white push-top" style="text-decoration: underline;">This seems creepy. Is it?</a>
+          <h2 class="font-family-condensed-extra text-uppercase font-size-h1 text-white" style="line-height:.95em;">We’re glad that you are here.</h2>
+          <p>Whether you are looking for answers to life’s biggest questions or a friend sent you here, we believe you’re at the right place.</p>
         </div>
+        <div class="col-sm-10 col-sm-offset-1">
+          <hr>
+          <div class="row soft-top">
+            <div class="col-sm-12">
+              <p class="">Take a next step:</p>
+            </div>
+            <div class="col-sm-4 text-left soft-sides">
+              <h4 class="component-header text-white">1. Engage with our content</h4>
+              <span class="">We have articles, podcasts, and more on a variety of topics.</span><br />
+              <a href="" class="btn btn-secondary btn-md">Explore more content</a>
+            </div>
+            <div class="col-sm-4 text-left soft-sides">
+              <h4 class="component-header text-white">2. Consider finding people near you</h4>
+              <span class="">That might sound weird but trust us, it’s not. Crossroads has people all over who would love to get to know you.</span><br />
+              <a href="" class="btn btn-secondary btn-md">Find people near you</a>
+            </div>
+            <div class="col-sm-4 text-left soft-sides">
+              <h4 class="component-header text-white">3. Reach out to us</h4>
+              <span class="">Not sure what step you want to take? We’d love to hear from you and help however we can.</span><br />
+              <a href="" class="btn btn-secondary btn-md">Contact us</a>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
   </div>
