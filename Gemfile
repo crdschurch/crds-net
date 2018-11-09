@@ -15,7 +15,7 @@ group :jekyll_plugins do
   gem "jekyll-contentful", git: 'https://github.com/crdschurch/jekyll-contentful.git', tag: '1.1.0'
   gem "jekyll-crds", "~> 0.0.1", git: 'https://github.com/crdschurch/jekyll-crds.git', branch: 'master'
   gem "jekyll-placeholders", "~> 0.0.1", github: 'ample/jekyll-placeholders'
-  gem "jekyll-cloudsearch", git: 'https://github.com/crdschurch/jekyll-cloudsearch', tag: '0.0.4'
+  gem "jekyll-cloudsearch", git: 'https://github.com/crdschurch/jekyll-cloudsearch', tag: '0.0.5'
 end
 
 group :test do

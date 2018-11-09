@@ -17,10 +17,10 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-cloudsearch
-  revision: 3e1857707afe19dc39f6647ed13b5675d1d6fc65
-  tag: 0.0.4
+  revision: fee0f94b3f19b005d433e6a804cfcede6188bf30
+  tag: 0.0.5
   specs:
-    jekyll-cloudsearch (0.0.4)
+    jekyll-cloudsearch (0.0.5)
       aws-sdk-cloudsearchdomain
       contentful-management (~> 1.10.1)
       jekyll
@@ -70,11 +70,11 @@ GEM
     autoprefixer-rails (9.1.4)
       execjs
     aws-eventstream (1.0.1)
-    aws-partitions (1.105.0)
-    aws-sdk-cloudsearchdomain (1.3.0)
+    aws-partitions (1.110.0)
+    aws-sdk-cloudsearchdomain (1.5.0)
       aws-sdk-core (~> 3, >= 3.26.0)
       aws-sigv4 (~> 1.0)
-    aws-sdk-core (3.32.0)
+    aws-sdk-core (3.37.0)
       aws-eventstream (~> 1.0)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.0)
@@ -86,7 +86,7 @@ GEM
     coderay (1.1.2)
     colorator (1.1.0)
     colorize (0.8.1)
-    concurrent-ruby (1.0.5)
+    concurrent-ruby (1.1.3)
     contentful (2.9.4)
       http (> 0.8, < 3.0)
       multi_json (~> 1)
@@ -169,12 +169,12 @@ GEM
       jekyll (~> 3.1)
     jekyll-sass-converter (1.5.2)
       sass (~> 3.4)
-    jekyll-watch (2.0.0)
+    jekyll-watch (2.1.2)
       listen (~> 3.0)
     jmespath (1.4.0)
     json (1.8.6)
     kramdown (1.17.0)
-    liquid (4.0.0)
+    liquid (4.0.1)
     liquid-tag-parser (1.9.0)
       extras (~> 0.3)
       liquid (>= 3.0, < 5.0)
@@ -190,14 +190,14 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     nenv (0.3.0)
-    nokogiri (1.8.4)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
-    nokogiri (1.8.4-x64-mingw32)
+    nokogiri (1.8.5-x64-mingw32)
       mini_portile2 (~> 2.3.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
-    pathutil (0.16.1)
+    pathutil (0.16.2)
       forwardable-extended (~> 2.6)
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -224,7 +224,7 @@ GEM
     rspec-support (3.7.1)
     ruby_dep (1.5.0)
     safe_yaml (1.0.4)
-    sass (3.6.0)
+    sass (3.7.2)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
