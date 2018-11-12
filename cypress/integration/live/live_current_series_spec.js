@@ -2,11 +2,11 @@ const moment = require('moment');
 import { ContentfulApi, SeriesModel } from '../../support/ContentfulApi';
 
 describe("Checks all series information is correct on Live", function () {
-    let series;
+    let currentSeries;
     before(function () {
         const content = new ContentfulApi();
-        series = new SeriesModel();
-        content.retrieveCurrentSeries(series);
+        currentSeries = new SeriesModel();
+        content.retrieveCurrentSeries(currentSeries);
         cy.visit('live');
     })
 
@@ -14,28 +14,28 @@ describe("Checks all series information is correct on Live", function () {
     it('Checks current series: title, dates, image and description', function () {
         cy.get('.current-series').as('currentSeriesBlock').should('be.visible');
 
-        const startDate = moment(series.currentSeries.starts_at);
-        const endDate = moment(series.currentSeries.ends_at);
+        const startDate = moment(currentSeries.startDate);
+        const endDate = moment(currentSeries.endDate);
 
         cy.get('@currentSeriesBlock').then(($textBlock)=> {
-            expect($textBlock.find('[data-automation-id="series-title"]')).to.have.text(series.currentSeries.title);
+            expect($textBlock.find('[data-automation-id="series-title"]')).to.have.text(currentSeries.title);
             expect($textBlock.find('[data-automation-id="series-dates"]')).to.have.text(`${startDate.format('MM.DD.YYYY')} - ${endDate.format('MM.DD.YYYY')}`);
-            expect($textBlock.find('[data-automation-id="series-description"] > p')).to.have.text(series.currentSeries.description);
+            expect($textBlock.find('[data-automation-id="series-description"] > p')).to.have.text(currentSeries.description);
         })
 
         cy.get('[data-automation-id="series-image"]').then(($imageBlock)=> {
-            expect($imageBlock).to.have.attr('src').contains(series.currentSeries.imageFileName);
+            expect($imageBlock).to.have.attr('src').contains(currentSeries.imageFilename);
             expect($imageBlock).to.have.attr('srcset'); //If fails, image was not found
         })
     })
 
     it('Checks current series trailer link and modal source', function () {
         cy.get('[data-automation-id="series-youtube"]').then(($trailerButton) => {
-            expect($trailerButton).to.have.attr('href', series.currentSeries.youtube_url);
+            expect($trailerButton).to.have.attr('href', currentSeries.youtubeURL);
         })
 
         cy.get('#modal-video-src').then(($youtubeModal) => {
-            expect($youtubeModal).to.have.attr('data-src', series.currentSeries.youtube_url);
+            expect($youtubeModal).to.have.attr('data-src', currentSeries.youtubeURL);
         })
     })
 })

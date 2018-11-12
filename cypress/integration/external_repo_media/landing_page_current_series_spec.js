@@ -1,11 +1,11 @@
 import {ContentfulApi, SeriesModel} from '../../support/ContentfulApi';
 
 describe("Checks Media landing page contains correct information ", function(){
-    let series;
+    let currentSeries;
     before(function() {
         const content = new ContentfulApi();
-        series = new SeriesModel();
-        content.retrieveCurrentSeries(series);
+        currentSeries = new SeriesModel();
+        content.retrieveCurrentSeries(currentSeries);
 
         cy.visit('https://mediaint.crossroads.net/');
     })
@@ -16,14 +16,14 @@ describe("Checks Media landing page contains correct information ", function(){
 
         //Check image block
         cy.get('@seriesHeader').parent().find('.featured > a').then(($seriesBlock) => {
-            expect($seriesBlock).to.have.attr('href', `/series/${series.currentSeries.slug}`);
-            expect($seriesBlock.find('img')).to.have.attr('src').contains(`${series.currentSeries.imageFileName}`);
+            expect($seriesBlock).to.have.attr('href', `/series/${currentSeries.slug}`);
+            expect($seriesBlock.find('img')).to.have.attr('src').contains(`${currentSeries.imageFilename}`);
         })
 
         //Check text block
         cy.get('@seriesHeader').parent().find('.featured > .media-body > .component-header > a').then(($seriesBlock) => {
-            expect($seriesBlock).to.have.attr('href', `/series/${series.currentSeries.slug}`);
-            expect($seriesBlock).to.have.text(`${series.currentSeries.title}`);
+            expect($seriesBlock).to.have.attr('href', `/series/${currentSeries.slug}`);
+            expect($seriesBlock).to.have.text(`${currentSeries.title}`);
         })
     })
 })
