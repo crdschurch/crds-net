@@ -1,6 +1,6 @@
 require 'httparty'
 require 'colorize'
-require "csv"
+require 'csv'
 
 class Redirects
   include HTTParty
@@ -22,11 +22,11 @@ class Redirects
     end
   end
 
-  def to_csv!
-    rows = CSV.read('./redirects.csv')
+  def to_csv!(path = './redirects.csv')
+    rows = CSV.read(path)
     rows.insert(1, *redirects)
-    File.write('./redirects.csv', rows.map(&:to_csv).join)
-    puts "+ #{redirects.size} redirects from Contentful".colorize(:cyan)
+    File.write(path, rows.map(&:to_csv).join)
+    puts "\n + #{redirects.size} redirects from Contentful".colorize(:cyan)
   end
 
   def parse_status(s)
