@@ -181,7 +181,7 @@ paginate:
             <a class="font-size-small" href="{{ '/perspectives' | media_url }}">see all</a>
           </div>
         {% endif %}
-        <hr>
+        <!--<hr>
         {% if page.perspectives.docs.size > 0 %}
           <section class="perspectives-landing">
             <a href="/perspectives">
@@ -195,7 +195,7 @@ paginate:
               {% endfor %}
             </div>
           </section>
-        {% endif %}
+        {% endif %}-->
 
       </div>
 
@@ -237,11 +237,19 @@ paginate:
              <h1 class="font-family-condensed-extra text-uppercase">What is Crossroads</h1>
              <p>An authentic community of Christ-followers who believe that your life is made for more.</p>
              <div class="row push-top soft-top">
-              <div class="col-sm-4 col-sm-offset-2 text-right soft-sides">
+
+              <div class="col-sm-4 col-sm-offset-2 text-right hidden-xs soft-sides">
                 <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
                 <span class="font-size-small">Take a look at last week’s service. Go ahead and get some coffee while we’re firing it up.</span><br>
                 <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[src]">Watch the latest service</a>
               </div>
+
+              <div class="col-sm-4 col-sm-offset-2 text-left visible-xs soft-sides push-bottom">
+                <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
+                <span class="font-size-small">Take a look at last week’s service. Go ahead and get some coffee while we’re firing it up.</span><br>
+                <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[src]">Watch the latest service</a>
+              </div>
+
               <div class="col-sm-4 text-left soft-sides border-left">
                 <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">in person</span></h4>
                 <span class="font-size-small">You look great. Jeans are fine. Bring the kids. We have multiple locations and service times.</span><br>
@@ -421,12 +429,12 @@ paginate:
             <div class="col-sm-12">
               <p class="">Take a next step:</p>
             </div>
-            <div class="col-sm-4 text-left soft-sides">
+            <div class="col-sm-4 text-left soft-sides push-bottom">
               <h4 class="component-header text-white">1. Engage with our content</h4>
               <span class="">We have articles, podcasts, and more on a wide range of topics.</span><br />
               <a href="" class="btn btn-secondary btn-md">Explore more content</a>
             </div>
-            <div class="col-sm-4 text-left soft-sides">
+            <div class="col-sm-4 text-left soft-sides push-bottom">
               <h4 class="component-header text-white">2. Consider finding people near you</h4>
               <span class="">That might sound weird but trust us, it’s not. Crossroads has people all over who would love to get to know you.</span><br />
               <a href="" class="btn btn-secondary btn-md">Find people near you</a>
