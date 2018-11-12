@@ -72,23 +72,10 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
 
-  @media (min-width: $screen-sm) {
-    .topic-card-simple {
-        width: calc(20% - 4px);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-  }
-
-  @media (min-width: $screen-md) {
-    .topic-card-simple {
-        width: calc(20% - 4px);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-  }
-
+.topic-card-simple {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

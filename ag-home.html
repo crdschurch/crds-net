@@ -42,7 +42,7 @@ paginate:
 
 {% include header.html %}
 
-<section class="push-bottom" style="background-color: #c5c5c5;">
+<!--<section class="push-bottom" style="background-color: #c5c5c5;">
   <div class="container">
     <div class="row soft-half">
       <div class="col-sm-12">
@@ -50,7 +50,7 @@ paginate:
       </div>
     </div>
   </div>
-</section>
+</section>-->
 <section>
   <div class="container">
     <div class="row">
@@ -167,21 +167,24 @@ paginate:
       </div>
       <div class="col-sm-12 col-md-4">
         <!-- Another Perspective -->
-        <div class="row">
-          <div class="col-sm-12">
-            <hr class="push-half-bottom flush-top">
-            <h2 class="flush-top font-size-base text-gray-light" style="">another perspective</h2>
-          </div>
-        </div>
-        {% if page.perspectives.docs.size != 0 %}
-          <div class="push-bottom soft-bottom">
+        <section class="perspectives-landing">
+          <a href="/perspectives">
+            <header style="background-image: url('//crds-cms-uploads.imgix.net/content/images/another-perspective-bg.png?blend64=MTUxNTE1&balph=60&bm=normal&w=10')" data-optimize-bg-img>
+              <img class="branding" src="//crds-cms-uploads.imgix.net/content/images/logo-another-perspective.svg" alt="another perspective">
+            </header>
+          </a>
+          {% if page.perspectives.docs.size > 0 %}
+          <div class="push-bottom soft-bottom perspectives-list">
             {% for featured in page.perspectives.docs %}
               {% include media/_media-object-list.html media_type="perspective" %}
             {% endfor %}
             <a class="font-size-small" href="{{ '/perspectives' | media_url }}">see all</a>
           </div>
         {% endif %}
-        <!--<hr>
+        </section>
+
+        <hr>
+
         {% if page.perspectives.docs.size > 0 %}
           <section class="perspectives-landing">
             <a href="/perspectives">
@@ -189,13 +192,14 @@ paginate:
                 <img class="branding" src="//crds-cms-uploads.imgix.net/content/images/logo-another-perspective.svg" alt="another perspective">
               </header>
             </a>
+
             <div class="perspectives-list">
               {% for perspective in page.perspectives.docs %}
                 {% include media/_perspective.html perspective=perspective exclude_footer=true %}
               {% endfor %}
             </div>
           </section>
-        {% endif %}-->
+        {% endif %}
 
       </div>
 
@@ -240,20 +244,20 @@ paginate:
 
               <div class="col-sm-4 col-sm-offset-2 text-right hidden-xs soft-sides">
                 <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
-                <span class="font-size-small">Take a look at last week’s service. Go ahead and get some coffee while we’re firing it up.</span><br>
+                <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
                 <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[src]">Watch the latest service</a>
               </div>
 
               <div class="col-sm-4 col-sm-offset-2 text-left visible-xs soft-sides push-bottom">
                 <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
-                <span class="font-size-small">Take a look at last week’s service. Go ahead and get some coffee while we’re firing it up.</span><br>
+                <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
                 <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[src]">Watch the latest service</a>
               </div>
 
               <div class="col-sm-4 text-left soft-sides border-left">
                 <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">in person</span></h4>
-                <span class="font-size-small">You look great. Jeans are fine. Bring the kids. We have multiple locations and service times.</span><br>
-                <a href="" class="btn btn-secondary btn-lg">Find a location</a>
+                <span class="font-size-small">You look great. Jeans are fine. Bring the kids.</span><br>
+                <a href="https://www.crossroads.net/locations" class="btn btn-secondary btn-lg">Find a location</a>
               </div>
              </div>
 
@@ -320,44 +324,15 @@ paginate:
           </div>
         </div>
       </div>
-      <!--<div class="col-sm-12 col-md-4">
-        <div class="row">
-          <div class="col-sm-12">
-            <hr class="push-half-bottom">
-            <h2 class="flush-top font-size-base text-gray-light" style="">recent podcast episodes</h2>
-          </div>
-        </div>
-        <div class="push-ends soft-bottom">
-          {% assign home_episodes = page.episodes.docs %}
-
-          {% for episodes in home_episodes %}
-
-          <div class="media">
-            <div class="media-body">
-              <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ episodes.url | media_url}}">
-                Episode {{ episodes.episode_number }}: {{ episodes.title }}</a>
-              </h5>
-              <div class="soft-quarter-top font-size-smaller flush-bottom">
-                <p class="episode-description">{{ episodes.description | markdownify | strip_html | truncatewords: 15 }}</p>
-              </div>
-            </div>
-            <a href="{{ episodes.url | media_url }}" class="soft-quarter-left">
-              <img src="{{ episodes.podcast.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img>
-            </a>
-          </div>
-          <hr>
-          {% endfor %}
-        </div>
-      </div>-->
 
       <div class="col-sm-12 col-md-4">
         <div class="row">
           <div class="col-sm-12">
             <hr class="push-half-bottom">
-            <h2 class="flush-top font-size-base text-gray-light" style="">our podcasts</h2>
+            <h2 class="flush-top font-size-base text-gray-light" style="">podcasts</h2>
           </div>
         </div>
-        <div class="push-ends soft-bottom">
+        <div class="push-bottom soft-bottom">
           {% for podcasts in page.podcasts.offset %}
           <div class="media featured">
             <div class="media-body">
@@ -414,7 +389,7 @@ paginate:
   </div>
 </section>
 
-<!-- Community Jumbotron -->
+<!-- Community Jumbotron
 <section>
   <div class="jumbotron jumbotron-xl push-top" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-groups-header3.jpg');">
     <div class="container-fluid">
@@ -432,17 +407,18 @@ paginate:
             <div class="col-sm-4 text-left soft-sides push-bottom">
               <h4 class="component-header text-white">1. Engage with our content</h4>
               <span class="">We have articles, podcasts, and more on a wide range of topics.</span><br />
-              <a href="" class="btn btn-secondary btn-md">Explore more content</a>
+              <a href="https://media.crossroads.net" class="btn btn-secondary btn-md">Explore more content</a>
             </div>
             <div class="col-sm-4 text-left soft-sides push-bottom">
               <h4 class="component-header text-white">2. Consider finding people near you</h4>
               <span class="">That might sound weird but trust us, it’s not. Crossroads has people all over who would love to get to know you.</span><br />
-              <a href="" class="btn btn-secondary btn-md">Find people near you</a>
+              <a href="https://www.crossroads.net/connect/?siteOnly=Off" class="btn btn-secondary btn-md">Find people near you</a><br/>
+              <a href="https://www.crossroads.net/groups" class="btn btn-gray-light btn-md">Check out our groups</a>
             </div>
             <div class="col-sm-4 text-left soft-sides">
               <h4 class="component-header text-white">3. Reach out to us</h4>
               <span class="">Not sure what step you want to take? We’d love to hear from you and help however we can.</span><br />
-              <a href="" class="btn btn-secondary btn-md">Contact us</a>
+              <a href="https://www.crossroads.net/contactus" class="btn btn-secondary btn-md">Contact us</a>
             </div>
           </div>
         </div>
@@ -451,7 +427,7 @@ paginate:
       </div>
     </div>
   </div>
-</section>
+</section>-->
 
 <script>
   window.env = {

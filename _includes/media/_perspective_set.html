@@ -8,7 +8,7 @@
 
         {% assign perspectives = include.set.perspectives | get_docs | reverse %}
         {% for perspective in perspectives %}
-          {% include _perspective.html perspective=perspective %}
+          {% include media/_perspective.html perspective=perspective %}
         {% endfor %}
       </main>
     </div>
