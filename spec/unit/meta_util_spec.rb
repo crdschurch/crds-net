@@ -5,10 +5,32 @@ describe 'Html Meta Util' do
   before do
   end
 
+  it 'should return the page page_meta url' do
+    expect(
+      Utils::MetaUtil.get_meta_image_url(
+        'https://page-meta.jpg',
+        'https://page-meta-image.jpg',
+        'https://page-image.jpg',
+        'https://page-bg-image.jpg',
+        '<p><div>Some text and stuff</div><div>< img src="https://page-content-image.jpg"></div><div><img src="https://page-content-image-2.jpg"></div></p>',
+        'https://site-image.jpg')).to eq 'https://page-meta.jpg'
+  end
+
+  it 'should return the page meta_image url when there are no other valid values' do
+    expect(
+      Utils::MetaUtil.get_meta_image_url(
+        'https://page-meta.jpg',
+        nil,
+        '',
+        "     \t\r\n   ",
+        '',
+        nil)).to eq 'https://page-meta.jpg'
+  end
 
   it 'should return the page meta_image url' do
     expect(
       Utils::MetaUtil.get_meta_image_url(
+        nil,
         'https://page-meta-image.jpg',
         'https://page-image.jpg',
         'https://page-bg-image.jpg',
@@ -21,6 +43,7 @@ describe 'Html Meta Util' do
     expect(
       Utils::MetaUtil.get_meta_image_url(
         nil,
+        nil,
         'https://page-image.jpg',
         'https://page-bg-image.jpg',
         '<p><div>Some text and stuff</div><div>< img src="https://page-content-image.jpg"></div><div><img src="https://page-content-image-2.jpg"></div></p>',
@@ -31,6 +54,7 @@ describe 'Html Meta Util' do
   it 'should return the page background image url' do
     expect(
       Utils::MetaUtil.get_meta_image_url(
+        nil,
         nil,
         nil,
         'https://page-bg-image.jpg',
@@ -45,6 +69,7 @@ describe 'Html Meta Util' do
         nil,
         nil,
         nil,
+        nil,
         '<p><div>Some text and stuff</div><div>< img src="https://page-content-image.jpg"></div><div><img src="https://page-content-image-2.jpg"></div></p>',
         'https://site-image.jpg')).to eq 'https://page-content-image.jpg'
   end
@@ -53,6 +78,7 @@ describe 'Html Meta Util' do
   it 'should return the 1st image in the page content with single quotes' do
     expect(
       Utils::MetaUtil.get_meta_image_url(
+        nil,
         nil,
         nil,
         nil,
@@ -67,6 +93,7 @@ describe 'Html Meta Util' do
         nil,
         nil,
         nil,
+        nil,
         '<p><div>Some text and stuff</div><div>< img src=  https://page-content-image.jpg  ></div><div><img src="https://page-content-image-2.jpg"></div></p>',
         'https://site-image.jpg')).to eq 'https://page-content-image.jpg'
   end
@@ -78,6 +105,7 @@ describe 'Html Meta Util' do
         nil,
         nil,
         nil,
+        nil,
         '<p><div>Some text and stuff</div><div></div><div></div></p>',
         'https://site-image.jpg')).to eq 'https://site-image.jpg'
   end
@@ -86,6 +114,7 @@ describe 'Html Meta Util' do
   it 'should parse and return the markdownified image url' do
     expect(
       Utils::MetaUtil.get_meta_image_url(
+        nil,
         nil,
         nil,
         nil,
@@ -101,6 +130,7 @@ describe 'Html Meta Util' do
         nil,
         nil,
         nil,
+        nil,
         'https://site-image.jpg')).to eq 'https://site-image.jpg'
   end
 
@@ -108,6 +138,7 @@ describe 'Html Meta Util' do
   it 'should return the site image url when all other options are empty strings' do
     expect(
       Utils::MetaUtil.get_meta_image_url(
+        '',
         '',
         '',
         '',
@@ -123,6 +154,7 @@ describe 'Html Meta Util' do
         nil,
         nil,
         nil,
+        nil,
         'http://site-image.jpg')).to eq 'https://site-image.jpg'
   end
 
@@ -130,6 +162,7 @@ describe 'Html Meta Util' do
   it 'should return the site image url with https: prepended' do
     expect(
       Utils::MetaUtil.get_meta_image_url(
+        nil,
         nil,
         nil,
         nil,
@@ -145,6 +178,7 @@ describe 'Html Meta Util' do
         nil,
         nil,
         nil,
+        nil,
         '/site-image.jpg')).to eq '/site-image.jpg'
   end
 
@@ -156,77 +190,78 @@ describe 'Html Meta Util' do
         "     \t\r\n   ",
         "     \t\r\n   ",
         "     \t\r\n   ",
+        "     \t\r\n   ",
         'https://site-image.jpg')).to eq 'https://site-image.jpg'
   end
 
 
-  it 'should return the page meta description' do
+  it 'should return the first item' do
     expect(
-      Utils::MetaUtil.get_meta_description(
-        'Page meta description',
-        'Page description',
-        'Site description'
-      )).to eq 'Page meta description'
+      Utils::MetaUtil.get_first_item_with_value(
+        'First Item',
+        'Second Item',
+        'Third Item'
+      )).to eq 'First Item'
   end
 
 
-  it 'should return the page description when meta description is nil' do
+  it 'should return the second item when the first item is nil' do
     expect(
-      Utils::MetaUtil.get_meta_description(
+      Utils::MetaUtil.get_first_item_with_value(
         nil,
-        'Page description',
-        'Site description'
-      )).to eq 'Page description'
+        'Second Item',
+        'Third Item'
+      )).to eq 'Second Item'
   end
 
 
-  it 'should return the page description when meta description is an empty string' do
+  it 'should return the second item when first item is an empty string' do
     expect(
-      Utils::MetaUtil.get_meta_description(
+      Utils::MetaUtil.get_first_item_with_value(
         '',
-        'Page description',
-        'Site description'
-      )).to eq 'Page description'
+        'Second Item',
+        'Third Item'
+      )).to eq 'Second Item'
   end
 
 
-  it 'should return the page description when meta description is white space' do
+  it 'should return the second item when the first item is white space' do
     expect(
-      Utils::MetaUtil.get_meta_description(
+      Utils::MetaUtil.get_first_item_with_value(
         "    \t\r\n    ",
-        'Page description',
-        'Site description'
-      )).to eq 'Page description'
+        'Second Item',
+        'Third Item'
+      )).to eq 'Second Item'
   end
 
 
-  it 'should return the site description when page description is nil' do
+  it 'should return the third item when the first two are nil' do
     expect(
-      Utils::MetaUtil.get_meta_description(
+      Utils::MetaUtil.get_first_item_with_value(
         nil,
         nil,
-        'Site description'
-      )).to eq 'Site description'
+        'Third Item'
+      )).to eq 'Third Item'
   end
 
 
-  it 'should return the site description when page description is an empty string' do
+  it 'should return the third item when first is nil and second is an empty string' do
     expect(
-      Utils::MetaUtil.get_meta_description(
+      Utils::MetaUtil.get_first_item_with_value(
         nil,
         '',
-        'Site description'
-      )).to eq 'Site description'
+        'Third Item'
+      )).to eq 'Third Item'
   end
 
 
-  it 'should return the site description when page description is white space' do
+  it 'should return the third item when first is nil and second is white space' do
     expect(
-      Utils::MetaUtil.get_meta_description(
+      Utils::MetaUtil.get_first_item_with_value(
         nil,
         "    \t\r\n    ",
-        'Site description'
-      )).to eq 'Site description'
+        'Third Item'
+      )).to eq 'Third Item'
   end
 
 

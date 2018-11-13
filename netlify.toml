@@ -2,12 +2,13 @@
 [build]
   command = '''
     bundle exec rspec &&
+    ./bin/contentful-redirects &&
     ./bin/netlify-redirector &&
     bundle exec jekyll crds &&
     bundle exec jekyll contentful -f &&
     bundle exec jekyll build -- --cloudsearch
   '''
-  
+
 [context.branch-deploy.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
   CRDS_MAP_DOMAIN = "crdsmap.netlify.com"

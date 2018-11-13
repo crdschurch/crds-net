@@ -10,24 +10,26 @@ describe("Checks all series information is correct on Homepage", function () {
     })
 
     it('Checks main current series: title, dates, image and description', function () {
-        cy.get('.current-series').as('currentSeriesBlock').should('be.visible');
-
+        cy.get('.current-series').as('currentSeriesBlock');
         const startDate = moment(content.currentSeries.starts_at);
         const endDate = moment(content.currentSeries.ends_at);
 
         cy.get('@currentSeriesBlock').then(($textBlock)=> {
-            expect($textBlock.find('[data-automation-id="series-title"]')).to.have.text(content.currentSeries.title);
-            expect($textBlock.find('[data-automation-id="series-dates"]')).to.have.text(`${startDate.format('MM.DD.YYYY')} — ${endDate.format('MM.DD.YYYY')}`);
-            expect($textBlock.find('[data-automation-id="series-description"] > p')).to.have.text(content.currentSeries.description);
+            expect($textBlock.find('[data-automation-id="series-title"]')).to.be.visible.and.have.text(content.currentSeries.title);
+            expect($textBlock.find('[data-automation-id="series-dates"]')).to.be.visible.and.have.text(`${startDate.format('MM.DD.YYYY')} — ${endDate.format('MM.DD.YYYY')}`);
+            expect($textBlock.find('[data-automation-id="series-description"] > p')).to.be.visible.and.have.text(content.currentSeries.description);
         })
 
-        cy.get('@currentSeriesBlock').then(($imageBlock)=> {
-            expect($imageBlock.find('[data-automation-id="series-image"]')).to.have.attr('src').contains(`${content.currentSeries.imageFileName}`);
+        cy.get('[data-automation-id="series-image"]').then(($imageBlock)=> {
+            expect($imageBlock).to.be.visible;
+            expect($imageBlock).to.have.attr('src').contains(`${content.currentSeries.imageFileName}`);
+            expect($imageBlock).to.have.attr('srcset'); //If fails, image was not found
         })
     })
 
     it('Checks current series trailer button link', function () {
         cy.get('[data-automation-id="series-youtube"]').then(($trailerButton) => {
+            expect($trailerButton).to.be.visible;
             expect($trailerButton).to.have.attr('href', content.currentSeries.youtube_url);
         })
     })
@@ -41,6 +43,7 @@ describe("Checks all series information is correct on Homepage", function () {
 
         cy.get('[data-automation-id="jumbotron-series-image"]').then(($seriesImage) => {
             expect($seriesImage).to.have.attr('src').contains(`${content.currentSeries.imageFileName}`);
+            expect($seriesImage).to.have.attr('srcset'); //If fails, image was not found
         })
     })
 
