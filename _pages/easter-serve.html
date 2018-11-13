@@ -158,44 +158,6 @@ permalink: /easter/serve/
 </div>
 </div>
 </section><script type="text/javascript">// <![CDATA[
-new CRDS.CardCarousels('[data-crds-carousel]');
-    new CRDS.JumbotronVideos();
-    new CRDS.CardFilters();
-    new CRDS.Countdown();
-    new CRDS.DistanceSorter();
-    $.each(CRDS._instances, function (k, v) {
-      v.addStyles()
-    });
-    $(document).ready(function () {
-      $('footer.hidden-print').addClass('flush-top');
-      $('.bg-blue-dark ~ p').remove('p');
-      $('.ng-scope> .crds-styles> .container-fluid.main> .row> .col-md-12').removeClass('col-md-12');
-    });
-    // Scroll Locations
-    var locationButton = document.getElementById('find-location');
-    var locationScroll = function (event) {
-      event.preventDefault();
-      document.getElementById('locations-search').scrollIntoView(true);
-    }
-    locationButton.addEventListener('click', locationScroll);
-
-    // Jumbotron Overlay
-    var watchButton = document.getElementById('watch-cta');
-    var closeButton = document.getElementById('overlay-close');
-    var overlay = document.getElementById('overlay');
-
-    function showOverlay(event) {
-      event.preventDefault();
-      overlay.classList.add('visible');
-    }
-
-    function hideOverlay() {
-      overlay.classList.remove('visible');
-    }
-    watchButton.addEventListener('click', showOverlay);
-    closeButton.addEventListener('click', hideOverlay);
-    new CRDS.DataTracker();
-
     function scroll(myID){
       var offset = jQuery("#"+myID).offset()
       window.scrollTo(0,offset.top);
