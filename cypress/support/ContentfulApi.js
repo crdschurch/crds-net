@@ -5,9 +5,6 @@ const removeMarkdown = require('remove-markdown');
 * Therefore, it is recommended that these methods are called in a before/beforeEach clause to allow more time for data retrieval.
 */
 class ContentfulApi {
-    // currentSeries = {};
-    // messages = []; //shortcut: latestMessage property = messages[0]
-
     //TODO create locations class too
     retrieveLocations() {
         cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=location&select=fields.name,fields.slug`)
@@ -20,64 +17,27 @@ class ContentfulApi {
         cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=series&select=fields.title,fields.slug,fields.starts_at,fields.ends_at,fields.youtube_url,fields.image,fields.description&order=-fields.starts_at`)
             .then((response) => {
                 const jsonResponse = JSON.parse(response.body);
-                seriesModel.storeCurrentSeries(jsonResponse);//populateModelFromJSON(jsonResponse);
+                seriesModel.storeCurrentSeries(jsonResponse);
             });
     }
 
     //Note: The order messages are retrieved here and what's displayed on the site are not guaranteed to be the same if the "published at" date is the same (time is ignored)
-    retrieveMessages(messageModel, numToStore) {
+    retrieveLatestMessage(messageModel) {
         cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=message&select=fields.title,fields.slug,fields.published_at,fields.image,fields.description&order=-fields.published_at`)
             .then((response) => {
                 const jsonResponse = JSON.parse(response.body);
-                messageModel.populateModelFromJSON(jsonResponse, numToStore);
+                messageModel.storeLatestMessage(jsonResponse);
             })
     }
-//TODO will this work given an empty list?
+
     retrieveListOfMessages(messageList, numToStore) {
         cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=message&select=fields.title,fields.slug,fields.published_at,fields.image,fields.description&order=-fields.published_at`)
             .then((response) => {
                 const jsonResponse = JSON.parse(response.body);
-                //messageModel.populateModelFromJSON(jsonResponse, numToStore);
+                MessageModel.createListOfMessages(jsonResponse, numToStore, messageList);
             })
     }
 }
-
-// class GenericModel {
-//     //Stores title, slug, description and imageFileName (if content has image)
-//     _storeStandardProperties(jsonObject, assetList, saveObject){
-//         saveObject._title = jsonObject.fields.title;
-//         saveObject._slug = jsonObject.fields.slug;
-//         saveObject._description = removeMarkdown(jsonObject.fields.description);
-
-//         if(jsonObject.fields.image){
-//             this._storeImageData(jsonObject.fields.image.sys.id, assetList, saveObject);
-//         }
-//     }
-
-//     _storeImageData(imageId, assetList, saveObject) {
-//         const imageAsset = assetList.find(img => {
-//             return img.sys.id === imageId;
-//         })
-
-//         saveObject._imageFileName = imageAsset.fields.file.fileName;
-//     }
-
-//     get title(){
-//         return this._title;
-//     }
-
-//     get slug(){
-//         return this._slug;
-//     }
-
-//     get description(){
-//         return this._description;
-//     }
-
-//     get imageFileName(){
-//         return this._imageFileName;
-//     }
-// }
 
 class ParseAndSaveJSON {
     //Stores title, slug, description and imageFileName (if content has image)
@@ -101,14 +61,6 @@ class ParseAndSaveJSON {
 }
 
 class SeriesModel {
-    //currentSeries = {};
-
-    // populateModelFromJSON(response) {
-    //     const seriesList = response.items;
-    //     const assetList = response.includes.Asset;
-    //     this._storeCurrentSeries(seriesList, assetList);
-    // }
-
     storeCurrentSeries(response) {
         const seriesListDescending = response.items;
         const assetList = response.includes.Asset;
@@ -153,35 +105,45 @@ class SeriesModel {
     }
 }
 
-//TODO create methods to populate current model or create new instance and add to list (with content)
 class MessageModel {
-    messages = []; //shortcut: latestMessage property = messages[0]
-
     storeLatestMessage(response) {
-        //TODO
-    }
-
-    static storeListOfMessages(response, messageList, numToStore) {
-//expects a list, will create new MessageModels for eacn numToStore
-    }
-
-    populateModelFromJSON(response, numToStore) {
-        const messageList = response.items;
+        const itemList = response.items;
         const assetList = response.includes.Asset;
 
-        numToStore = messageList.length < numToStore ? messageList.length : numToStore;
-
-        for(let i = 0; i < numToStore; i++){
-            this.messages[i] = {}; //TODO this isn't a MessageModel instance
-            ParseAndSaveJSON.storeStandardProperties(messageList[i], assetList, this.messages[i]);
-            this.messages[i].published_at = messageList[i].fields.published_at;
-        }
-
-        //this.latestMessage = this.messages[0];
+        ParseAndSaveJSON.storeStandardProperties(itemList[0], assetList, this);
+        this._published_at = itemList[0].fields.published_at
     }
 
-    get latestMessage(){
-        return this.messages[0];
+    get title(){
+        return this._title;
+    }
+
+    get slug(){
+        return this._slug;
+    }
+
+    get description(){
+        return this._description;
+    }
+
+    get imageFilename(){
+        return this._imageFileName;
+    }
+
+    get publishedAt(){
+        return this._published_at
+    }
+
+    static createListOfMessages(response, numToStore, messageList) {
+        const itemList = response.items;
+        const assetList = response.includes.Asset;
+
+        for(let i = 0; i < numToStore; i++){
+            let msg = new MessageModel();
+            ParseAndSaveJSON.storeStandardProperties(itemList[i], assetList, msg);
+            msg._published_at = itemList[i].fields.published_at;
+            messageList.push(msg);
+        }
     }
 }
 

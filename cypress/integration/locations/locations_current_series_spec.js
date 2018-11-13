@@ -1,6 +1,6 @@
 import { ContentfulApi, SeriesModel } from '../../support/ContentfulApi';
 
-describe("Checks Locations pages served from Netlify display correct information", function () {
+describe("Testing the Current Series on Locations pages (served from Netlify)", function () {
     let currentSeries;
     let content;
     before(function () {

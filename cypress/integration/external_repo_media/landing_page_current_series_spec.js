@@ -1,6 +1,6 @@
 import {ContentfulApi, SeriesModel} from '../../support/ContentfulApi';
 
-describe("Checks Media landing page contains correct information ", function(){
+describe("Testing the Current Series on the Media landing page", function(){
     let currentSeries;
     before(function() {
         const content = new ContentfulApi();

@@ -1,7 +1,7 @@
 const moment = require('moment');
 import { ContentfulApi, SeriesModel } from '../../support/ContentfulApi';
 //TODO break these tests into smaller chunks
-describe("Checks all series information is correct on Homepage", function () {
+describe("Testing the Current Series on the Homepage", function () {
     let currentSeries;
     before(function () {
         const content = new ContentfulApi();

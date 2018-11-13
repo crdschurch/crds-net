@@ -1,11 +1,11 @@
-import {ContentfulApi, MessageModel} from '../../support/ContentfulApi';
+import {ContentfulApi} from '../../support/ContentfulApi';
 
-describe("Checks latest message is correct on Live page", function () {
-    let messages;
+describe('Testing the Latest Message on the Live page', function () {
+    let messageList;
     before(function () {
         const content = new ContentfulApi();
-        messages = new MessageModel();
-        content.retrieveMessages(messages, 5);
+        messageList = []
+        content.retrieveListOfMessages(messageList, 5);
         cy.visit('live');
     })
 
@@ -36,14 +36,14 @@ describe("Checks latest message is correct on Live page", function () {
         cy.get('[data-automation-id="recent-message-card"]').eq(index).then((messageCard) => {
             expect(messageCard).to.be.visible;
             expect(messageCard.find('[data-automation-id="recent-message-image"]')).to.have.attr('src')
-            .contains(messages.messages[index].imageFileName);
+            .contains(messageList[index].imageFilename);
             expect(messageCard.find('[data-automation-id="recent-message-image"]')).to.have.attr('alt')
-            .contains(messages.messages[index].title);
+            .contains(messageList[index].title);
 
             expect(messageCard.find('[data-automation-id="recent-message-image-link"]')).to.have.attr('href')
-            .contains(messages.messages[index].slug);
-            expect(messageCard.find('[data-automation-id="recent-message-title"]')).to.have.text(messages.messages[index].title);
-            expect(messageCard.find('[data-automation-id="recent-message-description"]')).to.contain(messages.messages[index].description);
+            .contains(messageList[index].slug);
+            expect(messageCard.find('[data-automation-id="recent-message-title"]')).to.have.text(messageList[index].title);
+            expect(messageCard.find('[data-automation-id="recent-message-description"]')).to.contain(messageList[index].description);
         })
     }
 })

@@ -1,6 +1,6 @@
 import { ContentfulApi, SeriesModel } from '../../support/ContentfulApi';
 
-describe("Checks Media dropdown has correct information", function () {
+describe("Testing the Current Series in the Shared Header/Media dropdown", function () {
     let currentSeries;
     before(function () {
         const content = new ContentfulApi();
