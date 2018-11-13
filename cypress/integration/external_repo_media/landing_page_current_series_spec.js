@@ -11,19 +11,26 @@ describe("Testing the Current Series on the Media landing page", function(){
     })
 
     //Note: this test is here for convenience but should really live with it's code in crds-media
-    it('Checks current series: title, dates, image and description', function(){
-        cy.contains('series').as('seriesHeader').should('be.visible');
+    it('Tests current series title, title link, and description', function(){
+        cy.contains('series').parent().find('.featured > .media-body').as('seriesText')
 
-        //Check image block
-        cy.get('@seriesHeader').parent().find('.featured > a').then(($seriesBlock) => {
-            expect($seriesBlock).to.have.attr('href', `/series/${currentSeries.slug}`);
-            expect($seriesBlock.find('img')).to.have.attr('src').contains(`${currentSeries.imageFilename}`);
+        cy.get('@seriesText').find('.component-header > a').then(($seriesTitle) => {
+            expect($seriesTitle).to.have.attr('href', `/series/${currentSeries.slug}`);
+            expect($seriesTitle).to.have.text(`${currentSeries.title}`);
         })
 
-        //Check text block
-        cy.get('@seriesHeader').parent().find('.featured > .media-body > .component-header > a').then(($seriesBlock) => {
-            expect($seriesBlock).to.have.attr('href', `/series/${currentSeries.slug}`);
-            expect($seriesBlock).to.have.text(`${currentSeries.title}`);
+        cy.get('@seriesText').find('div').then(($description) =>{
+            expect($description).to.contain(`${currentSeries.description.substring(0,96)}`);
+        })
+    })
+
+    it('Tests current series image and image link', function(){
+        cy.contains('series').as('seriesHeader').should('be.visible');
+
+        cy.get('@seriesHeader').parent().find('.featured > a').then(($imageBlock) => {
+            expect($imageBlock).to.have.attr('href', `/series/${currentSeries.slug}`);
+            expect($imageBlock.find('img')).to.have.attr('src').contains(`${currentSeries.imageFilename}`);
+            expect($imageBlock.find('img')).to.have.attr('srcset'); //If fails, image was not found
         })
     })
 })
