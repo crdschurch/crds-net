@@ -21,6 +21,6 @@
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
   CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
 
-[context.release.environment]
+[context.master.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-prod.netlify.com"
   CRDS_MAP_DOMAIN = "crds-map-prod.netlify.com"
