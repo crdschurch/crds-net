@@ -1,19 +1,18 @@
-import { ContentfulApi, SeriesModel } from '../../support/ContentfulApi';
+import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 
 describe("Testing the Current Series on Locations pages (served from Netlify)", function () {
     let currentSeries;
-    let content;
+    let locationList;
     before(function () {
-        content = new ContentfulApi();
-        currentSeries = new SeriesModel();
-        content.retrieveCurrentSeries(currentSeries);
-        content.retrieveLocations();
+        const content = new ContentfulApi();
+        currentSeries = content.retrieveCurrentSeries();
+        locationList = content.retrieveLocations();
     })
 
     it('Checks current series link', function() {
-        assert.isAbove(content.locationList.length, 1, 'Sanity check: More than one location is served from Contentful');
+        assert.isAbove(locationList.length, 1, 'Sanity check: More than one location is served from Contentful');
 
-        cy.visit(content.locationList[0].fields.slug);
+        cy.visit(locationList[0].slug);
         cy.get('[data-automation-id="series-slug"]').then(($seriesButton) => {
             expect($seriesButton).to.have.attr('href', `/series/${currentSeries.slug}`);
         })

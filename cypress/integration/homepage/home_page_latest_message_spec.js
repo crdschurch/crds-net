@@ -1,12 +1,11 @@
 const moment = require('moment');
-import {ContentfulApi, MessageModel} from '../../support/ContentfulApi';
+import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
 
 describe("Testing the Latest Message on the Homepage", function () {
     let latestMessage;
     before(function () {
         const content = new ContentfulApi();
-        latestMessage = new MessageModel();
-        content.retrieveLatestMessage(latestMessage);
+        latestMessage = content.retrieveLatestMessage();
         cy.visit('');
     })
 

@@ -1,17 +1,16 @@
-import { ContentfulApi, SeriesModel } from '../../support/ContentfulApi';
+import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 
 describe("Testing the Current Series in the Shared Header/Media dropdown", function () {
     let currentSeries;
     before(function () {
         const content = new ContentfulApi();
-        currentSeries = new SeriesModel();
-        content.retrieveCurrentSeries(currentSeries);
+        currentSeries = content.retrieveCurrentSeries();
 
         cy.visit('/');
         cy.get('a[data-automation-id="sh-media"]').click();
     })
 
-    it('Checks current series image and link', function() {
+    it('Tests Current Series image and link', function() {
         cy.get('li[data-automation-id="sh-currentseries"]').as('currentSeriesImage').should('be.visible');
 
         cy.get('@currentSeriesImage').then(($image) => {

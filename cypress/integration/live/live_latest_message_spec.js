@@ -1,34 +1,33 @@
-import {ContentfulApi} from '../../support/ContentfulApi';
+import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
 
 describe('Testing the Latest Message on the Live page', function () {
     let messageList;
     before(function () {
         const content = new ContentfulApi();
-        messageList = []
-        content.retrieveListOfMessages(messageList, 5);
+        messageList = content.retrieveListOfMessages(5);
         cy.visit('live');
     })
 
-    it('Checks Past Weekend section displays 4 recent messages', function(){
+    it('Tests Past Weekend section displays 4 messages', function(){
         cy.get('[data-automation-id="recent-message-card"]').then(($cardList) =>
         {
             expect($cardList).lengthOf(4);
         })
     })
 
-    it('Checks most recent message content', function(){
+    it('Tests most recent message card in Past Weekend section (title, image, description, link)', function(){
         check_message_card_content_at_index(0);
     })
 
-    it('Checks second most recent message content', function(){
+    it('Tests second most recent message card in Past Weekend section (title, image, description, link)', function(){
         check_message_card_content_at_index(1);
     })
 
-    it('Checks third most recent message content', function(){
+    it('Tests third most recent message card in Past Weekend section (title, image, description, link)', function(){
         check_message_card_content_at_index(2);
     })
 
-    it('Checks fourth most recent message content', function(){
+    it('Tests fourth most recent message card in Past Weekend section (title, image, description, link)', function(){
         check_message_card_content_at_index(3);
     })
 

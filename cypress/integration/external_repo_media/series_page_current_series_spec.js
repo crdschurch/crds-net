@@ -1,12 +1,11 @@
 const moment = require('moment');
-import {ContentfulApi, SeriesModel} from '../../support/ContentfulApi';
+import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
 
 describe("Tesing the Current Series on the Media/Series page", function(){
     let currentSeries;
     before(function() {
         const content = new ContentfulApi();
-        currentSeries = new SeriesModel();
-        content.retrieveCurrentSeries(currentSeries);
+        currentSeries = content.retrieveCurrentSeries();
 
         cy.visit('https://mediaint.crossroads.net/series/');
     })
