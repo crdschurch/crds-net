@@ -22,14 +22,19 @@ describe("Checks all series information is correct on Live", function () {
             expect($textBlock.find('[data-automation-id="series-description"] > p')).to.have.text(content.currentSeries.description);
         })
 
-        cy.get('@currentSeriesBlock').then(($imageBlock)=> {
-            expect($imageBlock.find('[data-automation-id="series-image"]')).to.have.attr('src').contains(`${content.currentSeries.imageFileName}`);
+        cy.get('[data-automation-id="series-image"]').then(($imageBlock)=> {
+            expect($imageBlock).to.have.attr('src').contains(content.currentSeries.imageFileName);
+            expect($imageBlock).to.have.attr('srcset'); //If fails, image was not found
         })
     })
 
-    it('Checks current series trailer button link', function () {
+    it('Checks current series trailer link and modal source', function () {
         cy.get('[data-automation-id="series-youtube"]').then(($trailerButton) => {
             expect($trailerButton).to.have.attr('href', content.currentSeries.youtube_url);
+        })
+
+        cy.get('#modal-video-src').then(($youtubeModal) => {
+            expect($youtubeModal).to.have.attr('data-src', content.currentSeries.youtube_url);
         })
     })
 })

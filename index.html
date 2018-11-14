@@ -116,7 +116,7 @@ title: Home
         {% if current_series.youtube_url %}
         <a class="btn btn-blue" data-automation-id="series-youtube" href="{{ current_series.youtube_url }}" target="_blank">Watch the trailer</a>
         {% endif %}
-        <a href="/series/{{ latest_message.series.slug }}/{{ latest_message.slug }}" class="btn btn-blue" data-role="recent-message">View latest now</a>
+        <a data-automation-id="latest-message-link" href="/series/{{ latest_message.series.slug }}/{{ latest_message.slug }}" class="btn btn-blue" data-role="recent-message">View latest now</a>
       </div>
     </div>
   </div>
