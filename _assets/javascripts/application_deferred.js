@@ -20,6 +20,7 @@
 //= require ./components/filters
 //= require ./components/legacy-imgix
 //= require ./vendor/imgix-optimizer
+//= require ./vendor/isotope.min
 //= require ./components/simple-fred
 //= require ./components/status-message
 //= require ./lib/smooth-scroller
