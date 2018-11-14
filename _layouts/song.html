@@ -1,0 +1,190 @@
+---
+layout: default
+---
+{% assign album = site.albums | where: 'title', page.album.title | first %}
+
+{% if page.bg_image.url %}
+  {% assign bg_img = page.bg_image.url %}
+{% else %}
+  {% assign bg_img = page.image.url %}
+{% endif %}
+
+<div class="song-detail-tpl">
+  <header style="background-image: url('{{ bg_img | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+    <div class="bg-overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <ol class="breadcrumb hard-sides text-white">
+            <li><a href="/">Media</a></li>
+            <li><a href="/music">Music</a></li>
+          </ol>
+          <div class="description">
+            <div>
+              <h1 class="text-white font-family-condensed-extra text-uppercase font-size-giant flush-top">{{ page.title }}</h1>
+              <div class="text-white soft-half-top">{{ page.content }}</div>
+            </div>
+            <div class="share">
+              {% include media/_external-music-links.html %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  {% if page.related_videos.size > 0 %}
+  <div class="bg-charcoal">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <!-- Featured Video -->
+          {% for video in page.related_videos limit: 1 %}
+            {% if video.source_url %}
+              <div class="card relative push-bottom embed-video">
+                {% assign video_id = video.source_url | youtube_id %}
+                <div class="push-bottom">
+                  {% include media/_yt-embed.html %}
+                </div>
+                <div class="embed-info">
+                  <div>
+                    <h6 class="card-title text-white push-quarter-bottom flush-top">{{ video.title }}</h6>
+                    <div class="font-size-smaller">
+                      {% for person in video.authors %}
+                        {% assign video_author = site.authors | where: "name", person | first %}
+                        <a class="text-gray-light" href="{{ video_author.url }}">{{ person }}</a>
+                        {% unless forloop.last %}
+                        <span class="text-gray-light">&amp;</span>
+                        {% endunless %}
+                      {% endfor %}
+
+                      {% if video.topic != nil %}
+                        <a class="text-gray-light" href="{{ topic.url }}">{{ video.topic | prepend: '∙ ' }}</a>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div>
+                    {% include media/_yt-subscribe-btn.html url="https://www.youtube.com/user/crdschurch" %}
+                  </div>
+                </div>
+              </div>
+            {% else %}
+              {% include media/_video-card.html imgix_size="1x" theme="dark" %}
+            {% endif %}
+          {% endfor %}
+
+          <!-- Other Related Videos -->
+          <div class="cards-4x cards-2x-sm">
+            <div class="row">
+              {% assign other_videos = page.related_videos | slice: 1, page.related_videos.size %}
+              {% for video in other_videos %}
+                {% include media/_video-card.html imgix_size="4x" theme="dark" %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<div class="container">
+  <div class="row push-bottom soft-bottom">
+    <div class="col-sm-8 col-sm-offset-2">
+      {% if page.details or page.lyrics or page.chords %}
+      <h3 class="component-header">About This Song</h3>
+      {% endif %}
+
+      {% assign tabs = 'details lyrics chords' | split: ' ' %}
+      {% if page.details or page.lyrics or page.chords %}
+        {% include media/_tabs.html tabs=tabs %}
+      {% endif %}
+
+      <div class="soft-half-top push-top">
+        <p>{{ page.date | format_date }} {% if page.audio_duration != nil %}<span class="divider push-quarter-sides">•</span> {{ page.audio_duration }} mins {% endif %}</p>
+      </div>
+
+      <div class="push-top">
+        {% include media/_social-share.html %}
+      </div>
+
+      <!-- Topic -->
+      {% assign topic = page.category | get_doc %}
+      {% if topic %}
+        <p class="flush-bottom soft-top">
+          <strong>Topic</strong>
+        </p>
+        <ul class="list-inline">
+          <li>
+            <a href="{{ topic.url }}">{{ topic.title }}</a>
+          </li>
+        </ul>
+      {% endif %}
+
+      <!-- Tags -->
+      {% include media/_tags_list.html tags=page.tags %}
+
+      <!-- Album -->
+      {% if album %}
+        <p class="flush-bottom soft-half-top">
+          <strong>Album</strong>
+        </p>
+        <div class="media flush-top">
+          <div class="d-flex flex-row-reverse">
+            <div class="media-object">
+              <a href="{{ album.url }}">
+                <img class="img-size-6" src="{{ album.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}" sizes="{{ site.image_sizes.album_thumb }}" data-optimize-img />
+              </a>
+            </div>
+          </div>
+
+          <div class="media-body d-flex flex-column justify-content-center align-items-start">
+            <a href="{{ album.url }}">
+              {{ album.title }}
+            </a>
+            <div>
+            {% for author in album.author %}
+              {% if author %}
+                <span class="font-size-small text-gray-light">{{ author.full_name }}</span>{% if forloop.last == false %}, {% endif%}
+              {% endif %}
+            {% endfor %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <!-- Recent Songs -->
+  {% if site.songs.size > 1 %}
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+
+        <section>
+          <h2 class="component-header flush-top">Recent Songs</h3>
+          <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
+            <div class="feature-cards">
+
+              {% assign recent = site.songs | sort: 'date' | reverse %}
+              {% for song in recent limit: 9 %}
+                <div class="card card-3x">
+                  <a href="{{ song.url }}">
+                    <img src="{{ song.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_3x_centered_carousel }}" data-optimize-img>
+                  </a>
+                  <div class="card-block hard">
+                    <a href="{{ song.url }}">
+                      <h5 class="card-title font-size-small">{{ song.title }}</h5>
+                    </a>
+                  </div>
+                </div>
+              {% endfor %}
+
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,60 @@
+.discussion-questions {
+  background: $cr-gray-lighter;
+  font-size: $font-size-small;
+  padding: 20px;
+  padding-top: 45px;
+
+  @media screen and (min-width: $screen-sm) {
+    padding: 45px;
+  }
+
+  h2, h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 6px;
+  }
+
+  .label {
+    color: $cr-gray-dark;
+    display: block;
+    font-family: $font-family-base;
+    font-size: $font-size-small;
+    font-weight: 600;
+    line-height: 21px;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    text-transform: unset;
+  }
+
+  ol {
+    counter-reset: li;
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      margin-bottom: 20px;
+
+      &:first-of-type {
+        margin-top: 1.75rem;
+      }
+
+      &::before {
+        content: 'Question ' counter(li);
+        counter-increment: li;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.chaser-questions {
+  background: $cr-blue-lighter;
+  border: 1px solid;
+  border-color: darken($cr-blue-lighter, 5.8);
+
+  .chaser-logo {
+    width: 212px;
+  }
+}

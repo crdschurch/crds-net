@@ -1,0 +1,5 @@
+<script data-js-vars>
+  {% for var_name in page.js_vars %}
+    var {{var_name}} = '{{ site.ENV[var_name] }}';
+  {% endfor %}
+</script>

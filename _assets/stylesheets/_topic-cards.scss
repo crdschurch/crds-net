@@ -1,0 +1,94 @@
+.topic-card-sizer {
+  width: 100%;
+
+  @media (min-width: $screen-sm) {
+    width: calc(50% - 24px);
+  }
+
+  @media (min-width: $screen-md) {
+    width: calc(33.333% - 16px);
+  }
+}
+
+.topic-card {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: $cr-white;
+  margin-bottom: 24px;
+  padding: 2rem 2rem 3rem;
+  position: relative;
+  width: 100%;
+
+  @media (min-width: $screen-sm) {
+    display: inline-block;
+    width: calc(50% - 24px);
+  }
+
+  @media (min-width: $screen-md) {
+    width: calc(33.333% - 16px);
+  }
+}
+
+.topic-card-content {
+  position: relative;
+}
+
+.topic-card-link {
+  color: $cr-white;
+
+  &:hover,
+  &:focus {
+    color: rgba($cr-white, .85);
+    text-decoration: none;
+  }
+
+  .icon {
+    vertical-align: middle;
+  }
+}
+
+.topic-card-title {
+  color: $cr-white;
+  margin: 170px 0 1rem;
+
+  a {
+    &:hover,
+    &:focus {
+      color: rgba($cr-white, .85);
+      text-decoration: none;
+    }
+  }
+}
+
+.topic-card-simple-title {
+    color: white;
+    margin: 119px 0 8rem;
+}
+
+.card-deck--expanded-layout
+.card.topic-card-simple {
+  max-width: 20%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media (min-width: $screen-sm) {
+    .topic-card-simple {
+        width: calc(20% - 4px);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+  }
+
+  @media (min-width: $screen-md) {
+    .topic-card-simple {
+        width: calc(20% - 4px);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+  }
+
+}

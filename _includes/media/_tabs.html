@@ -1,0 +1,17 @@
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+  {% for tab in include.tabs %}
+    {% if page[tab] != blank %}
+    <li role="presentation"><a href="#{{tab}}" aria-controls="{{tab}}" role="tab" data-toggle="tab">{{ tab | capitalize | replace: "_", " " }}</a></li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+
+  <div class="tab-content soft-top">
+  {% for tab in include.tabs %}
+    <div role="tabpanel" class="tab-pane soft-bottom" id="{{tab}}">
+      {{ page[tab] | markdownify }}
+    </div>
+  {% endfor %}
+  </div>
+</div>

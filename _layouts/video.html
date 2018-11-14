@@ -1,0 +1,127 @@
+---
+layout: default
+---
+
+<div class="video-tpl">
+  <div class="bg-charcoal">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+          {% if page.source_url %}
+          <div class="push-top soft-top">
+            <div class="mobile-flush">
+              <!-- Needed for YT partial to load video -->
+              {% assign video_id = page.source_url | youtube_id %}
+              {% include media/_yt-embed.html %}
+            </div>
+          </div>
+          {% endif %}
+
+          <header>
+            <div class="flush-top">
+              <!-- Start breadcrumbs -->
+              {% assign url_array = page.url | split: '/' | shift | pop %}
+              {% capture url_string %} {{ page.url | replace: '/', " " }}{% endcapture %}
+              {% assign url="" %}
+              <ol class="breadcrumb hard-sides">
+                <li><a href="/">Media</a></li>
+
+                {% for breadcrumb in url_array %}
+                {% capture first_word %}{{ url_string | truncatewords: 1, "" }}{% endcapture %}
+                {% capture url %}{{ url }}/{{ first_word }}{% endcapture %}
+
+                <li><a href="{{ url }}">{{ breadcrumb | replace: '-', ' ' | capitalize }}</a></li>
+
+                {% capture url_string %}{{ url_string | remove_first: first_word }}{% endcapture %}
+                {% endfor %}
+              </ol>
+              <!-- End breadcrumbs -->
+
+              <h1 class="font-family-condensed-extra text-uppercase flush-top push-bottom text-white">{{ page.title }}</h1>
+            </div>
+          </header>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row push-ends">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="row">
+          <div class="col-md-9">
+            {% assign tabs = 'description transcription' | split: ' ' %}
+            {% if page.transcription or page.description %}
+              {% include media/_tabs.html tabs=tabs %}
+            {% endif %}
+
+            <!-- List of contributors -->
+            {% if page.author %}
+              {% for author_obj in page.author %}
+                {% assign author = site.authors | where: 'full_name', author_obj.full_name | first %}
+                {% if forloop.first %}<p class="flush-bottom">Featuring{% elsif forloop.last %}and{% else %}&comma;{% endif %} <a href="{{ author.url }}">{{ author.full_name | titleize }}</a>{% if forloop.last %}</p>{% endif %}
+              {% endfor %}
+            {% endif %}
+
+            <p>{{ page.published_at | format_date }} {% if page.video_duration != nil %}<span class="divider push-quarter-sides">•</span> {{ page.video_duration }} {% endif %}</p>
+
+
+            <div class="soft-half-top push-top">
+              {% include media/_social-share.html %}
+            </div>
+
+            <!-- Only 1 topic per page -->
+            {% if page.category %}
+              {% assign topic = site.categories | where: 'slug', page.category.slug | first %}
+              <p class="flush-bottom soft-top">
+                <strong>Topic</strong>
+              </p>
+              <ul class="list-inline">
+                <li>
+                  <a href="{{ topic.url }}">{{ topic.title }}</a>
+                </li>
+              </ul>
+            {% endif %}
+
+            <!-- Page can have many tags -->
+            {% include media/_tags_list.html tags=page.tags %}
+          </div>
+          <div class="col-md-3 soft-half-top">
+            {% include media/_subscribe-buttons.html content_type=page youtube=true row=false subscribe=false %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if site.videos %}
+      <div class="push-top soft-top row">
+        <section class="col-md-10 col-md-offset-1">
+          <h2 class="component-header flush-top">{% if topic %}Related{% else %}Recent{% endif %} Videos</h2>
+
+          {% if videos.size == 0 %}
+          <p class="font-family-base soft-ends push-bottom">Related messages will be here soon!</p>
+          {% else %}
+
+          <div class="cards-3x cards-2x-xs">
+            <div class="row">
+            {% if topic %}
+              {% assign limited = site.videos | filter: 'category.title', topic.title | reverse | exclude: page.title | slice: 0, 9 %}
+              {% if limited.size == 0 %}
+                {% assign limited = site.videos | reverse | exclude: page.title | slice: 0, 9 %}
+              {% endif %}
+            {% else %}
+              {% assign limited = site.videos | reverse | exclude: page.title | slice: 0, 9 %}
+            {% endif %}
+
+            {% for video in limited %}
+              {% include media/_video-card.html %}
+            {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+        </section>
+      </div>
+    {% endif %}
+  </div>
+</div>

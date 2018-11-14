@@ -1,0 +1,13 @@
+{% assign tags = include.tags | get_docs %}
+{% if tags.size > 0 %}
+  <p class="flush-bottom soft-half-top">
+    <strong>Tags</strong>
+  </p>
+  <ul class="list-inline">
+    {% for tag in tags %}
+      <li>
+        <a href="{{ tag.url }}">{{ tag.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

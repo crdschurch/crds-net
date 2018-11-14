@@ -1,0 +1,5 @@
+{% assign words = include.content_type.content | number_of_words %}
+{% assign read_time = words | divided_by: 184.0 | ceil %}
+{% if read_time > 0 %}
+  <span class="read-time font-size-smaller push-quarter-ends">{{ read_time }} min read</span>
+{% endif %}
