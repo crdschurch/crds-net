@@ -166,27 +166,8 @@ paginate:
         </div>
       </div>
       <div class="col-sm-12 col-md-4">
-        <!-- Another Perspective -->
-        <section class="perspectives-landing">
-          <a href="/perspectives">
-            <header style="background-image: url('//crds-cms-uploads.imgix.net/content/images/another-perspective-bg.png?blend64=MTUxNTE1&balph=60&bm=normal&w=10')" data-optimize-bg-img>
-              <img class="branding" src="//crds-cms-uploads.imgix.net/content/images/logo-another-perspective.svg" alt="another perspective">
-            </header>
-          </a>
-          {% if page.perspectives.docs.size > 0 %}
-          <div class="push-bottom soft-bottom perspectives-list">
-            {% for featured in page.perspectives.docs %}
-              {% include media/_media-object-list.html media_type="perspective" %}
-            {% endfor %}
-            <a class="font-size-small" href="{{ '/perspectives' | media_url }}">see all</a>
-          </div>
-        {% endif %}
-        </section>
-
-        <hr>
-
         {% if page.perspectives.docs.size > 0 %}
-          <section class="perspectives-landing">
+          <section class="perspectives-landing flush-top">
             <a href="/perspectives">
               <header style="background-image: url('//crds-cms-uploads.imgix.net/content/images/another-perspective-bg.png?blend64=MTUxNTE1&balph=60&bm=normal&w=10')" data-optimize-bg-img>
                 <img class="branding" src="//crds-cms-uploads.imgix.net/content/images/logo-another-perspective.svg" alt="another perspective">
@@ -248,17 +229,25 @@ paginate:
                 <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[src]">Watch the latest service</a>
               </div>
 
-              <div class="col-sm-4 col-sm-offset-2 text-left visible-xs soft-sides push-bottom">
+              <div class="col-sm-4 col-sm-offset-2 text-center visible-xs soft-sides push-bottom">
                 <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
                 <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
                 <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[src]">Watch the latest service</a>
               </div>
 
-              <div class="col-sm-4 text-left soft-sides border-left">
+              <div class="col-sm-4 text-left soft-sides border-left hidden-xs">
                 <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">in person</span></h4>
                 <span class="font-size-small">You look great. Jeans are fine. Bring the kids.</span><br>
                 <a href="https://www.crossroads.net/locations" class="btn btn-secondary btn-lg">Find a location</a>
               </div>
+
+              <div class="col-sm-4 text-center soft-sides border-left visible-xs push-top">
+                <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">in person</span></h4>
+                <span class="font-size-small">You look great. Jeans are fine. Bring the kids.</span><br>
+                <a href="https://www.crossroads.net/locations" class="btn btn-secondary btn-lg">Find a location</a>
+              </div>
+
+
              </div>
 
            </div>
