@@ -2,5 +2,9 @@
 layout: default
 ---
 {% include header.html %}
-{{ page.body | markdownify }}
-{% include footer.html %}
+<div class="container-fluid">
+  <div class="row">
+    {{ page.body | markdownify }}
+  </div>
+</div>
+<div class="push-top">{% include footer.html %}</div>

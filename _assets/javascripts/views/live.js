@@ -22,30 +22,16 @@ function liveInit() {
     });
   });
 
-  //Smooth scroller
-  $(document).ready(function(event) {
-    $('[data-smooth-scroll-to]').click(function(event) {
-      event.preventDefault();    
-      var targetId = $(this).data('smooth-scroll-to');
-      var target = document.getElementById(targetId)
-      if (target) {
-        var scrollTo = $(target).offset().top;
-        var offset = parseInt($(this).data('smooth-scroll-offset'));
-        if (!isNaN(offset) && offset > 0) { scrollTo -= offset; }
-        $('html, body').animate({ scrollTop: scrollTo }, scrollTo / 2);
-      }
-      return true;
-    });
-  });
-
   //Trailer Modal
   $(document).ready(function () {
     $('div.modal-video').on('show.bs.modal', function (event) {
       var origSrc = document.getElementById('modal-video-src').dataset.src;
-      var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+      var regExp = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
       var match = origSrc.match(regExp);
-      var ytId = (match && (match[7].length == 11 || match[7].length == 12)) ? match[7] : false;
-      $('#modal-video-src').attr('src', 'https://www.youtube.com/embed/' + ytId);
+      if (match[1] !== undefined) {
+        var ytId = match[1];
+        $('#modal-video-src').attr('src', 'https://www.youtube.com/embed/' + ytId);
+      }
     });
     $('div.modal-video').on('hidden.bs.modal', function (event) {
       $('#modal-video-src').attr('src', '');

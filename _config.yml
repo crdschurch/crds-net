@@ -21,6 +21,7 @@ include:
   - _redirects
 
 exclude:
+  - bin
   - lib
   - Gemfile
   - Gemfile.lock
@@ -56,41 +57,33 @@ collections:
     permalink: /:slug
   series:
     filename: "{{ starts_at | date: '%Y-%m-%d' }}-{{ slug }}"
-    output: true
+    output: false
     has_many:
       - videos
   messages:
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
-    output: true
+    output: false
   promos:
     filename: "{{ published_at | date: '%Y-%m-%d-%H:%M:%S' }}-{{ title | slugify }}-{{ slug }}"
     output: false
   discussions:
     output: false
   articles:
-    output: true
-    permalink: /:collection/:title
+    output: false
   topics:
-    output: true
-    permalink: /:collection/:title
+    output: false
   authors:
     output: false
-    permalink: /:collection/:title
   podcasts:
-    output: true
-    permalink: /:collection/:title
+    output: false
   episodes:
-    output: true
-    permalink: /podcasts/:podcast_slug/:title
+    output: false
   albums:
     output: false
-    permalink: /:collection/:title
   songs:
-    output: true
-    permalink: /:collection/:title
+    output: false
   videos:
-    output: true
-    permalink: /:collection/:title
+    output: false
   tags:
     output: false
   features:
@@ -100,9 +93,7 @@ collections:
   perspectives:
     output: false
   categories:
-    output: true
-    permalink: /topics/:title
-
+    output: false
 
 assets:
   source_maps: true # false on JEKYLL_ENV=production
@@ -118,6 +109,7 @@ imgix_params:
   placeholder_card: "auto=format,compress&w=12&h=9&fit=crop"
   placeholder_square: "auto=format,compress&w=10&h=10&fit=crop"
   placeholder_sixteen_nine: "auto=format,compress&w=16&h=9&fit=crop"
+  meta_image: "w=1200&h=630&fit=crop"
 
 image_sizes:
   media_object: "(min-width: 768px) 140px, (min-width: 0px) 100px"
