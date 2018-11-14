@@ -1,0 +1,22 @@
+---
+layout: default
+title: Family Meeting Stream
+permalink: /family-meeting-stream/
+---
+
+{% include header.html %}
+
+<div class="container text-center">
+  <div class="inputWrapper">
+    <h1 class="font-size-h1 font-family-base-light push-top">Join the Family Meeting</h1>
+    <div class="row">
+      <div class="col-sm-offset-4 col-sm-4 push-ends"><input type="password" class="passwordInput form-control"
+          placeholder="Enter the password" /><button class="passwordSubmit btn btn-secondary btn-block text-center">Submit</button></div>
+    </div>
+    <div class="passwordError"></div>
+  </div>
+  <div class="videoWrapper text-center push-top"></div>
+</div>
+{% include footer.html %}
+<script async type="text/javascript" src="{% asset views/family-meeting-stream.js @path %}"></script>
+

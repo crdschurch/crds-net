@@ -1,11 +1,11 @@
---- 
-layout: default 
-title: Live 
-permalink: /live/ 
-meta_description: Crossroads Live 
---- 
-{% include header.html %} 
-{% assign latest_message = site.messages | reverse | first %} 
+---
+layout: default
+title: Live
+permalink: /live/
+meta_description: Crossroads Live
+---
+{% include header.html %}
+{% assign latest_message = site.messages | reverse | first %}
 {% assign current_series = site.series | reverse | first %}
 
 <div class="sticky-top" id="live-stream-countdown-bar">
@@ -76,7 +76,7 @@ meta_description: Crossroads Live
             <p>
               <a class="btn btn-lg btn-primary" ui-sref="livestream" href="/live/stream">Watch Now</a>
             </p>
-          </div>  
+          </div>
         </div>
       </div>
     </div>
@@ -105,8 +105,8 @@ meta_description: Crossroads Live
               <div>
                 <div class="img-size-7 img-border">
                   <a href="/connect">
-                    <img class="width-100" 
-                      src="//crds-cms-uploads.imgix.net/content/images/crossroads-anywhere-connect-map.jpg?auto=format,compress&h=10&w=10&fit=crop" 
+                    <img class="width-100"
+                      src="//crds-cms-uploads.imgix.net/content/images/crossroads-anywhere-connect-map.jpg?auto=format,compress&h=10&w=10&fit=crop"
                       alt="crossroads connect map"
                       data-optimize-img />
                   </a>
@@ -125,7 +125,7 @@ meta_description: Crossroads Live
                   <a href="/connect">
                     <img class="width-100" src="//crds-cms-uploads.imgix.net/content/images/crossroads-anywhere-connect-hi.jpg?auto=format,compress&h=10&w=10&fit=crop&facepad=5&fp-x=.25""
                       alt="crossroads connect profile"
-                      title="" 
+                      title=""
                       data-optimize-img />
                   </a>
                 </div>
@@ -142,7 +142,7 @@ meta_description: Crossroads Live
                 <div class="img-size-7 img-border">
                   <a href="/connect">
                     <img class="width-100" src="//crds-cms-uploads.imgix.net/content/images/crossroads-anywhere-connect-together.jpg?auto=format,compress&h=10&w=10&fit=crop&fp-x=1"
-                      alt="connect group watching crossroads service" 
+                      alt="connect group watching crossroads service"
                       title=""
                       data-optimize-img />
                   </a>
@@ -165,17 +165,17 @@ meta_description: Crossroads Live
   <div class="container">
     <div class="card">
       <div class="card-img-caption">
-        <img alt="Current Series Image" src="{{ current_series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"  data-optimize-img>
+        <img alt="Current Series Image" data-automation-id="series-image" src="{{ current_series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"  data-optimize-img>
         <div class="img-caption img-caption--left">Current Series</div>
       </div>
       <div class="row push-top soft-half-sides soft-ends">
         <div class="col-md-6 push-bottom">
-          <h3 class="flush-top">{{ current_series.title }}</h3>
-          <h5 class="card-subtitle">{{ current_series.starts_at | date: "%m.%d.%Y" }} - {{ current_series.ends_at | date: "%m.%d.%Y"}}</h5>
-          <div class="card-text">{{ current_series.description | markdownify }}</div>
+          <h3 class="flush-top" data-automation-id="series-title">{{ current_series.title }}</h3>
+          <h5 class="card-subtitle" data-automation-id="series-dates">{{ current_series.starts_at | date: "%m.%d.%Y" }} - {{ current_series.ends_at | date: "%m.%d.%Y"}}</h5>
+          <div class="card-text" data-automation-id="series-description">{{ current_series.description | markdownify }}</div>
           {% if current_series.youtube_url %}
           <div class="push-top">
-            <a href="{{ current_series.youtube_url }}" class="btn btn-primary" data-toggle="modal" data-target="#trailer-video-modal">
+            <a href="{{ current_series.youtube_url }}" class="btn btn-primary" data-toggle="modal" data-target="#trailer-video-modal" data-automation-id="series-youtube">
             Watch Trailer </a>
           </div>
           {% endif %}
@@ -188,51 +188,51 @@ meta_description: Crossroads Live
               <tbody>
                 <tr class="new-day">
                   <td>Saturday</td>
-                  <td>4:30 PM EDT</td>
+                  <td>4:30 PM EST</td>
                 </tr>
                 <tr>
                   <td></td>
-                  <td>6:15 PM EDT</td>
+                  <td>6:15 PM EST</td>
                 </tr>
                 <tr>
                   <td></td>
-                  <td>8:00 PM EDT</td>
+                  <td>8:00 PM EST</td>
                 </tr>
                 <tr>
                   <td></td>
-                  <td>10:00 PM EDT</td>
+                  <td>10:00 PM EST</td>
                 </tr>
                 <tr class="new-day">
                   <td>Sunday</td>
-                  <td>8:30 AM EDT</td>
+                  <td>8:30 AM EST</td>
                 </tr>
                 <tr>
                   <td></td>
-                  <td>10:05 AM EDT</td>
+                  <td>10:05 AM EST</td>
                 </tr>
                 <tr>
                   <td></td>
-                  <td>11:45 AM EDT &nbsp;</td>
+                  <td>11:45 AM EST &nbsp;</td>
                 </tr>
                 <tr>
                   <td></td>
-                  <td>2:00 PM EDT</td>
+                  <td>2:00 PM EST</td>
                 </tr>
                 <tr>
                   <td></td>
-                  <td>4:00 PM EDT</td>
+                  <td>4:00 PM EST</td>
                 </tr>
                 <tr>
                   <td></td>
-                  <td>6:00 PM EDT</td>
+                  <td>6:00 PM EST</td>
                 </tr>
                 <tr>
                   <td></td>
-                  <td>8:00 PM EDT</td>
+                  <td>8:00 PM EST</td>
                 </tr>
                 <tr>
                   <td></td>
-                  <td>10:00 PM EDT</td>
+                  <td>10:00 PM EST</td>
                 </tr>
               </tbody>
             </table>
@@ -252,18 +252,18 @@ meta_description: Crossroads Live
     <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
       <div class="feature-cards card-deck--expanded-layout">
         {% assign recent_messages = site.messages | sort: 'date' | reverse | slice: 0,4 %} {% for message in recent_messages %}
-        <div class="card">
-          <a href="/series/{{ message.series.slug }}/{{ message.slug }}" class="block">
+        <div class="card" data-automation-id="recent-message-card">
+          <a href="/series/{{ message.series.slug }}/{{ message.slug }}" class="block" data-automation-id="recent-message-image-link">
             <img src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" sizes="{{ site.image_sizes.cards_4x }}"
-              alt="{{ message.title }}" data-optimize-img>
+              alt="{{ message.title }}" data-automation-id="recent-message-image"  data-optimize-img>
           </a>
           <div class="card-block">
             <a href="/series/{{ message.series.slug }}/{{ message.slug }}" class="block">
               {% assign series_object = site.series | where: "slug" , message.series_slug | first %}
               <h4 class="card-title card-title--overlap"> {{ series_object.title | upcase }} </h4>
             </a>
-            <h6>{{ message.title }}</h6>
-            <div class="card-text">{{ message.description | markdownify }}</div>
+            <h6  data-automation-id="recent-message-title">{{ message.title }}</h6>
+            <div class="card-text"  data-automation-id="recent-message-description">{{ message.description | markdownify }}</div>
           </div>
         </div>
         {% endfor %}
@@ -299,40 +299,47 @@ meta_description: Crossroads Live
         <section class="soft-top mobile-hard font-size-smaller font-family-condensed text-center">
           <figure class="wow fadeIn col-sm-2 col-sm-offset-1 mobile-push-half-bottom">
             <div class="push-center w-60">
-              <img class="width-100" src="//crds-cms-uploads.imgix.net/content/images/streaming--watch-desktop.png?auto=format,compress&w=33&h=23&fit=crop" alt="stream Crossroads on desktop" data-optimize-img />
+              <img src="//crds-cms-uploads.imgix.net/content/images/streaming--watch-desktop.png?auto=format,compress&w=33&h=23&fit=crop" alt="" class="img-responsive imgix-fluid width-100" title="" data-optimize-img />
             </div>
-            <figcaption>Laptops &amp; Desktop Computers</figcaption>
+            <figcaption>Laptops &amp; Desktop Computers<br /><span class="font-family-base">Watch/stream on crossroads.net/live</span></figcaption>
           </figure>
+
           <figure class="wow fadeIn col-sm-2 mobile-push-half-bottom">
             <div class="push-center w-60">
-              <img class="width-100" src="//crds-cms-uploads.imgix.net/content/images/streaming--watch-smart-tv.png?auto=format,compress&w=33&h=23&fit=crop" alt="stream Crossroads on smart tvs" data-optimize-img />
+              <img src="//crds-cms-uploads.imgix.net/content/images/streaming--watch-mobile.png?auto=format,compress&w=33&h=23&fit=crop" alt="" class="img-responsive imgix-fluid width-100" title="" data-optimize-img />
             </div>
-            <figcaption>Smart TVs
-              <span class="font-family-base">(Web Capable)</span>
+            <figcaption>Phones &amp; Tablets<br /><span class="font-family-base">Watch/stream on crossroads.net/live</span> or download the <a href="https://appadvice.com/tv/app/crossroads-anywhere/1029478803">Crossroads Anywhere app</a></figcaption>
+          </figure>
+
+          <figure class="wow fadeIn col-sm-2 mobile-push-half-bottom">
+            <div class="push-center w-60">
+              <img src="//crds-cms-uploads.imgix.net/content/images/streaming--watch-roku.png?auto=format,compress&w=33&h=23&fit=crop" alt="" class="img-responsive imgix-fluid width-100" title="" data-optimize-img />
+            </div>
+            <figcaption>Roku<br /><span class="font-family-base"><a href="https://channelstore.roku.com/details/76455/crossroads">View the details</a></span></figcaption>
+          </figure>
+
+          <figure class="wow fadeIn col-sm-2 mobile-push-half-bottom">
+            <div class="push-center w-60">
+              <img src="//crds-cms-uploads.imgix.net/content/images/streaming--watch-apple-tv.png?auto=format,compress&w=33&h=23&fit=crop" alt="" class="img-responsive imgix-fluid width-100" title="" data-optimize-img />
+            </div>
+            <figcaption>Apple TV <span class="font-family-base">(Version 4) <br />Download app in App Store, search "Crossroads Anywhere"</span> </figcaption>
+          </figure>
+
+          <figure class="wow fadeIn col-sm-2 mobile-push-half-bottom">
+            <div class="push-center w-60">
+              <img src="//crds-cms-uploads.imgix.net/content/images/streaming-watch-amazon-fire.png?auto=format,compress&w=33&h=23&fit=clamp" alt="" class="img-responsive imgix-fluid width-100" title="" data-optimize-img />
+            </div>
+            <figcaption>Amazon Fire Stick &amp; Alexa<br />
+              <span class="font-family-base">
+                <a href="https://www.amazon.com/Crossroads-Church/dp/B07D83Z1JB">Amazon Fire App</a>
+                <br />
+                <a href="https://www.amazon.com/dp/B07HRPW8L2?keywords=crossroads+anywhere&qid=1538139831&s=STRING%28skills-store-name%29&sr=1-2-catcorr&ref=sr_1_2">Alexa</a>
+              </span>
             </figcaption>
           </figure>
-          <figure class="wow fadeIn col-sm-2 mobile-push-half-bottom">
-            <div class="push-center w-60">
-              <img class="width-100" src="//crds-cms-uploads.imgix.net/content/images/streaming--watch-mobile.png?auto=format,compress&w=33&h=23&fit=crop" alt="stream Crossroads on mobile" data-optimize-img />
-            </div>
-            <figcaption>Phones &amp; Tablets</figcaption>
-          </figure>
-          <figure class="wow fadeIn col-sm-2 mobile-push-half-bottom">
-            <div class="push-center w-60">
-              <img class="width-100" src="//crds-cms-uploads.imgix.net/content/images/streaming--watch-roku.png?auto=format,compress&w=33&h=23&fit=crop" alt="stream Crossroads on Roku" data-optimize-img />
-            </div>
-            <figcaption>Roku</figcaption>
-          </figure>
-          <figure class="wow fadeIn col-sm-2 mobile-push-half-bottom">
-            <div class="push-center w-60">
-              <img class="width-100" src="//crds-cms-uploads.imgix.net/content/images/streaming--watch-apple-tv.png?auto=format,compress&w=33&h=23&fit=crop" alt="stream Crossroads on Apple TV" data-optimize-img />
-            </div>
-            <figcaption>Apple TV
-              <span class="font-family-base">(Version 4)
-                <br />Download app in App Store, search "Crossroads Anywhere"</span>
-            </figcaption>
-          </figure>
+
         </section>
+
       </div>
     </div>
   </div>
@@ -349,6 +356,7 @@ meta_description: Crossroads Live
     </div>
   </section>
 </div>
+{% include footer.html %}
 <script>
   window.env = {
     gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}',
@@ -357,4 +365,3 @@ meta_description: Crossroads Live
   };
 </script>
 <script async type="text/javascript" src="{% asset views/live.js @path %}"></script>
-{% include footer.html %}

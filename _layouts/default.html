@@ -1,41 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 {% include _head.html %}
-
-<body class="crds-styles">
-  {% include _gtm-body.html %}
-  {{ content }}
-  <script>
-    var CRDS = {
-      media: {
-        cms: '{{ site.shared_header.cms }}',
-        app: '{{ site.shared_header.app }}',
-        img: '{{ site.shared_header.img }}',
-        prefix: '{{ site.shared_header.prefix }}'
-      },
-      streamspotId: '{{ site.streamspotId }}',
-      streamspotKey: '{{ site.streamspotKey }}',
-      streamspotPlayerId: '{{ site.streamspotPlayerId }}',
-      env: {
-        "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}'
-      }
-    };
-  </script>
-  <script type="text/javascript" src="{% asset application.js @path %}"></script>
-  <script async type="text/javascript" src="{% asset application_deferred.js @path %}"></script>
-  {% if page.requires_auth %}
+  <body class="crds-styles">
+    {% include _gtm-body.html %}
+    {% if page.requires_auth %}
+      {% include _preloader.html %}
+    {% endif %}
+    {{ content }}
     <script>
-      function redirectUnauthenticated() {
-        if (!document.cookie.includes('userId')) {
-          window.location.href = '/signin';
+      var CRDS = {
+        media: {
+          cms: '{{ site.shared_header.cms }}',
+          app: '{{ site.shared_header.app }}',
+          img: '{{ site.shared_header.img }}',
+          prefix: '{{ site.shared_header.prefix }}'
+        },
+        streamspotId: '{{ site.streamspotId }}',
+        streamspotKey: '{{ site.streamspotKey }}',
+        streamspotPlayerId: '{{ site.streamspotPlayerId }}',
+        env: {
+          "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}'
         }
-      }
-      document.addEventListener("redirect-url-set", redirectUnauthenticated);
-      if (window.isRedirectUrlSet) {
-        redirectUnauthenticated();
-      }
+      };
     </script>
-  {% endif %}
-</body>
-
+    <script type="text/javascript" src="{% asset application.js @path %}"></script>
+    <script async type="text/javascript" src="{% asset application_deferred.js @path %}"></script>
+  </body>
 </html>

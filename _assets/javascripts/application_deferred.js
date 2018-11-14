@@ -6,6 +6,7 @@
 //= require ./vendor/crds-jumbotron-video-v0.0.2.min
 //= require ./vendor/crds-livestream-reminder-v0.0.16.min
 //= require ./vendor/crds-rollcall.min
+//= require ./vendor/crds-status-message-v0.1.3.min
 //= require ./components/header
 //= require ./components/images
 //= require ./components/carousels
@@ -20,6 +21,8 @@
 //= require ./components/legacy-imgix
 //= require ./vendor/imgix-optimizer
 //= require ./components/simple-fred
+//= require ./components/status-message
+//= require ./lib/smooth-scroller
 
 (function () {
   var defJSLoaded = new Event('deferred-js-ready');

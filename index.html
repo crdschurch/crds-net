@@ -57,17 +57,17 @@ title: Home
               </a>
             </div>
             <div id="upcomingImg" data-automation-id="upcomingImg">
-              <img class="width-100" 
+              <img class="width-100" data-automation-id="jumbotron-series-image"
               src="{{ current_series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
               data-optimize-img>
             </div>
           </div>
           <div class="card-block flush-bottom hard">
-            <h4 class="card-title push-quarter-top block text-gray-lighter">{{ current_series.title }}</h4>
-            <h5 class="flush-top text-gray-light font-size-small">{{ current_series.starts_at | date: "%m.%d.%Y" }} — {{ current_series.ends_at | date: "%m.%d.%Y" }}</h5>
+            <h4 class="card-title push-quarter-top block text-gray-lighter" data-automation-id="jumbotron-series-title">{{ current_series.title }}</h4>
+            <h5 class="flush-top text-gray-light font-size-small" data-automation-id="jumbotron-series-dates">{{ current_series.starts_at | date: "%m.%d.%Y" }} — {{ current_series.ends_at | date: "%m.%d.%Y" }}</h5>
               {% if current_series.youtube_url != nil %}
                 <div class="card-link-container">
-                  <a class="card-link" href="{{ current_series.youtube_url }}" target="_blank">Watch the trailer</a>
+                  <a class="card-link" data-automation-id="jumbotron-series-youtube" href="{{ current_series.youtube_url }}" target="_blank">Watch the trailer</a>
                 </div>
               {% endif %}
           </div>
@@ -114,9 +114,9 @@ title: Home
     <div class="col-xs-12 text-center">
       <div class="btn-group">
         {% if current_series.youtube_url %}
-        <a class="btn btn-blue" href="{{ current_series.youtube_url }}" target="_blank">Watch the trailer</a>
+        <a class="btn btn-blue" data-automation-id="series-youtube" href="{{ current_series.youtube_url }}" target="_blank">Watch the trailer</a>
         {% endif %}
-        <a href="/series/{{ latest_message.series.slug }}/{{ latest_message.slug }}" class="btn btn-blue" data-role="recent-message">View latest now</a>
+        <a data-automation-id="latest-message-link" href="/series/{{ latest_message.series.slug }}/{{ latest_message.slug }}" class="btn btn-blue" data-role="recent-message">View latest now</a>
       </div>
     </div>
   </div>
@@ -149,7 +149,7 @@ title: Home
   <div class="container pu sh-bottom">
     <div class="row push-bottom">
       <div class="col-sm-4 push-bottom">
-        <img class="width-100" 
+        <img class="width-100"
           src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-1-1.jpg?auto=format,compress&w=20&h=10&fit=crop"
           data-optimize-img>
         <h4 class="text-uppercase text-white font-family-condensed-extra">Coffee</h4>
@@ -158,7 +158,7 @@ title: Home
         </p>
       </div>
       <div class="col-sm-4 push-bottom">
-        <img class="width-100" 
+        <img class="width-100"
           src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-2-1.jpg?auto=format,compress&w=20&h=10&fit=crop"
           data-optimize-img>
         <h4 class="text-uppercase text-white font-family-condensed-extra">Loud Music</h4>
@@ -166,7 +166,7 @@ title: Home
           - so we can turn it up to 11.</p>
       </div>
       <div class="col-sm-4 push-bottom">
-        <img class="width-100" 
+        <img class="width-100"
           src="https://crds-cms-uploads.imgix.net/content/images/crossroads-whattoexpect-3-1.jpg?auto=format,compress&w=20&h=10&fit=crop"
           data-optimize-img>
         <h4 class="text-uppercase text-white font-family-condensed-extra">Something Unexpected</h4>

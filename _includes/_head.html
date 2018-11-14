@@ -1,4 +1,11 @@
 <head>
+
+  <script type="text/javascript" src="{% asset lib/set-redirect-url.js @path %}"></script>
+
+  {% if page.requires_auth %}
+    <script type="text/javascript" src="{% asset lib/auth-required.js @path %}"></script>
+  {% endif %}
+
   {% include _gtm-head.html %}
 
   <meta name="Netlify" content="This page was rendered with Netlify">
@@ -7,10 +14,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="title" content="{{ page | get_meta_title: site }}">
   <meta name="description" content="{{ page | get_meta_description: site | markdownify | strip_html | strip_newlines | truncate: 155 }}">
-  <meta name="image" content="{{ page | get_meta_image: site }}">
+  <meta name="image" content="{{ page | get_meta_image: site | imgix: site.imgix }}?{{ site.imgix_params.meta_image }}">
   <meta property="og:description" content="{{ page | get_meta_description: site | markdownify | strip_html | strip_newlines | truncate: 155 }}">
   <meta property="og:title" content="{{ page | get_meta_title: site }}">
-  <meta property="og:image" content="{{ page | get_meta_image: site }}">
+  <meta property="og:image" content="{{ page | get_meta_image: site | imgix: site.imgix }}?{{ site.imgix_params.meta_image }}">
   <meta property="og:url" content="{{ page | build_page_url: site }}">
   <meta property="og:site_name" content="{{ site.title | escape }}">
   <title>{{ page | get_title: site }}</title>
