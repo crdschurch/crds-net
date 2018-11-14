@@ -1,31 +1,48 @@
-import {ContentfulApi} from '../../support/ContentfulApi';
+import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
 
-describe("Checks latest message is correct on Live page", function () {
-    let content;
+describe('Testing the Latest Message on the Live page', function () {
+    let messageList;
     before(function () {
-        content = new ContentfulApi();
-        content.retrieveMessages();
+        const content = new ContentfulApi();
+        messageList = content.retrieveListOfMessages(5);
         cy.visit('live');
     })
 
-    it('does something', function() {
-        cy.get('[data-automation-id="recent-message-card"]').as('messageCards').then(($cardList) =>
+    it('Tests Past Weekend section displays 4 messages', function(){
+        cy.get('[data-automation-id="recent-message-card"]').then(($cardList) =>
         {
             expect($cardList).lengthOf(4);
         })
-
-        cy.get('@messageCards').each(($messageCard, index) =>{
-            expect($messageCard).to.be.visible;
-            expect($messageCard.find('[data-automation-id="recent-message-image"]')).to.have.attr('src')
-            .contains(content.messages[index].imageFileName);
-            expect($messageCard.find('[data-automation-id="recent-message-image"]')).to.have.attr('alt')
-            .contains(content.messages[index].title);
-
-            expect($messageCard.find('[data-automation-id="recent-message-image-link"]')).to.have.attr('href')
-            .contains(content.messages[index].slug);
-            expect($messageCard.find('[data-automation-id="recent-message-title"]')).to.have.text(content.messages[index].title);
-            //TODO need to strip markdown from Contentful message before comparing
-            //expect($messageCard.find('[data-automation-id="recent-message-description"]')).to.have.text(content.messages[index].description);
-        })
     })
+
+    it('Tests most recent message card in Past Weekend section (title, image, description, link)', function(){
+        check_message_card_content_at_index(0);
+    })
+
+    it('Tests second most recent message card in Past Weekend section (title, image, description, link)', function(){
+        check_message_card_content_at_index(1);
+    })
+
+    it('Tests third most recent message card in Past Weekend section (title, image, description, link)', function(){
+        check_message_card_content_at_index(2);
+    })
+
+    it('Tests fourth most recent message card in Past Weekend section (title, image, description, link)', function(){
+        check_message_card_content_at_index(3);
+    })
+
+    function check_message_card_content_at_index(index) {
+        cy.get('[data-automation-id="recent-message-card"]').eq(index).then((messageCard) => {
+            expect(messageCard).to.be.visible;
+            expect(messageCard.find('[data-automation-id="recent-message-image"]')).to.have.attr('src')
+            .contains(messageList[index].imageFilename);
+            expect(messageCard.find('[data-automation-id="recent-message-image"]')).to.have.attr('alt')
+            .contains(messageList[index].title);
+
+            expect(messageCard.find('[data-automation-id="recent-message-image-link"]')).to.have.attr('href')
+            .contains(messageList[index].slug);
+            expect(messageCard.find('[data-automation-id="recent-message-title"]')).to.have.text(messageList[index].title);
+            expect(messageCard.find('[data-automation-id="recent-message-description"]')).to.contain(messageList[index].description);
+        })
+    }
 })
