@@ -42,15 +42,6 @@ paginate:
 
 {% include header.html %}
 
-<section class="push-bottom" style="background-color: #c5c5c5;">
-  <div class="container">
-    <div class="row soft-half">
-      <div class="col-sm-12">
-        <p class="font-family-base-light font-size-h5 text-center text-white">— A real place for real people. —</p>
-      </div>
-    </div>
-  </div>
-</section>
 <section>
   <div class="container">
     <div class="row">
@@ -69,14 +60,14 @@ paginate:
         <div class="media featured">
           <div class="media-body">
             <h5 class="component-header flush-ends">
-              <a href="{{ messages.url }}">{{ messages.title }}</a>
+              <a href="{{ messages.url | media_url }}">{{ messages.title }}</a>
             </h5>
             <div class="soft-quarter-top font-size-smaller flush-bottom">
               {{ messages.description | markdownify | strip_html | truncatewords: 15 }}
             </div>
-            <a href="{{ messages.url }}" class="btn btn-primary btn-sm push-half-top">Watch now</a>
+            <a href="{{ messages.url | media_url }}" class="btn btn-primary btn-sm push-half-top">Watch now</a>
           </div>
-          <a href="{{ messages.url }}" class="push-half-bottom">
+          <a href="{{ messages.url | media_url }}" class="push-half-bottom">
             <div style="display: -webkit-box; color: white; position: absolute; top: 13%; left: 36%;"><svg class="icon icon-5" viewBox="0 0 256 256">
               <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#play-thin"></use>
             </svg>
@@ -99,13 +90,13 @@ paginate:
         <div class="media featured">
           <div class="media-body">
             <h5 class="component-header flush-ends">
-              <a href="{{ series.url }}">{{ series.title }}</a>
+              <a href="{{ series.url | media_url }}">{{ series.title }}</a>
             </h5>
             <div class="soft-quarter-top font-size-smaller flush-bottom">
               {{ series.description | markdownify | strip_html | truncatewords: 15 }}
             </div>
           </div>
-          <a href="{{ series.url }}" class="push-half-bottom">
+          <a href="{{ series.url | media_url }}" class="push-half-bottom">
             <img class="media-img" src="{{ series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
           </a>
         </div>
@@ -169,7 +160,7 @@ paginate:
         <!-- Another Perspective -->
 
         {% if page.perspectives.docs.size > 0 %}
-          <section class="perspectives-landing">
+          <section class="perspectives-landing flush-top">
             <a href="/perspectives">
               <header style="background-image: url('//crds-cms-uploads.imgix.net/content/images/another-perspective-bg.png?blend64=MTUxNTE1&balph=60&bm=normal&w=10')" data-optimize-bg-img>
                 <img class="branding" src="//crds-cms-uploads.imgix.net/content/images/logo-another-perspective.svg" alt="another perspective">
@@ -226,21 +217,27 @@ paginate:
 
               <div class="col-sm-4 col-sm-offset-2 text-right hidden-xs soft-sides">
                 <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
-                <span class="font-size-small">Take a look at last week’s service. Go ahead and get some coffee while we’re firing it up.</span><br>
+                <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
                 <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[src]">Watch the latest service</a>
               </div>
 
-              <div class="col-sm-4 col-sm-offset-2 text-left visible-xs soft-sides push-bottom">
+              <div class="col-sm-4 col-sm-offset-2 text-center visible-xs soft-sides push-bottom">
                 <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
-                <span class="font-size-small">Take a look at last week’s service. Go ahead and get some coffee while we’re firing it up.</span><br>
+                <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
                 <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[src]">Watch the latest service</a>
               </div>
 
-              <div class="col-sm-4 text-left soft-sides border-left">
+              <div class="col-sm-4 text-left soft-sides hidden-xs border-left">
                 <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">in person</span></h4>
-                <span class="font-size-small">You look great. Jeans are fine. Bring the kids. We have multiple locations and service times.</span><br>
-                <a href="" class="btn btn-secondary btn-lg">Find a location</a>
+                <span class="font-size-small">You look great. Jeans are fine. Bring the kids.</span><br>
+                <a href="/locations" class="btn btn-secondary btn-lg">Find a location</a>
               </div>
+              <div class="col-sm-4 text-center soft-sides visible-xs push-top">
+                <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">in person</span></h4>
+                <span class="font-size-small">You look great. Jeans are fine. Bring the kids.</span><br>
+                <a href="/locations" class="btn btn-secondary btn-lg">Find a location</a>
+              </div>
+
              </div>
 
            </div>
@@ -306,35 +303,6 @@ paginate:
           </div>
         </div>
       </div>
-      <!--<div class="col-sm-12 col-md-4">
-        <div class="row">
-          <div class="col-sm-12">
-            <hr class="push-half-bottom">
-            <h2 class="flush-top font-size-base text-gray-light" style="">recent podcast episodes</h2>
-          </div>
-        </div>
-        <div class="push-ends soft-bottom">
-          {% assign home_episodes = page.episodes.docs %}
-
-          {% for episodes in home_episodes %}
-
-          <div class="media">
-            <div class="media-body">
-              <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ episodes.url | media_url}}">
-                Episode {{ episodes.episode_number }}: {{ episodes.title }}</a>
-              </h5>
-              <div class="soft-quarter-top font-size-smaller flush-bottom">
-                <p class="episode-description">{{ episodes.description | markdownify | strip_html | truncatewords: 15 }}</p>
-              </div>
-            </div>
-            <a href="{{ episodes.url | media_url }}" class="soft-quarter-left">
-              <img src="{{ episodes.podcast.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img>
-            </a>
-          </div>
-          <hr>
-          {% endfor %}
-        </div>
-      </div>-->
 
       <div class="col-sm-12 col-md-4">
         <div class="row">
@@ -343,7 +311,7 @@ paginate:
             <h2 class="flush-top font-size-base text-gray-light" style="">our podcasts</h2>
           </div>
         </div>
-        <div class="push-ends soft-bottom">
+        <div class="push-bottom soft-bottom">
           {% for podcasts in page.podcasts.offset %}
           <div class="media featured">
             <div class="media-body">
@@ -400,45 +368,6 @@ paginate:
   </div>
 </section>
 
-<!-- Community Jumbotron -->
-<section>
-  <div class="jumbotron jumbotron-xl push-top" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-groups-header3.jpg');">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-          <h2 class="font-family-condensed-extra text-uppercase font-size-h1 text-white" style="line-height:.95em;">We’re glad that you are here.</h2>
-          <p>Whether you are looking for answers to life’s biggest questions or a friend sent you here, we believe you’re at the right place.</p>
-        </div>
-        <div class="col-sm-10 col-sm-offset-1">
-          <hr>
-          <div class="row soft-top">
-            <div class="col-sm-12">
-              <p class="">Take a next step:</p>
-            </div>
-            <div class="col-sm-4 text-left soft-sides push-bottom">
-              <h4 class="component-header text-white">1. Engage with our content</h4>
-              <span class="">We have articles, podcasts, and more on a wide range of topics.</span><br />
-              <a href="" class="btn btn-secondary btn-md">Explore more content</a>
-            </div>
-            <div class="col-sm-4 text-left soft-sides push-bottom">
-              <h4 class="component-header text-white">2. Consider finding people near you</h4>
-              <span class="">That might sound weird but trust us, it’s not. Crossroads has people all over who would love to get to know you.</span><br />
-              <a href="" class="btn btn-secondary btn-md">Find people near you</a>
-            </div>
-            <div class="col-sm-4 text-left soft-sides">
-              <h4 class="component-header text-white">3. Reach out to us</h4>
-              <span class="">Not sure what step you want to take? We’d love to hear from you and help however we can.</span><br />
-              <a href="" class="btn btn-secondary btn-md">Contact us</a>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-  </div>
-</section>
-
 <script>
   window.env = {
     gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}',
@@ -447,5 +376,7 @@ paginate:
   };
 </script>
 <script async type="text/javascript" src="{% asset views/live.js @path %}"></script>
+
+<script src="https://crds-media-snippets.netlify.com/media-snippets.js"></script>
 
 {% include footer.html %}
