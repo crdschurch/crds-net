@@ -234,6 +234,4 @@ permalink: /oakley/oakleyonsitegroups/
 </div>
 </div>
 </div>
-</section><script type="text/javascript">// <![CDATA[
-new CRDS.CardCarousels('[data-crds-carousel]'); new CRDS.CardFilters(); // button click, filter, and scroll var filterClickable = document.querySelectorAll('[data-filter-clickable]'); var healFilter = document.querySelector('[data-filter-select="Healing"]'); var connectFilter = document.querySelector('[data-filter-select="Connect"]'); var learningFilter = document.querySelector('[data-filter-select="Learn"]'); function handleButtonClick() { switch (event.target.dataset.filterClickable) { case "healing": healFilter.click() break case "connect": connectFilter.click() break case "learn": learningFilter.click() break default: break } scrollToSection(); } function scrollToSection() { var section = document.getElementById('filterSection') section.scrollIntoView({behavior: "smooth"}); } for (var i = 0; i < filterClickable.length; i += 1) { filterClickable[i].addEventListener('click', handleButtonClick) }
-// ]]></script>
+</section>
