@@ -8,6 +8,11 @@ if (window.deferredJSReady) {
 }
 
 function groupsInit() {
+  // hide preloader
+  var preloader = document.querySelector('[data-preloader]');
+  preloader.style.opacity = 0;
+  preloader.style.visibility = 'hidden';
+  
   function domasonry() {
     var $grid = $('.grid').isotope({
       layoutMode: 'fitRows',
@@ -19,9 +24,7 @@ function groupsInit() {
       }
     });
 
-    $('.group-content-preloader').hide();
     $('.group-content-grid').css('visibility', 'visible');
-
 
     // filter functions
     var filterFns = {
