@@ -35,7 +35,7 @@ describe('Testing the Latest Message on the Live page', function () {
         cy.get('[data-automation-id="recent-message-card"]').eq(index).then((messageCard) => {
             expect(messageCard).to.be.visible;
             expect(messageCard.find('[data-automation-id="recent-message-image"]')).to.have.attr('src')
-            .contains(messageList[index].imageFilename);
+            .contains(messageList[index].imageName);
             expect(messageCard.find('[data-automation-id="recent-message-image"]')).to.have.attr('alt')
             .contains(messageList[index].title);
 
