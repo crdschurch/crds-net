@@ -7,6 +7,8 @@
 //= require ./vendor/crds-livestream-reminder-v0.0.16.min
 //= require ./vendor/crds-rollcall.min
 //= require ./vendor/crds-status-message-v0.1.3.min
+//= require ./vendor/imgix-optimizer
+//= require ./components/legacy-imgix
 //= require ./components/header
 //= require ./components/images
 //= require ./components/carousels
@@ -18,8 +20,6 @@
 //= require ./lib/card-filters
 //= require ./lib/height-watcher
 //= require ./components/filters
-//= require ./components/legacy-imgix
-//= require ./vendor/imgix-optimizer
 //= require ./components/simple-fred
 //= require ./components/status-message
 //= require ./lib/smooth-scroller
