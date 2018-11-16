@@ -38,8 +38,6 @@ contentful:
     limit: 4
   exclude:
     - album
-    - discussion
-    - discussion_question
     - migrations
     - sign_off
     - song
