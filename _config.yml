@@ -38,9 +38,8 @@ contentful:
     limit: 4
   exclude:
     - album
-    - discussion
-    - discussion_question
-    - migrations
+    - featured_media
+    - migration
     - sign_off
     - song
     - video
@@ -87,8 +86,6 @@ collections:
   tags:
     output: false
   features:
-    output: false
-  discussions:
     output: false
   perspectives:
     output: false
