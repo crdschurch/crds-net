@@ -7,7 +7,7 @@
     bundle exec jekyll crds &&
     bundle exec jekyll contentful -f &&
     bundle exec jekyll build -- --cloudsearch &&
-    bash ./cypress/kickOffCypress.sh
+    ./cypress/kickOffCypress.sh
   '''
 
 [context.branch-deploy.environment]
