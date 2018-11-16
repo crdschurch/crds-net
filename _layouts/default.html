@@ -26,8 +26,8 @@
   </script>
   <script type="text/javascript" src="{% asset application.js @path %}"></script>
   <script async type="text/javascript" src="{% asset application_deferred.js @path %}"></script>
-  {% if page.groups_js %}
-    <script async type="text/javascript" src="{% asset views/groups.js @path %}"></script>
+  {% if page.masonry_js %}
+    <script async type="text/javascript" src="{% asset components/masonry.js @path %}"></script>
   {% endif %}
 </body>
 

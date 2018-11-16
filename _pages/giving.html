@@ -4,21 +4,9 @@ title: Giving
 permalink: /giving/
 ---
 
-<p></p>
-<script type="text/javascript">
-  // <![CDATA[
-  window.featureFlags = {
-    userHost: "https://682f3nrbb4.execute-api.us-east-1.amazonaws.com/prod/feature-flags/feature/${feature}/contact/${contactId}",
-    appHost: "https://682f3nrbb4.execute-api.us-east-1.amazonaws.com/prod/feature-flags/feature/${feature}"
-  }
-  // ]]>
-</script>
 <p>
   <link rel="stylesheet" href="https://s3.amazonaws.com/crossroads-assets/styles/feature-flag-props.css">
 </p>
-<p></p>
-<script src="https://s3.amazonaws.com/crossroads-assets/javascripts/feature-flag-props-v0.2.0.js" type="text/javascript"></script>
-<script src="//d1tmclqz61gqwd.cloudfront.net/javascripts/crds-jumbotron-video-v0.2.0.min.js" type="text/javascript"></script>
 <div class="jumbotron jumbotron-xl" style="background-image: url(&#039;//crds-cms-uploads.imgix.net/content/images/crossroads-why-give-header.jpg&#039;);">
   <div class="push-ends">
     <h1 class="title">why we give</h1>
@@ -217,3 +205,20 @@ permalink: /giving/
     </div>
   </div>
 </section>
+<script type="text/javascript">
+  document.addEventListener("deferred-js-ready", function () {
+    featureFlagsInit();
+  });
+
+  // if app-deferred loads first
+  if (window.deferredJSReady) {
+    featureFlagsInit();
+  }
+
+  function featureFlagsInit() {
+    window.featureFlags = {
+      userHost: "https://682f3nrbb4.execute-api.us-east-1.amazonaws.com/prod/feature-flags/feature/${feature}/contact/${contactId}",
+      appHost: "https://682f3nrbb4.execute-api.us-east-1.amazonaws.com/prod/feature-flags/feature/${feature}"
+    }
+  }
+</script>
