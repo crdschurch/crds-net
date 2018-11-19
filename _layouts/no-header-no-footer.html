@@ -1,4 +1,8 @@
 ---
 layout: default
 ---
-{{ page.body | markdownify }}
+{% if page.body %}
+  {{ page.body | markdownify }}
+{% else %}
+  {{ content }}
+{% endif %}
