@@ -67,11 +67,14 @@ paginate:
             <a href="{{ messages.url | media_url }}" class="btn btn-primary btn-sm push-half-top">Watch now</a>
           </div>
           <a href="{{ messages.url | media_url }}" class="push-half-bottom">
-            <div style="display: -webkit-box; color: white; position: absolute; top: 13%; left: 36%;"><svg class="icon icon-5" viewBox="0 0 256 256">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#play-thin"></use>
-            </svg>
+
+            <div class="media-video">
+              <img class="media-img" src="{{ messages.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
+              <svg class="media-play-btn icon icon-5 text-white" viewBox="0 0 256 256">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#play-thin"></use>
+              </svg>
             </div>
-            <img class="media-img" src="{{ messages.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
+
           </a>
         </div>
         {% endfor %}

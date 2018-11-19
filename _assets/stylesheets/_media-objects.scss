@@ -35,4 +35,14 @@
       max-width: 22.5rem; // 360px
     }
   }
+
+  .media-video {
+    position: relative;
+  }
+
+  .media-play-btn {
+    position: absolute;
+    top:30%;
+    width:100%;
+  }
 }
