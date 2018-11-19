@@ -1,34 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 {% include _head.html %}
-<<<<<<< HEAD
-  <body class="crds-styles">
-    {% include _gtm-body.html %}
-    {% if page.requires_auth %}
-      {% include _preloader.html %}
-    {% endif %}
-    {{ content }}
-    <script>
-      var CRDS = {
-        media: {
-          cms: '{{ site.shared_header.cms }}',
-          app: '{{ site.shared_header.app }}',
-          img: '{{ site.shared_header.img }}',
-          prefix: '{{ site.shared_header.prefix }}'
-        },
-        streamspotId: '{{ site.streamspotId }}',
-        streamspotKey: '{{ site.streamspotKey }}',
-        streamspotPlayerId: '{{ site.streamspotPlayerId }}',
-        env: {
-          "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}'
-        }
-      };
-    </script>
-    <script type="text/javascript" src="{% asset application.js @path %}"></script>
-    <script async type="text/javascript" src="{% asset application_deferred.js @path %}"></script>
-  </body>
-</html>
-=======
 
 <body class="crds-styles">
   {% include _gtm-body.html %}
@@ -60,4 +32,3 @@
 </body>
 
 </html>
->>>>>>> 7cd1a8037fc1a5ad9135ea11504f067c8966a6de
