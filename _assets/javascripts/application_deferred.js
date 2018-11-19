@@ -1,5 +1,7 @@
 //= require ./vendor/webcomponents-lite.min
 //= require ./vendor/imgix.min
+//= require ./vendor/imgix-optimizer
+//= require ./components/legacy-imgix
 //= require ./vendor/bootstrap.min
 //= require ./vendor/flickity.pkgd.min
 //= require ./vendor/crds-card-carousel-v0.2.0.min
@@ -18,8 +20,6 @@
 //= require ./lib/card-filters
 //= require ./lib/height-watcher
 //= require ./components/filters
-//= require ./components/legacy-imgix
-//= require ./vendor/imgix-optimizer
 //= require ./components/simple-fred
 //= require ./components/status-message
 //= require ./lib/smooth-scroller
