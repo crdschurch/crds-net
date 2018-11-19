@@ -9,7 +9,9 @@
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:run": "cypress run --record --key f9895842-b05f-494c-9010-b87b26527851",
-    "cypress:runlocal": "cypress run"
+    "cypress:runLocal": "cypress run",
+    "cypress:liveTests": "cypress run --spec .\\cypress\\integration\\live\\*",
+    "cypress:currentSeriesTests": "cypress run --spec .\\cypress\\integration\\*\\*current_series*.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
   "homepage": "https://github.com/crdschurch/crds-net#readme",
   "devDependencies": {
     "contentful-cli": "^0.16.1",
-    "cypress": "^3.1.0"
+    "cypress": "^3.1.0",
+    "remove-markdown": "^0.3.0"
   }
 }

@@ -19,6 +19,8 @@ assets:
 
 include:
   - _redirects
+  - _pages
+  - _pages/refactor
 
 exclude:
   - bin
@@ -55,7 +57,7 @@ collections:
     output: true
     permalink: /:slug
   series:
-    filename: "{{ starts_at | date: '%Y-%m-%d' }}-{{ slug }}"
+    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
     has_many:
       - videos
