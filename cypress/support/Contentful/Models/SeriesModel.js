@@ -7,7 +7,7 @@ export class SeriesModel {
 
         //Get series most recently started
         const rawCurSeries = seriesListDescending.find(s => {
-            return (Date.now() > new Date(s.fields.starts_at));
+            return (Date.now() >= new Date(s.fields.published_at));
         })
 
         ParseAndSaveJSON.storeStandardProperties(rawCurSeries, assetList, this);
