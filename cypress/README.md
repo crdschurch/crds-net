@@ -13,6 +13,8 @@ Create a cypress.env.json file with the following content (Contentful values can
 
 cypress.env.json must be in the same folder as cypress.json. Do NOT store this file in git.
 
+Alternaively you can add these to your system's environment variables, but in this case they'd need to be prefixed with 'CYPRESS_' to be recognized.
+
 ## Run Tests
 
 To open the Cypress interface for running tests:
