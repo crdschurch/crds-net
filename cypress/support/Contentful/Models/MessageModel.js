@@ -21,8 +21,8 @@ export class MessageModel {
         return this._description;
     }
 
-    get imageFilename() {
-        return this._imageFileName;
+    get imageName() {
+        return this._imageName;
     }
 
     get publishedAt() {

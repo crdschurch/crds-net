@@ -7,7 +7,7 @@ describe("Tesing the Current Series on the Media/Series page", function(){
         const content = new ContentfulApi();
         currentSeries = content.retrieveCurrentSeries();
 
-        cy.visit('https://mediaint.crossroads.net/series/');
+        cy.visit(`https://${Cypress.env('MEDIA_SUBDOMAIN')}.crossroads.net/series/`);
     })
 
     //Note: this test is here for convenience but should really live with it's code in crds-media
@@ -27,7 +27,7 @@ describe("Tesing the Current Series on the Media/Series page", function(){
     it('Tests current series image and image link', function(){
         cy.get('.current-series > div > a').then(($seriesImage) => {
             expect($seriesImage).to.have.attr('href').contains(`/series/${currentSeries.slug}`);
-            expect($seriesImage.find('img')).to.have.attr('src').contains(`${currentSeries.imageFilename}`);
+            expect($seriesImage.find('img')).to.have.attr('src').contains(`${currentSeries.imageName}`);
         })
     })
 

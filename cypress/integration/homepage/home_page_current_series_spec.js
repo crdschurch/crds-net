@@ -25,7 +25,7 @@ describe("Testing the Current Series on the Homepage", function () {
     it('Tests Current Series image', function(){
         cy.get('[data-automation-id="series-image"]').then(($imageBlock)=> {
             expect($imageBlock).to.be.visible;
-            expect($imageBlock).to.have.attr('src').contains(`${currentSeries.imageFilename}`);
+            expect($imageBlock).to.have.attr('src').contains(`${currentSeries.imageName}`);
             expect($imageBlock).to.have.attr('srcset'); //If fails, image was not found
         })
     })
@@ -45,7 +45,7 @@ describe("Testing the Current Series on the Homepage", function () {
         cy.get('[data-automation-id="jumbotron-series-dates"]').should('have.text', `${startDate.format('MM.DD.YYYY')} — ${endDate.format('MM.DD.YYYY')}`);
 
         cy.get('[data-automation-id="jumbotron-series-image"]').then(($seriesImage) => {
-            expect($seriesImage).to.have.attr('src').contains(`${currentSeries.imageFilename}`);
+            expect($seriesImage).to.have.attr('src').contains(`${currentSeries.imageName}`);
             expect($seriesImage).to.have.attr('srcset'); //If fails, image was not found
         })
     })
