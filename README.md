@@ -28,13 +28,18 @@ This will build the site and start up a preview server that allows you to view t
 work that you have done.
 
 ### Windows
-First, make sure you have Ruby v2.5.1 installed on your machine. There is a proven guide
-for getting Ruby installed on your machine that you can read
-[here](https://gorails.com/setup/windows/10#ruby). This particular
-guide only needs to be followed up until the `Configuring Git` heading. Everything
-from `Configuring Git` onward is unnecessary to follow.
+First, make sure you have Ruby v2.5.1 installed on your machine. You can find Windows installers (with devkit) [here](https://rubyinstaller.org/downloads/).
 
-Once you have Ruby v.2.5.1 installed on your machine, you are ready to build the project:
+Once you have Ruby version v2.5.1 installed, use Powershell to install the Ruby bundler by running
+
+`gem install bundler`
+
+After installing bundler, navigate to this project and install the project's dependencies that are defined in the `Gemfile`. You can do that by running
+
+`bundle install`
+
+Once the project dependencies are installed, you can now kick off a build of the
+project:
 
 `bundle exec jekyll serve`
 
