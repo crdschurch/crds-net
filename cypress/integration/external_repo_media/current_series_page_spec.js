@@ -8,7 +8,7 @@ describe("Tesing the Media/Series/[Current Series] page", function(){
 
         //Wait for response before navigating
         cy.wrap({currentSeries}).its('currentSeries.slug').should('not.be.undefined').then(() => {
-            cy.visit(`https://${Cypress.env('MEDIA_SUBDOMAIN')}.crossroads.net/series/${currentSeries.slug}`);
+            cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}`);
         })
     })
 

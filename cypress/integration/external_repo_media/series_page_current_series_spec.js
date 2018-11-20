@@ -7,7 +7,7 @@ describe("Tesing the Current Series on the Media/Series page", function(){
         const content = new ContentfulApi();
         currentSeries = content.retrieveCurrentSeries();
 
-        cy.visit(`https://${Cypress.env('MEDIA_SUBDOMAIN')}.crossroads.net/series/`);
+        cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/`);
     })
 
     //Note: this test is here for convenience but should really live with it's code in crds-media
