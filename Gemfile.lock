@@ -40,10 +40,10 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-crds.git
-  revision: 160c8c2a32f63a96deeb2e1fa8f3d773bc20411a
-  branch: master
+  revision: 4845c18377748fbb77f3b84f4d09c79e4ec01636
+  tag: 0.0.2
   specs:
-    jekyll-crds (0.0.1)
+    jekyll-crds (0.0.2)
       activesupport
       httparty
       jekyll
@@ -263,7 +263,7 @@ DEPENDENCIES
   jekyll-assets
   jekyll-cloudsearch!
   jekyll-contentful!
-  jekyll-crds (~> 0.0.1)!
+  jekyll-crds!
   jekyll-placeholders (~> 0.0.1)!
   netlify-redirector!
   rack (>= 2.0.6)
