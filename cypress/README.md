@@ -7,7 +7,7 @@ Create a cypress.env.json file with the following content (Contentful values can
     "CONTENTFUL_SPACE_ID": "...",
     "CONTENTFUL_ENV": "...",
     "CONTENTFUL_ACCESS_TOKEN": "...",
-    "MEDIA_SUBDOMAIN": "mediaint"
+    "CRDS_MEDIA_ENDPOINT": "mediaint"
 }
 ```
 

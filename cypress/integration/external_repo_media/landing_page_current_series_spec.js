@@ -1,12 +1,13 @@
 import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
 
+
 describe("Testing the Current Series on the Media landing page", function(){
     let currentSeries;
     before(function() {
         const content = new ContentfulApi();
         currentSeries = content.retrieveCurrentSeries();
 
-        cy.visit(`https://${Cypress.env('MEDIA_SUBDOMAIN')}.crossroads.net/`);
+        cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/`);
     })
 
     //Note: this test is here for convenience but should really live with it's code in crds-media
