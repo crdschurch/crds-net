@@ -8,15 +8,15 @@ export class ParseAndSaveJSON {
         saveObject._description = removeMarkdown(jsonObject.fields.description);
 
         if(jsonObject.fields.image){
-            this.storeImageData(jsonObject.fields.image.sys.id, assetList, saveObject);
+            this.storeImageName(jsonObject.fields.image.sys.id, assetList, saveObject);
         }
     }
 
-    static storeImageData(imageId, assetList, saveObject) {
+    static storeImageName(imageId, assetList, saveObject) {
         const imageAsset = assetList.find(img => {
             return img.sys.id === imageId;
         })
 
-        saveObject._imageFileName = imageAsset.fields.file.fileName;
+        saveObject._imageFileName = imageAsset.fields.file.fileName.replace(/ /g, "_"); //TODO test this
     }
 }
