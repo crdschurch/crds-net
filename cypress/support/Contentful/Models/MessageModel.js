@@ -21,9 +21,17 @@ export class MessageModel {
         return this._description;
     }
 
-    get imageName() {
-        return this._imageName;
+    get imageId(){
+        return this._imageId;
     }
+
+    get backgroundImageId(){
+        return this._backgroundImageId;
+    }
+
+    // get imageName() {
+    //     return this._imageName;
+    // }
 
     get publishedAt() {
         return this._published_at

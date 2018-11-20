@@ -18,14 +18,14 @@ describe("Tesing the Media/Series/[Current Series] page", function(){
         //Main image is displayed correctly
         cy.get('@jumbotron').find('.feature-img').then(($seriesImage) => {
             expect($seriesImage).to.be.visible;
-            expect($seriesImage).to.have.attr('src').contains(currentSeries.imageName);
+            expect($seriesImage).to.have.attr('src').contains(currentSeries.imageId);
             expect($seriesImage).to.have.attr('srcset'); //If fails, image was not found
         })
 
         //Background image (jumbotron) displayed correctly
         cy.get('@jumbotron').then(($backgroundImage) => {
             expect($backgroundImage).to.be.visible;
-            expect($backgroundImage).to.have.attr('style').contains(currentSeries.backgroundImageName);
+            expect($backgroundImage).to.have.attr('style').contains(currentSeries.backgroundImageId);
         })
     })
 })

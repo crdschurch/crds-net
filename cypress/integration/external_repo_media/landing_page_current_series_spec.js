@@ -29,7 +29,7 @@ describe("Testing the Current Series on the Media landing page", function(){
 
         cy.get('@seriesHeader').parent().find('.featured > a').then(($imageBlock) => {
             expect($imageBlock).to.have.attr('href', `/series/${currentSeries.slug}`);
-            expect($imageBlock.find('img')).to.have.attr('src').contains(`${currentSeries.imageName}`);
+            expect($imageBlock.find('img')).to.have.attr('src').contains(`${currentSeries.imageId}`);
             expect($imageBlock.find('img')).to.have.attr('srcset'); //If fails, image was not found
         })
     })

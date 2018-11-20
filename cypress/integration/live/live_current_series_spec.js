@@ -23,7 +23,7 @@ describe('Testing the Current Series on the Live page', function () {
 
     it('Tests Current Series image', function(){
         cy.get('[data-automation-id="series-image"]').then(($imageBlock) => {
-            expect($imageBlock).to.have.attr('src').contains(currentSeries.imageName);
+            expect($imageBlock).to.have.attr('src').contains(currentSeries.imageId);
             expect($imageBlock).to.have.attr('srcset'); //If fails, image was not found
         })
     })
