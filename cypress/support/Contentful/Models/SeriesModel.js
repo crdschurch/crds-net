@@ -36,14 +36,6 @@ export class SeriesModel {
         return this._backgroundImageId;
     }
 
-    // get imageName(){
-    //     return this._imageName;
-    // }
-
-    // get backgroundImageName(){
-    //     return this._backgroundImageName;
-    // }
-
     get startDate(){
         return this.starts_at.split("T")[0]; //Remove time zone
     }

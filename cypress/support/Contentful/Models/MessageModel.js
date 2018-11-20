@@ -29,10 +29,6 @@ export class MessageModel {
         return this._backgroundImageId;
     }
 
-    // get imageName() {
-    //     return this._imageName;
-    // }
-
     get publishedAt() {
         return this._published_at
     }
