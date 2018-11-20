@@ -28,8 +28,12 @@ export class SeriesModel {
         return this._description;
     }
 
-    get imageFilename(){
-        return this._imageFileName;
+    get imageName(){
+        return this._imageName;
+    }
+
+    get backgroundImageName(){
+        return this._backgroundImageName;
     }
 
     get startDate(){

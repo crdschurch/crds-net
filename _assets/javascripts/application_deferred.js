@@ -1,7 +1,7 @@
 //= require ./vendor/webcomponents-lite.min
 //= require ./vendor/imgix.min
-//= require ./vendor/imgix-optimizer
 //= require ./components/legacy-imgix
+//= require ./vendor/imgix-optimizer
 //= require ./vendor/bootstrap.min
 //= require ./vendor/flickity.pkgd.min
 //= require ./vendor/crds-card-carousel-v0.2.0.min
@@ -9,11 +9,13 @@
 //= require ./vendor/crds-livestream-reminder-v0.0.16.min
 //= require ./vendor/crds-rollcall.min
 //= require ./vendor/crds-status-message-v0.1.3.min
+//= require ./vendor/feature-flags.min
 //= require ./components/header
 //= require ./components/images
 //= require ./components/carousels
 //= require ./components/countdown
 //= require ./components/jumbotron-video
+//= require ./vendor/isotope.min
 //= require ./lib/location-finder
 //= require ./lib/distance-sorter
 //= require ./lib/data-tracker
