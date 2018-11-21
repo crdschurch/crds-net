@@ -40,10 +40,10 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-crds.git
-  revision: 4845c18377748fbb77f3b84f4d09c79e4ec01636
-  tag: 0.0.2
+  revision: 7bffd0d534d34b2870644fbf2075b661d036310b
+  tag: 0.0.3
   specs:
-    jekyll-crds (0.0.2)
+    jekyll-crds (0.0.3)
       activesupport
       httparty
       jekyll
