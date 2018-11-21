@@ -15,7 +15,7 @@ describe("Testing the Current Series in the Shared Header/Media dropdown", funct
 
         cy.get('@currentSeriesImage').then(($image) => {
             expect($image.find('a')).to.have.attr('href').contains(`/series/${currentSeries.slug}`);
-            expect($image.find('a > img')).to.have.attr('src').contains(`${currentSeries.imageName}`);
+            expect($image.find('a > img')).to.have.attr('src').contains(`${currentSeries.imageId}`);
         })
     })
 })

@@ -1,26 +1,26 @@
 const removeMarkdown = require('remove-markdown');
 
 export class ParseAndSaveJSON {
-    //Stores title, slug, description and imageName (if content has image)
+    //Stores title, slug, description, image and background image ids (if content has images)
     static storeStandardProperties(jsonObject, assetList, saveObject){
         saveObject._title = jsonObject.fields.title;
         saveObject._slug = jsonObject.fields.slug;
-        saveObject._description = removeMarkdown(jsonObject.fields.description);
 
+        this.storeCleanedText(jsonObject.fields.description, saveObject, '_description')
+
+        //Save image information, if it should exist
         if(jsonObject.fields.image){
-            this.storeImageData(jsonObject.fields.image.sys.id, assetList, saveObject, '_imageName');
+            saveObject._imageId = jsonObject.fields.image.sys.id;
         }
 
         if(jsonObject.fields.background_image) {
-            this.storeImageData(jsonObject.fields.background_image.sys.id, assetList, saveObject, '_backgroundImageName');
+            saveObject._backgroundImageId = jsonObject.fields.background_image.sys.id;
         }
     }
 
-    static storeImageData(imageId, assetList, saveObject, propertyName) {
-        const imageAsset = assetList.find(img => {
-            return img.sys.id === imageId;
-        })
+    static storeCleanedText(jsonText, saveObject, savePropertyName){
+        let cleanedText = removeMarkdown(jsonText);
 
-        saveObject[propertyName] = imageAsset.fields.file.fileName;
+        saveObject[savePropertyName] = cleanedText.replace(/\n/g, '');
     }
 }

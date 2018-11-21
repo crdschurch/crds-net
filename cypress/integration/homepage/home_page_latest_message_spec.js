@@ -22,7 +22,7 @@ describe("Testing the Latest Message on the Homepage", function () {
     it('Tests Jumbotron latest message image and image link', function(){
         cy.get('[data-automation-id="last-message-card"] > a').then(($messageImage) => {
             expect($messageImage).to.have.attr('href').contains(latestMessage.slug);
-            expect($messageImage.find('#lastMessageImg > img')).to.have.attr('src').contains(latestMessage.imageName);
+            expect($messageImage.find('#lastMessageImg > img')).to.have.attr('src').contains(latestMessage.imageId);
             expect($messageImage.find('#lastMessageImg > img')).to.have.attr('srcset')
         })
     })
