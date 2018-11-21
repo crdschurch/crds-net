@@ -40,10 +40,10 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-crds.git
-  revision: 4845c18377748fbb77f3b84f4d09c79e4ec01636
-  tag: 0.0.2
+  revision: 7bffd0d534d34b2870644fbf2075b661d036310b
+  tag: 0.0.3
   specs:
-    jekyll-crds (0.0.2)
+    jekyll-crds (0.0.3)
       activesupport
       httparty
       jekyll
@@ -244,7 +244,6 @@ GEM
     unf_ext (0.0.7.5)
     unf_ext (0.0.7.5-x64-mingw32)
     vcr (4.0.0)
-    wdm (0.1.1)
     webmock (3.4.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -270,7 +269,6 @@ DEPENDENCIES
   rspec
   tzinfo-data
   vcr
-  wdm (~> 0.1.0)
   webmock
 
 BUNDLED WITH
