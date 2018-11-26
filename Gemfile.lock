@@ -8,10 +8,10 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/crds-styles.git
-  revision: 26e644317981c6338372ac51e494c39351b81ac0
-  tag: v3.0.6
+  revision: 27cc4640f73674ecffd23e409056c1018b820e72
+  tag: v3.0.8
   specs:
-    crds-styles (3.0.6)
+    crds-styles (3.0.8)
       bootstrap-sass (~> 3.3)
       sass (~> 3.2)
 
@@ -67,7 +67,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    autoprefixer-rails (9.1.4)
+    autoprefixer-rails (9.3.1)
       execjs
     aws-eventstream (1.0.1)
     aws-partitions (1.110.0)
