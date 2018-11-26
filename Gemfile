@@ -12,7 +12,7 @@ group :jekyll_plugins do
   gem 'jekyll-assets'
   # gem 'crds-styles', path: File.join(File.dirname(__FILE__), '../crds-styles')
   # gem 'crds-styles', git: 'https://github.com/crdschurch/crds-styles.git', branch: 'development'
-  gem 'crds-styles', git: 'https://github.com/crdschurch/crds-styles.git', tag: 'v3.0.8'
+  gem 'crds-styles', git: 'https://github.com/crdschurch/crds-styles.git', tag: 'v3.0.6'
   gem "jekyll-contentful", git: 'https://github.com/crdschurch/jekyll-contentful.git', tag: '1.1.0'
   gem "jekyll-crds", git: 'https://github.com/crdschurch/jekyll-crds.git', tag: '0.0.3'
   gem "jekyll-placeholders", "~> 0.0.1", github: 'ample/jekyll-placeholders'
