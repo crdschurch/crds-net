@@ -1,9 +1,3 @@
-/*
-nav to homepage
-> not order independent > verify locations listed in abc order by default (check against contentful content) <- only care about the card name/id, not what or how it's displayed
-what other locations are listed? (anywhere, correcitonals)
-*/
-
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 
 describe('Testing the Locations section on the Homepage without searching', function() {
@@ -14,7 +8,6 @@ describe('Testing the Locations section on the Homepage without searching', func
         cy.visit('/');
     })
 
-    //Ignore Prison ministry cards since they are hard coded
     it('Tests Location cards displayed alphabetically followed by Anywhere', function() {
         const locationSlugs = locations.map(l => l.slug).sort();
 
@@ -26,7 +19,7 @@ describe('Testing the Locations section on the Homepage without searching', func
             //Anywhere
             else {
                 expect($card.find('a')).to.have.attr('href').contains('live');
-                return false; //Skip cards after Anywhere - these are hard-coded
+                return false; //Skip Prison Ministry cards after Anywhere - these are hard-coded
             }
         })
     })
@@ -47,7 +40,7 @@ describe('Testing the search functionality of the Locations section on the Homep
         cy.visit('/');
     })
 
-    //For a Contentful Location card to display the distance, it's address must be valid
+    //For a Contentful Location card to display the distance, its address must be valid
     it('Tests Location search displays Oakley card first when searching for Oakley by zip, and card displays distance', function(){
         const oakleyLocation = locations.find(l => l.slug == 'oakley');
         const oakleyZip = '45209';
