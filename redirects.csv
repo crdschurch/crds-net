@@ -36,7 +36,8 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /podcasts/ikr/episode-9-the-one-about-loss-and-poop/,${env:CRDS_MEDIA_ENDPOINT}/podcasts/ikr/the-one-about-loss-and-poop,302
 /podcasts/ikr/episode-10-the-one-about-your-questions-and-royalty/,${env:CRDS_MEDIA_ENDPOINT}/podcasts/ikr/the-one-about-your-questions-and-royalty,302
 /wheels/,/reachout/local/wheels/,302
-/angeltree/,/reachout/local/angel-tree/,302
+/angeltree/,/reachout/local/christmas-gift-drive/,302
+/reachout/local/angel-tree/,/reachout/local/christmas-gift-drive/,302
 /whizkids/,/reachout/local/whiz-kids/,302
 /awaited/,http://awaitedshow.com/,302
 /gosouthafrica/,/reachout/go/south-africa/,302
