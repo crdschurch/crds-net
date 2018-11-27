@@ -181,18 +181,7 @@ title: Home
 <section class="container">
   <div class="locations-header push-bottom" data-locations-section>
     <h3 class="component-header push-bottom push-top">locations</h3>
-    <form class="searchbar" id="locations-address-input" data-track-search="locationsLocationSearch">
-      <div class="input-group">
-        <input class="form-control" placeholder="Search by address or zipcode" type="text" />
-        <span class="input-group-btn">
-          <button class="btn btn-secondary" type="submit">
-            <svg class="icon icon-1" viewBox="0 0 256 256">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#search"></use>
-            </svg>
-          </button>
-        </span>
-      </div>
-    </form>
+    {% include _locations-search.html %}
   </div>
   {% include _locations-grid.html %}
 </section>
