@@ -5,7 +5,8 @@ cache:
   directories:
     - ~/.npm
     - ~/.cache
-install:
-  - npm ci
+  override:
+    - npm ci
+    - npm run cy:verify
 script:
   - $(npm bin)/cypress run --record --key $cypressDashboard -c baseUrl=$baseURL --env CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ENV=$contentfulEnv,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,CRDS_MEDIA_ENDPOINT=$mediaEndpoint
