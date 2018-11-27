@@ -1,4 +1,4 @@
-describe('Homepage JumboTron Overlay', function() {
+describe('Testing the Jumbotron overlay on the Homepage', function() {
     before(function() {
       cy.visit('/');
     })
