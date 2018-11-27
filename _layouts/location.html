@@ -17,9 +17,35 @@ layout: default
     <h2 class="title font-size-h1 text-white visible-xs">crossroads
       <br>{{ page.name | downcase }}</h2>
       {% if location_happenings.size > 0 %}
-        </br>
-        <a href="javascript:void(0)" class="btn btn-primary" data-smooth-scroll-to="happenings">See what's happening at {{ page.name | downcase }}</a>
+        <br />
+    	<!-- signup link -->
+      {% if page.title == "Andover" %}
+        {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=25699" %}
+      {% elsif page.title == "Dayton" %}
+    	  {% assign suts_link = "https://docs.google.com/forms/d/e/1FAIpQLSd_VVtsnA1nhLhH7b-q_Xrx--apCLSbheTKWptMdIF34WOQRQ/viewform" %}
+      {% elsif page.title == "Eastside" %}
+    	  {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33528" %}
+      {% elsif page.title == "Florence" %}
+    	  {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?start_over&id=33547" %}
+      {% elsif page.title == "Georgetown" %}
+    	  {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33714" %}
+      {% elsif page.title == "Mason" %}
+    	  {% assign suts_link = "https://www.crossroads.net/sign-up/masonchristmasvolunteer" %}
+    	{% elsif page.title == "Oakley" %}
+    	  {% assign suts_link = "http://crossroadsallothervolunteers.volunteerlocal.com/volunteer/?id=33749" %}
+      {% elsif page.title == "Richmond" %}
+        {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33684" %}
+      {% elsif page.title == "Uptown" %}
+        {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33682" %}
+      {% elsif page.title == "Westside" %}
+        {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33513" %}
+    	{% endif %}
+      {% if suts_link %}
+      	  <a class="btn btn-secondary push-half-sides" href="{{ suts_link}}">Sign up to serve for Christmas</a>
       {% endif %}
+      <a href="javascript:void(0)" class="btn btn-primary push-half-sides" data-smooth-scroll-to="happenings">See what's happening at {{ page.name | downcase }}</a>
+      {% endif %}
+
   </div>
 </div>
 
