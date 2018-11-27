@@ -35,7 +35,7 @@ describe('Smoke Testing the search functionality on /locations', function() {
 
         searchForThis(invalidSearch);
 
-        cy.get('.locations > .error-text').as('searchError').should('be.visible');
+        cy.get('[data-automation-id="locations-carousel"] > .error-text').as('searchError').should('be.visible');
 
         searchForThis(validSearch);
 
@@ -46,7 +46,7 @@ describe('Smoke Testing the search functionality on /locations', function() {
         cy.server();
         cy.route('/gateway/api/v1.0.0/locations/proximities?origin=*').as('searchQuery');
 
-        cy.get('#locations-address-input').as('search');
+        cy.get('[data-automation-id="location-search"]').as('search');
         cy.get('@search').find('input').clear().type(keyword);
         cy.get('@search').find('button').click();
 
