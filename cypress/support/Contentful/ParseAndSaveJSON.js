@@ -9,11 +9,11 @@ export class ParseAndSaveJSON {
         this.storeCleanedText(jsonObject.fields.description, saveObject, '_description')
 
         //Save image information, if it should exist
-        if(jsonObject.fields.image){
+        if (jsonObject.fields.image){
             saveObject._imageId = jsonObject.fields.image.sys.id;
         }
 
-        if(jsonObject.fields.background_image) {
+        if (jsonObject.fields.background_image) {
             saveObject._backgroundImageId = jsonObject.fields.background_image.sys.id;
         }
     }
