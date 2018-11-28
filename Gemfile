@@ -6,6 +6,7 @@ gem 'netlify-redirector', git: 'https://github.com/crdschurch/netlify-redirector
 gem 'httparty'
 gem 'vcr'
 gem 'webmock'
+gem "rack", ">= 2.0.6"
 
 group :jekyll_plugins do
   gem 'jekyll-assets'
