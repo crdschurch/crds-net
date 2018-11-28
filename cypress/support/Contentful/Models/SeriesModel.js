@@ -37,11 +37,11 @@ export class SeriesModel {
     }
 
     get startDate(){
-        return this.starts_at.split("T")[0]; //Remove time zone
+        return this.starts_at !== undefined ? this.starts_at.split("T")[0] : this.starts_at;
     }
 
     get endDate(){
-        return this.ends_at.split("T")[0]; //Remove time zone
+        return this.ends_at !== undefined ? this.ends_at.split("T")[0] : this.ends_at;
     }
 
     get youtubeURL(){
