@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 #Skip all testing in Prod
 if [[ "$CRDS_APP_CLIENT_ENDPOINT" = *"www.crossroads.net" ]];
 then
