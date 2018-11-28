@@ -1,9 +1,8 @@
-<div class="card-deck carousel locations" 
-  data-crds-carousel="mobile-scroll">
+<div class="card-deck carousel locations" data-crds-carousel="mobile-scroll" data-automation-id="locations-carousel">
   <div id="section-locations" class="feature-cards card-deck--expanded-layout">
     {% assign sorted_locations = site.locations | sort: 'name' %}
     {% for location in sorted_locations %}
-      {% include _location-card.html %} 
+      {% include _location-card.html %}
     {% endfor %}
     <!-- Anywhere card -->
     <div class="card" data-location="Anywhere">
@@ -22,16 +21,16 @@
     </div>
 
     <!-- Prison Cards -->
-    <div class="card" data-filter="Central Kentucky">  
+    <div class="card" data-filter="Central Kentucky">
       <a href="https://www.crossroads.net/reachout/local/prison-ministry" class="block">
-        <img alt="Blackburn Correctional Complex" 
-          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-BCC2.jpg?{{ site.imgix_params.placeholder_card }}" 
-          sizes="{{ site.image_sizes.cards_4x }}" 
+        <img alt="Blackburn Correctional Complex"
+          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-BCC2.jpg?{{ site.imgix_params.placeholder_card }}"
+          sizes="{{ site.image_sizes.cards_4x }}"
           data-optimize-img>
       </a>
       <div class="card-block">
-        <h4 class="card-title card-title--overlap text-uppercase">        
-          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Blackburn Correctional Complex</a>        
+        <h4 class="card-title card-title--overlap text-uppercase">
+          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Blackburn Correctional Complex</a>
         </h4>
         <div class="card-text">
           <p>3111 Spurr Road<br> Lexington, Kentucky 40511 (
@@ -41,16 +40,16 @@
       </div>
     </div>
 
-    <div class="card" data-filter="Southwest Ohio">  
+    <div class="card" data-filter="Southwest Ohio">
       <a href="https://www.crossroads.net/reachout/local/prison-ministry" class="block">
-        <img alt="Dayton Correctional Institution" 
-          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-DCI.jpg?{{ site.imgix_params.placeholder_card }}" 
-          sizes="{{ site.image_sizes.cards_4x }}" 
+        <img alt="Dayton Correctional Institution"
+          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-DCI.jpg?{{ site.imgix_params.placeholder_card }}"
+          sizes="{{ site.image_sizes.cards_4x }}"
           data-optimize-img>
-      </a>    
+      </a>
       <div class="card-block">
         <h4 class="card-title card-title--overlap text-uppercase">
-          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Dayton Correctional Institution</a>          
+          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Dayton Correctional Institution</a>
         </h4>
         <div class="card-text">
           <p>4104 Germantown Street<br> Dayton, OH 45417 (
@@ -63,16 +62,16 @@
       </div>
     </div>
 
-    <div class="card" data-filter="Southwest Ohio">  
+    <div class="card" data-filter="Southwest Ohio">
         <a href="https://www.crossroads.net/reachout/local/prison-ministry" class="block">
-          <img alt="Lebanon Correctional Institution" 
-            src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-LECI.jpg?{{ site.imgix_params.placeholder_card }}" 
-            sizes="{{ site.image_sizes.cards_4x }}" 
+          <img alt="Lebanon Correctional Institution"
+            src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-LECI.jpg?{{ site.imgix_params.placeholder_card }}"
+            sizes="{{ site.image_sizes.cards_4x }}"
             data-optimize-img>
         </a>
       <div class="card-block">
-        <h4 class="card-title card-title--overlap text-uppercase">         
-          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Lebanon Correctional Institution</a>          
+        <h4 class="card-title card-title--overlap text-uppercase">
+          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Lebanon Correctional Institution</a>
         </h4>
         <div class="card-text">
           <p>3791 State Route 63<br> Lebanon, OH 45036 (
@@ -85,15 +84,15 @@
       </div>
     </div>
 
-    <div class="card" data-filter="Southwest Ohio">  
+    <div class="card" data-filter="Southwest Ohio">
       <a href="https://www.crossroads.net/reachout/local/prison-ministry" class="block">
-        <img alt="London Correctional Institution" 
-          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-LOCI.jpg?{{ site.imgix_params.placeholder_card }}" 
-          sizes="{{ site.image_sizes.cards_4x }}" 
+        <img alt="London Correctional Institution"
+          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-LOCI.jpg?{{ site.imgix_params.placeholder_card }}"
+          sizes="{{ site.image_sizes.cards_4x }}"
           data-optimize-img>
       </a>
       <div class="card-block">
-        <h4 class="card-title card-title--overlap text-uppercase">          
+        <h4 class="card-title card-title--overlap text-uppercase">
           <a href="https://www.crossroads.net/reachout/local/prison-ministry">London Correctional Institution</a>
         </h4>
         <div class="card-text">
@@ -107,16 +106,16 @@
       </div>
     </div>
 
-    <div class="card" data-filter="">  
+    <div class="card" data-filter="">
       <a href="https://www.crossroads.net/reachout/local/prison-ministry" class="block">
-        <img alt="Marion Correctional Institution" 
-          src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-locations-MCI.jpg?{{ site.imgix_params.placeholder_card }}" 
-          sizes="{{ site.image_sizes.cards_4x }}" 
+        <img alt="Marion Correctional Institution"
+          src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-locations-MCI.jpg?{{ site.imgix_params.placeholder_card }}"
+          sizes="{{ site.image_sizes.cards_4x }}"
           data-optimize-img>
-      </a>   
+      </a>
       <div class="card-block">
-        <h4 class="card-title card-title--overlap text-uppercase">          
-          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Marion Correctional Institution</a>         
+        <h4 class="card-title card-title--overlap text-uppercase">
+          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Marion Correctional Institution</a>
         </h4>
         <div class="card-text">
           <p>940 Marion-Williamsport Road<br> Marion, OH 43302 (
@@ -131,14 +130,14 @@
 
     <div class="card" data-filter="Central Ohio">
         <a href="https://www.crossroads.net/reachout/local/prison-ministry" class="block">
-          <img alt="Ohio Reformatory for Women" 
-            src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-ORW.jpg?{{ site.imgix_params.placeholder_card }}" 
-            sizes="{{ site.image_sizes.cards_4x }}" 
+          <img alt="Ohio Reformatory for Women"
+            src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-ORW.jpg?{{ site.imgix_params.placeholder_card }}"
+            sizes="{{ site.image_sizes.cards_4x }}"
             data-optimize-img>
-        </a>   
+        </a>
       <div class="card-block">
-        <h4 class="card-title card-title--overlap text-uppercase">         
-          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Ohio Reformatory for Women</a>          
+        <h4 class="card-title card-title--overlap text-uppercase">
+          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Ohio Reformatory for Women</a>
         </h4>
         <div class="card-text">
           <p>1479 Collins Avenue<br> Marysville, OH 43040 (
@@ -151,16 +150,16 @@
       </div>
     </div>
 
-    <div class="card" data-filter="Southwest Ohio">  
+    <div class="card" data-filter="Southwest Ohio">
       <a href="https://www.crossroads.net/reachout/local/prison-ministry" class="block">
-        <img alt="Warren Correctional Institution" 
-          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-WCI.jpg?{{ site.imgix_params.placeholder_card }}" 
-          sizes="{{ site.image_sizes.cards_4x }}" 
+        <img alt="Warren Correctional Institution"
+          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-WCI.jpg?{{ site.imgix_params.placeholder_card }}"
+          sizes="{{ site.image_sizes.cards_4x }}"
           data-optimize-img>
-      </a>   
+      </a>
       <div class="card-block">
-        <h4 class="card-title card-title--overlap text-uppercase">          
-          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Warren Correctional Institution</a>         
+        <h4 class="card-title card-title--overlap text-uppercase">
+          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Warren Correctional Institution</a>
         </h4>
         <div class="card-text">
           <p>5787 Ohio 63<br> Lebanon, OH 45036 (
