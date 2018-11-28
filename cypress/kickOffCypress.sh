@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 #Skip testing in Prod
-#TODO will this work with $URL too?
-if [[ $CRDS_APP_DOMAIN == *"www.crossroads.net" ]]
+#TODO will this work with $CRDS_APP_CLIENT_ENDPOINT too?
+if [[ $CRDS_APP_CLIENT_ENDPOINT == *"www.crossroads.net" ]]
 then
     exit 0
 fi
@@ -10,7 +10,7 @@ fi
 #Test the live site if we're deploying to it, else test Netlify's preview
 if [$CONTEXT != "production"]#should be ==
 then
-    test_this_URL=$URL #TODO is this int on branch?
+    test_this_URL=$CRDS_APP_CLIENT_ENDPOINT #TODO is this int on branch?
 else
     test_this_URL=$DEPLOY_URL
 fi
