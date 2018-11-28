@@ -8,7 +8,7 @@ then
 fi
 
 #Test the live site if we're deploying to it, else test Netlify's preview
-if [$CONTEXT == "production"]
+if [$CONTEXT != "production"]#should be ==
 then
     test_this_URL=$URL #TODO is this int on branch?
 else
