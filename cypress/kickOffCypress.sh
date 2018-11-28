@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-#Skip testing in Prod
-if [[ "$CRDS_APP_CLIENT_ENDPOINT" = *"int.crossroads.net" ]];
+#Skip all testing in Prod
+if [[ "$CRDS_APP_CLIENT_ENDPOINT" = *"www.crossroads.net" ]];
 then
     exit 0
 fi
