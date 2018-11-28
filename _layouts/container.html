@@ -3,10 +3,6 @@ layout: default
 ---
 {% include header.html %}
 <div class="container">
-  {% if page.body %}
-    {{ page.body | markdownify }}
-  {% else %}
-    {{ content }}
-  {% endif %}
+  {% include _body-markdownify.html %}
 </div>
 <div class="push-top">{% include footer.html %}</div>
