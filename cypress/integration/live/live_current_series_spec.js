@@ -28,20 +28,21 @@ describe('Testing the Current Series on the Live page', function () {
         })
     })
 
-    it('Tests Current Series "Watch Trailer" button and youtube modal, if series has trailer', function () {
-        cy.get('#trailer-video-modal').find('#modal-video-src').as('youtubeModal');
-
-        if(currentSeries.youtubeURL == undefined){
+    it(`Tests Current Series' "Watch Trailer" button and youtube modal, if series has trailer`, function () {
+        //Test trailer button attributes
+        if (currentSeries.youtubeURL == undefined){
             cy.get('[data-automation-id="series-youtube"]').should('not.exist');
-            cy.get('@youtubeModal').should('have.attr', 'data-src', '');
-        }
-        else {
+        } else {
             cy.get('[data-automation-id="series-youtube"]').then(($trailerButton) => {
                 expect($trailerButton).to.have.attr('href', currentSeries.youtubeURL);
                 expect($trailerButton).to.have.attr('data-toggle', 'modal');
                 expect($trailerButton).to.have.attr('data-target', '#trailer-video-modal');
             })
-            cy.get('@youtubeModal').to.have.attr('data-src', currentSeries.youtubeURL);
         }
+
+        //Test modal attributes
+        cy.get('#trailer-video-modal').find('#modal-video-src').as('youtubeModal').should('exist');
+        const modalSource = currentSeries.youtubeURL == undefined ? '' : currentSeries.youtubeURL;
+        cy.get('@youtubeModal').should('have.attr', 'data-src', modalSource);
     })
 })
