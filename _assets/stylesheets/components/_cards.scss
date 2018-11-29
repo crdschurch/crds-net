@@ -2,6 +2,13 @@
   flex-basis: 270px;
 }
 
-.card img {
-  width: 100%;
+.card {
+  img {
+    width: 100%;
+  }
+
+  // 🛠  fixes weird overlap problem from title
+  .card-text {
+    position: relative;
+  }
 }

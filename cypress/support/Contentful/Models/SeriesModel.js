@@ -7,7 +7,7 @@ export class SeriesModel {
 
         //Get series most recently started
         const rawCurSeries = seriesListDescending.find(s => {
-            return (Date.now() > new Date(s.fields.starts_at));
+            return (Date.now() >= new Date(s.fields.published_at));
         })
 
         ParseAndSaveJSON.storeStandardProperties(rawCurSeries, assetList, this);
@@ -28,16 +28,20 @@ export class SeriesModel {
         return this._description;
     }
 
-    get imageFilename(){
-        return this._imageFileName;
+    get imageId(){
+        return this._imageId;
+    }
+
+    get backgroundImageId(){
+        return this._backgroundImageId;
     }
 
     get startDate(){
-        return this.starts_at.split("T")[0]; //Remove time zone
+        return this.starts_at !== undefined ? this.starts_at.split("T")[0] : this.starts_at;
     }
 
     get endDate(){
-        return this.ends_at.split("T")[0]; //Remove time zone
+        return this.ends_at !== undefined ? this.ends_at.split("T")[0] : this.ends_at;
     }
 
     get youtubeURL(){

@@ -3,6 +3,7 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /people/*,https://${env:CRDS_PEOPLE_DOMAIN}/:splat,200!
 /connect/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
 /map/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
+/groups/search,/connect,302,"development"
 /thechaser,${env:CRDS_MEDIA_ENDPOINT}/the-chaser,302
 /the-chaser,${env:CRDS_MEDIA_ENDPOINT}/the-chaser,302
 /proxy/content/*,${env:CRDS_CMS_ENDPOINT}/:splat,200!
@@ -36,7 +37,8 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /podcasts/ikr/episode-9-the-one-about-loss-and-poop/,${env:CRDS_MEDIA_ENDPOINT}/podcasts/ikr/the-one-about-loss-and-poop,302
 /podcasts/ikr/episode-10-the-one-about-your-questions-and-royalty/,${env:CRDS_MEDIA_ENDPOINT}/podcasts/ikr/the-one-about-your-questions-and-royalty,302
 /wheels/,/reachout/local/wheels/,302
-/angeltree/,/reachout/local/angel-tree/,302
+/angeltree/,/reachout/local/christmas-gift-drive/,302
+/reachout/local/angel-tree/,/reachout/local/christmas-gift-drive/,302
 /whizkids/,/reachout/local/whiz-kids/,302
 /awaited/,http://awaitedshow.com/,302
 /gosouthafrica/,/reachout/go/south-africa/,302

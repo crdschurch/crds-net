@@ -49,10 +49,10 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-crds.git
-  revision: 160c8c2a32f63a96deeb2e1fa8f3d773bc20411a
-  branch: master
+  revision: cb28d40e941e9da7c996d33b1f0135635ad67458
+  tag: 0.0.3
   specs:
-    jekyll-crds (0.0.1)
+    jekyll-crds (0.0.3)
       activesupport
       httparty
       jekyll
@@ -79,11 +79,19 @@ GEM
     autoprefixer-rails (9.3.1)
       execjs
     aws-eventstream (1.0.1)
+<<<<<<< HEAD
     aws-partitions (1.112.0)
     aws-sdk-cloudsearchdomain (1.5.0)
       aws-sdk-core (~> 3, >= 3.26.0)
       aws-sigv4 (~> 1.0)
     aws-sdk-core (3.38.0)
+=======
+    aws-partitions (1.116.0)
+    aws-sdk-cloudsearchdomain (1.6.0)
+      aws-sdk-core (~> 3, >= 3.39.0)
+      aws-sigv4 (~> 1.0)
+    aws-sdk-core (3.39.0)
+>>>>>>> development
       aws-eventstream (~> 1.0)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.0)
@@ -120,7 +128,7 @@ GEM
     ffi (1.9.25)
     formatador (0.2.5)
     forwardable-extended (2.6.0)
-    guard (2.14.2)
+    guard (2.15.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
       lumberjack (>= 1.0.12, < 2.0)
@@ -246,6 +254,11 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+<<<<<<< HEAD
+=======
+    tzinfo-data (1.2018.7)
+      tzinfo (>= 1.0.0)
+>>>>>>> development
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
@@ -267,14 +280,22 @@ DEPENDENCIES
   jekyll-assets
   jekyll-cloudsearch!
   jekyll-contentful!
-  jekyll-crds (~> 0.0.1)!
+  jekyll-crds!
   jekyll-placeholders (~> 0.0.1)!
   netlify-redirector!
+<<<<<<< HEAD
   paging-mister-hyde!
+=======
+  rack (>= 2.0.6)
+>>>>>>> development
   rspec
   tzinfo-data
   vcr
   webmock
 
 BUNDLED WITH
+<<<<<<< HEAD
    1.16.3
+=======
+   1.17.1
+>>>>>>> development

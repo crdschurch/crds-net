@@ -23,20 +23,25 @@ describe('Testing the Current Series on the Live page', function () {
 
     it('Tests Current Series image', function(){
         cy.get('[data-automation-id="series-image"]').then(($imageBlock) => {
-            expect($imageBlock).to.have.attr('src').contains(currentSeries.imageFilename);
+            expect($imageBlock).to.have.attr('src').contains(currentSeries.imageId);
             expect($imageBlock).to.have.attr('srcset'); //If fails, image was not found
         })
     })
 
-    it('Tests Current Series "Watch Trailer" button and youtube modal', function () {
-        cy.get('[data-automation-id="series-youtube"]').then(($trailerButton) => {
-            expect($trailerButton).to.have.attr('href', currentSeries.youtubeURL);
-            expect($trailerButton).to.have.attr('data-toggle', 'modal');
-            expect($trailerButton).to.have.attr('data-target', '#trailer-video-modal');
-        })
+    it('Tests Current Series "Watch Trailer" button and youtube modal, if series has trailer', function () {
+        cy.get('#trailer-video-modal').find('#modal-video-src').as('youtubeModal');
 
-        cy.get('#trailer-video-modal').then(($youtubeModal) => {
-            expect($youtubeModal.find('#modal-video-src')).to.have.attr('data-src', currentSeries.youtubeURL);
-        })
+        if(currentSeries.youtubeURL == undefined){
+            cy.get('[data-automation-id="series-youtube"]').should('not.exist');
+            cy.get('@youtubeModal').should('have.attr', 'data-src', '');
+        }
+        else {
+            cy.get('[data-automation-id="series-youtube"]').then(($trailerButton) => {
+                expect($trailerButton).to.have.attr('href', currentSeries.youtubeURL);
+                expect($trailerButton).to.have.attr('data-toggle', 'modal');
+                expect($trailerButton).to.have.attr('data-target', '#trailer-video-modal');
+            })
+            cy.get('@youtubeModal').to.have.attr('data-src', currentSeries.youtubeURL);
+        }
     })
 })
