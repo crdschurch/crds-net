@@ -1,3 +1,9 @@
+.aspect-16x9 {
+  position: relative;
+  height: 0;
+  padding-top: 56.25%;
+}
+
 .text-gray {
   color: $cr-gray !important;
 }
@@ -10,10 +16,6 @@
   color: $cr-gray-lighter !important;
 }
 
-a.hover-text-gray-lighter:hover * {
-  color: $cr-gray-lighter;
-}
-
 .bg-overlay {
   position: absolute;
   top: 25%;
@@ -21,34 +23,6 @@ a.hover-text-gray-lighter:hover * {
   left: 0;
   bottom: 0;
   background-image: linear-gradient(to bottom, rgba(23, 23, 23, 0), $cr-gray-darker);
-}
-
-.blur {
-  @extend .bg-overlay;
-  top: 0;
-  filter: blur(5px);
-}
-
-.bg-gray-dark {
-  background-color: $cr-gray-dark !important;
-}
-
-.bg-black-50 {
-  background-color: rgba(0,0,0,.5);
-}
-
-.border-white-15 {
-  border: 1px solid rgba(255,255,255,.15);
-}
-
-.white-faded {
-  &, a {
-    &, .jumbotron & {
-      @media screen and (min-width: $screen-sm) {
-        color: rgba($cr-white, 0.8);
-      }
-    }
-  }
 }
 
 .text-uppercase {
@@ -59,15 +33,7 @@ a.hover-text-gray-lighter:hover * {
 }
 
 .font-size-smallest {
-  font-size: 10px;
-}
-
-.font-size-giant {
-  font-size: 48px;
-  @media (min-width: $screen-sm) {
-    font-size: 90px;
-    line-height: .89;
-  }
+  font-size: 10px
 }
 
 .font-family-base-mid {
@@ -75,29 +41,13 @@ a.hover-text-gray-lighter:hover * {
   font-weight: 500;
 }
 
-.height-2 {
-  height: 2rem;
-}
-
-.middle {
-  vertical-align: middle;
-}
-
-.img-size-5 {
-  min-width: 5rem;
-}
-
 .relative {
   position: relative !important;
 }
 
-.absolute {
-  position: absolute !important;
-}
-
 // Bootstrap 4
 .d-flex {
-  display: flex !important;
+  display: flex;
 }
 
 .flex-column {
@@ -106,10 +56,6 @@ a.hover-text-gray-lighter:hover * {
 
 .justify-content-center {
   justify-content: center;
-}
-
-.justify-content-between {
-  justify-content: space-between;
 }
 
 .align-items-center {
@@ -134,6 +80,22 @@ a.hover-text-gray-lighter:hover * {
   }
 }
 
-.w-100 {
-  width: 100%!important;
+.flex-sm-row {
+  @media (min-width: $screen-sm) {
+    flex-direction: row;
+  }
+}
+
+.flex-xs-row {
+  @media (min-width: $screen-xs) {
+    flex-direction: row;
+  }
+}
+
+.visually-hidden {
+  visibility: hidden;
+}
+
+.width-100 {
+  width: 100%;
 }
