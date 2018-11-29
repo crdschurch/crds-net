@@ -41,315 +41,299 @@ paginate:
 
 {% include header.html %}
 
-<section>
-  <div class="container">
-    <div class="row">
+<section class="container">
+  <div class="row">
+    <div class="col-md-push-8 col-md-4 push-bottom">
+      <!-- Current Message -->
+      <hr class="flush-top push-half-bottom">
+      <h2 class="flush-bottom flush-top font-size-base text-gray-light">current message</h2>
 
-      <div class="col-md-push-8 col-md-4 push-bottom">
-        <!-- Current Message -->
-        <div class="row">
-          <div class="col-sm-12">
-            <hr class="flush-top push-half-bottom">
-            <h2 class="flush-bottom flush-top font-size-base text-gray-light" style="">current message</h2>
+      {% assign home_messages = page.messages.docs %}
+      {% for messages in home_messages %}
+      <div class="media featured">
+        <div class="media-body">
+          <h5 class="component-header flush-ends">
+            <a href="{{ messages.url | media_url }}">{{ messages.title }}</a>
+          </h5>
+          <div class="soft-quarter-top font-size-smaller flush-bottom">
+            {{ messages.description | markdownify | strip_html | truncatewords: 15 }}
           </div>
+          <a href="{{ messages.url | media_url }}" class="btn btn-primary btn-sm push-half-top">Watch now</a>
         </div>
-        {% assign home_messages = page.messages.docs | slice: 0 %}
-
-        {% for messages in home_messages %}
-        <div class="media featured">
-          <div class="media-body">
-            <h5 class="component-header flush-ends">
-              <a href="{{ messages.url | media_url }}">{{ messages.title }}</a>
-            </h5>
-            <div class="soft-quarter-top font-size-smaller flush-bottom">
-              {{ messages.description | markdownify | strip_html | truncatewords: 15 }}
-            </div>
-            <a href="{{ messages.url | media_url }}" class="btn btn-primary btn-sm push-half-top">Watch now</a>
+        <a href="{{ messages.url | media_url }}" class="push-half-bottom">
+          <div class="media-video">
+            <img class="media-img" src="{{ messages.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
+            <svg class="media-play-btn icon icon-5 text-white" viewBox="0 0 256 256">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#play-thin"></use>
+            </svg>
           </div>
-          <a href="{{ messages.url | media_url }}" class="push-half-bottom">
-
-            <div class="media-video">
-              <img class="media-img" src="{{ messages.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
-              <svg class="media-play-btn icon icon-5 text-white" viewBox="0 0 256 256">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#play-thin"></use>
-              </svg>
-            </div>
-
-          </a>
-        </div>
-        {% endfor %}
-
-        <!-- Current Series -->
-        <div class="row">
-          <div class="col-sm-12">
-            <hr class="push-half-bottom">
-            <h2 class="flush-bottom flush-top font-size-base text-gray-light" style="">current series</h2>
-          </div>
-        </div>
-        {% assign home_series = page.series.docs | slice: 0 %}
-
-        {% for series in home_series %}
-        <div class="media featured">
-          <div class="media-body">
-            <h5 class="component-header flush-ends">
-              <a href="{{ series.url | media_url }}">{{ series.title }}</a>
-            </h5>
-            <div class="soft-quarter-top font-size-smaller flush-bottom">
-              {{ series.description | markdownify | strip_html | truncatewords: 15 }}
-            </div>
-          </div>
-          <a href="{{ series.url | media_url }}" class="push-half-bottom">
-            <img class="media-img" src="{{ series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
-          </a>
-        </div>
-        {% endfor %}
-
+        </a>
       </div>
+      {% endfor %}
 
-      <!-- Big Content Feature -->
-      <div class="col-md-8 col-md-pull-4">
-          <hr class="push-half-bottom flush-top">
-          <h2 class="flush-top font-size-base text-gray-light" style="">recent articles</h2>
-        {% for article in page.home_collection.offset %}
-          <a href="{{ article.url | media_url }}" class="overlay-card">
-            <div class="bg-overlay"></div>
-            <div class="overlay-card-image">
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
-            </div>
-            <div class="overlay-card-content">
-              <p class="overlay-card-category">{{ article.category.title }}</p>
-              <h2 class="overlay-card-title">{{ article.title }}</h2>
-              <p class="overlay-card-author">{{ article.author.full_name }}</p>
-              {% include media/_media-label.html source=article %}
-            </div>
-          </a>
-        {% endfor %}
+      <!-- Current Series -->
+      <hr class="push-half-bottom">
+      <h2 class="flush-bottom flush-top font-size-base text-gray-light">current series</h2>
+
+      {% assign home_series = page.series.docs | slice: 0 %}
+      {% for series in home_series %}
+      <div class="media featured">
+        <div class="media-body">
+          <h5 class="component-header flush-ends">
+            <a href="{{ series.url | media_url }}">{{ series.title }}</a>
+          </h5>
+          <div class="soft-quarter-top font-size-smaller flush-bottom">
+            {{ series.description | markdownify | strip_html | truncatewords: 15 }}
+          </div>
+        </div>
+        <a href="{{ series.url | media_url }}" class="push-half-bottom">
+          <img class="media-img" src="{{ series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
+        </a>
       </div>
-
+      {% endfor %}
     </div>
 
-    <div class="row">
-      <div class="col-sm-12 col-md-8">
-        <!-- More Content Cards -->
-        <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
-          <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
-            {% assign above_the_fold = page.home_collection.docs | slice: 0, 2 %}
+    <!-- Big Content Feature -->
+    <div class="col-md-8 col-md-pull-4">
+      <hr class="push-half-bottom flush-top">
+      <h2 class="flush-top font-size-base text-gray-light">recent articles</h2>
 
-            {% for article in above_the_fold %}
-              {% assign author = article.author | get_doc %}
-              {% assign category = article.category | get_doc %}
-            <div class="card carousel-cell card-2x">
-              <a class="relative" href="{{ article.url | media_url }}">
-                {% include media/_media-label.html source=article %}
-                <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
-              </a>
-              <div class="card-block hard soft-quarter-top">
-                <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url | media_url }}">{{ category.title }}</a>
-                <h3 class="component-header flush">
-                  <a href="{{ article.url | media_url }}">{{ article.title }}</a>
-                </h3>
-                <p class="card-text soft-quarter-top">
-                  <a class="text-gray-light font-size-smaller" href="{{ author.url | media_url }}">{{ author.full_name }}</a>
-                </p>
-              </div>
+      {% for article in page.home_collection.offset %}
+      <a href="{{ article.url | media_url }}" class="overlay-card">
+        <div class="bg-overlay"></div>
+        <div class="overlay-card-image">
+          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
+        </div>
+        <div class="overlay-card-content">
+          <p class="overlay-card-category">{{ article.category.title }}</p>
+          <h2 class="overlay-card-title">{{ article.title }}</h2>
+          <p class="overlay-card-author">{{ article.author.full_name }}</p>
+          {% include media/_media-label.html source=article %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <!-- More Content Cards -->
+      <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
+        <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
+          {% assign above_the_fold = page.home_collection.docs | slice: 0, 2 %}
+
+          {% for article in above_the_fold %}
+          {% assign author = article.author | get_doc %}
+          {% assign category = article.category | get_doc %}
+          <div class="card carousel-cell card-2x">
+            <a class="relative" href="{{ article.url | media_url }}">
+              {% include media/_media-label.html source=article %}
+              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
+            </a>
+
+            <div class="card-block hard soft-quarter-top">
+              <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url | media_url }}">{{ category.title }}</a>
+
+              <h3 class="component-header flush">
+                <a href="{{ article.url | media_url }}">{{ article.title }}</a>
+              </h3>
+
+              <p class="card-text soft-quarter-top">
+                <a class="text-gray-light font-size-smaller" href="{{ author.url | media_url }}">{{ author.full_name }}</a>
+              </p>
             </div>
-            {% endfor %}
           </div>
+          {% endfor %}
         </div>
       </div>
-      <div class="col-sm-12 col-md-4">
-        <!-- Another Perspective -->
-        {% if page.perspectives.docs.size > 0 %}
-          <section class="perspectives-landing flush-top">
-            <a href="/perspectives">
-              <header style="background-image: url('//crds-cms-uploads.imgix.net/content/images/another-perspective-bg.png?blend64=MTUxNTE1&balph=60&bm=normal&w=10')" data-optimize-bg-img>
-                <img class="branding" src="//crds-cms-uploads.imgix.net/content/images/logo-another-perspective.svg" alt="another perspective">
-              </header>
-            </a>
-            <div class="perspectives-list">
-              {% for perspective in page.perspectives.docs %}
-                {% include media/_perspective.html perspective=perspective exclude_footer=true %}
-              {% endfor %}
-            </div>
-          </section>
-        {% endif %}
-      </div>
+    </div>
 
+    <div class="col-md-4">
+      <!-- Another Perspective -->
+      {% if page.perspectives.docs.size > 0 %}
+      <section class="perspectives-landing flush-top">
+        <a href="//media.crossroads.net/perspectives/">
+          <header style="background-image: url('//crds-cms-uploads.imgix.net/content/images/another-perspective-bg.png?blend64=MTUxNTE1&balph=60&bm=normal&w=10')" data-optimize-bg-img>
+            <img class="branding" src="//crds-cms-uploads.imgix.net/content/images/logo-another-perspective.svg" alt="another perspective">
+          </header>
+        </a>
+        <div class="perspectives-list">
+          {% for perspective in page.perspectives.docs %}
+            {% include media/_perspective.html perspective=perspective exclude_footer=true %}
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+    </div>
   </div>
 </section>
 
 <!-- Topics -->
-<section class="soft-half push-bottom">
-  <div class="container">
-    <hr class="push-half-bottom">
-    <h2 class="flush-top font-size-base text-gray-light" style="">explore our topics</h2>
-    <div class="card-deck carousel text-center" data-crds-carousel="mobile-scroll">
-      <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
+<section class="container soft-half push-bottom">
+  <hr class="push-half-bottom">
+  <h2 class="flush-top font-size-base text-gray-light">explore our topics</h2>
 
-        {% for topic in site.categories %}
-          <div class="card carousel-cell topic-card-simple" style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');">
-            <div class="bg-overlay"></div>
-            <div class="topic-card-content">
-              <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
-                <a href="{{ topic.url | media_url }}">{{ topic.title }}</a>
-              </h2>
-            </div>
-          </div>
-        {% endfor %}
+  <div class="card-deck carousel text-center" data-crds-carousel="mobile-scroll">
+    <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
+
+      {% for topic in site.categories %}
+      <div class="card carousel-cell topic-card-simple" style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');">
+        <div class="bg-overlay"></div>
+        <div class="topic-card-content">
+          <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
+            <a href="{{ topic.url | media_url }}">{{ topic.title }}</a>
+          </h2>
+        </div>
       </div>
+      {% endfor %}
     </div>
   </div>
 </section>
 
 <!-- About Crossroads -->
-<section>
-  <div class="jumbotron inline-video jumbotron-xl" style="background-image: url('//crds-cms-uploads.imgix.net/media/stills/crossroads-church-home.jpg');">
-     <div class="inline-video-player"></div>
-     <div class="container-fluid">
-       <div class="row">
-         <div class="col-sm-10 col-sm-offset-1">
-           <div class="jumbotron-content">
-             <a href="#" class="inline-video-trigger" data-video-id="geNzLq664rk"></a>
-             <h1 class="font-family-condensed-extra text-uppercase">What is Crossroads</h1>
-             <p>An authentic community of Christ-followers who believe that your life is made for more.</p>
-             <div class="row push-top soft-top">
+<section class="jumbotron inline-video jumbotron-xl" style="background-image: url('//crds-cms-uploads.imgix.net/media/stills/crossroads-church-home.jpg');">
+  <div class="inline-video-player"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="jumbotron-content">
+          <a href="#" class="inline-video-trigger" data-video-id="geNzLq664rk"></a>
+          <h1 class="font-family-condensed-extra text-uppercase">What is Crossroads</h1>
+          <p>An authentic community of Christ-followers who believe that your life is made for more.</p>
 
-              <div class="col-sm-4 col-sm-offset-2 text-right hidden-xs soft-sides">
-                <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
-                <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-                <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]">Watch the latest service</a>
-              </div>
+          <div class="row push-top soft-top">
+            <div class="col-sm-4 col-sm-offset-2 text-right hidden-xs soft-sides">
+              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
+              <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
+              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]">Watch the latest service</a>
+            </div>
 
-              <div class="col-sm-4 col-sm-offset-2 text-center visible-xs soft-sides push-bottom">
-                <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
-                <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-                <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]">Watch the latest service</a>
-              </div>
+            <div class="col-sm-4 col-sm-offset-2 text-center visible-xs soft-sides push-bottom">
+              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
+              <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
+              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]">Watch the latest service</a>
+            </div>
 
-              <div class="col-sm-4 text-left soft-sides hidden-xs border-left">
-                <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">in person</span></h4>
-                <span class="font-size-small">You look great. Jeans are fine. Bring the kids.</span><br>
-                <a href="/locations" class="btn btn-secondary btn-lg">Find a location</a>
-              </div>
-              <div class="col-sm-4 text-center soft-sides visible-xs push-top">
-                <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">in person</span></h4>
-                <span class="font-size-small">You look great. Jeans are fine. Bring the kids.</span><br>
-                <a href="/locations" class="btn btn-secondary btn-lg">Find a location</a>
-              </div>
+            <div class="col-sm-4 text-left soft-sides hidden-xs border-left">
+              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">in person</span></h4>
+              <span class="font-size-small">You look great. Jeans are fine. Bring the kids.</span><br>
+              <a href="/locations" class="btn btn-secondary btn-lg">Find a location</a>
+            </div>
 
-             </div>
-
-           </div>
-         </div>
-       </div>
-     </div>
+            <div class="col-sm-4 text-center soft-sides visible-xs push-top">
+              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">in person</span></h4>
+              <span class="font-size-small">You look great. Jeans are fine. Bring the kids.</span><br>
+              <a href="/locations" class="btn btn-secondary btn-lg">Find a location</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- More Content -->
-<section>
-  <div class="container">
+<section class="container">
+  <div class="row">
+    <!-- Big Content Feature -->
+    <div class="col-md-8">
+      <hr class="push-half-bottom">
+      <h2 class="flush-top font-size-base text-gray-light">recent articles</h2>
 
-    <div class="row">
-      <!-- Big Content Feature -->
-      <div class="col-sm-12 col-md-8">
-        <div class="row">
-          <div class="col-sm-12">
-            <hr class="push-half-bottom">
-            <h2 class="flush-top font-size-base text-gray-light" style="">recent articles</h2>
-          </div>
+      {% assign below_the_fold = page.home_collection.docs | slice: 2 %}
+      {% for article in below_the_fold %}
+      <a href="{{ article.url | media_url }}" class="overlay-card">
+        <div class="bg-overlay"></div>
+        <div class="overlay-card-image">
+          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
         </div>
+        <div class="overlay-card-content">
+          <p class="overlay-card-category">{{ article.category.title }}</p>
+          <h2 class="overlay-card-title">{{ article.title }}</h2>
+          <p class="overlay-card-author">{{ article.author.full_name }}</p>
+          {% include media/_media-label.html source=article %}
+        </div>
+      </a>
+      {% endfor %}
 
-        {% assign below_the_fold = page.home_collection.docs | slice: 2 %}
-        {% for article in below_the_fold %}
-          <a href="{{ article.url | media_url }}" class="overlay-card">
-            <div class="bg-overlay"></div>
-            <div class="overlay-card-image">
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
-            </div>
-            <div class="overlay-card-content">
-              <p class="overlay-card-category">{{ article.category.title }}</p>
-              <h2 class="overlay-card-title">{{ article.title }}</h2>
-              <p class="overlay-card-author">{{ article.author.full_name }}</p>
+      <!-- Content Cards -->
+      <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
+        <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
+
+          {% assign above_the_fold = page.home_collection.docs | slice: 3, 4 %}
+          {% for article in above_the_fold %}
+
+          {% assign author = article.author | get_doc %}
+          {% assign category = article.category | get_doc %}
+          <div class="card carousel-cell card-2x">
+            <a class="relative" href="{{ article.url | media_url }}">
               {% include media/_media-label.html source=article %}
+              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
+            </a>
+
+            <div class="card-block hard soft-quarter-top">
+              <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url | media_url }}">{{ category.title }}</a>
+              <h3 class="component-header flush">
+                <a href="{{ article.url | media_url }}">{{ article.title }}</a>
+              </h3>
+              <p class="card-text soft-quarter-top">
+                <a class="text-gray-light font-size-smaller" href="{{ author.url | media_url }}">{{ author.full_name }}</a>
+              </p>
             </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <hr class="push-half-bottom">
+      <h2 class="flush-top font-size-base text-gray-light">our podcasts</h2>
+
+      <div class="push-bottom soft-bottom">
+        {% for podcasts in page.podcasts.offset %}
+        <div class="media featured">
+          <div class="media-body">
+            <h5 class="component-header flush-ends">
+              <a href="{{ podcasts.url | media_url }}">{{ podcasts.title }}</a>
+            </h5>
+
+            <div class="soft-quarter-top font-size-smaller flush-bottom">
+              {{ podcasts.description | markdownify | strip_html | truncatewords: 15 }}
+            </div>
+
+            <p class="font-size-smaller text-gray-light">{% include media/_count.html key="podcast.title" subject=featured.title collection=site.episodes label="episode" %}</p>
+          </div>
+
+          <a href="{{ podcasts.url | media_url }}" class="push-half-bottom">
+            <img class="media-img" src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
           </a>
+        </div>
+
+        <hr>
         {% endfor %}
-        <!-- Content Cards -->
-        <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
-          <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
-            {% assign above_the_fold = page.home_collection.docs | slice: 3, 4 %}
 
-            {% for article in above_the_fold %}
-            {% assign author = article.author | get_doc %}
-            {% assign category = article.category | get_doc %}
-            <div class="card carousel-cell card-2x">
-              <a class="relative" href="{{ article.url | media_url }}">
-                {% include media/_media-label.html source=article %}
-                <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
-              </a>
-              <div class="card-block hard soft-quarter-top">
-                <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url | media_url }}">{{ category.title }}</a>
-                <h3 class="component-header flush">
-                  <a href="{{ article.url | media_url }}">{{ article.title }}</a>
-                </h3>
-                <p class="card-text soft-quarter-top">
-                  <a class="text-gray-light font-size-smaller" href="{{ author.url | media_url }}">{{ author.full_name }}</a>
-                </p>
-              </div>
+        {% assign home_podcasts = page.podcasts.docs | slice: 2, 6 %}
+        {% for podcasts in home_podcasts %}
+        <div class="media">
+          <div class="media-body">
+            <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ podcasts.url | media_url }}">
+              {{ podcasts.title }}</a>
+            </h5>
+
+            <div class="soft-quarter-top font-size-smaller flush-bottom">
+              <p class="podcasts-description">{{ podcasts.description | markdownify | strip_html | truncatewords: 15 }}</p>
             </div>
-            {% endfor %}
           </div>
+
+          <a href="{{ podcasts.url | media_url }}" class="soft-quarter-left">
+            <img src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img>
+          </a>
         </div>
+
+        <hr>
+        {% endfor %}
       </div>
-
-      <div class="col-sm-12 col-md-4">
-        <div class="row">
-          <div class="col-sm-12">
-            <hr class="push-half-bottom">
-            <h2 class="flush-top font-size-base text-gray-light" style="">our podcasts</h2>
-          </div>
-        </div>
-        <div class="push-bottom soft-bottom">
-          {% for podcasts in page.podcasts.offset %}
-          <div class="media featured">
-            <div class="media-body">
-              <h5 class="component-header flush-ends">
-                <a href="{{ podcasts.url | media_url }}">{{ podcasts.title }}</a>
-              </h5>
-              <div class="soft-quarter-top font-size-smaller flush-bottom">
-                {{ podcasts.description | markdownify | strip_html | truncatewords: 15 }}
-              </div>
-              <p class="font-size-smaller text-gray-light">{% include media/_count.html key="podcast.title" subject=featured.title collection=site.episodes label="episode" %}</p>
-            </div>
-            <a href="{{ podcasts.url | media_url }}" class="push-half-bottom">
-              <img class="media-img" src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
-            </a>
-          </div>
-          <hr>
-          {% endfor %}
-
-          {% assign home_podcasts = page.podcasts.docs | slice: 2, 6 %}
-          {% for podcasts in home_podcasts %}
-          <div class="media">
-            <div class="media-body">
-              <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ podcasts.url | media_url }}">
-                {{ podcasts.title }}</a>
-              </h5>
-              <div class="soft-quarter-top font-size-smaller flush-bottom">
-                <p class="podcasts-description">{{ podcasts.description | markdownify | strip_html | truncatewords: 15 }}</p>
-              </div>
-            </div>
-            <a href="{{ podcasts.url | media_url }}" class="soft-quarter-left">
-              <img src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img>
-            </a>
-          </div>
-          <hr>
-          {% endfor %}
-
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
