@@ -367,17 +367,9 @@ paginate:
   </div>
 </section>
 
-<script>
-  window.env = {
-    gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}',
-    streamspotId: '{{ site.streamspotId }}',
-    streamspotKey: '{{ site.streamspotKey }}'
-  };
-</script>
-
 <!-- Following code brought in with merge from Development -->
 <!-- What To Expect -->
-<!-- <section class="container-fluid bg-primary soft-ends">
+<section class="container-fluid bg-primary soft-ends">
   <div class="container push-ends">
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
@@ -416,15 +408,23 @@ paginate:
       </div>
     </div>
   </div>
-</section> -->
+</section>
 
 <!-- Locations -->
-<!-- <section class="container">
+<section class="container">
   <div class="locations-header push-bottom" data-locations-section>
     <h3 class="component-header push-bottom push-top">locations</h3>
     {% include _locations-search.html %}
   </div>
   {% include _locations-grid.html %}
-</section> -->
+</section>
 
 {% include footer.html %}
+
+<script>
+  window.env = {
+    gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}',
+    streamspotId: '{{ site.streamspotId }}',
+    streamspotKey: '{{ site.streamspotKey }}'
+  };
+</script>

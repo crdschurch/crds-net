@@ -69,7 +69,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.1)
+    activesupport (5.2.1.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
@@ -79,19 +79,11 @@ GEM
     autoprefixer-rails (9.3.1)
       execjs
     aws-eventstream (1.0.1)
-<<<<<<< HEAD
-    aws-partitions (1.112.0)
-    aws-sdk-cloudsearchdomain (1.5.0)
-      aws-sdk-core (~> 3, >= 3.26.0)
-      aws-sigv4 (~> 1.0)
-    aws-sdk-core (3.38.0)
-=======
-    aws-partitions (1.116.0)
+    aws-partitions (1.120.0)
     aws-sdk-cloudsearchdomain (1.6.0)
       aws-sdk-core (~> 3, >= 3.39.0)
       aws-sigv4 (~> 1.0)
-    aws-sdk-core (3.39.0)
->>>>>>> development
+    aws-sdk-core (3.41.0)
       aws-eventstream (~> 1.0)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.0)
@@ -124,7 +116,7 @@ GEM
     execjs (2.7.0)
     extras (0.3.0)
       forwardable-extended (~> 2.5)
-    fastimage (2.1.4)
+    fastimage (2.1.5)
     ffi (1.9.25)
     formatador (0.2.5)
     forwardable-extended (2.6.0)
@@ -254,11 +246,6 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-<<<<<<< HEAD
-=======
-    tzinfo-data (1.2018.7)
-      tzinfo (>= 1.0.0)
->>>>>>> development
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
@@ -283,19 +270,12 @@ DEPENDENCIES
   jekyll-crds!
   jekyll-placeholders (~> 0.0.1)!
   netlify-redirector!
-<<<<<<< HEAD
   paging-mister-hyde!
-=======
   rack (>= 2.0.6)
->>>>>>> development
   rspec
   tzinfo-data
   vcr
   webmock
 
 BUNDLED WITH
-<<<<<<< HEAD
-   1.16.3
-=======
-   1.17.1
->>>>>>> development
+   1.16.4
