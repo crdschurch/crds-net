@@ -1,4 +1,3 @@
-const moment = require('moment');
 import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
 
 describe("Tesing the Media/Series/[Current Series] page", function(){
