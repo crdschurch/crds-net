@@ -17,7 +17,7 @@ class Redirects
 
   def redirects
     JSON.parse(get_redirects).dig('items').collect do |item|
-      item['fields']['status'] = parse_status(item['fields']['status'])
+      set_tmp_status(item)
       item.dig('fields').values 
     end
   end
@@ -29,8 +29,9 @@ class Redirects
     puts "\n + #{redirects.size} redirects from Contentful".colorize(:cyan)
   end
 
-  def parse_status(s)
-    s == 'permanent' ? s = 301 : s = 302
+  def set_tmp_status(item)
+    item['fields']['status'] = 302
+    item
   end
 
   private
