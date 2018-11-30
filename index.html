@@ -62,7 +62,7 @@ paginate:
         </div>
         <a href="{{ messages.url | media_url }}" class="push-half-bottom">
           <div class="media-video">
-            <img class="media-img" src="{{ messages.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
+            <img class="media-img" src="{{ messages.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
             <svg class="media-play-btn icon icon-5 text-white" viewBox="0 0 256 256">
               <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#play-thin"></use>
             </svg>
@@ -87,7 +87,7 @@ paginate:
           </div>
         </div>
         <a href="{{ series.url | media_url }}" class="push-half-bottom">
-          <img class="media-img" src="{{ series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
+          <img class="media-img" src="{{ series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
         </a>
       </div>
       {% endfor %}
@@ -102,7 +102,7 @@ paginate:
       <a href="{{ article.url | media_url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
-          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
+          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img >
         </div>
         <div class="overlay-card-content">
           <p class="overlay-card-category">{{ article.category.title }}</p>
@@ -128,7 +128,7 @@ paginate:
           <div class="card carousel-cell card-2x">
             <a class="relative" href="{{ article.url | media_url }}">
               {% include media/_media-label.html source=article %}
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
+              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img >
             </a>
 
             <div class="card-block hard soft-quarter-top">
@@ -245,7 +245,7 @@ paginate:
       <a href="{{ article.url | media_url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
-          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
+          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img >
         </div>
         <div class="overlay-card-content">
           <p class="overlay-card-category">{{ article.category.title }}</p>
@@ -268,7 +268,7 @@ paginate:
           <div class="card carousel-cell card-2x">
             <a class="relative" href="{{ article.url | media_url }}">
               {% include media/_media-label.html source=article %}
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img >
+              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img >
             </a>
 
             <div class="card-block hard soft-quarter-top">
@@ -322,12 +322,12 @@ paginate:
             </h5>
 
             <div class="soft-quarter-top font-size-smaller flush-bottom">
-              <p class="podcasts-description">{{ podcasts.description | markdownify | strip_html | truncatewords: 15 }}</p>
+              {{ podcasts.description | markdownify | strip_html | truncatewords: 15 }}
             </div>
           </div>
 
           <a href="{{ podcasts.url | media_url }}" class="soft-quarter-left">
-            <img src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img>
+            <img class="media-img" src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.media_object }}" data-optimize-img>
           </a>
         </div>
 

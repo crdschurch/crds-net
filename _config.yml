@@ -104,8 +104,11 @@ imgix_params:
 
 image_sizes:
   cards_4x: "(min-width: 992px) 212.5px, (min-width: 768px) 345px, (min-width: 0px) 100vw"
+  media_object: "(min-width: 768px) 140px, (min-width: 0px) 100px"
   full_width: "100vw"
   half_width: "50vw"
   one_hundred: "100%"
+  one_fourth: "(min-width: 992px) 25vw, (min-width: 0px) 100vw"
+  three_fourths: "(min-width: 992px) 75vw, (min-width: 0px) 100vw"
 
 typekit_url: https://use.typekit.net/ccb3vpa.css
