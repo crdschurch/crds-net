@@ -1,5 +1,5 @@
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
-import {DateFormatter} from '../../support/DateFormatter'
+import {Formatter} from '../../support/Formatter'
 
 describe('Testing the Current Series on the Live page', function () {
     let currentSeries;
@@ -11,13 +11,14 @@ describe('Testing the Current Series on the Live page', function () {
 
     //DO NOT RUN in open mode - Causes Cypress to hang
     it('Tests Current Series title, date, and description', function () {
-        const startDate = DateFormatter.formatIgnoringTimeZone(currentSeries.startDate, 'MM.DD.YYYY');
-        const endDate = DateFormatter.formatIgnoringTimeZone(currentSeries.endDate, 'MM.DD.YYYY');
+        const startDate = Formatter.formatDateIgnoringTimeZone(currentSeries.startDate, 'MM.DD.YYYY');
+        const endDate = Formatter.formatDateIgnoringTimeZone(currentSeries.endDate, 'MM.DD.YYYY');
+        const description = Formatter.removeNewlineSymbol(currentSeries.description);
 
         cy.get('.current-series').then(($textBlock) => {
             expect($textBlock.find('[data-automation-id="series-title"]')).to.have.text(currentSeries.title);
             expect($textBlock.find('[data-automation-id="series-dates"]')).to.have.text(`${startDate} - ${endDate}`);
-            expect($textBlock.find('[data-automation-id="series-description"] > p')).to.have.text(currentSeries.description);
+            expect($textBlock.find('[data-automation-id="series-description"] > p')).to.have.text(description);
         })
     })
 

@@ -1,5 +1,5 @@
 import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
-import {DateFormatter} from '../../support/DateFormatter'
+import {Formatter} from '../../support/Formatter'
 
 describe("Testing the Latest Message on the Homepage", function () {
     let latestMessage;
@@ -15,7 +15,7 @@ describe("Testing the Latest Message on the Homepage", function () {
             expect($messageTitle.find('#lastMessageTitle')).to.have.text(latestMessage.title);
         })
 
-        const datePublished = DateFormatter.formatIgnoringTimeZone(latestMessage.publishedAt, 'MM.DD.YYYY');
+        const datePublished = Formatter.formatDateIgnoringTimeZone(latestMessage.publishedAt, 'MM.DD.YYYY');
         cy.get('#lastMessageSubtitle').should('have.text', datePublished);
     })
 

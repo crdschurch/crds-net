@@ -1,4 +1,5 @@
 import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
+import {Formatter} from '../../support/Formatter';
 
 
 describe("Testing the Current Series on the Media landing page", function(){
@@ -16,11 +17,13 @@ describe("Testing the Current Series on the Media landing page", function(){
 
         cy.get('@seriesText').find('.component-header > a').then(($seriesTitle) => {
             expect($seriesTitle).to.have.attr('href', `/series/${currentSeries.slug}`);
-            expect($seriesTitle).to.have.text(`${currentSeries.title}`);
+            expect($seriesTitle).to.have.text(currentSeries.title);
         })
 
-        cy.get('@seriesText').find('div').then(($description) =>{
-            expect($description).to.contain(`${currentSeries.description.substring(0,96)}`);
+        cy.get('@seriesText').find('div').then(($seriesDescription) => {
+            //Displays first 15 words
+            const description = Formatter.removeLineBreaksAndNewlines(currentSeries.description).split(/\s+/).slice(0,15).join(" ");
+            expect($seriesDescription).to.contain(description);
         })
     })
 

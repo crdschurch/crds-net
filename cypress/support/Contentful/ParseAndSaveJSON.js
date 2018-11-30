@@ -5,8 +5,10 @@ export class ParseAndSaveJSON {
     static storeStandardProperties(jsonObject, assetList, saveObject){
         saveObject._title = jsonObject.fields.title;
         saveObject._slug = jsonObject.fields.slug;
+        saveObject._description = removeMarkdown(jsonObject.fields.description);
 
-        this.storeCleanedText(jsonObject.fields.description, saveObject, '_description')
+        //this._storeCleanedText(jsonObject.fields.description, saveObject, '_description')
+
 
         //Save image information, if it should exist
         if (jsonObject.fields.image){
@@ -18,9 +20,10 @@ export class ParseAndSaveJSON {
         }
     }
 
-    static storeCleanedText(jsonText, saveObject, savePropertyName){
-        let cleanedText = removeMarkdown(jsonText);
 
-        saveObject[savePropertyName] = cleanedText.replace(/\n/g, '');
-    }
+    // static _storeCleanedText(jsonText, saveObject, savePropertyName){
+    //     let cleanedText = removeMarkdown(jsonText);
+
+    //     saveObject[savePropertyName] = cleanedText.replace(/\n\n/g, ' ').replace(/\n/g, '');
+    // }
 }

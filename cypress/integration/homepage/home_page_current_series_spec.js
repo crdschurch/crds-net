@@ -1,5 +1,5 @@
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
-import { DateFormatter } from '../../support/DateFormatter'
+import { Formatter } from '../../support/Formatter'
 
 describe("Testing the Current Series on the Homepage", function () {
     let currentSeries;
@@ -12,13 +12,14 @@ describe("Testing the Current Series on the Homepage", function () {
     it('Tests Current Series title, date, and description', function(){
         cy.log(currentSeries.endDate);
 
-        const startDate = DateFormatter.formatIgnoringTimeZone(currentSeries.startDate, 'MM.DD.YYYY');
-        const endDate = DateFormatter.formatIgnoringTimeZone(currentSeries.endDate, 'MM.DD.YYYY');
+        const startDate = Formatter.formatDateIgnoringTimeZone(currentSeries.startDate, 'MM.DD.YYYY');
+        const endDate = Formatter.formatDateIgnoringTimeZone(currentSeries.endDate, 'MM.DD.YYYY');
+        const description = Formatter.removeNewlineSymbol(currentSeries.description);
 
         cy.get('.current-series').then(($textBlock)=> {
             expect($textBlock.find('[data-automation-id="series-title"]')).to.be.visible.and.have.text(currentSeries.title);
             expect($textBlock.find('[data-automation-id="series-dates"]')).to.be.visible.and.have.text(`${startDate} — ${endDate}`);
-            expect($textBlock.find('[data-automation-id="series-description"] > p')).to.be.visible.and.have.text(currentSeries.description);
+            expect($textBlock.find('[data-automation-id="series-description"] > p')).to.be.visible.and.have.text(description);
         })
     })
 
@@ -55,8 +56,8 @@ describe("Testing the Current Series on the Homepage", function () {
     it('Tests Jumbotron Current Series title, dates, image, and description', function () {
         cy.get('[data-automation-id="jumbotron-series-title"]').should('have.text', currentSeries.title);
 
-        const startDate = DateFormatter.formatIgnoringTimeZone(currentSeries.startDate, 'MM.DD.YYYY');
-        const endDate = DateFormatter.formatIgnoringTimeZone(currentSeries.endDate, 'MM.DD.YYYY');
+        const startDate = Formatter.formatDateIgnoringTimeZone(currentSeries.startDate, 'MM.DD.YYYY');
+        const endDate = Formatter.formatDateIgnoringTimeZone(currentSeries.endDate, 'MM.DD.YYYY');
 
         cy.get('[data-automation-id="jumbotron-series-dates"]').should('have.text', `${startDate} — ${endDate}`);
 

@@ -1,5 +1,5 @@
 import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
-import {DateFormatter} from '../../support/DateFormatter'
+import {Formatter} from '../../support/Formatter'
 
 describe("Tesing the Current Series on the Media/Series page", function(){
     let currentSeries;
@@ -14,13 +14,14 @@ describe("Tesing the Current Series on the Media/Series page", function(){
     it('Tests current series title, date range, and description', function(){
         cy.get('.current-series').as('currentSeriesBlock').should('be.visible');
 
-        const startDate = DateFormatter.formatIgnoringTimeZone(currentSeries.startDate, 'MM.DD.YYYY');
-        const endDate = DateFormatter.formatIgnoringTimeZone(currentSeries.endDate, 'MM.DD.YYYY');
+        const startDate = Formatter.formatDateIgnoringTimeZone(currentSeries.startDate, 'MM.DD.YYYY');
+        const endDate = Formatter.formatDateIgnoringTimeZone(currentSeries.endDate, 'MM.DD.YYYY');
+        const description = Formatter.removeNewlineSymbol(currentSeries.description);
 
         cy.get('@currentSeriesBlock').find('div.col-xs-12.col-md-5').then(($seriesTextBlock) => {
             expect($seriesTextBlock.find('h1')).to.have.text(currentSeries.title);
             expect($seriesTextBlock.find('date')).to.have.text(`${startDate} — ${endDate}`);
-            expect($seriesTextBlock.find('div > p')).to.have.text(currentSeries.description);
+            expect($seriesTextBlock.find('div > p')).to.have.text(description);
         })
     })
 
