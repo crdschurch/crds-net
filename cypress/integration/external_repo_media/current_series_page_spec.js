@@ -12,19 +12,23 @@ describe("Tesing the Media/Series/[Current Series] page", function(){
     })
 
     it('Tests the image and background image match their entries in Contentful', function() {
-        cy.get('.jumbotron').as('jumbotron');
+        cy.get('.jumbotron').find('img').then(($jumbotronForeground) => {
+            expect($jumbotronForeground).to.be.visible;
+            expect($jumbotronForeground).to.have.attr('srcset'); //If fails, image was not found
 
-        //Main image is displayed correctly
-        cy.get('@jumbotron').find('.feature-img').then(($seriesImage) => {
-            expect($seriesImage).to.be.visible;
-            expect($seriesImage).to.have.attr('src').contains(currentSeries.imageId);
-            expect($seriesImage).to.have.attr('srcset'); //If fails, image was not found
+            if (currentSeries.imageId !== undefined){
+                expect($jumbotronForeground).to.have.attr('src').contains(currentSeries.imageId);
+            }
         })
 
-        //Background image (jumbotron) displayed correctly
-        cy.get('@jumbotron').then(($backgroundImage) => {
-            expect($backgroundImage).to.be.visible;
-            expect($backgroundImage).to.have.attr('style').contains(currentSeries.backgroundImageId);
+        cy.get('.jumbotron').then(($jumbotronBackground) => {
+            expect($jumbotronBackground).to.be.visible;
+
+            if (currentSeries.backgroundImageId !== undefined){
+                expect($jumbotronBackground).to.have.attr('style').contains(currentSeries.backgroundImageId);
+            } else if (currentSeries.imageId !== undefined){
+                expect($jumbotronBackground.find('div')).to.have.attr('style').contains(currentSeries.imageId);
+            }
         })
     })
 })

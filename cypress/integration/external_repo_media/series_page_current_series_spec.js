@@ -27,7 +27,10 @@ describe("Tesing the Current Series on the Media/Series page", function(){
     it('Tests current series image and image link', function(){
         cy.get('.current-series > div > a').then(($seriesImage) => {
             expect($seriesImage).to.have.attr('href').contains(`/series/${currentSeries.slug}`);
-            expect($seriesImage.find('img')).to.have.attr('src').contains(`${currentSeries.imageId}`);
+
+            if (currentSeries.imageId !== undefined){
+                expect($seriesImage.find('img')).to.have.attr('src').contains(currentSeries.imageId);
+            }
         })
     })
 

@@ -25,8 +25,11 @@ describe("Testing the Current Series on the Homepage", function () {
     it('Tests Current Series image', function(){
         cy.get('[data-automation-id="series-image"]').then(($imageBlock)=> {
             expect($imageBlock).to.be.visible;
-            expect($imageBlock).to.have.attr('src').contains(`${currentSeries.imageId}`);
-            expect($imageBlock).to.have.attr('srcset'); //If fails, image was not found
+
+            if (currentSeries.imageId !== undefined){
+                expect($imageBlock).to.have.attr('srcset'); //If fails, image was not found
+                expect($imageBlock).to.have.attr('src').contains(currentSeries.imageId);
+            }
         })
     })
 
@@ -58,8 +61,12 @@ describe("Testing the Current Series on the Homepage", function () {
         cy.get('[data-automation-id="jumbotron-series-dates"]').should('have.text', `${startDate} — ${endDate}`);
 
         cy.get('[data-automation-id="jumbotron-series-image"]').then(($seriesImage) => {
-            expect($seriesImage).to.have.attr('src').contains(`${currentSeries.imageId}`);
-            expect($seriesImage).to.have.attr('srcset'); //If fails, image was not found
+            expect($seriesImage).to.be.visible;
+
+            if (currentSeries.imageId !== undefined){
+                expect($seriesImage).to.have.attr('srcset'); //If fails, image was not found
+                expect($seriesImage).to.have.attr('src').contains(currentSeries.imageId);
+            }
         })
     })
 
