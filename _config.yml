@@ -34,7 +34,7 @@ exclude:
 
 contentful:
   series:
-    limit: 2
+    limit: 4
   message:
     limit: 4
   exclude:
