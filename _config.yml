@@ -35,8 +35,10 @@ exclude:
 contentful:
   series:
     limit: 4
+    order: 'published_at desc'
   message:
     limit: 4
+    order: 'published_at desc'
   exclude:
     - album
     - featured_media
@@ -84,6 +86,13 @@ collections:
     output: false
   categories:
     output: false
+
+defaults:
+  - scope:
+      path: ""
+      type: "locations"
+    values:
+      layout: location
 
 assets:
   source_maps: true # false on JEKYLL_ENV=production
