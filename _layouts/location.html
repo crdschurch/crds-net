@@ -6,8 +6,144 @@ layout: default
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
 {% include header.html %}
 
+{% if page.title == "Andover" %}
+{% capture sun_time %}11:00am{% endcapture %}
+{% capture mon_time %}1:00pm<br />3:00pm{% endcapture %}
+{% elsif page.title == "Dayton" %}
+{% capture sun_time %}9:15am<br />11:00am{% endcapture %}
+{% capture mon_time %}3:00pm{% endcapture %}
+{% elsif page.title == "Eastside" %}
+{% capture sat_time %}5:30pm{% endcapture %}
+{% capture sun_time %}9:00am<br />11:00am<br />11:00am{% endcapture %}
+{% capture mon_time %}11:00am<br />1:00pm{% endcapture %}
+{% elsif page.title == "Florence" %}
+{% capture sat_time %}5:30pm{% endcapture %}
+{% capture sun_time %}9:00am<br />11:30am{% endcapture %}
+{% capture mon_time %}11:00am<br />3:00pm{% endcapture %}
+{% elsif page.title == "Georgetown" %}
+{% capture sun_time %}9:15am<br />11:30am{% endcapture %}
+{% capture mon_time %}3:00pm{% endcapture %}
+{% elsif page.title == "Mason" %}
+{% assign ticket_instructions = true %}
+{% capture sat_time %}
+4pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a><br />
+6pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets </a>
+{% endcapture %}
+{% capture sun_time %}
+9:15am - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a><br />
+11:15am - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a>
+{% endcapture %}
+{% capture mon_time %}
+11am - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a><br />
+1pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a><br />
+3pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a>
+{% endcapture %}
+{% elsif page.title == "Oakley" %}
+{% assign ticket_instructions = true %}
+{% capture sat_time %}
+3pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a><br />
+5pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a>
+{% endcapture %}
+{% capture sun_time %}
+9:30am - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a><br />
+11:30am - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a>
+{% endcapture %}
+{% capture mon_time %}
+1pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a><br />
+3pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a><br />
+5pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a>
+{% endcapture %}
+{% elsif page.title == "Richmond" %}
+{% capture sun_time %}9:15am<br />11:00am{% endcapture %}
+{% capture mon_time %}3:00pm{% endcapture %}
+{% elsif page.title == "Uptown" %}
+{% capture sun_time %}9:30am<br />11:00am{% endcapture %}
+{% capture mon_time %}3:30pm<br />5:00pm{% endcapture %}
+{% elsif page.title == "Westside" %}
+{% capture sat_time %}5:30pm{% endcapture %}
+{% capture sun_time %}9:15am<br />11:00am{% endcapture %}
+{% capture mon_time %}2:00pm<br />4:00pm{% endcapture %}
+{% endif %}
+
+
+<!-- Christmas Banner -->
+<div class="jumbotron inline-video jumbotron-md flush-bottom" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-christmas-drummer-bg-img.jpg');">
+  <div class="inline-video-player"></div>
+  <div class="jumbotron-content">
+    <div class="container-fluid">
+      <div class="row soft-sides">
+        <div class="col-sm-6 col-sm-offset-3">
+          <img data-src="https://crds-cms-uploads.imgix.net/content/images/crossroads-christmas-logo.png" class="img-responsive"
+            data-optimize-img />
+        </div>
+      </div>
+      <div class="row push-ends soft-ends">
+        <div class="col-sm-12 push-ends soft-ends">
+          <a href="#" class="inline-video-trigger push-ends soft-ends" data-video-id="Lj6aqj5dpQw"></a>
+        </div>
+      </div>
+      <div class="row soft-sides push-top soft-top">
+        <div class="col-sm-8 col-sm-offset-2 push-half-top">
+          <p>Feel the wonder of Christmas in a completely new way. This hour-long service includes fully immersive
+            teaching and music that reminds you why Christmas is the ultimate season of hope. Watch the trailer above
+            to get a sneak peek.</p>
+          <span class="font-size-small">(No childcare, but your kids will love it.)</span><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section style="background-color:#970111;">
+  <div class="container soft">
+    <div class="row push-ends">
+      <div class="col-sm-4 soft-sides">
+        <h2 class="component-header text-white flush-top">{{ page.title }} Service Times</h2>
+        {% if ticket_instructions %}
+          <p class="text-white">In order to ensure a great experience for all, please get a general admission ticket for yourself and anyone else attending with you.
+          We'd hate to be a scrooge and not have enough seats for everyone!<br />
+            <a href="https://www.crossroads.net/christmasatcrossroadsfaqs" class="text-white underline">View the FAQs</a>
+          </p>
+        {% endif %}
+        <a href="{{ page.map_url }}" class="btn btn-outline btn-white push-half-right text-white" target="_blank">Get
+          directions</a>
+      </div>
+      <div class="col-sm-8 soft-sides">
+        <div class="row">
+          {% if sat_time %}
+          <div class="col-sm-4">
+            <p class="font-size-base text-white"><strong>Saturday, December 22</strong><br />
+              {{ sat_time }}
+            </p>
+          </div>
+          <div class="col-sm-4">
+            <p class="font-size-base text-white"><strong>Sunday, December 23</strong><br />
+              {{ sun_time }}
+            </p>
+          </div>
+          <div class="col-sm-4">
+            <p class="font-size-base text-white"><strong>Monday, December 24</strong><br />
+              {{ mon_time }}
+            </p>
+          </div>
+          {% else %}
+          <div class="col-sm-6">
+            <p class="font-size-base text-white"><strong>Sunday, December 23</strong><br />
+              {{ sun_time }}
+            </p>
+          </div>
+          <div class="col-sm-6">
+            <p class="font-size-base text-white"><strong>Monday, December 24</strong><br />
+              {{ mon_time }}
+            </p>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+</section>
 <!-- Jumbotron section -->
-<div class="jumbotron jumbotron-xl flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+<div class="jumbotron jumbotron-xl flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
+  data-optimize-bg-img>
   <div class="push-ends mobile-soft-sides">
     <span class="font-family-base text-uppercase">
       <strong>welcome to</strong>
@@ -16,35 +152,37 @@ layout: default
       <br>{{ page.name | downcase }}</h1>
     <h2 class="title font-size-h1 text-white visible-xs">crossroads
       <br>{{ page.name | downcase }}</h2>
-      {% if location_happenings.size > 0 %}
-        <br />
-    	<!-- signup link -->
-      {% if page.title == "Andover" %}
-        {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=25699" %}
-      {% elsif page.title == "Dayton" %}
-    	  {% assign suts_link = "https://docs.google.com/forms/d/e/1FAIpQLSd_VVtsnA1nhLhH7b-q_Xrx--apCLSbheTKWptMdIF34WOQRQ/viewform" %}
-      {% elsif page.title == "Eastside" %}
-    	  {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33528" %}
-      {% elsif page.title == "Florence" %}
-    	  {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?start_over&id=33547" %}
-      {% elsif page.title == "Georgetown" %}
-    	  {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33714" %}
-      {% elsif page.title == "Mason" %}
-    	  {% assign suts_link = "https://www.crossroads.net/sign-up/masonchristmasvolunteer" %}
-    	{% elsif page.title == "Oakley" %}
-    	  {% assign suts_link = "http://crossroadsallothervolunteers.volunteerlocal.com/volunteer/?id=33749" %}
-      {% elsif page.title == "Richmond" %}
-        {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33684" %}
-      {% elsif page.title == "Uptown" %}
-        {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33682" %}
-      {% elsif page.title == "Westside" %}
-        {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33513" %}
-    	{% endif %}
-      {% if suts_link %}
-      	  <a class="btn btn-secondary push-half-sides" href="{{ suts_link}}">Sign up to serve for Christmas</a>
-      {% endif %}
-      <a href="javascript:void(0)" class="btn btn-primary push-half-sides" data-smooth-scroll-to="happenings">See what's happening at {{ page.name | downcase }}</a>
-      {% endif %}
+    {% if location_happenings.size > 0 %}
+    <br />
+    <!-- signup link -->
+    {% if page.title == "Andover" %}
+    {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=25699" %}
+    {% elsif page.title == "Dayton" %}
+    {% assign suts_link =
+    "https://docs.google.com/forms/d/e/1FAIpQLSd_VVtsnA1nhLhH7b-q_Xrx--apCLSbheTKWptMdIF34WOQRQ/viewform" %}
+    {% elsif page.title == "Eastside" %}
+    {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33528" %}
+    {% elsif page.title == "Florence" %}
+    {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?start_over&id=33547" %}
+    {% elsif page.title == "Georgetown" %}
+    {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33714" %}
+    {% elsif page.title == "Mason" %}
+    {% assign suts_link = "https://www.crossroads.net/sign-up/masonchristmasvolunteer" %}
+    {% elsif page.title == "Oakley" %}
+    {% assign suts_link = "http://crossroadsallothervolunteers.volunteerlocal.com/volunteer/?id=33749" %}
+    {% elsif page.title == "Richmond" %}
+    {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33684" %}
+    {% elsif page.title == "Uptown" %}
+    {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33682" %}
+    {% elsif page.title == "Westside" %}
+    {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33513" %}
+    {% endif %}
+    {% if suts_link %}
+    <a class="btn btn-secondary push-half-sides" href="{{ suts_link}}">Sign up to serve for Christmas</a>
+    {% endif %}
+    <a href="javascript:void(0)" class="btn btn-primary push-half-sides" data-smooth-scroll-to="happenings">See what's
+      happening at {{ page.name | downcase }}</a>
+    {% endif %}
 
   </div>
 </div>
@@ -69,14 +207,15 @@ layout: default
               </br>
               {{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}
               </br>
-              <a href="{{ page.map_url }}" target="_blank">Get directions</a>
+              <a href="{{ page.map_url }}" target="_blank" target="_blank">Get directions</a>
             </p>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-12">
             {% assign current_series = site.series | reverse | first %}
-            <a class="btn btn-primary" data-automation-id="series-slug" data-role="recent-series" href="/series/{{ current_series.slug }}">Check out our latest series</a>
+            <a class="btn btn-primary" data-automation-id="series-slug" data-role="recent-series" href="/series/{{ current_series.slug }}">Check
+              out our latest series</a>
           </div>
           <div class="col-sm-12 push-top">
             {{ page.additional_info | markdownify }}
@@ -118,12 +257,16 @@ layout: default
 <section class="container push-top">
   <div class="row push-top soft-top d-flex justify-content-center flex-column flex-md-row">
     <div class="card col-sm-4">
-      <img class="img-circle" src="{{ page.come_as_you_are_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+      <img class="img-circle" src="{{ page.come_as_you_are_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+        sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
       <div class="card-block text-left">
         <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">Come as you are</h4>
-        <p class="card-text">Seriously. This is a real place for real people. Regardless of what you think about God, you are welcome here. In
-          a nutshell, you can wear jeans, or dress up if you want. The coffee is free, so grab a cup before you sit down.
-          The music is great and you’ll hear straight up Biblical truth that you can apply to your everyday life. The rest
+        <p class="card-text">Seriously. This is a real place for real people. Regardless of what you think about God,
+          you are welcome here. In
+          a nutshell, you can wear jeans, or dress up if you want. The coffee is free, so grab a cup before you sit
+          down.
+          The music is great and you’ll hear straight up Biblical truth that you can apply to your everyday life. The
+          rest
           is up to you.
         </p>
         {% if page.virtual_tour_url %}
@@ -133,16 +276,19 @@ layout: default
     </div>
     {% if page.community_pastor_image and page.community_pastor_name and page.community_pastor_bio %}
     <div class="card col-sm-4">
-      <img class="img-circle" src="{{ page.community_pastor_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+      <img class="img-circle" src="{{ page.community_pastor_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+        sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
       <div class="card-block text-left">
-        <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">Meet {{ page.community_pastor_name }}</h4>
+        <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">Meet {{
+          page.community_pastor_name }}</h4>
         <p class="card-text">{{ page.community_pastor_bio | markdownify }}</p>
       </div>
     </div>
     {% endif %}
     {% if page.spotlight_text and page.spotlight_title and page.spotlight_image.url %}
     <div class="card col-sm-4">
-      <img class="img-circle" src="{{ page.spotlight_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+      <img class="img-circle" src="{{ page.spotlight_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+        sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
       <div class="card-block text-left">
         <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">{{ page.spotlight_title }}</h4>
         <p class="card-text">{{ page.spotlight_text | markdownify }}</p>
@@ -159,7 +305,7 @@ layout: default
   <div class="card-deck cards-4x">
     <div class="row">
       {% for item in location_happenings %}
-        {% include _promo-card.html %}
+      {% include _promo-card.html %}
       {% endfor %}
     </div>
   </div>
@@ -178,19 +324,22 @@ layout: default
   <div class="row push-ends soft-bottom">
     <div class="col-md-4">
       <div class="embed-responsive embed-responsive-16by9">
-        <iframe width="320" height="240" src="https://www.youtube.com/embed/rP8iKiNDIIk" frameborder="0" allowfullscreen=""></iframe>
+        <iframe width="320" height="240" src="https://www.youtube.com/embed/rP8iKiNDIIk" frameborder="0"
+          allowfullscreen=""></iframe>
       </div>
       <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Chandler</h4>
     </div>
     <div class="col-md-4">
       <div class="embed-responsive embed-responsive-16by9">
-        <iframe width="320" height="240" src="https://www.youtube.com/embed/RSty1EoOJIk" frameborder="0" allowfullscreen=""></iframe>
+        <iframe width="320" height="240" src="https://www.youtube.com/embed/RSty1EoOJIk" frameborder="0"
+          allowfullscreen=""></iframe>
       </div>
       <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Laveta</h4>
     </div>
     <div class="col-md-4">
       <div class="embed-responsive embed-responsive-16by9">
-        <iframe width="320" height="240" src="https://www.youtube.com/embed/faFhJlRdH98" frameborder="0" allowfullscreen=""></iframe>
+        <iframe width="320" height="240" src="https://www.youtube.com/embed/faFhJlRdH98" frameborder="0"
+          allowfullscreen=""></iframe>
       </div>
       <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Barry</h4>
     </div>
@@ -210,13 +359,15 @@ layout: default
   <div class="row push-ends soft-bottom">
     <div class="col-md-6">
       <div class="embed-responsive embed-responsive-16by9">
-        <iframe width="320" height="240" src="https://www.youtube.com/embed/j7VEsRktPxY" frameborder="0" allowfullscreen=""></iframe>
+        <iframe width="320" height="240" src="https://www.youtube.com/embed/j7VEsRktPxY" frameborder="0"
+          allowfullscreen=""></iframe>
       </div>
       <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Alyssa</h4>
     </div>
     <div class="col-md-6">
       <div class="embed-responsive embed-responsive-16by9">
-        <iframe width="320" height="240" src="https://www.youtube.com/embed/p9U8TpfEfWs" frameborder="0" allowfullscreen=""></iframe>
+        <iframe width="320" height="240" src="https://www.youtube.com/embed/p9U8TpfEfWs" frameborder="0"
+          allowfullscreen=""></iframe>
       </div>
       <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Animaesh</h4>
     </div>
@@ -237,15 +388,17 @@ layout: default
     <div class="row soft-bottom">
       <div class="col-sm-6 push-top soft-top soft-sides">
         <h4>Weekday Preschool</h4>
-        <p>Crossroads Preschool provides a safe, fun and welcoming environment where kids can grow and develop intellectually,
-          physically, socially , and emotionally through cognitive experiences and hands on activity. Music, art and play
-          are used to encourage creative expression. Staff is trained to use positive management techniques which encourages
+        <p>Crossroads Preschool provides a safe, fun and welcoming environment where kids can grow and develop
+          intellectually,
+          physically, socially , and emotionally through cognitive experiences and hands on activity. Music, art and
+          play
+          are used to encourage creative expression. Staff is trained to use positive management techniques which
+          encourages
           children to set internal limits on his/her own behavior.</p>
         <a class="btn btn-primary" href="https://www.crossroads.net/preschool">Check out Crossroads Preschool</a>
       </div>
       <div class="col-sm-6 soft-sides">
-        <img class="width-100"
-          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-sites-preschool.jpg?w=29&h=19&fit=crop"
+        <img class="width-100" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-sites-preschool.jpg?w=29&h=19&fit=crop"
           data-optimize-img>
       </div>
 
@@ -254,13 +407,13 @@ layout: default
     {% if page.kids_club_hours %}
     <div class="row push-ends soft-bottom">
       <div class="col-sm-6 soft-sides">
-        <img class="width-100"
-          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-sites-kc.jpg?w=29&h=19&fit=crop"
+        <img class="width-100" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-sites-kc.jpg?w=29&h=19&fit=crop"
           data-optimize-img>
       </div>
       <div class="col-sm-6 push-top soft-top soft-sides">
         <h4>Your kids will love Kids' Club</h4>
-        <p dir="ltr">A fun learning environment designed especially for kids (birth through fifth grade). It’s free, totally secure, and
+        <p dir="ltr">A fun learning environment designed especially for kids (birth through fifth grade). It’s free,
+          totally secure, and
           don't worry-we'll let you know if your child needs you at any point during the service.
         </p>
         <div></div>
@@ -274,14 +427,15 @@ layout: default
     {% if page.student_ministry_hours %}
     <div class="row push-ends soft-bottom">
       <div class="col-sm-push-6 col-sm-6 soft-sides">
-        <img class="width-100"
-          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-sites-sm.jpg?w=29&h=19&fit=crop"
+        <img class="width-100" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-sites-sm.jpg?w=29&h=19&fit=crop"
           data-optimize-img>
       </div>
       <div class="col-sm-pull-6 col-sm-6 push-top soft-top soft-sides">
         <h4>Student Ministry</h4>
-        <p>Middle School (grades 6-8) and High School (grades 9-12) students have a place to call their own. Students are challenged
-          and encouraged through relevant teaching and fun events. Opportunities are provided for them to grow as they connect
+        <p>Middle School (grades 6-8) and High School (grades 9-12) students have a place to call their own. Students
+          are challenged
+          and encouraged through relevant teaching and fun events. Opportunities are provided for them to grow as they
+          connect
           with God and with each other.&nbsp;
         </p>
         <p>
@@ -302,22 +456,23 @@ layout: default
     <div id="section-" class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
       <div class="card">
         <a href="{{ page.serve_url | default: 'https://www.crossroads.net/serve/' }}" class="block">
-          <img alt="Serve" class="card-img-top card-img-constrained" src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-serve.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27" data-optimize-img>
+          <img alt="Serve" class="card-img-top card-img-constrained" src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-serve.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27"
+            data-optimize-img>
         </a>
         <div class="card-block">
           <h4 class="card-title card-title--overlap text-uppercase">
             <a href="{{ page.serve_url | default: 'https://www.crossroads.net/serve/' }}">Serve</a>
           </h4>
           <div class="card-text">
-            <p>God calls us to serve others. You can serve inside a Crossroads site, on our city streets, or in another country.
+            <p>God calls us to serve others. You can serve inside a Crossroads site, on our city streets, or in another
+              country.
               Bottom line, we need you.</p>
           </div>
         </div>
       </div>
       <div class="card">
         <a href="https://www.crossroads.net/groups" class="block">
-          <img alt="Get in a Group" class="card-img-top card-img-constrained"
-            src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-groups.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27"
+          <img alt="Get in a Group" class="card-img-top card-img-constrained" src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-groups.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27"
             data-optimize-img>
         </a>
         <div class="card-block">
@@ -325,15 +480,15 @@ layout: default
             <a href="https://www.crossroads.net/groups">Get in a Group</a>
           </h4>
           <div class="card-text">
-            <p>Doing life alone is no fun. In fact, people are made to be with people. You have a lot of interests so it’s a
+            <p>Doing life alone is no fun. In fact, people are made to be with people. You have a lot of interests so
+              it’s a
               good thing there are a lot of groups for you to check out.</p>
           </div>
         </div>
       </div>
       <div class="card">
         <a href="https://www.crossroads.net/give" class="block">
-          <img alt="Give" class="card-img-top card-img-constrained"
-            src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-give.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27"
+          <img alt="Give" class="card-img-top card-img-constrained" src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-give.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27"
             data-optimize-img>
         </a>
         <div class="card-block">
@@ -341,15 +496,15 @@ layout: default
             <a href="https://www.crossroads.net/give">Give</a>
           </h4>
           <div class="card-text">
-            <p>Your generosity fuels the life change we experience around here. One way to show gratitude for what God is doing
+            <p>Your generosity fuels the life change we experience around here. One way to show gratitude for what God
+              is doing
               in our life is to give back to Him.</p>
           </div>
         </div>
       </div>
       <div class="card">
         <a href="https://itunes.apple.com/us/app/crossroads-anywhere/id1029478803?mt=8" class="block">
-          <img alt="Download the App" class="card-img-top card-img-constrained"
-            src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-app.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27"
+          <img alt="Download the App" class="card-img-top card-img-constrained" src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-app.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27"
             data-optimize-img>
         </a>
         <div class="card-block">
@@ -357,7 +512,8 @@ layout: default
             <a href="https://itunes.apple.com/us/app/crossroads-anywhere/id1029478803?mt=8">Download the App</a>
           </h4>
           <div class="card-text">
-            <p>Build your spiritual fitness. Create a positive daily experience. Go deeper on a topic. Receive prayer. Journal
+            <p>Build your spiritual fitness. Create a positive daily experience. Go deeper on a topic. Receive prayer.
+              Journal
               your heart out. Never miss the live stream. Available on the App Store or Google Play.</p>
           </div>
         </div>
