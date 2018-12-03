@@ -4,7 +4,7 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /people/*,https://${env:CRDS_PEOPLE_DOMAIN}/:splat,200!
 /connect/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
 /map/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
-/explore,https://crds-explore.netlify.com/,200
+/explore,https://crds-explore.netlify.com/:splat,200
 /groups/search,/connect,302,"development"
 /thechaser,${env:CRDS_MEDIA_ENDPOINT}/the-chaser,302
 /the-chaser,${env:CRDS_MEDIA_ENDPOINT}/the-chaser,302
