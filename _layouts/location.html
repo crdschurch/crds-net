@@ -6,6 +6,141 @@ layout: default
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
 {% include header.html %}
 
+{% if page.title == "Andover" %}
+{% capture sun_time %}11:00am{% endcapture %}
+{% capture mon_time %}1:00pm<br />3:00pm{% endcapture %}
+{% elsif page.title == "Dayton" %}
+{% capture sun_time %}9:15am<br />11:00am{% endcapture %}
+{% capture mon_time %}3:00pm{% endcapture %}
+{% elsif page.title == "Eastside" %}
+{% capture sat_time %}5:30pm{% endcapture %}
+{% capture sun_time %}9:00am<br />11:00am<br />11:00am{% endcapture %}
+{% capture mon_time %}11:00am<br />1:00pm{% endcapture %}
+{% elsif page.title == "Florence" %}
+{% capture sat_time %}5:30pm{% endcapture %}
+{% capture sun_time %}9:00am<br />11:30am{% endcapture %}
+{% capture mon_time %}11:00am<br />3:00pm{% endcapture %}
+{% elsif page.title == "Georgetown" %}
+{% capture sun_time %}9:15am<br />11:30am{% endcapture %}
+{% capture mon_time %}3:00pm{% endcapture %}
+{% elsif page.title == "Mason" %}
+{% assign ticket_instructions = true %}
+{% capture sat_time %}
+4pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a><br />
+6pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a>
+{% endcapture %}
+{% capture sun_time %}
+9:15am - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a><br />
+11:15am - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a>
+{% endcapture %}
+{% capture mon_time %}
+11am - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a><br />
+1pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a><br />
+3pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a>
+{% endcapture %}
+{% elsif page.title == "Oakley" %}
+{% assign ticket_instructions = true %}
+{% capture sat_time %}
+3pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a><br />
+5pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a>
+{% endcapture %}
+{% capture sun_time %}
+9:30am - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a><br />
+11:30am - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a>
+{% endcapture %}
+{% capture mon_time %}
+1pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a><br />
+3pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a><br />
+5pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a>
+{% endcapture %}
+{% elsif page.title == "Richmond" %}
+{% capture sun_time %}9:15am<br />11:00am{% endcapture %}
+{% capture mon_time %}3:00pm{% endcapture %}
+{% elsif page.title == "Uptown" %}
+{% capture sun_time %}9:30am<br />11:00am{% endcapture %}
+{% capture mon_time %}3:30pm<br />5:00pm{% endcapture %}
+{% elsif page.title == "Westside" %}
+{% capture sat_time %}5:30pm{% endcapture %}
+{% capture sun_time %}9:15am<br />11:00am{% endcapture %}
+{% capture mon_time %}2:00pm<br />4:00pm{% endcapture %}
+{% endif %}
+
+
+<!-- Christmas Banner -->
+<div class="jumbotron inline-video jumbotron-md flush-bottom" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-christmas-drummer-bg-img.jpg');">
+  <div class="inline-video-player"></div>
+  <div class="jumbotron-content">
+    <div class="container-fluid">
+      <div class="row soft-sides">
+        <div class="col-sm-6 col-sm-offset-3">
+          <img data-src="https://crds-cms-uploads.imgix.net/content/images/crossroads-christmas-logo.png" class="img-responsive"
+            data-optimize-img />
+        </div>
+      </div>
+      <div class="row push-ends soft-ends">
+        <div class="col-sm-12 push-ends soft-ends">
+          <a href="#" class="inline-video-trigger push-ends soft-ends" data-video-id="LIdCR2rywl4"></a>
+        </div>
+      </div>
+      <div class="row soft-sides push-top soft-top">
+        <div class="col-sm-8 col-sm-offset-2 push-half-top">
+          <p>Feel the wonder of Christmas in a completely new way. This hour-long service includes fully immersive
+            teaching and music that reminds you why Christmas is the ultimate season of hope. Watch the trailer above
+            to get a sneak peek.</p>
+          <span class="font-size-small">(No childcare, but your kids will love it.)</span><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section style="background-color:#970111;">
+  <div class="container soft">
+    <div class="row push-ends">
+      <div class="col-sm-4 soft-sides">
+        <h2 class="component-header text-white flush-top">{{ page.title }} Service Times</h2>
+        {% if ticket_instructions %}
+          <p class="text-white">In order to ensure a great experience for all, please get a general admission ticket for yourself and anyone else attending with you.
+          We'd hate to be a scrooge and not have enough seats for everyone!<br />
+            <a href="https://www.crossroads.net/christmasatcrossroadsfaqs" class="text-white underline">View the FAQs</a>
+          </p>
+        {% endif %}
+        <a href="{{ page.map_url }}" class="btn btn-outline btn-white push-half-right text-white" target="_blank">Get
+          directions</a>
+      </div>
+      <div class="col-sm-8 soft-sides">
+        <div class="row">
+          {% if sat_time %}
+          <div class="col-sm-4">
+            <p class="font-size-base text-white"><strong>Saturday, December 22</strong><br />
+              {{ sat_time }}
+            </p>
+          </div>
+          <div class="col-sm-4">
+            <p class="font-size-base text-white"><strong>Sunday, December 23</strong><br />
+              {{ sun_time }}
+            </p>
+          </div>
+          <div class="col-sm-4">
+            <p class="font-size-base text-white"><strong>Monday, December 24</strong><br />
+              {{ mon_time }}
+            </p>
+          </div>
+          {% else %}
+          <div class="col-sm-6">
+            <p class="font-size-base text-white"><strong>Sunday, December 23</strong><br />
+              {{ sun_time }}
+            </p>
+          </div>
+          <div class="col-sm-6">
+            <p class="font-size-base text-white"><strong>Monday, December 24</strong><br />
+              {{ mon_time }}
+            </p>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+</section>
 <!-- Jumbotron section -->
 <div class="jumbotron jumbotron-xl flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
   <div class="push-ends mobile-soft-sides">
