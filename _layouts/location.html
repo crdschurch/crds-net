@@ -67,6 +67,7 @@ layout: default
 
 
 <!-- Christmas Banner -->
+{% if sun_time %}
 <div class="jumbotron inline-video jumbotron-md flush-bottom" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-christmas-drummer-bg-img.jpg');">
   <div class="inline-video-player"></div>
   <div class="jumbotron-content">
@@ -141,6 +142,8 @@ layout: default
       </div>
     </div>
 </section>
+{% endif %}
+
 <!-- Jumbotron section -->
 <div class="jumbotron jumbotron-xl flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
   data-optimize-bg-img>
