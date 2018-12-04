@@ -13,7 +13,6 @@ describe('Testing the Current Series on the Live page', function () {
     it('Tests Current Series title, date, and description', function () {
         const startDate = Formatter.formatDateIgnoringTimeZone(currentSeries.startDate, 'MM.DD.YYYY');
         const endDate = Formatter.formatDateIgnoringTimeZone(currentSeries.endDate, 'MM.DD.YYYY');
-        const description = Formatter.removeNewlineSymbol(currentSeries.description);
 
         cy.get('.current-series').then(($textBlock) => {
             expect($textBlock.find('[data-automation-id="series-title"]')).to.be.visible.and.have.text(currentSeries.title);

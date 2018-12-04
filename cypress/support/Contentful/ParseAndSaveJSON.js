@@ -1,4 +1,3 @@
-//const removeMarkdown = require('remove-markdown');
 import { Formatter } from '../Formatter'
 
 export class ParseAndSaveJSON {

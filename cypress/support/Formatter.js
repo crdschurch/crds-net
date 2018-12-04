@@ -11,15 +11,11 @@ export class Formatter {
         return moment(dateOnly).format(format);
     }
 
-    static removeNewlineSymbol(stringWithHTML){
-        return stringWithHTML !== undefined ? stringWithHTML.replace(/\n/g, '') : undefined;
-    }
-
-    static removeLineBreaksAndNewlines(stringWithHTML){
-        return stringWithHTML !== undefined ? stringWithHTML.replace(/\n\n/g, ' ').replace(/\n/g, '') : undefined;
-    }
-
     static normalizeText(rawString){
+        if (rawString == undefined) {
+            return undefined;
+        }
+
         let cleanString = removeMarkdown(rawString);
         cleanString = this.encodeAsHTML(cleanString);
         cleanString = cleanString.replace(/\W+/g, ' ').trim();
