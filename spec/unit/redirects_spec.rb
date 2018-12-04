@@ -9,9 +9,20 @@ describe 'Redirects' do
     @csv = CSV.read('./spec/fixtures/redirects.csv')
   end
 
-  it 'transforms status text into numeric codes' do
-    s = 'temporary'
-    expect(@redirects.parse_status(s)).to eq 302
+  it 'should always give a temporary (302) status code' do
+    item = {"sys"=>
+    {"space"=>{"sys"=>{"type"=>"Link", "linkType"=>"Space", "id"=>"p9oq1ve41d7r"}},
+     "id"=>"2mCiLxg9BW8sI4imgIMgW2",
+     "type"=>"Entry",
+     "createdAt"=>"2018-11-12T18:24:49.888Z",
+     "updatedAt"=>"2018-11-12T18:25:31.092Z",
+     "environment"=>{"sys"=>{"id"=>"master", "type"=>"Link", "linkType"=>"Environment"}},
+     "revision"=>2,
+     "contentType"=>{"sys"=>{"type"=>"Link", "linkType"=>"ContentType", "id"=>"redirect"}},
+     "locale"=>"en-US"},
+     "fields"=>{"from"=>"/giving-help", "to"=>"/pushpay/faq"}}
+    @redirects.set_tmp_status(item)
+    expect(item["fields"]["status"]).to eq 302
   end
 
   it 'should write rows to a csv after the first line' do
