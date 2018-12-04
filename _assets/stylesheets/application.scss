@@ -1,7 +1,7 @@
-
 @import "crds-styles-sprockets";
-@import "pages/modules";
-@import "components/modules";
-@import "vendor/flickity";
-@import "fonts";
-@import "hotfix";
+@import "./fonts";
+@import "./utilities";
+// @import "./hotfix";
+@import "./components/modules";
+@import "./pages/modules";
+@import "./vendors/flickity";

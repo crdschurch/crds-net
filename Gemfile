@@ -17,6 +17,7 @@ group :jekyll_plugins do
   gem "jekyll-crds", git: 'https://github.com/crdschurch/jekyll-crds.git', tag: '0.0.3'
   gem "jekyll-placeholders", "~> 0.0.1", github: 'ample/jekyll-placeholders'
   gem "jekyll-cloudsearch", git: 'https://github.com/crdschurch/jekyll-cloudsearch', tag: '0.0.5'
+  gem "paging-mister-hyde", git: 'https://github.com/ample/paging-mister-hyde.git', branch: 'master'
 end
 
 group :test do

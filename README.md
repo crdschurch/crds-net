@@ -2,7 +2,6 @@
 ## A Static Site Generator for crossroads.net
 
 ## Setup
-
 ### Mac
 To get started with this project, first make sure you have Ruby installed. This
 project requires the use of Ruby version >= 2.5.1. If you are on a Mac, Ruby should
