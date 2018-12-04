@@ -120,7 +120,7 @@ paginate:
       <!-- More Content Cards -->
       <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
         <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
-          {% assign above_the_fold = page.home_collection.docs | slice: 0, 2 %}
+          {% assign above_the_fold = page.home_collection.docs | slice: 0, 4 %}
 
           {% for article in above_the_fold %}
           {% assign author = article.author | get_doc %}
@@ -240,7 +240,7 @@ paginate:
       <hr class="push-half-bottom">
       <h2 class="flush-top font-size-base text-gray-light">recent articles</h2>
 
-      {% assign below_the_fold = page.home_collection.docs | slice: 2 %}
+      {% assign below_the_fold = page.home_collection.docs | slice: 4 %}
       {% for article in below_the_fold %}
       <a href="{{ article.url | media_url }}" class="overlay-card">
         <div class="bg-overlay"></div>
@@ -260,7 +260,7 @@ paginate:
       <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
         <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
 
-          {% assign above_the_fold = page.home_collection.docs | slice: 3, 4 %}
+          {% assign above_the_fold = page.home_collection.docs | slice: 5, 4 %}
           {% for article in above_the_fold %}
 
           {% assign author = article.author | get_doc %}

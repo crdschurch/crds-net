@@ -86,6 +86,8 @@ collections:
     output: false
   categories:
     output: false
+    permalink: /topics/:title
+
 
 defaults:
   - scope:
