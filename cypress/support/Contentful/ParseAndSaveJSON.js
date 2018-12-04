@@ -12,7 +12,7 @@ export class ParseAndSaveJSON {
             saveObject._imageId = jsonObject.fields.image.sys.id;
         }
 
-        if (jsonObject.fields.background_image) {
+        if (jsonObject.fields.background_image){
             saveObject._backgroundImageId = jsonObject.fields.background_image.sys.id;
         }
     }

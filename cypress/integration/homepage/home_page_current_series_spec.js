@@ -38,11 +38,10 @@ describe("Testing the Current Series on the Homepage", function () {
     })
 
     it('Tests Current Series and Jumbotron "Watch the trailer" button link, if series has trailer', function () {
-        if(currentSeries.youtubeURL == undefined){
+        if (currentSeries.youtubeURL == undefined){
             cy.get('[data-automation-id="series-youtube"]').should('not.exist');
             cy.get('[data-automation-id="jumbotron-series-youtube"]').should('not.exist');
-        }
-        else {
+        } else {
             //Main Current Series display
             cy.get('[data-automation-id="series-youtube"]').then(($trailerButton) => {
                 expect($trailerButton).to.be.visible;

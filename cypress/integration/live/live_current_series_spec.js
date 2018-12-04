@@ -1,5 +1,5 @@
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
-import {Formatter} from '../../support/Formatter'
+import { Formatter } from '../../support/Formatter'
 
 describe('Testing the Current Series on the Live page', function () {
     let currentSeries;
