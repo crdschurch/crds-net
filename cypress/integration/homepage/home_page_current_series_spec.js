@@ -9,7 +9,7 @@ describe("Testing the Current Series on the Homepage", function () {
         cy.visit('/');
     })
 
-    it.only('Tests Current Series title, date, and description', function(){
+    it('Tests Current Series title, date, and description', function(){
         cy.log(currentSeries.endDate);
 
         const startDate = Formatter.formatDateIgnoringTimeZone(currentSeries.startDate, 'MM.DD.YYYY');

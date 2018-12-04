@@ -9,7 +9,7 @@ describe('Testing the Latest Message on the Live page', function () {
         cy.visit('live');
     })
 
-    it.skip('Tests Past Weekend section displays 4 messages', function(){
+    it('Tests Past Weekend section displays 4 messages', function(){
         cy.get('[data-automation-id="recent-message-card"]').then(($cardList) =>
         {
             expect($cardList).lengthOf(4);
@@ -20,11 +20,11 @@ describe('Testing the Latest Message on the Live page', function () {
         check_message_card_content_at_index(0);
     })
 
-    it.skip('Tests second most recent message card in Past Weekend section (title, image, description, link)', function(){
+    it('Tests second most recent message card in Past Weekend section (title, image, description, link)', function(){
         check_message_card_content_at_index(1);
     })
 
-    it.skip('Tests third most recent message card in Past Weekend section (title, image, description, link)', function(){
+    it('Tests third most recent message card in Past Weekend section (title, image, description, link)', function(){
         check_message_card_content_at_index(2);
     })
 

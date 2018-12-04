@@ -1,6 +1,5 @@
 const moment = require('moment');
 const removeMarkdown = require('remove-markdown');
-//place to keep all the date/time convertiong and formatting to minimize impact on tests and modules
 
 export class Formatter {
     static formatDateIgnoringTimeZone(isoDate, format){
