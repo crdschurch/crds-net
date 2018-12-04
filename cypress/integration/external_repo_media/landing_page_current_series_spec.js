@@ -13,17 +13,15 @@ describe("Testing the Current Series on the Media landing page", function(){
 
     //Note: this test is here for convenience but should really live with it's code in crds-media
     it('Tests current series title, title link, and description', function(){
-        cy.contains('series').parent().find('.featured > .media-body').as('seriesText')
+        cy.contains('series').parent().find('.featured > .media-body').as('seriesContent')
 
-        cy.get('@seriesText').find('.component-header > a').then(($seriesTitle) => {
+        cy.get('@seriesContent').find('.component-header > a').then(($seriesTitle) => {
             expect($seriesTitle).to.have.attr('href', `/series/${currentSeries.slug}`);
             expect($seriesTitle).to.have.text(currentSeries.title);
         })
 
-        cy.get('@seriesText').find('div').then(($seriesDescription) => {
-            //Displays first 15 words
-            const description = Formatter.removeLineBreaksAndNewlines(currentSeries.description).split(/\s+/).slice(0,15).join(" ");
-            expect($seriesDescription).to.contain(description);
+        cy.get('@seriesContent').find('div').should('have.prop', 'textContent').then(($text) => {
+            expect(currentSeries.description).to.contain(Formatter.normalizeText($text));
         })
     })
 

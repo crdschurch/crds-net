@@ -1,5 +1,5 @@
 export class LocationModel {
-    static createListOfLocations(response, locationList){
+    static createListOfLocations(response, locationList=[]){
         const itemList = response.items;
 
         for (let i = 0; i < itemList.length; i++){

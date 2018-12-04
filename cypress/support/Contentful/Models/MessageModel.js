@@ -33,7 +33,7 @@ export class MessageModel {
         return this._published_at;
     }
 
-    static createListOfMessages(response, numToStore, messageList) {
+    static createListOfMessages(response, numToStore, messageList=[]) {
         const itemList = response.items;
         const assetList = response.includes.Asset;
 

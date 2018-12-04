@@ -16,12 +16,15 @@ describe("Tesing the Current Series on the Media/Series page", function(){
 
         const startDate = Formatter.formatDateIgnoringTimeZone(currentSeries.startDate, 'MM.DD.YYYY');
         const endDate = Formatter.formatDateIgnoringTimeZone(currentSeries.endDate, 'MM.DD.YYYY');
-        const description = Formatter.removeNewlineSymbol(currentSeries.description);
 
         cy.get('@currentSeriesBlock').find('div.col-xs-12.col-md-5').then(($seriesTextBlock) => {
-            expect($seriesTextBlock.find('h1')).to.have.text(currentSeries.title);
-            expect($seriesTextBlock.find('date')).to.have.text(`${startDate} — ${endDate}`);
-            expect($seriesTextBlock.find('div > p')).to.have.text(description);
+            expect($seriesTextBlock.find('h1')).to.be.visible.and.have.text(currentSeries.title);
+            expect($seriesTextBlock.find('date')).to.be.visible.and.have.text(`${startDate} — ${endDate}`);
+            expect($seriesTextBlock.find('div')).to.be.visible;
+        })
+
+        cy.get('@currentSeriesBlock').find('div.col-xs-12.col-md-5 > div').should('have.prop', 'textContent').then(($text) =>{
+            expect(Formatter.normalizeText($text)).to.equal(currentSeries.description);
         })
     })
 
