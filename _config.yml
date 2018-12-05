@@ -86,6 +86,7 @@ collections:
     output: false
   perspectives:
     output: false
+    permalink: /:collection/:title
   categories:
     output: false
     permalink: /topics/:title
