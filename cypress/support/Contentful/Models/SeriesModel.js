@@ -11,9 +11,9 @@ export class SeriesModel {
         })
 
         ParseAndSaveJSON.storeStandardProperties(rawCurSeries, assetList, this);
-        this.starts_at = rawCurSeries.fields.starts_at;
-        this.ends_at = rawCurSeries.fields.ends_at;
-        this.youtube_url = rawCurSeries.fields.youtube_url;
+        this._starts_at = rawCurSeries.fields.starts_at;
+        this._ends_at = rawCurSeries.fields.ends_at;
+        this._youtube_url = rawCurSeries.fields.youtube_url;
     }
 
     get title(){
@@ -37,14 +37,14 @@ export class SeriesModel {
     }
 
     get startDate(){
-        return this.starts_at !== undefined ? this.starts_at.split("T")[0] : this.starts_at;
+        return this._starts_at;
     }
 
     get endDate(){
-        return this.ends_at !== undefined ? this.ends_at.split("T")[0] : this.ends_at;
+        return this._ends_at;
     }
 
     get youtubeURL(){
-        return this.youtube_url;
+        return this._youtube_url;
     }
 }

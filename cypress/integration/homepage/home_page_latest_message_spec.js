@@ -1,5 +1,5 @@
-const moment = require('moment');
 import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
+import {Formatter} from '../../support/Formatter'
 
 describe.skip("Testing the Latest Message on the Homepage", function () {
     let latestMessage;
@@ -15,8 +15,8 @@ describe.skip("Testing the Latest Message on the Homepage", function () {
             expect($messageTitle.find('#lastMessageTitle')).to.have.text(latestMessage.title);
         })
 
-        const formattedDate = moment(latestMessage.publishedAt).format('MM.DD.YYYY');
-        cy.get('#lastMessageSubtitle').should('have.text', formattedDate);
+        const datePublished = Formatter.formatDateIgnoringTimeZone(latestMessage.publishedAt, 'MM.DD.YYYY');
+        cy.get('#lastMessageSubtitle').should('have.text', datePublished);
     })
 
     it('Tests Jumbotron latest message image and image link', function(){
