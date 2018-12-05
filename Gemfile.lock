@@ -58,6 +58,14 @@ GIT
       jekyll
 
 GIT
+  remote: https://github.com/crdschurch/jekyll-sitemap.git
+  revision: 858b61dda70da4a65f7aded4d9b04929744cc88d
+  branch: feature/US15314-sitemaps
+  specs:
+    jekyll-sitemap (1.2.0)
+      jekyll (~> 3.3)
+
+GIT
   remote: https://github.com/crdschurch/netlify-redirector.git
   revision: 8869f37bf026701e04f5a56f2be994d0c5efc36a
   specs:
@@ -269,6 +277,7 @@ DEPENDENCIES
   jekyll-contentful!
   jekyll-crds!
   jekyll-placeholders (~> 0.0.1)!
+  jekyll-sitemap!
   netlify-redirector!
   paging-mister-hyde!
   rack (>= 2.0.6)
@@ -278,4 +287,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.16.4
+   1.17.1

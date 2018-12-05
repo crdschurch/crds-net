@@ -18,6 +18,8 @@ group :jekyll_plugins do
   gem "jekyll-placeholders", "~> 0.0.1", github: 'ample/jekyll-placeholders'
   gem "jekyll-cloudsearch", git: 'https://github.com/crdschurch/jekyll-cloudsearch', tag: '0.0.5'
   gem "paging-mister-hyde", git: 'https://github.com/ample/paging-mister-hyde.git', branch: 'master'
+  #gem 'jekyll-sitemap', path: File.join(File.dirname(__FILE__), '../jekyll-sitemap')
+  gem 'jekyll-sitemap', git: 'https://github.com/crdschurch/jekyll-sitemap.git', branch: 'feature/US15314-sitemaps' 
 end
 
 group :test do

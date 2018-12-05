@@ -123,3 +123,6 @@ image_sizes:
   three_fourths: "(min-width: 992px) 75vw, (min-width: 0px) 100vw"
 
 typekit_url: https://use.typekit.net/ccb3vpa.css
+
+sitemap:
+  filename: '.sitemaps/crds-net.xml'
