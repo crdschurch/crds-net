@@ -1,7 +1,7 @@
 const moment = require('moment');
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 
-describe("Testing the Current Series on the Homepage", function () {
+describe.skip("Testing the Current Series on the Homepage", function () {
     let currentSeries;
     before(function () {
         const content = new ContentfulApi();

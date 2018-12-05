@@ -1,6 +1,6 @@
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 
-describe('Testing the Locations section on the Homepage without searching', function() {
+describe.skip('Testing the Locations section on the Homepage without searching', function() {
     let locations;
     before(function() {
         const content = new ContentfulApi();
@@ -32,7 +32,7 @@ describe('Testing the Locations section on the Homepage without searching', func
     })
 })
 
-describe('Testing the search functionality of the Locations section on the Homepage', function() {
+describe.skip('Testing the search functionality of the Locations section on the Homepage', function() {
     let locations;
     before(function() {
         const content = new ContentfulApi();
