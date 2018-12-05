@@ -11,7 +11,8 @@
     "cypress:run": "cypress run --record --key f9895842-b05f-494c-9010-b87b26527851",
     "cypress:runLocal": "cypress run",
     "cypress:liveTests": "cypress run --spec .\\cypress\\integration\\live\\*",
-    "cypress:currentSeriesTests": "cypress run --spec .\\cypress\\integration\\*\\*current_series*.js"
+    "cypress:currentSeriesTests": "cypress run --spec .\\cypress\\integration\\*\\*current_series*.js",
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
@@ -24,8 +25,20 @@
   },
   "homepage": "https://github.com/crdschurch/crds-net#readme",
   "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
     "contentful-cli": "^0.16.1",
+    "crds-styles": "^3.0.9",
     "cypress": "^3.1.0",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.1",
+    "node-sass-tilde-importer": "^1.0.2",
     "remove-markdown": "^0.3.0"
   }
 }

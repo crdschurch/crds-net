@@ -1,0 +1,5 @@
+{
+  "content": ["_site/**/*.html"],
+  "css": ["_site/assets/application*.css"],
+  "whitelist": []
+}

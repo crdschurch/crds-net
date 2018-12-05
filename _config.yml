@@ -9,14 +9,6 @@ image: "https://crds-cms-uploads.imgix.net/content/images/cr-social-sharing-stil
 permalink: pretty
 markdown: kramdown
 
-assets:
-  source_maps: true # false on JEKYLL_ENV=production
-  destination: "/assets"
-  compression: true
-  sources:
-  - _assets/stylesheets
-  - _assets/javascripts
-
 include:
   - _redirects
   - _pages
@@ -95,15 +87,6 @@ defaults:
       type: "locations"
     values:
       layout: location
-
-assets:
-  source_maps: true # false on JEKYLL_ENV=production
-  destination: "/assets"
-  compression: true
-  js_compressor: uglifier
-  sources:
-  - _assets/stylesheets
-  - _assets/javascripts
 
 imgix_params:
   placeholder: "auto=format,compress&w=10"
