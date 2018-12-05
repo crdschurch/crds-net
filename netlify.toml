@@ -13,19 +13,19 @@
 [context.branch-deploy.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
   CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
-  CRDS_GROUP_LEADER = "crdsgroupleader.netlify.com"
+  CRDS_GROUP_LEADER = "dev-group-leader.netlify.com"
 
 [context.deploy-preview.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
   CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
-  CRDS_GROUP_LEADER = "crdsgroupleader.netlify.com"
+  CRDS_GROUP_LEADER = "dev-group-leader.netlify.com"
 
 [context.development.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
   CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
-  CRDS_GROUP_LEADER = "crdsgroupleader.netlify.com"
+  CRDS_GROUP_LEADER = "dev-group-leader.netlify.com"
 
 [context.master.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-prod.netlify.com"
   CRDS_MAP_DOMAIN = "crds-map-prod.netlify.com"
-  CRDS_GROUP_LEADER = "crdsgroupleader.netlify.com"
+  CRDS_GROUP_LEADER = "dev-group-leader.netlify.com"
