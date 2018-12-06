@@ -88,7 +88,12 @@ layout: default
           <p>Feel the wonder of Christmas in a completely new way. This hour-long service includes fully immersive
             teaching and music that reminds you why Christmas is the ultimate season of hope. Watch the trailer above
             to get a sneak peek.</p>
-          <span class="font-size-small">(No childcare, but your kids will love it.)</span><br>
+          {% if page.title == "Georgetown" %}
+            <span class="font-size-small">Kids' Club (not childcare) will be available for birth through Preschool</span><br>
+
+            {% else %}
+              <span class="font-size-small">(No childcare, but your kids will love it.)</span><br>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -102,7 +107,9 @@ layout: default
         {% if ticket_instructions %}
           <p class="text-white">In order to ensure a great experience for all, please get a general admission ticket for yourself and anyone else attending with you.
           We'd hate to be a scrooge and not have enough seats for everyone!<br />
+
             <a href="https://www.crossroads.net/christmasatcrossroadsfaqs" class="text-white underline">View the FAQs</a>
+
           </p>
         {% endif %}
         <a href="{{ page.map_url }}" class="btn btn-outline btn-white push-half-right text-white" target="_blank">Get
