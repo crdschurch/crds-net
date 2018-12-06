@@ -88,7 +88,12 @@ layout: default
           <p>Feel the wonder of Christmas in a completely new way. This hour-long service includes fully immersive
             teaching and music that reminds you why Christmas is the ultimate season of hope. Watch the trailer above
             to get a sneak peek.</p>
-          <span class="font-size-small">(No childcare, but your kids will love it.)</span><br>
+          {% if page.title == "Georgetown" %}
+            <span class="font-size-small">Kids' Club (not childcare) will be available for birth through Preschool</span><br>
+
+            {% else %}
+              <span class="font-size-small">(No childcare, but your kids will love it.)</span><br>
+          {% endif %}
         </div>
       </div>
     </div>
