@@ -30,7 +30,7 @@ paginate:
     offset: 2
     sort: published_at desc
   episodes:
-    per: 4
+    per: 3
     limit: 1
     sort: published_at desc
   podcasts:
@@ -148,8 +148,7 @@ paginate:
       </div>
     </div>
 
-    <div class="col-md-4">
-      <!-- Another Perspective -->
+    <!--<div class="col-md-4">
       {% if page.perspectives.docs.size > 0 %}
       <section class="perspectives-landing flush-top">
         <a href="{{ '/perspectives/' | media_url }}">
@@ -164,7 +163,37 @@ paginate:
         </div>
       </section>
       {% endif %}
+    </div>-->
+
+    <!-- Podcast Episodes -->
+    <div class="col-sm-12 col-md-4">
+      <div class="row">
+        <div class="col-sm-12">
+          <hr class="push-half-bottom flush-top">
+          <h2 class="flush-top font-size-base text-gray-light" style="">latest podcast episodes</h2>
+        </div>
+      </div>
+      <div class="push-bottom soft-bottom">
+        {% assign home_episodes = page.episodes.docs %}
+        {% for episodes in home_episodes %}
+        <div class="media">
+          <div class="media-body">
+            <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ episodes.url | media_url}}">
+              Episode {{ episodes.episode_number }}: {{ episodes.title }}</a>
+            </h5>
+            <div class="soft-quarter-top font-size-smaller flush-bottom">
+              <p class="episode-description">{{ episodes.description | markdownify | strip_html | truncatewords: 15 }}</p>
+            </div>
+          </div>
+          <a href="{{ episodes.url | media_url }}" class="soft-quarter-left">
+            <img class="media-img" src="{{ episodes.podcast.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img>
+          </a>
+        </div>
+        <hr>
+        {% endfor %}
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -320,12 +349,10 @@ paginate:
             <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ podcasts.url | media_url }}">
               {{ podcasts.title }}</a>
             </h5>
-
             <div class="soft-quarter-top font-size-smaller flush-bottom">
               {{ podcasts.description | markdownify | strip_html | truncatewords: 15 }}
             </div>
           </div>
-
           <a href="{{ podcasts.url | media_url }}" class="soft-quarter-left">
             <img class="media-img" src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.media_object }}" data-optimize-img>
           </a>

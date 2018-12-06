@@ -80,6 +80,7 @@ collections:
     output: false
   episodes:
     output: false
+    permalink: /podcasts/(:podcast/:slug)/:title
   tags:
     output: false
   features:
