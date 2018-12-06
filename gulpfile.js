@@ -94,7 +94,7 @@ function jsDeps(done) {
 function jsBuild(done) {
   const tasks = jsConfig.map((config) => {
     return (done) => {
-      const files = config.files.map(f => `_assets/javascripts/${f}.js`);
+      const files = (config.files || []).map(f => `_assets/javascripts/${f}.js`);
       if (files.length == 0) {
         done();
         return;

@@ -1,9 +1,9 @@
 <head>
 
-  <script type="text/javascript" src="{% asset lib/set-redirect-url.js @path %}"></script>
+  {% javascript_link_tag set-redirect-url %}
 
   {% if page.requires_auth %}
-    <script type="text/javascript" src="{% asset lib/auth-required.js @path %}"></script>
+    {% javascript_link_tag auth-required %}
   {% endif %}
 
   {% include _gtm-head.html %}

@@ -49,5 +49,59 @@ module.exports = [
     files: [
       'components/masonry'
     ]
+  },
+  {
+    name: "set-redirect-url",
+    files: [
+      "lib/set-redirect-url"
+    ]
+  },
+  {
+    name: "auth-required",
+    files: [
+      "lib/auth-required"
+    ]
+  },
+  {
+    name: "imgix",
+    deps: [
+      "vendor/explore/imgix.min"
+    ]
+  },
+  {
+    name: "animations",
+    deps: [
+      "vendor/explore/animations.min"
+    ]
+  },
+  {
+    name: "support",
+    deps: [
+      "vendor/explore/support.min"
+    ]
+  },
+  {
+    name: "family-meeting-stream",
+    files: [
+      "views/family-meeting-stream"
+    ]
+  },
+  {
+    name: "live",
+    files: [
+      "views/live"
+    ]
+  },
+  {
+    name: "location-search",
+    files: [
+      "components/location-search"
+    ]
+  },
+  {
+    name: "live-stream",
+    files: [
+      "views/live-stream"
+    ]
   }
 ]

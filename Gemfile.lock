@@ -25,10 +25,11 @@ GIT
       sass (~> 3.2)
 
 GIT
-  remote: https://github.com/crdschurch/jekyll-asset-pipeline.git
-  revision: c079b3c79424535f324f71d10fde746a9daddb67
+  remote: https://github.com/crdschurch/jekyll-asset-pipeline
+  revision: d5b8a8e338af25ebd0c732544a346db4150da9de
+  tag: 0.0.1
   specs:
-    jekyll-asset-pipeline (0.1.0)
+    jekyll-asset-pipeline (0.0.1)
       activesupport
       jekyll (~> 3.7)
 
@@ -77,7 +78,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.1.1)
+    activesupport (5.2.2)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
