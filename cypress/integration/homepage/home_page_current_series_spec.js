@@ -9,7 +9,24 @@ describe.skip("Testing the Current Series on the Homepage", function () {
         cy.visit('/');
     })
 
-    it('Tests Current Series title, date, and description', function(){
+    //FAIL - the links are all wrong
+    it('Tests current series title and description', function(){
+        //cy.contains('series').parent().find('.featured > .media-body').as('seriesContent')
+
+        cy.get('[data-automation-id="series-title"]').then(($seriesTitle) => {
+            expect($seriesTitle).to.be.visible;
+            expect($seriesTitle).to.have.attr('href', `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}`);
+            expect($seriesTitle).to.have.text(currentSeries.title);
+        })
+
+        //desc
+        cy.get('data-automation-id="series-description"').should('have.prop', 'textContent').then(($text) => {
+            //todo add visible
+            expect(currentSeries.description).to.contain(Formatter.normalizeText($text));
+        })
+    })
+
+    it.skip('OUTDATED Tests Current Series title, date, and description', function(){
         cy.log(currentSeries.endDate);
 
         const startDate = Formatter.formatDateIgnoringTimeZone(currentSeries.startDate, 'MM.DD.YYYY');
@@ -37,7 +54,21 @@ describe.skip("Testing the Current Series on the Homepage", function () {
         })
     })
 
-    it('Tests Current Series and Jumbotron "Watch the trailer" button link, if series has trailer', function () {
+    it('Tests Watch Latest Service button link', function(){
+        //Desktop
+        cy.get('[data-automation-id="watch-series-button"]').then(($watchSeries) =>{
+            expect($watchSeries).to.be.visible;
+            expect($watchSeries).to.have.attr('href', `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}`)
+        })
+
+        //Mobile
+        cy.get('[data-automation-id="mobile-watch-series-button"]').then(($watchSeries) =>{
+            expect($watchSeries).to.not.be.visible;
+            expect($watchSeries).to.have.attr('href', `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}`)
+        })
+    })
+
+    it.skip('OUTDATED Tests Current Series and Jumbotron "Watch the trailer" button link, if series has trailer', function () {
         if (currentSeries.youtubeURL == undefined){
             cy.get('[data-automation-id="series-youtube"]').should('not.exist');
             cy.get('[data-automation-id="jumbotron-series-youtube"]').should('not.exist');
@@ -55,7 +86,7 @@ describe.skip("Testing the Current Series on the Homepage", function () {
         }
     })
 
-    it('Tests Jumbotron Current Series title, dates, image, and description', function () {
+    it.skip('OUTDATED Tests Jumbotron Current Series title, dates, image, and description', function () {
         cy.get('[data-automation-id="jumbotron-series-title"]').should('have.text', currentSeries.title);
 
         const startDate = Formatter.formatDateIgnoringTimeZone(currentSeries.startDate, 'MM.DD.YYYY');
@@ -73,7 +104,7 @@ describe.skip("Testing the Current Series on the Homepage", function () {
         })
     })
 
-    it('Tests Jumbotron "View more messages" links', function () {
+    it.skip('OUTDATED Tests Jumbotron "View more messages" links', function () {
         //View more messages
         cy.get('#lastMessageCTA').then(($messageLink) => {
             expect($messageLink).to.have.attr('href', '/series');

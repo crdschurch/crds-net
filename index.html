@@ -80,13 +80,13 @@ paginate:
       <div class="media featured">
         <div class="media-body">
           <h5 class="component-header flush-ends">
-            <a href="{{ series.url | media_url }}">{{ series.title }}</a>
+            <a href="{{ series.url | media_url }}" data-automation-id="series-title">{{ series.title }}</a>
           </h5>
-          <div class="soft-quarter-top font-size-smaller flush-bottom">
+          <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="series-description">
             {{ series.description | markdownify | strip_html | truncatewords: 15 }}
           </div>
         </div>
-        <a href="{{ series.url | media_url }}" class="push-half-bottom">
+        <a href="{{ series.url | media_url }}" class="push-half-bottom" data-automation-id="series-image">
           <img class="media-img" src="{{ series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
         </a>
       </div>
@@ -205,13 +205,13 @@ paginate:
             <div class="col-sm-4 col-sm-offset-2 text-right hidden-xs soft-sides">
               <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
               <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]">Watch the latest service</a>
+              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]" data-automation-id="watch-series-button">Watch the latest service</a>
             </div>
 
             <div class="col-sm-4 col-sm-offset-2 text-center visible-xs soft-sides push-bottom">
               <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
               <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]">Watch the latest service</a>
+              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]" data-automation-id="mobile-watch-series-button">Watch the latest service</a>
             </div>
 
             <div class="col-sm-4 text-left soft-sides hidden-xs border-left">
