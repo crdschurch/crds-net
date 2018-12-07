@@ -1,6 +1,36 @@
 import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
 import {Formatter} from '../../support/Formatter'
 
+//TODO move these to a shared location
+function elementHasTextAndLink(element, text, link) {
+    element.should('be.visible')
+    .then($elm =>{
+        expect($elm).to.have.text(text);
+        expect($elm).to.have.attr('href', link);
+    })
+}
+
+function elementContainsSubstringOfText(element, text) {
+    element.should('be.visible')
+    .should('have.prop', 'textContent').then($text => {
+        expect(text).to.contain(Formatter.normalizeText($text));
+    })
+}
+
+function elementHasImgixImageAndLink(element, imageId, link) {
+    element.should('be.visible')
+    .then($elm => {
+        expect($elm).to.have.attr('href', link);
+    })
+    .find('img').then($img =>{
+        expect($img).to.have.attr('srcset'); //If this fails, Imgix was not run
+
+        if (imageId !== undefined){
+            expect($img).to.have.attr('src').contains(imageId);
+        }
+    })
+}
+
 describe("Testing the Latest Message on the Homepage", function () {
     let latestMessage;
     let currentSeries;
@@ -12,24 +42,9 @@ describe("Testing the Latest Message on the Homepage", function () {
     })
 
     it('Tests Current Message title, description and image', function(){
-        cy.get('[data-automation-id="message-title"]').should('be.visible')
-        .then($title =>{
-            expect($title).to.have.attr('href', `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}/${latestMessage.slug}`);
-            expect($title).to.have.text(latestMessage.title);
-        })
-
-        cy.get('[data-automation-id="message-description"]').should('have.prop', 'textContent').then(($text) => {
-            expect(latestMessage.description).to.contain(Formatter.normalizeText($text));
-        })
-
-        cy.get('[data-automation-id="message-video"]').then(($imageBlock) => {
-            expect($imageBlock).to.have.attr('href', `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}/${latestMessage.slug}`);
-            expect($imageBlock.find('img')).to.have.attr('srcset'); //If fails, image was not found
-
-            if (latestMessage.imageId !== undefined){
-                expect($imageBlock.find('img')).to.have.attr('src').contains(latestMessage.imageId);
-            }
-        })
+        elementHasTextAndLink(cy.get('[data-automation-id="message-title"]'), latestMessage.title, `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}/${latestMessage.slug}`)
+        elementContainsSubstringOfText(cy.get('[data-automation-id="message-description"]'), latestMessage.description);
+        elementHasImgixImageAndLink(cy.get('[data-automation-id="message-video"]'), latestMessage.imageId, `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}/${latestMessage.slug}`);
     })
 
     it('Test "View latest now" button link', function () {
