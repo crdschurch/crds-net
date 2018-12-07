@@ -16,7 +16,7 @@ group :jekyll_plugins do
   gem 'crds-styles', git: 'https://github.com/crdschurch/crds-styles.git', tag: 'v3.0.6'
   gem "jekyll-contentful", git: 'https://github.com/crdschurch/jekyll-contentful.git', tag: '1.1.0'
   gem "jekyll-crds", git: 'https://github.com/crdschurch/jekyll-crds.git', tag: '0.0.3'
-  gem "jekyll-placeholders", "~> 0.0.1", github: 'ample/jekyll-placeholders'
+  gem "jekyll-placeholders", "~> 0.0.1", git: 'https://github.com/ample/jekyll-placeholders'
   gem "jekyll-cloudsearch", git: 'https://github.com/crdschurch/jekyll-cloudsearch', tag: '0.0.5'
   gem "paging-mister-hyde", git: 'https://github.com/ample/paging-mister-hyde.git', branch: 'master'
 end
