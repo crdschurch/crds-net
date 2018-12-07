@@ -25,9 +25,9 @@
     };
   </script>
   {% javascript_link_tag application %}
-  {% javascript_link_tag application_deferred %}
+  {% javascript_link_tag application_deferred async %}
   {% if page.masonry_js %}
-    {% javascript_link_tag masonry_deferred %}
+    {% javascript_link_tag masonry_deferred async %}
   {% endif %}
 </body>
 
