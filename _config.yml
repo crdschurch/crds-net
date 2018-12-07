@@ -62,9 +62,11 @@ collections:
     output: false
     has_many:
       - videos
+    permalink: /:collection/:title
   messages:
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
+    permalink: /series/(:series/:slug)/:title
   promos:
     filename: "{{ published_at | date: '%Y-%m-%d-%H:%M:%S' }}-{{ title | slugify }}-{{ slug }}"
     output: false
@@ -78,12 +80,14 @@ collections:
     output: false
   episodes:
     output: false
+    permalink: /podcasts/(:podcast/:slug)/:title
   tags:
     output: false
   features:
     output: false
   perspectives:
     output: false
+    permalink: /:collection/:title
   categories:
     output: false
     permalink: /topics/:title
