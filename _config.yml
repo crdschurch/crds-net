@@ -68,7 +68,7 @@ collections:
     output: false
     permalink: /series/(:series/:slug)/:title
   promos:
-    filename: "{{ published_at | date: '%Y-%m-%d-%H:%M:%S' }}-{{ title | slugify }}-{{ slug }}"
+    filename: "{{ published_at | date: '%Y-%m-%d-%H:%M-%S' }}-{{ title | slugify }}-{{ slug }}"
     output: false
   articles:
     output: false
