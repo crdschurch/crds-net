@@ -1,6 +1,6 @@
-{% if page.url == '/' %}
+{% if page.monetate_page_type %}
 <script>
   window.monetateQ = window.monetateQ || [];
-  window.monetateQ.push(["setPageType", "index-main"]);
+  window.monetateQ.push(["setPageType", "{{ page.monetate_page_type }}"]);
 </script>
 {% endif %}
