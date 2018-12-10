@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/ample/jekyll-placeholders.git
+  remote: https://github.com/ample/jekyll-placeholders
   revision: 503eef68d21b020b8d611025ab7029c80e569186
   specs:
     jekyll-placeholders (0.0.1)
