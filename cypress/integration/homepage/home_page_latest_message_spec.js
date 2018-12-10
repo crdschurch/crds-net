@@ -1,37 +1,7 @@
-import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
-import {Formatter} from '../../support/Formatter'
+import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
+import { ElementValidator } from '../../support/ElementValidator'
 
-//TODO move these to a shared location
-function elementHasTextAndLink(element, text, link) {
-    element.should('be.visible')
-    .then($elm =>{
-        expect($elm).to.have.text(text);
-        expect($elm).to.have.attr('href', link);
-    })
-}
-
-function elementContainsSubstringOfText(element, text) {
-    element.should('be.visible')
-    .should('have.prop', 'textContent').then($text => {
-        expect(text).to.contain(Formatter.normalizeText($text));
-    })
-}
-
-function elementHasImgixImageAndLink(element, imageId, link) {
-    element.should('be.visible')
-    .then($elm => {
-        expect($elm).to.have.attr('href', link);
-    })
-    .find('img').then($img =>{
-        expect($img).to.have.attr('srcset'); //If this fails, Imgix was not run
-
-        if (imageId !== undefined){
-            expect($img).to.have.attr('src').contains(imageId);
-        }
-    })
-}
-
-describe("Testing the Latest Message on the Homepage", function () {
+describe("Testing the Latest Message on the Homepage", function (){
     let latestMessage;
     let currentSeries;
     before(function () {
@@ -41,10 +11,12 @@ describe("Testing the Latest Message on the Homepage", function () {
         cy.visit('');
     })
 
-    it('Tests Current Message title, description and image', function(){
-        elementHasTextAndLink(cy.get('[data-automation-id="message-title"]'), latestMessage.title, `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}/${latestMessage.slug}`)
-        elementContainsSubstringOfText(cy.get('[data-automation-id="message-description"]'), latestMessage.description);
-        elementHasImgixImageAndLink(cy.get('[data-automation-id="message-video"]'), latestMessage.imageId, `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}/${latestMessage.slug}`);
+    it('Tests Current Message title, description, and image', function(){
+        const messageLink = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}/${latestMessage.slug}`;
+
+        ElementValidator.elementHasTextAndLink(cy.get('[data-automation-id="message-title"]'), latestMessage.title, messageLink)
+        ElementValidator.elementContainsSubstringOfText(cy.get('[data-automation-id="message-description"]'), latestMessage.description);
+        ElementValidator.elementHasImgixImageAndLink(cy.get('[data-automation-id="message-video"]'), latestMessage.imageId, messageLink);
     })
 
     it('Test "View latest now" button link', function () {

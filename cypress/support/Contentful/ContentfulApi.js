@@ -9,7 +9,7 @@ import { SeriesModel } from './Models/SeriesModel';
 export class ContentfulApi {
     retrieveLocations() {
         const locationList = [];
-        cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=location&select=fields.name,fields.slug&order=fields.name`)
+        cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=location&select=fields.name,fields.slug,fields.image`)
             .then((response) => {
                 const jsonResponse = JSON.parse(response.body);
                 LocationModel.createListOfLocations(jsonResponse, locationList);

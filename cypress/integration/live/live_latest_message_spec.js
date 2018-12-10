@@ -1,5 +1,5 @@
 import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
-import {Formatter} from '../../support/Formatter'
+import { ElementValidator } from '../../support/ElementValidator'
 
 describe('Testing the Latest Message on the Live page', function () {
     let messageList;
@@ -47,8 +47,6 @@ describe('Testing the Latest Message on the Live page', function () {
             expect($cardContent.find('[data-automation-id="recent-message-title"]')).to.have.text(messageList[index].title);
         })
 
-        cy.get('@currentCard').find('[data-automation-id="recent-message-description"]').should('have.prop', 'textContent').then(($text) =>{
-            expect(Formatter.normalizeText($text)).to.equal(messageList[index].description);
-        })
+        ElementValidator.elementContainsSubstringOfText(cy.get('@currentCard').find('[data-automation-id="recent-message-description"]'), messageList[index].description);
     }
 })
