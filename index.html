@@ -207,7 +207,7 @@ paginate:
     <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
 
       {% for topic in site.categories %}
-      <div class="card carousel-cell topic-card-simple" style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');" data-optimize-bg-img data-hero-img>
+      <div class="card carousel-cell topic-card-simple" style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');" data-hero-img>
         <div class="bg-overlay"></div>
         <div class="topic-card-content">
           <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
