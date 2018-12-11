@@ -102,7 +102,7 @@ paginate:
       <a href="{{ article.url | media_url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
-          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img >
+          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
         </div>
         <div class="overlay-card-content">
           <p class="overlay-card-category">{{ article.category.title }}</p>
@@ -128,7 +128,7 @@ paginate:
           <div class="card carousel-cell card-2x">
             <a class="relative" href="{{ article.url | media_url }}">
               {% include media/_media-label.html source=article %}
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img >
+              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
             </a>
 
             <div class="card-block hard soft-quarter-top">
@@ -186,7 +186,7 @@ paginate:
             </div>
           </div>
           <a href="{{ episodes.url | media_url }}" class="soft-quarter-left">
-            <img class="media-img" src="{{ episodes.podcast.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img>
+            <img class="media-img" src="{{ episodes.podcast.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
           </a>
         </div>
         <hr>
@@ -206,7 +206,7 @@ paginate:
     <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
 
       {% for topic in site.categories %}
-      <div class="card carousel-cell topic-card-simple" style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');">
+      <div class="card carousel-cell topic-card-simple" style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');" data-optimize-bg-img data-hero-img>
         <div class="bg-overlay"></div>
         <div class="topic-card-content">
           <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
@@ -220,7 +220,7 @@ paginate:
 </section>
 
 <!-- About Crossroads -->
-<section class="jumbotron inline-video jumbotron-xl" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-church-home.jpg');">
+<section class="jumbotron inline-video jumbotron-xl" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-church-home.jpg');" data-optimize-bg-img>
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
@@ -288,7 +288,7 @@ paginate:
       <a href="{{ article.url | media_url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
-          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img >
+          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
         </div>
         <div class="overlay-card-content">
           <p class="overlay-card-category">{{ article.category.title }}</p>
@@ -311,7 +311,7 @@ paginate:
           <div class="card carousel-cell card-2x">
             <a class="relative" href="{{ article.url | media_url }}">
               {% include media/_media-label.html source=article %}
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img >
+              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
             </a>
 
             <div class="card-block hard soft-quarter-top">
@@ -368,7 +368,7 @@ paginate:
             </div>
           </div>
           <a href="{{ podcasts.url | media_url }}" class="soft-quarter-left">
-            <img class="media-img" src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.media_object }}" data-optimize-img>
+            <img class="media-img" src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.media_object }}" data-optimize-img />
           </a>
         </div>
 
