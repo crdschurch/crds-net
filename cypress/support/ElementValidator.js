@@ -41,17 +41,5 @@ export class ElementValidator {
         })
 
         this.elementHasImgixImage(element.find('img'), imageId);
-
-        // element.should('be.visible')
-        // .then($elm => {
-        //     expect($elm).to.have.attr('href', link);
-        // })
-        // .find('img').then($img =>{
-        //     expect($img).to.have.attr('srcset'); //If this fails, Imgix was not run
-
-        //     if (imageId !== undefined){
-        //         expect($img).to.have.attr('src').contains(imageId);
-        //     }
-        // })
     }
 }
