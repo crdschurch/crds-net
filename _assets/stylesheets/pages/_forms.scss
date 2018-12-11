@@ -3,6 +3,11 @@
 #formio {
   font-size: 16px;
 
+  .radio {
+    margin-top: 3px;
+    margin-bottom: 5px;
+  }
+
   .form-check .control-label span {
     font-size: 16px;
     font-weight: 400;
@@ -11,8 +16,7 @@
     line-height: 1.4;
   }
 
-  .radio {
-    margin-top: 3px;
-    margin-bottom: 5px;
+  .control-label {
+    text-transform: uppercase !important;
   }
 }

@@ -30,10 +30,10 @@ export class MessageModel {
     }
 
     get publishedAt() {
-        return this._published_at
+        return this._published_at;
     }
 
-    static createListOfMessages(response, numToStore, messageList) {
+    static createListOfMessages(response, numToStore, messageList=[]) {
         const itemList = response.items;
         const assetList = response.includes.Asset;
 
