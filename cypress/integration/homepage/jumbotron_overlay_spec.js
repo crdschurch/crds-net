@@ -1,4 +1,4 @@
-describe('Testing the Jumbotron overlay on the Homepage', function() {
+describe.skip('Testing the Jumbotron overlay on the Homepage', function() {
     before(function() {
       cy.visit('/');
     })

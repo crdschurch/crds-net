@@ -1,0 +1,72 @@
+.perspectives-landing {
+  header {
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .branding {
+      padding: 20px 60px;
+    }
+  }
+
+  h3.title,
+  .title,
+  .published {
+    font-size: $font-size-small;
+    line-height: 1.4;
+  }
+
+  h3.title, .title {
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .published {
+    color: $cr-gray-light;
+  }
+
+  article {
+    font-size: 13px;
+    padding: 1rem;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $cr-gray-lighter;
+    }
+
+    a {
+      color: $cr-gray-dark;
+
+      &:hover,
+      &:focus {
+        color: $cr-gray-dark;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .perspectives-list {
+    border: 1px solid $cr-gray-lighter;
+
+    header {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 5px;
+
+      .published {
+        flex: 0 0 auto;
+      }
+    }
+  }
+
+  @media screen and (min-width: $screen-sm) {
+    margin-top: 22px;
+    margin-bottom: 60px;
+
+    .perspectives-list {
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-content: center;
+      }
+    }
+  }
+}

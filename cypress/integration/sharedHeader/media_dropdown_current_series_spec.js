@@ -13,9 +13,16 @@ describe("Testing the Current Series in the Shared Header/Media dropdown", funct
     it('Tests Current Series image and link', function() {
         cy.get('li[data-automation-id="sh-currentseries"]').as('currentSeriesImage').should('be.visible');
 
-        cy.get('@currentSeriesImage').then(($image) => {
-            expect($image.find('a')).to.have.attr('href').contains(`/series/${currentSeries.slug}`);
-            expect($image.find('a > img')).to.have.attr('src').contains(`${currentSeries.imageId}`);
-        })
+        //Skip in demo - shared header points to prod
+        cy.log(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}`);
+        if (!Cypress.env('CRDS_MEDIA_ENDPOINT').includes('demo')){
+            cy.get('@currentSeriesImage').then(($image) => {
+                expect($image.find('a')).to.have.attr('href').contains(`/series/${currentSeries.slug}`);
+
+                if (currentSeries.imageId !== undefined){
+                    expect($image.find('a > img')).to.have.attr('src').contains(currentSeries.imageId);
+                }
+            })
+        }
     })
 })
