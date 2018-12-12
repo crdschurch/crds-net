@@ -2,7 +2,6 @@
 // Because we can now deploy at will, the idea of hotfix.css no longer makes sense
 // Styles in here should be refactored, moved, or removed ASAP
 
-/* purgecss start ignore */
 /* Explore Page - Adam - Work in Progress */
 .crds-styles .explore-content {
   overflow-x: hidden;
@@ -200,5 +199,3 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
     width: 92%;
   }
 }
-
-/* purgecss end ignore */

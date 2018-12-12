@@ -39,19 +39,6 @@ function compileSass(done) {
 }
 
 /**
- * purgeCss
- *
- * Runs purgecss against the compiled application.css file. The purgeCSS config
- * is in purgecss.config.json.
- */
-function purgeCss(done) {
-  return exec(`purgecss --config ./purgecss.config.json --out ${assetDir}`, function(err) {
-    if (err) return console.error(err);
-    return;
-  });
-}
-
-/**
  * jsDeps
  *
  * Loops through the JS config and builds a temporary file of concatenated
@@ -163,6 +150,6 @@ function jsClean(done) {
 }
 
 exports.default = parallel(
-  series(compileSass, purgeCss),
+  compileSass,
   series(jsDeps, jsBuild, jsConcat, jsClean),
 );
