@@ -63,24 +63,6 @@ module.exports = [
     ]
   },
   {
-    name: "imgix",
-    deps: [
-      "vendor/explore/imgix.min"
-    ]
-  },
-  {
-    name: "animations",
-    deps: [
-      "vendor/explore/animations.min"
-    ]
-  },
-  {
-    name: "support",
-    deps: [
-      "vendor/explore/support.min"
-    ]
-  },
-  {
     name: "family-meeting-stream",
     files: [
       "views/family-meeting-stream"
