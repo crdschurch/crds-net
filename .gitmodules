@@ -1,0 +1,4 @@
+[submodule "_includes/media"]
+	path = _includes/media
+	url = https://github.com/crdschurch/crds-media.git
+	branch = _includes
