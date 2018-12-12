@@ -16,20 +16,11 @@ GIT
       jekyll
 
 GIT
-  remote: https://github.com/crdschurch/crds-styles.git
-  revision: 26e644317981c6338372ac51e494c39351b81ac0
-  tag: v3.0.6
-  specs:
-    crds-styles (3.0.6)
-      bootstrap-sass (~> 3.3)
-      sass (~> 3.2)
-
-GIT
   remote: https://github.com/crdschurch/jekyll-asset-pipeline
-  revision: d5b8a8e338af25ebd0c732544a346db4150da9de
-  tag: 0.0.1
+  revision: 8022ae37a0b07e5bbbbe3ca94cfd34ae86a82514
+  tag: 0.0.2
   specs:
-    jekyll-asset-pipeline (0.0.1)
+    jekyll-asset-pipeline (0.0.2)
       activesupport
       jekyll (~> 3.7)
 
@@ -85,8 +76,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    autoprefixer-rails (9.3.1)
-      execjs
     aws-eventstream (1.0.1)
     aws-partitions (1.120.0)
     aws-sdk-cloudsearchdomain (1.6.0)
@@ -98,9 +87,6 @@ GEM
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
     aws-sigv4 (1.0.3)
-    bootstrap-sass (3.3.7)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
     coderay (1.1.2)
     colorator (1.1.0)
     colorize (0.8.1)
@@ -123,7 +109,6 @@ GEM
       http_parser.rb (~> 0.6.0)
     eventmachine (1.2.7)
     eventmachine (1.2.7-x64-mingw32)
-    execjs (2.7.0)
     ffi (1.9.25)
     ffi (1.9.25-x64-mingw32)
     formatador (0.2.5)
@@ -256,7 +241,6 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
-  crds-styles!
   guard-rspec
   httparty
   jekyll (~> 3.7.4)
