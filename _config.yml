@@ -20,6 +20,7 @@ assets:
 include:
   - _redirects
   - _pages
+  - tmp
 
 exclude:
   - bin
@@ -31,6 +32,8 @@ exclude:
   - _migrations
   - vendor
   - netlify.toml
+  - node_modules
+  - spec
 
 contentful:
   series:
@@ -125,4 +128,4 @@ image_sizes:
 typekit_url: https://use.typekit.net/ccb3vpa.css
 
 sitemap:
-  filename: '.sitemaps/crds-net.xml'
+  filename: 'tmp/crds-net.xml'
