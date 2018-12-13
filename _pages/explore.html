@@ -357,5 +357,5 @@ legacy_styles: true
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.7.4/jquery.fullPage.min.js"
     defer="defer"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js" defer="defer"></script>
-  <script async type="text/javascript" src="{% asset vendor/animations.min.js @path %}"></script>
+  {% javascript_link_tag animations async %}
 </body>

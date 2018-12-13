@@ -25,10 +25,10 @@
       }
     };
   </script>
-  <script type="text/javascript" src="{% asset application.js @path %}"></script>
-  <script async type="text/javascript" src="{% asset application_deferred.js @path %}"></script>
+  {% javascript_link_tag application %}
+  {% javascript_link_tag application_deferred async %}
   {% if page.masonry_js %}
-    <script async type="text/javascript" src="{% asset components/masonry.js @path %}"></script>
+    {% javascript_link_tag masonry_deferred async %}
   {% endif %}
 </body>
 
