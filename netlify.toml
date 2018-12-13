@@ -7,6 +7,7 @@
     bundle exec jekyll crds &&
     bundle exec jekyll contentful -f &&
     bundle exec jekyll build -- --cloudsearch &&
+    ./bin/generate-sitemap &&
     bash ./cypress/kickOffCypress.sh
   '''
 
