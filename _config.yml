@@ -129,4 +129,4 @@ image_sizes:
 typekit_url: https://use.typekit.net/ccb3vpa.css
 
 sitemap:
-  filename: 'tmp/crds-net.xml'
+  filename: 'tmp/sitemap.xml'

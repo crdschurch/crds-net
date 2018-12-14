@@ -1,20 +1,38 @@
 require 'httparty'
 require 'colorize'
-require 'pry'
 require 'nokogiri'
 
 class Sitemap
 
-  def write!
-    dir = File.expand_path(File.join(File.dirname(__FILE__), '../../_site'))
-    FileUtils.mkdir_p(dir)
-    File.open("#{dir}/sitemap.xml", 'w') do |file|
-      file << doc.to_xml
+  def initialize
+    @doc = Nokogiri::XML File.read("#{@base}/tmp/sitemap.xml")
+    remote_docs.each do |doc|
+      @doc.at('urlset').add_child(doc)
     end
   end
 
-  def doc
-    ::Nokogiri::XML::Builder.new(:encoding => 'UTF-8')
+  def write!
+    dir =
+    FileUtils.mkdir_p(@base)
+    File.open("#{@base}/sitemap.xml", 'w') do |file|
+      file << @doc.to_xml
+    end
+  end
+
+  def remote_docs
+    [
+      "https://media#{env_prefix}.crossroads.net/tmp/sitemap.xml"
+    ].collect do |url|
+      response = HTTParty.get(url, format: :xml)
+      if response.found?
+        doc = Nokogiri::XML(response.body)
+        doc.search('url')
+      end
+    end.compact.flatten
+  end
+
+  def env_prefix
+    ENV['JEKYLL_ENV'] unless ENV['JEKYLL_ENV'] == 'production'
   end
 
 end
