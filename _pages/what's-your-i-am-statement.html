@@ -1,0 +1,39 @@
+---
+layout: container-fluid
+title: What's Your I Am Statement
+permalink: /whats-your-iam-statement/
+---
+
+<div class="row"><img src="https://crds-cms-uploads.imgix.net/content/images/IAM-journey-crossroads-landing-input.jpg" class="img-full-width" alt="" title=""></div><div class="container">
+<div class="row">
+<div class="col-sm-8 col-sm-offset-2 text-center">
+<p class="lead text-muted">Throughout this journey, you've written many I Am statements. <br class="hidden-xs">Declare your true identity today.</p>
+<p class="lead flush-bottom">Type your final I Am statement in the box below.</p>
+<p class="push-bottom">(Click to share your statement anonymously and view other answers in our community.)</p>
+<form class="form col-sm-6 col-sm-offset-3">
+<div class="form-group">
+<h2 class="push-half-bottom" style="font-family: 'acumin-pro-extra-condensed', sans-serif;">I Am</h2>
+<input type="text" name="entry.1657246731" id="i-am-statement" value="" class="form-control push-half-right"><input type="submit" class="btn btn-primary iam-form-submit push-half-top" value="Share"></div>
+</form></div>
+</div>
+<div class="col-sm-8 col-sm-offset-2 text-center">
+<p class="lead push-top">Looking for the journey materials? <a href="https://www.crossroads.net/iamjourney2">Visit the journey page</a></p>
+</div>
+</div><script src="https://crossroads-media.s3.amazonaws.com/documents/i-am-wordcloud/jquery.jqgoogleforms.min.js" type="text/javascript"></script><script type="text/javascript">// <![CDATA[
+$( document ).ready(function() {
+  $(".iam-form-submit").click(function(e) {
+    e.preventDefault();
+    var googleForm = $(this).jqGoogleForms({"formKey": "1FAIpQLSd48e9FRQjPMH3SjXCc7NbnwJICF11FODGa5POuA_HgMSmwww"});
+    
+    $.when(
+        googleForm.sendFormData({
+          "entry.1657246731": $("#i-am-statement").val(),
+        })
+      ).done(function() {
+        setTimeout(function(){
+          window.location = "https://www.crossroads.net/i-am-statement?iam=" + $("#i-am-statement").val() + "#love";
+        }, 2000);
+    });
+  });
+})
+// ]]></script>
