@@ -1,3 +1,8 @@
+$icon-font-path: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/";
+@function twbs-font-path($path) {
+  @return $path;
+}
+
 @import '~crds-styles/assets/stylesheets/variables';
 @import '~crds-styles/assets/stylesheets/overrides';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap.scss';
