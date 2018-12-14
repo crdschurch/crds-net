@@ -1,0 +1,4 @@
+[submodule "_pages"]
+	path = _pages
+	url = git@github.com:crdschurch/crds-jekyll-shared-templates.git
+	branch = _pages
