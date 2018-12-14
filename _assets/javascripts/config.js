@@ -85,5 +85,19 @@ module.exports = [
     files: [
       "views/live-stream"
     ]
+  },
+  {
+    name: "animations",
+    files: [
+      "vendor/animations.min"
+    ]
+  },
+  {
+    name: "events",
+    files: [
+      "vendor/jquery.cycle2.min",
+      "vendor/scrollVert.min",
+      "vendor/events.min"
+    ]
   }
 ]
