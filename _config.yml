@@ -2,7 +2,7 @@ title: Crossroads
 email: info@crossroads.net
 description: No matter what your beliefs, you are welcome here.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://www.crossroads.net" # the base hostname & protocol for your site, e.g. http://example.com
 image: "https://crds-cms-uploads.imgix.net/content/images/cr-social-sharing-still-bg.jpg"
 
 # Build settings
