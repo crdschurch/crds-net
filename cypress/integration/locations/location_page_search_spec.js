@@ -13,11 +13,7 @@ describe('Testing the Locations page without searching', function() {
     })
 
     it('Tests Location cards displayed alphabetically followed by Anywhere', function() {
-        const sortedLocations = sortArrayByProperties(locations, 'name', 'slug');//TEST!
-
-        sortedLocations.forEach(function(e){
-            cy.log(`${e.name} slug ${e.slug}`);
-        });
+        const sortedLocations = sortArrayByProperties(locations, 'name', 'slug');
 
         cy.get('#section-locations > .card').each(($card, index) => {
             //Locations
