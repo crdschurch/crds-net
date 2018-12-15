@@ -15,6 +15,10 @@ describe('Testing the Locations page without searching', function() {
     it('Tests Location cards displayed alphabetically followed by Anywhere', function() {
         const sortedLocations = sortArrayByProperties(locations, 'name', 'slug');//TEST!
 
+        sortedLocations.forEach(function(e){
+            cy.log(`${e.name} slug ${e.slug}`);
+        });
+
         cy.get('#section-locations > .card').each(($card, index) => {
             //Locations
             if (index < sortedLocations.length){
@@ -102,8 +106,11 @@ describe('Testing the search functionality on the Locations page', function() {
 })
 
 function sortArrayByProperties(array, prop1, prop2){
-    return array.sort(function(a, b){
-        return a[prop1] - b[prop1] || a[prop2] - b[prop2];
+    return array.sort(function(a, b) {
+        let diff = a[prop1].localeCompare(b[prop1]);
+        if(diff === 0)
+            diff = a[prop2].localeCompare(b[prop2]);
+        return diff;
     });
 }
 
