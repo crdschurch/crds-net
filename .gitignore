@@ -1,5 +1,6 @@
 _site
 _redirects
+.aws
 .sass-cache
 .jekyll-metadata
 .jekyll-cache
