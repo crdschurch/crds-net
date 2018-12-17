@@ -1,6 +1,7 @@
 import { LocationModel } from './Models/LocationModel';
 import { MessageModel } from './Models/MessageModel';
 import { SeriesModel } from './Models/SeriesModel';
+import { PromosByLocation } from './Models/PromoModel';
 
 /*
 * Note: Due to Cypress's async nature, methods requesting data from Contentful may return before the properties within the cy.request blocks have been assigned.
@@ -46,5 +47,15 @@ export class ContentfulApi {
                 MessageModel.createListOfMessages(jsonResponse, numToStore, messageList);
             })
         return messageList;
+    }
+
+    retrievePromosByLocation(){
+        const promosByLocation = new PromosByLocation();
+        cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=promo&select=fields.title,fields.link_url,fields.image,fields.description,fields.target_audience,fields.published_at&include=3`)
+            .then((response) => {
+                const jsonResponse = JSON.parse(response.body);
+                promosByLocation.storePromosByLocation(jsonResponse);
+            })
+        return promosByLocation;
     }
 }
