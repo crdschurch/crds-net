@@ -89,7 +89,6 @@ collections:
     output: false
     permalink: /topics/:title
 
-
 defaults:
   - scope:
       path: ""

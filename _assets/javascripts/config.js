@@ -85,5 +85,21 @@ module.exports = [
     files: [
       "views/live-stream"
     ]
+  },
+  {
+    name: "explore",
+    deps: [
+      "vendor/jquery.fullPage-2.7.4.min",
+      "vendor/tweenMax-1.18.0.min",
+      "vendor/animations.min"
+    ]
+  },
+  {
+    name: "events",
+    files: [
+      "vendor/jquery.cycle2.min",
+      "vendor/scrollVert.min",
+      "vendor/events.min"
+    ]
   }
 ]
