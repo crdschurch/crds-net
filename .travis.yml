@@ -1,12 +1,7 @@
 language: node_js
-node_js:
-  - 10
-cache:
-  directories:
-  - "~/.npm"
-  - "~/.cache"
-install:
-  - npm ci
+node_js: 10
+cache: npm
+install: npm ci
 script:
   - "$(npm bin)/cypress run --record --key $cypressDashboard -c baseUrl=$baseURL --env CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ENV=$contentfulEnv,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,CRDS_MEDIA_ENDPOINT=$mediaEndpoint"
 notifications:
@@ -16,3 +11,7 @@ notifications:
     on_success: always
     on_failure: always
     on_pull_requests: false
+#block running on pull requests
+branches:
+  except:
+  - /.*/
