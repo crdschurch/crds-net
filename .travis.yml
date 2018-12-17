@@ -11,7 +11,3 @@ notifications:
     on_success: always
     on_failure: always
     on_pull_requests: false
-#block running on pull requests
-branches:
-  except:
-  - /.*/
