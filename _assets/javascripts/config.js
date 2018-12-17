@@ -87,8 +87,10 @@ module.exports = [
     ]
   },
   {
-    name: "animations",
-    files: [
+    name: "explore",
+    deps: [
+      "vendor/jquery.fullPage-2.7.4.min",
+      "vendor/tweenMax-1.18.0.min",
       "vendor/animations.min"
     ]
   },
