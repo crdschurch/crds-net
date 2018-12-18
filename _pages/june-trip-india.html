@@ -50,7 +50,7 @@ permalink: /reachout/go/india/june-trip/
 <div class="row"><hr><div class="col-sm-6 push-ends">
 <p class="metadata">Trip Details</p>
 <p class="font-size-base"><strong>When</strong>: 5/31/19 - 6/12/19<br><strong>Deposit</strong>: $300<br><strong>Size of Trip</strong>: 15<br><strong>Minimum Age</strong>: 16<br><strong>Restrictions</strong>: Background Check Required <br><strong>Total Cost</strong>: $3400 (Don't worry. <a href="https://www.crossroads.net/reachout/go/support-raising">Check this out.</a>)</p>
-<strong>Sign Up Deadline</strong>: 10/28/19 <a href="http://crossroads.net/trips/2611" class="btn btn-primary">Sign up</a></div>
+<strong>Sign Up Deadline</strong>: 2/1/2019 <a href="http://crossroads.net/trips/2611" class="btn btn-primary">Sign up</a></div>
 <div class="col-sm-6 soft-top" style="min-height: 365px;">
 <div id="trips-map" style="min-height: 330px; height: 330px; position: absolute; overflow: hidden; width: 92%; color: black;"></div>
 </div>
@@ -213,7 +213,7 @@ new CRDS.CardCarousels('[data-crds-carousel]');
     new CRDS.Countdown();
     new CRDS.DistanceSorter();
     new CRDS.DataTracker();
-    
+
     $.each(CRDS._instances, function (k, v) {
       v.addStyles()
     });
@@ -229,17 +229,17 @@ new CRDS.CardCarousels('[data-crds-carousel]');
       document.getElementById('locations-search').scrollIntoView(true);
     }
     locationButton.addEventListener('click', locationScroll);
-    
+
     // Jumbotron Overlay
     var watchButton = document.getElementById('watch-cta');
     var closeButton = document.getElementById('overlay-close');
     var overlay = document.getElementById('overlay');
-    
+
     function showOverlay(event) {
       event.preventDefault();
       overlay.classList.add('visible');
     }
-    
+
     function hideOverlay() {
       overlay.classList.remove('visible');
     }
@@ -249,7 +249,7 @@ new CRDS.CardCarousels('[data-crds-carousel]');
       var offset = jQuery("#"+myID).offset()
       window.scrollTo(0,offset.top);
     }
-    
+
     $(document).ready(function() {
       $('div.modal-video').on('show.bs.modal', function(event) {
         var origSrc = $('#modal-video-src').data('src');
@@ -262,12 +262,12 @@ new CRDS.CardCarousels('[data-crds-carousel]');
         $('#modal-video-src').attr('src', '');
       });
     });
-    
+
     function scroll(myID){
       var offset = jQuery("#"+myID).offset()
       window.scrollTo(0,offset.top);
     }
-    
+
     $('#myTabs a[href="#overview"]').tab('show') // Select tab by name
     $('#myTabs a[href="#itinerary"]').tab('show') // Select tab by name
     $('#myTabs a[href="#lodging"]').tab('show') // Select tab by name
