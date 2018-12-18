@@ -1,5 +1,6 @@
 ---
 layout: default
+monetate_page_type: index-main
 paginate:
   articles:
     per: 15
@@ -30,7 +31,7 @@ paginate:
     offset: 2
     sort: published_at desc
   episodes:
-    per: 4
+    per: 3
     limit: 1
     sort: published_at desc
   podcasts:
@@ -53,14 +54,14 @@ paginate:
       <div class="media featured">
         <div class="media-body">
           <h5 class="component-header flush-ends">
-            <a href="{{ messages.url | media_url }}">{{ messages.title }}</a>
+            <a href="{{ messages.url | media_url }}" data-automation-id="message-title">{{ messages.title }}</a>
           </h5>
-          <div class="soft-quarter-top font-size-smaller flush-bottom">
+          <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="message-description">
             {{ messages.description | markdownify | strip_html | truncatewords: 15 }}
           </div>
-          <a href="{{ messages.url | media_url }}" class="btn btn-primary btn-sm push-half-top">Watch now</a>
+          <a href="{{ messages.url | media_url }}" class="btn btn-primary btn-sm push-half-top" data-automation-id="watch-message-button">Watch now</a>
         </div>
-        <a href="{{ messages.url | media_url }}" class="push-half-bottom">
+        <a href="{{ messages.url | media_url }}" class="push-half-bottom" data-automation-id="message-video">
           <div class="media-video">
             <img class="media-img" src="{{ messages.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
             <svg class="media-play-btn icon icon-5 text-white" viewBox="0 0 256 256">
@@ -80,13 +81,13 @@ paginate:
       <div class="media featured">
         <div class="media-body">
           <h5 class="component-header flush-ends">
-            <a href="{{ series.url | media_url }}">{{ series.title }}</a>
+            <a href="{{ series.url | media_url }}" data-automation-id="series-title">{{ series.title }}</a>
           </h5>
-          <div class="soft-quarter-top font-size-smaller flush-bottom">
+          <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="series-description">
             {{ series.description | markdownify | strip_html | truncatewords: 15 }}
           </div>
         </div>
-        <a href="{{ series.url | media_url }}" class="push-half-bottom">
+        <a href="{{ series.url | media_url }}" class="push-half-bottom" data-automation-id="series-image">
           <img class="media-img" src="{{ series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
         </a>
       </div>
@@ -102,7 +103,7 @@ paginate:
       <a href="{{ article.url | media_url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
-          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img >
+          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
         </div>
         <div class="overlay-card-content">
           <p class="overlay-card-category">{{ article.category.title }}</p>
@@ -128,7 +129,7 @@ paginate:
           <div class="card carousel-cell card-2x">
             <a class="relative" href="{{ article.url | media_url }}">
               {% include media/_media-label.html source=article %}
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img >
+              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
             </a>
 
             <div class="card-block hard soft-quarter-top">
@@ -148,8 +149,7 @@ paginate:
       </div>
     </div>
 
-    <div class="col-md-4">
-      <!-- Another Perspective -->
+    <!--<div class="col-md-4">
       {% if page.perspectives.docs.size > 0 %}
       <section class="perspectives-landing flush-top">
         <a href="{{ '/perspectives/' | media_url }}">
@@ -164,7 +164,37 @@ paginate:
         </div>
       </section>
       {% endif %}
+    </div>-->
+
+    <!-- Podcast Episodes -->
+    <div class="col-sm-12 col-md-4">
+      <div class="row">
+        <div class="col-sm-12">
+          <hr class="push-half-bottom flush-top">
+          <h2 class="flush-top font-size-base text-gray-light" style="">latest podcast episodes</h2>
+        </div>
+      </div>
+      <div class="push-bottom soft-bottom">
+        {% assign home_episodes = page.episodes.docs %}
+        {% for episodes in home_episodes %}
+        <div class="media">
+          <div class="media-body">
+            <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ episodes.url | media_url}}">
+              Episode {{ episodes.episode_number }}: {{ episodes.title }}</a>
+            </h5>
+            <div class="soft-quarter-top font-size-smaller flush-bottom">
+              <p class="episode-description">{{ episodes.description | markdownify | strip_html | truncatewords: 15 }}</p>
+            </div>
+          </div>
+          <a href="{{ episodes.url | media_url }}" class="soft-quarter-left">
+            <img class="media-img" src="{{ episodes.podcast.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+          </a>
+        </div>
+        <hr>
+        {% endfor %}
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -177,7 +207,7 @@ paginate:
     <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
 
       {% for topic in site.categories %}
-      <div class="card carousel-cell topic-card-simple" style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');">
+      <div class="card carousel-cell topic-card-simple" style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');" data-hero-img>
         <div class="bg-overlay"></div>
         <div class="topic-card-content">
           <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
@@ -191,13 +221,12 @@ paginate:
 </section>
 
 <!-- About Crossroads -->
-<section class="jumbotron inline-video jumbotron-xl" style="background-image: url('//crds-cms-uploads.imgix.net/media/stills/crossroads-church-home.jpg');">
-  <div class="inline-video-player"></div>
+<section class="jumbotron inline-video jumbotron-xl" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-church-home.jpg');" data-optimize-bg-img>
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
         <div class="jumbotron-content">
-          <a href="#" class="inline-video-trigger" data-video-id="geNzLq664rk"></a>
+          <a href="#" class="inline-video-trigger" data-toggle="modal" data-target="#videoModal"></a>
           <h1 class="font-family-condensed-extra text-uppercase">What is Crossroads</h1>
           <p>An authentic community of Christ-followers who believe that your life is made for more.</p>
 
@@ -205,13 +234,13 @@ paginate:
             <div class="col-sm-4 col-sm-offset-2 text-right hidden-xs soft-sides">
               <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
               <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]">Watch the latest service</a>
+              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]" data-automation-id="watch-series-button">Watch the latest service</a>
             </div>
 
             <div class="col-sm-4 col-sm-offset-2 text-center visible-xs soft-sides push-bottom">
               <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
               <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]">Watch the latest service</a>
+              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]" data-automation-id="mobile-watch-series-button">Watch the latest service</a>
             </div>
 
             <div class="col-sm-4 text-left soft-sides hidden-xs border-left">
@@ -226,6 +255,21 @@ paginate:
               <a href="/locations" class="btn btn-secondary btn-lg">Find a location</a>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Video Modal -->
+  <div class="modal modal-video fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <iframe allowfullscreen="" src="https://www.youtube.com/embed/geNzLq664rk" frameborder="0"></iframe>
         </div>
       </div>
     </div>
@@ -245,7 +289,7 @@ paginate:
       <a href="{{ article.url | media_url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
-          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img >
+          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
         </div>
         <div class="overlay-card-content">
           <p class="overlay-card-category">{{ article.category.title }}</p>
@@ -268,7 +312,7 @@ paginate:
           <div class="card carousel-cell card-2x">
             <a class="relative" href="{{ article.url | media_url }}">
               {% include media/_media-label.html source=article %}
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img >
+              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
             </a>
 
             <div class="card-block hard soft-quarter-top">
@@ -320,14 +364,12 @@ paginate:
             <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ podcasts.url | media_url }}">
               {{ podcasts.title }}</a>
             </h5>
-
             <div class="soft-quarter-top font-size-smaller flush-bottom">
               {{ podcasts.description | markdownify | strip_html | truncatewords: 15 }}
             </div>
           </div>
-
           <a href="{{ podcasts.url | media_url }}" class="soft-quarter-left">
-            <img class="media-img" src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.media_object }}" data-optimize-img>
+            <img class="media-img" src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.media_object }}" data-optimize-img />
           </a>
         </div>
 

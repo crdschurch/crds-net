@@ -2,20 +2,12 @@ title: Crossroads
 email: info@crossroads.net
 description: No matter what your beliefs, you are welcome here.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://www.crossroads.net" # the base hostname & protocol for your site, e.g. http://example.com
 image: "https://crds-cms-uploads.imgix.net/content/images/cr-social-sharing-still-bg.jpg"
 
 # Build settings
 permalink: pretty
 markdown: kramdown
-
-assets:
-  source_maps: true # false on JEKYLL_ENV=production
-  destination: "/assets"
-  compression: true
-  sources:
-  - _assets/stylesheets
-  - _assets/javascripts
 
 include:
   - _redirects
@@ -23,14 +15,19 @@ include:
 
 exclude:
   - bin
-  - lib
+  - cypress.json
+  - Guardfile
   - Gemfile
   - Gemfile.lock
+  - gulpfile.js
+  - lib
   - package.json
-  - README.md
   - _migrations
-  - vendor
   - netlify.toml
+  - node_modules
+  - Rakefile
+  - README.md
+  - vendor
 
 contentful:
   series:
@@ -62,11 +59,13 @@ collections:
     output: false
     has_many:
       - videos
+    permalink: /:collection/:title
   messages:
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
+    permalink: /series/(:series/:slug)/:title
   promos:
-    filename: "{{ published_at | date: '%Y-%m-%d-%H:%M:%S' }}-{{ title | slugify }}-{{ slug }}"
+    filename: "{{ published_at | date: '%Y-%m-%d-%H-%M-%S' }}-{{ title | slugify }}-{{ slug }}"
     output: false
   articles:
     output: false
@@ -78,16 +77,17 @@ collections:
     output: false
   episodes:
     output: false
+    permalink: /podcasts/(:podcast/:slug)/:title
   tags:
     output: false
   features:
     output: false
   perspectives:
     output: false
+    permalink: /:collection/:title
   categories:
     output: false
     permalink: /topics/:title
-
 
 defaults:
   - scope:
@@ -95,15 +95,6 @@ defaults:
       type: "locations"
     values:
       layout: location
-
-assets:
-  source_maps: true # false on JEKYLL_ENV=production
-  destination: "/assets"
-  compression: true
-  js_compressor: uglifier
-  sources:
-  - _assets/stylesheets
-  - _assets/javascripts
 
 imgix_params:
   placeholder: "auto=format,compress&w=10"

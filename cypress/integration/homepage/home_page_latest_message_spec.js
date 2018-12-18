@@ -1,35 +1,27 @@
-const moment = require('moment');
-import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
+import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
+import { ElementValidator } from '../../support/ElementValidator'
 
-describe.skip("Testing the Latest Message on the Homepage", function () {
+describe("Testing the Latest Message on the Homepage", function (){
     let latestMessage;
+    let currentSeries;
     before(function () {
         const content = new ContentfulApi();
         latestMessage = content.retrieveLatestMessage();
+        currentSeries = content.retrieveCurrentSeries();
         cy.visit('');
     })
 
-    it('Tests Jumbotron latest message title, title link and date', function(){
-        cy.get('[data-automation-id="last-message-card"] > div > a').then(($messageTitle) => {
-            expect($messageTitle).to.have.attr('href').contains(latestMessage.slug);
-            expect($messageTitle.find('#lastMessageTitle')).to.have.text(latestMessage.title);
-        })
+    it('Tests Current Message title, description, and image', function(){
+        const messageLink = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}/${latestMessage.slug}`;
 
-        const formattedDate = moment(latestMessage.publishedAt).format('MM.DD.YYYY');
-        cy.get('#lastMessageSubtitle').should('have.text', formattedDate);
-    })
-
-    it('Tests Jumbotron latest message image and image link', function(){
-        cy.get('[data-automation-id="last-message-card"] > a').then(($messageImage) => {
-            expect($messageImage).to.have.attr('href').contains(latestMessage.slug);
-            expect($messageImage.find('#lastMessageImg > img')).to.have.attr('src').contains(latestMessage.imageId);
-            expect($messageImage.find('#lastMessageImg > img')).to.have.attr('srcset')
-        })
+        ElementValidator.elementHasTextAndLink(cy.get('[data-automation-id="message-title"]'), latestMessage.title, messageLink)
+        ElementValidator.elementContainsSubstringOfText(cy.get('[data-automation-id="message-description"]'), latestMessage.description);
+        ElementValidator.elementHasImgixImageAndLink(cy.get('[data-automation-id="message-video"]'), latestMessage.imageId, messageLink);
     })
 
     it('Test "View latest now" button link', function () {
-        cy.get('[data-automation-id="latest-message-link"]').then(($messageButton) => {
-            expect($messageButton).to.be.visible;
+        cy.get('[data-automation-id="watch-message-button"]').should('be.visible')
+        .then(($messageButton) => {
             expect($messageButton).to.have.attr('href').contains(latestMessage.slug);
         })
     })
