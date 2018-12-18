@@ -121,6 +121,36 @@ With the help of imgix, we are using two strategies to increase performance whil
 
 For more info on how this works, see the extended documentation in the [media repo](https://github.com/crdschurch/crds-media/blob/development/README.md#images).
 
+#### Examples
+
+**Inline Images**
+
+```html
+<img
+  src="{{ page.image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}"
+  sizes="{{ site.image_sizes.full_width }}"
+  data-optimize-img
+/>
+```
+
+This would translate to something like the following (before processing):
+
+```html
+<img
+  src="//crds-media-int.imgix.net/5G62zla1zOsmKqSo8wmomI/d46b0ec8a96339c72f25b56b7c2dd99b/isle-of-skye.jpg?auto=format,compress&w=10"
+  sizes="100vw"
+  data-optimize-img
+/>
+```
+
+**Background Images**
+
+Background images work similarly, with three exceptions:
+
+- A `data-optimize-bg-img` attribute is required for processing.
+- The dimensions of the imgix image are set automatically based on the container (i.e. it assumes a _cover_ background approach).
+- The script watches for changes to the size of the window and will update the background image appropriately.
+
 ## Shared Templates
 
 We’re using submodules to share files across multiple Jekyll instances. You can think of a submodule as a repository within a repository. The same rules that govern your interaction with a Git repo apply here. You’ll make commits against the submodule and then another commit against the parent project which is tracking the position of the submodule.
@@ -177,33 +207,3 @@ $ git commit -am "Update _pages submodule"
 [feature/US15878-shared-templates-v2 95469de] Update _pages submodule
  1 file changed, 1 insertion(+), 1 deletion(-)
 ```
-
-#### Examples
-
-**Inline Images**
-
-```html
-<img
-  src="{{ page.image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}"
-  sizes="{{ site.image_sizes.full_width }}"
-  data-optimize-img
-/>
-```
-
-This would translate to something like the following (before processing):
-
-```html
-<img
-  src="//crds-media-int.imgix.net/5G62zla1zOsmKqSo8wmomI/d46b0ec8a96339c72f25b56b7c2dd99b/isle-of-skye.jpg?auto=format,compress&w=10"
-  sizes="100vw"
-  data-optimize-img
-/>
-```
-
-**Background Images**
-
-Background images work similarly, with three exceptions:
-
-- A `data-optimize-bg-img` attribute is required for processing.
-- The dimensions of the imgix image are set automatically based on the container (i.e. it assumes a _cover_ background approach).
-- The script watches for changes to the size of the window and will update the background image appropriately.
