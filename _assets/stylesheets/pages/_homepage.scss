@@ -175,3 +175,17 @@
     }
   }
 }
+
+/* LIVE dot*/
+.live-dot {
+  height:8px;
+  width: 8px;
+  background-color: #cc2a16;
+  border-radius: 50%;
+  display: inline-block;
+}
+.live-cta {
+  position: absolute;
+  top: 4px;
+  left: 18px;
+}
