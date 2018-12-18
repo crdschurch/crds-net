@@ -121,7 +121,7 @@ With the help of imgix, we are using two strategies to increase performance whil
 
 For more info on how this works, see the extended documentation in the [media repo](https://github.com/crdschurch/crds-media/blob/development/README.md#images).
 
-### Shared Templates
+## Shared Templates
 
 We’re using submodules to share files across multiple Jekyll instances. You can think of a submodule as a repository within a repository. The same rules that govern your interaction with a Git repo apply here. You’ll make commits against the submodule and then another commit against the parent project which is tracking the position of the submodule.
 
