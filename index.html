@@ -59,7 +59,7 @@ paginate:
           <a href="https://www.crossroads.net/live/stream" class="btn btn-primary btn-sm push-half-top" data-automation-id="watch-message-button">Watch now</a>
         </div>
         <a href="https://www.crossroads.net/live/stream" class="push-half-bottom" data-automation-id="message-video">
-            <img class="" src="//crds-cms-uploads.imgix.net/content/images/crossroads-live-stream-CTA2.jpg" data-optimize-img />
+            <img class="img-responsive" src="//crds-cms-uploads.imgix.net/content/images/crossroads-live-stream-CTA2.jpg" data-optimize-img />
             <p class="live-cta bg-charcoal display-table soft-half-sides soft-quarter-ends text-white"><span class="push-quarter-right">LIVE</span><span class="live-dot"></span></p>
         </a>
       </div>
@@ -72,7 +72,7 @@ paginate:
   <div class="row">
     <div class="col-md-push-8 col-md-4 push-bottom">
       <!-- Current Message -->
-      <div class="content-offstream push-bottom"  data-stream-off="show">
+      <div class="content-offstream push-bottom" data-stream-off="show">
         <hr class="flush-top push-half-bottom">
         <h2 class="flush-top font-size-base text-gray-light">current message</h2>
 
@@ -100,7 +100,6 @@ paginate:
         {% endfor %}
       </div>
 
-
       <!-- Current Series -->
       <hr class="flush-top push-half-bottom">
       <h2 class="flush-bottom flush-top font-size-base text-gray-light">current series</h2>
@@ -121,6 +120,18 @@ paginate:
         </a>
       </div>
       {% endfor %}
+
+      <!-- The Chaser -->
+      <div class="content-live hide" data-stream-live="show">
+        <hr class="push-half-bottom">
+        <h2 class="flush-top font-size-base text-gray-light">the chaser</h2>
+        <a href="/the-chaser" class="push-half-bottom" data-automation-id="">
+          <img class="img-responsive" src="//crds-cms-uploads.imgix.net/content/images/crossroads-the-chaser-lg-img.jpg" data-optimize-img />
+        </a>
+        <h5 class="component-header">The Chaser</h5>
+        <p class="font-size-smaller">Questions after the weekend service to start conversations and push a little deeper. Go on. Dive in.</p>
+        </div>
+
     </div>
 
     <!-- Big Content Feature -->
