@@ -207,3 +207,7 @@ $ git commit -am "Update _pages submodule"
 [feature/US15878-shared-templates-v2 95469de] Update _pages submodule
  1 file changed, 1 insertion(+), 1 deletion(-)
 ```
+
+## License
+
+This project is licensed under the [3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause).
