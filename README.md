@@ -136,9 +136,12 @@ remote: Compressing objects: 100% (63/63), done.
 remote: Total 6544 (delta 27), reused 32 (delta 8), pack-reused 6473
 Receiving objects: 100% (6544/6544), 4.07 MiB | 7.93 MiB/s, done.
 Resolving deltas: 100% (3877/3877), done
+
 $ cd crds-net
+
 $ git submodule init
 Submodule '_pages' (git@github.com:crdschurch/crds-jekyll-shared-templates.git) registered for path '_pages'
+
 $ git submodule update
 Cloning into '/Users/tcmacdonald/Sites/tmp/crds-net/_pages'...
 Submodule path '_pages': checked out '995bfc915e66962451107f29d69ad8e4d19fe840'
