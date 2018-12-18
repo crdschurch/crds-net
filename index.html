@@ -441,5 +441,10 @@ paginate:
     streamspotId: '{{ site.streamspotId }}',
     streamspotKey: '{{ site.streamspotKey }}'
   };
+
+  document.addEventListener("deferred-js-ready", function () {
+    var c = new CRDS.Countdown();
+    c.getStreamspotStatus();
+  });
 </script>
 {% javascript_link_tag live async %}
