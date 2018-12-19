@@ -3,6 +3,7 @@
     const src = el.dataset.src;
     el.removeAttribute('data-src');
     el.setAttribute('ix-src', src);
+    el.setAttribute('src', src);
   }
 
   function findLegacyImages() {
