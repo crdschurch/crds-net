@@ -42,38 +42,66 @@ paginate:
 
 {% include header.html %}
 
+
+<section class="container content-live hide push-bottom" data-stream-live="show">
+  <div class="row">
+    {% assign home_messages = page.messages.docs %}
+    {% for messages in home_messages %}
+    <div class="col-md-12">
+      <div class="media featured">
+        <div class="media-body">
+          <h5 class="component-header flush-ends">
+            <a href="/live/stream/" data-automation-id="message-title">{{ messages.title }}</a>
+          </h5>
+          <div class="soft-quarter-top font-size-small flush-bottom" data-automation-id="message-description">
+            Join the live stream hourly, on the hour, from 8am-10pm (EST).
+          </div>
+          <a href="/live/stream/" class="btn btn-primary btn-sm push-half-top" data-automation-id="watch-message-button">Watch now</a>
+        </div>
+        <a href="/live/stream/" class="push-half-bottom" data-automation-id="message-video">
+            <img class="img-responsive" src="//crds-cms-uploads.imgix.net/content/images/crossroads-live-stream-CTA2.jpg" data-optimize-img />
+            <p class="live-cta bg-charcoal display-table soft-half-sides soft-quarter-ends text-white"><span class="push-quarter-right">LIVE</span><span class="live-dot"></span></p>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
 <section class="container">
   <div class="row">
     <div class="col-md-push-8 col-md-4 push-bottom">
       <!-- Current Message -->
-      <hr class="flush-top push-half-bottom">
-      <h2 class="flush-bottom flush-top font-size-base text-gray-light">current message</h2>
+      <div class="push-bottom">
+        <hr class="flush-top push-half-bottom">
+        <h2 class="flush-top font-size-base text-gray-light">current message</h2>
 
-      {% assign home_messages = page.messages.docs %}
-      {% for messages in home_messages %}
-      <div class="media featured">
-        <div class="media-body">
-          <h5 class="component-header flush-ends">
-            <a href="{{ messages.url | media_url }}" data-automation-id="message-title">{{ messages.title }}</a>
-          </h5>
-          <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="message-description">
-            {{ messages.description | markdownify | strip_html | truncatewords: 15 }}
+        {% assign home_messages = page.messages.docs %}
+        {% for messages in home_messages %}
+        <div class="media featured">
+          <div class="media-body">
+            <h5 class="component-header flush-ends">
+              <a href="{{ messages.url | media_url }}" data-automation-id="message-title">{{ messages.title }}</a>
+            </h5>
+            <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="message-description">
+              {{ messages.description | markdownify | strip_html | truncatewords: 15 }}
+            </div>
+            <a href="{{ messages.url | media_url }}" class="btn btn-primary btn-sm push-half-top" data-automation-id="watch-message-button">Watch now</a>
           </div>
-          <a href="{{ messages.url | media_url }}" class="btn btn-primary btn-sm push-half-top" data-automation-id="watch-message-button">Watch now</a>
+          <a href="{{ messages.url | media_url }}" class="push-half-bottom" data-automation-id="message-video">
+            <div class="media-video">
+              <img class="media-img" src="{{ messages.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+              <svg class="media-play-btn icon icon-5 text-white" viewBox="0 0 256 256">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#play-thin"></use>
+              </svg>
+            </div>
+          </a>
         </div>
-        <a href="{{ messages.url | media_url }}" class="push-half-bottom" data-automation-id="message-video">
-          <div class="media-video">
-            <img class="media-img" src="{{ messages.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
-            <svg class="media-play-btn icon icon-5 text-white" viewBox="0 0 256 256">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#play-thin"></use>
-            </svg>
-          </div>
-        </a>
+        {% endfor %}
       </div>
-      {% endfor %}
 
       <!-- Current Series -->
-      <hr class="push-half-bottom">
+      <hr class="flush-top push-half-bottom">
       <h2 class="flush-bottom flush-top font-size-base text-gray-light">current series</h2>
 
       {% assign home_series = page.series.docs | slice: 0 %}
@@ -92,6 +120,7 @@ paginate:
         </a>
       </div>
       {% endfor %}
+
     </div>
 
     <!-- Big Content Feature -->
@@ -401,4 +430,10 @@ paginate:
     streamspotId: '{{ site.streamspotId }}',
     streamspotKey: '{{ site.streamspotKey }}'
   };
+
+  document.addEventListener("deferred-js-ready", function () {
+    var c = new CRDS.Countdown();
+    c.getStreamspotStatus();
+  });
 </script>
+{% javascript_link_tag live async %}
