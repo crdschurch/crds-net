@@ -34,10 +34,10 @@ Jekyll::Hooks.register :site, :post_write do |site|
     Jekyll.logger.info('AWS Cloudsearch:', "#{docs.size} system pages")
   end
 
-  Jekyll.logger.info('AWS Cloudsearch:', "Writing... #{@client.send(:filename)}")
-  @client.instance_variable_set('@site', site)
-  @client.write
   if enabled
+    Jekyll.logger.info('AWS Cloudsearch:', "Writing... #{@client.send(:filename)}")
+    @client.instance_variable_set('@site', site)
+    @client.write
     resp = @client.upload
     Jekyll.logger.info('AWS Cloudsearch:', resp)
   end
