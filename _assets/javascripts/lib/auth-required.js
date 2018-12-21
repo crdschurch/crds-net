@@ -2,14 +2,16 @@ function redirectUnauthenticated() {
   if (document.cookie.includes(CRDS.media.prefix + 'refreshToken')) {
     getAuth().done((data, textStatus, xhr) => {
 
-      var headers = xhr.getAllResponseHeaders();
+      var sessionId = xhr.getResponseHeader('sessionId');
+      var refreshToken = xhr.getResponseHeader('refreshToken');
+
       document.querySelector('[data-preloader]').style.opacity = 0;
       document.querySelector('[data-preloader]').style.zIndex = -1;
 
-      if (!headers.sessionId) return;
+      if (!sessionId) return;
 
-      setCookie(CRDS.media.prefix + 'refreshToken', headers.refreshToken, 24);
-      setCookie(CRDS.media.prefix + ' sessionId', headers.sessionId, 24);
+      setCookie(CRDS.media.prefix + 'refreshToken', refreshToken, 24);
+      setCookie(CRDS.media.prefix + ' sessionId', sessionId, 24);
 
     }).fail(() => { window.location.href = '/signin'; });
   } else {
