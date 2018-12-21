@@ -27,6 +27,7 @@ module.exports = [
       "lib/card-filters",
       "lib/height-watcher",
       "lib/smooth-scroller",
+      "lib/lazy-loader",
       "components/legacy-imgix",
       "components/header",
       "components/images",
