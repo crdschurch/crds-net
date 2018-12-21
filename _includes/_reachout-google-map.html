@@ -1,0 +1,15 @@
+<div id="trips-map" style="min-height: 330px; height: 330px; position: absolute; overflow: hidden; width: 92%; color: black;"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKQyvYdvoci3SqWgEg61G_2raG_xipO5Q" async="" defer type="text/javascript"></script>
+<script type="text/javascript">
+    document.addEventListener('deferred-js-ready', function () {
+        initMap();
+    });
+
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('trips-map'), {
+            center: { lat: Number('{{page.latitude}}'), lng: Number('{{page.longitude}}') },
+            zoom: 8
+        });
+    }
+</script>

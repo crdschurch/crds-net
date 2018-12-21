@@ -11,7 +11,7 @@ function redirectUnauthenticated() {
       if (!sessionId) return;
 
       setCookie(CRDS.media.prefix + 'refreshToken', refreshToken, 24);
-      setCookie(CRDS.media.prefix + ' sessionId', sessionId, 24);
+      setCookie(CRDS.media.prefix + 'sessionId', sessionId, 24);
 
     }).fail(() => { window.location.href = '/signin'; });
   } else {
