@@ -11,21 +11,22 @@ CRDS.LazyLoader = class LazyLoader {
     this.config = {
       // root: container,
       rootMargin: '0px 0px',
-      threshold: [1]
+      threshold: [0]
     }
     this.init();
   }
 
   init() {
-    this.items = document.querySelectorAll('div');
+    this.items = document.querySelectorAll('img');
     this.container = document.querySelector('body');
     // create observer rule set
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        entry.target.dataset.isVisible = false;
-        // if the item is above threshold (25% visible)
+        // if the item is above threshold (any pixels are visible)
         if (entry.isIntersecting > 0) {
           this.load(entry.target);
+        } else {
+          entry.target.classList.remove('is-visible');
         }
       })
     }, this.config);
@@ -41,7 +42,7 @@ CRDS.LazyLoader = class LazyLoader {
   }
 
   load(item) {
-    item.dataset.isVisible = true;
+    item.classList.add('is-visible');
   }
 }
 
