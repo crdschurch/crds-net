@@ -52,6 +52,12 @@ module.exports = [
     files: ["lib/auth-required"]
   },
   {
+    name: "reachout-trip",
+    files: [
+      "lib/reachout-trip"
+    ]
+  },
+  {
     name: "family-meeting-stream",
     files: ["views/family-meeting-stream"]
   },
