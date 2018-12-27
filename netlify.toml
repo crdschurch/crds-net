@@ -13,19 +13,19 @@
 [context.branch-deploy.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
   CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
-  CRDS_ANGULAR_ENDPOINT = "https://dev-crds-angular.crossroads.net"
+  CRDS_ANGULAR_ENDPOINT = "dev-crds-angular.crossroads.net"
 
 [context.deploy-preview.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
   CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
-  CRDS_ANGULAR_ENDPOINT = "https://dev-crds-angular.crossroads.net"
+  CRDS_ANGULAR_ENDPOINT = "dev-crds-angular.crossroads.net"
 
 [context.development.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
   CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
-  CRDS_ANGULAR_ENDPOINT = "https://dev-crds-angular.crossroads.net"
+  CRDS_ANGULAR_ENDPOINT = "dev-crds-angular.crossroads.net"
 
 [context.master.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-prod.netlify.com"
   CRDS_MAP_DOMAIN = "crds-map-prod.netlify.com"
-  CRDS_ANGULAR_ENDPOINT = "https://dev-crds-angular.crossroads.net"
+  CRDS_ANGULAR_ENDPOINT = "dev-crds-angular.crossroads.net"
