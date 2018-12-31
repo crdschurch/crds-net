@@ -6,7 +6,7 @@
     ./bin/netlify-redirector &&
     bundle exec jekyll crds &&
     bundle exec jekyll contentful -f &&
-    bundle exec jekyll build -- --cloudsearch &&
+    bundle exec jekyll build -- --update-search-index &&
     bash ./cypress/kickOffCypress.sh
   '''
 

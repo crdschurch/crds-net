@@ -1,103 +1,3 @@
-// This file was included on 9.12.2018
-// Because we can now deploy at will, the idea of hotfix.css no longer makes sense
-// Styles in here should be refactored, moved, or removed ASAP
-
-/* Explore Page - Adam - Work in Progress */
-.crds-styles .explore-content {
-  overflow-x: hidden;
-  position: relative;
-}
-
-.crds-styles .explore-content h1 {
-  font-size: 1050%;
-  line-height: 0.8em;
-}
-
-.crds-styles .explore-content h4 {
-  font-size: 1050%;
-  line-height: 0.8em;
-}
-
-.crds-styles .explore-content .vertical-centered  {
-  position: absolute;
-  left: 50%;
-  top: .5%;
-  transform: translate(-50%,.5%);
-  width: 100%;
-}
-
-.crds-styles .explore-content #religion {
-  padding-top: 120px;
-  padding-bottom: 120px;
-  margin-top: 100px;
-  height: 100vh;
-  background-color: #000;
-}
-
-.crds-styles .explore-content #super-margin {
-  margin-top:330px;
-}
-
-
-@media only screen and (max-width:768px) {
-
-  .crds-styles .explore-content h1 {
-    font-size: 700%;
-    line-height: 0.8em;
-  }
-  .crds-styles .explore-content h4 {
-    font-size: 700%;
-    line-height: 0.8em;
-  }
-  .crds-styles .explore-content p {
-    font-size: 16px;
-  }
-
-  .crds-styles .explore-content .vertical-centered  {
-    position: absolute;
-    left: 50%;
-    top: 1%;
-    transform: translate(-50%,1%);
-    width: 100%;
-  }
-
-  .crds-styles .explore-content #super-margin {
-    margin-top:0px;
-  }
-}
-
-@media only screen and (min-width:420px) and (max-width:768) {
-  .crds-styles .explore-content .vertical-centered  {
-    position: absolute;
-    left: 50%;
-    top: 1%;
-    transform: translate(-50%,1%);
-    width: 100%;
-  }
-}
-
-@media (min-width:768px) and (max-width:992) {
-  .crds-styles .explore-content #explore3 .copy {
-    margin-top: 50px;
-  }
-}
-
-@media only screen and (max-width:991px) {
-  .crds-styles .explore-content #religion {
-    margin-top: 0px;
-    height: auto;
-    background-color: #000;
-  }
-
-  .crds-styles .explore-content .vertical-centered  {
-    position: absolute;
-    left: 50%;
-    top: .5%;
-    transform: translate(-50%,.5%);
-    width: 100%;
-  }
-}
-
 /* Hubspot Form Styling */
 body .hs-button.primary,
 body input[type="submit"],
@@ -113,7 +13,8 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
   margin-bottom: 5px;
   font-family: "acumin-pro",helvetica,arial,sans-serif;
 }
-.hs-form input {
+
+[data-role="hs-form"] input {
   display: block;
   width: 100%;
   height: 42px;
@@ -127,18 +28,19 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
   border-radius: 0;
   margin-bottom: 15px;
 }
-.hs-form input:focus:required:invalid {
+
+[data-role="hs-form"] input:focus:required:invalid {
   border-color: #d96f62;
 }
 
-.hs-form .hs-form-field > label {
+[data-role="hs-form"] .hs-form-field > label {
   font-size: .9375rem;
   text-transform: uppercase;
   font-weight: 500;
   color: #979797;
   font-family: "acumin-pro",helvetica,arial,sans-serif;
 }
-.hs-form .hs-error-msgs label{
+[data-role="hs-form"] .hs-error-msgs label{
   color: #d96f62;
   text-align: left;
   font-family: "lexia",serif;
@@ -149,18 +51,18 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
   padding-top: 8px;
   list-style: none;
 }
-.hs-form .hs-error-msgs {
+[data-role="hs-form"] .hs-error-msgs {
   list-style: none;
   margin-bottom: 5px;
   padding-left: 0px;
 }
-.hs-form .hs-error-msgs li {
+[data-role="hs-form"] .hs-error-msgs li {
   padding-left: 0px;
 }
-.hs-form > .form-columns-2 {
+[data-role="hs-form"] > .form-columns-2 {
   max-width: inherit;
 }
-.hs-form select.hs-input {
+[data-role="hs-form"] select.hs-input {
   display: block;
   width: 100%;
   height: 42px;
@@ -179,23 +81,6 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
-/* Tabs - Hover Text color */
-#give-more >.nav-tabs>li:not(.active)>a:hover {
-    color: #fff;
-}
-
-/* GO Trips map */
-
-.crds-styles > #trips-map {
-  width: 98%;
-  min-height: 330px;
-  height: 330px;
-  position: absolute;
-  overflow: hidden;
-  color: black;
-}
-@media only screen and (min-width:420px) and (max-width:768) {
-  .crds-styles > #trips-map  {
-    width: 92%;
-  }
+input.hs-input {
+  width: 100% !important;
 }
