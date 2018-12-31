@@ -1,10 +1,10 @@
 import { Formatter } from '../../Formatter'
-//import { callbackify } from 'util';
-//promosByLocation class
 
 export class PromosByLocation{
     storePromosByLocation(response){
         const itemList = response.items;
+        this._audience_list = [];
+        //this._audience_count = 0;
 
         for (let i = 0; i < itemList.length; i++){
             let promo = new PromoModel(itemList[i]);
@@ -33,9 +33,14 @@ export class PromosByLocation{
 
             if(this[curAudience] === undefined){
                 this[curAudience] = [];
+                this._audience_list.push(curAudience);
             }
             this[curAudience].push(promo);
         }
+    }
+
+    get audienceList(){
+        return this._audience_list;
     }
 }
 

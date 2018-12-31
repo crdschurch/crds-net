@@ -1,10 +1,10 @@
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 
 describe('Testing the Happenings section on the Homepage without filtering', function() {
-    //let promos;
+    let promoList;
     before(function() {
-        //const content = new ContentfulApi();
-        //promos = content.retrievePromosByLocation();
+        const content = new ContentfulApi();
+        promoList = content.retrievePromosByLocation();
 
         cy.visit('/');
     })
@@ -14,8 +14,20 @@ describe('Testing the Happenings section on the Homepage without filtering', fun
     })
 
     it('Tests user can filter by any Target Audience', function(){
+        assert.isAbove(promoList.audienceList.length, 0, 'Sanity check: Promos have at least one target audience');
+
+        cy.get('[data-automation-id="happenings-dropdown"]').as('promoFilter');
+        //MAy not like this
+        cy.get('[data-automation-id="happenings-dropdown"]').find('[data-filter-select]').then($audienceList => {
+            expect($audienceList).lengthOf(promoList.audienceList.length);
+        })
         //get list of expected target audiences
         //make sure all are listed infilter
+
+        //For each audience, find it in the filter list
+        promoList.audienceList.forEach(a =>{
+            cy.get('@promoFilter').find(`[data-filter-select="${a}"]`).should('exist');
+        })
     })
 })
 
