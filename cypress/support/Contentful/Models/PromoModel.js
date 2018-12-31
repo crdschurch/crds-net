@@ -1,7 +1,7 @@
 import { Formatter } from '../../Formatter'
 
-export class PromosByLocation{
-    storePromosByLocation(response){
+export class PromosByAudience{
+    storePromosByAudience(response){
         const itemList = response.items;
         this._audience_list = [];
         //this._audience_count = 0;
@@ -15,8 +15,12 @@ export class PromosByLocation{
         }
     }
 
-    getPromosSortedByDate(promoName){
-        const list = this[promoName];
+    getPromoList(audience){
+        return this[audience];
+    }
+
+    getPromoListSortedByDate(audience){
+        const list = this[audience];
         if(list === undefined){
             return;
         }

@@ -1,6 +1,13 @@
 import { Formatter } from './Formatter'
 
 export class ElementValidator {
+    static elementHasText(element, text){
+        element.should('be.visible')
+        .then($elm =>{
+            expect($elm).to.have.text(text);
+        })
+    }
+
     static elementHasTextAndLink(element, text, link){
         element.should('be.visible')
         .then($elm =>{

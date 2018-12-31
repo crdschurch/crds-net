@@ -413,7 +413,7 @@ paginate:
 <section class="container">
   <h3 id="happening-filter-label" class="collection-header clearfix">happening at crossroads</h3>
   <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-filterable data-filter-label="Churchwide" data-filter-parent="#happening-filter-label" data-filter-reset-label="Churchwide">
-    <div id="section-what-s-happening" class="feature-cards">
+    <div id="section-what-s-happening" class="feature-cards" data-automation-id="happenings-cards">
       {% assign date_sorted_promos = site.promos | sort: "date" | reverse %}
       {% for item in date_sorted_promos %}
         {% include _promo-card.html %}
