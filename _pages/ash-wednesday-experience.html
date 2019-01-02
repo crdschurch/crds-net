@@ -1,171 +1,263 @@
 ---
-layout: container-fluid
+layout: no-header-no-footer
 title: Ash Wednesday Experience
 permalink: /ash-wednesday-experience/
 ---
-
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <svg viewBox="0 0 32 32" id="home2">
+      <path stroke="#449FDB" d="M0 0"></path>
+      <path d="M32 19l-6-6V4h-4v5l-6-6L0 19v1h4v10h10v-6h4v6h10V20h4z"></path>
+    </svg></defs>
+</svg>
 <div class="ash-wednesday" plangular="https://soundcloud.com/crdschurch/ash-wednesday-experience-2016">
-<div class="navbar-fixed-top ash-wednesday-menu">
-<div class="container">
-<div class="row">
-<div class="col-xs-10 push-top mobile-push-half-top"><a href="/" class="fade-fast push-half-right block pull-left" ng-click="pause()"> <svg viewbox="0 0 32 32" class="icon home2 icon-xlarge"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#home2"> </use></svg></a> <a href="#" ng-click="playPause()" class="fade-fast ash-audio ash-audio-controls push-half-right block pull-left" style="display: none;"> <svg ng-if="player.playing === track.src" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewbox="0 0 32 32"><path d="M12.542 2.458c0.802-0.802 1.458-0.53 1.458 0.604v25.875c0 1.134-0.656 1.406-1.458 0.604l-7.542-7.542h-5v-12h5l7.542-7.542zM30 19.348v2.652h-2.652l-3.348-3.348-3.348 3.348h-2.652v-2.652l3.348-3.348-3.348-3.348v-2.652h2.652l3.348 3.348 3.348-3.348h2.652v2.652l-3.348 3.348z" fill="#000000"></path></svg><svg ng-if="player.playing !== track.src" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="32" viewbox="0 0 30 32"><g>  </g><path d="M13.714 6.286v19.429q0 0.464-0.339 0.804t-0.804 0.339-0.804-0.339l-5.946-5.946h-4.679q-0.464 0-0.804-0.339t-0.339-0.804v-6.857q0-0.464 0.339-0.804t0.804-0.339h4.679l5.946-5.946q0.339-0.339 0.804-0.339t0.804 0.339 0.339 0.804zM20.571 16q0 1.357-0.759 2.527t-2.009 1.67q-0.179 0.089-0.446 0.089-0.464 0-0.804-0.33t-0.339-0.813q0-0.375 0.214-0.634t0.518-0.446 0.607-0.411 0.518-0.634 0.214-1.018-0.214-1.018-0.518-0.634-0.607-0.411-0.518-0.446-0.214-0.634q0-0.482 0.339-0.813t0.804-0.33q0.268 0 0.446 0.089 1.25 0.482 2.009 1.661t0.759 2.536zM25.143 16q0 2.732-1.518 5.045t-4.018 3.366q-0.232 0.089-0.446 0.089-0.482 0-0.821-0.339t-0.339-0.804q0-0.696 0.696-1.054 1-0.518 1.357-0.786 1.321-0.964 2.063-2.42t0.741-3.098-0.741-3.098-2.063-2.42q-0.357-0.268-1.357-0.786-0.696-0.357-0.696-1.054 0-0.464 0.339-0.804t0.804-0.339q0.232 0 0.464 0.089 2.5 1.054 4.018 3.366t1.518 5.045zM29.714 16q0 4.107-2.268 7.545t-6.036 5.063q-0.232 0.089-0.464 0.089-0.464 0-0.804-0.339t-0.339-0.804q0-0.643 0.696-1.054 0.125-0.071 0.402-0.188t0.402-0.188q0.821-0.446 1.464-0.911 2.196-1.625 3.429-4.054t1.232-5.161-1.232-5.161-3.429-4.054q-0.643-0.464-1.464-0.911-0.125-0.071-0.402-0.188t-0.402-0.188q-0.696-0.411-0.696-1.054 0-0.464 0.339-0.804t0.804-0.339q0.232 0 0.464 0.089 3.768 1.625 6.036 5.063t2.268 7.545z" fill="#000000"></path></svg></a> <a href="{{track.permalink_url}}" target="_blank" class="ash-audio ash-info block pull-left" tooltip-placement="bottom" tooltip="Audio by crdschurch on Soundcloud" style="display: none;"> <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewbox="0 0 32 32" class="icon icon-large"><path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM14 6h4v4h-4v-4zM20 26h-8v-2h2v-8h-2v-2h6v10h2v2z" fill="#000000"></path></svg></a></div>
+  <div class="navbar-fixed-top ash-wednesday-menu">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-10 push-top mobile-push-half-top"><a href="/" class="fade-fast push-half-right block pull-left"
+            ng-click="pause()"> <svg viewbox="0 0 32 32" class="icon home2 icon-xlarge">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#home2"> </use>
+            </svg></a> <a href="#" ng-click="playPause()" class="fade-fast ash-audio ash-audio-controls push-half-right block pull-left"
+            style="display: none;"> <svg ng-if="player.playing === track.src" version="1.1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewbox="0 0 32 32">
+              <path d="M12.542 2.458c0.802-0.802 1.458-0.53 1.458 0.604v25.875c0 1.134-0.656 1.406-1.458 0.604l-7.542-7.542h-5v-12h5l7.542-7.542zM30 19.348v2.652h-2.652l-3.348-3.348-3.348 3.348h-2.652v-2.652l3.348-3.348-3.348-3.348v-2.652h2.652l3.348 3.348 3.348-3.348h2.652v2.652l-3.348 3.348z"
+                fill="#000000"></path>
+            </svg><svg ng-if="player.playing !== track.src" version="1.1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="32" viewbox="0 0 30 32">
+              <g>  </g>
+              <path d="M13.714 6.286v19.429q0 0.464-0.339 0.804t-0.804 0.339-0.804-0.339l-5.946-5.946h-4.679q-0.464 0-0.804-0.339t-0.339-0.804v-6.857q0-0.464 0.339-0.804t0.804-0.339h4.679l5.946-5.946q0.339-0.339 0.804-0.339t0.804 0.339 0.339 0.804zM20.571 16q0 1.357-0.759 2.527t-2.009 1.67q-0.179 0.089-0.446 0.089-0.464 0-0.804-0.33t-0.339-0.813q0-0.375 0.214-0.634t0.518-0.446 0.607-0.411 0.518-0.634 0.214-1.018-0.214-1.018-0.518-0.634-0.607-0.411-0.518-0.446-0.214-0.634q0-0.482 0.339-0.813t0.804-0.33q0.268 0 0.446 0.089 1.25 0.482 2.009 1.661t0.759 2.536zM25.143 16q0 2.732-1.518 5.045t-4.018 3.366q-0.232 0.089-0.446 0.089-0.482 0-0.821-0.339t-0.339-0.804q0-0.696 0.696-1.054 1-0.518 1.357-0.786 1.321-0.964 2.063-2.42t0.741-3.098-0.741-3.098-2.063-2.42q-0.357-0.268-1.357-0.786-0.696-0.357-0.696-1.054 0-0.464 0.339-0.804t0.804-0.339q0.232 0 0.464 0.089 2.5 1.054 4.018 3.366t1.518 5.045zM29.714 16q0 4.107-2.268 7.545t-6.036 5.063q-0.232 0.089-0.464 0.089-0.464 0-0.804-0.339t-0.339-0.804q0-0.643 0.696-1.054 0.125-0.071 0.402-0.188t0.402-0.188q0.821-0.446 1.464-0.911 2.196-1.625 3.429-4.054t1.232-5.161-1.232-5.161-3.429-4.054q-0.643-0.464-1.464-0.911-0.125-0.071-0.402-0.188t-0.402-0.188q-0.696-0.411-0.696-1.054 0-0.464 0.339-0.804t0.804-0.339q0.232 0 0.464 0.089 3.768 1.625 6.036 5.063t2.268 7.545z"
+                fill="#000000"></path>
+            </svg></a> <a href="{{track.permalink_url}}" target="_blank" class="ash-audio ash-info block pull-left"
+            tooltip-placement="bottom" tooltip="Audio by crdschurch on Soundcloud" style="display: none;"> <svg version="1.1"
+              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32"
+              viewbox="0 0 32 32" class="icon icon-large">
+              <path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM14 6h4v4h-4v-4zM20 26h-8v-2h2v-8h-2v-2h6v10h2v2z"
+                fill="#000000"></path>
+            </svg></a></div>
+      </div>
+    </div>
+  </div>
+  <div class="fp-wrapper" style="opacity: 0;">
+    <div id="fullpage">
+      <div class="section" id="section0" style="background-image: url(&#039;https://crds-cms-uploads.imgix.net/content/images/justconcrete-light.jpg&#039;);">
+        <div class="vertical-center">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                <div class="ash-wednesday-intro soft-ends">
+                  <div class="row"><img data-src="https://crds-cms-uploads.imgix.net/content/images/Ashes.png" class="img-responsive imgix-fluid col-sm-10 col-sm-offset-1"
+                      alt="" title=""></div>
+                  <h1 class="text-uppercase brand-font"><span>Ash</span> Wednesday</h1>
+                  <p>Welcome to the Crossroads Ash Wednesday Experience. During your time here today, we hope that you
+                    have a tangible and sincere connection with God.</p>
+                  <p>Before we begin, find a quiet place (get out of your normal environment, if possible). Grab a
+                    piece of paper and something to write with.</p>
+                  <p class="push-top"><a href="#" ng-click="play()" class="btn btn-primary opening-scroll-down">BEGIN
+                      <!--<svg viewBox="0 0 32 32" class="icon icon-arrow-down9 icon-large"><use xlink:href="#arrow-down9"></use></svg>--></a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section" id="section1" style="background-image: url(&#039;https://crds-cms-uploads.imgix.net/content/images/darkconcrete.jpg&#039;);">
+        <div class="slide" id="slide1">
+          <div class="vertical-center">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                  <h2>Take a Moment</h2>
+                  <p>You may be in a hurry, or you may feel tense. Maybe you erupted in anger at the person who cut you
+                    off on the highway, or you left home or work stressed about finances or a hard conversation that
+                    needs to happen. Take a deep breath, sit back, and listen to the music. In our hurried and busy
+                    lives, we sometimes miss the quiet and still moments that culminate in hearing from God. Take a few
+                    minutes and when you begin to feel ready to engage with God, read on.</p>
+                  <p>
+                    <btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide" id="slide2">
+          <div class="vertical-center">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                  <h2>So what is Ash Wednesday?</h2>
+                  <p>Ash Wednesday has been a practice of many Christians for centuries, that marks the beginning of
+                    the lenten season which serves as a reminder of the 40 days that Jesus spent fasting and praying in
+                    the desert. <strong>It represents a celebration and reminder of our human mortality, but more
+                      importantly a time of humility and repentance to God.</strong> This is often represented in a
+                    “mark the moment” practice of priests placing ashes on people’s foreheads (often in the shape of a
+                    cross) and reciting a short prayer over them. To some people, it has become more of a ritual or a
+                    way to “check the box of going to church”, than an actual statement of change or repentance.
+                    <strong>We don’t want you to check the box today.</strong></p>
+                  <p>
+                    <btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide" id="slide3">
+          <div class="vertical-center">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                  <h2>What does it mean to repent?</h2>
+                  <p>When we hear the word repentance, we typically think of it as an act of regret or remorse. In the
+                    New Testament, the word usually translated to “repent” is the Greek word, “metanoeo” which means
+                    “to reconsider, think differently, or change your mind”. <strong>So when we repent, we are changing
+                      our minds about our current actions and deciding to go a different way: towards God and away from
+                      sin.</strong></p>
+                  <p>
+                    <btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide" id="slide4">
+          <div class="vertical-center">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                  <h2>Take a moment to read Psalm 51</h2>
+                  <p><em> Have mercy on me, O God, according to your unfailing love;<br> according to your great
+                      compassion blot out my transgressions.<br> Wash away all my iniquity and cleanse me from my sin.
+                    </em></p>
+                  <p><em> Create in me a pure heart, O God, and renew a steadfast spirit within me.<br> Do not cast me
+                      from your presence or take your Holy Spirit from me. </em></p>
+                  <p>
+                    <btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide" id="slide5">
+          <div class="vertical-center">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                  <h2>Act of Repentance</h2>
+                  <p>That was the prayer David, a guy who followed God a long time ago, prayed to God after he had done
+                    some pretty major mistakes. We all have things in our lives that we struggle with or are likely not
+                    proud of. <strong>Take a few minutes and ask God if there’s anything in your life he’d like you to
+                      repent, or turn away from.</strong> Your mind might wander to a particular part of your life or
+                    relationship. Whatever it is, just go with it. Give the benefit of the doubt to God–and choose to
+                    believe those thoughts are His way of talking to you. <strong>Whatever comes to mind, write down on
+                      your piece of paper.</strong></p>
+                  <p>
+                    <btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide" id="slide6">
+          <div class="vertical-center">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                  <h2>The Good News</h2>
+                  <p>When God judges us, He doesn’t do it with a wagging finger and a disapproving look–He course
+                    corrects us because He loves us. He’s shining a light on an area of our lives, for which He has a
+                    better plan. David, the guy who wrote the prayer we read earlier described God’s judgements as
+                    being sweet, like honey.</p>
+                  <p>
+                    <btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide" id="slide7">
+          <div class="vertical-center">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                  <h2><em>Psalm 19:7-11</em></h2>
+                  <p><em> The law of the Lord is perfect, reviving the soul; the testimony of the Lord is sure, making
+                      wise the simple; the precepts of the Lord are right, rejoicing the heart; the commandment of the
+                      Lord is pure, enlightening the eyes; the fear of the Lord is clean, enduring forever; the rules
+                      of the Lord are true, and righteous altogether. More to be desired are they than gold, even much
+                      fine gold; sweeter also than honey and drippings of the honeycomb. Moreover, by them is your
+                      servant warned; in keeping them there is great reward. </em></p>
+                  <p><strong> The idea of repentance isn’t to sit around feeling guilty, or beat ourselves up–it’s an
+                      interaction with a loving and caring Father with good plans in store for His children. </strong></p>
+                  <p>
+                    <btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide" id="slide8">
+          <div class="vertical-center">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                  <p><strong> When you are ready to turn away from the things you’ve written down, destroy the paper.
+                      Stand up and shred it, burn it (safely), or take your pen and fully blot out the things you
+                      wrote. </strong></p>
+                  <p>Now, read this blessing:</p>
+                  <p><em> Ashes to ashes, dust to dust. Just as your sin is dead to Christ, so you can live in newness
+                      with Christ. </em></p>
+                  <p>You don't need to receive actual ash on your forehead to be forgiven. You are forgiven just by
+                    asking.</p>
+                  <p>Take a breath. Stand up. Get back to your day.</p>
+                  <p>
+                    <btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide" id="slide9">
+          <div class="vertical-center">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                  <h2>What Now?</h2>
+                  <p>We don’t have to wait for Ash Wednesday each year to repent. You can talk to God everyday and ask
+                    him to steer your life away from the things that are harmful and toward the things that are sweet.</p>
+                  <p>An easy way for us to connect with God is through reading how other people, like David, connected
+                    with God in the Bible—and through prayer. If that sounds intimidating, consider engaging with God
+                    through The Daily for the next 40 days leading to Easter. The Daily is an electronic tool that
+                    helps you interact with the Bible and prayer, delivered directly to your email address. It’s able
+                    to be completed in just 15 minutes each day and follows a simple format of reading, reaction and
+                    response.</p>
+                  <p><a href="/thedaily/" class="btn btn-standard btn-xs ss-broken">Sign up for The Daily</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-<div class="fp-wrapper" style="opacity: 0;">
-<div id="fullpage">
-<div class="section" id="section0" style="background-image: url(&#039;https://crds-cms-uploads.imgix.net/content/images/justconcrete-light.jpg&#039;);">
-<div class="vertical-center">
-<div class="container">
-<div class="row">
-<div class="col-sm-6 col-sm-offset-3 col-xs-12">
-<div class="ash-wednesday-intro soft-ends">
-<div class="row"><img data-src="https://crds-cms-uploads.imgix.net/content/images/Ashes.png" class="img-responsive imgix-fluid col-sm-10 col-sm-offset-1" alt="" title=""></div>
-<h1 class="text-uppercase brand-font"><span>Ash</span> Wednesday</h1>
-<p>Welcome to the Crossroads Ash Wednesday Experience. During your time here today, we hope that you have a tangible and sincere connection with God.</p>
-<p>Before we begin, find a quiet place (get out of your normal environment, if possible). Grab a piece of paper and something to write with.</p>
-<p class="push-top"><a href="#" ng-click="play()" class="btn btn-primary opening-scroll-down">BEGIN<!--<svg viewBox="0 0 32 32" class="icon icon-arrow-down9 icon-large"><use xlink:href="#arrow-down9"></use></svg>--></a></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="section1" style="background-image: url(&#039;https://crds-cms-uploads.imgix.net/content/images/darkconcrete.jpg&#039;);">
-<div class="slide" id="slide1">
-<div class="vertical-center">
-<div class="container">
-<div class="row">
-<div class="col-sm-6 col-sm-offset-3 col-xs-12">
-<h2>Take a Moment</h2>
-<p>You may be in a hurry, or you may feel tense. Maybe you erupted in anger at the person who cut you off on the highway, or you left home or work stressed about finances or a hard conversation that needs to happen. Take a deep breath, sit back, and listen to the music. In our hurried and busy lives, we sometimes miss the quiet and still moments that culminate in hearing from God. Take a few minutes and when you begin to feel ready to engage with God, read on.</p>
-<p><btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="slide" id="slide2">
-<div class="vertical-center">
-<div class="container">
-<div class="row">
-<div class="col-sm-6 col-sm-offset-3 col-xs-12">
-<h2>So what is Ash Wednesday?</h2>
-<p>Ash Wednesday has been a practice of many Christians for centuries, that marks the beginning of the lenten season which serves as a reminder of the 40 days that Jesus spent fasting and praying in the desert. <strong>It represents a celebration and reminder of our human mortality, but more importantly a time of humility and repentance to God.</strong> This is often represented in a “mark the moment” practice of priests placing ashes on people’s foreheads (often in the shape of a cross) and reciting a short prayer over them. To some people, it has become more of a ritual or a way to “check the box of going to church”, than an actual statement of change or repentance. <strong>We don’t want you to check the box today.</strong></p>
-<p><btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="slide" id="slide3">
-<div class="vertical-center">
-<div class="container">
-<div class="row">
-<div class="col-sm-6 col-sm-offset-3 col-xs-12">
-<h2>What does it mean to repent?</h2>
-<p>When we hear the word repentance, we typically think of it as an act of regret or remorse. In the New Testament, the word usually translated to “repent” is the Greek word, “metanoeo” which means “to reconsider, think differently, or change your mind”. <strong>So when we repent, we are changing our minds about our current actions and deciding to go a different way: towards God and away from sin.</strong></p>
-<p><btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="slide" id="slide4">
-<div class="vertical-center">
-<div class="container">
-<div class="row">
-<div class="col-sm-6 col-sm-offset-3 col-xs-12">
-<h2>Take a moment to read Psalm 51</h2>
-<p><em> Have mercy on me, O God, according to your unfailing love;<br> according to your great compassion blot out my transgressions.<br> Wash away all my iniquity and cleanse me from my sin. </em></p>
-<p><em> Create in me a pure heart, O God, and renew a steadfast spirit within me.<br> Do not cast me from your presence or take your Holy Spirit from me. </em></p>
-<p><btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="slide" id="slide5">
-<div class="vertical-center">
-<div class="container">
-<div class="row">
-<div class="col-sm-6 col-sm-offset-3 col-xs-12">
-<h2>Act of Repentance</h2>
-<p>That was the prayer David, a guy who followed God a long time ago, prayed to God after he had done some pretty major mistakes. We all have things in our lives that we struggle with or are likely not proud of. <strong>Take a few minutes and ask God if there’s anything in your life he’d like you to repent, or turn away from.</strong> Your mind might wander to a particular part of your life or relationship. Whatever it is, just go with it. Give the benefit of the doubt to God–and choose to believe those thoughts are His way of talking to you. <strong>Whatever comes to mind, write down on your piece of paper.</strong></p>
-<p><btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="slide" id="slide6">
-<div class="vertical-center">
-<div class="container">
-<div class="row">
-<div class="col-sm-6 col-sm-offset-3 col-xs-12">
-<h2>The Good News</h2>
-<p>When God judges us, He doesn’t do it with a wagging finger and a disapproving look–He course corrects us because He loves us. He’s shining a light on an area of our lives, for which He has a better plan. David, the guy who wrote the prayer we read earlier described God’s judgements as being sweet, like honey.</p>
-<p><btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="slide" id="slide7">
-<div class="vertical-center">
-<div class="container">
-<div class="row">
-<div class="col-sm-6 col-sm-offset-3 col-xs-12">
-<h2><em>Psalm 19:7-11</em></h2>
-<p><em> The law of the Lord is perfect, reviving the soul; the testimony of the Lord is sure, making wise the simple; the precepts of the Lord are right, rejoicing the heart; the commandment of the Lord is pure, enlightening the eyes; the fear of the Lord is clean, enduring forever; the rules of the Lord are true, and righteous altogether. More to be desired are they than gold, even much fine gold; sweeter also than honey and drippings of the honeycomb. Moreover, by them is your servant warned; in keeping them there is great reward. </em></p>
-<p><strong> The idea of repentance isn’t to sit around feeling guilty, or beat ourselves up–it’s an interaction with a loving and caring Father with good plans in store for His children. </strong></p>
-<p><btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="slide" id="slide8">
-<div class="vertical-center">
-<div class="container">
-<div class="row">
-<div class="col-sm-6 col-sm-offset-3 col-xs-12">
-<p><strong> When you are ready to turn away from the things you’ve written down, destroy the paper. Stand up and shred it, burn it (safely), or take your pen and fully blot out the things you wrote. </strong></p>
-<p>Now, read this blessing:</p>
-<p><em> Ashes to ashes, dust to dust. Just as your sin is dead to Christ, so you can live in newness with Christ. </em></p>
-<p>You don't need to receive actual ash on your forehead to be forgiven. You are forgiven just by asking.</p>
-<p>Take a breath. Stand up. Get back to your day.</p>
-<p><btn class="btn btn-standard btn-xs move-right capitalize">CONTINUE</btn></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="slide" id="slide9">
-<div class="vertical-center">
-<div class="container">
-<div class="row">
-<div class="col-sm-6 col-sm-offset-3 col-xs-12">
-<h2>What Now?</h2>
-<p>We don’t have to wait for Ash Wednesday each year to repent. You can talk to God everyday and ask him to steer your life away from the things that are harmful and toward the things that are sweet.</p>
-<p>An easy way for us to connect with God is through reading how other people, like David, connected with God in the Bible—and through prayer. If that sounds intimidating, consider engaging with God through The Daily for the next 40 days leading to Easter. The Daily is an electronic tool that helps you interact with the Bible and prayer, delivered directly to your email address. It’s able to be completed in just 15 minutes each day and follows a simple format of reading, reaction and response.</p>
-<p><a href="/thedaily/" class="btn btn-standard btn-xs ss-broken">Sign up for The Daily</a></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><p><link rel="stylesheet" href="https://crossroads-media.s3.amazonaws.com/documents/ash-wednesday/ash-core.css"></p><script type="text/javascript">// <![CDATA[
-$(document).ready(function() {
+<p>
+  <link rel="stylesheet" href="https://crossroads-media.s3.amazonaws.com/documents/ash-wednesday/ash-core.css">
+</p>
+<script type="text/javascript">// <![CDATA[
+  $(document).ready(function () {
     $('#fullpage').fullpage({
       'verticalCentered': false,
       slidesNavigation: true,
       controlArrows: false,
-      afterLoad: function(anchorLink, index){
-				//console.log("afterLoad--" + "anchorLink: " + anchorLink + " index: " + index );
+      afterLoad: function (anchorLink, index) {
+        //console.log("afterLoad--" + "anchorLink: " + anchorLink + " index: " + index );
         if (index == 2) {
           $(".ash-audio").show();
           //$(".ash-audio-controls").trigger( "click" );
@@ -173,7 +265,7 @@ $(document).ready(function() {
           $.fn.fullpage.setAllowScrolling(true);
         }
       },
-      afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
+      afterSlideLoad: function (anchorLink, index, slideAnchor, slideIndex) {
         //console.log("afterSlideLoad--" + "anchorLink: " + anchorLink + " index: " + index + " slideAnchor: " + slideAnchor + " slideIndex: " + slideIndex);
         if (slideIndex == 7) {
           $(".fp-controlArrow.fp-next").hide();
@@ -183,11 +275,11 @@ $(document).ready(function() {
       },
     });
 
-    $(".opening-scroll-down").click(function() {
-        $.fn.fullpage.moveTo(2, 0);
+    $(".opening-scroll-down").click(function () {
+      $.fn.fullpage.moveTo(2, 0);
     });
 
-    $(".move-right").click(function() {
+    $(".move-right").click(function () {
       $.fn.fullpage.moveSlideRight();
     });
 

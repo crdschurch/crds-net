@@ -63,4 +63,4 @@ $('#myTabs a[href="#overview"]').tab('show') // Select tab by name
 $('#myTabs a[href="#itinerary"]').tab('show') // Select tab by name
 $('#myTabs a[href="#lodging"]').tab('show') // Select tab by name
 $('#myTabs a[href="#partner"]').tab('show') // Select tab by name
-$('[data-toggle=tab]').on('shown.bs.tab', function (event) { imgix.fluid(); });
+$('[data-toggle=tab]').on('shown.bs.tab', function (event) { imgix.init(); });
