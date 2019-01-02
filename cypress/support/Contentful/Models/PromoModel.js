@@ -4,7 +4,6 @@ export class PromosByAudience{
     storePromosByAudience(response){
         const itemList = response.items;
         this._audience_list = [];
-        //this._audience_count = 0;
 
         for (let i = 0; i < itemList.length; i++){
             let promo = new PromoModel(itemList[i]);
@@ -19,14 +18,20 @@ export class PromosByAudience{
         return this[audience];
     }
 
-    getPromoListSortedByDate(audience){
+    getPromoListSortedByDateThenTitle(audience){
         const list = this[audience];
         if(list === undefined){
             return;
         }
-
+        Formatter.formatDateIgnoringTimeZone
         const sortedPromos = list.sort((a,b) => {
-            return (new Date(b.publishedAt) - new Date(a.publishedAt));
+            let aPublishedDate = Formatter.formatDateIgnoringTimeZone(a.publishedAt, 'MM.DD.YYYY');
+            let bPublishedDate = Formatter.formatDateIgnoringTimeZone(b.publishedAt, 'MM.DD.YYYY');
+
+            let diff = (new Date(bPublishedDate) - new Date(aPublishedDate))
+            if(diff === 0)
+                diff = a.title.localeCompare(b.title);
+            return diff;
         })
         return sortedPromos;
     }
