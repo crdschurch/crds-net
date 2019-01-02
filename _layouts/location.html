@@ -8,158 +8,28 @@ layout: default
 
 {% if page.title == "Andover" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSc_tN4sn2STiUwDuAj2kkvD586-gE6Ztp5MI7es6D46hx1zyQ/viewform" %}
-{% capture sun_time %}11:00am{% endcapture %}
-{% capture mon_time %}1:00pm<br />3:00pm{% endcapture %}
 {% elsif page.title == "Dayton" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScA4hpYfwYROgpwQs1iDelr5nahobys0SuK_Tm8cfOANTR-Dg/viewform" %}
-{% capture sun_time %}9:15am<br />11:00am{% endcapture %}
-{% capture mon_time %}3:00pm{% endcapture %}
 {% elsif page.title == "Downtownlex" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSeyqUR1KRRQnQJDSdX3cPgzfHgXKNK18ABzk2Cl6g99jtRrsA/viewform" %}
 {% elsif page.title == "Eastside" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScMpEO29vIDaUMuQkjlu-Jcf6II8jL4JG-wyLFA5yKBBCWWDA/viewform" %}
-{% capture sat_time %}5:30pm{% endcapture %}
-{% capture sun_time %}9:00am<br />11:00am{% endcapture %}
-{% capture mon_time %}11:00am<br />1:00pm{% endcapture %}
 {% elsif page.title == "Florence" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSfo2ywXjTQuxNUx5uIa7T3n2K_rZ9rWc2F_3CJCM4x8dMvN3w/viewform" %}
-{% capture sat_time %}5:30pm{% endcapture %}
-{% capture sun_time %}9:30am<br />11:30am{% endcapture %}
-{% capture mon_time %}1:00pm<br />3:00pm{% endcapture %}
 {% elsif page.title == "Georgetown" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSf1VIGPA3qcmjtXb2JG4tCz-LhwoLNPDjPloHLTJ-72u15HQw/viewform" %}
-{% capture sun_time %}9:15am<br />11:00am{% endcapture %}
-{% capture mon_time %}3:00pm{% endcapture %}
 {% elsif page.title == "Mason" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSctEwPK6JmDtzB6iN4J4a2cSUWme4BeefEHr2xzqTYorQBr7Q/viewform" %}
-{% assign ticket_instructions = true %}
-{% capture sat_time %}
-4pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a><br />
-6pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a>
-{% endcapture %}
-{% capture sun_time %}
-9:15am - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a><br />
-11:15am - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a>
-{% endcapture %}
-{% capture mon_time %}
-11am - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a><br />
-1pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a><br />
-3pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-mason-2018" class="btn-link text-white">Get tickets</a>
-{% endcapture %}
 {% elsif page.title == "Oakley" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSdjDSPZQil5lZAipQnodua9xaj0zhrgI1fl0lt6dC2617AJPw/viewform" %}
-{% assign ticket_instructions = true %}
-{% capture sat_time %}
-3pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a><br />
-5pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a>
-{% endcapture %}
-{% capture sun_time %}
-9:30am - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a><br />
-11:30am - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a>
-{% endcapture %}
-{% capture mon_time %}
-1pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a><br />
-3pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a><br />
-5pm - <a href="http://www.showclix.com/event/christmas-at-crossroads-oakley-2018" class="btn-link text-white">Get tickets</a>
-{% endcapture %}
 {% elsif page.title == "Oxford" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSc_zIJaeQHa7H5ZfkSgrNxzjZb6-2Liycyf5P9hYkuK4BRqrQ/viewform" %}
 {% elsif page.title == "Richmond" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSegG0d3hMLUpQL-_m65FHG1tniT2TtRODEPQtegPl76qnAq7A/viewform" %}
-{% capture sun_time %}9:15am<br />11:00am{% endcapture %}
-{% capture mon_time %}3:00pm{% endcapture %}
 {% elsif page.title == "Uptown" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScTectxJ6mKo-UvZVv4Av8Q5kWkTZZypAGdqLldnR50hYnWGA/viewform" %}
-{% capture sun_time %}9:30am<br />11:00am{% endcapture %}
-{% capture mon_time %}3:30pm<br />5:00pm{% endcapture %}
 {% elsif page.title == "Westside" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSdbCAA4ZqkefkWXOd5zl_B8t8fewruAhfaEXoKUoW9sgt8QGg/viewform" %}
-{% capture sat_time %}5:30pm{% endcapture %}
-{% capture sun_time %}9:15am<br />11:00am{% endcapture %}
-{% capture mon_time %}2:00pm<br />4:00pm{% endcapture %}
-{% endif %}
-
-
-<!-- Christmas Banner -->
-{% if sun_time %}
-<div class="jumbotron inline-video jumbotron-md flush-bottom" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-christmas-drummer-bg-img.jpg');">
-  <div class="inline-video-player"></div>
-  <div class="jumbotron-content">
-    <div class="container-fluid">
-      <div class="row soft-sides">
-        <div class="col-sm-6 col-sm-offset-3">
-          <img data-src="https://crds-cms-uploads.imgix.net/content/images/crossroads-christmas-logo.png" class="img-responsive"
-            data-optimize-img />
-        </div>
-      </div>
-      <div class="row push-ends soft-ends">
-        <div class="col-sm-12 push-ends soft-ends">
-          <a href="#" class="inline-video-trigger push-ends soft-ends" data-video-id="Lj6aqj5dpQw"></a>
-        </div>
-      </div>
-      <div class="row soft-sides push-top soft-top">
-        <div class="col-sm-8 col-sm-offset-2 push-half-top">
-          <p>Feel the wonder of Christmas in a completely new way. This hour-long service includes fully immersive
-            teaching and music that reminds you why Christmas is the ultimate season of hope. Watch the trailer above
-            to get a sneak peek.</p>
-          {% if page.title == "Georgetown" %}
-            <span class="font-size-small">Kids' Club (not childcare) will be available for birth through Preschool</span><br>
-            {% else %}
-              <span class="font-size-small">(No childcare, but your kids will love it.)</span><br>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<section style="background-color:#970111;">
-  <div class="container soft">
-    <div class="row push-ends">
-      <div class="col-sm-4 soft-sides">
-        <h2 class="component-header text-white flush-top">{{ page.name }} Service Times</h2>
-        {% if ticket_instructions %}
-          <p class="text-white">In order to ensure a great experience for all, please get a general admission ticket for yourself and anyone else attending with you.
-          We'd hate to be a scrooge and not have enough seats for everyone!<br />
-            <a href="https://www.crossroads.net/christmasatcrossroadsfaqs" class="text-white underline">View the FAQs</a>
-          </p>
-        {% endif %}
-        <a href="{{ page.map_url }}" class="btn btn-outline btn-white push-half-right text-white" target="_blank">Get
-          directions</a>
-      </div>
-      <div class="col-sm-8 soft-sides">
-        <div class="row">
-          {% if sat_time %}
-          <div class="col-sm-4">
-            <p class="font-size-base text-white"><strong>Saturday, December 22</strong><br />
-              {{ sat_time }}
-            </p>
-          </div>
-          <div class="col-sm-4">
-            <p class="font-size-base text-white"><strong>Sunday, December 23</strong><br />
-              {{ sun_time }}
-            </p>
-          </div>
-          <div class="col-sm-4">
-            <p class="font-size-base text-white"><strong>Monday, December 24</strong><br />
-              {{ mon_time }}
-            </p>
-          </div>
-          {% else %}
-          <div class="col-sm-6">
-            <p class="font-size-base text-white"><strong>Sunday, December 23</strong><br />
-              {{ sun_time }}
-            </p>
-          </div>
-          <div class="col-sm-6">
-            <p class="font-size-base text-white"><strong>Monday, December 24</strong><br />
-              {{ mon_time }}
-            </p>
-          </div>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-</section>
 {% endif %}
 
 <!-- Jumbotron section -->
@@ -175,31 +45,6 @@ layout: default
       <br>{{ page.name | downcase }}</h2>
     {% if location_happenings.size > 0 %}
     <br />
-    <!-- signup link -->
-    {% if page.title == "Andover" %}
-    {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=25699" %}
-    {% elsif page.title == "Dayton" %}
-    {% assign suts_link = "https://docs.google.com/forms/d/e/1FAIpQLSd_VVtsnA1nhLhH7b-q_Xrx--apCLSbheTKWptMdIF34WOQRQ/viewform" %}
-    {% elsif page.title == "Eastside" %}
-    {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33528" %}
-    {% elsif page.title == "Florence" %}
-    {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?start_over&id=33547" %}
-    {% elsif page.title == "Georgetown" %}
-    {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33714" %}
-    {% elsif page.title == "Mason" %}
-    {% assign suts_link = "https://www.crossroads.net/sign-up/masonchristmasvolunteer" %}
-    {% elsif page.title == "Oakley" %}
-    {% assign suts_link = "http://crossroadsallothervolunteers.volunteerlocal.com/volunteer/?id=33749" %}
-    {% elsif page.title == "Richmond" %}
-    {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33684" %}
-    {% elsif page.title == "Uptown" %}
-    {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33682" %}
-    {% elsif page.title == "Westside" %}
-    {% assign suts_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=33513" %}
-    {% endif %}
-    {% if suts_link %}
-    <a class="btn btn-secondary push-half-sides" href="{{ suts_link }}">Sign up to serve for Christmas</a>
-    {% endif %}
     <a href="javascript:void(0)" class="btn btn-primary push-half-sides" data-smooth-scroll-to="happenings">See what's
       happening at {{ page.name | downcase }}</a>
     {% endif %}
