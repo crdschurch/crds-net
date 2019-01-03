@@ -56,3 +56,17 @@
     }
   }
 }
+
+#trips-map {
+  width: 98%;
+  min-height: 330px;
+  height: 330px;
+  position: absolute;
+  overflow: hidden;
+  color: black;
+}
+@media only screen and (min-width:420px) and (max-width:768) {
+  #trips-map  {
+    width: 92%;
+  }
+}
