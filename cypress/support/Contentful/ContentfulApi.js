@@ -40,7 +40,7 @@ export class ContentfulApi {
     }
 
     retrieveListOfMessages(numToStore) {
-        const messageList = [];
+        const messageList = []; //TODO give this it's own class like PromosByAudience
         cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=message&select=fields.title,fields.slug,fields.published_at,fields.image,fields.description&order=-fields.published_at`)
             .then((response) => {
                 const jsonResponse = JSON.parse(response.body);

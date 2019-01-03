@@ -14,6 +14,7 @@ export class SeriesModel {
         this._starts_at = rawCurSeries.fields.starts_at;
         this._ends_at = rawCurSeries.fields.ends_at;
         this._youtube_url = rawCurSeries.fields.youtube_url;
+        this._published_at = rawCurSeries.fields.published_at;
     }
 
     get title(){
@@ -42,6 +43,10 @@ export class SeriesModel {
 
     get endDate(){
         return this._ends_at;
+    }
+
+    get publishedAt(){
+        return this._published_at;
     }
 
     get youtubeURL(){

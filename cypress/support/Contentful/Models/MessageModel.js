@@ -1,12 +1,32 @@
-import { ParseAndSaveJSON } from '../ParseAndSaveJSON'
+import { ParseAndSaveJSON } from '../ParseAndSaveJSON';
+import { TextField } from '../Fields/TextField';
 
 export class MessageModel {
     storeLatestMessage(response) {
         const itemList = response.items;
-        const assetList = response.includes.Asset;
+        //const assetList = response.includes.Asset; //never used
 
-        ParseAndSaveJSON.storeStandardProperties(itemList[0], assetList, this);
-        this._published_at = itemList[0].fields.published_at
+        //WAS
+        //ParseAndSaveJSON.storeStandardProperties(itemList[0], assetList, this);
+        this._title = new TextField(itemList[0].fields.title);
+        this._title.required = true;
+
+        this._slug = new TextField(itemList[0].fields.slug);
+        this._slug.required = true;
+
+        //NOTE description is not required
+        this._description = new TextField(itemList[0].fields.description); //Formatter.normalizeText(itemList[0].fields.description);
+
+        //Save image information, if it should exist
+        if (itemList[0].fields.image){
+            this._imageId = itemList[0].fields.image.sys.id;
+        }
+
+        if (itemList[0].fields.background_image){
+            this._backgroundImageId = itemList[0].fields.background_image.sys.id;
+        }
+
+        this._published_at = itemList[0].fields.published_at;
     }
 
     get title() {

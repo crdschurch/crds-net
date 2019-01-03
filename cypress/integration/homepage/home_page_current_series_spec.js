@@ -7,7 +7,7 @@ describe("Testing the Current Series on the Homepage", function () {
         const content = new ContentfulApi();
         currentSeries = content.retrieveCurrentSeries();
         cy.visit('/');
-
+//TODO wait for current series to return?
     })
 
     it('Tests current series title, description, and image', function(){

@@ -6,7 +6,7 @@ export class LocationModel {
             let loc = new LocationModel();
             loc._name = itemList[i].fields.name;
             loc._slug = itemList[i].fields.slug;
-            loc._imageId = itemList[i].fields.image.sys.id
+            loc._imageId = itemList[i].fields.image.sys.id;
             locationList.push(loc);
         }
     }

@@ -22,8 +22,5 @@
             "error",
             "always"
         ]
-    },
-    "plugins": [
-        "cypress"
-    ]
+    }
 }

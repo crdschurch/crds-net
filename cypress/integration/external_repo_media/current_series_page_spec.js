@@ -1,6 +1,6 @@
 import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
 
-describe("Tesing the Media/Series/[Current Series] page", function(){
+describe('Tesing the Media/Series/[Current Series] page', function(){
     let currentSeries;
     before(function() {
         currentSeries = new ContentfulApi().retrieveCurrentSeries();
@@ -8,8 +8,8 @@ describe("Tesing the Media/Series/[Current Series] page", function(){
         //Wait for response before navigating
         cy.wrap({currentSeries}).its('currentSeries.slug').should('not.be.undefined').then(() => {
             cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}`);
-        })
-    })
+        });
+    });
 
     it('Tests the image and background image match their entries in Contentful', function() {
         cy.get('.jumbotron').find('img').then(($jumbotronForeground) => {
@@ -19,7 +19,7 @@ describe("Tesing the Media/Series/[Current Series] page", function(){
             if (currentSeries.imageId !== undefined){
                 expect($jumbotronForeground).to.have.attr('src').contains(currentSeries.imageId);
             }
-        })
+        });
 
         cy.get('.jumbotron').then(($jumbotronBackground) => {
             expect($jumbotronBackground).to.be.visible;
@@ -29,6 +29,6 @@ describe("Tesing the Media/Series/[Current Series] page", function(){
             } else if (currentSeries.imageId !== undefined){
                 expect($jumbotronBackground.find('div')).to.have.attr('style').contains(currentSeries.imageId);
             }
-        })
-    })
-})
+        });
+    });
+});

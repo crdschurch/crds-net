@@ -23,7 +23,7 @@ export class PromosByAudience{
         if(list === undefined){
             return;
         }
-        Formatter.formatDateIgnoringTimeZone
+
         const sortedPromos = list.sort((a,b) => {
             let aPublishedDate = Formatter.formatDateIgnoringTimeZone(a.publishedAt, 'MM.DD.YYYY');
             let bPublishedDate = Formatter.formatDateIgnoringTimeZone(b.publishedAt, 'MM.DD.YYYY');

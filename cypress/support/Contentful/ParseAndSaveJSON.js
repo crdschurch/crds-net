@@ -1,6 +1,8 @@
 import { Formatter } from '../Formatter'
 
 export class ParseAndSaveJSON {
+
+    //TODO get rid fo this
     //Stores title, slug, description, image and background image ids (if content has images)
     static storeStandardProperties(jsonObject, assetList, saveObject){
         saveObject._title = jsonObject.fields.title;

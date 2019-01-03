@@ -1,4 +1,4 @@
-const moment = require('moment');
+const moment = require('moment'); //TODO cypress already has this - update and uninstall this dependency https://docs.cypress.io/api/utilities/moment.html#Syntax
 const removeMarkdown = require('remove-markdown');
 
 export class Formatter {
@@ -13,7 +13,7 @@ export class Formatter {
 
     static normalizeText(rawString){
         if (rawString == undefined) {
-            return undefined;
+            return '';
         }
 
         let cleanString = removeMarkdown(rawString);
