@@ -51,14 +51,14 @@ paginate:
       <div class="media featured">
         <div class="media-body">
           <h5 class="component-header flush-ends">
-            <a href="/live/stream/" data-automation-id="message-title">{{ messages.title }}</a>
+            <a href="/live/stream/" data-automation-id="live-message-title">{{ messages.title }}</a>
           </h5>
-          <div class="soft-quarter-top font-size-small flush-bottom" data-automation-id="message-description">
+          <div class="soft-quarter-top font-size-small flush-bottom" data-automation-id="live-message-description">
             Join the live stream hourly, on the hour, from 8am-10pm (EST).
           </div>
-          <a href="/live/stream/" class="btn btn-primary btn-sm push-half-top" data-automation-id="watch-message-button">Watch now</a>
+          <a href="/live/stream/" class="btn btn-primary btn-sm push-half-top" data-automation-id="live-watch-message-button">Watch now</a>
         </div>
-        <a href="/live/stream/" class="push-half-bottom" data-automation-id="message-video">
+        <a href="/live/stream/" class="push-half-bottom" data-automation-id="live-message-video">
             <img class="img-responsive" src="//crds-cms-uploads.imgix.net/content/images/crossroads-live-stream-CTA2.jpg" data-optimize-img />
             <p class="live-cta bg-charcoal display-table soft-half-sides soft-quarter-ends text-white"><span class="push-quarter-right">LIVE</span><span class="live-dot"></span></p>
         </a>
@@ -109,13 +109,13 @@ paginate:
       <div class="media featured">
         <div class="media-body">
           <h5 class="component-header flush-ends">
-            <a href="{{ series.url | media_url }}">{{ series.title }}</a>
+            <a href="{{ series.url | media_url }}" data-automation-id="series-title">{{ series.title }}</a>
           </h5>
-          <div class="soft-quarter-top font-size-smaller flush-bottom">
+          <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="series-description">
             {{ series.description | markdownify | strip_html | truncatewords: 15 }}
           </div>
         </div>
-        <a href="{{ series.url | media_url }}" class="push-half-bottom">
+        <a href="{{ series.url | media_url }}" class="push-half-bottom" data-automation-id="series-image">
           <img class="media-img" src="{{ series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
         </a>
       </div>
@@ -263,13 +263,13 @@ paginate:
             <div class="col-sm-4 col-sm-offset-2 text-right hidden-xs soft-sides">
               <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
               <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]">Watch the latest service</a>
+              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]" data-automation-id="watch-series-button">Watch the latest service</a>
             </div>
 
             <div class="col-sm-4 col-sm-offset-2 text-center visible-xs soft-sides push-bottom">
               <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
               <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]">Watch the latest service</a>
+              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]" data-automation-id="mobile-watch-series-button">Watch the latest service</a>
             </div>
 
             <div class="col-sm-4 text-left soft-sides hidden-xs border-left">
@@ -413,11 +413,14 @@ paginate:
 <section class="container">
   <h3 id="happening-filter-label" class="collection-header clearfix">happening at crossroads</h3>
   <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-filterable data-filter-label="Churchwide" data-filter-parent="#happening-filter-label" data-filter-reset-label="Churchwide">
-    <div id="section-what-s-happening" class="feature-cards">
-      {% assign date_sorted_promos = site.promos | sort: "date" | reverse %}
-      {% for item in date_sorted_promos %}
-        {% include _promo-card.html %}
-      {% endfor %}
+    <div id="section-what-s-happening" class="feature-cards" data-automation-id="happenings-cards">
+        {% assign date_sorted_promos = site.promos | sort: 'date' | reverse | group_by: 'date' %}
+        {% for date_group in date_sorted_promos %}
+          {% assign name_sorted_promos = date_group.items | sort: 'title' %}
+          {% for item in name_sorted_promos %}
+            {% include _promo-card.html %}
+          {% endfor %}
+        {% endfor %}
     </div>
   </div>
 </section>

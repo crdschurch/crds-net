@@ -1,0 +1,31 @@
+---
+layout: container-fluid
+title: Download Cards For Humanity
+permalink: /cardsforhumanity/download-cards-for-humanity/
+requires_auth: true
+---
+
+<div class="row">
+<div class="visible-xs"><img src="https://crds-cms-uploads.imgix.net/content/images/IAM-journey-crossroads-int-mobile.jpg" class="img-full-width" alt="" title="Crossroads Cards For Humanity"></div>
+<div class="visible-sm visible-md visible-lg"><img src="https://crds-cms-uploads.imgix.net/content/images/IAM-journey-crossroads-int-desktop.jpg" class="img-full-width" alt="" title="Crossroads Cards For Humanity"></div>
+<div class="row">
+<div class="container">
+<div class="col-md-offset-2 col-md-8 iam-journey">
+<h2 class="text-center">Download cards for Humanity</h2>
+<p></p>
+<p><iframe id="hidden_iframe" name="hidden_iframe" width="320" height="240" style="display: none;" window="" location="https://crds-cms-uploads.s3.amazonaws.com/cardsforhumanity.pdf"></iframe></p>
+<div class="text-center push-bottom"><form action="https://docs.google.com/forms/d/e/1FAIpQLSdMXIz4DenPXFn-sw3qSfnz5Bb2dWSAmyRHphsS1H4etDM9hA/formResponse" method="post" target="hidden_iframe">
+<div class="form-group hidden"><label for="exampleInputEmail1">Email address</label> <input name="entry.1505900563" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" value="{{email}}"></div>
+<button id="download-submit" type="submit" class="btn btn-default btn-lg">Download Now</button></form></div>
+</div>
+</div>
+</div>
+<div></div>
+</div><script type="text/javascript">// <![CDATA[
+var submitted=false;
+// ]]></script><script type="text/javascript">// <![CDATA[
+$( "#download-submit" ).click(function() {
+    submitted=true;
+    window.location='http://crds-cms-uploads.s3.amazonaws.com/cardsforhumanity.pdf';
+});
+// ]]></script>

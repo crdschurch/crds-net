@@ -85,14 +85,14 @@ permalink: /live/stream
                 <div class="card carousel-cell">
                   {% if item.link_url %}
                   <a href="{{ item.link_url }}" class="block">
-                    <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" 
+                    <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}"
                       sizes="{{ site.image_sizes.cards_4x }}"
                       alt="{{ item.title }}"
                       data-optimize-img>
                   </a>
                   {% else %}
                   <div class="block">
-                    <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" 
+                    <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}"
                       sizes="{{ site.image_sizes.cards_4x }}"
                       alt="{{ item.title }}"
                       data-optimize-img>
@@ -150,4 +150,4 @@ permalink: /live/stream
   </div>
 </div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.6.1/iframeResizer.min.js"></script>
-<script async type="text/javascript" src="{% asset views/live-stream.js @path %}"></script>
+{% javascript_link_tag live-stream async %}

@@ -126,7 +126,7 @@ CRDS.CardFilter = class CardFilter {
       el.classList.add('on');
     }
     if (imgix) {
-      imgix.fluid();
+      imgix.init();
     }
   }
 
