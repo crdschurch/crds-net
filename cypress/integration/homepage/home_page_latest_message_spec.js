@@ -2,44 +2,50 @@
 //@ts-check //TODO get this working
 
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
-import { ElementValidator } from '../../support/ElementValidator';
-import { ContentfulElementValidator } from '../../support/Cypress/ContentfulElementValidator';
-import { Formatter } from '../../support/Formatter';
+import { ContentfulElementValidator as Element } from '../../support/Cypress/ContentfulElementValidator';
+
+//TODO instead of "normalize" use plainText
+//TODO put test functions before tests
 
 describe('Testing the Latest Message on the Homepage', function () {
-    let latestMessage;
+    let currentMessage;
     let currentSeries;
     before(function () {
         const content = new ContentfulApi();
-        latestMessage = content.retrieveLatestMessage();
+        let messageList = content.retrieveListOfMessages(1);
         currentSeries = content.retrieveCurrentSeries();
+
+        cy.wrap({messageList}).its('messageList.latestMessage').should('not.be.undefined').then(() => {
+            currentMessage = messageList.latestMessage;
+            //TODO assert slugs are required
+        });
+
         cy.visit('/');
     });
 
-    it.only('Tests Current Message title, description, and image', function () {
-        //TODO assert slugs are required
-        const messageLink = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}/${latestMessage.slug.text}`;
+    it('Tests Current Message title, description, and image', function () {
+        let messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}/${currentMessage.slug.text}`;
+
         cy.get('[data-automation-id="message-title"]').as('title');
         cy.get('@title').should('be.visible');
-        ContentfulElementValidator.containsText(cy.get('@title'), latestMessage.title);
-        cy.get('@title').should('have.attr', 'href', messageLink);
+        Element.shouldContainText(cy.get('@title'), currentMessage.title);
+        cy.get('@title').should('have.attr', 'href', messageURL);
 
 
         cy.get('[data-automation-id="message-description"]').as('description');
         cy.get('@description').should('be.visible');
-        ContentfulElementValidator.containsText(cy.get('@description'), latestMessage.description);
+        Element.shouldContainText(cy.get('@description'), currentMessage.description);
 
         cy.get('[data-automation-id="message-video"]').as('video');
         cy.get('@video').should('be.visible');
-
-
-        //ElementValidator.elementHasImgixImageAndLink(cy.get('[data-automation-id="message-video"]'), latestMessage.imageId, messageLink);
+        cy.get('@video').should('have.attr', 'href', messageURL);
+        Element.shouldHaveImgixImage(cy.get('@video').find('img'), currentMessage.image);
     });
 
     it('Test "View latest now" button link', function () {
-        cy.get('[data-automation-id="watch-message-button"]').should('be.visible')
-            .then(($messageButton) => {
-                expect($messageButton).to.have.attr('href').contains(latestMessage.slug);
-            });
+        let seriesURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}`;
+        cy.get('[data-automation-id="watch-message-button"]').as('watchMessageButton');
+        cy.get('@watchMessageButton').should('be.visible');
+        cy.get('@watchMessageButton').should('have.attr', 'href', seriesURL);
     });
 });

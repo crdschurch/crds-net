@@ -1,4 +1,4 @@
-import { Formatter } from '../../Formatter'
+import { Formatter } from '../../Formatter';
 
 export class PromosByAudience{
     storePromosByAudience(response){
@@ -12,6 +12,10 @@ export class PromosByAudience{
                 this._addPromoToAudienceLists(promo.target_audience, promo);
             }
         }
+    }
+
+    get audienceList(){
+        return this._audience_list;
     }
 
     getPromoList(audience){
@@ -28,11 +32,11 @@ export class PromosByAudience{
             let aPublishedDate = Formatter.formatDateIgnoringTimeZone(a.publishedAt, 'MM.DD.YYYY');
             let bPublishedDate = Formatter.formatDateIgnoringTimeZone(b.publishedAt, 'MM.DD.YYYY');
 
-            let diff = (new Date(bPublishedDate) - new Date(aPublishedDate))
+            let diff = (new Date(bPublishedDate) - new Date(aPublishedDate));
             if(diff === 0)
                 diff = a.title.localeCompare(b.title);
             return diff;
-        })
+        });
         return sortedPromos;
     }
 
@@ -46,10 +50,6 @@ export class PromosByAudience{
             }
             this[curAudience].push(promo);
         }
-    }
-
-    get audienceList(){
-        return this._audience_list;
     }
 }
 

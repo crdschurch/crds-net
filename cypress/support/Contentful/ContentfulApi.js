@@ -1,5 +1,5 @@
 import { LocationModel } from './Models/LocationModel';
-import { MessageModel } from './Models/MessageModel';
+import { MessageModel, MessageList } from './Models/MessageModel';
 import { SeriesModel } from './Models/SeriesModel';
 import { PromosByAudience } from './Models/PromoModel';
 
@@ -8,6 +8,7 @@ import { PromosByAudience } from './Models/PromoModel';
 * Therefore, it is recommended that these methods are called in a before/beforeEach clause to allow more time for data retrieval.
 */
 export class ContentfulApi {
+    //TODO add waits before returning for all these - but check run times before to make sure they don't bottleneck
     retrieveLocations() {
         const locationList = [];
         cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=location&select=fields.name,fields.slug,fields.image`)
@@ -29,6 +30,7 @@ export class ContentfulApi {
     }
 
     //Note: The order messages are retrieved here and what's displayed on the site are not guaranteed to be the same if the "published at" date is the same (time is ignored)
+    //TODO remove this
     retrieveLatestMessage() {
         let messageModel = new MessageModel();
         cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=message&select=fields.title,fields.slug,fields.published_at,fields.image,fields.description&order=-fields.published_at`)
@@ -40,12 +42,13 @@ export class ContentfulApi {
     }
 
     retrieveListOfMessages(numToStore) {
-        const messageList = []; //TODO give this it's own class like PromosByAudience
+        //const messageList = []; //TODO give this it's own class like PromosByAudience
+        const messageList = new MessageList();
         cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=message&select=fields.title,fields.slug,fields.published_at,fields.image,fields.description&order=-fields.published_at`)
             .then((response) => {
                 const jsonResponse = JSON.parse(response.body);
-                MessageModel.createListOfMessages(jsonResponse, numToStore, messageList);
-            })
+                messageList.createListOfMessages(jsonResponse, numToStore);
+            });
         return messageList;
     }
 
