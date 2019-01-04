@@ -58,7 +58,11 @@ module CRDS
       end
 
       def get_title(page, site)
-        ::Utils::HtmlUtil.get_title(page['title'], site['title'])
+        if page['meta']
+          page['meta']['title'].to_s.strip
+        else
+         ::Utils::HtmlUtil.get_title(page['title'], site['title'])
+        end
       end
 
     end
