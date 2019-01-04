@@ -1,5 +1,6 @@
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 import { Formatter } from '../../support/Formatter'
+import { ElementValidator } from '../../support/ElementValidator'
 
 describe('Testing the Current Series on the Live page', function () {
     let currentSeries;
@@ -20,20 +21,11 @@ describe('Testing the Current Series on the Live page', function () {
             expect($textBlock.find('[data-automation-id="series-description"]')).to.be.visible;
         })
 
-        cy.get('[data-automation-id="series-description"]').should('have.prop', 'textContent').then(($text) =>{
-            expect(Formatter.normalizeText($text)).to.equal(currentSeries.description);
-        })
+        ElementValidator.elementContainsSubstringOfText(cy.get('[data-automation-id="series-description"]'), currentSeries.description);
     })
 
     it('Tests Current Series image', function(){
-        cy.get('[data-automation-id="series-image"]').then(($imageBlock) => {
-            expect($imageBlock).to.be.visible;
-
-            if (currentSeries.imageId !== undefined){
-                expect($imageBlock).to.have.attr('srcset'); //If fails, image was not found
-                expect($imageBlock).to.have.attr('src').contains(currentSeries.imageId);
-            }
-        })
+        ElementValidator.elementHasImgixImage(cy.get('[data-automation-id="series-image"]'), currentSeries.imageId);
     })
 
     it(`Tests Current Series' "Watch Trailer" button and youtube modal, if series has trailer`, function () {

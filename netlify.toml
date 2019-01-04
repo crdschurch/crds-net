@@ -6,22 +6,26 @@
     ./bin/netlify-redirector &&
     bundle exec jekyll crds &&
     bundle exec jekyll contentful -f &&
-    bundle exec jekyll build -- --cloudsearch &&
+    bundle exec jekyll build -- --update-search-index &&
     bash ./cypress/kickOffCypress.sh
   '''
 
 [context.branch-deploy.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
   CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
+  CRDS_GROUP_LEADER_DOMAIN = "group-leader.netlify.com"
 
 [context.deploy-preview.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
   CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
+  CRDS_GROUP_LEADER_DOMAIN = "dev-group-leader.netlify.com"
 
 [context.development.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
   CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
+  CRDS_GROUP_LEADER_DOMAIN = "dev-group-leader.netlify.com"
 
 [context.master.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-prod.netlify.com"
   CRDS_MAP_DOMAIN = "crds-map-prod.netlify.com"
+  CRDS_GROUP_LEADER_DOMAIN = "demo-group-leader.netlify.com"
