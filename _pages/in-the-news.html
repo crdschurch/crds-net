@@ -245,7 +245,7 @@ permalink: /inthenews/
         $('#myTabs a[href="#asset"]').tab('show') // Select tab by name
         $('#myTabs a[href="#others"]').tab('show') // Select tab by name
         $('[data-toggle=tab]').on('shown.bs.tab', function (event) {
-            imgix.fluid();
+            imgix.init();
         });
     }
 </script>
