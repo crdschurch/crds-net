@@ -1,4 +1,4 @@
 [submodule "_pages"]
 	path = _pages
-	url = git@github.com:crdschurch/crds-net-shared.git
+	url = https://github.com/crdschurch/crds-net.git
 	branch = _pages
