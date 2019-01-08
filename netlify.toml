@@ -1,7 +1,7 @@
 # default build settings for int, preview deploys etc
 [build]
   command = '''
-    git submodule foreach --recursive git pull &&
+    cd _pages && git pull origin _pages &&  cd ../ &&
     bundle exec rspec &&
     ./bin/contentful-redirects &&
     ./bin/netlify-redirector &&
