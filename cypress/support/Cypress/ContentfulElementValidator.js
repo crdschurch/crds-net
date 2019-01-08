@@ -3,9 +3,17 @@ import { Formatter } from '../Formatter';
 
 export class ContentfulElementValidator{
     static shouldContainText(element, textFieldObject){
-        if(textFieldObject.required || textFieldObject.hasContent){
+        if(textFieldObject.isRequiredOrHasContent){
             element.should('have.prop', 'textContent').then($elementText => {
                 expect(Formatter.normalizeText($elementText)).to.contain(textFieldObject.normalized);
+            });
+        }
+    }
+
+    static shouldMatchSubsetOfText(element, textFieldObject){
+        if(textFieldObject.isRequiredOrHasContent){
+            element.should('have.prop', 'textContent').then($elementText => {
+                expect(textFieldObject.normalized).to.contain(Formatter.normalizeText($elementText));
             });
         }
     }
@@ -14,7 +22,7 @@ export class ContentfulElementValidator{
         element.then($img => {
             expect($img).to.have.attr('srcset'); //If this fails, Imgix was not run
 
-            if(imageFieldObject.required || imageFieldObject.hasContent){
+            if(imageFieldObject.isRequiredOrHasContent){
                 expect($img).to.have.attr('src').contains(imageFieldObject.id);
             }
         });

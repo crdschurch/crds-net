@@ -1,6 +1,6 @@
 import { LocationModel } from './Models/LocationModel';
 import { MessageModel, MessageList } from './Models/MessageModel';
-import { SeriesModel } from './Models/SeriesModel';
+import { SeriesModel, SeriesManager } from './Models/SeriesModel';
 import { PromosByAudience } from './Models/PromoModel';
 
 /*
@@ -15,31 +15,33 @@ export class ContentfulApi {
             .then((response) => {
                 const jsonResponse = JSON.parse(response.body);
                 LocationModel.createListOfLocations(jsonResponse, locationList);
-            })
+            });
         return locationList;
     }
 
-    retrieveCurrentSeries() {
-        let currentSeries = new SeriesModel();
+    retrieveSeriesManager() {
+        const seriesManager = new SeriesManager();
+        //let currentSeries = new SeriesModel();
         cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=series&select=fields.title,fields.slug,fields.published_at,fields.starts_at,fields.ends_at,fields.youtube_url,fields.image,fields.background_image,fields.description&order=-fields.starts_at`)
             .then((response) => {
                 const jsonResponse = JSON.parse(response.body);
-                currentSeries.storeCurrentSeries(jsonResponse);
+                seriesManager.findCurrentSeries(jsonResponse);
             });
-        return currentSeries;
+
+        return seriesManager;
     }
 
     //Note: The order messages are retrieved here and what's displayed on the site are not guaranteed to be the same if the "published at" date is the same (time is ignored)
     //TODO remove this
-    retrieveLatestMessage() {
-        let messageModel = new MessageModel();
-        cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=message&select=fields.title,fields.slug,fields.published_at,fields.image,fields.description&order=-fields.published_at`)
-            .then((response) => {
-                const jsonResponse = JSON.parse(response.body);
-                messageModel.storeLatestMessage(jsonResponse);
-            })
-        return messageModel;
-    }
+    // retrieveLatestMessage() {
+    //     let messageModel = new MessageModel();
+    //     cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=message&select=fields.title,fields.slug,fields.published_at,fields.image,fields.description&order=-fields.published_at`)
+    //         .then((response) => {
+    //             const jsonResponse = JSON.parse(response.body);
+    //             messageModel.storeLatestMessage(jsonResponse);
+    //         })
+    //     return messageModel;
+    // }
 
     retrieveListOfMessages(numToStore) {
         //const messageList = []; //TODO give this it's own class like PromosByAudience
@@ -58,7 +60,7 @@ export class ContentfulApi {
             .then((response) => {
                 const jsonResponse = JSON.parse(response.body);
                 promosByAudience.storePromosByAudience(jsonResponse);
-            })
+            });
         return promosByAudience;
     }
 }

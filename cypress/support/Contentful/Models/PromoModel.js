@@ -52,7 +52,7 @@ export class PromosByAudience{
         }
     }
 }
-
+//TODO convert this and make sure the DateField does what we want.
 export class PromoModel {
     constructor(responseItem){
         this._title = responseItem.fields.title;

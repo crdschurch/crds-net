@@ -1,5 +1,5 @@
-import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
-import { ElementValidator } from '../../support/ElementValidator';
+import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
+import { ContentfulElementValidator as Element } from '../../support/Cypress/ContentfulElementValidator';
 
 describe('Testing the Latest Message on the Live page', function () {
     let messageList;
@@ -11,10 +11,6 @@ describe('Testing the Latest Message on the Live page', function () {
             cy.visit('live');
             //TODO assert slugs are required
         });
-    });
-
-    it.only('experimental', function(){
-
     });
 
     it('Tests Past Weekend section displays 4 messages', function(){
@@ -46,15 +42,15 @@ describe('Testing the Latest Message on the Live page', function () {
         cy.get('@currentCard').then(($cardContent) => {
             expect($cardContent).to.be.visible;
             expect($cardContent.find('[data-automation-id="recent-message-image"]')).to.have.attr('src')
-                .contains(messageList[index].image.id);
+                .contains(messageList.message(index).image.id);
             expect($cardContent.find('[data-automation-id="recent-message-image"]')).to.have.attr('alt')
-                .contains(messageList[index].title.text);
+                .contains(messageList.message(index).title.text);
 
             expect($cardContent.find('[data-automation-id="recent-message-image-link"]')).to.have.attr('href')
-                .contains(messageList[index].slug.text);
-            expect($cardContent.find('[data-automation-id="recent-message-title"]')).to.have.text(messageList[index].title.text);
+                .contains(messageList.message(index).slug.text);
+            expect($cardContent.find('[data-automation-id="recent-message-title"]')).to.have.text(messageList.message(index).title.text);
         });
 
-        ElementValidator.elementContainsSubstringOfText(cy.get('@currentCard').find('[data-automation-id="recent-message-description"]'), messageList[index].description);
+        Element.shouldContainText(cy.get('@currentCard').find('[data-automation-id="recent-message-description"]'), messageList.message(index).description.text);
     }
 });

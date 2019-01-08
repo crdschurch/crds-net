@@ -18,4 +18,8 @@ export class ContentfulField {
     get hasContent(){
         return this._has_content;
     }
+
+    get isRequiredOrHasContent(){
+        return this.required || this._has_content;
+    }
 }

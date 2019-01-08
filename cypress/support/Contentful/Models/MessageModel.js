@@ -1,4 +1,3 @@
-//import { ParseAndSaveJSON } from '../ParseAndSaveJSON';
 import { TextField } from '../Fields/TextField';
 import { ImageField } from '../Fields/ImageField';
 import { DateField } from '../Fields/DateField';
@@ -7,13 +6,10 @@ export class MessageList {
     createListOfMessages(response, numToStore) {
         const itemList = response.items;
         numToStore = itemList.length < numToStore ? itemList.length : numToStore;
-        //const assetList = response.includes.Asset;
         this._message_list = [];
 
         for (let i = 0; i < numToStore; i++) {
-            let msg = new MessageModel(itemList[i]);
-            //ParseAndSaveJSON.storeStandardProperties(itemList[i], assetList, msg);
-            //msg._published_at = itemList[i].fields.published_at;
+            let msg = new MessageModel(itemList[i].fields);
             this._message_list.push(msg);
         }
 
@@ -31,34 +27,18 @@ export class MessageList {
 
 export class MessageModel {
     constructor(responseItem) {
-        //const itemList = responseItem.items;
-        //const assetList = response.includes.Asset; //never used
-
-        //WAS
-        //ParseAndSaveJSON.storeStandardProperties(itemList[0], assetList, this);
-        this._title = new TextField(responseItem.fields.title);
+        this._title = new TextField(responseItem.title);
         this._title.required = true;
 
-        this._slug = new TextField(responseItem.fields.slug);
+        this._slug = new TextField(responseItem.slug);
         this._slug.required = true;
 
-        //NOTE description is not required
-        this._description = new TextField(responseItem.fields.description); //Formatter.normalizeText(itemList[0].fields.description);
-
-        //Save image information, if it should exist
-        this._image = new ImageField(responseItem.fields.image);
-        this._background_image = new ImageField(responseItem.fields.background_image);
-
-        // if (itemList[0].fields.image){
-        //     this._imageId = itemList[0].fields.image.sys.id;
-        // }
-
-        // if (itemList[0].fields.background_image){
-        //     this._backgroundImageId = itemList[0].fields.background_image.sys.id;
-        // }
-
-        this._published_at = new DateField(responseItem.fields.published_at);
+        this._published_at = new DateField(responseItem.published_at);
         this._published_at.required = true;
+
+        this._description = new TextField(responseItem.description);
+        this._image = new ImageField(responseItem.image);
+        this._background_image = new ImageField(responseItem.background_image);
     }
 
     get title() {
@@ -81,27 +61,7 @@ export class MessageModel {
         return this._background_image;
     }
 
-    // get imageId(){
-    //     return this._imageId;
-    // }
-
-    // get backgroundImageId(){
-    //     return this._backgroundImageId;
-    // }
-
     get publishedAt() {
         return this._published_at;
     }
-
-    // static createListOfMessages(response, numToStore, messageList=[]) {
-    //     const itemList = response.items;
-    //     const assetList = response.includes.Asset;
-
-    //     for (let i = 0; i < numToStore; i++) {
-    //         let msg = new MessageModel();
-    //         ParseAndSaveJSON.storeStandardProperties(itemList[i], assetList, msg);
-    //         msg._published_at = itemList[i].fields.published_at;
-    //         messageList.push(msg);
-    //     }
-    // }
 }

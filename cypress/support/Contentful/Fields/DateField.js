@@ -17,4 +17,8 @@ export class DateField extends ContentfulField {
 
         return this._date_no_zone;
     }
+
+    get formattedDateNoZone(){
+        return Cypress.moment(this.dateIgnoreTimeZone).format('MM.DD.YYYY');
+    }
 }
