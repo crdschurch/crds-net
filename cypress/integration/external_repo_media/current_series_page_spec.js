@@ -1,7 +1,7 @@
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../support/Cypress/ContentfulElementValidator';
 
-describe('Tesing the Media/Series/[Current Series] page', function(){
+describe('Tesing the Media/Series/[Current Series] page:', function(){
     let currentSeries;
     before(function() {
         const seriesList = new ContentfulApi().retrieveSeriesManager();
@@ -13,7 +13,7 @@ describe('Tesing the Media/Series/[Current Series] page', function(){
         });
     });
 
-    it('Tests the image and background image match their entries in Contentful', function() {
+    it('The jumbotron image and background image should match Contentful', function() {
         cy.get('.jumbotron').as('jumbotron');
 
         //Current series image

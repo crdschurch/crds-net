@@ -1,7 +1,7 @@
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../support/Cypress/ContentfulElementValidator';
 
-describe('Testing the Latest Message on the Live page', function () {
+describe('Testing the Past Weekends section on the Live page:', function () {
     let messageList;
     before(function () {
         const content = new ContentfulApi();
@@ -13,26 +13,26 @@ describe('Testing the Latest Message on the Live page', function () {
         });
     });
 
-    it('Tests Past Weekend section displays 4 messages', function(){
+    it('Four messages should be displayed', function(){
         cy.get('[data-automation-id="recent-message-card"]').then(($cardList) =>
         {
             expect($cardList).lengthOf(4);
         });
     });
 
-    it('Tests most recent message card in Past Weekend section (title, image, description, link)', function(){
+    it('Most recent message card should containtitle, image, description and link', function(){
         check_message_card_content_at_index(0);
     });
 
-    it('Tests second most recent message card in Past Weekend section (title, image, description, link)', function(){
+    it('Second most recent message card should containtitle, image, description and link', function(){
         check_message_card_content_at_index(1);
     });
 
-    it('Tests third most recent message card in Past Weekend section (title, image, description, link)', function(){
+    it('Third most recent message card should containtitle, image, description and link', function(){
         check_message_card_content_at_index(2);
     });
 
-    it('Tests fourth most recent message card in Past Weekend section (title, image, description, link)', function(){
+    it('Fourth most recent message card should containtitle, image, description and link', function(){
         check_message_card_content_at_index(3);
     });
 

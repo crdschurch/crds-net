@@ -1,7 +1,7 @@
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../support/Cypress/ContentfulElementValidator';
 
-describe('Testing the Current Series on the Live page', function () {
+describe('Testing the Current Series on the Live page:', function () {
     let currentSeries;
     before(function () {
         const content = new ContentfulApi();
@@ -15,7 +15,7 @@ describe('Testing the Current Series on the Live page', function () {
     });
 
     //DO NOT RUN in open mode - Causes Cypress to hang
-    it('Tests Current Series title, date, and description', function () {
+    it('Current Series title, date, and description should match Contentful', function () {
         cy.get('.current-series').as('currentSeriesBlock');
 
         cy.get('@currentSeriesBlock').find('[data-automation-id="series-title"]').as('currentSeriesTitle');
@@ -30,12 +30,12 @@ describe('Testing the Current Series on the Live page', function () {
         Element.shouldContainText(cy.get('@currentSeriesDescription'), currentSeries.description);
     });
 
-    it('Tests Current Series image', function(){
+    it('Current Series image should match Contentful', function(){
         cy.get('[data-automation-id="series-image"]').as('currentSeriesImage');
         Element.shouldHaveImgixImage(cy.get('@currentSeriesImage'), currentSeries.image);
     });
 
-    it('Tests Current Series "Watch Trailer" button and youtube modal, if series has trailer', function () {
+    it('"Watch Trailer" button should open a youtube modal, iff series has trailer', function () {
         //Test trailer button attributes
         if (!currentSeries.youtubeURL.hasContent){
             cy.get('[data-automation-id="series-youtube"]').should('not.exist');
@@ -45,7 +45,7 @@ describe('Testing the Current Series on the Live page', function () {
             cy.get('@trailerButton').should('have.attr', 'data-toggle', 'modal');
             cy.get('@trailerButton').should('have.attr', 'data-target', '#trailer-video-modal');
         }
-
+        //TODO wrap checks for current series youtube if youtubeurl exists
         //Test modal attributes
         cy.get('#trailer-video-modal').find('#modal-video-src').as('youtubeModal');
         cy.get('@youtubeModal').should('exist');

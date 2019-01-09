@@ -1,7 +1,7 @@
 import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../support/Cypress/ContentfulElementValidator';
 
-describe('Tesing the Current Series on the Media/Series page', function(){
+describe('Tesing the Current Series on the Media/Series page:', function(){
     let currentSeries;
     before(function() {
         const content = new ContentfulApi();
@@ -14,7 +14,7 @@ describe('Tesing the Current Series on the Media/Series page', function(){
     });
 
     //Note: this test is here for convenience but should really live with it's code in crds-media
-    it('Tests current series title, date range, and description', function(){
+    it('The Current series title, date range, and description should match Contentful', function(){
         cy.get('.current-series').as('currentSeriesBlock');
 
         cy.get('@currentSeriesBlock').find('h1').as('currentSeriesTitle');
@@ -29,14 +29,14 @@ describe('Tesing the Current Series on the Media/Series page', function(){
         Element.shouldContainText(cy.get('@currentSeriesDescription'), currentSeries.description);
     });
 
-    it('Tests current series image and image link', function(){
+    it('The current series image and image link should match Contentful', function(){
         cy.get('.current-series > div > a').as('currentSeriesImage');
         cy.get('@currentSeriesImage').should('be.visible').and('have.attr', 'href', `/series/${currentSeries.slug.text}`);
 
         Element.shouldHaveImgixImage(cy.get('@currentSeriesImage').find('img'), currentSeries.image);
     });
 
-    it('Tests the "View the series" button link', function () {
+    it('"View the series" button should link to the current series', function () {
         cy.contains('View the series').as('viewSeriesButton');
         cy.get('@viewSeriesButton').should('be.visible').and('have.attr', 'href', `/series/${currentSeries.slug.text}`);
     });

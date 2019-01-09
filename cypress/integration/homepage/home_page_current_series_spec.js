@@ -1,7 +1,7 @@
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../support/Cypress/ContentfulElementValidator';
 
-describe('Testing the Current Series on the Homepage', function () {
+describe('Testing the Current Series on the Homepage:', function () {
     let currentSeries;
     before(function () {
         const content = new ContentfulApi();
@@ -14,7 +14,7 @@ describe('Testing the Current Series on the Homepage', function () {
         cy.visit('/');
     });
 
-    it('Tests current series title, description, and image', function(){
+    it('Current series title, description, and image should match Contentful', function(){
         const seriesLink = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug.text}`;
 
         cy.get('[data-automation-id="series-title"]').as('seriesTitle');
@@ -29,7 +29,7 @@ describe('Testing the Current Series on the Homepage', function () {
         Element.shouldHaveImgixImage(cy.get('@seriesImage').find('img'), currentSeries.image);
     });
 
-    it('Tests Watch Latest Service button link', function(){
+    it.skip('"Watch Latest Service" button should link to the current series', function(){
         const seriesLink = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug.text}`;
 
         //Desktop version

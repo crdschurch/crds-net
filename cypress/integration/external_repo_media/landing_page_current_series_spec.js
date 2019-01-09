@@ -2,7 +2,7 @@ import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../support/Cypress/ContentfulElementValidator';
 
 
-describe('Testing the Current Series on the Media landing page', function(){
+describe('Testing the Current Series on the Media landing page:', function(){
     let currentSeries;
     before(function() {
         const content = new ContentfulApi();
@@ -15,7 +15,7 @@ describe('Testing the Current Series on the Media landing page', function(){
     });
 
     //Note: this test is here for convenience but should really live with it's code in crds-media
-    it('Tests current series title, title link, and description', function(){
+    it('The current series title, title link, and description should match Contentful', function(){
         cy.contains('series').parent().find('.featured > .media-body').as('seriesContent');
 
         cy.get('@seriesContent').find('.component-header > a').as('seriesTitle');
@@ -25,7 +25,7 @@ describe('Testing the Current Series on the Media landing page', function(){
         Element.shouldMatchSubsetOfText(cy.get('@seriesContent').find('div'), currentSeries.description);
     });
 
-    it('Tests current series image and image link', function(){
+    it('The current series image and image link should match Contentful', function(){
         cy.contains('series').parent().find('.featured > a').as('seriesImage');
 
         cy.get('@seriesImage').should('be.visible').and('have.attr', 'href', `/series/${currentSeries.slug.text}`);

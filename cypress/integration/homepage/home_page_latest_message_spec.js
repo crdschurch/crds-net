@@ -1,10 +1,7 @@
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../support/Cypress/ContentfulElementValidator';
 
-//TODO instead of "normalize" use plainText
-//TODO put test functions before tests
-
-describe('Testing the Latest Message on the Homepage', function () {
+describe('Testing the Current Message on the Homepage:', function () {
     let currentMessage;
     let currentSeries;
     let messageURL;
@@ -15,7 +12,6 @@ describe('Testing the Latest Message on the Homepage', function () {
 
         cy.wrap({messageList}).its('messageList.latestMessage').should('not.be.undefined').then(() => {
             currentMessage = messageList.latestMessage;
-            //TODO assert slugs are required
             cy.wrap({seriesManager}).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
                 currentSeries = seriesManager.currentSeries;
                 messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug.text}/${currentMessage.slug.text}`;
@@ -25,7 +21,7 @@ describe('Testing the Latest Message on the Homepage', function () {
         cy.visit('/');
     });
 
-    it('Tests Current Message title, description, and image', function () {
+    it('Current Message title, description, and image should match Contentful', function () {
         cy.get('[data-automation-id="message-title"]').as('title');
         cy.get('@title').should('be.visible');
         Element.shouldContainText(cy.get('@title'), currentMessage.title);
@@ -41,7 +37,7 @@ describe('Testing the Latest Message on the Homepage', function () {
         Element.shouldHaveImgixImage(cy.get('@video').find('img'), currentMessage.image);
     });
 
-    it('Test "View latest now" button link', function () {
+    it('"View latest now" button should link to the current message', function () {
         cy.get('[data-automation-id="watch-message-button"]').as('watchMessageButton');
         cy.get('@watchMessageButton').should('be.visible');
         cy.get('@watchMessageButton').should('have.attr', 'href', messageURL);
