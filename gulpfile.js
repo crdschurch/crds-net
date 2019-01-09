@@ -64,8 +64,8 @@ function jsDeps(done) {
     };
   });
 
-  return parallel(...tasks, parallelDone => {
-    parallelDone();
+  return series(...tasks, seriesDone => {
+    seriesDone();
     done();
   })();
 }
@@ -110,8 +110,8 @@ function jsBuild(done) {
     };
   });
 
-  return parallel(...tasks, parallelDone => {
-    parallelDone();
+  return series(...tasks, seriesDone => {
+    seriesDone();
     done();
   })();
 }
@@ -137,8 +137,8 @@ function jsConcat(done) {
     };
   });
 
-  return parallel(...tasks, parallelDone => {
-    parallelDone();
+  return series(...tasks, seriesDone => {
+    seriesDone();
     done();
   })();
 }
@@ -158,8 +158,8 @@ function jsClean(done) {
       return del(files);
     };
   });
-  return parallel(...tasks, parallelDone => {
-    parallelDone();
+  return series(...tasks, seriesDone => {
+    seriesDone();
     done();
   })();
 }
