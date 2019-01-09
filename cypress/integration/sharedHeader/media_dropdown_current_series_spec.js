@@ -10,7 +10,7 @@ describe("Testing the Current Series in the Shared Header/Media dropdown", funct
         cy.get('a[data-automation-id="sh-media"]').click();
     })
 
-    it('Tests Current Series image and link', function() {
+    it.skip('Tests Current Series image and link', function() {
         cy.get('li[data-automation-id="sh-currentseries"]').as('currentSeriesImage').should('be.visible');
 
         //Skip in demo - shared header points to prod
