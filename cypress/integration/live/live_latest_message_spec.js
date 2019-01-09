@@ -23,7 +23,7 @@ describe('Testing the Past Weekends section on the Live page:', function () {
         const content = new ContentfulApi();
         messageList = content.retrieveListOfMessages(5);
 
-        cy.wrap({messageList}).its('messageList.latestMessage').should('not.be.undefined').then(() => {
+        cy.wrap({messageList}).its('messageList.currentMessage').should('not.be.undefined').then(() => {
             cy.visit('live/');
         });
     });

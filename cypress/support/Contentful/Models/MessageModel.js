@@ -13,15 +13,15 @@ export class MessageList {
             this._message_list.push(msg);
         }
 //TODO rename this to current_message
-        this._latest_message = this._message_list[0]; //TODO this is dependent on the query - should it be trusted?
+        this._current_message = this._message_list[0]; //TODO this is dependent on the query - should it be trusted?
     }
 
     message(index){
         return this._message_list[index];
     }
 
-    get latestMessage() {
-        return this._latest_message;
+    get currentMessage() {
+        return this._current_message;
     }
 }
 

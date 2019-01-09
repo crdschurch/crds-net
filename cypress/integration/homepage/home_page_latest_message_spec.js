@@ -10,8 +10,8 @@ describe('Testing the Current Message on the Homepage:', function () {
         const messageList = content.retrieveListOfMessages(1);
         const seriesManager = content.retrieveSeriesManager();
 
-        cy.wrap({messageList}).its('messageList.latestMessage').should('not.be.undefined').then(() => {
-            currentMessage = messageList.latestMessage;
+        cy.wrap({messageList}).its('messageList.currentMessage').should('not.be.undefined').then(() => {
+            currentMessage = messageList.currentMessage;
             cy.wrap({seriesManager}).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
                 currentSeries = seriesManager.currentSeries;
                 messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug.text}/${currentMessage.slug.text}`;

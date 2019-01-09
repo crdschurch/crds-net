@@ -1,4 +1,4 @@
-import { LocationModel } from './Models/LocationModel';
+import { LocationModel, LocationList } from './Models/LocationModel';
 import { MessageModel, MessageList } from './Models/MessageModel';
 import { SeriesModel, SeriesManager } from './Models/SeriesModel';
 import { PromosByAudience } from './Models/PromoModel';
@@ -10,11 +10,11 @@ import { PromosByAudience } from './Models/PromoModel';
 export class ContentfulApi {
     //TODO add waits before returning for all these - but check run times before to make sure they don't bottleneck
     retrieveLocations() {
-        const locationList = [];
+        const locationList = new LocationList();
         cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=location&select=fields.name,fields.slug,fields.image`)
             .then((response) => {
                 const jsonResponse = JSON.parse(response.body);
-                LocationModel.createListOfLocations(jsonResponse, locationList);
+                locationList.createListOfLocations(jsonResponse);
             });
         return locationList;
     }

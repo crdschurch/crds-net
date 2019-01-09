@@ -27,7 +27,7 @@ describe('Tesing the Media/Series/[Current Series] page:', function(){
             if(currentSeries.backgroundImage.isRequiredOrHasContent){
                 expect($jumbotronBackground).to.have.attr('style').contains(currentSeries.backgroundImage.id);
             } else if (currentSeries.image.isRequiredOrHasContent){
-                expect($jumbotronBackground.find('div')).to.have.attr('style').contains(currentSeries.imageId);
+                expect($jumbotronBackground.find('div')).to.have.attr('style').contains(currentSeries.image.id);
             }
         });
     });

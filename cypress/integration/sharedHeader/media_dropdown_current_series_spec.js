@@ -14,7 +14,7 @@ describe('Testing the Current Series in the Shared Header/Media dropdown:', func
         cy.get('a[data-automation-id="sh-media"]').click();
     });
 
-    it('The Current Series image and link should match Contentful (if not, update the media-snippets)', function () {
+    it.skip('The Current Series image and link should match Contentful (if not, update the media-snippets)', function () {
         cy.get('li[data-automation-id="sh-currentseries"]').as('currentSeriesImage');
         cy.get('@currentSeriesImage').should('be.visible');
 

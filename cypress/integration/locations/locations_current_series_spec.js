@@ -1,23 +1,24 @@
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 
-describe('Testing the Current Series on Locations pages:', function () {
+describe('Testing the Current Series on a random Locations page:', function () {
     let currentSeries;
-    let locationList;
+    let locations;
     before(function () {
         const content = new ContentfulApi();
         const seriesManager = content.retrieveSeriesManager();
-        locationList = content.retrieveLocations();
+        locations = content.retrieveLocations();
 
         cy.wrap({seriesManager}).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
             currentSeries = seriesManager.currentSeries;
         });
 
-        cy.wrap({locationList}).its('locationList.length').should('be.above', 0).then(() => {
+        cy.wrap({locations}).its('locations.locationCount').should('not.be.undefined').then(() => {
+            assert.isAbove(locations.locationCount, 0, 'Sanity check: At least one location is served from Contentful');
         });
     });
 
     it('Check out latest series button should link to the current series', function() {
-        cy.visit(locationList[0].slug);
+        cy.visit(locations.locationList[0].slug.text);
 
         cy.get('[data-automation-id="series-slug"]').as('currentSeriesButton');
         cy.get('@currentSeriesButton').should('be.visible').and('have.attr', 'href', `/series/${currentSeries.slug.text}`);
