@@ -21,19 +21,19 @@ function searchForLocation(keyword){
     cy.wait('@searchQuery');
 }
 
-describe('Testing the Locations page without searching', function() {
+describe('Testing the Locations page without searching:', function() {
     let locations;
     before(function() {
         const content = new ContentfulApi();
         locations = content.retrieveLocations();
 
-        //Wait for response before navigating
         cy.wrap({locations}).its('locations.length').should('be.above', 0).then(() => {
-            cy.visit('/locations');
         });
+
+        cy.visit('/locations');
     });
 
-    it('Tests Location cards displayed alphabetically followed by Anywhere', function() {
+    it('Location cards should display alphabetically followed by Anywhere', function() {
         const sortedLocations = sortArrayByProperties(locations, 'name', 'slug');
 
         cy.get('#section-locations > .card').each(($card, index) => {
@@ -49,7 +49,7 @@ describe('Testing the Locations page without searching', function() {
         });
     });
 
-    it('Tests distance is not displayed on Location cards', function(){
+    it('Distance should not be displayed on Location cards', function(){
         cy.get('#section-locations > .card').first().then(($card) => {
             expect($card).to.not.have.attr('data-distance');
             expect($card.find('.distance')).to.not.exist;
@@ -57,20 +57,20 @@ describe('Testing the Locations page without searching', function() {
     });
 });
 
-describe('Testing the search functionality on the Locations page', function() {
+describe('Testing the search functionality on the Locations page:', function() {
     let locations;
     before(function() {
         const content = new ContentfulApi();
         locations = content.retrieveLocations();
 
-        //Wait for response before navigating
         cy.wrap({locations}).its('locations.length').should('be.above', 0).then(() => {
-            cy.visit('/locations');
         });
+
+        cy.visit('/locations');
     });
 
     //For a Contentful Location card to display the distance, its address must be valid
-    it('Tests Location search displays Oakley card first when searching for Oakley by zip, and card displays distance', function(){
+    it('Searching for Oakley by zip should display the Oakley card first, with its distance', function(){
         const oakleyLocation = locations.find(l => l.slug == 'oakley');
         const oakleyZip = '45209';
 
@@ -86,7 +86,7 @@ describe('Testing the search functionality on the Locations page', function() {
         });
     });
 
-    it('Tests Location search displays Florence card first when searching for Florence by address', function(){
+    it('Searching for Florence by address should display the Florence card first', function(){
         const florenceLocation = locations.find(l => l.slug == 'florence');
         const florenceAddress = '828 Heights Blvd Florence KY';
 
@@ -97,7 +97,7 @@ describe('Testing the search functionality on the Locations page', function() {
         });
     });
 
-    it('Tests Location search displays Anywhere card first when searching for out of range location', function(){
+    it('Searching for an out of range location should display the Anywhere card first', function(){
         const outOfRangeLocation = 'Peru';
 
         searchForLocation(outOfRangeLocation);
@@ -108,7 +108,7 @@ describe('Testing the search functionality on the Locations page', function() {
         });
     });
 
-    it('Tests Location search error displays after invalid search but not after valid search', function(){
+    it('An error should display after searching for nonsense text, then should disappear after a valid search', function(){
         const invalidSearch = 'iqupwetoup;djnoipw';
         const validSearch = 'Peru';
 

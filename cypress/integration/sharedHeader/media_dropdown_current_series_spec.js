@@ -1,6 +1,6 @@
 import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 
-describe('Testing the Current Series in the Shared Header/Media dropdown', function () {
+describe('Testing the Current Series in the Shared Header/Media dropdown:', function () {
     let currentSeries;
     before(function () {
         const content = new ContentfulApi();
@@ -14,7 +14,7 @@ describe('Testing the Current Series in the Shared Header/Media dropdown', funct
         cy.get('a[data-automation-id="sh-media"]').click();
     });
 
-    it('Tests Current Series image and link', function () {
+    it('The Current Series image and link should match Contentful (if not, update the media-snippets)', function () {
         cy.get('li[data-automation-id="sh-currentseries"]').as('currentSeriesImage');
         cy.get('@currentSeriesImage').should('be.visible');
 
