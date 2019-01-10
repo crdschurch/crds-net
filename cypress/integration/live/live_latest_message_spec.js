@@ -1,5 +1,5 @@
-import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
-import { ContentfulElementValidator as Element } from '../../support/Cypress/ContentfulElementValidator';
+import { ContentfulApi } from '../../Contentful/ContentfulApi';
+import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
 
 function check_message_card_content(cardElement, message) {
     cardElement.then(($cardContent) => {

@@ -1,4 +1,4 @@
-import { Formatter } from '../../Formatter';
+import { Formatter } from '../../support/Formatter';
 import { ContentfulField } from './ContentfulField';
 
 export class TextField extends ContentfulField{

@@ -1,4 +1,4 @@
-import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
+import { ContentfulApi } from '../../Contentful/ContentfulApi';
 
 describe('Testing the Current Series in the Shared Header/Media dropdown:', function () {
     let currentSeries;

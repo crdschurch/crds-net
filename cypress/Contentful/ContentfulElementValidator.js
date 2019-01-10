@@ -1,4 +1,4 @@
-import { Formatter } from '../Formatter';
+import { Formatter } from '../support/Formatter';
 
 //handles required/not required when verifying content elements
 export class ContentfulElementValidator{

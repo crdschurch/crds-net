@@ -1,5 +1,5 @@
-import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
-import { ContentfulElementValidator as Element } from '../../support/Cypress/ContentfulElementValidator';
+import { ContentfulApi } from '../../Contentful/ContentfulApi';
+import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
 
 describe('Tesing the Media/Series/[Current Series] page:', function(){
     let currentSeries;

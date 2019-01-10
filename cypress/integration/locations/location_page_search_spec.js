@@ -1,4 +1,4 @@
-import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
+import { ContentfulApi } from '../../Contentful/ContentfulApi';
 
 function searchForLocation(keyword){
     cy.server();
