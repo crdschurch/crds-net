@@ -29,7 +29,7 @@ describe('Testing the Current Message on the Homepage:', function () {
 
         cy.get('[data-automation-id="message-description"]').as('description');
         cy.get('@description').should('be.visible');
-        Element.shouldContainText(cy.get('@description'), currentMessage.description);
+        Element.shouldMatchSubsetOfText(cy.get('@description'), currentMessage.description);
 
         cy.get('[data-automation-id="message-video"]').as('video');
         cy.get('@video').should('be.visible');

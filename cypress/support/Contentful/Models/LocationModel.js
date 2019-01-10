@@ -16,6 +16,10 @@ export class LocationList {
         return this._location_list.find(l => l.slug.text == slug);
     }
 
+    get getSomeLocation(){
+        return this._location_list[0];
+    }
+
     get sortedByNameAndSlug(){
         return this._location_list.sort(function(a, b) {
             let diff = a.name.text.localeCompare(b.name.text);

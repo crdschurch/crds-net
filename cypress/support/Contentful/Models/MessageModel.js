@@ -12,7 +12,7 @@ export class MessageList {
             let msg = new MessageModel(itemList[i].fields);
             this._message_list.push(msg);
         }
-//TODO rename this to current_message
+
         this._current_message = this._message_list[0]; //TODO this is dependent on the query - should it be trusted?
     }
 

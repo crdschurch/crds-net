@@ -18,7 +18,7 @@ describe('Testing the Current Series on a random Locations page:', function () {
     });
 
     it('Check out latest series button should link to the current series', function() {
-        cy.visit(locations.locationList[0].slug.text);
+        cy.visit(locations.getSomeLocation.slug.text);
 
         cy.get('[data-automation-id="series-slug"]').as('currentSeriesButton');
         cy.get('@currentSeriesButton').should('be.visible').and('have.attr', 'href', `/series/${currentSeries.slug.text}`);
