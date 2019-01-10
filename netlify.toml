@@ -1,7 +1,7 @@
 # default build settings for int, preview deploys etc
 [build]
   command = '''
-    git submodule update &&
+    git submodule init && git submodule update &&
     bundle exec rspec &&
     ./bin/contentful-redirects &&
     ./bin/netlify-redirector &&
