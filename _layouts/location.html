@@ -8,111 +8,131 @@ layout: default
 
 {% if page.title == "Andover" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSc_tN4sn2STiUwDuAj2kkvD586-gE6Ztp5MI7es6D46hx1zyQ/viewform" %}
+{% assign kc-link = "https://docs.google.com/forms/d/e/1FAIpQLSd2VLUkDjZKCb0H8Gs5OwEqfM5IFabpjYCoRIFdUp1flGEy9w/viewform" %}
+{% assign fb-link = "https://www.facebook.com/events/224966235099005/" %}
+{% capture sun_time %}9:15am<br />11:15am{% endcapture %}
+{% elsif page.title == "Columbus" %}
+{% capture sun_time %}10:15am{% endcapture %}
 {% elsif page.title == "Dayton" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScA4hpYfwYROgpwQs1iDelr5nahobys0SuK_Tm8cfOANTR-Dg/viewform" %}
+{% assign kc-link = "https://goo.gl/forms/RSWecvMxIyZclc6Z2" %}
+{% assign fi-link = "https://goo.gl/forms/RSWecvMxIyZclc6Z2" %}
+{% assign fb-link = "https://www.facebook.com/events/406715600066251/" %}
+{% capture sun_time %}9:30am<br />11:30am{% endcapture %}
 {% elsif page.title == "Downtownlex" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSeyqUR1KRRQnQJDSdX3cPgzfHgXKNK18ABzk2Cl6g99jtRrsA/viewform" %}
+{% capture sun_time %}Tailgate (9:30-10:45am) Followed by transport to Andover (11:15am){% endcapture %}
 {% elsif page.title == "Eastside" %}
+{% assign kc-link = "https://goo.gl/forms/wNbbq6kG66kHNpLP2" %}
+{% assign fi-link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=34615" %}
+{% assign fb-link = "https://www.facebook.com/events/2549821688367436/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScMpEO29vIDaUMuQkjlu-Jcf6II8jL4JG-wyLFA5yKBBCWWDA/viewform" %}
+{% capture sat_time %}4pm<br>6pm{% endcapture %}
+{% capture sun_time %}8:30am<br />10:30am<br />12:30pm{% endcapture %}
 {% elsif page.title == "Florence" %}
+{% assign kc-link = "https://goo.gl/forms/tEacEmTKF2Xsa7iA2" %}
+{% assign fi-link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?start_over&id=34502" %}
+{% assign fb-link = "https://www.facebook.com/events/2393949564158742/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSfo2ywXjTQuxNUx5uIa7T3n2K_rZ9rWc2F_3CJCM4x8dMvN3w/viewform" %}
+{% capture sat_time %}3:30pm<br />5:30pm{% endcapture %}
+{% capture sun_time %}9:30am<br />11:30am{% endcapture %}
 {% elsif page.title == "Georgetown" %}
+{% assign fi-link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?start_over&id=34502" %}
+{% assign fb-link = "https://www.facebook.com/events/2081704171866423/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSf1VIGPA3qcmjtXb2JG4tCz-LhwoLNPDjPloHLTJ-72u15HQw/viewform" %}
+{% capture sun_time %}9:15am<br />11:15am{% endcapture %}
 {% elsif page.title == "Mason" %}
+{% assign kc-link = "https://goo.gl/forms/kIfDk11QYHRdvkyf2" %}
+{% assign fb-link = "https://www.facebook.com/events/277229082965301/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSctEwPK6JmDtzB6iN4J4a2cSUWme4BeefEHr2xzqTYorQBr7Q/viewform" %}
+{% capture sat_time %}4pm<br />6pm{% endcapture %}
+{% capture sun_time %}8:30am<br />10:30am<br />12:30pm{% endcapture %}
 {% elsif page.title == "Oakley" %}
+{% assign kc-link = "https://goo.gl/forms/fL2OnAaOakzhPZ9q1" %}
+{% assign fi-link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=34558" %}
+{% assign fb-link = "https://www.facebook.com/events/355467131702477/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSdjDSPZQil5lZAipQnodua9xaj0zhrgI1fl0lt6dC2617AJPw/viewform" %}
+{% capture sat_time %}3pm<br />5pm{% endcapture %}
+{% capture sun_time %}8:30am<br />10:30am<br />12:30pm{% endcapture %}
 {% elsif page.title == "Oxford" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSc_zIJaeQHa7H5ZfkSgrNxzjZb6-2Liycyf5P9hYkuK4BRqrQ/viewform" %}
+{% capture sun_time %} Open House Event at Outpost 11am-2pm{% endcapture %}
 {% elsif page.title == "Richmond" %}
+{% assign kc-link = "https://goo.gl/forms/slhwpn9iZkCcTpoQ2" %}
+{% assign fi-link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=34595" %}
+{% assign fb-link = "https://www.facebook.com/events/375286803230204/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSegG0d3hMLUpQL-_m65FHG1tniT2TtRODEPQtegPl76qnAq7A/viewform" %}
+{% capture sun_time %}9:30am<br />11:30am{% endcapture %}
 {% elsif page.title == "Uptown" %}
+{% assign kc-link = "https://goo.gl/forms/R3zrpYw4Tjqg3xKr1" %}
+{% assign fi-link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=34505" %}
+{% assign fb-link = "https://www.facebook.com/events/2094726350588433/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScTectxJ6mKo-UvZVv4Av8Q5kWkTZZypAGdqLldnR50hYnWGA/viewform" %}
+{% capture sun_time %}9am<br />11am{% endcapture %}
 {% elsif page.title == "Westside" %}
+{% assign kc-link = "https://goo.gl/forms/yGbt9la7o3M1LCVg2" %}
+{% assign fi-link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=34612" %}
+{% assign fb-link = "https://www.facebook.com/events/2094726350588433/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSdbCAA4ZqkefkWXOd5zl_B8t8fewruAhfaEXoKUoW9sgt8QGg/viewform" %}
-{% capture sat_time %}5:30pm{% endcapture %}
-{% capture sun_time %}9:15am<br />11:00am{% endcapture %}
-{% capture mon_time %}2:00pm<br />4:00pm{% endcapture %}
+{% capture sat_time %}4pm<br />6pm{% endcapture %}
+{% capture sun_time %}9am<br />10:45am<br />12:30pm{% endcapture %}
 {% endif %}
 
 
-<!-- Christmas Banner -->
+<!-- SuperBowl Banner -->
 {% if sun_time %}
-<div class="jumbotron inline-video jumbotron-md flush-bottom" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-christmas-drummer-bg-img.jpg');">
-  <div class="inline-video-player"></div>
+<div class="jumbotron jumbotron-md flush-bottom" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-sb-header-desktop3.jpg');" data-optimize-bg-img>
   <div class="jumbotron-content">
-    <div class="container-fluid">
+    <div class="container-fluid soft-ends">
       <div class="row soft-sides">
         <div class="col-sm-6 col-sm-offset-3">
-          <img data-src="https://crds-cms-uploads.imgix.net/content/images/crossroads-christmas-logo.png" class="img-responsive"
-            data-optimize-img />
-        </div>
-      </div>
-      <div class="row push-ends soft-ends">
-        <div class="col-sm-12 push-ends soft-ends">
-          <a href="#" class="inline-video-trigger push-ends soft-ends" data-video-id="Lj6aqj5dpQw"></a>
-        </div>
-      </div>
-      <div class="row soft-sides push-top soft-top">
-        <div class="col-sm-8 col-sm-offset-2 push-half-top">
-          <p>Feel the wonder of Christmas in a completely new way. This hour-long service includes fully immersive
-            teaching and music that reminds you why Christmas is the ultimate season of hope. Watch the trailer above
-            to get a sneak peek.</p>
-          {% if page.title == "Georgetown" %}
-            <span class="font-size-small">Kids' Club (not childcare) will be available for birth through Preschool</span><br>
-            {% else %}
-              <span class="font-size-small">(No childcare, but your kids will love it.)</span><br>
-          {% endif %}
+          <img data-src="//crds-cms-uploads.imgix.net/content/images/crossroads-superbowl-header-date.png" class="img-responsive" data-optimize-img />
         </div>
       </div>
     </div>
   </div>
 </div>
-<section style="background-color:#970111;">
+<section class="bg-charcoal">
   <div class="container soft">
-    <div class="row push-ends">
-      <div class="col-sm-4 soft-sides">
-        <h2 class="component-header text-white flush-top">{{ page.name }} Service Times</h2>
-        {% if ticket_instructions %}
-          <p class="text-white">In order to ensure a great experience for all, please get a general admission ticket for yourself and anyone else attending with you.
-          We'd hate to be a scrooge and not have enough seats for everyone!<br />
-            <a href="https://www.crossroads.net/christmasatcrossroadsfaqs" class="text-white underline">View the FAQs</a>
-          </p>
-        {% endif %}
-        <a href="{{ page.map_url }}" class="btn btn-outline btn-white push-half-right text-white" target="_blank">Get
-          directions</a>
+    <div class="row">
+      <div class="col-sm-12">
+        <p class="lead text-center text-white">Join us for an irreverent, schticky, preaching competition that turns a church service into a spectator sport.</p>
+        <hr style="border-top: 1px solid #5d5d5d;">
       </div>
-      <div class="col-sm-8 soft-sides">
+    </div>
+    <div class="row push-ends">
+      <div class="col-sm-6 soft-sides">
         <div class="row">
           {% if sat_time %}
-          <div class="col-sm-4">
-            <p class="font-size-base text-white"><strong>Saturday, December 22</strong><br />
+          <div class="col-sm-12">
+            <h2 class="component-header text-white flush-top">{{ page.name }} Service Times</h2>
+          </div>
+          <div class="col-sm-6 push-bottom">
+            <p class="font-size-base text-white"><strong>Saturday, February 2</strong><br />
               {{ sat_time }}
             </p>
           </div>
-          <div class="col-sm-4">
-            <p class="font-size-base text-white"><strong>Sunday, December 23</strong><br />
+          <div class="col-sm-6 push-bottom">
+            <p class="font-size-base text-white"><strong>Sunday, February 3</strong><br />
               {{ sun_time }}
             </p>
           </div>
-          <div class="col-sm-4">
-            <p class="font-size-base text-white"><strong>Monday, December 24</strong><br />
-              {{ mon_time }}
-            </p>
-          </div>
-          {% else %}
-          <div class="col-sm-6">
-            <p class="font-size-base text-white"><strong>Sunday, December 23</strong><br />
-              {{ sun_time }}
-            </p>
-          </div>
-          <div class="col-sm-6">
-            <p class="font-size-base text-white"><strong>Monday, December 24</strong><br />
-              {{ mon_time }}
-            </p>
+          <div class="col-sm-12">
+            {% if fb-link %}
+              <a href="{{ fb-link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Share the Facebook Event</a>
+            {% endif %}
           </div>
           {% endif %}
         </div>
+      </div>
+      <div class="col-sm-6 soft-sides push-bottom">
+        <h2 class="component-header text-white flush-top">Sign up to Serve</h2>
+        {% if kc-link %}
+          <a href="{{ kc-link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Sign up for Kids Club</a>
+        {% endif %}
+        {% if fi-link %}
+          <a href="{{ fi-link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Sign up for First Impressions</a>
+        {% endif %}
       </div>
     </div>
 </section>
