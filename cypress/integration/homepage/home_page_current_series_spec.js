@@ -18,7 +18,7 @@ describe("Testing the Current Series on the Homepage", function () {
         ElementValidator.elementHasImgixImageAndLink(cy.get('[data-automation-id="series-image"]'), currentSeries.imageId, seriesLink);
     })
 
-    it('Tests Watch Latest Service button link', function(){
+    it.skip('Tests Watch Latest Service button link', function(){
         const seriesLink = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}`;
 
         //Desktop version
