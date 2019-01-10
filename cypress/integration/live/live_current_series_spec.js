@@ -21,7 +21,7 @@ describe('Testing the Current Series on the Live page:', function () {
         cy.get('@currentSeriesBlock').find('[data-automation-id="series-title"]').as('currentSeriesTitle');
         cy.get('@currentSeriesTitle').should('be.visible').and('contain', currentSeries.title.text);
 
-        const seriesRange = `${currentSeries.startDate.formattedDateNoZone} - ${currentSeries.endDate.formattedDateNoZone}`;
+        const seriesRange = `${currentSeries.startDate.formattedDateNoTimeZone} - ${currentSeries.endDate.formattedDateNoTimeZone}`;
         cy.get('@currentSeriesBlock').find('[data-automation-id="series-dates"]').as('currentSeriesDateRange');
         cy.get('@currentSeriesDateRange').should('be.visible').and('contain', seriesRange);
 
@@ -45,7 +45,7 @@ describe('Testing the Current Series on the Live page:', function () {
             cy.get('@trailerButton').should('have.attr', 'data-toggle', 'modal');
             cy.get('@trailerButton').should('have.attr', 'data-target', '#trailer-video-modal');
         }
-        //TODO wrap checks for current series youtube if youtubeurl exists
+
         //Test modal attributes
         cy.get('#trailer-video-modal').find('#modal-video-src').as('youtubeModal');
         cy.get('@youtubeModal').should('exist');

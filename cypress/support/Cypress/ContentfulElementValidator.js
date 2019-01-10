@@ -1,6 +1,6 @@
 import { Formatter } from '../Formatter';
-//handles required/not required when verifying content elements
 
+//handles required/not required when verifying content elements
 export class ContentfulElementValidator{
     static shouldContainText(element, textFieldObject){
         if(textFieldObject.isRequiredOrHasContent){

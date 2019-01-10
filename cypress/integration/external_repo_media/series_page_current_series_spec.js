@@ -1,4 +1,4 @@
-import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
+import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../support/Cypress/ContentfulElementValidator';
 
 describe('Tesing the Current Series on the Media/Series page:', function(){
@@ -13,14 +13,13 @@ describe('Tesing the Current Series on the Media/Series page:', function(){
         });
     });
 
-    //Note: this test is here for convenience but should really live with it's code in crds-media
     it('The Current series title, date range, and description should match Contentful', function(){
         cy.get('.current-series').as('currentSeriesBlock');
 
         cy.get('@currentSeriesBlock').find('h1').as('currentSeriesTitle');
         cy.get('@currentSeriesTitle').should('be.visible').and('contain', currentSeries.title.text);
 
-        const seriesRange = `${currentSeries.startDate.formattedDateNoZone} — ${currentSeries.endDate.formattedDateNoZone}`;
+        const seriesRange = `${currentSeries.startDate.formattedDateNoTimeZone} — ${currentSeries.endDate.formattedDateNoTimeZone}`;
         cy.get('@currentSeriesBlock').find('date').as('currentSeriesDateRange');
         cy.get('@currentSeriesDateRange').should('be.visible').and('contain', seriesRange);
 

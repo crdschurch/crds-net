@@ -6,7 +6,6 @@ describe('Tesing the Media/Series/[Current Series] page:', function(){
     before(function() {
         const seriesList = new ContentfulApi().retrieveSeriesManager();
 
-        //Wait for response before navigating
         cy.wrap({seriesList}).its('seriesList.currentSeries').should('not.be.undefined').then(() => {
             currentSeries = seriesList.currentSeries;
             cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug.text}`);

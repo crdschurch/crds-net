@@ -1,4 +1,4 @@
-import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
+import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../support/Cypress/ContentfulElementValidator';
 
 
@@ -14,7 +14,6 @@ describe('Testing the Current Series on the Media landing page:', function(){
         });
     });
 
-    //Note: this test is here for convenience but should really live with it's code in crds-media
     it('The current series title, title link, and description should match Contentful', function(){
         cy.contains('series').parent().find('.featured > .media-body').as('seriesContent');
 

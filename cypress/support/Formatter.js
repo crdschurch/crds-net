@@ -1,16 +1,6 @@
-const moment = require('moment'); //TODO cypress already has this - update and uninstall this dependency https://docs.cypress.io/api/utilities/moment.html#Syntax
 const removeMarkdown = require('remove-markdown');
 
 export class Formatter {
-    static formatDateIgnoringTimeZone(isoDate, format){
-        if (isoDate == undefined){
-            return undefined;
-        }
-
-        const dateOnly = isoDate.split("T")[0];
-        return moment(dateOnly).format(format);
-    }
-
     static normalizeText(rawString){
         if (rawString == undefined) {
             return '';

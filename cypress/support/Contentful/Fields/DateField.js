@@ -5,7 +5,10 @@ export class DateField extends ContentfulField {
         super(dateString);
     }
 
-    //do the thing
+    compareNoTimeZone(dateField){
+        return dateField.dateIgnoreTimeZone - this.dateIgnoreTimeZone;
+    }
+
     get dateIgnoreTimeZone(){
         if(this._date_no_zone === undefined){
             if(this.hasContent) {
@@ -18,7 +21,7 @@ export class DateField extends ContentfulField {
         return this._date_no_zone;
     }
 
-    get formattedDateNoZone(){
+    get formattedDateNoTimeZone(){
         return Cypress.moment(this.dateIgnoreTimeZone).format('MM.DD.YYYY');
     }
 }

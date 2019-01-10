@@ -1,79 +1,84 @@
-import { Formatter } from '../../Formatter';
+import { TextField } from '../Fields/TextField';
+import { DateField } from '../Fields/DateField';
 
-export class PromosByAudience{
-    storePromosByAudience(response){
+export class PromoList {
+    storePromosByAudience(response) {
         const itemList = response.items;
-        this._audience_list = [];
 
-        for (let i = 0; i < itemList.length; i++){
-            let promo = new PromoModel(itemList[i]);
+        this._promos_in_audience = {};
+        this._promos_in_audience.audience_list = [];
 
-            if(promo.target_audience !== undefined){
-                this._addPromoToAudienceLists(promo.target_audience, promo);
+        for (let i = 0; i < itemList.length; i++) {
+            let promo = new PromoModel(itemList[i].fields);
+
+            if (promo.target_audiences !== undefined) {
+                this._addPromoToAudienceLists(promo);
             }
         }
+
+        this._sortAndDedupeAudienceList();
     }
 
-    get audienceList(){
-        return this._audience_list;
+    get audienceList() {
+        return this._promos_in_audience.audience_list !== undefined ? this._promos_in_audience.audience_list : [];
     }
 
-    getPromoList(audience){
-        return this[audience];
+    getPromoList(audience) {
+        return this._promos_in_audience[audience] !== undefined ? this._promos_in_audience[audience] : [];
     }
 
-    getPromoListSortedByDateThenTitle(audience){
-        const list = this[audience];
-        if(list === undefined){
-            return;
-        }
-
-        const sortedPromos = list.sort((a,b) => {
-            let aPublishedDate = Formatter.formatDateIgnoringTimeZone(a.publishedAt, 'MM.DD.YYYY');
-            let bPublishedDate = Formatter.formatDateIgnoringTimeZone(b.publishedAt, 'MM.DD.YYYY');
-
-            let diff = (new Date(bPublishedDate) - new Date(aPublishedDate));
-            if(diff === 0)
-                diff = a.title.localeCompare(b.title);
-            return diff;
+    sortedByDateAndTitle(audience) {
+        const sortedPromos = this.getPromoList(audience).sort((a, b) => {
+            let diff = a.publishedAt.compareNoTimeZone(b.publishedAt);
+            return diff === 0 ? a.title.compare(b.title) : diff;
         });
         return sortedPromos;
     }
 
-    _addPromoToAudienceLists(audienceList, promo){
-        for(let i = 0; i < audienceList.length; i++){
-            let curAudience = audienceList[i];
+    _addPromoToAudienceLists(promo) {
+        const promoAudiences = promo.target_audiences;
 
-            if(this[curAudience] === undefined){
-                this[curAudience] = [];
-                this._audience_list.push(curAudience);
+        for (let i = 0; i < promoAudiences.length; i++) {
+            let audience = promoAudiences[i];
+
+            //Add audience to list of audiences
+            this._promos_in_audience.audience_list.push(audience);
+
+            //Add promo to list of promos with audience
+            if(this._promos_in_audience[audience] === undefined){
+                this._promos_in_audience[audience] = [];
             }
-            this[curAudience].push(promo);
+            this._promos_in_audience[audience].push(promo);
         }
     }
+
+    _sortAndDedupeAudienceList(){
+        this._promos_in_audience.audience_list = this._promos_in_audience.audience_list.sort().filter((audience, i, ary) => {
+            return !i || audience != ary[i - 1];
+        });
+    }
 }
-//TODO convert this and make sure the DateField does what we want.
+
 export class PromoModel {
-    constructor(responseItem){
-        this._title = responseItem.fields.title;
-        this._link = responseItem.fields.link_url;
-        this._target_audience = responseItem.fields.target_audience;
-        this._published_at = responseItem.fields.published_at;
+    constructor (responseItem) {
+        this._title = new TextField(responseItem.title);
+        this._title.required = true;
+
+        this._published_at = new DateField(responseItem.published_at);
+        this._published_at.required = true;
+
+        this._target_audience = responseItem.target_audience;
     }
 
-    get title(){
+    get title() {
         return this._title;
     }
 
-    get link(){
-        return this._link;
-    }
-
-    get publishedAt(){
+    get publishedAt() {
         return this._published_at;
     }
 
-    get target_audience(){
+    get target_audiences() {
         return this._target_audience;
     }
 }

@@ -6,6 +6,10 @@ export class TextField extends ContentfulField{
         super(text);
     }
 
+    compare(textField){
+        return this.text.localeCompare(textField.text);
+    }
+
     get text(){
         return this.hasContent ? this._content : '';
     }

@@ -22,15 +22,13 @@ export class LocationList {
 
     get sortedByNameAndSlug(){
         return this._location_list.sort(function(a, b) {
-            let diff = a.name.text.localeCompare(b.name.text);
-            if(diff === 0)
-                diff = a.slug.text.localeCompare(b.slug.text);
-            return diff;
+            let diff = a.name.compare(b.name);
+            return diff === 0 ? a.slug.compare(b.slug) : diff;
         });
     }
 
     get locationCount(){
-        return this._location_list != undefined ? this._location_list.length : undefined;
+        return this._location_list != undefined ? this._location_list.length : 0;
     }
 }
 
