@@ -14,7 +14,7 @@ module CRDS
       # method for getting the url for the <meta name="image" content="{{ meta_image }}"> tag in the head of a SSG html page
       def get_meta_image(page, site)
         ::Utils::MetaUtil.get_meta_image_url(
-          page['meta'].nil? ? nil : page['meta']['image']['url'],
+          (page['meta'].nil? || page['meta']['image'].nil?) ? nil : page['meta']['image']['url'],
           page['meta_image'].nil? ? nil : page['meta_image']['url'],
           page['image'].nil? ? nil : page['image']['url'],
           page['bg_image'].nil? ? nil : page['bg_image']['url'],
