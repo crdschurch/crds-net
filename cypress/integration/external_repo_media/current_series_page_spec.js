@@ -13,14 +13,13 @@ describe('Tesing the Media/Series/[Current Series] page:', function(){
     });
 
     it('The jumbotron image and background image should match Contentful', function() {
-        cy.get('.jumbotron').as('jumbotron');
-
         //Current series image
-        cy.get('@jumbotron').as('currentSeriesImage');
+        cy.get('.jumbotron-content').find('img').as('currentSeriesImage');
         cy.get('@currentSeriesImage').should('be.visible');
-        Element.shouldHaveImgixImageFindImg('currentSeriesImage', currentSeries.image);
+        Element.shouldHaveImgixImage('currentSeriesImage', currentSeries.image);
 
         //Large jumbotron image
+        cy.get('.jumbotron').as('jumbotron');
         cy.get('@jumbotron').should('be.visible');
         cy.get('@jumbotron').then(($jumbotronBackground) => {
             if(currentSeries.backgroundImage.isRequiredOrHasContent){
