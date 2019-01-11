@@ -8,44 +8,44 @@ import { PromoList } from './Models/PromoModel';
 * Therefore, it is recommended that these methods are called in a before/beforeEach clause to allow more time for data retrieval.
 */
 export class ContentfulApi {
-    retrieveLocations() {
-        const locationList = new LocationList();
-        cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=location&select=fields.name,fields.slug,fields.image`)
-            .then((response) => {
-                const jsonResponse = JSON.parse(response.body);
-                locationList.createListOfLocations(jsonResponse);
-            });
-        return locationList;
-    }
+  retrieveLocations() {
+    const locationList = new LocationList();
+    cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=location&select=fields.name,fields.slug,fields.image`)
+      .then((response) => {
+        const jsonResponse = JSON.parse(response.body);
+        locationList.createListOfLocations(jsonResponse);
+      });
+    return locationList;
+  }
 
-    retrieveSeriesManager() {
-        const seriesManager = new SeriesManager();
-        cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=series&select=fields.title,fields.slug,fields.published_at,fields.starts_at,fields.ends_at,fields.youtube_url,fields.image,fields.background_image,fields.description&order=-fields.starts_at`)
-            .then((response) => {
-                const jsonResponse = JSON.parse(response.body);
-                seriesManager.findCurrentSeries(jsonResponse);
-            });
+  retrieveSeriesManager() {
+    const seriesManager = new SeriesManager();
+    cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=series&select=fields.title,fields.slug,fields.published_at,fields.starts_at,fields.ends_at,fields.youtube_url,fields.image,fields.background_image,fields.description&order=-fields.starts_at`)
+      .then((response) => {
+        const jsonResponse = JSON.parse(response.body);
+        seriesManager.findCurrentSeries(jsonResponse);
+      });
 
-        return seriesManager;
-    }
+    return seriesManager;
+  }
 
-    retrieveListOfMessages(numToStore) {
-        const messageList = new MessageList();
-        cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=message&select=fields.title,fields.slug,fields.published_at,fields.image,fields.description&order=-fields.published_at`)
-            .then((response) => {
-                const jsonResponse = JSON.parse(response.body);
-                messageList.createListOfMessages(jsonResponse, numToStore);
-            });
-        return messageList;
-    }
+  retrieveListOfMessages(numToStore) {
+    const messageList = new MessageList();
+    cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=message&select=fields.title,fields.slug,fields.published_at,fields.image,fields.description&order=-fields.published_at`)
+      .then((response) => {
+        const jsonResponse = JSON.parse(response.body);
+        messageList.createListOfMessages(jsonResponse, numToStore);
+      });
+    return messageList;
+  }
 
-    retrievePromoList(){
-        const promosByAudience = new PromoList();
-        cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=promo&select=fields.title,fields.link_url,fields.image,fields.description,fields.target_audience,fields.published_at&include=3`)
-            .then((response) => {
-                const jsonResponse = JSON.parse(response.body);
-                promosByAudience.storePromosByAudience(jsonResponse);
-            });
-        return promosByAudience;
-    }
+  retrievePromoList() {
+    const promosByAudience = new PromoList();
+    cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=promo&select=fields.title,fields.link_url,fields.image,fields.description,fields.target_audience,fields.published_at&include=3`)
+      .then((response) => {
+        const jsonResponse = JSON.parse(response.body);
+        promosByAudience.storePromosByAudience(jsonResponse);
+      });
+    return promosByAudience;
+  }
 }
