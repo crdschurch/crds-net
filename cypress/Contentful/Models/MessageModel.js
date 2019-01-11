@@ -5,11 +5,12 @@ import { DateField } from '../Fields/DateField';
 export class MessageList {
   createListOfMessages(response, numToStore) {
     const itemList = response.items;
+    const assetList = response.includes.Asset;
     numToStore = itemList.length < numToStore ? itemList.length : numToStore;
     this._message_list = [];
 
     for (let i = 0; i < numToStore; i++) {
-      let msg = new MessageModel(itemList[i].fields);
+      let msg = new MessageModel(itemList[i].fields, assetList);
       this._message_list.push(msg);
     }
 
@@ -26,7 +27,7 @@ export class MessageList {
 }
 
 export class MessageModel {
-  constructor (responseItem) {
+  constructor (responseItem, assetList) {
     this._title = new TextField(responseItem.title);
     this._title.required = true;
 
@@ -37,7 +38,7 @@ export class MessageModel {
     this._published_at.required = true;
 
     this._description = new TextField(responseItem.description);
-    this._image = new ImageField(responseItem.image);
+    this._image = new ImageField(responseItem.image, assetList);
     this._background_image = new ImageField(responseItem.background_image);
   }
 

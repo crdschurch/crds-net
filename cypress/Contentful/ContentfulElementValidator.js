@@ -27,6 +27,7 @@ export class ContentfulElementValidator {
     }
   }
 
+  //scrollIntoView is not always able to target the 'img' level, so this scrolls to a higher level element before testing the 'img' content
   static shouldHaveImgixImageFindImg(alias, imageFieldObject) {
     cy.get(`@${alias}`).scrollIntoView();
     cy.get(`@${alias}`).find('img').should('have.attr', 'srcset');

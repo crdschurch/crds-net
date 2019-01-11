@@ -4,10 +4,11 @@ import { ImageField } from '../Fields/ImageField';
 export class LocationList {
   createListOfLocations(response) {
     const itemList = response.items;
+    const assetList = response.includes.Asset;
     this._location_list = [];
 
     for (let i = 0; i < itemList.length; i++) {
-      let loc = new LocationModel(itemList[i].fields);
+      let loc = new LocationModel(itemList[i].fields, assetList);
       this._location_list.push(loc);
     }
   }
@@ -33,14 +34,14 @@ export class LocationList {
 }
 
 export class LocationModel {
-  constructor (responseItem) {
+  constructor (responseItem, assetList) {
     this._name = new TextField(responseItem.name);
     this._name.required = true;
 
     this._slug = new TextField(responseItem.slug);
     this._slug.required = true;
 
-    this._image = new ImageField(responseItem.image);
+    this._image = new ImageField(responseItem.image, assetList);
     this._image.required = true;
   }
 
