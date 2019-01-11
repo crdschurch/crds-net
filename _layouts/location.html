@@ -80,7 +80,6 @@ layout: default
 
 
 <!-- SuperBowl Banner -->
-{% if sun_time %}
 <div class="jumbotron jumbotron-md flush-bottom" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-sb-header-desktop3.jpg');" data-optimize-bg-img>
   <div class="jumbotron-content">
     <div class="container-fluid soft-ends">
@@ -103,26 +102,29 @@ layout: default
     <div class="row push-ends">
       <div class="col-sm-6 soft-sides">
         <div class="row">
-          {% if sat_time %}
+
           <div class="col-sm-12">
             <h2 class="component-header text-white flush-top">{{ page.name }} Service Times</h2>
           </div>
           <div class="col-sm-6 push-bottom">
+            {% if sat_time %}
             <p class="font-size-base text-white"><strong>Saturday, February 2</strong><br />
               {{ sat_time }}
             </p>
+            {% endif %}
           </div>
           <div class="col-sm-6 push-bottom">
+            {% if sun_time %}
             <p class="font-size-base text-white"><strong>Sunday, February 3</strong><br />
               {{ sun_time }}
             </p>
+            {% endif %}
           </div>
           <div class="col-sm-12">
             {% if fb-link %}
               <a href="{{ fb-link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Share the Facebook Event</a>
             {% endif %}
           </div>
-          {% endif %}
         </div>
       </div>
       <div class="col-sm-6 soft-sides push-bottom">
@@ -136,7 +138,7 @@ layout: default
       </div>
     </div>
 </section>
-{% endif %}
+
 
 <!-- Jumbotron section -->
 <div class="jumbotron jumbotron-xl flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
