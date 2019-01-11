@@ -25,8 +25,10 @@ describe('Testing the Current Series on the Homepage:', function () {
         Element.shouldMatchSubsetOfText(cy.get('@seriesDescription'), currentSeries.description);
 
         cy.get('[data-automation-id="series-image"]').as('seriesImage');
-        cy.get('@seriesImage').should('be.visible').and('have.attr', 'href', seriesLink);
-        Element.shouldHaveImgixImage(cy.get('@seriesImage').find('img'), currentSeries.image);
+        cy.get('@seriesImage').should('be.visible');
+        cy.get('@seriesImage').should('have.attr', 'href', seriesLink);
+
+        Element.shouldHaveImgixImageFindImg('seriesImage', currentSeries.image);
     });
 
     it.skip('"Watch Latest Service" button should link to the current series', function(){

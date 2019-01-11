@@ -3,25 +3,30 @@ import { ContentfulField } from './ContentfulField';
 export class DateField extends ContentfulField {
     constructor(dateString){
         super(dateString);
-    }
 
-    compareNoTimeZone(dateField){
-        return dateField.dateIgnoreTimeZone - this.dateIgnoreTimeZone;
-    }
-
-    get dateIgnoreTimeZone(){
-        if(this._date_no_zone === undefined){
-            if(this.hasContent) {
-                const dateOnly = this._content.split("T")[0];
-                const dateFormat = Cypress.moment(dateOnly).format('MM.DD.YYYY');
-                this._date_no_zone = new Date(dateFormat);
-            }
+        if(this.hasContent){
+            this._content_no_time_zone = this._content.split("T")[0];
         }
 
-        return this._date_no_zone;
+        this._date = this._content;
     }
 
-    get formattedDateNoTimeZone(){
-        return Cypress.moment(this.dateIgnoreTimeZone).format('MM.DD.YYYY');
+    ignoreTimeZone(){
+        if(this.hasContent){
+            this._date = Cypress.moment(this._content_no_time_zone).format('MM.DD.YYYY');
+        }
+        return this; //Allow chaining
+    }
+
+    toString(format='MM.DD.YYYY'){
+        return Cypress.moment(this.date).format(format);
+    }
+
+    compare(dateField){
+        return dateField.date - this.date;
+    }
+
+    get date(){
+        return new Date(this._date);
     }
 }

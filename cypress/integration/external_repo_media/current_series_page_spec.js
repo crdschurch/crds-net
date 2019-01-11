@@ -16,9 +16,9 @@ describe('Tesing the Media/Series/[Current Series] page:', function(){
         cy.get('.jumbotron').as('jumbotron');
 
         //Current series image
-        cy.get('@jumbotron').find('img').as('currentSeriesImage');
+        cy.get('@jumbotron').as('currentSeriesImage');
         cy.get('@currentSeriesImage').should('be.visible');
-        Element.shouldHaveImgixImage(cy.get('@currentSeriesImage'), currentSeries.image);
+        Element.shouldHaveImgixImageFindImg('currentSeriesImage', currentSeries.image);
 
         //Large jumbotron image
         cy.get('@jumbotron').should('be.visible');

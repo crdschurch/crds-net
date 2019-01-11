@@ -34,7 +34,8 @@ describe('Testing the Current Message on the Homepage:', function () {
         cy.get('[data-automation-id="message-video"]').as('video');
         cy.get('@video').should('be.visible');
         cy.get('@video').should('have.attr', 'href', messageURL);
-        Element.shouldHaveImgixImage(cy.get('@video').find('img'), currentMessage.image);
+
+        Element.shouldHaveImgixImageFindImg('video', currentMessage.image);
     });
 
     it('"View latest now" button should link to the current message', function () {

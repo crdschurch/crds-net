@@ -18,13 +18,21 @@ export class ContentfulElementValidator{
         }
     }
 
-    static shouldHaveImgixImage(element, imageFieldObject){
-        element.then($img => {
-            expect($img).to.have.attr('srcset'); //If this fails, Imgix was not run
+    static shouldHaveImgixImage(alias, imageFieldObject){
+        cy.get(`@${alias}`).scrollIntoView();
+        cy.get(`@${alias}`).should('have.attr', 'srcset');
 
-            if(imageFieldObject.isRequiredOrHasContent){
-                expect($img).to.have.attr('src').contains(imageFieldObject.id);
-            }
-        });
+        if(imageFieldObject.isRequiredOrHasContent){
+            cy.get(`@${alias}`).should('have.attr', 'src').and('contain', imageFieldObject.id);
+        }
+    }
+
+    static shouldHaveImgixImageFindImg(alias, imageFieldObject){
+        cy.get(`@${alias}`).scrollIntoView();
+        cy.get(`@${alias}`).find('img').should('have.attr', 'srcset');
+
+        if(imageFieldObject.isRequiredOrHasContent){
+            cy.get(`@${alias}`).find('img').should('have.attr', 'src').and('contain', imageFieldObject.id);
+        }
     }
 }

@@ -21,18 +21,20 @@ describe('Testing the Current Series on the Live page:', function () {
         cy.get('@currentSeriesBlock').find('[data-automation-id="series-title"]').as('currentSeriesTitle');
         cy.get('@currentSeriesTitle').should('be.visible').and('contain', currentSeries.title.text);
 
-        const seriesRange = `${currentSeries.startDate.formattedDateNoTimeZone} - ${currentSeries.endDate.formattedDateNoTimeZone}`;
+        const start = currentSeries.startDate.ignoreTimeZone().toString();
+        const end = currentSeries.endDate.ignoreTimeZone().toString();
+
         cy.get('@currentSeriesBlock').find('[data-automation-id="series-dates"]').as('currentSeriesDateRange');
-        cy.get('@currentSeriesDateRange').should('be.visible').and('contain', seriesRange);
+        cy.get('@currentSeriesDateRange').should('be.visible').and('contain', `${start} - ${end}`);
 
         cy.get('@currentSeriesBlock').find('[data-automation-id="series-description"]').as('currentSeriesDescription');
         cy.get('@currentSeriesDescription').should('be.visible');
         Element.shouldContainText(cy.get('@currentSeriesDescription'), currentSeries.description);
     });
 
-    it('Current Series image should match Contentful', function(){
+    it.only('Current Series image should match Contentful', function(){
         cy.get('[data-automation-id="series-image"]').as('currentSeriesImage');
-        Element.shouldHaveImgixImage(cy.get('@currentSeriesImage'), currentSeries.image);
+        Element.shouldHaveImgixImage('currentSeriesImage', currentSeries.image);
     });
 
     it('"Watch Trailer" button should open a youtube modal, iff series has trailer', function () {

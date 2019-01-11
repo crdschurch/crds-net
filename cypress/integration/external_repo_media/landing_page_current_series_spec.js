@@ -25,9 +25,10 @@ describe('Testing the Current Series on the Media landing page:', function(){
     });
 
     it('The current series image and image link should match Contentful', function(){
-        cy.contains('series').parent().find('.featured > a').as('seriesImage');
+        cy.contains('series').parent().find('.featured > a').find('img').as('seriesImage');
+        cy.get('@seriesImage').should('be.visible');
 
-        cy.get('@seriesImage').should('be.visible').and('have.attr', 'href', `/series/${currentSeries.slug.text}`);
-        Element.shouldHaveImgixImage(cy.get('@seriesImage').find('img'), currentSeries.image);
+        cy.get('@seriesImage').parent().should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
+        Element.shouldHaveImgixImage('seriesImage', currentSeries.image);
     });
 });

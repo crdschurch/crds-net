@@ -29,7 +29,7 @@ export class PromoList {
 
     sortedByDateAndTitle(audience) {
         const sortedPromos = this.getPromoList(audience).sort((a, b) => {
-            let diff = a.publishedAt.compareNoTimeZone(b.publishedAt);
+            let diff = a.publishedAt.ignoreTimeZone().compare(b.publishedAt.ignoreTimeZone());// compareNoTimeZone(b.publishedAt);
             return diff === 0 ? a.title.compare(b.title) : diff;
         });
         return sortedPromos;
