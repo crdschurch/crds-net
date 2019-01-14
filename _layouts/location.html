@@ -38,13 +38,14 @@ layout: default
 {% capture sat_time %}3:30pm<br />5:30pm{% endcapture %}
 {% capture sun_time %}9:30am<br />11:30am{% endcapture %}
 {% elsif page.title == "Georgetown" %}
-{% assign fi-link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?start_over&id=34502" %}
+{% assign fi-link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=34712" %}
+{% assign kc-link = "https://docs.google.com/forms/d/e/1FAIpQLSeXko5xIaoFn8QfQCxhvbp_58AA8bKLV0zpQ5suGYM5z4sqSw/viewform" %}
 {% assign fb-link = "https://www.facebook.com/events/2081704171866423/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSf1VIGPA3qcmjtXb2JG4tCz-LhwoLNPDjPloHLTJ-72u15HQw/viewform" %}
 {% capture sun_time %}9:15am<br />11:15am{% endcapture %}
 {% elsif page.title == "Mason" %}
-{% assign fi-link = "https://www.crossroads.net/sign-up/mason2019superbowl" %}
 {% assign kc-link = "https://goo.gl/forms/kIfDk11QYHRdvkyf2" %}
+{% assign fi-link = "https://www.crossroads.net/sign-up/mason2019superbowl" %}
 {% assign fb-link = "https://www.facebook.com/events/277229082965301/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSctEwPK6JmDtzB6iN4J4a2cSUWme4BeefEHr2xzqTYorQBr7Q/viewform" %}
 {% capture sat_time %}4pm<br />6pm{% endcapture %}
@@ -74,7 +75,7 @@ layout: default
 {% elsif page.title == "Westside" %}
 {% assign kc-link = "https://goo.gl/forms/yGbt9la7o3M1LCVg2" %}
 {% assign fi-link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=34612" %}
-{% assign fb-link = "https://www.facebook.com/events/2192664944163394/" %}
+{% assign fb-link = "https://www.facebook.com/events/2094726350588433/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSdbCAA4ZqkefkWXOd5zl_B8t8fewruAhfaEXoKUoW9sgt8QGg/viewform" %}
 {% capture sat_time %}4pm<br />6pm{% endcapture %}
 {% capture sun_time %}9am<br />10:45am<br />12:30pm{% endcapture %}
@@ -82,13 +83,13 @@ layout: default
 
 
 <!-- SuperBowl Banner -->
-{% if sun_time %}
+
 <div class="jumbotron jumbotron-md flush-bottom" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-sb-header-desktop3.jpg');" data-optimize-bg-img>
   <div class="jumbotron-content">
     <div class="container-fluid soft-ends">
       <div class="row soft-sides">
         <div class="col-sm-6 col-sm-offset-3">
-          <img data-src="//crds-cms-uploads.imgix.net/content/images/crossroads-superbowl-header-date.png" class="img-responsive" data-optimize-img />
+          <img data-src="//crds-cms-uploads.imgix.net/content/images/crossroads-superbowl-header-date.png" class="img-responsive imgix-fluid" />
         </div>
       </div>
     </div>
@@ -105,32 +106,34 @@ layout: default
     <div class="row push-ends">
       <div class="col-sm-6 soft-sides">
         <div class="row">
-          {% if sat_time %}
           <div class="col-sm-12">
             <h2 class="component-header text-white flush-top">{{ page.name }} Service Times</h2>
           </div>
+          {% if sat_time %}
           <div class="col-sm-6 push-bottom">
             <p class="font-size-base text-white"><strong>Saturday, February 2</strong><br />
               {{ sat_time }}
             </p>
           </div>
+          {% endif %}
+          {% if sun_time %}
           <div class="col-sm-6 push-bottom">
             <p class="font-size-base text-white"><strong>Sunday, February 3</strong><br />
               {{ sun_time }}
             </p>
           </div>
-          <div class="col-sm-12">
-            {% if fb-link %}
-              <a href="{{ fb-link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Share the Facebook Event</a>
-            {% endif %}
-          </div>
           {% endif %}
+          <div class="col-sm-12">
+          {% if fb-link %}
+            <a href="{{ fb-link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Share the Facebook Event</a>
+          {% endif %}
+          </div>
         </div>
       </div>
       <div class="col-sm-6 soft-sides push-bottom">
         <h2 class="component-header text-white flush-top">Sign up to Serve</h2>
         {% if kc-link %}
-          <a href="{{ kc-link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Sign up for Kids Club</a>
+          <a href="{{ kc-link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Sign up for Kids' Club</a>
         {% endif %}
         {% if fi-link %}
           <a href="{{ fi-link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Sign up for First Impressions</a>
@@ -138,7 +141,7 @@ layout: default
       </div>
     </div>
 </section>
-{% endif %}
+
 
 <!-- Jumbotron section -->
 <div class="jumbotron jumbotron-xl flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
@@ -170,16 +173,16 @@ layout: default
           <div class="col-sm-6">
             <p>
               <strong>Service Times</strong>
-              </br>
+              <br />
               {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
             </p>
           </div>
           <div class="col-sm-6">
             <p>
               <strong>Address</strong>
-              </br>
+              <br />
               {{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}
-              </br>
+              <br />
               <a href="{{ page.map_url }}" target="_blank" target="_blank">Get directions</a>
             </p>
           </div>
