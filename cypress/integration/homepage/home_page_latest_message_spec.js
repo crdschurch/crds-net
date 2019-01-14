@@ -1,28 +1,43 @@
-import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
-import { ElementValidator } from '../../support/ElementValidator'
+import { ContentfulApi } from '../../Contentful/ContentfulApi';
+import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
 
-describe("Testing the Latest Message on the Homepage", function (){
-    let latestMessage;
-    let currentSeries;
-    before(function () {
-        const content = new ContentfulApi();
-        latestMessage = content.retrieveLatestMessage();
-        currentSeries = content.retrieveCurrentSeries();
-        cy.visit('');
-    })
+describe('Testing the Current Message on the Homepage:', function () {
+  let currentMessage;
+  let currentSeries;
+  let messageURL;
+  before(function () {
+    const content = new ContentfulApi();
+    const messageList = content.retrieveMessageList(1);
+    const seriesManager = content.retrieveSeriesManager();
 
-    it('Tests Current Message title, description, and image', function(){
-        const messageLink = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}/${latestMessage.slug}`;
+    cy.wrap({messageList}).its('messageList.currentMessage').should('not.be.undefined').then(() => {
+      currentMessage = messageList.currentMessage;
+      cy.wrap({seriesManager}).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
+        currentSeries = seriesManager.currentSeries;
+        messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug.text}/${currentMessage.slug.text}`;
+      });
+    });
 
-        ElementValidator.elementHasTextAndLink(cy.get('[data-automation-id="message-title"]'), latestMessage.title, messageLink)
-        ElementValidator.elementContainsSubstringOfText(cy.get('[data-automation-id="message-description"]'), latestMessage.description);
-        ElementValidator.elementHasImgixImageAndLink(cy.get('[data-automation-id="message-video"]'), latestMessage.imageId, messageLink);
-    })
+    cy.visit('/');
+  });
 
-    it('Test "View latest now" button link', function () {
-        cy.get('[data-automation-id="watch-message-button"]').should('be.visible')
-        .then(($messageButton) => {
-            expect($messageButton).to.have.attr('href').contains(latestMessage.slug);
-        })
-    })
+  it('Current Message title, description, and image should match Contentful', function () {
+    cy.get('[data-automation-id="message-title"]').as('title');
+    Element.shouldContainText(cy.get('@title'), currentMessage.title);
+    cy.get('@title').should('have.attr', 'href', messageURL);
+
+    cy.get('[data-automation-id="message-description"]').as('description');
+    Element.shouldMatchSubsetOfText(cy.get('@description'), currentMessage.description);
+
+    cy.get('[data-automation-id="message-video"]').as('video');
+    cy.get('@video').should('have.attr', 'href', messageURL);
+
+    Element.shouldHaveImgixImageFindImg('video', currentMessage.image);
+  });
+
+  it('"View latest now" button should link to the current message', function () {
+    cy.get('[data-automation-id="watch-message-button"]').as('watchMessageButton');
+    cy.get('@watchMessageButton').should('be.visible');
+    cy.get('@watchMessageButton').should('have.attr', 'href', messageURL);
+  });
 });

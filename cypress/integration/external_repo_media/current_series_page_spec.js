@@ -1,34 +1,31 @@
-import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
+import { ContentfulApi } from '../../Contentful/ContentfulApi';
+import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
 
-describe("Tesing the Media/Series/[Current Series] page", function(){
-    let currentSeries;
-    before(function() {
-        currentSeries = new ContentfulApi().retrieveCurrentSeries();
+describe('Tesing the Media/Series/[Current Series] page:', function(){
+  let currentSeries;
+  before(function() {
+    const seriesList = new ContentfulApi().retrieveSeriesManager();
 
-        //Wait for response before navigating
-        cy.wrap({currentSeries}).its('currentSeries.slug').should('not.be.undefined').then(() => {
-            cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}`);
-        })
-    })
+    cy.wrap({seriesList}).its('seriesList.currentSeries').should('not.be.undefined').then(() => {
+      currentSeries = seriesList.currentSeries;
+      cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug.text}`);
+    });
+  });
 
-    it('Tests the image and background image match their entries in Contentful', function() {
-        cy.get('.jumbotron').find('img').then(($jumbotronForeground) => {
-            expect($jumbotronForeground).to.be.visible;
-            expect($jumbotronForeground).to.have.attr('srcset'); //If fails, image was not found
+  it('The jumbotron image and background image should match Contentful', function() {
+    //Current series image
+    cy.get('.jumbotron-content').as('currentSeries');
+    Element.shouldHaveImgixImageFindImg('currentSeries', currentSeries.image);
 
-            if (currentSeries.imageId !== undefined){
-                expect($jumbotronForeground).to.have.attr('src').contains(currentSeries.imageId);
-            }
-        })
-
-        cy.get('.jumbotron').then(($jumbotronBackground) => {
-            expect($jumbotronBackground).to.be.visible;
-
-            if (currentSeries.backgroundImageId !== undefined){
-                expect($jumbotronBackground).to.have.attr('style').contains(currentSeries.backgroundImageId);
-            } else if (currentSeries.imageId !== undefined){
-                expect($jumbotronBackground.find('div')).to.have.attr('style').contains(currentSeries.imageId);
-            }
-        })
-    })
-})
+    //Large jumbotron image
+    cy.get('.jumbotron').as('jumbotron');
+    cy.get('@jumbotron').should('be.visible');
+    cy.get('@jumbotron').then(($jumbotronBackground) => {
+      if(currentSeries.backgroundImage.isRequiredOrHasContent){
+        expect($jumbotronBackground).to.have.attr('style').contains(currentSeries.backgroundImage.id);
+      } else if (currentSeries.image.isRequiredOrHasContent){
+        expect($jumbotronBackground.find('div')).to.have.attr('style').contains(currentSeries.image.id);
+      }
+    });
+  });
+});

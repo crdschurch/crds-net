@@ -1,48 +1,55 @@
-import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
-import { Formatter } from '../../support/Formatter'
-import { ElementValidator } from '../../support/ElementValidator'
+import { ContentfulApi } from '../../Contentful/ContentfulApi';
+import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
 
-describe('Testing the Current Series on the Live page', function () {
-    let currentSeries;
-    before(function () {
-        const content = new ContentfulApi();
-        currentSeries = content.retrieveCurrentSeries();
-        cy.visit('live');
-    })
+describe('Testing the Current Series on the Live page:', function () {
+  let currentSeries;
+  before(function () {
+    const content = new ContentfulApi();
+    const seriesManager = content.retrieveSeriesManager();
 
-    //DO NOT RUN in open mode - Causes Cypress to hang
-    it('Tests Current Series title, date, and description', function () {
-        const startDate = Formatter.formatDateIgnoringTimeZone(currentSeries.startDate, 'MM.DD.YYYY');
-        const endDate = Formatter.formatDateIgnoringTimeZone(currentSeries.endDate, 'MM.DD.YYYY');
+    cy.wrap({seriesManager}).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
+      currentSeries = seriesManager.currentSeries;
+    });
 
-        cy.get('.current-series').then(($textBlock) => {
-            expect($textBlock.find('[data-automation-id="series-title"]')).to.be.visible.and.have.text(currentSeries.title);
-            expect($textBlock.find('[data-automation-id="series-dates"]')).to.be.visible.and.have.text(`${startDate} - ${endDate}`);
-            expect($textBlock.find('[data-automation-id="series-description"]')).to.be.visible;
-        })
+    cy.visit('live');
+  });
 
-        ElementValidator.elementContainsSubstringOfText(cy.get('[data-automation-id="series-description"]'), currentSeries.description);
-    })
+  //DO NOT RUN in open mode - Causes Cypress to hang
+  it('Current Series title, date, and description should match Contentful', function () {
+    cy.get('.current-series').as('currentSeriesBlock');
 
-    it('Tests Current Series image', function(){
-        ElementValidator.elementHasImgixImage(cy.get('[data-automation-id="series-image"]'), currentSeries.imageId);
-    })
+    cy.get('@currentSeriesBlock').find('[data-automation-id="series-title"]').as('currentSeriesTitle');
+    cy.get('@currentSeriesTitle').should('be.visible').and('contain', currentSeries.title.text);
 
-    it(`Tests Current Series' "Watch Trailer" button and youtube modal, if series has trailer`, function () {
-        //Test trailer button attributes
-        if (currentSeries.youtubeURL == undefined){
-            cy.get('[data-automation-id="series-youtube"]').should('not.exist');
-        } else {
-            cy.get('[data-automation-id="series-youtube"]').then(($trailerButton) => {
-                expect($trailerButton).to.have.attr('href', currentSeries.youtubeURL);
-                expect($trailerButton).to.have.attr('data-toggle', 'modal');
-                expect($trailerButton).to.have.attr('data-target', '#trailer-video-modal');
-            })
-        }
+    const start = currentSeries.startDate.ignoreTimeZone().toString();
+    const end = currentSeries.endDate.ignoreTimeZone().toString();
 
-        //Test modal attributes
-        cy.get('#trailer-video-modal').find('#modal-video-src').as('youtubeModal').should('exist');
-        const modalSource = currentSeries.youtubeURL == undefined ? '' : currentSeries.youtubeURL;
-        cy.get('@youtubeModal').should('have.attr', 'data-src', modalSource);
-    })
-})
+    cy.get('@currentSeriesBlock').find('[data-automation-id="series-dates"]').as('currentSeriesDateRange');
+    cy.get('@currentSeriesDateRange').should('be.visible').and('contain', `${start} - ${end}`);
+
+    cy.get('@currentSeriesBlock').find('[data-automation-id="series-description"]').as('currentSeriesDescription');
+    Element.shouldContainText(cy.get('@currentSeriesDescription'), currentSeries.description);
+  });
+
+  it('Current Series image should match Contentful', function(){
+    cy.get('[data-automation-id="series-image"]').as('currentSeriesImage');
+    Element.shouldHaveImgixImage('currentSeriesImage', currentSeries.image);
+  });
+
+  it('"Watch Trailer" button should open a youtube modal, iff series has trailer', function () {
+    //Test trailer button attributes
+    if (!currentSeries.youtubeURL.hasContent){
+      cy.get('[data-automation-id="series-youtube"]').should('not.exist');
+    } else {
+      cy.get('[data-automation-id="series-youtube"]').as('trailerButton');
+      cy.get('@trailerButton').should('be.visible').and('have.attr', 'href', currentSeries.youtubeURL.text);
+      cy.get('@trailerButton').should('have.attr', 'data-toggle', 'modal');
+      cy.get('@trailerButton').should('have.attr', 'data-target', '#trailer-video-modal');
+    }
+
+    //Test modal attributes
+    cy.get('#trailer-video-modal').find('#modal-video-src').as('youtubeModal');
+    cy.get('@youtubeModal').should('exist');
+    cy.get('@youtubeModal').should('have.attr', 'data-src', currentSeries.youtubeURL.text);
+  });
+});

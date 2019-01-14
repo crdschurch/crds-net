@@ -116,7 +116,11 @@ paginate:
           </div>
         </div>
         <a href="{{ series.url | media_url }}" class="push-half-bottom" data-automation-id="series-image">
-          <img class="media-img" src="{{ series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+          {% if series.image.url %}
+            <img class="media-img" src="{{ series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+          {% else %}
+            <img class="media-img" src="{{ site.default_image }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+          {% endif %}
         </a>
       </div>
       {% endfor %}

@@ -1,40 +1,33 @@
-import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
-import {Formatter} from '../../support/Formatter';
+import { ContentfulApi } from '../../Contentful/ContentfulApi';
+import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
 
 
-describe("Testing the Current Series on the Media landing page", function(){
-    let currentSeries;
-    before(function() {
-        const content = new ContentfulApi();
-        currentSeries = content.retrieveCurrentSeries();
+describe('Testing the Current Series on the Media landing page:', function(){
+  let currentSeries;
+  before(function() {
+    const content = new ContentfulApi();
+    const seriesList = content.retrieveSeriesManager();
 
-        cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/`);
-    })
+    cy.wrap({seriesList}).its('seriesList.currentSeries').should('not.be.undefined').then(() => {
+      currentSeries = seriesList.currentSeries;
+      cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/`);
+    });
+  });
 
-    //Note: this test is here for convenience but should really live with it's code in crds-media
-    it('Tests current series title, title link, and description', function(){
-        cy.contains('series').parent().find('.featured > .media-body').as('seriesContent')
+  it('The current series title, title link, and description should match Contentful', function(){
+    cy.contains('series').parent().find('.featured > .media-body').as('seriesContent');
 
-        cy.get('@seriesContent').find('.component-header > a').then(($seriesTitle) => {
-            expect($seriesTitle).to.have.attr('href', `/series/${currentSeries.slug}`);
-            expect($seriesTitle).to.have.text(currentSeries.title);
-        })
+    cy.get('@seriesContent').find('.component-header > a').as('seriesTitle');
+    cy.get('@seriesTitle').should('be.visible').and('contain', currentSeries.title.text);
+    cy.get('@seriesTitle').should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
 
-        cy.get('@seriesContent').find('div').should('have.prop', 'textContent').then(($text) => {
-            expect(currentSeries.description).to.contain(Formatter.normalizeText($text));
-        })
-    })
+    Element.shouldMatchSubsetOfText(cy.get('@seriesContent').find('div'), currentSeries.description);
+  });
 
-    it('Tests current series image and image link', function(){
-        cy.contains('series').as('seriesHeader').should('be.visible');
+  it('The current series image and image link should match Contentful', function(){
+    cy.contains('series').parent().find('.featured > a').find('img').as('seriesImage');
 
-        cy.get('@seriesHeader').parent().find('.featured > a').then(($imageBlock) => {
-            expect($imageBlock).to.have.attr('href', `/series/${currentSeries.slug}`);
-            expect($imageBlock.find('img')).to.have.attr('srcset'); //If fails, image was not found
-
-            if (currentSeries.imageId !== undefined){
-                expect($imageBlock.find('img')).to.have.attr('src').contains(currentSeries.imageId);
-            }
-        })
-    })
-})
+    cy.get('@seriesImage').parent().should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
+    Element.shouldHaveImgixImage('seriesImage', currentSeries.image);
+  });
+});

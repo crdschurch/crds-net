@@ -1,46 +1,43 @@
-import {ContentfulApi} from '../../support/Contentful/ContentfulApi';
-import {Formatter} from '../../support/Formatter'
+import { ContentfulApi } from '../../Contentful/ContentfulApi';
+import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
 
-describe("Tesing the Current Series on the Media/Series page", function(){
-    let currentSeries;
-    before(function() {
-        const content = new ContentfulApi();
-        currentSeries = content.retrieveCurrentSeries();
+describe('Tesing the Current Series on the Media/Series page:', function(){
+  let currentSeries;
+  before(function() {
+    const content = new ContentfulApi();
+    const series = content.retrieveSeriesManager();
 
-        cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/`);
-    })
+    cy.wrap({series}).its('series.currentSeries').should('not.be.undefined').then(() => {
+      currentSeries = series.currentSeries;
+      cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/`);
+    });
+  });
 
-    //Note: this test is here for convenience but should really live with it's code in crds-media
-    it('Tests current series title, date range, and description', function(){
-        cy.get('.current-series').as('currentSeriesBlock').should('be.visible');
+  it('The Current series title, date range, and description should match Contentful', function(){
+    cy.get('.current-series').as('currentSeriesBlock');
 
-        const startDate = Formatter.formatDateIgnoringTimeZone(currentSeries.startDate, 'MM.DD.YYYY');
-        const endDate = Formatter.formatDateIgnoringTimeZone(currentSeries.endDate, 'MM.DD.YYYY');
+    cy.get('@currentSeriesBlock').find('h1').as('currentSeriesTitle');
+    cy.get('@currentSeriesTitle').should('be.visible').and('contain', currentSeries.title.text);
 
-        cy.get('@currentSeriesBlock').find('div.col-xs-12.col-md-5').then(($seriesTextBlock) => {
-            expect($seriesTextBlock.find('h1')).to.be.visible.and.have.text(currentSeries.title);
-            expect($seriesTextBlock.find('date')).to.be.visible.and.have.text(`${startDate} — ${endDate}`);
-            expect($seriesTextBlock.find('div')).to.be.visible;
-        })
+    const start = currentSeries.startDate.ignoreTimeZone().toString();
+    const end = currentSeries.endDate.ignoreTimeZone().toString();
 
-        cy.get('@currentSeriesBlock').find('div.col-xs-12.col-md-5 > div').should('have.prop', 'textContent').then(($text) =>{
-            expect(Formatter.normalizeText($text)).to.equal(currentSeries.description);
-        })
-    })
+    cy.get('@currentSeriesBlock').find('date').as('currentSeriesDateRange');
+    cy.get('@currentSeriesDateRange').should('be.visible').and('contain', `${start} — ${end}`);
 
-    it('Tests current series image and image link', function(){
-        cy.get('.current-series > div > a').then(($seriesImage) => {
-            expect($seriesImage).to.have.attr('href').contains(`/series/${currentSeries.slug}`);
+    cy.get('@currentSeriesBlock').find('div.col-xs-12.col-md-5 > div').as('currentSeriesDescription');
+    Element.shouldContainText(cy.get('@currentSeriesDescription'), currentSeries.description);
+  });
 
-            if (currentSeries.imageId !== undefined){
-                expect($seriesImage.find('img')).to.have.attr('src').contains(currentSeries.imageId);
-            }
-        })
-    })
+  it('The current series image and image link should match Contentful', function(){
+    cy.get('.current-series').as('currentSeries');
+    cy.get('@currentSeries').find('a').should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
 
-    it('Tests the "View the series" button link', function () {
-        cy.contains('View the series').then(($button) => {
-            expect($button).to.have.attr('href', `/series/${currentSeries.slug}`);
-        })
-    })
-})
+    Element.shouldHaveImgixImageFindImg('currentSeries', currentSeries.image);
+  });
+
+  it('"View the series" button should link to the current series', function () {
+    cy.contains('View the series').as('viewSeriesButton');
+    cy.get('@viewSeriesButton').should('be.visible').and('have.attr', 'href', `/series/${currentSeries.slug.text}`);
+  });
+});
