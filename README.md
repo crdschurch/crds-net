@@ -133,49 +133,72 @@ Background images work similarly, with three exceptions:
 ## Shared Templates
 
 We’re using submodules to share files across multiple Jekyll instances. You can think of a submodule as a repository within a repository. The same rules that govern your interaction with a Git repo apply here. You’ll make commits against the submodule and then another commit against the parent project which is tracking the position of the submodule.
-When you first clone a repository with submodules, you’ll need to initialize and the pull in the latest changes. Like so…
 
-```bash
-$ git clone git@github.com:crdschurch/crds-net.git
-Cloning into 'crds-net'...
-remote: Enumerating objects: 71, done.
-remote: Counting objects: 100% (71/71), done.
-remote: Compressing objects: 100% (63/63), done.
-remote: Total 6544 (delta 27), reused 32 (delta 8), pack-reused 6473
-Receiving objects: 100% (6544/6544), 4.07 MiB | 7.93 MiB/s, done.
-Resolving deltas: 100% (3877/3877), done
-$ cd crds-net
-$ git submodule init
-Submodule '_pages' (git@github.com:crdschurch/crds-jekyll-shared-templates.git) registered for path '_pages'
-$ git submodule update
-Cloning into '/Users/tcmacdonald/Sites/tmp/crds-net/_pages'...
-Submodule path '_pages': checked out '995bfc915e66962451107f29d69ad8e4d19fe840'
-```
+### Setup
 
-As you can see from the above, the `_pages` directory of our project now contains the contents of the [crdschurch/crds-jekyll-shared-templates](https://github.com/crdschurch/crds-jekyll-shared-templates/tree/_pages) repository’s `_pages` branch. You can edit the contents of this directory like normal. When you’re ready to commit your work, you’ll want to make a commit relative to the `_pages` directory and push it up the [crdschurch/crds-jekyll-shared-templates](https://github.com/crdschurch/crds-jekyll-shared-templates/tree/_pages) repository’s `_pages` branch. Then you’ll need to make one more commit within the parent project so we can track the current state of our submodule.
+When you first clone a repository with submodules, you’ll need to initialize and the pull in the latest changes. Like so:
 
-```bash
-$ cd _pages
-$ git checkout _pages
-$ git commit -am “Did something”
-[_pages c5337c2] Did something
- Date: Mon Dec 17 08:50:25 2018 -0500
-$ git push origin _pages
-Counting objects: 2, done.
-Delta compression using up to 12 threads.
-Compressing objects: 100% (1/1), done.
-Writing objects: 100% (2/2), 3.59 KiB | 3.59 MiB/s, done.
-Total 2 (delta 1), reused 1 (delta 1)
-remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-To github.com:crdschurch/crds-jekyll-shared-templates.git
- + 995bfc9...c5337c2 _pages -> _pages
-$ cd ../
-$ git status -s
- M _pages
-$ git commit -am "Update _pages submodule"
-[feature/US15878-shared-templates-v2 95469de] Update _pages submodule
- 1 file changed, 1 insertion(+), 1 deletion(-)
-```
+    $ git clone git@github.com:crdschurch/crds-net.git
+    Cloning into 'crds-net'...
+    remote: Enumerating objects: 71, done.
+    remote: Counting objects: 100% (71/71), done.
+    remote: Compressing objects: 100% (63/63), done.
+    remote: Total 6544 (delta 27), reused 32 (delta 8), pack-reused 6473
+    Receiving objects: 100% (6544/6544), 4.07 MiB | 7.93 MiB/s, done.
+    Resolving deltas: 100% (3877/3877), done
+    $ cd crds-net
+    $ git submodule init
+    Submodule '_pages' (git@github.com:crdschurch/crds-net-shared.git) registered for path '_pages'
+    $ git submodule update
+    Cloning into '/Users/tcmacdonald/Sites/tmp/crds-net/_pages'...
+    Submodule path '_pages': checked out '995bfc915e66962451107f29d69ad8e4d19fe840'
+
+### Making Updates
+
+As you can see from the above, the `_pages` directory of our project now contains the contents of the [crdschurch/crds-net-shared](https://github.com/crdschurch/crds-net-shared/tree/_pages) repository’s `_pages` branch. You can edit the contents of this directory like normal.
+
+When you’re ready to commit your work, you’ll want to make a commit inside the `_pages` directory (crds-net-shared repo) and push it up the [crdschurch/crds-net-shared](https://github.com/crdschurch/crds-net-shared/tree/_pages) repository’s `_pages` branch. That process looks like this:
+
+    $ cd _pages
+    $ git checkout _pages
+    $ git commit -am "Did something"
+    [_pages c5337c2] Did something
+     Date: Mon Dec 17 08:50:25 2018 -0500
+    $ git push origin _pages
+    Counting objects: 2, done.
+    Delta compression using up to 12 threads.
+    Compressing objects: 100% (1/1), done.
+    Writing objects: 100% (2/2), 3.59 KiB | 3.59 MiB/s, done.
+    Total 2 (delta 1), reused 1 (delta 1)
+    remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+    To github.com:crdschurch/crds-net-shared.git
+     + 995bfc9...c5337c2 _pages -> _pages
+
+Notice here that you **checkout the `_pages` branch prior to committing.** Submodules are checked out to individual commit hashes by default, and if you commit without checking out, it will be tricky to get those commits up to GitHub.
+
+When you make a change to the submodule in `_pages`, you'll notice that crds-net will continue to have unstaged changes even after you've committed the changes to the `_pages` directory. This is because crds-net maintains a reference to the latest commit for the submodule and wants you to share this update across the team.
+
+Doing so is optional. If you have no other changes, you can leave crds-net dirty. But it doesn't hurt (and is good practice) to update crds-net with the latest changes from crds-net-shared (`_pages`). This process should follow the typical Crossroads' workflow and be committed and pushed to a defect or feature branch, with a pull request against development.
+
+### Troubleshooting
+
+If you see a permissions error when trying to push the submodule, it'll look something like this:
+
+    remote: Permission to crdschurch/crds-net-shared.git denied to [USERNAME].
+    fatal: unable to access 'https://github.com/crdschurch/crds-net-shared.git/': The requested URL returned error: 403
+
+It's likely that where you see `[USERNAME]` does not match your GitHub username. If on a Mac, this means OS X Keychain has stored a value for your GitHub username and password that is being used wherever you use HTTPS (rather than SSH) to push and pull code from GitHub.
+
+To remedy this, you first have to delete the stored value:
+
+    $ git credential-osxkeychain erase
+     host=github.com
+     protocol=https
+     <press return>
+
+This behavior is odd. After hitting `Enter` after the first line, nothing happens -- you are directed to a blank line in the terminal. That's where you type in `host=github.com` and hit `Enter` again. Then followed by the next line. The third empty line you leave blank and hit `Enter` for a fourth time. Then your credentials should be stored.
+
+If you try to push again, you should be prompted for a new username and password and those will be stored in your keychain for future use.
 
 ## License
 
