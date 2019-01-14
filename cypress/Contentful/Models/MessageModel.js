@@ -3,7 +3,7 @@ import { ImageField } from '../Fields/ImageField';
 import { DateField } from '../Fields/DateField';
 
 export class MessageList {
-  createListOfMessages(response, numToStore) {
+  storeListOfMessages(response, numToStore) {
     const itemList = response.items;
     const assetList = response.includes.Asset;
     numToStore = itemList.length < numToStore ? itemList.length : numToStore;

@@ -7,7 +7,7 @@ describe('Testing the Current Message on the Homepage:', function () {
   let messageURL;
   before(function () {
     const content = new ContentfulApi();
-    const messageList = content.retrieveListOfMessages(1);
+    const messageList = content.retrieveMessageList(1);
     const seriesManager = content.retrieveSeriesManager();
 
     cy.wrap({messageList}).its('messageList.currentMessage').should('not.be.undefined').then(() => {
@@ -23,16 +23,13 @@ describe('Testing the Current Message on the Homepage:', function () {
 
   it('Current Message title, description, and image should match Contentful', function () {
     cy.get('[data-automation-id="message-title"]').as('title');
-    cy.get('@title').should('be.visible');
     Element.shouldContainText(cy.get('@title'), currentMessage.title);
     cy.get('@title').should('have.attr', 'href', messageURL);
 
     cy.get('[data-automation-id="message-description"]').as('description');
-    cy.get('@description').should('be.visible');
     Element.shouldMatchSubsetOfText(cy.get('@description'), currentMessage.description);
 
     cy.get('[data-automation-id="message-video"]').as('video');
-    cy.get('@video').should('be.visible');
     cy.get('@video').should('have.attr', 'href', messageURL);
 
     Element.shouldHaveImgixImageFindImg('video', currentMessage.image);

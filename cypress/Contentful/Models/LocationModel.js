@@ -2,7 +2,7 @@ import { TextField } from '../Fields/TextField';
 import { ImageField } from '../Fields/ImageField';
 
 export class LocationList {
-  createListOfLocations(response) {
+  storeListOfLocations(response) {
     const itemList = response.items;
     const assetList = response.includes.Asset;
     this._location_list = [];

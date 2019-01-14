@@ -6,7 +6,7 @@ describe('Testing the Current Series on a random Locations page:', function () {
   before(function () {
     const content = new ContentfulApi();
     const seriesManager = content.retrieveSeriesManager();
-    locations = content.retrieveLocations();
+    locations = content.retrieveLocationList();
 
     cy.wrap({seriesManager}).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
       currentSeries = seriesManager.currentSeries;

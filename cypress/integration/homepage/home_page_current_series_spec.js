@@ -25,7 +25,6 @@ describe('Testing the Current Series on the Homepage:', function () {
     Element.shouldMatchSubsetOfText(cy.get('@seriesDescription'), currentSeries.description);
 
     cy.get('[data-automation-id="series-image"]').as('seriesImage');
-    cy.get('@seriesImage').should('be.visible');
     cy.get('@seriesImage').should('have.attr', 'href', seriesLink);
 
     Element.shouldHaveImgixImageFindImg('seriesImage', currentSeries.image);

@@ -16,7 +16,7 @@ describe('Testing the Locations page without searching:', function() {
   let locations;
   before(function() {
     const content = new ContentfulApi();
-    locations = content.retrieveLocations();
+    locations = content.retrieveLocationList();
 
     cy.wrap({locations}).its('locations.locationCount').should('not.be.undefined').then(() => {
       assert.isAbove(locations.locationCount, 0, 'Sanity check: At least one location is served from Contentful');
@@ -52,7 +52,7 @@ describe('Testing the search functionality on the Locations page:', function() {
   let locations;
   before(function() {
     const content = new ContentfulApi();
-    locations = content.retrieveLocations();
+    locations = content.retrieveLocationList();
 
     cy.wrap({locations}).its('locations.locationCount').should('not.be.undefined').then(() => {
       assert.isAbove(locations.locationCount, 0, 'Sanity check: At least one location is served from Contentful');

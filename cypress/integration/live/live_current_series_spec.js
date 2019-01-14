@@ -28,11 +28,10 @@ describe('Testing the Current Series on the Live page:', function () {
     cy.get('@currentSeriesDateRange').should('be.visible').and('contain', `${start} - ${end}`);
 
     cy.get('@currentSeriesBlock').find('[data-automation-id="series-description"]').as('currentSeriesDescription');
-    cy.get('@currentSeriesDescription').should('be.visible');
     Element.shouldContainText(cy.get('@currentSeriesDescription'), currentSeries.description);
   });
 
-  it.only('Current Series image should match Contentful', function(){
+  it('Current Series image should match Contentful', function(){
     cy.get('[data-automation-id="series-image"]').as('currentSeriesImage');
     Element.shouldHaveImgixImage('currentSeriesImage', currentSeries.image);
   });

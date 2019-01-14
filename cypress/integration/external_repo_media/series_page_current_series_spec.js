@@ -26,13 +26,11 @@ describe('Tesing the Current Series on the Media/Series page:', function(){
     cy.get('@currentSeriesDateRange').should('be.visible').and('contain', `${start} — ${end}`);
 
     cy.get('@currentSeriesBlock').find('div.col-xs-12.col-md-5 > div').as('currentSeriesDescription');
-    cy.get('@currentSeriesDescription').should('be.visible');
     Element.shouldContainText(cy.get('@currentSeriesDescription'), currentSeries.description);
   });
 
   it('The current series image and image link should match Contentful', function(){
     cy.get('.current-series').as('currentSeries');
-    cy.get('@currentSeries').should('be.visible');
     cy.get('@currentSeries').find('a').should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
 
     Element.shouldHaveImgixImageFindImg('currentSeries', currentSeries.image);

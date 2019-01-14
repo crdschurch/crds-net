@@ -8,12 +8,12 @@ import { PromoList } from './Models/PromoModel';
 * Therefore, it is recommended that these methods are called in a before/beforeEach clause to allow more time for data retrieval.
 */
 export class ContentfulApi {
-  retrieveLocations() {
+  retrieveLocationList() {
     const locationList = new LocationList();
     cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=location&select=fields.name,fields.slug,fields.image&include=3`)
       .then((response) => {
         const jsonResponse = JSON.parse(response.body);
-        locationList.createListOfLocations(jsonResponse);
+        locationList.storeListOfLocations(jsonResponse);
       });
     return locationList;
   }
@@ -23,18 +23,18 @@ export class ContentfulApi {
     cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=series&select=fields.title,fields.slug,fields.published_at,fields.starts_at,fields.ends_at,fields.youtube_url,fields.image,fields.background_image,fields.description&order=-fields.starts_at&include=3`)
       .then((response) => {
         const jsonResponse = JSON.parse(response.body);
-        seriesManager.findCurrentSeries(jsonResponse);
+        seriesManager.storeCurrentSeries(jsonResponse);
       });
 
     return seriesManager;
   }
 
-  retrieveListOfMessages(numToStore) {
+  retrieveMessageList(numToStore) {
     const messageList = new MessageList();
     cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=message&select=fields.title,fields.slug,fields.published_at,fields.image,fields.description&order=-fields.published_at&include=3`)
       .then((response) => {
         const jsonResponse = JSON.parse(response.body);
-        messageList.createListOfMessages(jsonResponse, numToStore);
+        messageList.storeListOfMessages(jsonResponse, numToStore);
       });
     return messageList;
   }
