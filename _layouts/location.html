@@ -58,6 +58,7 @@ layout: default
 {% capture sat_time %}3pm<br />5pm{% endcapture %}
 {% capture sun_time %}8:30am<br />10:30am<br />12:30pm{% endcapture %}
 {% elsif page.title == "Oxford" %}
+{% assign fi-link = "https://goo.gl/forms/t9skRqjGSGyHNpa23" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSc_zIJaeQHa7H5ZfkSgrNxzjZb6-2Liycyf5P9hYkuK4BRqrQ/viewform" %}
 {% capture sun_time %} Open House Event at Outpost 11am-2pm{% endcapture %}
 {% elsif page.title == "Richmond" %}
@@ -107,7 +108,7 @@ layout: default
       <div class="col-sm-6 soft-sides">
         <div class="row">
           <div class="col-sm-12">
-            <h2 class="component-header text-white flush-top">{{ page.name }} Service Times</h2>
+            <h2 class="component-header text-white flush-top">{{ page.name }} Super Bowl Service Times</h2>
           </div>
           {% if sat_time %}
           <div class="col-sm-6 push-bottom">
