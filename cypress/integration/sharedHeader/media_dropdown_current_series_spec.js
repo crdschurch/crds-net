@@ -1,29 +1,31 @@
-import { ContentfulApi } from '../../support/Contentful/ContentfulApi';
+import { ContentfulApi } from '../../Contentful/ContentfulApi';
 
-describe("Testing the Current Series in the Shared Header/Media dropdown", function () {
-    let currentSeries;
-    before(function () {
-        const content = new ContentfulApi();
-        currentSeries = content.retrieveCurrentSeries();
+describe('Testing the Current Series in the Shared Header/Media dropdown:', function () {
+  let currentSeries;
+  before(function () {
+    const content = new ContentfulApi();
+    const seriesManager = content.retrieveSeriesManager();
 
-        cy.visit('/');
-        cy.get('a[data-automation-id="sh-media"]').click();
-    })
+    cy.wrap({ seriesManager }).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
+      currentSeries = seriesManager.currentSeries;
+    });
 
-    it.skip('Tests Current Series image and link', function() {
-        cy.get('li[data-automation-id="sh-currentseries"]').as('currentSeriesImage').should('be.visible');
+    cy.visit('/');
+    cy.get('a[data-automation-id="sh-media"]').click();
+  });
 
-        //Skip in demo - shared header points to prod
-        if (!Cypress.env('CRDS_MEDIA_ENDPOINT').includes('demo')){
-            const seriesLink = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug}`;
 
-            cy.get('@currentSeriesImage').find('a').then(($image) => {
-                expect($image).to.have.attr('href').contains(`/series/${currentSeries.slug}`);
+  it.skip('The Current Series image and link should match Contentful (if not, update the media-snippets)', function () {
+    cy.get('li[data-automation-id="sh-currentseries"]').as('currentSeriesImage');
+    cy.get('@currentSeriesImage').should('be.visible');
 
-                if (currentSeries.imageId !== undefined){
-                    expect($image.find('img')).to.have.attr('src').contains(currentSeries.imageId);
-                }
-            })
-        }
-    })
-})
+    //Skip in demo - shared header content may be from prod
+    if (!Cypress.env('CRDS_MEDIA_ENDPOINT').includes('demo')) {
+      cy.get('@currentSeriesImage').find('a').should('have.attr', 'href').and('contain', currentSeries.slug.text);
+
+      if (currentSeries.image.isRequiredOrHasContent) {
+        cy.get('@currentSeriesImage').find('img').should('have.attr', 'src').and('contain', currentSeries.image.id);
+      }
+    }
+  });
+});
