@@ -30,7 +30,6 @@
                 <a href="https://www.crossroads.net/reachout/go/puerto-rico/may-trip1/" class="btn btn-sm btn-primary">View all details</a>
               </div>
             </div>
-
             <!--<div class="puerto-rico card push-ends col-xs-12 col-sm-4 col-md-3"><a href="https://www.crossroads.net/reachout/go/puerto-rico/may-trip2/">
               <img data-src="//crds-cms-uploads.imgix.net/content/images/crossroads-trips-puerto-rico3-sm.jpg" class="card-img-top img-responsive" alt="" title=""></a>
               <div class="card-block hard-left hard-top">
@@ -365,18 +364,15 @@
           var ourClass = $(this).attr('class');
           $('#filterOptions li').removeClass('active');
           $(this).parent().addClass('active');
-
           if (ourClass == 'all') {
             $('#ourHolder').children().show();
           } else {
             $('#ourHolder').children('div:not(.' + ourClass + ')').hide();
             $('#ourHolder').children('div.' + ourClass).show();
           }
-
           return false;
         });
       });
-
       new CRDS.CardCarousels();
       new CRDS.CardFilters();
       $.each(CRDS._instances, function (k, v) { v.addStyles() });
