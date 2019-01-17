@@ -12,6 +12,12 @@ layout: default
 {% assign kc-link = "https://docs.google.com/forms/d/e/1FAIpQLSd2VLUkDjZKCb0H8Gs5OwEqfM5IFabpjYCoRIFdUp1flGEy9w/viewform" %}
 {% assign fb-link = "https://www.facebook.com/events/224966235099005/" %}
 {% capture sun_time %}9:15am<br />11:15am{% endcapture %}
+{% if page.title == "Lexington" %}
+{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSc_tN4sn2STiUwDuAj2kkvD586-gE6Ztp5MI7es6D46hx1zyQ/viewform" %}
+{% assign fi-link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=26071" %}
+{% assign kc-link = "https://docs.google.com/forms/d/e/1FAIpQLSd2VLUkDjZKCb0H8Gs5OwEqfM5IFabpjYCoRIFdUp1flGEy9w/viewform" %}
+{% assign fb-link = "https://www.facebook.com/events/224966235099005/" %}
+{% capture sun_time %}9:15am<br />11:15am{% endcapture %}
 {% elsif page.title == "Columbus" %}
 {% capture sun_time %}10:15am{% endcapture %}
 {% elsif page.title == "Dayton" %}
@@ -60,7 +66,7 @@ layout: default
 {% elsif page.title == "Oxford" %}
 {% assign fi-link = "https://goo.gl/forms/t9skRqjGSGyHNpa23" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSc_zIJaeQHa7H5ZfkSgrNxzjZb6-2Liycyf5P9hYkuK4BRqrQ/viewform" %}
-{% capture sun_time %} Open House Event at Outpost 11am-2pm{% endcapture %}
+{% capture sun_time %} Open House Event at Outpost 3:30pm-6pm{% endcapture %}
 {% elsif page.title == "Richmond" %}
 {% assign kc-link = "https://goo.gl/forms/slhwpn9iZkCcTpoQ2" %}
 {% assign fi-link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=34595" %}
@@ -296,8 +302,8 @@ layout: default
   <div class="container push-ends">
     <div class="row well text-center soft-ends">
       <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
-        <h3 class="section-header push-half-ends">We'd love to hear from you</h3>
-        <p class="lead">From prayer requests to hospital visits or questions about weddings or funerals, we're here to help.</p>
+        <h3 class="section-header push-half-ends">Community Care Requests</h3>
+        <p class="lead">From prayer requests to listening appointments to hospital visits or questions about weddings and funerals, we're here to help.</p>
         <a href="{{ care_link }}" class="btn btn-primary" target="_blank">Fill out a quick form</a><br />
         {% endif %}
         <a href="/care" class="btn btn-primary btn-gray-light text-center">View all community care services</a>
