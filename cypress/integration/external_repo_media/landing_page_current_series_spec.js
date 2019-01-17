@@ -2,32 +2,34 @@ import { ContentfulApi } from '../../Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
 
 
-describe('Testing the Current Series on the Media landing page:', function(){
+describe('Testing the Current Series on the Media landing page:', function () {
   let currentSeries;
-  before(function() {
+  before(function () {
     const content = new ContentfulApi();
     const seriesList = content.retrieveSeriesManager();
 
-    cy.wrap({seriesList}).its('seriesList.currentSeries').should('not.be.undefined').then(() => {
+    cy.wrap({ seriesList }).its('seriesList.currentSeries').should('not.be.undefined').then(() => {
       currentSeries = seriesList.currentSeries;
       cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/`);
     });
   });
 
-  it('The current series title, title link, and description should match Contentful', function(){
-    cy.contains('series').parent().find('.featured > .media-body').as('seriesContent');
+  beforeEach(function () {
+    cy.get('[data-automation-id="series-section"]').as('featuredSeries').scrollIntoView();
+  });
 
-    cy.get('@seriesContent').find('.component-header > a').as('seriesTitle');
+  it('The current series title, title link, and description should match Contentful', function () {
+    cy.get('@featuredSeries').find('[data-automation-id="featured-title"]').as('seriesTitle');
     cy.get('@seriesTitle').should('be.visible').and('contain', currentSeries.title.text);
     cy.get('@seriesTitle').should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
 
-    Element.shouldMatchSubsetOfText(cy.get('@seriesContent').find('div'), currentSeries.description);
+    cy.get('@featuredSeries').find('[data-automation-id="featured-description"]').as('seriesDescription');
+    Element.shouldMatchSubsetOfText(cy.get('@seriesDescription'), currentSeries.description);
   });
 
-  it('The current series image and image link should match Contentful', function(){
-    cy.contains('series').parent().find('.featured > a').find('img').as('seriesImage');
-
-    cy.get('@seriesImage').parent().should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
-    Element.shouldHaveImgixImage('seriesImage', currentSeries.image);
+  it('The current series image and image link should match Contentful', function () {
+    cy.get('@featuredSeries').find('[data-automation-id="featured-image"]').as('seriesImage');
+    cy.get('@seriesImage').should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
+    Element.shouldHaveImgixImageFindImg('seriesImage', currentSeries.image);
   });
 });
