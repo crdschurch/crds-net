@@ -27,6 +27,7 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /volunteer-application/*,https://${env:CRDS_ANGULAR_ENDPOINT}/volunteer-application/:splat,200!
 /leaveyourmark,https://${env:CRDS_ANGULAR_ENDPOINT}/leaveyourmark,200!
 /search*,https://${env:CRDS_ANGULAR_ENDPOINT}/search:splat,200!
+/assets*,https://${env:CRDS_ANGULAR_ENDPOINT}/assets:splat,200!
 /sign-up/*,https://${env:CRDS_ANGULAR_ENDPOINT}/sign-up/:splat,200!
 /trips/*,https://${env:CRDS_ANGULAR_ENDPOINT}/trips/:splat,200!
 /waivers/*,https://${env:CRDS_ANGULAR_ENDPOINT}/waivers/:splat,200!
