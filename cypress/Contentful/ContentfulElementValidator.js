@@ -19,7 +19,7 @@ export class ContentfulElementValidator {
       });
     }
   }
-
+//TODO why not pass element in here instead of aliax?
   static shouldHaveImgixImage(alias, imageFieldObject) {
     cy.get(`@${alias}`).scrollIntoView();
     cy.get(`@${alias}`).should('be.visible').and('have.attr', 'srcset');

@@ -1,5 +1,7 @@
 import { ContentfulApi } from '../../Contentful/ContentfulApi';
+import { ContentfulElementValidator } from '../../Contentful/ContentfulElementValidator';
 
+//TODO use automation ids for all these.
 function searchForLocation(keyword){
   cy.server();
   cy.route('/gateway/api/v1.0.0/locations/proximities?origin=*').as('searchResults');
@@ -27,9 +29,9 @@ describe('Testing the Locations page without searching:', function() {
 
   it('Location cards should display alphabetically followed by Anywhere', function() {
     const sortedLocations = locations.sortedByNameAndSlug;
-    let i;
     cy.get('#section-locations > .card').as('locationCards');
 
+    let i;
     for(i = 0; i < locations.locationCount; i++){
       cy.get('@locationCards').eq(i).should('be.visible');
       cy.get('@locationCards').eq(i).find('a').should('have.attr', 'href', `/${sortedLocations[i].slug.text}`);
@@ -45,6 +47,28 @@ describe('Testing the Locations page without searching:', function() {
 
     cy.get('@firstLocation').should('not.have.attr', 'data-distance');
     cy.get('@firstLocation').find('.distance').should('not.exist');
+  });
+
+  //TODO reorganize
+  it.only('Should have a Name, Image, Address, Service times and link to Map', function(){
+    const firstLocation = locations.sortedByNameAndSlug[0];
+    cy.get('#section-locations > .card').first().as('firstLocation');
+
+    cy.get('@firstLocation').find('[data-automation-id="location-name"]').as('title');
+    ContentfulElementValidator.shouldContainText(cy.get('@title'), firstLocation.name);
+    cy.get('@title').should('have.attr', 'href').and('contain', firstLocation.slug.text);
+
+    cy.get('@firstLocation').find('[data-automation-id="location-address"]').as('address');
+    ContentfulElementValidator.shouldContainText(cy.get('@address'), firstLocation.address);
+
+    cy.get('@firstLocation').find('[data-automation-id="location-service-times"]').as('serviceTimes');
+    ContentfulElementValidator.shouldContainText(cy.get('@serviceTimes'), firstLocation.serviceTimes);
+
+    cy.get('@firstLocation').find('[data-automation-id="location-map-url"]').as('mapLink');
+    cy.get('@mapLink').should('have.attr', 'href', firstLocation.mapUrl.text); //TODO will this fail if mapURL doesn't exist?
+
+    cy.get('@firstLocation').find('[data-automation-id="location-image"]').as('image');
+    ContentfulElementValidator.shouldHaveImgixImageFindImg('image', firstLocation.image);
   });
 });
 
