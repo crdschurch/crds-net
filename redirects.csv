@@ -32,4 +32,4 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /waivers/*,https://${env:CRDS_ANGULAR_ENDPOINT}/waivers/:splat,200!
 /give,${env:PUSHPAY_GIVE_ENDPOINT},301
 /givinghistory,/me/giving,301
-/assets/*,https://${env:CRDS_ANGULAR_ENDPOINT}/assets/,200
+/*,${env:CRDS_MAESTRO_CLIENT_ENDPOINT}/:splat,200
