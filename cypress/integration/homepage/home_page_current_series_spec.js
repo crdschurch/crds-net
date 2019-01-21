@@ -30,7 +30,7 @@ describe('Testing the Current Series on the Homepage:', function () {
     Element.shouldHaveImgixImageFindImg('seriesImage', currentSeries.image);
   });
 
-  it.skip('"Watch Latest Service" button should link to the current series', function(){
+  it('"Watch Latest Service" button should link to the current series', function(){
     const seriesLink = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug.text}`;
 
     //Desktop version
