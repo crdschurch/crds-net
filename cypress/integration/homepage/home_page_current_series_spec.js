@@ -27,7 +27,7 @@ describe('Testing the Current Series on the Homepage:', function () {
     cy.get('[data-automation-id="series-image"]').as('seriesImage');
     cy.get('@seriesImage').should('have.attr', 'href', seriesLink);
 
-    Element.shouldHaveImgixImageFindImg('seriesImage', currentSeries.image);
+    Element.shouldHaveImgixImageFindImg(cy.get('@seriesImage'), currentSeries.image);
   });
 
   it('"Watch Latest Service" button should link to the current series', function(){

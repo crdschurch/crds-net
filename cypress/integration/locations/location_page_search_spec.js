@@ -1,7 +1,6 @@
 import { ContentfulApi } from '../../Contentful/ContentfulApi';
 import { ContentfulElementValidator } from '../../Contentful/ContentfulElementValidator';
 
-//TODO use automation ids for all these.
 function searchForLocation(keyword){
   cy.server();
   cy.route('/gateway/api/v1.0.0/locations/proximities?origin=*').as('searchResults');
@@ -49,7 +48,7 @@ describe('Testing the Locations page without searching:', function() {
     cy.get('@firstLocation').find('.distance').should('not.exist');
   });
 
-  it('Should have a Name, Image, Address, Service times and link to Map', function(){
+  it.only('Should have a Name, Image, Address, Service times and link to Map', function(){
     const firstLocation = locations.sortedByNameAndSlug[0];
     cy.get('#section-locations > .card').first().as('firstLocation');
 
@@ -67,7 +66,7 @@ describe('Testing the Locations page without searching:', function() {
     ContentfulElementValidator.shouldContainText(cy.get('@serviceTimes'), firstLocation.serviceTimes);
 
     cy.get('@firstLocation').find('[data-automation-id="location-image"]').as('image');
-    ContentfulElementValidator.shouldHaveImgixImageFindImg('image', firstLocation.image);
+    ContentfulElementValidator.shouldHaveImgixImageFindImg(cy.get('@image'), firstLocation.image);
   });
 });
 
