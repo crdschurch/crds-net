@@ -2,7 +2,7 @@
 shopt -s nocasematch; #ignore case
 
 #Skip all testing if testing toggled off
-if [[ "$RUN_CYPRESS" != "true"]]
+if [[ "$RUN_CYPRESS" != "true"]];
 then
     exit 0
 fi
