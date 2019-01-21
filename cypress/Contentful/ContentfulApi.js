@@ -10,7 +10,7 @@ import { PromoList } from './Models/PromoModel';
 export class ContentfulApi {
   retrieveLocationList() {
     const locationList = new LocationList();
-    cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=location&select=fields.name,fields.slug,fields.image&include=3`)
+    cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=location&select=fields.name,fields.slug,fields.image,fields.address,fields.service_times,fields.map_url&include=3`)
       .then((response) => {
         const jsonResponse = JSON.parse(response.body);
         locationList.storeListOfLocations(jsonResponse);

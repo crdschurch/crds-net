@@ -16,7 +16,7 @@ function check_message_card_content(index, message){
 
   cy.get('@messageCard').find('[data-automation-id="recent-message-image"]').as('messageImage');
   cy.get('@messageImage').should('have.attr', 'alt').and('contain', message.title.text);
-  Element.shouldHaveImgixImage('messageImage', message.image);
+  Element.shouldHaveImgixImage(cy.get('@messageImage'), message.image);
 }
 
 describe('Testing the Past Weekends section on the Live page:', function () {

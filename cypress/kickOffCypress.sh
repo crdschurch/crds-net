@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
+shopt -s nocasematch; #ignore case
+
+#Skip all testing if testing toggled off
+if [[ "$RUN_CYPRESS" != "true" ]];
+then
+    exit 0
+fi
+
 #Skip all testing in Prod
 if [[ "$CRDS_APP_CLIENT_ENDPOINT" = *"www.crossroads.net" ]];
 then

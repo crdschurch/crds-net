@@ -30,6 +30,6 @@ describe('Testing the Current Series on the Media landing page:', function () {
   it('The current series image and image link should match Contentful', function () {
     cy.get('@featuredSeries').find('[data-automation-id="featured-image"]').as('seriesImage');
     cy.get('@seriesImage').should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
-    Element.shouldHaveImgixImageFindImg('seriesImage', currentSeries.image);
+    Element.shouldHaveImgixImageFindImg(cy.get('@seriesImage'), currentSeries.image);
   });
 });
