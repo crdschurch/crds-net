@@ -165,7 +165,11 @@ meta_description: Crossroads Live
   <div class="container">
     <div class="card">
       <div class="card-img-caption">
-        <img alt="Current Series Image" data-automation-id="series-image" src="{{ current_series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"  data-optimize-img>
+        {% if current_series.image.url %}
+          <img alt="Current Series Image" data-automation-id="series-image" src="{{ current_series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" data-optimize-img>
+        {% else %}
+          <img alt="Current Series Image" data-automation-id="series-image" src="{{ site.default_image }}?{{ site.imgix_params.placeholder_sixteen_nine }}" data-optimize-img>
+        {% endif %}
         <div class="img-caption img-caption--left">Current Series</div>
       </div>
       <div class="row push-top soft-half-sides soft-ends">

@@ -123,4 +123,3 @@ https://int.crossroads.net/jake,https://google.com,302
 /undividednext/,/undivided/undivided-next-steps/,302
 /projects/,/marketing/,302
 /goindianewsletter/,https://share.hsforms.com/1WmumtknWQTarFpvcqoGNsA2dls1,302
-/*,${env:CRDS_MAESTRO_CLIENT_ENDPOINT}/:splat,200

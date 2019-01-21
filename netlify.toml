@@ -14,19 +14,34 @@
 [context.branch-deploy.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
   CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
-  CRDS_GROUP_LEADER_DOMAIN = "group-leader.netlify.com"
+  CRDS_ANGULAR_ENDPOINT = "development--crds-angular.netlify.com"
+  CRDS_GROUP_LEADER_DOMAIN = "dev-group-leader.netlify.com"
+  CRDS_FINDER_ENDPOINT = "dev-crds-finder.netlify.com"
 
 [context.deploy-preview.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
   CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
-  CRDS_GROUP_LEADER_DOMAIN = "demo-group-leader.netlify.com"
+  CRDS_ANGULAR_ENDPOINT = "development--crds-angular.netlify.com"
+  CRDS_GROUP_LEADER_DOMAIN = "dev-group-leader.netlify.com"
+  CRDS_FINDER_ENDPOINT = "dev-finder.netlify.com"
 
 [context.development.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
   CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
+  CRDS_ANGULAR_ENDPOINT = "development--crds-angular.netlify.com"
   CRDS_GROUP_LEADER_DOMAIN = "dev-group-leader.netlify.com"
+  CRDS_FINDER_ENDPOINT = "dev-crds-finder.netlify.com"
+
+[context.release.environment]
+  CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
+  CRDS_MAP_DOMAIN = "crdsmap.netlify.com"
+  CRDS_ANGULAR_ENDPOINT = "release--crds-angular.netlify.com"
+  CRDS_GROUP_LEADER_DOMAIN = "demo-group-leader.netlify.com"
+  CRDS_FINDER_ENDPOINT = "demo-crds-finder.netlify.com"
 
 [context.master.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-prod.netlify.com"
   CRDS_MAP_DOMAIN = "crds-map-prod.netlify.com"
+  CRDS_ANGULAR_ENDPOINT = "crds-angular.netlify.com"
   CRDS_GROUP_LEADER_DOMAIN = "group-leader.netlify.com"
+  CRDS_FINDER_ENDPOINT = "crds-finder.netlify.com"
