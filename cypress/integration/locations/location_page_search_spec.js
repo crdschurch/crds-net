@@ -48,7 +48,7 @@ describe('Testing the Locations page without searching:', function() {
     cy.get('@firstLocation').find('.distance').should('not.exist');
   });
 
-  it.only('Should have a Name, Image, Address, Service times and link to Map', function(){
+  it('Should have a Name, Image, Address, Service times and link to Map', function(){
     const firstLocation = locations.sortedByNameAndSlug[0];
     cy.get('#section-locations > .card').first().as('firstLocation');
 
