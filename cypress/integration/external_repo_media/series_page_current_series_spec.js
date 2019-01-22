@@ -33,7 +33,7 @@ describe('Tesing the Current Series on the Media/Series page:', function(){
     cy.get('.current-series').as('currentSeries');
     cy.get('@currentSeries').find('a').should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
 
-    Element.shouldHaveImgixImageFindImg('currentSeries', currentSeries.image);
+    Element.shouldHaveImgixImageFindImg(cy.get('@currentSeries'), currentSeries.image);
   });
 
   it('"View the series" button should link to the current series', function () {

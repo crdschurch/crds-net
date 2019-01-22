@@ -1,4 +1,5 @@
 import { ContentfulApi } from '../../Contentful/ContentfulApi';
+import { ContentfulElementValidator } from '../../Contentful/ContentfulElementValidator';
 
 function searchForLocation(keyword){
   cy.server();
@@ -27,17 +28,17 @@ describe('Testing the Locations page without searching:', function() {
 
   it('Location cards should display alphabetically followed by Anywhere', function() {
     const sortedLocations = locations.sortedByNameAndSlug;
-    let i;
     cy.get('#section-locations > .card').as('locationCards');
 
+    let i;
     for(i = 0; i < locations.locationCount; i++){
       cy.get('@locationCards').eq(i).should('be.visible');
-      cy.get('@locationCards').eq(i).find('a').should('have.attr', 'href', `/${sortedLocations[i].slug.text}`);
+      cy.get('@locationCards').eq(i).find('[data-automation-id="location-name"]').should('have.attr', 'href', `/${sortedLocations[i].slug.text}`);
     }
 
     //Check anywhere
     i = locations.locationCount;
-    cy.get('@locationCards').eq(i).find('a').should('have.attr', 'href', '/live');
+    cy.get('@locationCards').eq(i).find('[data-automation-id="anywhere-name"]').should('have.attr', 'href', '/live');
   });
 
   it('Distance should not be displayed on Location cards', function(){
@@ -45,6 +46,27 @@ describe('Testing the Locations page without searching:', function() {
 
     cy.get('@firstLocation').should('not.have.attr', 'data-distance');
     cy.get('@firstLocation').find('.distance').should('not.exist');
+  });
+
+  it('Should have a Name, Image, Address, Service times and link to Map', function(){
+    const firstLocation = locations.sortedByNameAndSlug[0];
+    cy.get('#section-locations > .card').first().as('firstLocation');
+
+    cy.get('@firstLocation').find('[data-automation-id="location-name"]').as('title');
+    ContentfulElementValidator.shouldContainText(cy.get('@title'), firstLocation.name);
+    cy.get('@title').should('have.attr', 'href').and('contain', firstLocation.slug.text);
+
+    cy.get('@firstLocation').find('[data-automation-id="location-address"]').as('address');
+    ContentfulElementValidator.shouldContainText(cy.get('@address'), firstLocation.address);
+
+    cy.get('@firstLocation').find('[data-automation-id="location-map-url"]').as('mapLink');
+    cy.get('@mapLink').should('have.attr', 'href', firstLocation.mapUrl.text);
+
+    cy.get('@firstLocation').find('[data-automation-id="location-service-times"]').as('serviceTimes');
+    ContentfulElementValidator.shouldContainText(cy.get('@serviceTimes'), firstLocation.serviceTimes);
+
+    cy.get('@firstLocation').find('[data-automation-id="location-image"]').as('image');
+    ContentfulElementValidator.shouldHaveImgixImageFindImg(cy.get('@image'), firstLocation.image);
   });
 });
 
@@ -70,7 +92,7 @@ describe('Testing the search functionality on the Locations page:', function() {
 
     cy.get('#section-locations > .card').first().as('oakleyCard');
     cy.get('@oakleyCard').should('be.visible');
-    cy.get('@oakleyCard').find('a').should('have.attr', 'href').and('contains', oakleyLocation.slug.text);
+    cy.get('@oakleyCard').find('[data-automation-id="location-name"]').should('have.attr', 'href').and('contains', oakleyLocation.slug.text);
 
     //Distance overlay displayed
     cy.get('@oakleyCard').should('have.attr', 'data-distance').and('be.gte', 0);
@@ -85,7 +107,7 @@ describe('Testing the search functionality on the Locations page:', function() {
 
     cy.get('#section-locations > .card').first().as('florenceCard');
     cy.get('@florenceCard').should('be.visible');
-    cy.get('@florenceCard').find('a').should('have.attr', 'href').and('contains', florenceLocation.slug.text);
+    cy.get('@florenceCard').find('[data-automation-id="location-name"]').should('have.attr', 'href').and('contains', florenceLocation.slug.text);
   });
 
   it('Searching for an out of range location should display the Anywhere card first', function(){
@@ -95,8 +117,8 @@ describe('Testing the search functionality on the Locations page:', function() {
 
     cy.get('#section-locations > .card').first().as('anywhereCard');
     cy.get('@anywhereCard').should('be.visible');
-    cy.get('@anywhereCard').find('a').should('have.attr', 'href').and('contains', '/live');
-    cy.get('@anywhereCard').find('.card-title > a').should('contain', 'Anywhere');
+    cy.get('@anywhereCard').find('[data-automation-id="anywhere-name"]').should('have.attr', 'href').and('contains', '/live');
+    cy.get('@anywhereCard').find('[data-automation-id="anywhere-name"]').should('contain', 'Anywhere');
   });
 
   it('An error should display after searching for nonsense text, then should disappear after a valid search', function(){

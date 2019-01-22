@@ -43,6 +43,10 @@ export class LocationModel {
 
     this._image = new ImageField(responseItem.image, assetList);
     this._image.required = true;
+
+    this._address = new TextField(responseItem.address);
+    this._service_times = new TextField(responseItem.service_times);
+    this._map_url = new TextField(responseItem.map_url);
   }
 
   get name() {
@@ -55,5 +59,17 @@ export class LocationModel {
 
   get image() {
     return this._image;
+  }
+
+  get address() {
+    return this._address;
+  }
+
+  get serviceTimes() {
+    return this._service_times;
+  }
+
+  get mapUrl() {
+    return this._map_url;
   }
 }

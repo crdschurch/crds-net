@@ -33,7 +33,7 @@ describe('Testing the Current Series on the Live page:', function () {
 
   it('Current Series image should match Contentful', function(){
     cy.get('[data-automation-id="series-image"]').as('currentSeriesImage');
-    Element.shouldHaveImgixImage('currentSeriesImage', currentSeries.image);
+    Element.shouldHaveImgixImage(cy.get('@currentSeriesImage'), currentSeries.image);
   });
 
   it('"Watch Trailer" button should open a youtube modal, iff series has trailer', function () {
