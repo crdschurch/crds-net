@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
+shopt -s nocasematch; #ignore case
+
+#Skip all testing if testing toggled off
+if [[ "$RUN_CYPRESS" != "true" ]];
+then
+    exit 0
+fi
+
 #Skip all testing in Prod
 if [[ "$CRDS_APP_CLIENT_ENDPOINT" = *"www.crossroads.net" ]];
 then
@@ -21,7 +29,7 @@ fi
 # fi
 
 test_this_URL=$CRDS_APP_CLIENT_ENDPOINT
-body="{\"request\": { \"branch\":\"$HEAD\", \"config\": {\"env\": { \"baseURL\": \"$test_this_URL\", \"contentfulSpaceId\": \"$CONTENTFUL_SPACE_ID\", \"contentfulEnv\": \"$CONTENTFUL_ENV\", \"contentfulToken\": \"$CONTENTFUL_ACCESS_TOKEN\", \"mediaEndpoint\": \"$CRDS_MEDIA_ENDPOINT\"}}}}"
+body="{\"request\": { \"branch\":\"$HEAD\", \"config\": {\"env\": { \"baseURL\": \"$test_this_URL\", \"contentfulSpaceId\": \"$CONTENTFUL_SPACE_ID\", \"contentfulEnv\": \"$CONTENTFUL_ENV\", \"contentfulToken\": \"$CONTENTFUL_ACCESS_TOKEN\", \"mediaEndpoint\": \"$CRDS_MEDIA_ENDPOINT\", \"DEBUG_NetlifyContext\": \"$CONTEXT\"}}}}"
 
 curl -s -X POST \
 -H "Content-Type: application/json" \
