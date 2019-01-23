@@ -2,3 +2,6 @@
 	path = _pages
 	url = https://github.com/crdschurch/crds-net-shared.git
 	branch = _pages
+[submodule "_assets/stylesheets/crds-styles"]
+	path = _assets/stylesheets/crds-styles
+	url = git@github.com:crdschurch/crds-styles.git
