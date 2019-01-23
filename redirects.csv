@@ -35,5 +35,5 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /give,${env:PUSHPAY_GIVE_ENDPOINT},301
 /me/giving*,https://${env:CRDS_ANGULAR_ENDPOINT}/me/giving:splat,200!
 /giving*,https://${env:CRDS_ANGULAR_ENDPOINT}/giving:splat,200!
-/givinghistory,https://${env:CRDS_ANGULAR_ENDPOINT}/me/giving:splat,200!
+/givinghistory,https://${env:CRDS_ANGULAR_ENDPOINT}/me/giving,301
 /*,/404.html,404
