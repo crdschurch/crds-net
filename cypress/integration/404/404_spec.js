@@ -36,7 +36,7 @@ describe('Testing the 404 page:', function () {
   });
 });
 
-describe('Testing Netlify serves 404 page on invalid routes', function () {
+describe('Testing the 404 page is served by Netlify:', function () {
   it('crossroads.net/notapage should serve Netlify 404', function () {
     cy.visit('/notapage', { failOnStatusCode: false });
     pageShouldBeFromNetlify();
