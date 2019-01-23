@@ -10,7 +10,8 @@ class Redirects
     @options = {
       query: {
         access_token: ENV['CONTENTFUL_ACCESS_TOKEN'],
-        content_type: 'redirect'
+        content_type: 'redirect',
+        limit: 1000
       }
     }
   end
