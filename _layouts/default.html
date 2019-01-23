@@ -34,6 +34,38 @@
   {% if page.title == "Atrium Events" %}
     {% javascript_link_tag events async %}
   {% endif %}
+
+  <script>
+      var config = {
+        key: '224f523d-e1ba-4f96-ad4d-96365f461c93',
+        source: {
+          dash: 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd',
+          hls: 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8',
+          progressive: 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4',
+          poster: 'https://crds-cms-uploads.imgix.net/content/images/crossroads-superbowl-header-date.png'
+        },
+        analytics: {
+          key: 'f89517d5-4fa9-4a64-a9e7-43c9bf51205f',
+          videoId: 'adfb8bfe-270b-4fa4-98db-59b83215dc67',
+          title: 'A descriptive video title'
+        }
+      };
+      
+      var player = bitmovin.player('my-player');
+      bitmovin.analytics.augment(player);
+      
+      player.setup(config).then(
+        function(value) {
+          // Success
+          console.log('Successfully created bitmovin player instance');
+        },
+        function(reason) {
+          // Error!
+          console.log('Error while creating bitmovin player instance');
+        }
+      );
+  </script>
+
 </body>
 
 </html>
