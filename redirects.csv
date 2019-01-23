@@ -30,6 +30,7 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /search*,https://${env:CRDS_ANGULAR_ENDPOINT}/search:splat,200!
 /serve*, https://${env:CRDS_ANGULAR_ENDPOINT}/serve:splat,200!
 /giving*,https://${env:CRDS_ANGULAR_ENDPOINT}/giving:splat,200!
+/me/giving*,https://${env:CRDS_ANGULAR_ENDPOINT}/giving:splat,200!
 /sign-up/*,https://${env:CRDS_ANGULAR_ENDPOINT}/sign-up/:splat,200!
 /trips/*,https://${env:CRDS_ANGULAR_ENDPOINT}/trips/:splat,200!
 /waivers/*,https://${env:CRDS_ANGULAR_ENDPOINT}/waivers/:splat,200!
