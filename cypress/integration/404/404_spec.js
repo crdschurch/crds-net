@@ -37,7 +37,6 @@ describe('Testing the 404 page:', function () {
 });
 
 describe('Testing Netlify serves 404 page on invalid routes', function () {
-  //These will fail until proxy swap is working correctly
   it('crossroads.net/notapage should serve Netlify 404', function () {
     cy.visit('/notapage', { failOnStatusCode: false });
     pageShouldBeFromNetlify();
@@ -53,6 +52,4 @@ describe('Testing Netlify serves 404 page on invalid routes', function () {
     sharedFooterShouldExist();
     searchFieldShouldExist();
   });
-
-  //TODO what other pages do we cover?
 });

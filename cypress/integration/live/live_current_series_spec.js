@@ -28,12 +28,12 @@ describe('Testing the Current Series on the Live page:', function () {
     cy.get('@currentSeriesDateRange').should('be.visible').and('contain', `${start} - ${end}`);
 
     cy.get('@currentSeriesBlock').find('[data-automation-id="series-description"]').as('currentSeriesDescription');
-    Element.shouldContainText(cy.get('@currentSeriesDescription'), currentSeries.description);
+    Element.shouldContainText('currentSeriesDescription', currentSeries.description);
   });
 
   it('Current Series image should match Contentful', function(){
     cy.get('[data-automation-id="series-image"]').as('currentSeriesImage');
-    Element.shouldHaveImgixImage(cy.get('@currentSeriesImage'), currentSeries.image);
+    Element.shouldHaveImgixImage('currentSeriesImage', currentSeries.image);
   });
 
   it('"Watch Trailer" button should open a youtube modal, iff series has trailer', function () {
