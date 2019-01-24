@@ -1,6 +1,4 @@
-function pageShouldBeFromNetlify() {
-  cy.get('head meta[name="Netlify"]').should('exist');
-}
+import { RouteValidator } from '../../support/RouteValidator';
 
 function sharedHeaderShouldExist() {
   cy.get('.crds-shared-header').as('sharedHeader').should('exist').and('be.visible');
@@ -17,7 +15,7 @@ function sharedFooterShouldExist(){
 }
 
 function searchFieldShouldExist(){
-  cy.get('[data-automation-id="404-search-field"]').as('searchField').should('exist').and('be.visible');
+  cy.get('[data-automation-id="404-search-field"]').as('404SearchField').should('exist').and('be.visible');
 }
 
 describe('Testing the 404 page:', function () {
@@ -26,7 +24,7 @@ describe('Testing the 404 page:', function () {
   });
 
   it('/404 should be served by Netlify', function () {
-    pageShouldBeFromNetlify();
+    RouteValidator.pageShouldBeFromNetlify();
   });
 
   it('/404 should have the header, footer and search field', function () {
@@ -36,10 +34,10 @@ describe('Testing the 404 page:', function () {
   });
 });
 
-describe('Testing the 404 page is served by Netlify:', function () {
+describe('Testing 404 page from invalid routes are served by Netlify:', function () {
   it('crossroads.net/notapage should serve Netlify 404', function () {
     cy.visit('/notapage', { failOnStatusCode: false });
-    pageShouldBeFromNetlify();
+    RouteValidator.pageShouldBeFromNetlify();
     sharedHeaderShouldExist();
     sharedFooterShouldExist();
     searchFieldShouldExist();
@@ -47,7 +45,7 @@ describe('Testing the 404 page is served by Netlify:', function () {
 
   it('crossroads.net/live/notapage should serve Netlify 404', function () {
     cy.visit('/live/notapage', { failOnStatusCode: false });
-    pageShouldBeFromNetlify();
+    RouteValidator.pageShouldBeFromNetlify();
     sharedHeaderShouldExist();
     sharedFooterShouldExist();
     searchFieldShouldExist();
