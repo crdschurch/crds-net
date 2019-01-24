@@ -14,6 +14,8 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /childcare/*,https://${env:CRDS_ANGULAR_ENDPOINT}/childcare/:splat,200!
 /corkboard*,https://${env:CRDS_ANGULAR_ENDPOINT}/corkboard:splat,200!
 /invoices/*,https://${env:CRDS_ANGULAR_ENDPOINT}/invoices/:splat,200!
+/undivided/participant/*,https://${env:CRDS_ANGULAR_ENDPOINT}/undivided/participant/:splat,200!
+/undivided/facilitator/*,https://${env:CRDS_ANGULAR_ENDPOINT}/undivided/facilitator/:splat,200!
 /mptools/*,https://${env:CRDS_ANGULAR_ENDPOINT}/mptools/:splat,200!
 /profile/personal,https://${env:CRDS_ANGULAR_ENDPOINT}/profile/personal,200!
 /profile/communications,https://${env:CRDS_ANGULAR_ENDPOINT}/profile/communications,200!
