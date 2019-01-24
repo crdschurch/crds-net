@@ -53,20 +53,20 @@ describe('Testing the Locations page without searching:', function() {
     cy.get('#section-locations > .card').first().as('firstLocation');
 
     cy.get('@firstLocation').find('[data-automation-id="location-name"]').as('title');
-    ContentfulElementValidator.shouldContainText(cy.get('@title'), firstLocation.name);
+    ContentfulElementValidator.shouldContainText('title', firstLocation.name);
     cy.get('@title').should('have.attr', 'href').and('contain', firstLocation.slug.text);
 
     cy.get('@firstLocation').find('[data-automation-id="location-address"]').as('address');
-    ContentfulElementValidator.shouldContainText(cy.get('@address'), firstLocation.address);
+    ContentfulElementValidator.shouldContainText('address', firstLocation.address);
 
     cy.get('@firstLocation').find('[data-automation-id="location-map-url"]').as('mapLink');
     cy.get('@mapLink').should('have.attr', 'href', firstLocation.mapUrl.text);
 
     cy.get('@firstLocation').find('[data-automation-id="location-service-times"]').as('serviceTimes');
-    ContentfulElementValidator.shouldContainText(cy.get('@serviceTimes'), firstLocation.serviceTimes);
+    ContentfulElementValidator.shouldContainText('serviceTimes', firstLocation.serviceTimes);
 
     cy.get('@firstLocation').find('[data-automation-id="location-image"]').as('image');
-    ContentfulElementValidator.shouldHaveImgixImageFindImg(cy.get('@image'), firstLocation.image);
+    ContentfulElementValidator.shouldHaveImgixImageFindImg('image', firstLocation.image);
   });
 });
 

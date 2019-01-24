@@ -23,16 +23,16 @@ describe('Testing the Current Message on the Homepage:', function () {
 
   it('Current Message title, description, and image should match Contentful', function () {
     cy.get('[data-automation-id="message-title"]').as('title');
-    Element.shouldContainText(cy.get('@title'), currentMessage.title);
+    Element.shouldContainText('title', currentMessage.title);
     cy.get('@title').should('have.attr', 'href', messageURL);
 
     cy.get('[data-automation-id="message-description"]').as('description');
-    Element.shouldMatchSubsetOfText(cy.get('@description'), currentMessage.description);
+    Element.shouldMatchSubsetOfText('description', currentMessage.description);
 
     cy.get('[data-automation-id="message-video"]').as('video');
     cy.get('@video').should('have.attr', 'href', messageURL);
 
-    Element.shouldHaveImgixImageFindImg(cy.get('@video'), currentMessage.image);
+    Element.shouldHaveImgixImageFindImg('video', currentMessage.image);
   });
 
   it('"View latest now" button should link to the current message', function () {
