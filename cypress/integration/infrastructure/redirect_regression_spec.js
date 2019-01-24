@@ -1,28 +1,38 @@
-describe('Testing navigation between pages:', function (){
-  it('(DE6317) Using the Crossroads logo to navigate out of /search should land on the Netlify homepage', function (){
-    cy.visit('/');
-    //check is netlify
+function pageShouldBeFromNetlify() {
+  cy.get('meta[name="Netlify"]').as('metaFromNetlify').should('exist');
+}
+
+function pageShouldNotBe404() {
+  cy.get('[data-automation-id="404-search-field"]').as('404SearchBar').should('not.exist');
+}
+
+function clickCrossroadsLogoAndConfirmNetlifyHomepageLoads() {
+  cy.get('#crds-shared-header-logo').as('crossroadsLogo').click();
+  cy.url().should('be', Cypress.config().baseUrl);
+  pageShouldBeFromNetlify();
+  pageShouldNotBe404();
+}
+
+//TODO should have function to click logo and verify?
+describe('Testing navigation between pages:', function () {
+  it('(DE6317) Using the Crossroads logo to navigate out of /search should land on the Netlify homepage', function () {
     cy.visit('search/');
-    //check is netlify
-    //click crossroads logo
-    //check on homepage (don't rely on url)
-    //check is netlify
+
+    clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
-  it('(DE6319) Using the Crossroads logo to navigate out of /corkboard should land on the Netlify homepage', function (){
-    cy.visit('/');
-    //check is netlify
+  it('(DE6319) Using the Crossroads logo to navigate out of /corkboard should land on the Netlify homepage', function () {
     cy.visit('corkboard/');
-    //check is netlify
-    //click crossroads logo
-    //check on homepage (don't rely on url)
-    //check is netlify
+
+    clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
-  it('(DE6321) Navigating to a location with a known redirect should land on the redirected page served by Netlify', function (){
+  it('(DE6321) Navigating to a location with a known redirect should land on the redirected page served by Netlify', function () {
     //first check andover/lexington redirect exists
-    //visit /andover
-    //check is /lexington
-    //check is netlify
+
+    cy.visit('andover');
+    cy.url().should('be', `${Cypress.config().baseUrl}/lexington`);
+    pageShouldBeFromNetlify();
+    pageShouldNotBe404();
   });
 });
