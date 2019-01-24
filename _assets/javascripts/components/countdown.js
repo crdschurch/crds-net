@@ -185,7 +185,7 @@ CRDS.Countdown = class Countdown {
 
   showCountdown() {
     $('.crds-countdown').show();
-
+    
     const secondsUntilNextEvent = (Countdown.convertDate(this.nextEvent.start, this.TIMEZONE_OFFSET) - (new Date())) / 1000;
     if (secondsUntilNextEvent < this.UPCOMING_DURATION * 60 * 60) {
       this.setStreamStatus('upcoming');
@@ -202,6 +202,7 @@ CRDS.Countdown = class Countdown {
     this.intervalId = setInterval(() => {
       this.updateCountdown();
     }, 1000);
+    document.getElementsByClassName("countdown-component")[0].style.visibility = "visible";
   }
 
   updateCountdown() {
