@@ -19,6 +19,7 @@ layout: default
 {% assign fb-link = "https://www.facebook.com/events/224966235099005/" %}
 {% capture sun_time %}9:15am<br />11:15am{% endcapture %}
 {% elsif page.title == "Columbus" %}
+{% assign ss-link = "https://docs.google.com/forms/d/e/1FAIpQLSfmX4Gmynz8as6CA7XKDe6QNzGzVPFcQheFxDiT1UWiCV7ZPA/viewform" %}
 {% capture sun_time %}10:15am{% endcapture %}
 {% elsif page.title == "Dayton" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScA4hpYfwYROgpwQs1iDelr5nahobys0SuK_Tm8cfOANTR-Dg/viewform" %}
@@ -144,6 +145,9 @@ layout: default
         {% endif %}
         {% if fi-link %}
           <a href="{{ fi-link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Sign up for First Impressions</a>
+        {% endif %}
+        {% if ss-link %}
+          <a href="{{ ss-link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Sign up to serve</a>
         {% endif %}
       </div>
     </div>
