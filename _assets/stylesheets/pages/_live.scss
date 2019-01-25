@@ -23,8 +23,12 @@
   }
   
   .container-fluid.sticky-top {
+    .crds-countdown {
+      min-height: 68px;
+    }
     .countdown-component {
       display: flex;
+      visibility: hidden;
       align-items: center;
       flex-direction: row;
     }
