@@ -7,6 +7,12 @@ export class RouteValidator{
     cy.get('[data-automation-id="404-search-field"]').as('404SearchField').should('not.exist');
   }
 
+  static pageFoundAndFromNetlify(url) {
+    cy.url().should('eq', url);
+    RouteValidator.pageShouldNotBe404();
+    RouteValidator.pageShouldBeFromNetlify();
+  }
+
   static responseShouldNotBeFromMaestro(response){
     expect(response.headers['x-varnish']).not.to.exist;
 
