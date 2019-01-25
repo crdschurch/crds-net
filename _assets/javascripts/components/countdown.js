@@ -202,7 +202,8 @@ CRDS.Countdown = class Countdown {
     this.intervalId = setInterval(() => {
       this.updateCountdown();
     }, 1000);
-    document.getElementsByClassName("countdown-component")[0].style.visibility = "visible";
+    
+    $(".countdown-component").css("visibility", "visible");
   }
 
   updateCountdown() {
