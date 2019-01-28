@@ -181,6 +181,8 @@ CRDS.Countdown = class Countdown {
         this.showCountdown();
       }
     }, 1000 * secondsUntilStreamEnd);
+
+    this.showCountdownComponent();
   }
 
   showCountdown() {
@@ -203,6 +205,10 @@ CRDS.Countdown = class Countdown {
       this.updateCountdown();
     }, 1000);
     
+    this.showCountdownComponent();
+  }
+
+  showCountdownComponent(){
     $(".countdown-component").css("visibility", "visible");
   }
 
