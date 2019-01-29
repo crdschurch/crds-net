@@ -8,9 +8,15 @@ export class RouteValidator{
   }
 
   static pageFoundAndFromNetlify(url) {
-    cy.url().should('eq', url);
+    RouteValidator.pageShouldMatchUrl(url);
     RouteValidator.pageShouldNotBe404();
     RouteValidator.pageShouldBeFromNetlify();
+  }
+
+  //Tailing slashes should be omitted, they'll be allowed in a successful match
+  static pageShouldMatchUrl(url){
+    const urlRegex = new RegExp(`${url}/?$`);
+    cy.url().should('match', urlRegex);
   }
 
   static responseShouldNotBeFromMaestro(response){
