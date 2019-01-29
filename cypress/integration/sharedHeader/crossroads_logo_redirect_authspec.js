@@ -10,13 +10,13 @@ describe('As a signed-in user, clicking the Crossroads logo from a non-Netlify p
     cy.login('mpcrds+auto+fredflintstone@gmail.com', Cypress.env('TEST_USER_PW'));
   });
 
-  it('(DE6319) Starting from /corkboard', function (){
+  it.skip('(DE6319) Starting from /corkboard', function (){
     cy.visit('corkboard/');
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
-  it('Starting from /childcare', function (){
+  it.skip('Starting from /childcare', function (){
     cy.visit('childcare/');
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
