@@ -30,12 +30,12 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /volunteer-application/*,https://${env:CRDS_ANGULAR_ENDPOINT}/volunteer-application/:splat,200!
 /leaveyourmark,https://${env:CRDS_ANGULAR_ENDPOINT}/leaveyourmark,200!
 /search*,https://${env:CRDS_ANGULAR_ENDPOINT}/search:splat,200!
-/serve*, https://${env:CRDS_ANGULAR_ENDPOINT}/serve:splat,200!
+/serve-signup,https://${env:CRDS_SERVE_ENDPOINT},301
 /sign-up/*,https://${env:CRDS_ANGULAR_ENDPOINT}/sign-up/:splat,200!
 /trips/*,https://${env:CRDS_ANGULAR_ENDPOINT}/trips/:splat,200!
 /waivers/*,https://${env:CRDS_ANGULAR_ENDPOINT}/waivers/:splat,200!
 /give,${env:PUSHPAY_GIVE_ENDPOINT},301
-/me/giving*,https://${env:CRDS_ANGULAR_ENDPOINT}/givinghistory:splat,200!
-/giving/*,https://${env:CRDS_ANGULAR_ENDPOINT}/giving:splat,200!
-/givinghistory,https://${env:CRDS_ANGULAR_ENDPOINT}/givinghistory,200!
-/*,/404.html,404
+/me/giving*,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301
+/giving/*,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301
+/givinghistory,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301
+/*,/404.html,404 
