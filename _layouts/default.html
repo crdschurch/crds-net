@@ -36,19 +36,34 @@
   {% endif %}
 
   <script>
+
+
+    
       var config = {
         key: '224f523d-e1ba-4f96-ad4d-96365f461c93',
+        playback: {
+          autoplay: true,
+          muted: true
+        },
+        cast: {
+          enable: 'true',
+        },
         source: {
-          dash: 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd',
-          hls: 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8',
-          progressive: 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4',
+          // dash: 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd',
+          // hls: 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8',
+          progressive: 'https://crossroads-media.s3.amazonaws.com/other-media/video/Crossroads-2018-Super-Bowl-of-Preaching.mp4',
           poster: 'https://crds-cms-uploads.imgix.net/content/images/crossroads-superbowl-header-date.png'
         },
         analytics: {
           key: 'f89517d5-4fa9-4a64-a9e7-43c9bf51205f',
           videoId: 'adfb8bfe-270b-4fa4-98db-59b83215dc67',
           title: 'A descriptive video title'
-        }
+        },
+        style: {
+          // width: '90%',
+          aspectratio: '16/9',
+          ux: true
+        },
       };
       
       var player = bitmovin.player('my-player');
