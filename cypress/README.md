@@ -8,6 +8,7 @@ Create a cypress.env.json file with the following content (Contentful values can
     "CONTENTFUL_ENV": "...",
     "CONTENTFUL_ACCESS_TOKEN": "...",
     "CRDS_MEDIA_ENDPOINT": "mediaint"
+    "TEST_USER_PW": "..."
 }
 ```
 
