@@ -19,6 +19,11 @@
       padding-bottom: 100px;
     }
   }
+
+  .border-left {
+    padding-left: 30px;
+    border-left: 1px solid rgba($cr-white, 0.15);
+  }
 }
 
 .info-card-body {
