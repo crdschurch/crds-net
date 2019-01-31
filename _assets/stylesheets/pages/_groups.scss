@@ -13,7 +13,11 @@
 
   .intro {
     line-height: 26.5px;
-    padding-bottom: 100px;
+    padding-bottom: 60px;
+
+    @media (min-width: $screen-sm) {
+      padding-bottom: 100px;
+    }
   }
 }
 
@@ -31,6 +35,10 @@
   background-color: $cr-gold;
   padding-top: 7px;
   padding-bottom: 8px;
+}
+
+.text-blue-light {
+  color: $cr-blue-light;
 }
 
 // For the following pages: groups-getting-started, groups-in, groups-out, groups-up
