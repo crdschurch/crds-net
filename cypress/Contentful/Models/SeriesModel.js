@@ -29,7 +29,6 @@ export class SeriesModel {
     this._slug.required = true;
 
     this._description = new TextField(responseItem.description);
-    //this._description.required = true;
 
     this._published_at = new DateField(responseItem.published_at);
     this._published_at.required = true;
