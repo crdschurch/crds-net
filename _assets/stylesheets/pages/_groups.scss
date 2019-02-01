@@ -47,6 +47,14 @@
   }
 }
 
+.info-card {
+  padding-bottom: 30px;
+
+  @media (min-width: $screen-md) {
+    padding-bottom: 0;
+  }
+}
+
 .info-card-body {
   background-color: $cr-white;
   color: $cr-gray-dark;
