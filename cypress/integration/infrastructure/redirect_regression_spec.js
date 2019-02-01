@@ -11,8 +11,6 @@ describe('Testing navigation between pages:', function () {
     });
 
     cy.visit('andover');
-    cy.url().should('eq', `${Cypress.config().baseUrl}/lexington`);
-    RouteValidator.pageShouldBeFromNetlify();
-    RouteValidator.pageShouldNotBe404();
+    RouteValidator.pageFoundAndFromNetlify(`${Cypress.config().baseUrl}/lexington`);
   });
 });

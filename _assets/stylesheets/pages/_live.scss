@@ -22,7 +22,7 @@
     }
   }
   
-.jumbotron {
+#live-stream-jumbotron > .jumbotron {
   // here to reduce white background pop on img-optimizer resize
   min-height: 550px;
 }
