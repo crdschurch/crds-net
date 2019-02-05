@@ -1,4 +1,5 @@
 import { RouteValidator } from '../../support/RouteValidator';
+import { fred_flintstone } from '../../fixtures/test_users';
 
 function clickCrossroadsLogoAndConfirmNetlifyHomepageLoads() {
   cy.get('#crds-shared-header-logo').as('crossroadsLogo').click();
@@ -7,7 +8,7 @@ function clickCrossroadsLogoAndConfirmNetlifyHomepageLoads() {
 
 describe('As a signed-in user, clicking the Crossroads logo from a non-Netlify page should load the Netlify homepage:', function () {
   beforeEach(function () {
-    cy.login('mpcrds+auto+fredflintstone@gmail.com', Cypress.env('TEST_USER_PW'));
+    cy.login(fred_flintstone.email, fred_flintstone.password);
   });
 
   it.skip('(DE6319) Starting from /corkboard', function (){

@@ -40,7 +40,7 @@ describe('Clicking the Crossroads logo from a Netlify page should load the Netli
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
-  it('Starting from /camps', function () {
+  it.skip('Starting from /camps', function () {
     cy.visit('camps/');
     RouteValidator.pageShouldBeFromNetlify();
 
