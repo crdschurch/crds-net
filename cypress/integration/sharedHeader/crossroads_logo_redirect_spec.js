@@ -5,20 +5,20 @@ function clickCrossroadsLogoAndConfirmNetlifyHomepageLoads() {
   RouteValidator.pageFoundAndFromNetlify(`${Cypress.config().baseUrl}/`);
 }
 
-describe('Clicking the Crossroads logo from a non-Netlify page should load the Netlify homepage:', function () {
-  it.skip('(DE6317) Starting from /search', function () {
+describe.only('Clicking the Crossroads logo from a non-Netlify page should load the Netlify homepage:', function () {
+  it('(DE6317) Starting from /search', function () {
     cy.visit('search/');
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
-  it.skip('(DE6319) Starting from /corkboard', function () {
-    cy.visit('corkboard/');
+  it('(DE6319) Starting from /corkboard', function () {
+    cy.visit('corkboard/', { timeout: 10000 });
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
-  it.skip('Starting from /leaveyourmark', function () {
+  it('Starting from /leaveyourmark', function () {
     cy.visit('leaveyourmark/');
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
@@ -40,8 +40,8 @@ describe('Clicking the Crossroads logo from a Netlify page should load the Netli
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
-  it.skip('Starting from /camps', function () {
-    cy.visit('camps/');
+  it('Starting from /giving', function () {
+    cy.visit('giving/');
     RouteValidator.pageShouldBeFromNetlify();
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
