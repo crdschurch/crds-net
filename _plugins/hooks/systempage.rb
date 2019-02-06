@@ -18,7 +18,3 @@ Jekyll::Hooks.register :site, :after_init do |site|
     f.write(systemPages.to_json)
   end
 end
-
-
-
-
