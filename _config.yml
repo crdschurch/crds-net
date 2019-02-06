@@ -44,6 +44,7 @@ contentful:
     - sign_off
     - song
     - video
+    - system_page
 
 collections_dir: collections
 
