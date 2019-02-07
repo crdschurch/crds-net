@@ -15,7 +15,7 @@ function sharedFooterShouldExist(){
 }
 
 function searchFieldShouldExist(){
-  cy.get('[data-automation-id="404-search-field"]').as('404SearchField').should('exist').and('be.visible');
+  cy.get('[data-automation-id="404-search-button"]').as('404SearchButton').should('exist').and('be.visible');
 }
 
 describe('Testing the 404 page:', function () {
