@@ -10,23 +10,32 @@ meta_description: Watch our Super Bowl of Preaching aired right here all day lon
 
   <div class="container">
 
+    <button id="startClock">start clock</button>
+    <h1 id="clock"></h1>
+
     <div class="row">
       <div class="col-xs-12">
-          The player
-          <div id="my-player"></div>
+          <div class="embed-responsive embed-responsive-16by9">
+        <iframe id="vimeoPlayer" class="embed-responsive-item" src="https://player.vimeo.com/video/316390612?autoplay=1&muted=1#t=1m2s" width="640" height="360" frameborder="0"
+          webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
       </div>
     </div>
 
     <div class="row">
-        <div class="col-xs-12">
-            The chat
-            <div id="tlkio" data-channel="crds" data-theme="theme--night" data-custom-css="https://www.crossroads.net/assets/application-a79bb8b6a018fb5dfd7dd5f3.css" style="width:100%;height:100%;"></div>
-        </div>
+      <div class="col-xs-12">
+        The player
+        <div id="my-player"></div>
       </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        The chat
+        <div id="tlkio" data-channel="crds" data-theme="theme--night" data-custom-css="https://www.crossroads.net/assets/application-a79bb8b6a018fb5dfd7dd5f3.css"
+          style="width:100%;height:100%;"></div>
+      </div>
+    </div>
   </div>
 
 </div>
-
-
-
-

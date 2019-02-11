@@ -50,8 +50,9 @@
         },
         source: {
           // dash: 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd',
-          // hls: 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8',
-          progressive: 'https://crossroads-media.s3.amazonaws.com/other-media/video/Crossroads-2018-Super-Bowl-of-Preaching.mp4',
+          hls: 'https://player.vimeo.com/external/316390612.m3u8?s=275ebce0b8b3c1851807d25e658a6e64a11e64db',
+          // progressive: ' https://bitmovin-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4',
+          // progressive: 'https://crossroads-media.s3.amazonaws.com/bitmovin/per-title-comparison/ae2c9fc3-7c8c-4eb1-b7b1-a08bb743ec5b/db47a160-24c6-11e9-913e-f775238e61b4/2019-01-30T19%3A40%3A11Z/standard/7800000/Crossroads-2018-Super-Bowl-of-Preaching.mp4-1080p.mp4',
           poster: 'https://crds-cms-uploads.imgix.net/content/images/crossroads-superbowl-header-date.png'
         },
         analytics: {
@@ -80,6 +81,31 @@
         }
       );
   </script>
+
+  <script>
+  $(document).ready(function(){
+         function getdate(){
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+             if(s<10){
+                 s = "0"+s;
+             }
+
+            //#t=1m2s
+            $("h1#clock").text(m+"m"+s+"s");
+            // $("#vimeoPlayer").attr("src", "https://player.vimeo.com/video/316390612?autoplay=1&muted=1#" + m+"m"+s+"s");
+             setTimeout(function(){getdate()}, 500);
+            }
+
+            
+
+        $("button#startClock").click(getdate);
+    });
+</script>
+
+
 
 </body>
 
