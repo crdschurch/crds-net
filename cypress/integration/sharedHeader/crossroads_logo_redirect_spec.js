@@ -5,7 +5,7 @@ function clickCrossroadsLogoAndConfirmNetlifyHomepageLoads() {
   RouteValidator.pageFoundAndFromNetlify(`${Cypress.config().baseUrl}/`);
 }
 
-describe.only('Clicking the Crossroads logo from a non-Netlify page should load the Netlify homepage:', function () {
+describe('Clicking the Crossroads logo from a non-Netlify page should load the Netlify homepage:', function () {
   it('(DE6317) Starting from /search', function () {
     cy.visit('search/');
 

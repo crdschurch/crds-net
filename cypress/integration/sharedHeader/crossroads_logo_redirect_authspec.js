@@ -2,7 +2,7 @@ import { RouteValidator } from '../../support/RouteValidator';
 import { fred_flintstone } from '../../fixtures/test_users';
 
 function clickCrossroadsLogoAndConfirmNetlifyHomepageLoads() {
-  cy.get('#crds-shared-header-logo').as('crossroadsLogo').click();
+  cy.get('#crds-shared-header-logo', {timeout: 20000}).as('crossroadsLogo').click();
   RouteValidator.pageFoundAndFromNetlify(`${Cypress.config().baseUrl}/`);
 }
 
@@ -12,7 +12,7 @@ describe('As a signed-in user, clicking the Crossroads logo from a non-Netlify p
   });
 
   it('(DE6319) Starting from /corkboard', function (){
-    cy.visit('corkboard/', { timeout: 10000 });
+    cy.visit('corkboard/', { timeout: 20000 });
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
