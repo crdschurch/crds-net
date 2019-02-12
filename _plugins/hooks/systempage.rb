@@ -11,6 +11,7 @@ Jekyll::Hooks.register :site, :after_init do |site|
   }
   
   response['items'].each do |item|
+    item['fields']['legacyStyles'] = item['fields']['legacyStyles'] ? 1 : 0
     systemPages['systemPages'] << item['fields']
   end
   
