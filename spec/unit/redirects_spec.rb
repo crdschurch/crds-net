@@ -3,12 +3,18 @@ require 'spec_helper'
 describe 'Redirects' do
 
   before do
-    ENV['CONTENTFUL_ACCESS_TOKEN'] = '813af7d0df1d660fdf5e71010997a4fe621848aa225fa3e6f4fad2b50e6cdce2'
-    ENV['CONTENTFUL_SPACE_ID'] = 'p9oq1ve41d7r'
+    ENV['CONTENTFUL_ACCESS_TOKEN'] = 'cdc473421d1e2f089515a5fe791ef575715b67024840b6aa1ee157b0e43d18d3'
+    ENV['CONTENTFUL_SPACE_ID'] = 'y3a9myzsdjan'
     @redirects = Redirects.new
     @csv = CSV.read('./spec/fixtures/redirects.csv')
   end
 
+  after do
+    File.open('./spec/fixtures/redirects.csv', 'w+') do |file|
+      file.write("http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!\n/groupleaderresources/,/groups/leader/resources/,302")
+    end
+  end
+  
   it 'should always give a temporary (302) status code' do
     item = {"sys"=>
     {"space"=>{"sys"=>{"type"=>"Link", "linkType"=>"Space", "id"=>"p9oq1ve41d7r"}},
@@ -34,6 +40,5 @@ describe 'Redirects' do
       expect(current[0] == future[0]).to eq true
       expect(current == future).to eq false
     end
-    
   end
 end

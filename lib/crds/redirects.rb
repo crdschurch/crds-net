@@ -38,6 +38,6 @@ class Redirects
   private
 
     def get_redirects
-      self.class.get("/spaces/#{ENV['CONTENTFUL_SPACE_ID']}/environments/master/entries", @options)
+      self.class.get("/spaces/#{ENV['CONTENTFUL_SPACE_ID']}/environments/#{ENV['CONTENTFUL_ENV']}/entries", @options)
     end
 end
