@@ -11,7 +11,7 @@ describe 'Redirects' do
 
   after do
     File.open('./spec/fixtures/redirects.csv', 'w+') do |file|
-      file.write("http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!\n/groupleaderresources/,/groups/leader/resources/,302")
+      file.write("http://crossroads.net/*,https://www.crossroads.net/:splat,301!,master\nhttp://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!\n/groupleaderresources/,/groups/leader/resources/,302")
     end
   end
   
@@ -31,13 +31,13 @@ describe 'Redirects' do
     expect(item["fields"]["status"]).to eq 302
   end
 
-  it 'should write rows to a csv after the first line' do
+  it 'should write rows to a csv after the second line' do
     VCR.use_cassette 'contentful/redirects' do
       current = @csv
       tmp_csv_path = './spec/fixtures/redirects.csv'
       @redirects.to_csv!(tmp_csv_path)
       future = CSV.read(tmp_csv_path)
-      expect(current[0] == future[0]).to eq true
+      expect(current[1] == future[1]).to eq true
       expect(current == future).to eq false
     end
   end

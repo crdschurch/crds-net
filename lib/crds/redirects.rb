@@ -25,7 +25,7 @@ class Redirects
 
   def to_csv!(path = './redirects.csv')
     rows = CSV.read(path)
-    rows.insert(1, *redirects)
+    rows.insert(2, *redirects)
     File.write(path, rows.map(&:to_csv).join)
     puts "\n + #{redirects.size} redirects from Contentful".colorize(:cyan)
   end
