@@ -5,15 +5,15 @@ function clickCrossroadsLogoAndConfirmNetlifyHomepageLoads() {
   RouteValidator.pageFoundAndFromNetlify(`${Cypress.config().baseUrl}/`);
 }
 
-describe.only('Clicking the Crossroads logo from a non-Netlify page should load the Netlify homepage:', function () {
+describe('Clicking the Crossroads logo from a non-Netlify page should load the Netlify homepage:', function () {
   it('(DE6317) Starting from /search', function () {
-    cy.visit('search/');
+    cy.visit('search/', { timeout: 20000 });
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
   it('(DE6319) Starting from /corkboard', function () {
-    cy.visit('corkboard/', { timeout: 10000 });
+    cy.visit('corkboard/', { timeout: 20000 });
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
