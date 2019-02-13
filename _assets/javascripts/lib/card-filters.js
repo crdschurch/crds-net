@@ -68,7 +68,7 @@ CRDS.CardFilter = class CardFilter {
       filters: this.filters
     };
     const el = document.createElement('DIV');
-    el.classList.add('dropdown', 'pull-right');
+    el.classList.add('dropdown', 'pull-right', 'push-half-left');
     el.dataset.automationId = 'happenings-dropdown';
     el.innerHTML = Mustache.render(CardFilter.filterHTML(), args);
 

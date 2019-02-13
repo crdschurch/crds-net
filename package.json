@@ -10,8 +10,8 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run --record --key f9895842-b05f-494c-9010-b87b26527851",
     "cypress:runLocal": "cypress run",
-    "cypress:liveTests": "cypress run --spec .\\cypress\\integration\\live\\*",
-    "cypress:currentSeriesTests": "cypress run --spec .\\cypress\\integration\\*\\*current_series*.js",
+    "cypress:liveTests": "cypress run --spec .\\cypress\\integration\\live\\*_spec.js",
+    "cypress:currentSeriesTests": "cypress run --spec .\\cypress\\integration\\*\\*current_series*_spec.js",
     "build": "gulp"
   },
   "repository": {
@@ -28,6 +28,7 @@
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "contentful-cli": "^0.16.1",
+    "crds-cypress-tools": "^0.1.1",
     "crds-styles": "3.0.7",
     "cypress": "^3.1.4",
     "del": "^3.0.0",

@@ -8,7 +8,8 @@ function numberOfCardsShouldBeDisplayed(displayedCards, count){
 }
 
 function promoShouldMatchContent(displayedCard, promo){
-  Element.shouldMatchSubsetOfText(displayedCard.find('.card-title'), promo.title);
+  displayedCard.find('.card-title').as('title');
+  Element.shouldMatchSubsetOfText('title', promo.title);
 }
 
 function selectFilter(audience){
