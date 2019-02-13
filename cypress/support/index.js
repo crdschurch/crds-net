@@ -18,3 +18,6 @@ import './commands';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+const cypressTools = require('crds-cypress-tools');
+cypressTools.initializeSupport();

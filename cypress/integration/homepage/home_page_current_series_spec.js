@@ -22,12 +22,12 @@ describe('Testing the Current Series on the Homepage:', function () {
     cy.get('@seriesTitle').should('have.attr', 'href', seriesLink);
 
     cy.get('[data-automation-id="series-description"]').as('seriesDescription');
-    Element.shouldMatchSubsetOfText(cy.get('@seriesDescription'), currentSeries.description);
+    Element.shouldMatchSubsetOfText('seriesDescription', currentSeries.description);
 
     cy.get('[data-automation-id="series-image"]').as('seriesImage');
     cy.get('@seriesImage').should('have.attr', 'href', seriesLink);
 
-    Element.shouldHaveImgixImageFindImg(cy.get('@seriesImage'), currentSeries.image);
+    Element.shouldHaveImgixImageFindImg('seriesImage', currentSeries.image);
   });
 
   it('"Watch Latest Service" button should link to the current series', function(){
