@@ -9,14 +9,14 @@ function check_message_card_content(index, message){
   cy.get('@messageTitle').should('contain', message.title.text);
 
   cy.get('@messageCard').find('[data-automation-id="recent-message-description"]').as('messageDescription');
-  Element.shouldContainText(cy.get('@messageDescription'), message.description.text);
+  Element.shouldContainText('messageDescription', message.description.text);
 
   cy.get('@messageCard').find('[data-automation-id="recent-message-image-link"]').as('messageURL');
   cy.get('@messageURL').should('have.attr', 'href').and('contain', message.slug.text);
 
   cy.get('@messageCard').find('[data-automation-id="recent-message-image"]').as('messageImage');
   cy.get('@messageImage').should('have.attr', 'alt').and('contain', message.title.text);
-  Element.shouldHaveImgixImage(cy.get('@messageImage'), message.image);
+  Element.shouldHaveImgixImage('messageImage', message.image);
 }
 
 describe('Testing the Past Weekends section on the Live page:', function () {

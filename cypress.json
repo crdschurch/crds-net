@@ -1,6 +1,7 @@
 {
   "projectId": "dnbm5t",
-  "baseUrl": "http://int.crossroads.net",
+  "baseUrl": "https://int.crossroads.net",
+  "testFiles": "**/*spec.js",
   "numTestsKeptInMemory": 0,
   "video": false
 }
