@@ -8,7 +8,7 @@
     var map;
     function initMap() {
         map = new google.maps.Map(document.getElementById('trips-map'), {
-            center: { lat: Number('{{page.latitude}}'), lng: Number('{{page.longitude}}') },
+            center: { lat: Number('{{latitude}}'), lng: Number('{{longitude}}') },
             zoom: Number('{{page.zoom}}') || 8
         });
     }
