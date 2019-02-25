@@ -2,7 +2,7 @@ import { RouteValidator } from '../../support/RouteValidator';
 import { fred_flintstone } from '../../fixtures/test_users';
 import { openProfileClickLinkAndConfirmLoad, forceOpenProfileDropdown } from './support/my_profile_menu';
 
-describe('As a signed-in user, the links in the My Profile menu should load pages', function () {
+describe.skip('As a signed-in user, the links in the My Profile menu should load pages', function () {
   beforeEach(function () {
     cy.visit('/');
     cy.login(fred_flintstone.email, fred_flintstone.password);
