@@ -1,39 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-{% include _head.html %}
+  {% include _head.html %}
 
-<body class="crds-styles">
-  {% include _gtm-body.html %}
-  {% if page.requires_auth %}
-  {% include _preloader.html %}
-  {% endif %}
-  {{ content }}
-  {% include _monetate-body.html %}
-  <script>
-    var CRDS = {
-      media: {
-        cms: '{{ site.shared_header.cms }}',
-        app: '{{ site.shared_header.app }}',
-        img: '{{ site.shared_header.img }}',
-        prefix: '{{ site.shared_header.prefix }}'
-      },
-      streamspotId: '{{ site.streamspotId }}',
-      streamspotKey: '{{ site.streamspotKey }}',
-      streamspotPlayerId: '{{ site.streamspotPlayerId }}',
-      env: {
-        "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}'
-      }
-    };
-  </script>
-  {% javascript_link_tag application %}
-  {% javascript_link_tag application_deferred async %}
-  {% if page.masonry_js %}
-  {% javascript_link_tag masonry_deferred async %}
-  {% endif %}
+  <body class="crds-styles">
+    {% include _gtm-body.html %} {% if page.requires_auth %} {% include
+    _preloader.html %} {% endif %}
+    {{ content }}
+    {% include _monetate-body.html %}
+    <script>
+      var CRDS = {
+        media: {
+          cms: "{{ site.shared_header.cms }}",
+          app: "{{ site.shared_header.app }}",
+          img: "{{ site.shared_header.img }}",
+          prefix: "{{ site.shared_header.prefix }}"
+        },
+        streamspotId: "{{ site.streamspotId }}",
+        streamspotKey: "{{ site.streamspotKey }}",
+        streamspotPlayerId: "{{ site.streamspotPlayerId }}",
+        env: {
+          gatewayServerEndpoint: "{{ site.gateway_server_endpoint }}"
+        }
+      };
+    </script>
+    {% javascript_link_tag application %} {% javascript_link_tag
+    application_deferred async %} {% if page.masonry_js %} {%
+    javascript_link_tag masonry_deferred async %} {% endif %} {% if page.title
+    == "Atrium Events" %} {% javascript_link_tag events async %} {% endif %}
 
-  {% if page.title == "Atrium Events" %}
-    {% javascript_link_tag events async %}
-  {% endif %}
-</body>
-
+    <!-- we are crossroads -->
+  </body>
 </html>
