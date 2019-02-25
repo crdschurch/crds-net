@@ -8,7 +8,7 @@
     bundle exec jekyll contentful -f &&
     bundle exec jekyll build -- --update-search-index &&
     bash ./cypress/kickOffCypress.sh &&
-    ./bin/health-check.sh "<\!-- we are crossroads. -->"
+    ./bin/health-check.sh "we are crossroads"
   '''
 
 [context.branch-deploy.environment]
