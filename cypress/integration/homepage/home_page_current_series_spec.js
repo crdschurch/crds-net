@@ -1,20 +1,18 @@
-import { ContentfulApi } from '../../Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
+import { SeriesManagerV2 } from '../../Contentful/Models/SeriesModel';
 
 describe('Testing the Current Series on the Homepage:', function () {
   let currentSeries;
   before(function () {
-    const content = new ContentfulApi();
-    const seriesManager = content.retrieveSeriesManager();
-
-    cy.wrap({seriesManager}).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
+    const seriesManager = new SeriesManagerV2();
+    seriesManager.saveCurrentSeries();
+    cy.wrap({ seriesManager }).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
       currentSeries = seriesManager.currentSeries;
     });
-
     cy.visit('/');
   });
 
-  it('Current series title, description, and image should match Contentful', function(){
+  it('Current series title, description, and image should match Contentful', function () {
     const seriesLink = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug.text}`;
 
     cy.get('[data-automation-id="series-title"]').as('seriesTitle');
@@ -30,7 +28,7 @@ describe('Testing the Current Series on the Homepage:', function () {
     Element.shouldHaveImgixImageFindImg('seriesImage', currentSeries.image);
   });
 
-  it('"Watch Latest Service" button should link to the current series', function(){
+  it('"Watch Latest Service" button should link to the current series', function () {
     const seriesLink = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug.text}`;
 
     //Desktop version

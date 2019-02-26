@@ -10,7 +10,7 @@ describe('Testing navigation between pages:', function () {
       expect(andoverRedirect.to.text).to.contain('/lexington');
     });
 
-    cy.visit('andover');
+    cy.visit('/andover');
     RouteValidator.pageFoundAndFromNetlify(`${Cypress.config().baseUrl}/lexington`);
   });
 });

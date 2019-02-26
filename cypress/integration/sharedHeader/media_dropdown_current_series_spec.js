@@ -1,11 +1,10 @@
-import { ContentfulApi } from '../../Contentful/ContentfulApi';
+import { SeriesManagerV2 } from '../../Contentful/Models/SeriesModel';
 
 describe('Testing the Current Series in the Shared Header/Media dropdown:', function () {
   let currentSeries;
   before(function () {
-    const content = new ContentfulApi();
-    const seriesManager = content.retrieveSeriesManager();
-
+    const seriesManager = new SeriesManagerV2();
+    seriesManager.saveCurrentSeries();
     cy.wrap({ seriesManager }).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
       currentSeries = seriesManager.currentSeries;
     });

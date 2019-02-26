@@ -1,5 +1,5 @@
-import { ContentfulApi } from '../../Contentful/ContentfulApi';
 import { ContentfulElementValidator } from '../../Contentful/ContentfulElementValidator';
+import { LocationManager } from '../../Contentful/Models/LocationModel';
 
 function searchForLocation(keyword){
   cy.server();
@@ -14,30 +14,31 @@ function searchForLocation(keyword){
 }
 
 describe('Testing the Locations page without searching:', function() {
-  let locations;
-  before(function() {
-    const content = new ContentfulApi();
-    locations = content.retrieveLocationList();
+  let locationList;
 
-    cy.wrap({locations}).its('locations.locationCount').should('not.be.undefined').then(() => {
-      assert.isAbove(locations.locationCount, 0, 'Sanity check: At least one location is served from Contentful');
+  before(function() {
+    const locationManager = new LocationManager();
+    locationManager.saveLocationList();
+
+    cy.wrap({ locationManager }).its('locationManager.locationList').should('not.be.undefined').then(() => {
+      locationManager.sortByNameAndSlug();
+      locationList = locationManager.locationList;
     });
 
     cy.visit('/locations');
   });
 
   it('Location cards should display alphabetically followed by Anywhere', function() {
-    const sortedLocations = locations.sortedByNameAndSlug;
     cy.get('#section-locations > .card').as('locationCards');
 
     let i;
-    for(i = 0; i < locations.locationCount; i++){
+    for(i = 0; i < locationList.length; i++){
       cy.get('@locationCards').eq(i).should('be.visible');
-      cy.get('@locationCards').eq(i).find('[data-automation-id="location-name"]').should('have.attr', 'href', `/${sortedLocations[i].slug.text}`);
+      cy.get('@locationCards').eq(i).find('[data-automation-id="location-name"]').should('have.attr', 'href', `/${locationList[i].slug.text}`);
     }
 
     //Check anywhere
-    i = locations.locationCount;
+    i = locationList.length;
     cy.get('@locationCards').eq(i).find('[data-automation-id="anywhere-name"]').should('have.attr', 'href', '/live');
   });
 
@@ -49,7 +50,7 @@ describe('Testing the Locations page without searching:', function() {
   });
 
   it('Should have a Name, Image, Address, Service times and link to Map', function(){
-    const firstLocation = locations.sortedByNameAndSlug[0];
+    const firstLocation = locationList[0];
     cy.get('#section-locations > .card').first().as('firstLocation');
 
     cy.get('@firstLocation').find('[data-automation-id="location-name"]').as('title');
@@ -71,28 +72,20 @@ describe('Testing the Locations page without searching:', function() {
 });
 
 describe('Testing the search functionality on the Locations page:', function() {
-  let locations;
   before(function() {
-    const content = new ContentfulApi();
-    locations = content.retrieveLocationList();
-
-    cy.wrap({locations}).its('locations.locationCount').should('not.be.undefined').then(() => {
-      assert.isAbove(locations.locationCount, 0, 'Sanity check: At least one location is served from Contentful');
-    });
-
     cy.visit('/locations');
   });
 
   //For a Contentful Location card to display the distance, its address must be valid
   it('Searching for Oakley by zip should display the Oakley card first, with its distance', function(){
-    const oakleyLocation = locations.getLocationBySlug('oakley');
+    const oakleySlug = '/oakley';
     const oakleyZip = '45209';
 
     searchForLocation(oakleyZip);
 
     cy.get('#section-locations > .card').first().as('oakleyCard');
     cy.get('@oakleyCard').should('be.visible');
-    cy.get('@oakleyCard').find('[data-automation-id="location-name"]').should('have.attr', 'href').and('contains', oakleyLocation.slug.text);
+    cy.get('@oakleyCard').find('[data-automation-id="location-name"]').should('have.attr', 'href').and('contains', oakleySlug);
 
     //Distance overlay displayed
     cy.get('@oakleyCard').should('have.attr', 'data-distance').and('be.gte', 0);
@@ -100,14 +93,14 @@ describe('Testing the search functionality on the Locations page:', function() {
   });
 
   it('Searching for Florence by address should display the Florence card first', function(){
-    const florenceLocation = locations.getLocationBySlug('florence');
+    const florenceSlug = '/florence';
     const florenceAddress = '828 Heights Blvd Florence KY';
 
     searchForLocation(florenceAddress);
 
     cy.get('#section-locations > .card').first().as('florenceCard');
     cy.get('@florenceCard').should('be.visible');
-    cy.get('@florenceCard').find('[data-automation-id="location-name"]').should('have.attr', 'href').and('contains', florenceLocation.slug.text);
+    cy.get('@florenceCard').find('[data-automation-id="location-name"]').should('have.attr', 'href').and('contains', florenceSlug);
   });
 
   it('Searching for an out of range location should display the Anywhere card first', function(){

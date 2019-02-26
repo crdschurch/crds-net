@@ -1,40 +1,35 @@
 import { ContentfulField } from './ContentfulField';
+import { ContentfulApiV2 } from '../ContentfulApi';
 
+//TODO unpublish an asset
+//TODO run where has no image
 export class ImageField extends ContentfulField {
-  constructor (image, assetList) {
+  constructor (image, assetList='remove') { //todo remove assetList
     super(image);
 
     //Compensate for unpublished assets
-    this._content = this._getImageId(image, assetList);
-    this._has_content = this._content === undefined ? false : true;
+    this._setContentToImageId(image);
   }
 
   get id() {
     return this.hasContent ? this._content : '';
   }
 
-  _getImageId(image, assetList){
-    let imageId;
-    if(image === undefined)
-      imageId = undefined;
+  _setContentToImageId(image) {
+    if (image === undefined)
+      this._content = undefined;
     else {
-      imageId = image.sys.id;
-
-      //If asset can't be served, treat image as non-existent
-      const assetExists = this._doesAssetExist(imageId, assetList);
-      if(!assetExists){
-        imageId = undefined;
-      }
+      //If the image asset was unpublished, it will still have an id but will not be displayed on crds.net
+      const imageAsset = ContentfulApiV2.getSingleAsset(image.sys.id);
+      cy.wrap({ imageAsset }).its('imageAsset.responseReady').should('be.true').then(() => {
+        const responseType = imageAsset.responseBody.sys.type;
+        if (responseType != 'Error') {
+          this._content = image.sys.id;
+        }
+        else {
+          this._content = undefined;
+        }
+      });
     }
-
-    return imageId;
-  }
-
-  //If the image asset was unpublished, it will still have an id but will not be displayed on crds.net
-  _doesAssetExist(imageId, assetList){
-    const assetFound = assetList.find(asset =>{
-      return asset.sys.id === imageId;
-    });
-    return assetFound;
   }
 }

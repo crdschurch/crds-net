@@ -7,19 +7,19 @@ function clickCrossroadsLogoAndConfirmNetlifyHomepageLoads() {
 
 describe('Clicking the Crossroads logo from a non-Netlify page should load the Netlify homepage:', function () {
   it('(DE6317) Starting from /search', function () {
-    cy.visit('search/', { timeout: 20000 });
+    cy.visit('/search', { timeout: 20000 });
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
   it.skip('(DE6319) Starting from /corkboard', function () {
-    cy.visit('corkboard/', { timeout: 20000 });
+    cy.visit('/corkboard', { timeout: 20000 });
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
   it.skip('Starting from /leaveyourmark', function () {
-    cy.visit('leaveyourmark/');
+    cy.visit('/leaveyourmark');
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
@@ -27,21 +27,21 @@ describe('Clicking the Crossroads logo from a non-Netlify page should load the N
 
 describe('Clicking the Crossroads logo from a Netlify page should load the Netlify homepage:', function () {
   it('Starting from /serve', function () {
-    cy.visit('serve/');
+    cy.visit('/serve');
     RouteValidator.pageShouldBeFromNetlify();
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
   it('Starting from /live', function () {
-    cy.visit('live/');
+    cy.visit('/live');
     RouteValidator.pageShouldBeFromNetlify();
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
   it('Starting from /giving', function () {
-    cy.visit('giving/');
+    cy.visit('/giving');
     RouteValidator.pageShouldBeFromNetlify();
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();

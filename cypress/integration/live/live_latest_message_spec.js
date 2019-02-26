@@ -1,5 +1,6 @@
 import { ContentfulApi } from '../../Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
+import { MessageManager } from '../../Contentful/Models/MessageModel';
 
 function check_message_card_content(index, message){
   cy.get('[data-automation-id="recent-message-card"]').eq(index).as('messageCard');
@@ -22,12 +23,18 @@ function check_message_card_content(index, message){
 describe('Testing the Past Weekends section on the Live page:', function () {
   let messageList;
   before(function () {
-    const content = new ContentfulApi();
-    messageList = content.retrieveMessageList(5);
+    const messageManager = new MessageManager();
+    messageManager.saveRecentMessages(4);
 
-    cy.wrap({messageList}).its('messageList.currentMessage').should('not.be.undefined').then(() => {
-      cy.visit('live/');
-    });
+
+    // const content = new ContentfulApi();
+    // messageList = content.retrieveMessageList(5);
+
+    // cy.wrap({messageList}).its('messageList.currentMessage').should('not.be.undefined').then(() => {
+    //   cy.visit('/live');
+    // });
+
+    cy.visit('/live');
   });
 
   it('Four messages should be displayed', function(){

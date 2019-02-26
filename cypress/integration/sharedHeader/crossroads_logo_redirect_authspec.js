@@ -12,19 +12,19 @@ describe.skip('As a signed-in user, clicking the Crossroads logo from a non-Netl
   });
 
   it('(DE6319) Starting from /corkboard', function () {
-    cy.visit('corkboard/', { timeout: 20000 });
+    cy.visit('/corkboard', { timeout: 20000 });
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
   it('Starting from /childcare', function () {
-    cy.visit('childcare/');
+    cy.visit('/childcare');
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
   it('Starting from /serve-signup', function () {
-    cy.visit('serve-signup/');
+    cy.visit('/serve-signup');
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
