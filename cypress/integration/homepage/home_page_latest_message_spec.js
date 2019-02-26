@@ -3,7 +3,7 @@ import { ContentfulElementValidator as Element } from '../../Contentful/Contentf
 
 describe('Testing the Current Message on the Homepage:', function () {
   let currentMessage;
-  let currentSeries;
+  let currentMessageSeries;
   let messageURL;
   before(function () {
     const content = new ContentfulApi();
@@ -12,9 +12,9 @@ describe('Testing the Current Message on the Homepage:', function () {
 
     cy.wrap({messageList}).its('messageList.currentMessage').should('not.be.undefined').then(() => {
       currentMessage = messageList.currentMessage;
-      cy.wrap({seriesManager}).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
-        currentSeries = seriesManager.currentSeries;
-        messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug.text}/${currentMessage.slug.text}`;
+      cy.wrap({seriesManager}).its('seriesManager.currentMessageSeries').should('not.be.undefined').then(() => {
+        currentMessageSeries = seriesManager.currentMessageSeries;
+        messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentMessageSeries.slug.text}/${currentMessage.slug.text}`;
       });
     });
 

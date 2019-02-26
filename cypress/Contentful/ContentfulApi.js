@@ -21,7 +21,7 @@ export class ContentfulApi {
 
   retrieveSeriesManager() {
     const seriesManager = new SeriesManager();
-    cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=series&select=fields.title,fields.slug,fields.published_at,fields.starts_at,fields.ends_at,fields.youtube_url,fields.image,fields.background_image,fields.description&order=-fields.starts_at&include=3`)
+    cy.request('GET', `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&content_type=series&select=fields.title,fields.slug,fields.published_at,fields.starts_at,fields.ends_at,fields.youtube_url,fields.image,fields.background_image,fields.description,fields.videos&order=-fields.starts_at&include=3`)
       .then((response) => {
         const jsonResponse = JSON.parse(response.body);
         seriesManager.storeCurrentSeries(jsonResponse);
