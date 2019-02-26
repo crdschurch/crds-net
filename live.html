@@ -4,7 +4,7 @@ title: Live
 permalink: /live/
 meta_description: Crossroads Live
 ---
-{% include header.html %}
+
 {% assign latest_message = site.messages | reverse | first %}
 {% assign current_series = site.series | reverse | first %}
 
@@ -362,7 +362,7 @@ meta_description: Crossroads Live
     </div>
   </section>
 </div>
-{% include footer.html %}
+
 <script>
   window.env = {
     gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}',
