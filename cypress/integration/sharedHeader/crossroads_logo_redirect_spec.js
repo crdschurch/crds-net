@@ -12,13 +12,13 @@ describe('Clicking the Crossroads logo from a non-Netlify page should load the N
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
-  it('(DE6319) Starting from /corkboard', function () {
+  it.skip('(DE6319) Starting from /corkboard', function () {
     cy.visit('corkboard/', { timeout: 20000 });
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 
-  it('Starting from /leaveyourmark', function () {
+  it.skip('Starting from /leaveyourmark', function () {
     cy.visit('leaveyourmark/');
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
