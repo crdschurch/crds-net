@@ -7,7 +7,7 @@ describe('Testing navigation between pages:', function () {
     const redirectManager = new RedirectManager();
     redirectManager.saveRedirectsFromSlug(andoverSlug);
 
-    cy.wrap({redirectManager}).its('redirectManager.savedRedirects').should('have.hasOwnProperty', andoverSlug).then(() =>{
+    cy.wrap({ redirectManager }).its('redirectManager.savedRedirects').should('have.hasOwnProperty', andoverSlug).then(() => {
       const andoverRedirect = redirectManager.getRedirectBySlug(andoverSlug);
       expect(andoverRedirect.to.text).to.contain('/lexington');
     });

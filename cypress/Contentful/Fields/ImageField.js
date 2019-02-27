@@ -1,10 +1,10 @@
 import { ContentfulField } from './ContentfulField';
-import { ContentfulApiV2 } from '../ContentfulApi';
+import { ContentfulApi } from '../ContentfulApi';
 
 //TODO unpublish an asset
 //TODO run where has no image
 export class ImageField extends ContentfulField {
-  constructor (image, assetList='remove') { //todo remove assetList
+  constructor (image) {
     super(image);
 
     //Compensate for unpublished assets
@@ -19,8 +19,9 @@ export class ImageField extends ContentfulField {
     if (image === undefined)
       this._content = undefined;
     else {
+      cy.log(`image id ${image.sys.id}`);
       //If the image asset was unpublished, it will still have an id but will not be displayed on crds.net
-      const imageAsset = ContentfulApiV2.getSingleAsset(image.sys.id);
+      const imageAsset = ContentfulApi.getSingleAsset(image.sys.id);
       cy.wrap({ imageAsset }).its('imageAsset.responseReady').should('be.true').then(() => {
         const responseType = imageAsset.responseBody.sys.type;
         if (responseType != 'Error') {

@@ -1,7 +1,7 @@
 import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
 import { MessageManager } from '../../Contentful/Models/MessageModel';
 
-function check_message_card_content(index, message){
+function check_message_card_content(index, message) {
   cy.get('[data-automation-id="recent-message-card"]').eq(index).as('messageCard');
   cy.get('@messageCard').should('be.visible');
 
@@ -25,34 +25,33 @@ describe('Testing the Past Weekends section on the Live page:', function () {
     messageManager = new MessageManager();
     messageManager.saveRecentMessages(4);
 
-    cy.wrap({messageManager}).its('messageManager.currentMessage').should('not.be.undefined').then(() => {
+    cy.wrap({ messageManager }).its('messageManager.currentMessage').should('not.be.undefined').then(() => {
       cy.visit('/live');
     });
   });
 
-  it('Four messages should be displayed', function(){
-    cy.get('[data-automation-id="recent-message-card"]').then(($cardList) =>
-    {
+  it('Four messages should be displayed', function () {
+    cy.get('[data-automation-id="recent-message-card"]').then(($cardList) => {
       expect($cardList).lengthOf(4);
     });
   });
 
-  it('Most recent message card should contain title, image, description and link', function(){
+  it('Most recent message card should contain title, image, description and link', function () {
     const index = 0;
     check_message_card_content(index, messageManager.getRecentMessageByIndex(index));
   });
 
-  it('Second most recent message card should containtitle, image, description and link', function(){
+  it('Second most recent message card should containtitle, image, description and link', function () {
     const index = 1;
     check_message_card_content(index, messageManager.getRecentMessageByIndex(index));
   });
 
-  it('Third most recent message card should containtitle, image, description and link', function(){
+  it('Third most recent message card should containtitle, image, description and link', function () {
     const index = 2;
     check_message_card_content(index, messageManager.getRecentMessageByIndex(index));
   });
 
-  it('Fourth most recent message card should containtitle, image, description and link', function(){
+  it('Fourth most recent message card should containtitle, image, description and link', function () {
     const index = 3;
     check_message_card_content(index, messageManager.getRecentMessageByIndex(index));
   });

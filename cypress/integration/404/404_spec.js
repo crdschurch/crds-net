@@ -7,14 +7,14 @@ function sharedHeaderShouldExist() {
   cy.get('@headerGiveButton').should('exist').and('be.visible');
 }
 
-function sharedFooterShouldExist(){
+function sharedFooterShouldExist() {
   cy.get('.site-footer').as('sharedFooter').should('exist').and('be.visible');
   //This link is defined in the footer content block. If fails, check content block was imported.
   cy.get('@sharedFooter').find('[data-automation-id="footer-oakley-location"]').as('footerOakleyLink');
   cy.get('@footerOakleyLink').should('exist').and('be.visible');
 }
 
-function searchButtonShouldExist(){
+function searchButtonShouldExist() {
   cy.get('[data-automation-id="404-search-button"]').as('404SearchButton').should('exist').and('be.visible');
 }
 
@@ -33,7 +33,7 @@ describe('Testing the 404 page:', function () {
     searchButtonShouldExist();
   });
 
-  it('/search page should load when the search button is clicked', function (){
+  it('/search page should load when the search button is clicked', function () {
     cy.get('[data-automation-id="404-search-button"]').as('404SearchButton');
     cy.get('@404SearchButton').click();
 

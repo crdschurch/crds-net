@@ -1,9 +1,9 @@
-import { SeriesManagerV2 } from '../../Contentful/Models/SeriesModel';
+import { SeriesManager } from '../../Contentful/Models/SeriesModel';
 
 describe('Testing the Current Series in the Shared Header/Media dropdown:', function () {
   let currentSeries;
   before(function () {
-    const seriesManager = new SeriesManagerV2();
+    const seriesManager = new SeriesManager();
     seriesManager.saveCurrentSeries();
     cy.wrap({ seriesManager }).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
       currentSeries = seriesManager.currentSeries;

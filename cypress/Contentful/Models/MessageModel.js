@@ -1,7 +1,7 @@
 import { TextField } from '../Fields/TextField';
 import { ImageField } from '../Fields/ImageField';
 import { DateField } from '../Fields/DateField';
-import { ContentfulApiV2 } from '../ContentfulApi';
+import { ContentfulApi } from '../ContentfulApi';
 
 export class MessageManager {
   constructor () {
@@ -10,21 +10,11 @@ export class MessageManager {
 
   saveCurrentMessage() {
     this.saveRecentMessages(1);
-    // const messageList = ContentfulApiV2.getEntryCollection('content_type=message&select=sys.id&order=-fields.published_at');
-    // cy.wrap({ messageList }).its('messageList.responseReady').should('be.true').then(() => {
-    //   const responseList = messageList.responseBody.items;
-    //   const currentMessageId = responseList[0].sys.id;
-
-    //   const messageFullEntry = ContentfulApiV2.getSingleEntry(currentMessageId);
-    //   cy.wrap({ messageFullEntry }).its('messageFullEntry.responseReady').should('be.true').then(() => {
-    //     this._current_message = new MessageModel(messageFullEntry.responseBody.fields);
-    //   });
-    // });
   }
 
   saveRecentMessages(count) {
     this._recent_message_list = [];
-    const sortedMessageList = ContentfulApiV2.getEntryCollection('content_type=message&select=sys.id,fields.published_at&order=-fields.published_at');
+    const sortedMessageList = ContentfulApi.getEntryCollection('content_type=message&select=sys.id,fields.published_at&order=-fields.published_at');
     cy.wrap({ messageList: sortedMessageList }).its('messageList.responseReady').should('be.true').then(() => {
       const responseList = sortedMessageList.responseBody.items;
 
@@ -34,10 +24,9 @@ export class MessageManager {
       assert.isAbove(pastMessageOffset, -1, 'Message with published_at date in the past was found');
 
       let i;
-      cy.log(`count ${count} and offset ${pastMessageOffset} and response list length ${responseList.length}`);
       for (i = 0; i < count; i++) {
         let entryIndex = i + pastMessageOffset;
-        let messageEntry = ContentfulApiV2.getSingleEntry(responseList[entryIndex].sys.id);
+        let messageEntry = ContentfulApi.getSingleEntry(responseList[entryIndex].sys.id);
         this._saveMessageToList(messageEntry, i);
       }
     });
@@ -54,50 +43,30 @@ export class MessageManager {
 
   _saveMessageToList(response, saveIndex) {
     cy.wrap({ response }).its('response.responseReady').should('be.true').then(() => {
-      cy.log(`promise: index ${saveIndex}`);
-      this._recent_message_list[saveIndex] = new MessageModel(response.responseBody.fields);
+      this._recent_message_list[saveIndex] = new MessageModel(response.responseBody);
     });
   }
 }
 
-// export class MessageList {
-//   storeListOfMessages(response, numToStore) {
-//     const itemList = response.items;
-//     const assetList = response.includes.Asset;
-//     numToStore = itemList.length < numToStore ? itemList.length : numToStore;
-//     this._message_list = [];
-
-//     for (let i = 0; i < numToStore; i++) {
-//       let msg = new MessageModel(itemList[i].fields, assetList);
-//       this._message_list.push(msg);
-//     }
-
-//     this._current_message = this._message_list[0]; //TODO this is dependent on the query - should it be trusted?
-//   }
-
-//   message(index) {
-//     return this._message_list[index];
-//   }
-
-//   get currentMessage() {
-//     return this._current_message;
-//   }
-// }
-
 export class MessageModel {
-  constructor (responseItem, assetList) {
-    this._title = new TextField(responseItem.title);
+  constructor (responseItem) {
+    this._id = responseItem.sys.id;
+    this._title = new TextField(responseItem.fields.title);
     this._title.required = true;
 
-    this._slug = new TextField(responseItem.slug);
+    this._slug = new TextField(responseItem.fields.slug);
     this._slug.required = true;
 
-    this._published_at = new DateField(responseItem.published_at);
+    this._published_at = new DateField(responseItem.fields.published_at);
     this._published_at.required = true;
 
-    this._description = new TextField(responseItem.description);
-    this._image = new ImageField(responseItem.image, assetList);
-    this._background_image = new ImageField(responseItem.background_image);
+    this._description = new TextField(responseItem.fields.description);
+    this._image = new ImageField(responseItem.fields.image);
+    this._background_image = new ImageField(responseItem.fields.background_image);
+  }
+
+  get id(){
+    return this._id;
   }
 
   get title() {

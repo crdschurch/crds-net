@@ -1,5 +1,5 @@
 import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
-import { SeriesManagerV2 } from '../../Contentful/Models/SeriesModel';
+import { SeriesManager } from '../../Contentful/Models/SeriesModel';
 import { MessageManager } from '../../Contentful/Models/MessageModel';
 
 describe('Testing the Current Message on the Homepage:', function () {
@@ -8,11 +8,11 @@ describe('Testing the Current Message on the Homepage:', function () {
   before(function () {
     const messageManager = new MessageManager();
     messageManager.saveCurrentMessage();
-    const seriesManager = new SeriesManagerV2();
-    seriesManager.saveCurrentMessageSeries();
+    const seriesManager = new SeriesManager();
 
     cy.wrap({ messageManager }).its('messageManager.currentMessage').should('not.be.undefined').then(() => {
       currentMessage = messageManager.currentMessage;
+      seriesManager.saveCurrentMessageSeries(currentMessage.id);
       cy.wrap({ seriesManager }).its('seriesManager.currentMessageSeries').should('not.be.undefined').then(() => {
         messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${seriesManager.currentMessageSeries.slug.text}/${currentMessage.slug.text}`;
       });
