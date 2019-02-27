@@ -1,5 +1,6 @@
 import { ContentfulApi } from '../../Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
+import { PromoManager } from '../../Contentful/Models/PromoModel';
 
 function numberOfCardsShouldBeDisplayed(displayedCards, count){
   displayedCards.then($cardList => {
@@ -18,11 +19,13 @@ function selectFilter(audience){
   cy.get('@promoFilter').find(`[data-filter-select="${audience}"]`).click();
 }
 
-describe('Testing the Happenings section on the Homepage without filtering:', function() {
-  let promoList;
+describe('Given I have not applied a filter to the Happenings section on the Homepage:', function() {
+  let promoManager;
+  const audience = 'Churchwide';
   before(function() {
-    const content = new ContentfulApi();
-    promoList = content.retrievePromoList();
+    promoManager = new PromoManager();
+    promoManager.savePromosInAudience(audience);
+    promoManager.saveTargetAudiences();
 
     cy.visit('/');
   });
@@ -32,11 +35,10 @@ describe('Testing the Happenings section on the Homepage without filtering:', fu
     cy.get('@currentFilter').should('have.text', 'Churchwide');
   });
 
-  it('The "Churchwide" promos should be sorted by date then title', function(){
-    const audience = 'Churchwide';
+  it('Only the "Churchwide" promos should be displayed and sorted by date then title', function(){
     cy.get(`[data-automation-id="happenings-cards"] > [data-filter*="${audience}"]`).as('churchwideCards');
 
-    const churchwidePromos = promoList.sortedByDateAndTitle(audience);
+    const churchwidePromos = promoManager.getSortedPromosInAudience(audience);
     numberOfCardsShouldBeDisplayed(cy.get('@churchwideCards'), churchwidePromos.length);
     churchwidePromos.forEach(($promo,$i) => {
       promoShouldMatchContent(cy.get('@churchwideCards').eq($i), $promo);
@@ -44,7 +46,7 @@ describe('Testing the Happenings section on the Homepage without filtering:', fu
   });
 
   it('The filter list should include every Target Audience on published promos', function(){
-    const audienceCount = promoList.audienceList.length;
+    const audienceCount = promoManager.targetAudiences.length;
     assert.isAbove(audienceCount, 0, 'Sanity check: Promos have at least one target audience');
 
     cy.get('[data-automation-id="happenings-dropdown"]').as('happeningsFilter')
@@ -52,27 +54,27 @@ describe('Testing the Happenings section on the Homepage without filtering:', fu
         expect($audienceList).lengthOf(audienceCount);
       });
 
-    promoList.audienceList.forEach(a =>{
+    promoManager.targetAudiences.forEach(a =>{
       cy.get('@happeningsFilter').find(`[data-filter-select="${a}"]`).should('exist');
     });
   });
 });
 
-describe('Testing the filtering functionality for the Homepage Happenings section:', function() {
-  let promoList;
-  before(function() {
-    const content = new ContentfulApi();
-    promoList = content.retrievePromoList();
+describe('Given I want to filter the Happenings section on the Homepage:', function() {
+  let promoManager;
+  const audience = 'Oakley';
 
+  before(function() {
+    promoManager = new PromoManager();
+    promoManager.savePromosInAudience(audience);
     cy.visit('/');
   });
 
-  it('Filtering by "Oakley" should display only Oakley promos sorted by date then title', function(){
-    const audience = 'Oakley';
+  it('Then filtering by "Oakley" should display only Oakley promos sorted by date then title', function(){
     selectFilter(audience);
 
     cy.get(`[data-automation-id="happenings-cards"] > [data-filter*="${audience}"]`).as('oakleyCards');
-    const sortedPromos = promoList.sortedByDateAndTitle(audience);
+    const sortedPromos = promoManager.getSortedPromosInAudience(audience);
 
     numberOfCardsShouldBeDisplayed(cy.get('@oakleyCards'), sortedPromos.length);
     sortedPromos.forEach(($promo,$i) => {

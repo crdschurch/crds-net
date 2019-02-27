@@ -4,6 +4,10 @@ import { DateField } from '../Fields/DateField';
 import { ContentfulApiV2 } from '../ContentfulApi';
 
 export class MessageManager {
+  constructor () {
+    this._recent_message_list = [];
+  }
+
   saveCurrentMessage() {
     this.saveRecentMessages(1);
     // const messageList = ContentfulApiV2.getEntryCollection('content_type=message&select=sys.id&order=-fields.published_at');
@@ -20,9 +24,9 @@ export class MessageManager {
 
   saveRecentMessages(count) {
     this._recent_message_list = [];
-    const messageList = ContentfulApiV2.getEntryCollection('content_type=message&select=sys.id,fields.published_at&order=-fields.published_at');
-    cy.wrap({ messageList }).its('messageList.responseReady').should('be.true').then(() => {
-      const responseList = messageList.responseBody.items;
+    const sortedMessageList = ContentfulApiV2.getEntryCollection('content_type=message&select=sys.id,fields.published_at&order=-fields.published_at');
+    cy.wrap({ messageList: sortedMessageList }).its('messageList.responseReady').should('be.true').then(() => {
+      const responseList = sortedMessageList.responseBody.items;
 
       //Find first message with a past published_at date
       const now = Date.now();
@@ -30,49 +34,55 @@ export class MessageManager {
       assert.isAbove(pastMessageOffset, -1, 'Message with published_at date in the past was found');
 
       let i;
+      cy.log(`count ${count} and offset ${pastMessageOffset} and response list length ${responseList.length}`);
       for (i = 0; i < count; i++) {
-        let messageFullEntry = ContentfulApiV2.getSingleEntry(responseList[i+pastMessageOffset].sys.id);
-        cy.wrap({ messageFullEntry }).its('messageFullEntry.responseReady').should('be.true').then(() => {
-          this._recent_message_list[i] = new MessageModel(messageFullEntry.responseBody.fields);
-        });
+        let entryIndex = i + pastMessageOffset;
+        let messageEntry = ContentfulApiV2.getSingleEntry(responseList[entryIndex].sys.id);
+        this._saveMessageToList(messageEntry, i);
       }
     });
   }
 
+  get currentMessage() {
+    return this._recent_message_list[0];
+  }
+
   //0 = current ... n = oldest
-  getRecentMessageByIndex(index){
-    return this._recent_message_list === undefined ? undefined : this._recent_message_list[index];
-    //return this._recent_message_list[index];
+  getRecentMessageByIndex(index) {
+    return this._recent_message_list[index];
   }
 
-  get currentMessage() {
-    return this._recent_message_list === undefined ? undefined : this._recent_message_list[0];
-  }
-}
-
-export class MessageList {
-  storeListOfMessages(response, numToStore) {
-    const itemList = response.items;
-    const assetList = response.includes.Asset;
-    numToStore = itemList.length < numToStore ? itemList.length : numToStore;
-    this._message_list = [];
-
-    for (let i = 0; i < numToStore; i++) {
-      let msg = new MessageModel(itemList[i].fields, assetList);
-      this._message_list.push(msg);
-    }
-
-    this._current_message = this._message_list[0]; //TODO this is dependent on the query - should it be trusted?
-  }
-
-  message(index) {
-    return this._message_list[index];
-  }
-
-  get currentMessage() {
-    return this._current_message;
+  _saveMessageToList(response, saveIndex) {
+    cy.wrap({ response }).its('response.responseReady').should('be.true').then(() => {
+      cy.log(`promise: index ${saveIndex}`);
+      this._recent_message_list[saveIndex] = new MessageModel(response.responseBody.fields);
+    });
   }
 }
+
+// export class MessageList {
+//   storeListOfMessages(response, numToStore) {
+//     const itemList = response.items;
+//     const assetList = response.includes.Asset;
+//     numToStore = itemList.length < numToStore ? itemList.length : numToStore;
+//     this._message_list = [];
+
+//     for (let i = 0; i < numToStore; i++) {
+//       let msg = new MessageModel(itemList[i].fields, assetList);
+//       this._message_list.push(msg);
+//     }
+
+//     this._current_message = this._message_list[0]; //TODO this is dependent on the query - should it be trusted?
+//   }
+
+//   message(index) {
+//     return this._message_list[index];
+//   }
+
+//   get currentMessage() {
+//     return this._current_message;
+//   }
+// }
 
 export class MessageModel {
   constructor (responseItem, assetList) {

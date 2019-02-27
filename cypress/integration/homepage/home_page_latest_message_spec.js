@@ -6,11 +6,10 @@ describe('Testing the Current Message on the Homepage:', function () {
   let currentMessage;
   let messageURL;
   before(function () {
-    const seriesManager = new SeriesManagerV2();
-    seriesManager.saveCurrentMessageSeries();
-
     const messageManager = new MessageManager();
     messageManager.saveCurrentMessage();
+    const seriesManager = new SeriesManagerV2();
+    seriesManager.saveCurrentMessageSeries();
 
     cy.wrap({ messageManager }).its('messageManager.currentMessage').should('not.be.undefined').then(() => {
       currentMessage = messageManager.currentMessage;
