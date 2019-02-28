@@ -67,9 +67,10 @@ CRDS.DataTracker = class DataTracker {
     this.log("handleClick()");
     const el = event.currentTarget;
     const name = el.dataset.trackClick || el.id || "Unnamed Click Event";
+    const label = el.dataset.trackLabel || "ElementClicked";
     const target = el.outerHTML;
     const type = el.nodeName;
-    this.handleTrack("ElementClicked", {
+    this.handleTrack(label, {
       Name: name,
       Target: target,
       Type: type
@@ -81,10 +82,11 @@ CRDS.DataTracker = class DataTracker {
     event.preventDefault();
     const form = event.currentTarget;
     const searchInput = form.getElementsByTagName("input")[0];
-    const name = form.dataset.trackSearch || form.id || "Unnamed Search";
+    const name = c.dataset.trackSearch || form.id || "Unnamed Search";
+    const label = form.dataset.trackLabel || "SearchRequested";
     const target = form.outerHTML;
     const search = searchInput.value;
-    this.handleTrack("SearchRequested", {
+    this.handleTrack(label, {
       Name: name,
       Target: target,
       SearchTerm: search
