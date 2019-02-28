@@ -2,7 +2,7 @@ import { RouteValidator } from '../../support/RouteValidator';
 import { fred_flintstone } from '../../fixtures/test_users';
 import { openProfileClickLinkAndConfirmLoad } from './support/my_profile_menu';
 
-describe.skip('As a user I should be able to sign in and out through the shared header buttons:', function () {
+describe('As a user I should be able to sign in and out through the shared header buttons:', function () {
   beforeEach(function () {
     cy.visit('/');
 

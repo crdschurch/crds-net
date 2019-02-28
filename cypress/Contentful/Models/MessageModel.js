@@ -21,7 +21,7 @@ export class MessageManager {
       //Find first message with a past published_at date
       const now = Date.now();
       const pastMessageOffset = responseList.findIndex(s => now >= new Date(s.fields.published_at));
-      assert.isAbove(pastMessageOffset, -1, 'Message with published_at date in the past was found');
+      expect(pastMessageOffset).to.be.above(-1);
 
       let i;
       for (i = 0; i < count; i++) {

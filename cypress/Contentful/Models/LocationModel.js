@@ -17,7 +17,7 @@ export class LocationManager {
   }
 
   sortByNameAndSlug() {
-    assert.isAbove(this._location_list.length, 0, 'Sanity check: Location list must be populated before being sorted');
+    expect(this._location_list.length).to.be.above(0);
     this._location_list.sort(function (a, b) {
       let diff = a.name.compare(b.name);
       return diff === 0 ? a.slug.compare(b.slug) : diff;

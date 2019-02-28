@@ -46,7 +46,7 @@ describe('Given I have not applied a filter to the Happenings section on the Hom
 
   it('The filter list should include every Target Audience on published promos', function () {
     const audienceCount = promoManager.targetAudiences.length;
-    assert.isAbove(audienceCount, 0, 'Sanity check: Promos have at least one target audience');
+    expect(audienceCount).to.be.above(0);
 
     cy.get('[data-automation-id="happenings-dropdown"]').as('happeningsFilter')
       .find('[data-filter-select]').then($audienceList => {

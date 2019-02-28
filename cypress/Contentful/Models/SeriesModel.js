@@ -2,12 +2,10 @@ import { TextField } from '../Fields/TextField';
 import { ImageField } from '../Fields/ImageField';
 import { DateField } from '../Fields/DateField';
 import { ContentfulApi } from '../ContentfulApi';
-import { get } from 'http';
-import { AssertionError } from 'assert';
 
 export class SeriesManager {
   saveCurrentSeries() {
-    const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at&order=-fields.starts_at');
+    const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at&order=-fields.starts_at&limit=5');
     cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
       const responseList = seriesList.responseBody.items;
 
@@ -19,13 +17,13 @@ export class SeriesManager {
 
       const seriesFullEntry = ContentfulApi.getSingleEntry(seriesEntryId);
       cy.wrap({ seriesFullEntry }).its('seriesFullEntry.responseReady').should('be.true').then(() => {
-        this._current_series = new SeriesModelV2(seriesFullEntry.responseBody.fields);
+        this._current_series = new SeriesModel(seriesFullEntry.responseBody.fields);
       });
     });
   }
 
   saveCurrentMessageSeries(messageId) {
-    const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at,fields.videos&order=-fields.starts_at');
+    const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at,fields.videos&order=-fields.starts_at&limit=5');
     cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
       const responseList = seriesList.responseBody.items;
 
@@ -35,11 +33,11 @@ export class SeriesManager {
           return videoList.find(v => v.sys.id === messageId) !== undefined;
         return false;
       });
-      //TODO assert seriesWithMessage is not empty
+      expect(seriesWithMessage).to.not.be.undefined;
 
       const seriesFullEntry = ContentfulApi.getSingleEntry(seriesWithMessage.sys.id);
       cy.wrap({ seriesFullEntry }).its('seriesFullEntry.responseReady').should('be.true').then(() => {
-        this._current_message_series = new SeriesModelV2(seriesFullEntry.responseBody.fields);
+        this._current_message_series = new SeriesModel(seriesFullEntry.responseBody.fields);
       });
     });
   }
@@ -53,7 +51,7 @@ export class SeriesManager {
   }
 }
 
-export class SeriesModelV2 {
+export class SeriesModel {
   constructor (responseItem) {
     this._title = new TextField(responseItem.title);
     this._title.required = true;
