@@ -1,20 +1,20 @@
-import { ContentfulApi } from '../../Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
+import { SeriesManager } from '../../Contentful/Models/SeriesModel';
+import { MessageManager } from '../../Contentful/Models/MessageModel';
 
 describe('Testing the Current Message on the Homepage:', function () {
   let currentMessage;
-  let currentMessageSeries;
   let messageURL;
   before(function () {
-    const content = new ContentfulApi();
-    const messageList = content.retrieveMessageList(1);
-    const seriesManager = content.retrieveSeriesManager();
+    const messageManager = new MessageManager();
+    messageManager.saveCurrentMessage();
+    const seriesManager = new SeriesManager();
 
-    cy.wrap({messageList}).its('messageList.currentMessage').should('not.be.undefined').then(() => {
-      currentMessage = messageList.currentMessage;
-      cy.wrap({seriesManager}).its('seriesManager.currentMessageSeries').should('not.be.undefined').then(() => {
-        currentMessageSeries = seriesManager.currentMessageSeries;
-        messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentMessageSeries.slug.text}/${currentMessage.slug.text}`;
+    cy.wrap({ messageManager }).its('messageManager.currentMessage').should('not.be.undefined').then(() => {
+      currentMessage = messageManager.currentMessage;
+      seriesManager.saveCurrentMessageSeries(currentMessage.id);
+      cy.wrap({ seriesManager }).its('seriesManager.currentMessageSeries').should('not.be.undefined').then(() => {
+        messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${seriesManager.currentMessageSeries.slug.text}/${currentMessage.slug.text}`;
       });
     });
 

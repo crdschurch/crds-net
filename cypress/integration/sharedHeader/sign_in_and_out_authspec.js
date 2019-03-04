@@ -2,8 +2,8 @@ import { RouteValidator } from '../../support/RouteValidator';
 import { fred_flintstone } from '../../fixtures/test_users';
 import { openProfileClickLinkAndConfirmLoad } from './support/my_profile_menu';
 
-describe.skip('As a user I should be able to sign in and out through the shared header buttons:', function () {
-  beforeEach(function() {
+describe('As a user I should be able to sign in and out through the shared header buttons:', function () {
+  beforeEach(function () {
     cy.visit('/');
 
     //Define common buttons
@@ -12,7 +12,7 @@ describe.skip('As a user I should be able to sign in and out through the shared 
     cy.get('#crds-shared-header-desktop').find('#crds-shared-header-signout').as('signOutButton');
   });
 
-  it('The My Profile icon should expand into a menu when clicked', function(){
+  it('The My Profile icon should expand into a menu when clicked', function () {
     cy.login(fred_flintstone.email, fred_flintstone.password);
 
     cy.get('@myProfileIcon').should('be.visible').click();
