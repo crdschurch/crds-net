@@ -7,14 +7,14 @@ function sharedHeaderShouldExist() {
   cy.get('@headerGiveButton').should('exist').and('be.visible');
 }
 
-function sharedFooterShouldExist(){
+function sharedFooterShouldExist() {
   cy.get('.site-footer').as('sharedFooter').should('exist').and('be.visible');
   //This link is defined in the footer content block. If fails, check content block was imported.
   cy.get('@sharedFooter').find('[data-automation-id="footer-oakley-location"]').as('footerOakleyLink');
   cy.get('@footerOakleyLink').should('exist').and('be.visible');
 }
 
-function searchFieldShouldExist(){
+function searchButtonShouldExist() {
   cy.get('[data-automation-id="404-search-button"]').as('404SearchButton').should('exist').and('be.visible');
 }
 
@@ -27,10 +27,18 @@ describe('Testing the 404 page:', function () {
     RouteValidator.pageShouldBeFromNetlify();
   });
 
-  it('/404 should have the header, footer and search field', function () {
+  it('/404 should have the header, footer and search button', function () {
     sharedHeaderShouldExist();
     sharedFooterShouldExist();
-    searchFieldShouldExist();
+    searchButtonShouldExist();
+  });
+
+  it('/search page should load when the search button is clicked', function () {
+    cy.get('[data-automation-id="404-search-button"]').as('404SearchButton');
+    cy.get('@404SearchButton').click();
+
+    cy.get('.ais-SearchBox-input').as('searchField');
+    cy.get('@searchField').should('exist').and('be.visible');
   });
 });
 
@@ -40,7 +48,7 @@ describe('Testing 404 page from invalid routes are served by Netlify:', function
     RouteValidator.pageShouldBeFromNetlify();
     sharedHeaderShouldExist();
     sharedFooterShouldExist();
-    searchFieldShouldExist();
+    searchButtonShouldExist();
   });
 
   it('crossroads.net/live/notapage should serve Netlify 404', function () {
@@ -48,6 +56,6 @@ describe('Testing 404 page from invalid routes are served by Netlify:', function
     RouteValidator.pageShouldBeFromNetlify();
     sharedHeaderShouldExist();
     sharedFooterShouldExist();
-    searchFieldShouldExist();
+    searchButtonShouldExist();
   });
 });

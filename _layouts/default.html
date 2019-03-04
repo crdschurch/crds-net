@@ -27,9 +27,6 @@
   </script>
   {% javascript_link_tag application %}
   {% javascript_link_tag application_deferred async %}
-  {% if page.masonry_js %}
-  {% javascript_link_tag masonry_deferred async %}
-  {% endif %}
 
   {% if page.title == "Atrium Events" %}
     {% javascript_link_tag events async %}
