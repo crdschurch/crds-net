@@ -1,8 +1,6 @@
 import { ContentfulField } from './ContentfulField';
 import { ContentfulApi } from '../ContentfulApi';
 
-//TODO unpublish an asset
-//TODO run where has no image
 export class ImageField extends ContentfulField {
   constructor (image) {
     super(image);
