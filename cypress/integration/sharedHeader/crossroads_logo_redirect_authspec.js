@@ -14,7 +14,7 @@ describe('As a signed-in user, clicking the Crossroads logo from a non-Netlify p
   it('(DE6319) Starting from /corkboard', function () {
     //TODO test this on Travis - does this catch the cross-origin issue?
     cy.on('uncaught:exception', (err, runnable) => {
-      expect(err.message).to.include('TODO');
+      expect(err.message).to.include('TODO: replace once error is hit');
       done();
       return false;
     });
