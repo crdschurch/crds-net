@@ -21,8 +21,13 @@ export class ContentfulElementValidator {
   }
 
   static shouldHaveImgixImage(alias, imageFieldObject) {
-    cy.get(`@${alias}`).scrollIntoView();
-    cy.get(`@${alias}`).should('be.visible').and('have.attr', 'srcset');
+    cy.get(`@${alias}`).first().scrollIntoView();
+    cy.get(`@${alias}`).should('be.visible');
+
+    //A default image will not be displayed if the asset is unpublished
+    if (!imageFieldObject.isUnpublished) {
+      cy.get(`@${alias}`).should('have.attr', 'srcset');
+    }
 
     if (imageFieldObject.isRequiredOrHasContent) {
       cy.get(`@${alias}`).should('have.attr', 'src').and('contain', imageFieldObject.id);
@@ -31,9 +36,14 @@ export class ContentfulElementValidator {
 
   //scrollIntoView is not always able to target the 'img' level, so this scrolls to a higher level element before testing the 'img' content
   static shouldHaveImgixImageFindImg(alias, imageFieldObject) {
-    cy.get(`@${alias}`).scrollIntoView();
+    cy.get(`@${alias}`).first().scrollIntoView();
     cy.get(`@${alias}`).find('img').as('image');
-    cy.get('@image').should('be.visible').and('have.attr', 'srcset');
+    cy.get('@image').should('be.visible');
+
+    //A default image will not be displayed if the asset is unpublished
+    if (!imageFieldObject.isUnpublished) {
+      cy.get('@image').should('have.attr', 'srcset');
+    }
 
     if (imageFieldObject.isRequiredOrHasContent) {
       cy.get('@image').should('have.attr', 'src').and('contain', imageFieldObject.id);

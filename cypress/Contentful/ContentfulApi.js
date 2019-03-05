@@ -58,7 +58,6 @@ export class ContentfulApi {
       failOnStatusCode: failIfResponseFail
     })
       .then((response) => {
-        cy.log(`response status ${response.status}`);
         const jsonResponse = JSON.parse(response.body);
         responseWrapper.responseBody = jsonResponse;
       });
