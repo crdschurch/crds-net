@@ -58,38 +58,40 @@ describe('Testing the Past Weekends section on the Live page:', function () {
   });
 });
 
-//TODO here
-describe('Testing the "Watch This Weeks Service" button', function(){
+describe('Testing the "Watch This Weeks Service" button', function () {
+  let currentMessage;
   let messageURL;
-  before(function(){
+  before(function () {
     const messageManager = new MessageManager();
     messageManager.saveCurrentMessage();
-    const seriesManager = new SeriesManager();
 
     cy.wrap({ messageManager }).its('messageManager.currentMessage').should('not.be.undefined').then(() => {
-      const currentMessage = messageManager.currentMessage;
-      seriesManager.saveCurrentMessageSeries(currentMessage.id);
-      cy.wrap({ seriesManager }).its('seriesManager.currentMessageSeries').should('not.be.undefined').then(() => {
-        messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${seriesManager.currentMessageSeries.slug.text}/${currentMessage.slug.text}`;
+      currentMessage = messageManager.currentMessage;
+      new SeriesManager().saveMessageSeries(currentMessage);
+
+      cy.wrap({ currentMessage }).its('currentMessage.series').should('not.be.undefined').then(() => {
+        if (currentMessage.series === null) {
+          messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentMessage.slug.text}`;
+        }
+        else {
+          messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentMessage.series.slug.text}/${currentMessage.slug.text}`;
+        }
       });
     });
   });
 
-  beforeEach(function(){
+  beforeEach(function () {
     cy.visit('/live');
   });
 
-  //TODO added data-automation-id="watch-service-button" to /live in contentful - need to propegate up to Prod once Netlify
-  // builds are working and this is tested
-  it('Button should link to lates message', function(){
-    //verify href contains hardcoded url to mediaint
+  it('Button should link to lates message', function () {
     cy.get('[data-automation-id="watch-service-button"]').should('be.visible').and('have.attr', 'href', messageURL);
-
   });
 
-  it('When clicked, latest message page should load', function(){
+  it('When clicked, latest message page should load', function () {
     cy.get('[data-automation-id="watch-service-button"]').click();
 
-    cy.get('#description').should('be.visible');//TODO And contain the expected message description
+    cy.get('#description').as('currentMessageDescription').should('be.visible');
+    Element.shouldContainText('currentMessageDescription', currentMessage.description.text);
   });
 });
