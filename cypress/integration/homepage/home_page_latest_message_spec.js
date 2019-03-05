@@ -8,13 +8,18 @@ describe('Testing the Current Message on the Homepage:', function () {
   before(function () {
     const messageManager = new MessageManager();
     messageManager.saveCurrentMessage();
-    const seriesManager = new SeriesManager();
 
     cy.wrap({ messageManager }).its('messageManager.currentMessage').should('not.be.undefined').then(() => {
       currentMessage = messageManager.currentMessage;
-      seriesManager.saveCurrentMessageSeries(currentMessage.id);
-      cy.wrap({ seriesManager }).its('seriesManager.currentMessageSeries').should('not.be.undefined').then(() => {
-        messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${seriesManager.currentMessageSeries.slug.text}/${currentMessage.slug.text}`;
+      new SeriesManager().saveMessageSeries(currentMessage);
+
+      cy.wrap({ currentMessage }).its('currentMessage.series').should('not.be.undefined').then(() => {
+        if(currentMessage.series === null){
+          messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentMessage.slug.text}`;
+        }
+        else{
+          messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentMessage.series.slug.text}/${currentMessage.slug.text}`;
+        }
       });
     });
 

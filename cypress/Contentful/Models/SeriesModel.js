@@ -21,15 +21,15 @@ export class SeriesManager {
       });
     });
   }
-
-  saveCurrentMessageSeries(messageId) {
+  //TODO remove
+  saveMessageSeriesOLD(messageId) {
     const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at,fields.videos&order=-fields.starts_at&limit=5');
     cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
       const responseList = seriesList.responseBody.items;
 
       const seriesWithMessage = responseList.find(s => {
         let videoList = s.fields.videos;
-        if(videoList !== undefined)
+        if (videoList !== undefined)
           return videoList.find(v => v.sys.id === messageId) !== undefined;
         return false;
       });
@@ -42,12 +42,33 @@ export class SeriesManager {
     });
   }
 
-  get currentSeries() {
-    return this._current_series;
+  saveMessageSeries(messageModel) {
+    const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at,fields.videos&order=-fields.starts_at&limit=5');
+    cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
+      const responseList = seriesList.responseBody.items;
+
+      const seriesWithMessage = responseList.find(s => {
+        let videoList = s.fields.videos;
+        if (videoList !== undefined)
+          return videoList.find(v => v.sys.id === messageModel.id) !== undefined;
+        return false;
+      });
+
+      //Handle if the series is unpublished
+      if (seriesWithMessage !== undefined) {
+        const seriesFullEntry = ContentfulApi.getSingleEntry(seriesWithMessage.sys.id);
+        cy.wrap({ seriesFullEntry }).its('seriesFullEntry.responseReady').should('be.true').then(() => {
+          messageModel.series = new SeriesModel(seriesFullEntry.responseBody.fields);
+        });
+      }
+      else {
+        messageModel.series = null;
+      }
+    });
   }
 
-  get currentMessageSeries() {
-    return this._current_message_series;
+  get currentSeries() {
+    return this._current_series;
   }
 }
 
