@@ -1,13 +1,13 @@
-import { ContentfulApi } from '../../Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
+import { SeriesManager } from '../../Contentful/Models/SeriesModel';
 
 describe('Tesing the Media/Series/[Current Series] page:', function () {
   let currentSeries;
   before(function () {
-    const seriesList = new ContentfulApi().retrieveSeriesManager();
-
-    cy.wrap({ seriesList }).its('seriesList.currentSeries').should('not.be.undefined').then(() => {
-      currentSeries = seriesList.currentSeries;
+    const seriesManager = new SeriesManager();
+    seriesManager.saveCurrentSeries();
+    cy.wrap({ seriesManager }).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
+      currentSeries = seriesManager.currentSeries;
       cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug.text}`);
     });
   });
