@@ -14,9 +14,8 @@ function check_message_card_content(index, message) {
   cy.get('@messageCard').find('[data-automation-id="recent-message-image-link"]').as('messageURL');
   cy.get('@messageURL').should('have.attr', 'href').and('contain', message.slug.text);
 
-  cy.get('@messageCard').find('img[data-automation-id="recent-message-image"]').as('messageImage');
+  cy.get('@messageCard').find('[data-automation-id="recent-message-image"]').as('messageImage');
   cy.get('@messageImage').should('have.attr', 'alt').and('contain', message.title.text);
-  //cy.get('@messageImage').first().scrollIntoView();
   Element.shouldHaveImgixImage('messageImage', message.image);
 }
 

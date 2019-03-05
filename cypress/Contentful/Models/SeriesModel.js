@@ -21,26 +21,6 @@ export class SeriesManager {
       });
     });
   }
-  //TODO remove
-  saveMessageSeriesOLD(messageId) {
-    const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at,fields.videos&order=-fields.starts_at&limit=5');
-    cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
-      const responseList = seriesList.responseBody.items;
-
-      const seriesWithMessage = responseList.find(s => {
-        let videoList = s.fields.videos;
-        if (videoList !== undefined)
-          return videoList.find(v => v.sys.id === messageId) !== undefined;
-        return false;
-      });
-      expect(seriesWithMessage).to.not.be.undefined;
-
-      const seriesFullEntry = ContentfulApi.getSingleEntry(seriesWithMessage.sys.id);
-      cy.wrap({ seriesFullEntry }).its('seriesFullEntry.responseReady').should('be.true').then(() => {
-        this._current_message_series = new SeriesModel(seriesFullEntry.responseBody.fields);
-      });
-    });
-  }
 
   saveMessageSeries(messageModel) {
     const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at,fields.videos&order=-fields.starts_at&limit=5');

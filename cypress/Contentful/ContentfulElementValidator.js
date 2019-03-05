@@ -31,7 +31,6 @@ export class ContentfulElementValidator {
 
     if (imageFieldObject.isRequiredOrHasContent) {
       cy.get(`@${alias}`).should('have.attr', 'src').and('contain', imageFieldObject.id);
-      //TODO below
     }
   }
 
@@ -48,7 +47,6 @@ export class ContentfulElementValidator {
 
     if (imageFieldObject.isRequiredOrHasContent) {
       cy.get('@image').should('have.attr', 'src').and('contain', imageFieldObject.id);
-      //TODO if has no content should it still have an image?
     }
   }
 }
