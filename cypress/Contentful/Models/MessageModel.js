@@ -92,4 +92,13 @@ export class MessageModel {
   get publishedAt() {
     return this._published_at;
   }
+
+  //null if the series is unpublished or does not exist
+  get series(){
+    return this._series;
+  }
+
+  set series(seriesModel){
+    this._series = seriesModel;
+  }
 }
