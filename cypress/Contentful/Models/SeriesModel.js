@@ -23,7 +23,7 @@ export class SeriesManager {
   }
 
   saveMessageSeries(messageModel) {
-    const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at,fields.videos&order=-fields.starts_at&limit=5');
+    const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at,fields.videos&order=-fields.starts_at&limit=6');
     cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
       const responseList = seriesList.responseBody.items;
 

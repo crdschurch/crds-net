@@ -13,7 +13,7 @@ function check_message_card_content(index, message) {
   Element.shouldContainText('messageDescription', message.description.text);
 
   cy.get('@messageCard').find('[data-automation-id="recent-message-image-link"]').as('messageURL');
-  cy.get('@messageURL').should('have.attr', 'href').and('contain', message.slug.text);
+  cy.get('@messageURL').should('have.attr', 'href', message.absoluteUrl);
 
   cy.get('@messageCard').find('[data-automation-id="recent-message-image"]').as('messageImage');
   cy.get('@messageImage').should('have.attr', 'alt').and('contain', message.title.text);
@@ -25,8 +25,17 @@ describe('Testing the Past Weekends section on the Live page:', function () {
   before(function () {
     messageManager = new MessageManager();
     messageManager.saveRecentMessages(4);
+    const seriesManager = new SeriesManager();
 
-    cy.wrap({ messageManager }).its('messageManager.currentMessage').should('not.be.undefined');
+    cy.wrap({ messageManager }).its('messageManager.currentMessage').should('not.be.undefined').then(() =>{
+      const recentMessages = messageManager.recentMessageList;
+
+      expect(recentMessages.length).to.eq(4);
+      recentMessages.forEach(m => {
+        seriesManager.saveMessageSeries(m);
+        cy.wrap({ m }).its('m.series').should('not.be.undefined');
+      });
+    });
     cy.visit('/live');
   });
 
