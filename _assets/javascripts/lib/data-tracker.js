@@ -82,7 +82,7 @@ CRDS.DataTracker = class DataTracker {
     event.preventDefault();
     const form = event.currentTarget;
     const searchInput = form.getElementsByTagName("input")[0];
-    const name = c.dataset.trackSearch || form.id || "Unnamed Search";
+    const name = form.dataset.trackSearch || form.id || "Unnamed Search";
     const label = form.dataset.trackLabel || "SearchRequested";
     const target = form.outerHTML;
     const search = searchInput.value;
