@@ -1,17 +1,15 @@
-import { ContentfulApi } from '../../Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
-
+import { SeriesManager } from '../../Contentful/Models/SeriesModel';
 
 describe('Testing the Current Series on the Media landing page:', function () {
   let currentSeries;
   before(function () {
-    const content = new ContentfulApi();
-    const seriesList = content.retrieveSeriesManager();
-
-    cy.wrap({ seriesList }).its('seriesList.currentSeries').should('not.be.undefined').then(() => {
-      currentSeries = seriesList.currentSeries;
-      cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/`);
+    const seriesManager = new SeriesManager();
+    seriesManager.saveCurrentSeries();
+    cy.wrap({ seriesManager }).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
+      currentSeries = seriesManager.currentSeries;
     });
+    cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}`);
   });
 
   beforeEach(function () {

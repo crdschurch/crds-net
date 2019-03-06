@@ -1,0 +1,6 @@
+title,permalink,layout,requires_auth,entry_id
+Page Not Found,/404.html,container
+Stream,/live/stream,no-header-no-footer
+Updates,/updates,container-fluid
+Live,/live/,container-fluid
+Locations,/locations/,container
