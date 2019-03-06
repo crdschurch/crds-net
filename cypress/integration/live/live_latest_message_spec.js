@@ -26,9 +26,8 @@ describe('Testing the Past Weekends section on the Live page:', function () {
     messageManager = new MessageManager();
     messageManager.saveRecentMessages(4);
 
-    cy.wrap({ messageManager }).its('messageManager.currentMessage').should('not.be.undefined').then(() => {
-      cy.visit('/live');
-    });
+    cy.wrap({ messageManager }).its('messageManager.currentMessage').should('not.be.undefined');
+    cy.visit('/live');
   });
 
   it('Four messages should be displayed', function () {
@@ -60,7 +59,6 @@ describe('Testing the Past Weekends section on the Live page:', function () {
 
 describe('Testing the "Watch This Weeks Service" button', function () {
   let currentMessage;
-  let messageURL;
   before(function () {
     const messageManager = new MessageManager();
     messageManager.saveCurrentMessage();
@@ -68,15 +66,7 @@ describe('Testing the "Watch This Weeks Service" button', function () {
     cy.wrap({ messageManager }).its('messageManager.currentMessage').should('not.be.undefined').then(() => {
       currentMessage = messageManager.currentMessage;
       new SeriesManager().saveMessageSeries(currentMessage);
-
-      cy.wrap({ currentMessage }).its('currentMessage.series').should('not.be.undefined').then(() => {
-        if (currentMessage.series === null) {
-          messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentMessage.slug.text}`;
-        }
-        else {
-          messageURL = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentMessage.series.slug.text}/${currentMessage.slug.text}`;
-        }
-      });
+      cy.wrap({ currentMessage }).its('currentMessage.series').should('not.be.undefined');
     });
   });
 
@@ -85,7 +75,7 @@ describe('Testing the "Watch This Weeks Service" button', function () {
   });
 
   it('Button should link to lates message', function () {
-    cy.get('[data-automation-id="watch-service-button"]').should('be.visible').and('have.attr', 'href', messageURL);
+    cy.get('[data-automation-id="watch-service-button"]').should('be.visible').and('have.attr', 'href', currentMessage.absoluteUrl);
   });
 
   it('When clicked, latest message page should load', function () {

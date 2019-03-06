@@ -13,30 +13,26 @@ describe('Testing the Current Series on the Homepage:', function () {
   });
 
   it('Current series title, description, and image should match Contentful', function () {
-    const seriesLink = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug.text}`;
-
     cy.get('[data-automation-id="series-title"]').as('seriesTitle');
     cy.get('@seriesTitle').should('be.visible').and('contain', currentSeries.title.text);
-    cy.get('@seriesTitle').should('have.attr', 'href', seriesLink);
+    cy.get('@seriesTitle').should('have.attr', 'href', currentSeries.absoluteUrl);
 
     cy.get('[data-automation-id="series-description"]').as('seriesDescription');
     Element.shouldMatchSubsetOfText('seriesDescription', currentSeries.description);
 
     cy.get('[data-automation-id="series-image"]').as('seriesImage');
-    cy.get('@seriesImage').should('have.attr', 'href', seriesLink);
+    cy.get('@seriesImage').should('have.attr', 'href', currentSeries.absoluteUrl);
 
     Element.shouldHaveImgixImageFindImg('seriesImage', currentSeries.image);
   });
 
   it('"Watch Latest Service" button should link to the current series', function () {
-    const seriesLink = `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug.text}`;
-
     //Desktop version
     cy.get('[data-automation-id="watch-series-button"]').as('watchServiceButton');
-    cy.get('@watchServiceButton').should('be.visible').and('have.attr', 'href', seriesLink);
+    cy.get('@watchServiceButton').should('be.visible').and('have.attr', 'href', currentSeries.absoluteUrl);
 
     //Mobile version
     cy.get('[data-automation-id="mobile-watch-series-button"]').as('mobileWatchServiceButton');
-    cy.get('@mobileWatchServiceButton').should('not.be.visible').and('have.attr', 'href', seriesLink);
+    cy.get('@mobileWatchServiceButton').should('not.be.visible').and('have.attr', 'href', currentSeries.absoluteUrl);
   });
 });

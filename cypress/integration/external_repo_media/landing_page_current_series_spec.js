@@ -19,7 +19,7 @@ describe('Testing the Current Series on the Media landing page:', function () {
   it('The current series title, title link, and description should match Contentful', function () {
     cy.get('@featuredSeries').find('[data-automation-id="featured-title"]').as('seriesTitle');
     cy.get('@seriesTitle').should('be.visible').and('contain', currentSeries.title.text);
-    cy.get('@seriesTitle').should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
+    cy.get('@seriesTitle').should('have.attr', 'href', currentSeries.relativeUrl);
 
     cy.get('@featuredSeries').find('[data-automation-id="featured-description"]').as('seriesDescription');
     Element.shouldMatchSubsetOfText('seriesDescription', currentSeries.description);
@@ -27,7 +27,7 @@ describe('Testing the Current Series on the Media landing page:', function () {
 
   it('The current series image and image link should match Contentful', function () {
     cy.get('@featuredSeries').find('[data-automation-id="featured-image"]').as('seriesImage');
-    cy.get('@seriesImage').should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
+    cy.get('@seriesImage').should('have.attr', 'href', currentSeries.relativeUrl);
     Element.shouldHaveImgixImageFindImg('seriesImage', currentSeries.image);
   });
 });

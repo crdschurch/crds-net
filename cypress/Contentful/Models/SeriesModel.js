@@ -80,6 +80,14 @@ export class SeriesModel {
     return this._slug;
   }
 
+  get relativeUrl() {
+    return `/series/${this.slug.text}`;
+  }
+
+  get absoluteUrl() {
+    return `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${this.slug.text}`;
+  }
+
   get description() {
     return this._description;
   }

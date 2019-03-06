@@ -77,6 +77,17 @@ export class MessageModel {
     return this._slug;
   }
 
+  //Series for this message must be stored first
+  get absoluteUrl(){
+    expect(this.series).to.not.be.undefined();
+    if(this.series === null){
+      return `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${this.slug.text}`;
+    }
+    else{
+      return `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${this.series.slug.text}/${this.slug.text}`;
+    }
+  }
+
   get description() {
     return this._description;
   }
@@ -93,11 +104,13 @@ export class MessageModel {
     return this._published_at;
   }
 
-  //null if the series is unpublished or does not exist
   get series(){
     return this._series;
   }
 
+  //Set to:
+  //null if series is unpublished or does not exist in Contentful
+  //SeriesModel object if series exists
   set series(seriesModel){
     this._series = seriesModel;
   }
