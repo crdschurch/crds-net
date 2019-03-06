@@ -1,8 +1,6 @@
-
 export class ContentfulField {
   constructor (content) {
     this._content = content;
-    this._has_content = content === undefined ? false : true;
   }
 
   set required(is_required) {
@@ -16,10 +14,10 @@ export class ContentfulField {
   }
 
   get hasContent() {
-    return this._has_content;
+    return this._content === undefined ? false : true;
   }
 
   get isRequiredOrHasContent() {
-    return this.required || this._has_content;
+    return this.required || this.hasContent;
   }
 }

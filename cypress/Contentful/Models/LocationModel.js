@@ -1,47 +1,43 @@
 import { TextField } from '../Fields/TextField';
 import { ImageField } from '../Fields/ImageField';
+import { ContentfulApi } from '../ContentfulApi';
 
-export class LocationList {
-  storeListOfLocations(response) {
-    const itemList = response.items;
-    const assetList = response.includes.Asset;
+export class LocationManager {
+  saveLocationList() {
     this._location_list = [];
+    const locationList = ContentfulApi.getEntryCollection('content_type=location&select=fields.name,fields.slug,fields.image,fields.address,fields.service_times,fields.map_url&include=3');
+    cy.wrap({ locationList }).its('locationList.responseReady').should('be.true').then(() => {
+      const responseList = locationList.responseBody.items;
 
-    for (let i = 0; i < itemList.length; i++) {
-      let loc = new LocationModel(itemList[i].fields, assetList);
-      this._location_list.push(loc);
-    }
+      for (let i = 0; i < responseList.length; i++) {
+        let loc = new LocationModel(responseList[i].fields);
+        this._location_list.push(loc);
+      }
+    });
   }
 
-  getLocationBySlug(slug) {
-    return this._location_list.find(l => l.slug.text == slug);
-  }
-
-  get getSomeLocation() {
-    return this._location_list[0];
-  }
-
-  get sortedByNameAndSlug() {
-    return this._location_list.sort(function (a, b) {
+  sortByNameAndSlug() {
+    expect(this._location_list.length).to.be.above(0);
+    this._location_list.sort(function (a, b) {
       let diff = a.name.compare(b.name);
       return diff === 0 ? a.slug.compare(b.slug) : diff;
     });
   }
 
-  get locationCount() {
-    return this._location_list != undefined ? this._location_list.length : 0;
+  get locationList() {
+    return this._location_list;
   }
 }
 
 export class LocationModel {
-  constructor (responseItem, assetList) {
+  constructor (responseItem) {
     this._name = new TextField(responseItem.name);
     this._name.required = true;
 
     this._slug = new TextField(responseItem.slug);
     this._slug.required = true;
 
-    this._image = new ImageField(responseItem.image, assetList);
+    this._image = new ImageField(responseItem.image);
     this._image.required = true;
 
     this._address = new TextField(responseItem.address);
