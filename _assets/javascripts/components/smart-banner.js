@@ -1,6 +1,12 @@
 // detect android OS
-var isAndroid = /(android)/i.test(navigator.userAgent);
-if(isAndroid) {
+// var isAndroid = /(android)/i.test(navigator.userAgent);
+// var isIos = /(ios)/i.test(navigator.userAgent);
+// var isChrome = /(chrome)/i.test(navigator.userAgent);
+var isAndroid = false;
+var isIos = true;
+var isChrome = true;
+
+if (isAndroid || (isIos && isChrome)) {
   // call smart-banner
   new SmartBanner({
     daysHidden: 15,   // days to hide banner after close button is clicked (defaults to 15)
@@ -19,8 +25,13 @@ if(isAndroid) {
         android: 'FREE',
         windows: 'FREE'
     }, 
-    // theme: 'android', // put platform type ('ios', 'android', etc.) here to force single theme on all device
+    theme: 'ios', // put platform type ('ios', 'android', etc.) here to force single theme on all device
     icon: 'https://lh3.googleusercontent.com/hNGOOKOLpB_4tRv__LRpQSp9QxbwCTCsFbzpeYFxd6YvtJ-6lF6ttqPHbQbDQ7K07vA=s180-rw', // full path to icon image if not using website icon image
-    // force: 'android' // Uncomment for platform emulation
+    force: 'ios' // Uncomment for platform emulation
   });
+
+  // fire ananlytics track here
+  var cta = document.querySelector('.smartbanner-button');
+  cta.setAttribute('data-track-click', 'true');
+  
 }
