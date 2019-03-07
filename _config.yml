@@ -32,7 +32,7 @@ exclude:
 
 contentful:
   series:
-    limit: 4
+    limit: 10
     order: "published_at desc"
   message:
     limit: 4

@@ -18,7 +18,8 @@ module.exports = [
       "vendor/crds-rollcall.min",
       "vendor/crds-status-message-v0.1.3.min",
       "vendor/feature-flags.min",
-      "vendor/isotope.min"
+      "vendor/isotope.min",
+      "vendor/smart-app-banner-2.0.0.min"
     ],
     files: [
       "lib/location-finder",
@@ -35,6 +36,7 @@ module.exports = [
       "components/jumbotron-video",
       "components/filters",
       "components/simple-fred",
+      "components/smart-banner",
       "components/status-message",
       "components/global"
     ]

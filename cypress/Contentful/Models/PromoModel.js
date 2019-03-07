@@ -41,7 +41,6 @@ export class PromoManager {
 
   //Sorted by date then title
   getSortedPromosInAudience(audience) {
-    cy.log(`promos in audience ${this._promos_by_audience[audience].length}`);
     return this._promos_by_audience[audience].sort((a, b) => {
       let diff = a.publishedAt.ignoreTimeZone().compare(b.publishedAt.ignoreTimeZone());
       return diff === 0 ? a.title.compare(b.title) : diff;
