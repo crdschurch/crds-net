@@ -32,6 +32,5 @@ if (isAndroid || (isIos && isChrome)) {
 
   // fire ananlytics track here
   var cta = document.querySelector('.smartbanner-button');
-  cta.setAttribute('data-track-click', 'true');
-  
+  cta.setAttribute('data-track-click', 'smartBannerConversion');  
 }
