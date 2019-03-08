@@ -22,7 +22,8 @@ export class ImageField extends ContentfulField {
     if (image === undefined)
       this._content = undefined;
     else {
-      const imageAsset = ContentfulApi.getSingleAsset(image.sys.id);
+      //If the image asset was unpublished, it will still have an id but will not be displayed on crds.net
+      const imageAsset = ContentfulApi.getSingleAsset(image.sys.id, false);
       cy.wrap({ imageAsset }).its('imageAsset.responseReady').should('be.true').then(() => {
         const responseType = imageAsset.responseBody.sys.type;
         if (responseType != 'Error') {

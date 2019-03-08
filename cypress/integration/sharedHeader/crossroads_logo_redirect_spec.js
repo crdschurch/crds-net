@@ -27,15 +27,15 @@ describe('Clicking the Crossroads logo from a non-Netlify page should load the N
   });
 
   it('Starting from /leaveyourmark', function () {
-    cy.visit('/leaveyourmark');
+    cy.visit('/leaveyourmark', { timeout: 20000 });
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 });
 
 describe('Clicking the Crossroads logo from a Netlify page should load the Netlify homepage:', function () {
-  it('Starting from /serve', function () {
-    cy.visit('/serve');
+  it.skip('Starting from /volunteer', function () {
+    cy.visit('/volunteer');
     RouteValidator.pageShouldBeFromNetlify();
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
