@@ -1,9 +1,10 @@
 // detect android OS
 var isAndroid = /(android)/i.test(navigator.userAgent);
-var isIos = /(ios)/i.test(navigator.userAgent);
-var isChrome = /(chrome)/i.test(navigator.userAgent);
+var isIos = /(iphone)/i.test(navigator.userAgent);
+var isChrome = /(CriOS)/i.test(navigator.userAgent);
+var isSafari = /(safari)/i.test(navigator.userAgent);
 
-if (isAndroid || (isIos && isChrome)) {
+if (isAndroid || (isIos && isChrome) || (isIos && !isSafari)) {
   // call smart-banner
   new SmartBanner({
     daysHidden: 15,   // days to hide banner after close button is clicked (defaults to 15)
