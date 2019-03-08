@@ -22,12 +22,12 @@ class ResponseWrapper {
 }
 
 export class ContentfulApi {
-  static getEntryCollection(query, failOnStatusCode=true) {
+  static getEntryCollection(query, failTestOnErrorCode=true) {
     const responseWrapper = new ResponseWrapper();
     cy.request({
       method: 'GET',
       url: `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}&${query}`,
-      failOnStatusCode: failOnStatusCode
+      failOnStatusCode: failTestOnErrorCode
     })
       .then((response) => {
         const jsonResponse = JSON.parse(response.body);
@@ -36,12 +36,12 @@ export class ContentfulApi {
     return responseWrapper;
   }
 
-  static getSingleEntry(id, failOnStatusCode=true) {
+  static getSingleEntry(id, failTestOnErrorCode=true) {
     const responseWrapper = new ResponseWrapper();
     cy.request({
       method: 'GET',
       url: `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/entries/${id}?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}`,
-      failOnStatusCode: failOnStatusCode
+      failOnStatusCode: failTestOnErrorCode
     })
       .then((response) => {
         const jsonResponse = JSON.parse(response.body);
@@ -50,12 +50,12 @@ export class ContentfulApi {
     return responseWrapper;
   }
 
-  static getSingleAsset(id, failOnStatusCode=true) {
+  static getSingleAsset(id, failTestOnErrorCode=true) {
     const responseWrapper = new ResponseWrapper();
     cy.request({
       method: 'GET',
       url: `https://cdn.contentful.com/spaces/${Cypress.env('CONTENTFUL_SPACE_ID')}/environments/${Cypress.env('CONTENTFUL_ENV')}/assets/${id}?access_token=${Cypress.env('CONTENTFUL_ACCESS_TOKEN')}`,
-      failOnStatusCode: failOnStatusCode
+      failOnStatusCode: failTestOnErrorCode
     })
       .then((response) => {
         const jsonResponse = JSON.parse(response.body);
