@@ -202,4 +202,4 @@ If you try to push again, you should be prompted for a new username and password
 
 ## License
 
-This project is licensed under the [3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause). 
+This project is licensed under the [3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause).
