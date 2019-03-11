@@ -9,9 +9,9 @@ CRDS.Environment = class Environment {
   links() {
     this.log("links()");
     if (this.env() == "int" || this.env() == "demo") {
-      $("a[data-href-int], a[data-href-demo]").each(
+      $("a[data-href-" + this.env() + "]").each(
         function(i, el) {
-          const href = $(el).data(`href-${this.env()}`);
+          const href = $(el).data("href-" + this.env());
           $(el).attr("href", href);
         }.bind(this)
       );
