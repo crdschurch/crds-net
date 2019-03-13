@@ -95,7 +95,6 @@ function liveStreamInit() {
   function setStreamspotPlayerId() {
     const el = document.querySelector('[data-streamspot-player]');
     el.setAttribute('data-streamspot-player', window.CRDS.streamspotPlayerId);
-    console.log(el);
   }
 
   window.env = window.env || {};
