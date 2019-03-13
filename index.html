@@ -42,7 +42,6 @@ paginate:
 
 {% include header.html %}
 
-
 <section class="container content-live hide push-bottom" data-stream-live="show">
   <div class="row">
     {% assign home_messages = page.messages.docs %}
@@ -129,23 +128,42 @@ paginate:
 
     <!-- Big Content Feature -->
     <div class="col-md-8 col-md-pull-4">
-      <hr class="push-half-bottom flush-top">
-      <h2 class="flush-top font-size-base text-gray-light">latest articles</h2>
 
-      {% for article in page.home_collection.offset %}
-      <a href="{{ article.url | media_url }}" class="overlay-card">
-        <div class="bg-overlay"></div>
-        <div class="overlay-card-image">
-          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
-        </div>
-        <div class="overlay-card-content">
-          <p class="overlay-card-category">{{ article.category.title }}</p>
-          <h2 class="overlay-card-title">{{ article.title }}</h2>
-          <p class="overlay-card-author">{{ article.author.full_name }}</p>
-          {% include media/_media-label.html source=article %}
-        </div>
-      </a>
-      {% endfor %}
+      {% assign feature_obj = site.featured_media | where: 'site', 'net' | where: 'page_path', page.url | first %}
+      {% assign managed_features = feature_obj.entries %}
+
+      <hr class="push-half-bottom flush-top">
+      <h2 class="flush-top font-size-base text-gray-light">
+        {% if managed_features.size > 0 %}
+          featured media
+        {% else %}
+          latest articles
+        {% endif %}
+      </h2>
+
+      {% if managed_features.size > 0 %}
+        {% assign features = managed_features | slice: 0, 4 %}
+        {% if features.size > 0 %}
+          {% for item in features %}
+            <div>{% include media/_overlay-card.html source=item %}</div>
+          {% endfor %}
+        {% endif %}
+      {% else %}
+        {% for article in page.home_collection.offset %}
+          <a href="{{ article.url | media_url }}" class="overlay-card">
+            <div class="bg-overlay"></div>
+            <div class="overlay-card-image">
+              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
+            </div>
+            <div class="overlay-card-content">
+              <p class="overlay-card-category">{{ article.category.title }}</p>
+              <h2 class="overlay-card-title">{{ article.title }}</h2>
+              <p class="overlay-card-author">{{ article.author.full_name }}</p>
+              {% include media/_media-label.html source=article %}
+            </div>
+          </a>
+        {% endfor %}
+      {% endif %}
     </div>
   </div>
 
