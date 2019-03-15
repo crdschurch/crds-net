@@ -40,4 +40,5 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /me/giving*,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301
 /giving/*,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301
 /givinghistory,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301
+/series/*,https://${env:CRDS_MEDIA_ENDPOINT}/series/:splat,200!
 /*,/404.html,404 
