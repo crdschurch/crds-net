@@ -38,6 +38,7 @@ contentful:
     limit: 4
     order: "published_at desc"
   featured_media:
+    query: fields.site=net
     map:
       page_path: path
   exclude:
