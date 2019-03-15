@@ -47,5 +47,5 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /podcasts/*,https://${env:CRDS_MEDIA_ENDPOINT}/podcasts/:splat,200!
 /music/*,https://${env:CRDS_MEDIA_ENDPOINT}/songs/:splat,200!
 /videos/*,https://${env:CRDS_MEDIA_ENDPOINT}/videos/:splat,200!
-/message/*,https://${env:CRDS_MEDIA_ENDPOINT}/:splat,200!
+/message/*,https://${env:CRDS_MEDIA_ENDPOINT}/message/:splat,200!
 /*,/404.html,404 
