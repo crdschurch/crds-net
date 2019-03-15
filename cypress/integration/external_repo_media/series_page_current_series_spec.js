@@ -9,7 +9,7 @@ describe('Tesing the Current Series on the Media/Series page:', function () {
     cy.wrap({ seriesManager }).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
       currentSeries = seriesManager.currentSeries;
     });
-    cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series`);
+    cy.visit(`https://${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series`);
   });
 
   it('The Current series title, date range, and description should match Contentful', function () {
