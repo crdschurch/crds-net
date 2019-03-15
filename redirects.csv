@@ -47,4 +47,8 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /music/*,https://${env:CRDS_MEDIA_ENDPOINT}/songs/:splat,302!
 /videos/*,https://${env:CRDS_MEDIA_ENDPOINT}/videos/:splat,302!
 /message/*,https://${env:CRDS_MEDIA_ENDPOINT}/message/:splat,302!
+<<<<<<< HEAD
+=======
+/media/*,https://${env:CRDS_MEDIA_ENDPOINT}/media/:splat,302!
+>>>>>>> 7b4b2bd... removed /episodes redirect
 /*,/404.html,404 
