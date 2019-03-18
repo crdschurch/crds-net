@@ -84,10 +84,10 @@ export class MessageModel {
   //Series for this message must be stored first
   get absoluteUrl() {
     if (this.series === null) {
-      return `https://${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${this.slug.text}`;
+      return `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${this.slug.text}`;
     }
     else {
-      return `https://${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${this.series.slug.text}/${this.slug.text}`;
+      return `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${this.series.slug.text}/${this.slug.text}`;
     }
   }
 
