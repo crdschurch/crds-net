@@ -25,6 +25,7 @@ module.exports = [
       "lib/location-finder",
       "lib/distance-sorter",
       "lib/data-tracker",
+      "lib/environment",
       "lib/card-filters",
       "lib/height-watcher",
       "lib/smooth-scroller",

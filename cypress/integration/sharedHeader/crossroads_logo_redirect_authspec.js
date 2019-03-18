@@ -12,9 +12,8 @@ describe('As a signed-in user, clicking the Crossroads logo from a non-Netlify p
   });
 
   it('(DE6319) Starting from /corkboard', function () {
-    //TODO test this on Travis - does this catch the cross-origin issue?
     cy.on('uncaught:exception', (err, runnable) => {
-      expect(err.message).to.include('TODO: replace once error is hit');
+      expect(err.message).to.include('Cypress detected that an uncaught error was thrown from a cross origin script.');
       done();
       return false;
     });

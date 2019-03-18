@@ -14,9 +14,8 @@ describe('Clicking the Crossroads logo from a non-Netlify page should load the N
   });
 
   it('(DE6319) Starting from /corkboard', function () {
-    //TODO test this on Travis - does this catch the cross-origin issue?
     cy.on('uncaught:exception', (err, runnable) => {
-      expect(err.message).to.include('TODO: replace once error is hit');
+      expect(err.message).to.include('Cypress detected that an uncaught error was thrown from a cross origin script.');
       done();
       return false;
     });
@@ -27,15 +26,15 @@ describe('Clicking the Crossroads logo from a non-Netlify page should load the N
   });
 
   it('Starting from /leaveyourmark', function () {
-    cy.visit('/leaveyourmark');
+    cy.visit('/leaveyourmark', { timeout: 20000 });
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
   });
 });
 
 describe('Clicking the Crossroads logo from a Netlify page should load the Netlify homepage:', function () {
-  it('Starting from /serve', function () {
-    cy.visit('/serve');
+  it.skip('Starting from /volunteer', function () {
+    cy.visit('/volunteer');
     RouteValidator.pageShouldBeFromNetlify();
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();

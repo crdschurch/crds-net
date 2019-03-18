@@ -23,7 +23,7 @@ export class SeriesManager {
   }
 
   saveMessageSeries(messageModel) {
-    const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at,fields.videos&order=-fields.starts_at&limit=5');
+    const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at,fields.videos&order=-fields.starts_at&limit=6');
     cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
       const responseList = seriesList.responseBody.items;
 
@@ -78,6 +78,14 @@ export class SeriesModel {
 
   get slug() {
     return this._slug;
+  }
+
+  get relativeUrl() {
+    return `/series/${this.slug.text}`;
+  }
+
+  get absoluteUrl() {
+    return `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${this.slug.text}`;
   }
 
   get description() {

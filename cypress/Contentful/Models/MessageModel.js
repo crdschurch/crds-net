@@ -36,6 +36,10 @@ export class MessageManager {
     return this._recent_message_list[0];
   }
 
+  get recentMessageList() {
+    return this._recent_message_list;
+  }
+
   //0 = current ... n = oldest
   getRecentMessageByIndex(index) {
     return this._recent_message_list[index];
@@ -65,7 +69,7 @@ export class MessageModel {
     this._background_image = new ImageField(responseItem.fields.background_image);
   }
 
-  get id(){
+  get id() {
     return this._id;
   }
 
@@ -75,6 +79,16 @@ export class MessageModel {
 
   get slug() {
     return this._slug;
+  }
+
+  //Series for this message must be stored first
+  get absoluteUrl() {
+    if (this.series === null) {
+      return `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${this.slug.text}`;
+    }
+    else {
+      return `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${this.series.slug.text}/${this.slug.text}`;
+    }
   }
 
   get description() {
@@ -93,12 +107,14 @@ export class MessageModel {
     return this._published_at;
   }
 
-  //null if the series is unpublished or does not exist
-  get series(){
+  get series() {
     return this._series;
   }
 
-  set series(seriesModel){
+  //Set to:
+  //null if series is unpublished or does not exist in Contentful
+  //SeriesModel object if series exists
+  set series(seriesModel) {
     this._series = seriesModel;
   }
 }
