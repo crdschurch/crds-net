@@ -40,7 +40,6 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /me/giving*,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301
 /giving/*,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301
 /givinghistory,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301
-/music,${env:CRDS_MEDIA_ENDPOINT}/music,302!
 /series/*,${env:CRDS_MEDIA_ENDPOINT}/series/:splat,302!
 /articles/*,${env:CRDS_MEDIA_ENDPOINT}/articles/:splat,302!
 /podcasts/*,${env:CRDS_MEDIA_ENDPOINT}/podcasts/:splat,302!
