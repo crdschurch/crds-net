@@ -9,7 +9,7 @@ describe('Testing the Current Series on the Media landing page:', function () {
     cy.wrap({ seriesManager }).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
       currentSeries = seriesManager.currentSeries;
     });
-    cy.visit(`https://${Cypress.env('CRDS_MEDIA_ENDPOINT')}`);
+    cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}`);
   });
 
   beforeEach(function () {
