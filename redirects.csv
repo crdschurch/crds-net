@@ -48,4 +48,4 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /videos/*,${env:CRDS_MEDIA_ENDPOINT}/videos/:splat,200!
 /message/*,${env:CRDS_MEDIA_ENDPOINT}/message/:splat,200!
 /media/*,${env:CRDS_MEDIA_ENDPOINT}/media/:splat,200!
-/*,/404.html,404
+/*,/404.html,404 
