@@ -1,7 +1,7 @@
 module.exports = [
   {
     name: "application",
-    deps: ["vendor/jquery-3.3.1.min", "vendor/crds-shared-header-v0.8.1.min"],
+    deps: ["vendor/jquery-3.3.1.min", "vendor/crds-shared-header-v0.8.3.min"],
     files: ["lib/set-redirect-url"]
   },
   {
