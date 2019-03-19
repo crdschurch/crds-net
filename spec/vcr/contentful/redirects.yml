@@ -33,9 +33,9 @@ http_interactions:
       X-Contentful-Region:
       - us-east-1
       X-Contentful-Request-Id:
-      - 648ac5fc8eda80d2dc55fe64c748b73f
+      - 4dc4470b1a87d40f7d9dfb23037c1f22
       X-Served-By:
-      - cache-dca17739-DCA
+      - cache-dca17750-DCA
       X-Cache:
       - MISS
       X-Cache-Hits:
@@ -55,7 +55,7 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Mon, 18 Mar 2019 20:19:21 GMT
+      - Tue, 19 Mar 2019 14:29:00 GMT
       Via:
       - 1.1 varnish
       Age:
@@ -4523,7 +4523,7 @@ http_interactions:
           ]
         }
     http_version: 
-  recorded_at: Mon, 18 Mar 2019 20:19:21 GMT
+  recorded_at: Tue, 19 Mar 2019 14:29:00 GMT
 - request:
     method: get
     uri: http://cdn.contentful.com/spaces/y3a9myzsdjan/environments/int/entries?access_token=cdc473421d1e2f089515a5fe791ef575715b67024840b6aa1ee157b0e43d18d3&content_type=redirect&limit=1000
@@ -4557,9 +4557,9 @@ http_interactions:
       X-Contentful-Region:
       - us-east-1
       X-Contentful-Request-Id:
-      - 648ac5fc8eda80d2dc55fe64c748b73f
+      - 4dc4470b1a87d40f7d9dfb23037c1f22
       X-Served-By:
-      - cache-dca17727-DCA
+      - cache-dca17765-DCA
       X-Cache:
       - HIT
       X-Cache-Hits:
@@ -4579,7 +4579,7 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Mon, 18 Mar 2019 20:19:22 GMT
+      - Tue, 19 Mar 2019 14:29:00 GMT
       Via:
       - 1.1 varnish
       Age:
@@ -9047,5 +9047,5 @@ http_interactions:
           ]
         }
     http_version: 
-  recorded_at: Mon, 18 Mar 2019 20:19:22 GMT
+  recorded_at: Tue, 19 Mar 2019 14:29:00 GMT
 recorded_with: VCR 4.0.0
