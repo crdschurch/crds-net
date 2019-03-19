@@ -11,7 +11,7 @@ describe 'Redirects' do
 
   after do
     File.open('./spec/fixtures/redirects.csv', 'w+') do |file|
-      file.write("http://crossroads.net/*,https://www.crossroads.net/:splat,301!,master\nhttp://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!\n/groupleaderresources/,/groups/leader/resources/,302")
+      file.write("http://crossroads.net/*,https://www.crossroads.net/:splat,301!,master\nhttp://int.crossroads.net/*,https://int.crossroads.net/:splat,301!\n/groupleaderresources/,/groups/leader/resources/,302")
     end
   end
   
