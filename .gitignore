@@ -5,6 +5,7 @@ _redirects
 .jekyll-metadata
 .jekyll-cache
 .envrc
+.nvmrc
 .env
 collections
 system-pages.json
