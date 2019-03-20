@@ -30,13 +30,13 @@ describe('Tesing the Current Series on the Media/Series page:', function () {
 
   it('The current series image and image link should match Contentful', function () {
     cy.get('.current-series').as('currentSeries');
-    cy.get('@currentSeries').find('a').should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
+    cy.get('@currentSeries').find('a').should('have.attr', 'href', currentSeries.relativeUrl);
 
     Element.shouldHaveImgixImageFindImg('currentSeries', currentSeries.image);
   });
 
   it('"View the series" button should link to the current series', function () {
     cy.contains('View the series').as('viewSeriesButton');
-    cy.get('@viewSeriesButton').should('be.visible').and('have.attr', 'href', `/series/${currentSeries.slug.text}`);
+    cy.get('@viewSeriesButton').should('be.visible').and('have.attr', 'href', currentSeries.relativeUrl);
   });
 });

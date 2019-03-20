@@ -4,8 +4,8 @@ import { openProfileClickLinkAndConfirmLoad, forceOpenProfileDropdown } from './
 
 describe('As a signed-in user, the links in the My Profile menu should load pages', function () {
   beforeEach(function () {
-    cy.visit('/');
     cy.login(fred_flintstone.email, fred_flintstone.password);
+    cy.visit('/');
   });
 
   it('Tests "My Profile" loads expected page when clicked', function () {

@@ -18,18 +18,4 @@ export class RouteValidator{
     const urlRegex = new RegExp(`${url}/?$`);
     cy.url().should('match', urlRegex);
   }
-
-  static responseShouldNotBeFromMaestro(response){
-    expect(response.headers['x-varnish']).not.to.exist;
-
-    if(response.headers.via != undefined){
-      expect(response.headers.via).not.to.contain('varnish');
-    }
-
-    expect(response.body).not.to.contain('meta name="Maestro"');
-  }
-
-  static responseShouldBeFromNetlify(response){
-    expect(response.body).to.contain('meta name="Netlify"');
-  }
 }

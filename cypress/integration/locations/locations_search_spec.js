@@ -71,7 +71,7 @@ describe('Testing the Locations page without searching:', function () {
   });
 });
 
-describe.skip('Testing the search functionality on the Locations page:', function () {
+describe('Testing the search functionality on the Locations page:', function () {
   before(function () {
     cy.visit('/locations');
   });
