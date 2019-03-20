@@ -5,13 +5,14 @@ describe 'Redirects' do
   before do
     ENV['CONTENTFUL_ACCESS_TOKEN'] = 'cdc473421d1e2f089515a5fe791ef575715b67024840b6aa1ee157b0e43d18d3'
     ENV['CONTENTFUL_SPACE_ID'] = 'y3a9myzsdjan'
+    ENV['CONTENTFUL_ENV'] = 'int'
     @redirects = Redirects.new
     @csv = CSV.read('./spec/fixtures/redirects.csv')
   end
 
   after do
     File.open('./spec/fixtures/redirects.csv', 'w+') do |file|
-      file.write("http://crossroads.net/*,https://www.crossroads.net/:splat,301!,master\nhttp://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!\n/groupleaderresources/,/groups/leader/resources/,302")
+      file.write("http://crossroads.net/*,https://www.crossroads.net/:splat,301!,master\nhttp://int.crossroads.net/*,https://int.crossroads.net/:splat,301!\n/groupleaderresources/,/groups/leader/resources/,302")
     end
   end
   

@@ -20,7 +20,7 @@ describe('Testing the Current Series in the Shared Header/Media dropdown:', func
 
     //Skip in demo - shared header content may be from prod
     if (!Cypress.env('CRDS_MEDIA_ENDPOINT').includes('demo')) {
-      cy.get('@currentSeriesImage').find('a').should('have.attr', 'href').and('contain', currentSeries.slug.text);
+      cy.get('@currentSeriesImage').find('a').should('have.attr', 'href', currentSeries.absoluteUrl);
 
       if (currentSeries.image.isRequiredOrHasContent) {
         cy.get('@currentSeriesImage').find('img').should('have.attr', 'src').and('contain', currentSeries.image.id);
