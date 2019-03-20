@@ -47,5 +47,5 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /music/*,/media/songs/:splat,302!
 /videos/*,/media/videos/:splat,302!
 /message/*,/media/message/:splat,302!
-/media/*,${env:CRDS_MEDIA_ENDPOINT}/media/:splat,200!
+/media/*,${env:CRDS_MEDIA_ENDPOINT}/:splat,200!
 /*,/404.html,404 
