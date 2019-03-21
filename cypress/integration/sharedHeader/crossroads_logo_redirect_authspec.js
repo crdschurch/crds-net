@@ -12,6 +12,12 @@ describe('As a signed-in user, clicking the Crossroads logo from a non-Netlify p
   });
 
   it('(DE6319) Starting from /corkboard', function () {
+    cy.on('uncaught:exception', (err, runnable) => {
+      expect(err.message).to.include('Cypress detected that an uncaught error was thrown from a cross origin script.');
+      done();
+      return false;
+    });
+
     cy.visit('/corkboard', { timeout: 20000 });
 
     clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();

@@ -1,5 +1,6 @@
 http://crossroads.net/*,https://www.crossroads.net/:splat,301!,master
 http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
+https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,master
 /undivided-training,https://undivided.netlify.com,301
 /people/*,https://${env:CRDS_PEOPLE_DOMAIN}/:splat,200!
 /connect/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
@@ -7,6 +8,7 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /groups/search/*,https://${env:CRDS_FINDER_ENDPOINT}/:splat,200!
 /map/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
 /search/*,https://${env:CRDS_SEARCH_ENDPOINT}/:splat,200!
+/search-component/*,https://${env:CRDS_SEARCH_COMPONENT_ENDPOINT}/:splat,200!
 /proxy/content/*,${env:CRDS_CMS_ENDPOINT}/:splat,200!
 /proxy/gateway/*,${env:CRDS_GATEWAY_ENDPOINT}/:splat,200!
 /mycamps*,https://${env:CRDS_ANGULAR_ENDPOINT}/mycamps:splat,200!
@@ -47,4 +49,4 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /videos/*,${env:CRDS_MEDIA_ENDPOINT}/videos/:splat,302!
 /message/*,${env:CRDS_MEDIA_ENDPOINT}/message/:splat,302!
 /media/*,${env:CRDS_MEDIA_ENDPOINT}/media/:splat,302!
-/*,/404.html,404 
+/*,/404.html,404

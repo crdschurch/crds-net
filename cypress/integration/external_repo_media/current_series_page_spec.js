@@ -8,7 +8,7 @@ describe('Tesing the Media/Series/[Current Series] page:', function () {
     seriesManager.saveCurrentSeries();
     cy.wrap({ seriesManager }).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
       currentSeries = seriesManager.currentSeries;
-      cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${currentSeries.slug.text}`);
+      cy.visit(currentSeries.absoluteUrl);
     });
   });
 

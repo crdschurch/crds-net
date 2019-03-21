@@ -35,6 +35,11 @@ layout: default
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSdbCAA4ZqkefkWXOd5zl_B8t8fewruAhfaEXoKUoW9sgt8QGg/viewform" %}
 {% endif %}
 
+<!-- Featured Section -->
+{% if page.featured_section.size > 0 %}
+  {{ page.featured_section }}
+{% endif %}
+
 
 <!-- Jumbotron section -->
 <div class="jumbotron jumbotron-xl flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
