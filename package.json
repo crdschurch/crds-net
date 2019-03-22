@@ -30,7 +30,7 @@
     "@cypress/browserify-preprocessor": "^2.0.0",
     "contentful-cli": "^0.16.1",
     "crds-cypress-tools": "0.2.1",
-    "crds-styles": "3.2.2",
+    "crds-styles": "3.2.3",
     "cypress": "^3.1.5",
     "del": "^3.0.0",
     "eslint": "^5.11.1",
