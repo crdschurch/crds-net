@@ -32,18 +32,20 @@ exclude:
 
 contentful:
   series:
-    limit: 4
+    limit: 10
     order: "published_at desc"
   message:
     limit: 4
     order: "published_at desc"
+  featured_media:
+    query: fields.site=net
+    map:
+      page_path: path
   exclude:
     - album
-    - featured_media
     - migration
     - sign_off
-    - song
-    - video
+    - system_page
 
 collections_dir: collections
 
@@ -89,6 +91,12 @@ collections:
   categories:
     output: false
     permalink: /topics/:title
+  featured_media:
+    output: false
+  songs:
+    output: false
+  videos:
+    output: false
 
 defaults:
   - scope:

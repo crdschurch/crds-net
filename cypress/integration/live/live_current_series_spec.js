@@ -1,17 +1,16 @@
-import { ContentfulApi } from '../../Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
+import { SeriesManager } from '../../Contentful/Models/SeriesModel';
 
 describe('Testing the Current Series on the Live page:', function () {
   let currentSeries;
   before(function () {
-    const content = new ContentfulApi();
-    const seriesManager = content.retrieveSeriesManager();
-
-    cy.wrap({seriesManager}).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
+    const seriesManager = new SeriesManager();
+    seriesManager.saveCurrentSeries();
+    cy.wrap({ seriesManager }).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
       currentSeries = seriesManager.currentSeries;
     });
 
-    cy.visit('live');
+    cy.visit('/live');
   });
 
   //DO NOT RUN in open mode - Causes Cypress to hang
@@ -28,17 +27,17 @@ describe('Testing the Current Series on the Live page:', function () {
     cy.get('@currentSeriesDateRange').should('be.visible').and('contain', `${start} - ${end}`);
 
     cy.get('@currentSeriesBlock').find('[data-automation-id="series-description"]').as('currentSeriesDescription');
-    Element.shouldContainText(cy.get('@currentSeriesDescription'), currentSeries.description);
+    Element.shouldContainText('currentSeriesDescription', currentSeries.description);
   });
 
-  it('Current Series image should match Contentful', function(){
+  it('Current Series image should match Contentful', function () {
     cy.get('[data-automation-id="series-image"]').as('currentSeriesImage');
-    Element.shouldHaveImgixImage(cy.get('@currentSeriesImage'), currentSeries.image);
+    Element.shouldHaveImgixImage('currentSeriesImage', currentSeries.image);
   });
 
   it('"Watch Trailer" button should open a youtube modal, iff series has trailer', function () {
     //Test trailer button attributes
-    if (!currentSeries.youtubeURL.hasContent){
+    if (!currentSeries.youtubeURL.hasContent) {
       cy.get('[data-automation-id="series-youtube"]').should('not.exist');
     } else {
       cy.get('[data-automation-id="series-youtube"]').as('trailerButton');

@@ -1,14 +1,14 @@
 # default build settings for int, preview deploys etc
 [build]
   command = '''
-    cd _pages && git pull origin _pages && cd ../ &&
     bundle exec rspec &&
     ./bin/contentful-redirects &&
     ./bin/netlify-redirector &&
     bundle exec jekyll crds &&
-    bundle exec jekyll contentful -f &&
+    bundle exec jekyll contentful 2>&1 > /dev/null -f &&
     bundle exec jekyll build -- --update-search-index &&
-    bash ./cypress/kickOffCypress.sh
+    bash ./cypress/kickOffCypress.sh &&
+    ./bin/health-check.sh "we are crossroads"
   '''
 
 [context.branch-deploy.environment]
@@ -17,6 +17,8 @@
   CRDS_ANGULAR_ENDPOINT = "development--crds-angular.netlify.com"
   CRDS_GROUP_LEADER_DOMAIN = "dev-group-leader.netlify.com"
   CRDS_FINDER_ENDPOINT = "dev-crds-finder.netlify.com"
+  CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
+  CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
 
 [context.deploy-preview.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
@@ -24,6 +26,8 @@
   CRDS_ANGULAR_ENDPOINT = "development--crds-angular.netlify.com"
   CRDS_GROUP_LEADER_DOMAIN = "dev-group-leader.netlify.com"
   CRDS_FINDER_ENDPOINT = "dev-finder.netlify.com"
+  CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
+  CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
 
 [context.development.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
@@ -31,6 +35,8 @@
   CRDS_ANGULAR_ENDPOINT = "development--crds-angular.netlify.com"
   CRDS_GROUP_LEADER_DOMAIN = "dev-group-leader.netlify.com"
   CRDS_FINDER_ENDPOINT = "dev-crds-finder.netlify.com"
+  CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
+  CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
 
 [context.release.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
@@ -38,6 +44,8 @@
   CRDS_ANGULAR_ENDPOINT = "release--crds-angular.netlify.com"
   CRDS_GROUP_LEADER_DOMAIN = "demo-group-leader.netlify.com"
   CRDS_FINDER_ENDPOINT = "demo-crds-finder.netlify.com"
+  CRDS_SERVE_ENDPOINT = "release.serve.crossroads.net"
+  CRDS_PROFILE_ENDPOINT = "release.profile.crossroads.net"
 
 [context.master.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-prod.netlify.com"
@@ -45,3 +53,5 @@
   CRDS_ANGULAR_ENDPOINT = "crds-angular.netlify.com"
   CRDS_GROUP_LEADER_DOMAIN = "group-leader.netlify.com"
   CRDS_FINDER_ENDPOINT = "crds-finder.netlify.com"
+  CRDS_SERVE_ENDPOINT = "serve.crossroads.net"
+  CRDS_PROFILE_ENDPOINT = "profile.crossroads.net"
