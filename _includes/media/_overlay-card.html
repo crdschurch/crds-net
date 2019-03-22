@@ -11,10 +11,24 @@
     {% assign image_source = item.image.url %}
 {% endcase %}
 
+{% if item.collection %} 
+  {% assign content_type = item.collection | singularize %} 
+{% else %} 
+  {% assign content_type = item.content_type | singularize %} 
+{% endif %}
+{% if item.duration %}
+  {% if content_type == 'article' %}
+    {% assign format = 'short' %}
+  {% else %}
+    {% assign format = 'long' %} 
+  {% endif %}
+{% endif %}
+
 {% assign doc = item | get_doc %}
 {% assign url = doc.url %}
 
 <a href="{{ url | media_url }}" class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
+  {% include media/_media-label.html source=item %}
   <div class="bg-overlay"></div>
   <div class="overlay-card-image">
     <img src="{% if image_source %}{{ image_source | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}" alt="{{ image_source.title }}" data-optimize-img>
@@ -23,8 +37,10 @@
   <div class="overlay-card-content">
     <p class="overlay-card-category">{{ item.category.title }}</p>
     <h2 class="overlay-card-title {% if include.title == 'h2' %}font-size-h2{% endif %}">{{ item.title | truncate: 55 }}</h2>
-    <p class="overlay-card-author">{{ item.author.full_name }}</p>
-
-    {% include media/_media-label.html source=item %}
+    <p class="overlay-card-author">
+      {{ item.author.full_name }} 
+      {% if item.author.full_name && item.duration %} | {% endif %} 
+      {{ item.duration | duration: format }}
+    </p>
   </div>
 </a>
