@@ -230,7 +230,7 @@ paginate:
         {% for episodes in home_episodes %}
         <div class="media">
           <div class="media-body">
-            <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ episodes.url | media_url}}">
+            <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ episodes.url }}">
               Episode {{ episodes.episode_number }}: {{ episodes.title }}</a>
             </h5>
             <div class="soft-quarter-top font-size-smaller flush-bottom">
