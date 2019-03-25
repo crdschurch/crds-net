@@ -5,6 +5,7 @@ describe 'Redirects' do
   before do
     ENV['CONTENTFUL_ACCESS_TOKEN'] = 'cdc473421d1e2f089515a5fe791ef575715b67024840b6aa1ee157b0e43d18d3'
     ENV['CONTENTFUL_SPACE_ID'] = 'y3a9myzsdjan'
+    ENV['CONTENTFUL_ENV'] = 'int'
     @redirects = Redirects.new
     @csv = CSV.read('./spec/fixtures/redirects.csv')
   end

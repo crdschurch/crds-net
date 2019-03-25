@@ -130,7 +130,7 @@ paginate:
     <div class="col-md-8 col-md-pull-4">
 
       {% assign feature_obj = site.featured_media | where: 'page_path', page.url | first %}
-      {% assign managed_features = feature_obj.entries %}
+      {% assign managed_features = feature_obj.docs %}
 
       <hr class="push-half-bottom flush-top">
       <h2 class="flush-top font-size-base text-gray-light">
@@ -142,7 +142,7 @@ paginate:
       </h2>
 
       {% if managed_features.size > 0 %}
-        {% assign features = managed_features | slice: 0, 4 %}
+        {% assign features = managed_features | slice: 0, 100 %}
         {% if features.size > 0 %}
           {% for item in features %}
             <div>{% include media/_overlay-card.html source=item %}</div>
