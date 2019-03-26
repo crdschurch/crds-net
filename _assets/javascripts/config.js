@@ -85,6 +85,15 @@ module.exports = [
     ]
   },
   {
+    name: "ash-wednesday-experience",
+    deps: [
+      "vendor/jquery.fullPage-2.7.4.min",
+      "vendor/tweenMax-1.18.0.min",
+      "vendor/animations.min",
+      "vendor/ash-wednesday-experience"
+    ]
+  },
+  {
     name: "events",
     files: [
       "vendor/jquery.cycle2.min",
