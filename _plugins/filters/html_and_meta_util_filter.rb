@@ -8,10 +8,9 @@ module CRDS
       # Priority:
       # 1) page meta object image
       # 2) system page meta image
-      # 3) page
-      # 4) page background image
-      # 5) page content for 1st image
-      # 6) site variable's image
+      # 3) page background image
+      # 4) page content for 1st image
+      # 5) site variable's image
       # method for getting the url for the <meta name="image" content="{{ meta_image }}"> tag in the head of a SSG html page
       def get_meta_image(page, site)
         ::Utils::MetaUtil.get_meta_image_url(
