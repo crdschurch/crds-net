@@ -14,7 +14,7 @@
 {% assign doc = item | get_doc %}
 {% assign url = doc.url %}
 
-<a href="{{ url | media_url }}" class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
+<a href="{{ url }}" class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
   <div class="bg-overlay"></div>
   <div class="overlay-card-image">
     <img src="{% if image_source %}{{ image_source | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}" alt="{{ image_source.title }}" data-optimize-img>
