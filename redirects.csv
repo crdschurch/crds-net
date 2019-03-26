@@ -49,5 +49,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /videos/*,/media/videos/:splat,302!
 /message/*,/media/message/:splat,302!
 /tags/* /media/topics/:splat,302!
+/topics/* /media/topics/:splat,302!
 /media/*,${env:CRDS_MEDIA_ENDPOINT}/:splat,200!
 /*,/404.html,404 
