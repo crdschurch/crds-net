@@ -20,13 +20,13 @@ describe('Testing the Current Message on the Homepage:', function () {
   it('Current Message title, description, and image should match Contentful', function () {
     cy.get('[data-automation-id="message-title"]').as('title');
     Element.shouldContainText('title', currentMessage.title);
-    cy.get('@title').should('have.attr', 'href', currentMessage.absoluteUrl);
+    cy.get('@title').should('have.attr', 'href', currentMessage.relativeUrl);
 
     cy.get('[data-automation-id="message-description"]').as('description');
     Element.shouldMatchSubsetOfText('description', currentMessage.description);
 
     cy.get('[data-automation-id="message-video"]').as('video');
-    cy.get('@video').should('have.attr', 'href', currentMessage.absoluteUrl);
+    cy.get('@video').should('have.attr', 'href', currentMessage.relativeUrl);
 
     Element.shouldHaveImgixImageFindImg('video', currentMessage.image);
   });
@@ -34,6 +34,6 @@ describe('Testing the Current Message on the Homepage:', function () {
   it('"View latest now" button should link to the current message', function () {
     cy.get('[data-automation-id="watch-message-button"]').as('watchMessageButton');
     cy.get('@watchMessageButton').should('be.visible');
-    cy.get('@watchMessageButton').should('have.attr', 'href', currentMessage.absoluteUrl);
+    cy.get('@watchMessageButton').should('have.attr', 'href', currentMessage.relativeUrl);
   });
 });

@@ -1,7 +1,7 @@
 import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
 import { SeriesManager } from '../../Contentful/Models/SeriesModel';
-
-describe('Testing the Current Series on the Media landing page:', function () {
+//TODO duplicate data=automation-id - rerun once pr merged into media
+describe.skip('Testing the Current Series on the Media landing page:', function () {
   let currentSeries;
   before(function () {
     const seriesManager = new SeriesManager();

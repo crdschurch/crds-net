@@ -83,7 +83,7 @@ describe('Testing the "Watch This Weeks Service" button', function () {
     cy.visit('/live');
   });
 
-  it('Button should link to lates message', function () {
+  it('Button should link to latest message', function () {
     cy.get('[data-automation-id="watch-service-button"]').should('be.visible').and('have.attr', 'href', currentMessage.absoluteUrl);
   });
 
