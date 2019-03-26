@@ -196,6 +196,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    rb-readline (0.5.5)
     rouge (3.3.0)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
@@ -248,6 +249,7 @@ DEPENDENCIES
   netlify-redirector!
   paging-mister-hyde!
   rack (>= 2.0.6)
+  rb-readline
   rspec
   tzinfo-data
   vcr
@@ -255,4 +257,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.17.3
+   2.0.1
