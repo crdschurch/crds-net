@@ -8,15 +8,15 @@ module CRDS
       # Priority:
       # 1) page meta object image
       # 2) system page meta image
-      # 3) page background image
-      # 4) page content for 1st image
-      # 5) site variable's image
+      # 3) page
+      # 4) page background image
+      # 5) page content for 1st image
+      # 6) site variable's image
       # method for getting the url for the <meta name="image" content="{{ meta_image }}"> tag in the head of a SSG html page
       def get_meta_image(page, site)
         ::Utils::MetaUtil.get_meta_image_url(
           (page['meta'].nil? || page['meta']['image'].nil?) ? nil : page['meta']['image']['url'],
-          (match_system_page(page['url'],'image').nil?) ? nil : match_system_page(page['url'], 'image')['url'],
-          page['image'].nil? ? nil : page['image']['url'],
+          (match_system_page(page['url'],'image').nil?) ? nil : imgix(match_system_page(page['url'], 'image')['url'], site.config),
           page['bg_image'].nil? ? nil : page['bg_image']['url'],
           page['description'].nil? ? page['body'] : page['description'],
           site['image']
@@ -25,7 +25,7 @@ module CRDS
 
       # Priority:
       # 1) Page meta object description (Meta content model)
-      # 2) Page meta description (Page content model)
+      # 2) system page description
       # 3) Page description
       # 4) Site description
       # method for getting the text for the <meta name="description" content="{{ meta_description }}"> tag in the head of a SSG html page
@@ -42,8 +42,9 @@ module CRDS
 
       # Priority:
       # 1) page meta object title (Meta content model)
-      # 2) page title (Page content model)
-      # 3) site title
+      # 2) system page meta title
+      # 3) page title (Page content model)
+      # 4) site title
       # method for getting the text for the <meta name="title" content="{{ meta_title }}"> tag in the head of a SSG html page
       def get_meta_title(page, site)
         ::Utils::MetaUtil.get_first_item_with_value(
