@@ -6,8 +6,8 @@ module CRDS
     module HtmlAndMetaUtilFilter
 
       # Priority:
-      # 1) page meta image
-      # 2) page image
+      # 1) page meta object image
+      # 2) system page meta image
       # 3) page background image
       # 4) page content for 1st image
       # 5) site variable's image
@@ -15,7 +15,7 @@ module CRDS
       def get_meta_image(page, site)
         ::Utils::MetaUtil.get_meta_image_url(
           (page['meta'].nil? || page['meta']['image'].nil?) ? nil : page['meta']['image']['url'],
-          page['meta_image'].nil? ? nil : page['meta_image']['url'],
+          (match_system_page(page['url'],'image').nil?) ? nil : match_system_page(page['url'], 'image')['url'],
           page['image'].nil? ? nil : page['image']['url'],
           page['bg_image'].nil? ? nil : page['bg_image']['url'],
           page['description'].nil? ? page['body'] : page['description'],
@@ -32,7 +32,7 @@ module CRDS
       def get_meta_description(page, site)
         ::Utils::MetaUtil.get_first_item_with_value(
           page['meta'].nil? ? nil : page['meta']['description'],
-          page['meta_description'],
+          (match_system_page(page['url'],'description').nil?) ? nil : match_system_page(page['url'], 'description'),
           page['excerpt'],
           page['description'],
           page['body'],
@@ -48,6 +48,7 @@ module CRDS
       def get_meta_title(page, site)
         ::Utils::MetaUtil.get_first_item_with_value(
           page['meta'].nil? ? nil : page['meta']['title'],
+          (match_system_page(page['url'],'title').nil?) ? nil : match_system_page(page['url'], 'title'),
           page['title'],
           site['title']
         )
@@ -62,6 +63,14 @@ module CRDS
           page['meta']['title'].to_s.strip
         else
          ::Utils::HtmlUtil.get_title(page['title'], site['title'])
+        end
+      end
+
+      private
+
+      def match_system_page(url, field)
+        if(system_page = site.collections['system_pages'].docs.detect { |e| e.data['url'].chomp('/') == url.chomp('/') })
+          return system_page[field] if system_page[field].present?
         end
       end
 
