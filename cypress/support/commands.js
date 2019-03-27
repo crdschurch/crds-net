@@ -27,5 +27,11 @@
 import { AddCommand } from 'crds-cypress-tools';
 AddCommand.crdsLogin();
 
-// const cypressTools = require('crds-cypress-tools');
-// cypressTools.authentication.crossroadsLogin.initializeCypressCommand();
+import { Formatter } from './Formatter';
+Cypress.Commands.add('normalizedText', {prevSubject: 'element'}, (subject) =>{
+  return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => Formatter.normalizeText(elementText));
+});
+
+Cypress.Commands.add('text', {prevSubject: 'element'}, (subject) =>{
+  return cy.wrap(subject).should('have.prop', 'textContent');
+});
