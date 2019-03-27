@@ -15,13 +15,13 @@ describe('Testing the Current Series on the Homepage:', function () {
   it('Current series title, description, and image should match Contentful', function () {
     cy.get('[data-automation-id="series-title"]').as('seriesTitle');
     cy.get('@seriesTitle').should('be.visible').and('contain', currentSeries.title.text);
-    cy.get('@seriesTitle').should('have.attr', 'href', currentSeries.absoluteUrl);
+    cy.get('@seriesTitle').should('have.attr', 'href', currentSeries.relativeUrl);
 
     cy.get('[data-automation-id="series-description"]').as('seriesDescription');
     Element.shouldMatchSubsetOfText('seriesDescription', currentSeries.description);
 
     cy.get('[data-automation-id="series-image"]').as('seriesImage');
-    cy.get('@seriesImage').should('have.attr', 'href', currentSeries.absoluteUrl);
+    cy.get('@seriesImage').should('have.attr', 'href', currentSeries.relativeUrl);
 
     Element.shouldHaveImgixImageFindImg('seriesImage', currentSeries.image);
   });
