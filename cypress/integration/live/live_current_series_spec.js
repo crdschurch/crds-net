@@ -1,4 +1,4 @@
-import { ImageDisplayValidator } from '../../Contentful/ContentfulElementValidator';
+import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
 import { SeriesQueryManager } from '../../Contentful/QueryManagers/SeriesQueryManager';
 
 describe('Testing the Current Series on the Live page:', function () {

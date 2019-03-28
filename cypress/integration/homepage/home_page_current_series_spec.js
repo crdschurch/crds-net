@@ -1,4 +1,4 @@
-import { ImageDisplayValidator } from '../../Contentful/ContentfulElementValidator';
+import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
 import { SeriesQueryManager } from '../../Contentful/QueryManagers/SeriesQueryManager';
 
 describe('Testing the Current Series on the Homepage:', function () {
@@ -9,6 +9,8 @@ describe('Testing the Current Series on the Homepage:', function () {
       currentSeries = sqm.queryResult;
       currentSeries.fetchLinkedResources();
     });
+
+    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/');
   });
 

@@ -1,4 +1,4 @@
-import { ImageDisplayValidator } from '../../Contentful/ContentfulElementValidator';
+import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
 import { MessageQueryManager } from '../../Contentful/QueryManagers/MessageQueryManager';
 
 function check_message_card_content(index, message) {

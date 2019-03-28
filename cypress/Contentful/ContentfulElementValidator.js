@@ -1,72 +1,52 @@
-import { Formatter } from '../support/Formatter';
+// import { Formatter } from '../support/Formatter';
 
-//handles required/not required when verifying content elements
-export class ContentfulElementValidator {
-  static shouldContainText(alias, textFieldObject) {
-    if (textFieldObject.isRequiredOrHasContent) {
-      cy.get(`@${alias}`).should('be.visible');
-      cy.get(`@${alias}`).should('have.prop', 'textContent').then($elementText => {
-        expect(Formatter.normalizeText($elementText)).to.contain(textFieldObject.normalized);
-      });
-    }
-  }
+// //handles required/not required when verifying content elements
+// export class ContentfulElementValidator {
+//   static shouldContainText(alias, textFieldObject) {
+//     if (textFieldObject.isRequiredOrHasContent) {
+//       cy.get(`@${alias}`).should('be.visible');
+//       cy.get(`@${alias}`).should('have.prop', 'textContent').then($elementText => {
+//         expect(Formatter.normalizeText($elementText)).to.contain(textFieldObject.normalized);
+//       });
+//     }
+//   }
 
-  static shouldMatchSubsetOfText(alias, textFieldObject) {
-    if (textFieldObject.isRequiredOrHasContent) {
-      cy.get(`@${alias}`).should('be.visible');
-      cy.get(`@${alias}`).should('have.prop', 'textContent').then($elementText => {
-        expect(textFieldObject.normalized).to.contain(Formatter.normalizeText($elementText));
-      });
-    }
-  }
+//   static shouldMatchSubsetOfText(alias, textFieldObject) {
+//     if (textFieldObject.isRequiredOrHasContent) {
+//       cy.get(`@${alias}`).should('be.visible');
+//       cy.get(`@${alias}`).should('have.prop', 'textContent').then($elementText => {
+//         expect(textFieldObject.normalized).to.contain(Formatter.normalizeText($elementText));
+//       });
+//     }
+//   }
 
-  static shouldHaveImgixImage(alias, imageFieldObject) {
-    cy.get(`@${alias}`).first().scrollIntoView();
-    cy.get(`@${alias}`).should('be.visible');
+//   static shouldHaveImgixImage(alias, imageFieldObject) {
+//     cy.get(`@${alias}`).first().scrollIntoView();
+//     cy.get(`@${alias}`).should('be.visible');
 
-    //A default image will not be displayed if the asset is unpublished
-    if (!imageFieldObject.isUnpublished) {
-      cy.get(`@${alias}`).should('have.attr', 'srcset');
-    }
+//     //A default image will not be displayed if the asset is unpublished
+//     if (!imageFieldObject.isUnpublished) {
+//       cy.get(`@${alias}`).should('have.attr', 'srcset');
+//     }
 
-    if (imageFieldObject.isRequiredOrHasContent) {
-      cy.get(`@${alias}`).should('have.attr', 'src').and('contain', imageFieldObject.id);
-    }
-  }
+//     if (imageFieldObject.isRequiredOrHasContent) {
+//       cy.get(`@${alias}`).should('have.attr', 'src').and('contain', imageFieldObject.id);
+//     }
+//   }
 
-  //scrollIntoView is not always able to target the 'img' level, so this scrolls to a higher level element before testing the 'img' content
-  static shouldHaveImgixImageFindImg(alias, imageFieldObject) {
-    cy.get(`@${alias}`).first().scrollIntoView();
-    cy.get(`@${alias}`).find('img').as('image');
-    cy.get('@image').should('be.visible');
+//   //scrollIntoView is not always able to target the 'img' level, so this scrolls to a higher level element before testing the 'img' content
+//   static shouldHaveImgixImageFindImg(alias, imageFieldObject) {
+//     cy.get(`@${alias}`).first().scrollIntoView();
+//     cy.get(`@${alias}`).find('img').as('image');
+//     cy.get('@image').should('be.visible');
 
-    //A default image will not be displayed if the asset is unpublished
-    if (!imageFieldObject.isUnpublished) {
-      cy.get('@image').should('have.attr', 'srcset');
-    }
+//     //A default image will not be displayed if the asset is unpublished
+//     if (!imageFieldObject.isUnpublished) {
+//       cy.get('@image').should('have.attr', 'srcset');
+//     }
 
-    if (imageFieldObject.isRequiredOrHasContent) {
-      cy.get('@image').should('have.attr', 'src').and('contain', imageFieldObject.id);
-    }
-  }
-}
-
-export class ImageDisplayValidator {
-  constructor (alias, usesPlaceholderIfUndefined=true) {
-    this._alias = alias;
-    this._if_unpublished_display_placeholder_image = usesPlaceholderIfUndefined;
-  }
-
-  shouldHaveImgixImage(imageAsset) {
-    cy.get(`@${this._alias}`).first().scrollIntoView();
-
-    if (imageAsset === undefined) return; //Asset doesn't exist
-
-    if (imageAsset.isPublished) {
-      cy.get(`@${this._alias}`).should('have.attr', 'srcset');
-      cy.get(`@${this._alias}`).should('have.attr', 'src').and('contain', imageAsset.id);
-    } else if (this._if_unpublished_display_placeholder_image) {
-      cy.get(`@${this._alias}`).should('have.attr', 'srcset');
-    }
-  }
-}
+//     if (imageFieldObject.isRequiredOrHasContent) {
+//       cy.get('@image').should('have.attr', 'src').and('contain', imageFieldObject.id);
+//     }
+//   }
+// }

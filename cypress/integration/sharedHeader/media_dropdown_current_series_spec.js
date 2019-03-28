@@ -1,30 +1,28 @@
-import { SeriesManager } from '../../Contentful/Models/SeriesModel';
+import { SeriesQueryManager } from '../../Contentful/QueryManagers/SeriesQueryManager';
+import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
 
 describe('Testing the Current Series in the Shared Header/Media dropdown:', function () {
   let currentSeries;
   before(function () {
-    const seriesManager = new SeriesManager();
-    seriesManager.saveCurrentSeries();
-    cy.wrap({ seriesManager }).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
-      currentSeries = seriesManager.currentSeries;
+    const sqm = new SeriesQueryManager();
+    sqm.fetchCurrentSeries().then(() => {
+      currentSeries = sqm.queryResult;
+      currentSeries.fetchLinkedResources();
     });
 
+    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/');
+
     cy.get('a[data-automation-id="sh-media"]').click();
   });
 
-
   it('The Current Series image and link should match Contentful (if not, update the media-snippets)', function () {
-    cy.get('li[data-automation-id="sh-currentseries"]').as('currentSeriesImage');
-    cy.get('@currentSeriesImage').should('be.visible');
+    cy.get('li[data-automation-id="sh-currentseries"]').as('currentSeries');
+    cy.get('@currentSeries').should('be.visible');
+    cy.get('@currentSeries').find('a').should('have.attr', 'href', currentSeries.URL.absolute);
 
-    //Skip in demo - shared header content may be from prod
-    if (!Cypress.env('CRDS_MEDIA_ENDPOINT').includes('demo')) {
-      cy.get('@currentSeriesImage').find('a').should('have.attr', 'href', currentSeries.absoluteUrl);
-
-      if (currentSeries.image.isRequiredOrHasContent) {
-        cy.get('@currentSeriesImage').find('img').should('have.attr', 'src').and('contain', currentSeries.image.id);
-      }
-    }
+    //TODO doe this have placeholder image? is method correct?
+    cy.get('@currentSeries').find('img').as('currentSeriesImage');
+    new ImageDisplayValidator('currentSeriesImage').shouldHaveImage(currentSeries.image);
   });
 });
