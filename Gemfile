@@ -12,7 +12,7 @@ group :jekyll_plugins do
   gem 'jekyll-sitemap'
   gem 'jekyll-asset-pipeline', git: 'https://github.com/crdschurch/jekyll-asset-pipeline', tag: '0.0.2'
   # gem 'jekyll-asset-pipeline', path: File.expand_path('../jekyll-asset-pipeline', __dir__)
-  gem "jekyll-contentful", git: 'https://github.com/crdschurch/jekyll-contentful.git', tag: '1.2.0'
+  gem "jekyll-contentful", git: 'https://github.com/crdschurch/jekyll-contentful.git', tag: '1.2.1'
   gem "jekyll-crds", git: 'https://github.com/crdschurch/jekyll-crds.git', tag: '0.0.4'
   gem "jekyll-placeholders", "~> 0.0.1", git: 'https://github.com/ample/jekyll-placeholders'
   gem "jekyll-cloudsearch", git: 'https://github.com/crdschurch/jekyll-cloudsearch', tag: '0.3.0'
