@@ -21,7 +21,6 @@ describe('Testing the Current Series in the Shared Header/Media dropdown:', func
     cy.get('@currentSeries').should('be.visible');
     cy.get('@currentSeries').find('a').should('have.attr', 'href', currentSeries.URL.absolute);
 
-    //TODO doe this have placeholder image? is method correct?
     cy.get('@currentSeries').find('img').as('currentSeriesImage');
     new ImageDisplayValidator('currentSeriesImage').shouldHaveImage(currentSeries.image);
   });

@@ -17,7 +17,6 @@ describe('Tesing the Media/Series/[Current Series] page:', function () {
     cy.get('.jumbotron').as('jumbotron');
     cy.get('@jumbotron').should('be.visible');
 
-    //TODO does this work if the image is unpublished?
     if(currentSeries.backgroundImage !== undefined){
       cy.get('@jumbotron').should('have.attr', 'style').and('contain', currentSeries.backgroundImage.id);
     } else if(currentSeries.image !== undefined) {

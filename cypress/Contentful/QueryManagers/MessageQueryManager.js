@@ -25,7 +25,6 @@ export class MessageQueryManager {
       const messages = messageList.responseBody.items;
       const sqm = new SeriesQueryManager();
       for (let i = 0; i < messages.length; i++) {
-        //TODO this needs to be taken out of the for loop - async issue
         sqm.fetchSeriesForMessage(messages[i].sys.id).then(() => {
           let series = sqm.queryResult;
           this._query_result.push(new ContentfulLibrary.entry.message(messages[i], series));

@@ -14,14 +14,13 @@ function check_message_card_content(index, message) {
   });
 
   cy.get('@messageCard').find('[data-automation-id="recent-message-image-link"]').as('messageURL');
-  cy.get('@messageURL').should('have.attr', 'href', message.URL.absolute); //TODO message url not include series if not published?
+  cy.get('@messageURL').should('have.attr', 'href', message.URL.absolute);
 
   cy.get('@messageCard').find('[data-automation-id="recent-message-image"]').as('messageImage');
   cy.get('@messageImage').should('have.attr', 'alt').and('contain', message.title.text);
   new ImageDisplayValidator('messageImage', false).shouldHaveImgixImage(message.image);
 }
 
-//TODO Use cypress's syntax to repeat test with different variables
 describe('Testing the Past Weekends section on the Live page:', function () {
   let recentMessages;
   before(function () {
