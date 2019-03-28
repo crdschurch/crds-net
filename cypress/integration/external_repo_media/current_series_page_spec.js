@@ -17,11 +17,7 @@ describe('Tesing the Media/Series/[Current Series] page:', function () {
     cy.get('.jumbotron').as('jumbotron');
     cy.get('@jumbotron').should('be.visible');
 
-    if(currentSeries.backgroundImage !== undefined){
-      cy.get('@jumbotron').should('have.attr', 'style').and('contain', currentSeries.backgroundImage.id);
-    } else if(currentSeries.image !== undefined) {
-      cy.get('@jumbotron').find('div').should('have.attr', 'style').and('contain', currentSeries.image.id);
-    }
+    new ImageDisplayValidator('jumbotron').jumbotronShouldHaveImages(currentSeries.image, currentSeries.backgroundImage);
 
     //Current series image
     cy.get('.jumbotron-content').find('img').as('currentSeriesImage');

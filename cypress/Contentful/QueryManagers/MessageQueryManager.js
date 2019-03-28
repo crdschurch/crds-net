@@ -23,11 +23,11 @@ export class MessageQueryManager {
     const messageList = ContentfulLibrary.query.entryList(`${this._requiredQueryParameters}&order=-fields.published_at&limit=${count}`);
     return cy.wrap({ messageList }).its('messageList.responseReady').should('be.true').then(() => {
       const messages = messageList.responseBody.items;
-      const sqm = new SeriesQueryManager();
+      const sqm = [];
       for (let i = 0; i < messages.length; i++) {
-        sqm.fetchSeriesForMessage(messages[i].sys.id).then(() => {
-          let series = sqm.queryResult;
-          this._query_result.push(new ContentfulLibrary.entry.message(messages[i], series));
+        sqm[i] = new SeriesQueryManager();
+        sqm[i].fetchSeriesForMessage(messages[i].sys.id).then(() => {
+          this._query_result.push(new ContentfulLibrary.entry.message(messages[i], sqm[i].queryResult));
         });
       }
     });
