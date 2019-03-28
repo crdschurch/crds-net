@@ -1,40 +1,40 @@
 import { ContentfulField } from './ContentfulField';
+import { ContentfulApi } from '../ContentfulApi';
 
 export class ImageField extends ContentfulField {
-  constructor (image, assetList) {
+  constructor (image) {
     super(image);
 
     //Compensate for unpublished assets
-    this._content = this._getImageId(image, assetList);
-    this._has_content = this._content === undefined ? false : true;
+    this._setContentToImageId(image);
   }
 
   get id() {
     return this.hasContent ? this._content : '';
   }
 
-  _getImageId(image, assetList){
-    let imageId;
-    if(image === undefined)
-      imageId = undefined;
-    else {
-      imageId = image.sys.id;
-
-      //If asset can't be served, treat image as non-existent
-      const assetExists = this._doesAssetExist(imageId, assetList);
-      if(!assetExists){
-        imageId = undefined;
-      }
-    }
-
-    return imageId;
+  //Known defect in Contentful where an unpublished asset can still be linked to a required field
+  get isUnpublished(){
+    return this._is_unpublished === undefined ? false : this._is_unpublished;
   }
 
-  //If the image asset was unpublished, it will still have an id but will not be displayed on crds.net
-  _doesAssetExist(imageId, assetList){
-    const assetFound = assetList.find(asset =>{
-      return asset.sys.id === imageId;
-    });
-    return assetFound;
+  _setContentToImageId(image) {
+    if (image === undefined)
+      this._content = undefined;
+    else {
+      //If the image asset was unpublished, it will still have an id but will not be displayed on crds.net
+      const imageAsset = ContentfulApi.getSingleAsset(image.sys.id, false);
+      cy.wrap({ imageAsset }).its('imageAsset.responseReady').should('be.true').then(() => {
+        const responseType = imageAsset.responseBody.sys.type;
+        if (responseType != 'Error') {
+          this._content = image.sys.id;
+        }
+        else {
+          //An unpublished asset will still have an id, but may be displayed differently than a missing asset
+          this._content = undefined;
+          this._is_unpublished = true;
+        }
+      });
+    }
   }
 }

@@ -1,38 +1,59 @@
 import { TextField } from '../Fields/TextField';
 import { ImageField } from '../Fields/ImageField';
 import { DateField } from '../Fields/DateField';
+import { ContentfulApi } from '../ContentfulApi';
 
 export class SeriesManager {
-  //Stores the current series and the most recent series with a message
-  storeCurrentSeries(response) {
-    const itemList = response.items;
-    const assetList = response.includes.Asset;//TODO trickle down and add to other models
+  saveCurrentSeries() {
+    const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at&order=-fields.starts_at&limit=5');
+    cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
+      const responseList = seriesList.responseBody.items;
 
-    const currentSeries = itemList.find(s => {
-      return (Date.now() >= new Date(s.fields.published_at));
+      const now = Date.now();
+      const currentSeries = responseList.find(s => {
+        return (now >= new Date(s.fields.published_at));
+      });
+      const seriesEntryId = currentSeries.sys.id;
+
+      const seriesFullEntry = ContentfulApi.getSingleEntry(seriesEntryId);
+      cy.wrap({ seriesFullEntry }).its('seriesFullEntry.responseReady').should('be.true').then(() => {
+        this._current_series = new SeriesModel(seriesFullEntry.responseBody.fields);
+      });
     });
+  }
 
-    const messageSeries = itemList.find(s => {
-      let isPublished = (Date.now() >= new Date(s.fields.published_at));
-      let hasVideoMessage = s.fields.videos === undefined ? false : true;
-      return isPublished && hasVideoMessage;
+  saveMessageSeries(messageModel) {
+    const seriesList = ContentfulApi.getEntryCollection('content_type=series&select=sys.id,fields.published_at,fields.videos&order=-fields.starts_at&limit=6');
+    cy.wrap({ seriesList }).its('seriesList.responseReady').should('be.true').then(() => {
+      const responseList = seriesList.responseBody.items;
+
+      const seriesWithMessage = responseList.find(s => {
+        let videoList = s.fields.videos;
+        if (videoList !== undefined)
+          return videoList.find(v => v.sys.id === messageModel.id) !== undefined;
+        return false;
+      });
+
+      //Handle if the series is unpublished
+      if (seriesWithMessage !== undefined) {
+        const seriesFullEntry = ContentfulApi.getSingleEntry(seriesWithMessage.sys.id);
+        cy.wrap({ seriesFullEntry }).its('seriesFullEntry.responseReady').should('be.true').then(() => {
+          messageModel.series = new SeriesModel(seriesFullEntry.responseBody.fields);
+        });
+      }
+      else {
+        messageModel.series = null;
+      }
     });
-
-    this._current_series = new SeriesModel(currentSeries.fields, assetList);
-    this._current_message_series = new SeriesModel(messageSeries.fields, assetList);
   }
 
   get currentSeries() {
     return this._current_series;
   }
-
-  get currentMessageSeries(){
-    return this._current_message_series;
-  }
 }
 
 export class SeriesModel {
-  constructor (responseItem, assetList) {
+  constructor (responseItem) {
     this._title = new TextField(responseItem.title);
     this._title.required = true;
 
@@ -44,8 +65,8 @@ export class SeriesModel {
     this._published_at = new DateField(responseItem.published_at);
     this._published_at.required = true;
 
-    this._image = new ImageField(responseItem.image, assetList);
-    this._background_image = new ImageField(responseItem.background_image, assetList);
+    this._image = new ImageField(responseItem.image);
+    this._background_image = new ImageField(responseItem.background_image);
     this._starts_at = new DateField(responseItem.starts_at);
     this._ends_at = new DateField(responseItem.ends_at);
     this._youtube_url = new TextField(responseItem.youtube_url);
@@ -57,6 +78,14 @@ export class SeriesModel {
 
   get slug() {
     return this._slug;
+  }
+
+  get relativeUrl() {
+    return `/series/${this.slug.text}`;
+  }
+
+  get absoluteUrl() {
+    return `${Cypress.env('CRDS_MEDIA_ENDPOINT')}/series/${this.slug.text}`;
   }
 
   get description() {

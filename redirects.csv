@@ -1,5 +1,6 @@
 http://crossroads.net/*,https://www.crossroads.net/:splat,301!,master
 http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
+https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,master
 /undivided-training,https://undivided.netlify.com,301
 /people/*,https://${env:CRDS_PEOPLE_DOMAIN}/:splat,200!
 /connect/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
@@ -7,6 +8,7 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /groups/search/*,https://${env:CRDS_FINDER_ENDPOINT}/:splat,200!
 /map/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
 /search/*,https://${env:CRDS_SEARCH_ENDPOINT}/:splat,200!
+/search-component/*,https://${env:CRDS_SEARCH_COMPONENT_ENDPOINT}/:splat,200!
 /proxy/content/*,${env:CRDS_CMS_ENDPOINT}/:splat,200!
 /proxy/gateway/*,${env:CRDS_GATEWAY_ENDPOINT}/:splat,200!
 /mycamps*,https://${env:CRDS_ANGULAR_ENDPOINT}/mycamps:splat,200!
@@ -27,10 +29,12 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /forgot-password,https://${env:CRDS_ANGULAR_ENDPOINT}/forgot-password,200!
 /reset-password*,https://${env:CRDS_ANGULAR_ENDPOINT}/reset-password:splat,200!
 /impersonate,https://${env:CRDS_ANGULAR_ENDPOINT}/impersonate,200!
+/volunteer-sign-up,/404.html,404
 /volunteer-sign-up/*,https://${env:CRDS_ANGULAR_ENDPOINT}/volunteer-sign-up/:splat,200!
 /volunteer-application/*,https://${env:CRDS_ANGULAR_ENDPOINT}/volunteer-application/:splat,200!
 /leaveyourmark,https://${env:CRDS_ANGULAR_ENDPOINT}/leaveyourmark,200!
 /serve-signup,https://${env:CRDS_SERVE_ENDPOINT},301
+/sign-up,/404.html,404
 /sign-up/*,https://${env:CRDS_ANGULAR_ENDPOINT}/sign-up/:splat,200!
 /trips/*,https://${env:CRDS_ANGULAR_ENDPOINT}/trips/:splat,200!
 /waivers/*,https://${env:CRDS_ANGULAR_ENDPOINT}/waivers/:splat,200!
@@ -38,4 +42,13 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 /me/giving*,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301
 /giving/*,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301
 /givinghistory,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301
+/series/*,/media/series/:splat,302!
+/articles/*,/media/articles/:splat,302!
+/podcasts/*,/media/podcasts/:splat,302!
+/music/*,/media/songs/:splat,302!
+/videos/*,/media/videos/:splat,302!
+/message/*,/media/message/:splat,302!
+/tags/*,/media/topics/:splat,302!
+/topics/*,/media/topics/:splat,302!
+/media/*,${env:CRDS_MEDIA_ENDPOINT}/:splat,200!
 /*,/404.html,404 

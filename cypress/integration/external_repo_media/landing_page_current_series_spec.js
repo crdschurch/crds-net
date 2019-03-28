@@ -1,17 +1,15 @@
-import { ContentfulApi } from '../../Contentful/ContentfulApi';
 import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
-
+import { SeriesManager } from '../../Contentful/Models/SeriesModel';
 
 describe('Testing the Current Series on the Media landing page:', function () {
   let currentSeries;
   before(function () {
-    const content = new ContentfulApi();
-    const seriesList = content.retrieveSeriesManager();
-
-    cy.wrap({ seriesList }).its('seriesList.currentSeries').should('not.be.undefined').then(() => {
-      currentSeries = seriesList.currentSeries;
-      cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}/`);
+    const seriesManager = new SeriesManager();
+    seriesManager.saveCurrentSeries();
+    cy.wrap({ seriesManager }).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
+      currentSeries = seriesManager.currentSeries;
     });
+    cy.visit(`${Cypress.env('CRDS_MEDIA_ENDPOINT')}`);
   });
 
   beforeEach(function () {
@@ -21,7 +19,7 @@ describe('Testing the Current Series on the Media landing page:', function () {
   it('The current series title, title link, and description should match Contentful', function () {
     cy.get('@featuredSeries').find('[data-automation-id="featured-title"]').as('seriesTitle');
     cy.get('@seriesTitle').should('be.visible').and('contain', currentSeries.title.text);
-    cy.get('@seriesTitle').should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
+    cy.get('@seriesTitle').should('have.attr', 'href', currentSeries.relativeUrl);
 
     cy.get('@featuredSeries').find('[data-automation-id="featured-description"]').as('seriesDescription');
     Element.shouldMatchSubsetOfText('seriesDescription', currentSeries.description);
@@ -29,7 +27,7 @@ describe('Testing the Current Series on the Media landing page:', function () {
 
   it('The current series image and image link should match Contentful', function () {
     cy.get('@featuredSeries').find('[data-automation-id="featured-image"]').as('seriesImage');
-    cy.get('@seriesImage').should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
+    cy.get('@seriesImage').should('have.attr', 'href', currentSeries.relativeUrl);
     Element.shouldHaveImgixImageFindImg('seriesImage', currentSeries.image);
   });
 });

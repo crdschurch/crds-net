@@ -153,33 +153,6 @@ When you first clone a repository with submodules, you’ll need to initialize a
     Cloning into '/Users/tcmacdonald/Sites/tmp/crds-net/_pages'...
     Submodule path '_pages': checked out '995bfc915e66962451107f29d69ad8e4d19fe840'
 
-### Making Updates
-
-As you can see from the above, the `_pages` directory of our project now contains the contents of the [crdschurch/crds-net-shared](https://github.com/crdschurch/crds-net-shared/tree/_pages) repository’s `_pages` branch. You can edit the contents of this directory like normal.
-
-When you’re ready to commit your work, you’ll want to make a commit inside the `_pages` directory (crds-net-shared repo) and push it up the [crdschurch/crds-net-shared](https://github.com/crdschurch/crds-net-shared/tree/_pages) repository’s `_pages` branch. That process looks like this:
-
-    $ cd _pages
-    $ git checkout _pages
-    $ git commit -am "Did something"
-    [_pages c5337c2] Did something
-     Date: Mon Dec 17 08:50:25 2018 -0500
-    $ git push origin _pages
-    Counting objects: 2, done.
-    Delta compression using up to 12 threads.
-    Compressing objects: 100% (1/1), done.
-    Writing objects: 100% (2/2), 3.59 KiB | 3.59 MiB/s, done.
-    Total 2 (delta 1), reused 1 (delta 1)
-    remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-    To github.com:crdschurch/crds-net-shared.git
-     + 995bfc9...c5337c2 _pages -> _pages
-
-Notice here that you **checkout the `_pages` branch prior to committing.** Submodules are checked out to individual commit hashes by default, and if you commit without checking out, it will be tricky to get those commits up to GitHub.
-
-When you make a change to the submodule in `_pages`, you'll notice that crds-net will continue to have unstaged changes even after you've committed the changes to the `_pages` directory. This is because crds-net maintains a reference to the latest commit for the submodule and wants you to share this update across the team.
-
-Doing so is optional. If you have no other changes, you can leave crds-net dirty. But it doesn't hurt (and is good practice) to update crds-net with the latest changes from crds-net-shared (`_pages`). This process should follow the typical Crossroads' workflow and be committed and pushed to a defect or feature branch, with a pull request against development.
-
 ### Troubleshooting
 
 If you see a permissions error when trying to push the submodule, it'll look something like this:
@@ -203,3 +176,4 @@ If you try to push again, you should be prompted for a new username and password
 ## License
 
 This project is licensed under the [3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause).
+

@@ -1,0 +1,30 @@
+{% comment %}
+// This assures the messages content type uses the background image instead of the thumbnail image like all other content types.
+{% endcomment %}
+{% assign handle = item.content_type %}
+{% case handle %}
+  {% when 'message' %}
+    {% assign image_source = item.background_image.url %}
+  {% when 'episode' %}
+    {% assign image_source = item.podcast.image.url %}
+  {% else %}
+    {% assign image_source = item.image.url %}
+{% endcase %}
+
+{% assign doc = item | get_doc %}
+{% assign url = doc.url %}
+
+<a href="{{ url }}" class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
+  <div class="bg-overlay"></div>
+  <div class="overlay-card-image">
+    <img src="{% if image_source %}{{ image_source | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}" alt="{{ image_source.title }}" data-optimize-img>
+  </div>
+
+  <div class="overlay-card-content">
+    <p class="overlay-card-category">{{ item.category.title }}</p>
+    <h2 class="overlay-card-title {% if include.title == 'h2' %}font-size-h2{% endif %}">{{ item.title | truncate: 55 }}</h2>
+    <p class="overlay-card-author">{{ item.author.full_name }}</p>
+
+    {% include media/_media-label.html source=item %}
+  </div>
+</a>

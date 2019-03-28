@@ -42,7 +42,6 @@ paginate:
 
 {% include header.html %}
 
-
 <section class="container content-live hide push-bottom" data-stream-live="show">
   <div class="row">
     {% assign home_messages = page.messages.docs %}
@@ -81,14 +80,14 @@ paginate:
         <div class="media featured">
           <div class="media-body">
             <h5 class="component-header flush-ends">
-              <a href="{{ messages.url | media_url }}" data-automation-id="message-title">{{ messages.title }}</a>
+              <a href="{{ messages.url }}" data-automation-id="message-title">{{ messages.title }}</a>
             </h5>
             <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="message-description">
               {{ messages.description | markdownify | strip_html | truncatewords: 15 }}
             </div>
-            <a href="{{ messages.url | media_url }}" class="btn btn-primary btn-sm push-half-top" data-automation-id="watch-message-button">Watch now</a>
+            <a href="{{ messages.url }}" class="btn btn-primary btn-sm push-half-top" data-automation-id="watch-message-button">Watch now</a>
           </div>
-          <a href="{{ messages.url | media_url }}" class="push-half-bottom" data-automation-id="message-video">
+          <a href="{{ messages.url }}" class="push-half-bottom" data-automation-id="message-video">
             <div class="media-video">
               <img class="media-img" src="{{ messages.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
               <svg class="media-play-btn icon icon-5 text-white" viewBox="0 0 256 256">
@@ -109,13 +108,13 @@ paginate:
       <div class="media featured">
         <div class="media-body">
           <h5 class="component-header flush-ends">
-            <a href="{{ series.url | media_url }}" data-automation-id="series-title">{{ series.title }}</a>
+            <a href="{{ series.url }}" data-automation-id="series-title">{{ series.title }}</a>
           </h5>
           <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="series-description">
             {{ series.description | markdownify | strip_html | truncatewords: 15 }}
           </div>
         </div>
-        <a href="{{ series.url | media_url }}" class="push-half-bottom" data-automation-id="series-image">
+        <a href="{{ series.url }}" class="push-half-bottom" data-automation-id="series-image">
           {% if series.image.url %}
             <img class="media-img" src="{{ series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
           {% else %}
@@ -129,23 +128,42 @@ paginate:
 
     <!-- Big Content Feature -->
     <div class="col-md-8 col-md-pull-4">
-      <hr class="push-half-bottom flush-top">
-      <h2 class="flush-top font-size-base text-gray-light">latest articles</h2>
 
-      {% for article in page.home_collection.offset %}
-      <a href="{{ article.url | media_url }}" class="overlay-card">
-        <div class="bg-overlay"></div>
-        <div class="overlay-card-image">
-          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
-        </div>
-        <div class="overlay-card-content">
-          <p class="overlay-card-category">{{ article.category.title }}</p>
-          <h2 class="overlay-card-title">{{ article.title }}</h2>
-          <p class="overlay-card-author">{{ article.author.full_name }}</p>
-          {% include media/_media-label.html source=article %}
-        </div>
-      </a>
-      {% endfor %}
+      {% assign feature_obj = site.featured_media | where: 'page_path', page.url | first %}
+      {% assign managed_features = feature_obj.docs %}
+
+      <hr class="push-half-bottom flush-top">
+      <h2 class="flush-top font-size-base text-gray-light">
+        {% if managed_features.size > 0 %}
+          featured
+        {% else %}
+          latest articles
+        {% endif %}
+      </h2>
+
+      {% if managed_features.size > 0 %}
+        {% assign features = managed_features | slice: 0, 100 %}
+        {% if features.size > 0 %}
+          {% for item in features %}
+            <div>{% include media/_overlay-card.html source=item %}</div>
+          {% endfor %}
+        {% endif %}
+      {% else %}
+        {% for article in page.home_collection.offset %}
+          <a href="{{ article.url }}" class="overlay-card">
+            <div class="bg-overlay"></div>
+            <div class="overlay-card-image">
+              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
+            </div>
+            <div class="overlay-card-content">
+              <p class="overlay-card-category">{{ article.category.title }}</p>
+              <h2 class="overlay-card-title">{{ article.title }}</h2>
+              <p class="overlay-card-author">{{ article.author.full_name }}</p>
+              {% include media/_media-label.html source=article %}
+            </div>
+          </a>
+        {% endfor %}
+      {% endif %}
     </div>
   </div>
 
@@ -160,20 +178,20 @@ paginate:
           {% assign author = article.author | get_doc %}
           {% assign category = article.category | get_doc %}
           <div class="card carousel-cell card-2x">
-            <a class="relative" href="{{ article.url | media_url }}">
+            <a class="relative" href="{{ article.url }}">
               {% include media/_media-label.html source=article %}
               <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
             </a>
 
             <div class="card-block hard soft-quarter-top">
-              <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url | media_url }}">{{ category.title }}</a>
+              <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{ category.title }}</a>
 
               <h3 class="component-header flush">
-                <a href="{{ article.url | media_url }}">{{ article.title }}</a>
+                <a href="{{ article.url }}">{{ article.title }}</a>
               </h3>
 
               <p class="card-text soft-quarter-top">
-                <a class="text-gray-light font-size-smaller" href="{{ author.url | media_url }}">{{ author.full_name }}</a>
+                <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>
               </p>
             </div>
           </div>
@@ -185,7 +203,7 @@ paginate:
     <!--<div class="col-md-4">
       {% if page.perspectives.docs.size > 0 %}
       <section class="perspectives-landing flush-top">
-        <a href="{{ '/perspectives/' | media_url }}">
+        <a href="{{ '/perspectives/' }}">
           <header style="background-image: url('//crds-cms-uploads.imgix.net/content/images/another-perspective-bg.png?blend64=MTUxNTE1&balph=60&bm=normal&w=10')" data-optimize-bg-img>
             <img class="branding" src="//crds-cms-uploads.imgix.net/content/images/logo-another-perspective.svg" alt="another perspective">
           </header>
@@ -212,14 +230,14 @@ paginate:
         {% for episodes in home_episodes %}
         <div class="media">
           <div class="media-body">
-            <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ episodes.url | media_url}}">
+            <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ episodes.url }}">
               Episode {{ episodes.episode_number }}: {{ episodes.title }}</a>
             </h5>
             <div class="soft-quarter-top font-size-smaller flush-bottom">
               <p class="episode-description">{{ episodes.description | markdownify | strip_html | truncatewords: 15 }}</p>
             </div>
           </div>
-          <a href="{{ episodes.url | media_url }}" class="soft-quarter-left">
+          <a href="{{ episodes.url }}" class="soft-quarter-left">
             <img class="media-img" src="{{ episodes.podcast.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
           </a>
         </div>
@@ -244,7 +262,7 @@ paginate:
         <div class="bg-overlay"></div>
         <div class="topic-card-content">
           <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
-            <a href="{{ topic.url | media_url }}">{{ topic.title }}</a>
+            <a href="{{ topic.url }}">{{ topic.title }}</a>
           </h2>
         </div>
       </div>
@@ -319,7 +337,7 @@ paginate:
 
       {% assign below_the_fold = page.home_collection.docs | slice: 4 %}
       {% for article in below_the_fold %}
-      <a href="{{ article.url | media_url }}" class="overlay-card">
+      <a href="{{ article.url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
           <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
@@ -343,18 +361,18 @@ paginate:
           {% assign author = article.author | get_doc %}
           {% assign category = article.category | get_doc %}
           <div class="card carousel-cell card-2x">
-            <a class="relative" href="{{ article.url | media_url }}">
+            <a class="relative" href="{{ article.url }}">
               {% include media/_media-label.html source=article %}
               <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
             </a>
 
             <div class="card-block hard soft-quarter-top">
-              <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url | media_url }}">{{ category.title }}</a>
+              <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{ category.title }}</a>
               <h3 class="component-header flush">
-                <a href="{{ article.url | media_url }}">{{ article.title }}</a>
+                <a href="{{ article.url }}">{{ article.title }}</a>
               </h3>
               <p class="card-text soft-quarter-top">
-                <a class="text-gray-light font-size-smaller" href="{{ author.url | media_url }}">{{ author.full_name }}</a>
+                <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>
               </p>
             </div>
           </div>
@@ -372,7 +390,7 @@ paginate:
         <div class="media featured">
           <div class="media-body">
             <h5 class="component-header flush-ends">
-              <a href="{{ podcasts.url | media_url }}">{{ podcasts.title }}</a>
+              <a href="{{ podcasts.url }}">{{ podcasts.title }}</a>
             </h5>
 
             <div class="soft-quarter-top font-size-smaller flush-bottom">
@@ -382,7 +400,7 @@ paginate:
             <p class="font-size-smaller text-gray-light">{% include media/_count.html key="podcast.title" subject=featured.title collection=site.episodes label="episode" %}</p>
           </div>
 
-          <a href="{{ podcasts.url | media_url }}" class="push-half-bottom">
+          <a href="{{ podcasts.url }}" class="push-half-bottom">
             <img class="media-img" src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
           </a>
         </div>
@@ -394,14 +412,14 @@ paginate:
         {% for podcasts in home_podcasts %}
         <div class="media">
           <div class="media-body">
-            <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ podcasts.url | media_url }}">
+            <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ podcasts.url }}">
               {{ podcasts.title }}</a>
             </h5>
             <div class="soft-quarter-top font-size-smaller flush-bottom">
               {{ podcasts.description | markdownify | strip_html | truncatewords: 15 }}
             </div>
           </div>
-          <a href="{{ podcasts.url | media_url }}" class="soft-quarter-left">
+          <a href="{{ podcasts.url }}" class="soft-quarter-left">
             <img class="media-img" src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.media_object }}" data-optimize-img />
           </a>
         </div>

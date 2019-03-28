@@ -23,3 +23,6 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+const cypressTools = require('crds-cypress-tools');
+cypressTools.authentication.crossroadsLogin.initializeCypressCommand();

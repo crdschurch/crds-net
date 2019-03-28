@@ -1,3 +1,3 @@
 http://crossroads.net/*,https://www.crossroads.net/:splat,301!,master
-http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
+http://int.crossroads.net/*,https://int.crossroads.net/:splat,301!
 /groupleaderresources/,/groups/leader/resources/,302

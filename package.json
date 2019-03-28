@@ -8,10 +8,8 @@
   },
   "scripts": {
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run --record --key f9895842-b05f-494c-9010-b87b26527851",
-    "cypress:runLocal": "cypress run",
-    "cypress:liveTests": "cypress run --spec .\\cypress\\integration\\live\\*_spec.js",
-    "cypress:currentSeriesTests": "cypress run --spec .\\cypress\\integration\\*\\*current_series*_spec.js",
+    "cypress:run": "cypress run",
+    "cypress:runSpec": "cypress run --spec",
     "build": "gulp"
   },
   "repository": {
@@ -30,8 +28,8 @@
     "@cypress/browserify-preprocessor": "^2.0.0",
     "contentful-cli": "^0.16.1",
     "crds-cypress-tools": "0.2.1",
-    "crds-styles": "3.0.7",
-    "cypress": "^3.1.5",
+    "crds-styles": "3.2.2",
+    "cypress": "^3.2.0",
     "del": "^3.0.0",
     "eslint": "^5.11.1",
     "eslint-plugin-cypress": "^2.2.0",
