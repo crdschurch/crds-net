@@ -1,0 +1,23 @@
+#community-store {
+  float: none !important;
+}
+
+#community-store li {
+  float: none;
+  display: inline-block;
+  color: #9c9c9c;
+}
+
+#community-store li>a {
+  position: relative;
+  display: inline;
+  padding: 0px;
+  color: #9c9c9c;
+}
+
+#community-store li> {
+  a:hover, a.active {
+    background-color: transparent;
+    color: #4d4d4d;
+  }
+}
