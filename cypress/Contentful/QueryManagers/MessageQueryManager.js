@@ -36,7 +36,7 @@ export class MessageQueryManager {
     return this._query_result;
   }
   get _requiredQueryParameters() {
-    const now = Cypress.moment(Date.now()).format();
+    const now = Cypress.moment(Date.now()).utc().format();
     return `content_type=message&fields.published_at[lte]=${now}`;
   }
 }

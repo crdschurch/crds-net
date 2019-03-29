@@ -27,7 +27,7 @@ export class SeriesQueryManager {
   }
 
   get _requiredQueryParameters() {
-    const now = Cypress.moment(Date.now()).format();
+    const now = Cypress.moment(Date.now()).utc().format();
     return `content_type=series&fields.published_at[lte]=${now}`;
   }
 }

@@ -33,16 +33,10 @@ export class ImageDisplayValidator {
   jumbotronShouldHaveImages(foregroundImageAsset, backgroundImageAsset) {
     cy.get(`@${this._alias}`).first().scrollIntoView();
 
-    if (backgroundImageAsset !== undefined) {
-      if (backgroundImageAsset.isPublished) {
-        cy.get(`@${this._alias}`).should('have.attr', 'style').and('contain', backgroundImageAsset.id);
-      }
-    }
-
-    if (foregroundImageAsset !== undefined) {
-      if (foregroundImageAsset.isPublished) {
-        cy.get(`@${this._alias}`).find('div').should('have.attr', 'style').and('contain', foregroundImageAsset.id);
-      }
+    if (backgroundImageAsset !== undefined && backgroundImageAsset.isPublished) {
+      cy.get(`@${this._alias}`).should('have.attr', 'style').and('contain', backgroundImageAsset.id);
+    } else if (foregroundImageAsset !== undefined && foregroundImageAsset.isPublished) {
+      cy.get(`@${this._alias}`).find('div').should('have.attr', 'style').and('contain', foregroundImageAsset.id);
     }
   }
 }
