@@ -61,6 +61,8 @@ module CRDS
       def get_title(page, site)
         if page['meta']
           page['meta']['title'].to_s.strip
+        elsif (system_page_title = (match_system_page(page['url'],'title').nil?) ? nil : match_system_page(page['url'], 'title'))
+          system_page_title
         else
          ::Utils::HtmlUtil.get_title(page['title'], site['title'])
         end
@@ -70,7 +72,7 @@ module CRDS
 
       def match_system_page(url, field)
         if(system_page = site.collections['system_pages'].docs.detect { |e| e.data['url'].chomp('/') == url.chomp('/') })
-          return system_page[field] if system_page[field].present?
+          system_page[field] if system_page[field].present?
         end
       end
 
