@@ -1,5 +1,5 @@
-import { ContentfulElementValidator } from '../../Contentful/ContentfulElementValidator';
-import { LocationManager } from '../../Contentful/Models/LocationModel';
+import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
+import { LocationQueryManager } from '../../Contentful/QueryManagers/LocationQueryManager';
 
 function searchForLocation(keyword) {
   cy.server();
@@ -15,16 +15,16 @@ function searchForLocation(keyword) {
 
 describe('Testing the Locations page without searching:', function () {
   let locationList;
-
+  let firstLocation;
   before(function () {
-    const locationManager = new LocationManager();
-    locationManager.saveLocationList();
-
-    cy.wrap({ locationManager }).its('locationManager.locationList').should('not.be.undefined').then(() => {
-      locationManager.sortByNameAndSlug();
-      locationList = locationManager.locationList;
+    const queryManager = new LocationQueryManager();
+    queryManager.fetchLocationsSortedByNameThenSlug().then(() => {
+      locationList = queryManager.queryResult;
+      firstLocation = locationList[0];
+      firstLocation.fetchLinkedResources();
     });
 
+    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/locations');
   });
 
@@ -54,25 +54,26 @@ describe('Testing the Locations page without searching:', function () {
     cy.get('#section-locations > .card').first().as('firstLocation');
 
     cy.get('@firstLocation').find('[data-automation-id="location-name"]').as('title');
-    ContentfulElementValidator.shouldContainText('title', firstLocation.name);
+    cy.get('@title').should('have.text', firstLocation.name.text);
     cy.get('@title').should('have.attr', 'href').and('contain', firstLocation.slug.text);
 
     cy.get('@firstLocation').find('[data-automation-id="location-address"]').as('address');
-    ContentfulElementValidator.shouldContainText('address', firstLocation.address);
+    cy.get('@address').normalizedText().should('contain', firstLocation.address.displayedText);
 
     cy.get('@firstLocation').find('[data-automation-id="location-map-url"]').as('mapLink');
-    cy.get('@mapLink').should('have.attr', 'href', firstLocation.mapUrl.text);
+    cy.get('@mapLink').should('have.attr', 'href', firstLocation.mapURL.text);
 
     cy.get('@firstLocation').find('[data-automation-id="location-service-times"]').as('serviceTimes');
-    ContentfulElementValidator.shouldContainText('serviceTimes', firstLocation.serviceTimes);
+    cy.get('@serviceTimes').normalizedText().should('contain', firstLocation.serviceTimes.displayedText);
 
-    cy.get('@firstLocation').find('[data-automation-id="location-image"]').as('image');
-    ContentfulElementValidator.shouldHaveImgixImageFindImg('image', firstLocation.image);
+    cy.get('@firstLocation').find('[data-automation-id="location-image"]').find('img').as('image');
+    new ImageDisplayValidator('image', false).shouldHaveImgixImage(firstLocation.image);
   });
 });
 
 describe('Testing the search functionality on the Locations page:', function () {
   before(function () {
+    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'cards\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/locations');
   });
 

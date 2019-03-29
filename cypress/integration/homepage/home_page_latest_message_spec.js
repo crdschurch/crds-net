@@ -1,39 +1,39 @@
-import { ContentfulElementValidator as Element } from '../../Contentful/ContentfulElementValidator';
-import { SeriesManager } from '../../Contentful/Models/SeriesModel';
-import { MessageManager } from '../../Contentful/Models/MessageModel';
+import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
+import { MessageQueryManager } from '../../Contentful/QueryManagers/MessageQueryManager';
 
 describe('Testing the Current Message on the Homepage:', function () {
   let currentMessage;
   before(function () {
-    const messageManager = new MessageManager();
-    messageManager.saveCurrentMessage();
-
-    cy.wrap({ messageManager }).its('messageManager.currentMessage').should('not.be.undefined').then(() => {
-      currentMessage = messageManager.currentMessage;
-      new SeriesManager().saveMessageSeries(currentMessage);
-      cy.wrap({ currentMessage }).its('currentMessage.series').should('not.be.undefined');
+    const mqm = new MessageQueryManager();
+    mqm.fetchLatestMessage().then(() =>{
+      currentMessage = mqm.queryResult;
+      currentMessage.fetchLinkedResources();
     });
 
+    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/');
   });
 
   it('Current Message title, description, and image should match Contentful', function () {
     cy.get('[data-automation-id="message-title"]').as('title');
-    Element.shouldContainText('title', currentMessage.title);
-    cy.get('@title').should('have.attr', 'href', currentMessage.relativeUrl);
+    cy.get('@title').text().should('contain', currentMessage.title.text);
+    cy.get('@title').should('have.attr', 'href', currentMessage.URL.relative);
 
     cy.get('[data-automation-id="message-description"]').as('description');
-    Element.shouldMatchSubsetOfText('description', currentMessage.description);
+    cy.get('@description').normalizedText().then(elementText =>{
+      expect(currentMessage.description.displayedText).to.include(elementText);
+    });
 
-    cy.get('[data-automation-id="message-video"]').as('video');
-    cy.get('@video').should('have.attr', 'href', currentMessage.relativeUrl);
+    cy.get('[data-automation-id="message-video"]').as('videoImagelink');
+    cy.get('@videoImagelink').should('have.attr', 'href', currentMessage.URL.relative);
 
-    Element.shouldHaveImgixImageFindImg('video', currentMessage.image);
+    cy.get('@videoImagelink').find('img').as('videoImage');
+    new ImageDisplayValidator('videoImage', false).shouldHaveImgixImage(currentMessage.image);
   });
 
   it('"View latest now" button should link to the current message', function () {
     cy.get('[data-automation-id="watch-message-button"]').as('watchMessageButton');
     cy.get('@watchMessageButton').should('be.visible');
-    cy.get('@watchMessageButton').should('have.attr', 'href', currentMessage.relativeUrl);
+    cy.get('@watchMessageButton').should('have.attr', 'href', currentMessage.URL.relative);
   });
 });
