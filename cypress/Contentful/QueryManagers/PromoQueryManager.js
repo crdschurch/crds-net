@@ -42,7 +42,7 @@ export class PromoQueryManager {
   }
 
   get _requiredQueryParameters() {
-    const now = Cypress.moment(Date.now()).format();
+    const now = Cypress.moment(Date.now()).utc().format();
     return `content_type=promo&fields.published_at[lte]=${now}`;
   }
 }
