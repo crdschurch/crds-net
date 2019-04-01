@@ -7,7 +7,6 @@
   {% if page.requires_auth %}
   {% include _preloader.html %}
   {% endif %}
-  {{ content }}
   {% include _monetate-body.html %}
   <script>
     var CRDS = {
@@ -28,7 +27,7 @@
   </script>
   {% javascript_link_tag application %}
   {% javascript_link_tag application_deferred async %}
-
+  {{ content }}
   {% if page.title == "Atrium Events" %}
     {% javascript_link_tag events async %}
   {% endif %}
