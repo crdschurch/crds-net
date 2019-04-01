@@ -13,7 +13,7 @@ module.exports = [
       "vendor/bootstrap.min",
       "vendor/flickity.pkgd.min",
       "vendor/crds-card-carousel-v0.2.0.min",
-      "vendor/crds-jumbotron-video-v0.0.2.min",
+      "vendor/crds-jumbotron-video-v0.2.1.min",
       "vendor/crds-livestream-reminder-v0.0.16.min",
       "vendor/crds-rollcall.min",
       "vendor/crds-status-message-v0.1.3.min",
@@ -82,6 +82,15 @@ module.exports = [
       "vendor/jquery.fullPage-2.7.4.min",
       "vendor/tweenMax-1.18.0.min",
       "vendor/animations.min"
+    ]
+  },
+  {
+    name: "ash-wednesday-experience",
+    deps: [
+      "vendor/jquery.fullPage-2.7.4.min",
+      "vendor/tweenMax-1.18.0.min",
+      "vendor/animations.min",
+      "vendor/ash-wednesday-experience"
     ]
   },
   {

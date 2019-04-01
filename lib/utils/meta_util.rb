@@ -3,12 +3,11 @@
   module Utils
     class MetaUtil
 
-      def self.get_meta_image_url(page_meta, page_meta_image, page_image, page_bg_image, page_content, site_image)
+      def self.get_meta_image_url(page_meta, system_page_image, page_bg_image, page_content, site_image)
         # returns the first image url in the array that has a value
         image_url = [
           page_meta,
-          page_meta_image,
-          page_image,
+          system_page_image,
           page_bg_image,
           search_for_first_image_in_content(page_content),
           site_image

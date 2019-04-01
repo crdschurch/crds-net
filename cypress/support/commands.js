@@ -24,5 +24,24 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-const cypressTools = require('crds-cypress-tools');
-cypressTools.authentication.crossroadsLogin.initializeCypressCommand();
+import { AddCommand } from 'crds-cypress-tools';
+import { Formatter } from './Formatter';
+
+AddCommand.crdsLogin();
+
+Cypress.Commands.add('normalizedText', {prevSubject: 'element'}, (subject) =>{
+  return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => Formatter.normalizeText(elementText));
+});
+
+Cypress.Commands.add('text', {prevSubject: 'element'}, (subject) =>{
+  return cy.wrap(subject).should('have.prop', 'textContent');
+});
+
+//Here for convenience but use sparingly - we usually want these to be thrown
+Cypress.Commands.add('ignoreUncaughtException', (expectedMessage) => {
+  cy.on('uncaught:exception', (err) => {
+    expect(err.message).to.include(expectedMessage);
+    done();
+    return false;
+  });
+});
