@@ -29,19 +29,33 @@ import { Formatter } from './Formatter';
 
 AddCommand.crdsLogin();
 
-Cypress.Commands.add('normalizedText', {prevSubject: 'element'}, (subject) =>{
+Cypress.Commands.add('normalizedText', { prevSubject: 'element' }, (subject) => {
   return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => Formatter.normalizeText(elementText));
 });
 
-Cypress.Commands.add('text', {prevSubject: 'element'}, (subject) =>{
+Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
   return cy.wrap(subject).should('have.prop', 'textContent');
 });
 
 //Here for convenience but use sparingly - we usually want these to be thrown
+let messageList = [];
 Cypress.Commands.add('ignoreUncaughtException', (expectedMessage) => {
+  messageList.push(expectedMessage);
+
   cy.on('uncaught:exception', (err) => {
-    expect(err.message).to.include(expectedMessage);
-    done();
-    return false;
+    let match = messageList.find(m => {
+      err.message.include(m);
+    });
+
+    if (match !== undefined) {
+      expect(err.message).to.include(expectedMessage);
+      done();
+      return false;
+    }
+    else {
+      done();
+      return true;
+    }
+
   });
 });

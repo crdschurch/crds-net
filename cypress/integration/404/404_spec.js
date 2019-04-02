@@ -43,19 +43,13 @@ describe('Testing the 404 page:', function () {
 });
 
 describe('Testing 404 page from invalid routes are served by Netlify:', function () {
-  it('crossroads.net/notapage should serve Netlify 404', function () {
-    cy.visit('/notapage', { failOnStatusCode: false });
-    RouteValidator.pageShouldBeFromNetlify();
-    sharedHeaderShouldExist();
-    sharedFooterShouldExist();
-    searchButtonShouldExist();
-  });
-
-  it('crossroads.net/live/notapage should serve Netlify 404', function () {
-    cy.visit('/live/notapage', { failOnStatusCode: false });
-    RouteValidator.pageShouldBeFromNetlify();
-    sharedHeaderShouldExist();
-    sharedFooterShouldExist();
-    searchButtonShouldExist();
+  ['/notapage', '/live/notapage'].forEach((slug) => {
+    it(`crossroads.net${slug} should serve Netlify 404`, function () {
+      cy.visit(slug, { failOnStatusCode: false });
+      RouteValidator.pageShouldBeFromNetlify();
+      sharedHeaderShouldExist();
+      sharedFooterShouldExist();
+      searchButtonShouldExist();
+    });
   });
 });
