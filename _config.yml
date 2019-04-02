@@ -45,7 +45,6 @@ contentful:
     - album
     - migration
     - sign_off
-    - system_page
 
 collections_dir: collections
 
@@ -97,6 +96,8 @@ collections:
     output: false
   videos:
     output: false
+  system_pages:
+    output: true
 
 defaults:
   - scope:
