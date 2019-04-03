@@ -20,6 +20,7 @@ group :jekyll_plugins do
 end
 
 group :test do
+  gem 'rb-readline'
   gem 'rspec'
   gem 'guard-rspec'
 end

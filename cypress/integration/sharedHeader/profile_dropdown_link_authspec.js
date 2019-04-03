@@ -5,6 +5,8 @@ import { openProfileClickLinkAndConfirmLoad, forceOpenProfileDropdown } from './
 describe('As a signed-in user, the links in the My Profile menu should load pages', function () {
   beforeEach(function () {
     cy.login(fred_flintstone.email, fred_flintstone.password);
+
+    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/');
   });
 
