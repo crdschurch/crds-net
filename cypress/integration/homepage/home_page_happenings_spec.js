@@ -2,9 +2,7 @@ import { PromoQueryManager } from '../../Contentful/QueryManagers/PromoQueryMana
 
 function promoShouldMatchContent(displayedCard, promo) {
   displayedCard.find('.card-title').as('title');
-  cy.get('@title').normalizedText().then(elementText => { //TODO use just 'text' here
-    expect(promo.title.text).to.contain(elementText);
-  });
+  cy.get('@title').text().should('contain', promo.title.text);
 }
 
 function selectFilter(audience) {
