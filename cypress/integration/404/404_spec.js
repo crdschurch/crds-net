@@ -43,7 +43,7 @@ describe('Testing the 404 page:', function () {
 });
 
 describe('Testing 404 page from invalid routes are served by Netlify:', function () {
-  ['/notapage', '/live/notapage'].forEach((slug) => {
+  ['/notapage', '/live/notapage'].forEach(slug => {
     it(`crossroads.net${slug} should serve Netlify 404`, function () {
       cy.visit(slug, { failOnStatusCode: false });
       RouteValidator.pageShouldBeFromNetlify();
