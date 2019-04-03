@@ -38,24 +38,10 @@ Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
 });
 
 //Here for convenience but use sparingly - we usually want these to be thrown
-let messageList = [];
 Cypress.Commands.add('ignoreUncaughtException', (expectedMessage) => {
-  messageList.push(expectedMessage);
-
   cy.on('uncaught:exception', (err) => {
-    let match = messageList.find(m => {
-      err.message.include(m);
-    });
-
-    if (match !== undefined) {
-      expect(err.message).to.include(expectedMessage);
-      done();
-      return false;
-    }
-    else {
-      done();
-      return true;
-    }
-
+    expect(err.message).to.include(expectedMessage);
+    done();
+    return false;
   });
 });
