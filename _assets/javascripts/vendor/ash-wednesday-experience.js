@@ -3,6 +3,7 @@ $(document).ready(function () {
       'verticalCentered': false,
       slidesNavigation: true,
       controlArrows: false,
+      slideSelector: '.slide-ash',
       afterLoad: function (anchorLink, index) {
         //console.log("afterLoad--" + "anchorLink: " + anchorLink + " index: " + index );
         if (index == 2) {
