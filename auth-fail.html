@@ -19,7 +19,7 @@ permalink: /auth-fail/
 <script>
   function setNetlifyCookie() {
     const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfbWV0YWRhdGEiOnsiYXV0aG9yaXphdGlvbiI6eyJyb2xlcyI6WyJhZG1pbiIsImVkaXRvciJdfX19.rtHy_lDaty9CPuX831jSKU-ejMG0ujGgPCCJAXA3MJo';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTQ3NTI0NzQsImFwcF9tZXRhZGF0YSI6eyJ1c2VyX2lkIjoiNzBhZDFmMTMtYjc1ZC00OWI1LTk2YmQtMWU1Y2FhZDQwZGEwIiwiYXV0aG9yaXphdGlvbiI6eyJyb2xlcyI6WyJhZG1pbiJdfX0sInVzZXJfbWV0YWRhdGEiOnsibmFtZSI6bnVsbCwiZW1haWwiOm51bGx9LCJpYXQiOjE1NTQ3NDg4NzR9.mZ2v3N2wbx5tqpoI4MPgPo4SoZ3sKEgLB0MAjCwCrJQ';
     document.cookie = `nf_jwt=${jwt}`;
     console.log(jwt);
   }
