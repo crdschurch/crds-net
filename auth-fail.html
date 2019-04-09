@@ -18,8 +18,7 @@ permalink: /auth-fail/
 
 <script>
   function setNetlifyCookie() {
-    const jwt =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTQ3NTI0NzQsImFwcF9tZXRhZGF0YSI6eyJ1c2VyX2lkIjoiNzBhZDFmMTMtYjc1ZC00OWI1LTk2YmQtMWU1Y2FhZDQwZGEwIiwiYXV0aG9yaXphdGlvbiI6eyJyb2xlcyI6WyJhZG1pbiIsImVkaXRvciJdfX0sInVzZXJfbWV0YWRhdGEiOnsibmFtZSI6bnVsbCwiZW1haWwiOm51bGx9LCJpYXQiOjE1NTQ3NDg4NzR9.aP5H4cdnma_EFIjM_bqYnU7x_ciWUEE9-MCmnamujlw';
+    const jwt ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTU3NTM0NzUsImFwcF9tZXRhZGF0YSI6eyJ1c2VyX2lkIjoiNzBhZDFmMTMtYjc1ZC00OWI1LTk2YmQtMWU1Y2FhZDQwZGEwIiwiYXV0aG9yaXphdGlvbiI6eyJyb2xlcyI6WyJhZG1pbiIsImVkaXRvciJdfX0sInVzZXJfbWV0YWRhdGEiOnsibmFtZSI6bnVsbCwiZW1haWwiOm51bGx9LCJpYXQiOjE1NTQ3NDg4NzR9.PH1NnRfrao5o3nqoNyItqjU1b3C9RxD9STffgXBoGgQ';
     document.cookie = `nf_jwt=${jwt}`;
     console.log(jwt);
   }
