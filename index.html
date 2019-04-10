@@ -2,42 +2,42 @@
 layout: default
 monetate_page_type: index-main
 paginate:
-  articles:
-    per: 15
-    offset: 1
-    limit: 1
-    sort: published_at desc
-  perspectives:
-    per: 3
-    limit: 1
-    sort: published_at desc
-  topics:
-    per: 5
-    limit: 1
-    sort: published_at
-  series:
-    per: 1
-    limit: 1
-    sort: starts_at desc
-  messages:
-    per: 1
-    limit: 1
-    sort: published_at desc
-  home_collection:
-    collections:
-      - articles
-    per: 10
-    limit: 1
-    offset: 2
-    sort: published_at desc
-  episodes:
-    per: 3
-    limit: 1
-    sort: published_at desc
-  podcasts:
-    per: 6
-    offset: 1
-    limit: 1
+articles:
+per: 15
+offset: 1
+limit: 1
+sort: published_at desc
+perspectives:
+per: 3
+limit: 1
+sort: published_at desc
+topics:
+per: 5
+limit: 1
+sort: published_at
+series:
+per: 1
+limit: 1
+sort: starts_at desc
+messages:
+per: 1
+limit: 1
+sort: published_at desc
+home_collection:
+collections:
+- articles
+per: 10
+limit: 1
+offset: 2
+sort: published_at desc
+episodes:
+per: 3
+limit: 1
+sort: published_at desc
+podcasts:
+per: 6
+offset: 1
+limit: 1
 ---
 
 {% include header.html %}
@@ -55,11 +55,14 @@ paginate:
           <div class="soft-quarter-top font-size-small flush-bottom" data-automation-id="live-message-description">
             Join the live stream hourly, on the hour, from 8am-10pm (EST).
           </div>
-          <a href="/live/stream/" class="btn btn-primary btn-sm push-half-top" data-automation-id="live-watch-message-button">Watch now</a>
+          <a href="/live/stream/" class="btn btn-primary btn-sm push-half-top"
+            data-automation-id="live-watch-message-button">Watch now</a>
         </div>
         <a href="/live/stream/" class="push-half-bottom" data-automation-id="live-message-video">
-            <img class="img-responsive" src="//crds-cms-uploads.imgix.net/content/images/crossroads-live-stream-CTA3.jpg" data-optimize-img />
-            <p class="live-cta bg-charcoal display-table soft-half-sides soft-quarter-ends text-white"><span class="push-quarter-right">LIVE</span><span class="live-dot"></span></p>
+          <img class="img-responsive" src="//crds-cms-uploads.imgix.net/content/images/crossroads-live-stream-CTA3.jpg"
+            data-optimize-img />
+          <p class="live-cta bg-charcoal display-table soft-half-sides soft-quarter-ends text-white"><span
+              class="push-quarter-right">LIVE</span><span class="live-dot"></span></p>
         </a>
       </div>
     </div>
@@ -85,11 +88,14 @@ paginate:
             <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="message-description">
               {{ messages.description | markdownify | strip_html | truncatewords: 15 }}
             </div>
-            <a href="{{ messages.url }}" class="btn btn-primary btn-sm push-half-top" data-automation-id="watch-message-button">Watch now</a>
+            <a href="{{ messages.url }}" class="btn btn-primary btn-sm push-half-top"
+              data-automation-id="watch-message-button">Watch now</a>
           </div>
           <a href="{{ messages.url }}" class="push-half-bottom" data-automation-id="message-video">
             <div class="media-video">
-              <img class="media-img" src="{{ messages.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+              <img class="media-img"
+                src="{{ messages.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
               <svg class="media-play-btn icon icon-5 text-white" viewBox="0 0 256 256">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#play-thin"></use>
               </svg>
@@ -116,9 +122,12 @@ paginate:
         </div>
         <a href="{{ series.url }}" class="push-half-bottom" data-automation-id="series-image">
           {% if series.image.url %}
-            <img class="media-img" src="{{ series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+          <img class="media-img"
+            src="{{ series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+            sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
           {% else %}
-            <img class="media-img" src="{{ site.default_image }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+          <img class="media-img" src="{{ site.default_image }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+            sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
           {% endif %}
         </a>
       </div>
@@ -135,34 +144,35 @@ paginate:
       <hr class="push-half-bottom flush-top">
       <h2 class="flush-top font-size-base text-gray-light">
         {% if managed_features.size > 0 %}
-          featured
+        featured
         {% else %}
-          latest articles
+        latest articles
         {% endif %}
       </h2>
 
       {% if managed_features.size > 0 %}
-        {% assign features = managed_features | slice: 0, 100 %}
-        {% if features.size > 0 %}
-          {% for item in features %}
-            <div>{% include media/_overlay-card.html source=item %}</div>
-          {% endfor %}
-        {% endif %}
+      {% assign features = managed_features | slice: 0, 100 %}
+      {% if features.size > 0 %}
+      {% for item in features %}
+      <div>{% include media/_overlay-card.html source=item %}</div>
+      {% endfor %}
+      {% endif %}
       {% else %}
-        {% for article in page.home_collection.offset %}
-          <a href="{{ article.url }}" class="overlay-card">
-            <div class="bg-overlay"></div>
-            <div class="overlay-card-image">
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
-            </div>
-            <div class="overlay-card-content">
-              <p class="overlay-card-category">{{ article.category.title }}</p>
-              <h2 class="overlay-card-title">{{ article.title }}</h2>
-              <p class="overlay-card-author">{{ article.author.full_name }}</p>
-              {% include media/_media-label.html source=article %}
-            </div>
-          </a>
-        {% endfor %}
+      {% for article in page.home_collection.offset %}
+      <a href="{{ article.url }}" class="overlay-card">
+        <div class="bg-overlay"></div>
+        <div class="overlay-card-image">
+          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+            sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
+        </div>
+        <div class="overlay-card-content">
+          <p class="overlay-card-category">{{ article.category.title }}</p>
+          <h2 class="overlay-card-title">{{ article.title }}</h2>
+          <p class="overlay-card-author">{{ article.author.full_name }}</p>
+          {% include media/_media-label.html source=article %}
+        </div>
+      </a>
+      {% endfor %}
       {% endif %}
     </div>
   </div>
@@ -180,11 +190,13 @@ paginate:
           <div class="card carousel-cell card-2x">
             <a class="relative" href="{{ article.url }}">
               {% include media/_media-label.html source=article %}
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
             </a>
 
             <div class="card-block hard soft-quarter-top">
-              <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{ category.title }}</a>
+              <a class="text-gray font-size-smaller font-family-base-mid text-uppercase"
+                href="{{ category.url }}">{{ category.title }}</a>
 
               <h3 class="component-header flush">
                 <a href="{{ article.url }}">{{ article.title }}</a>
@@ -231,14 +243,17 @@ paginate:
         <div class="media">
           <div class="media-body">
             <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ episodes.url }}">
-              Episode {{ episodes.episode_number }}: {{ episodes.title }}</a>
+                Episode {{ episodes.episode_number }}: {{ episodes.title }}</a>
             </h5>
             <div class="soft-quarter-top font-size-smaller flush-bottom">
-              <p class="episode-description">{{ episodes.description | markdownify | strip_html | truncatewords: 15 }}</p>
+              <p class="episode-description">{{ episodes.description | markdownify | strip_html | truncatewords: 15 }}
+              </p>
             </div>
           </div>
           <a href="{{ episodes.url }}" class="soft-quarter-left">
-            <img class="media-img" src="{{ episodes.podcast.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+            <img class="media-img"
+              src="{{ episodes.podcast.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+              sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
           </a>
         </div>
         <hr>
@@ -258,7 +273,9 @@ paginate:
     <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
 
       {% for topic in site.categories %}
-      <div class="card carousel-cell topic-card-simple" style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');" data-hero-img>
+      <div class="card carousel-cell topic-card-simple"
+        style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}?auto=compress&&w=500{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');"
+        data-hero-img>
         <div class="bg-overlay"></div>
         <div class="topic-card-content">
           <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
@@ -272,7 +289,8 @@ paginate:
 </section>
 
 <!-- About Crossroads -->
-<section class="jumbotron inline-video jumbotron-xl" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-church-home.jpg');" data-optimize-bg-img>
+<section class="jumbotron inline-video jumbotron-xl"
+  style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-church-home.jpg?auto=compress&w=1000');">
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
@@ -283,25 +301,31 @@ paginate:
 
           <div class="row push-top soft-top">
             <div class="col-sm-4 col-sm-offset-2 text-right hidden-xs soft-sides">
-              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
+              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a
+                  service</span><br><span class="text-white">online</span></h4>
               <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]" data-automation-id="watch-series-button">Watch the latest service</a>
+              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]"
+                data-automation-id="watch-series-button">Watch the latest service</a>
             </div>
 
             <div class="col-sm-4 col-sm-offset-2 text-center visible-xs soft-sides push-bottom">
-              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">online</span></h4>
+              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a
+                  service</span><br><span class="text-white">online</span></h4>
               <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]" data-automation-id="mobile-watch-series-button">Watch the latest service</a>
+              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]"
+                data-automation-id="mobile-watch-series-button">Watch the latest service</a>
             </div>
 
             <div class="col-sm-4 text-left soft-sides hidden-xs border-left">
-              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">in person</span></h4>
+              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a
+                  service</span><br><span class="text-white">in person</span></h4>
               <span class="font-size-small">You look great. Jeans are fine. Bring the kids.</span><br>
               <a href="/locations" class="btn btn-secondary btn-lg">Find a location</a>
             </div>
 
             <div class="col-sm-4 text-center soft-sides visible-xs push-top">
-              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a service</span><br><span class="text-white">in person</span></h4>
+              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a
+                  service</span><br><span class="text-white">in person</span></h4>
               <span class="font-size-small">You look great. Jeans are fine. Bring the kids.</span><br>
               <a href="/locations" class="btn btn-secondary btn-lg">Find a location</a>
             </div>
@@ -340,7 +364,8 @@ paginate:
       <a href="{{ article.url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
-          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
+          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+            sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
         </div>
         <div class="overlay-card-content">
           <p class="overlay-card-category">{{ article.category.title }}</p>
@@ -363,11 +388,13 @@ paginate:
           <div class="card carousel-cell card-2x">
             <a class="relative" href="{{ article.url }}">
               {% include media/_media-label.html source=article %}
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
             </a>
 
             <div class="card-block hard soft-quarter-top">
-              <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{ category.title }}</a>
+              <a class="text-gray font-size-smaller font-family-base-mid text-uppercase"
+                href="{{ category.url }}">{{ category.title }}</a>
               <h3 class="component-header flush">
                 <a href="{{ article.url }}">{{ article.title }}</a>
               </h3>
@@ -397,11 +424,15 @@ paginate:
               {{ podcasts.description | markdownify | strip_html | truncatewords: 15 }}
             </div>
 
-            <p class="font-size-smaller text-gray-light">{% include media/_count.html key="podcast.title" subject=featured.title collection=site.episodes label="episode" %}</p>
+            <p class="font-size-smaller text-gray-light">
+              {% include media/_count.html key="podcast.title" subject=featured.title collection=site.episodes label="episode" %}
+            </p>
           </div>
 
           <a href="{{ podcasts.url }}" class="push-half-bottom">
-            <img class="media-img" src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
+            <img class="media-img"
+              src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+              sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
           </a>
         </div>
 
@@ -413,14 +444,16 @@ paginate:
         <div class="media">
           <div class="media-body">
             <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ podcasts.url }}">
-              {{ podcasts.title }}</a>
+                {{ podcasts.title }}</a>
             </h5>
             <div class="soft-quarter-top font-size-smaller flush-bottom">
               {{ podcasts.description | markdownify | strip_html | truncatewords: 15 }}
             </div>
           </div>
           <a href="{{ podcasts.url }}" class="soft-quarter-left">
-            <img class="media-img" src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.media_object }}" data-optimize-img />
+            <img class="media-img"
+              src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+              sizes="{{ site.image_sizes.media_object }}" data-optimize-img />
           </a>
         </div>
 
@@ -434,15 +467,16 @@ paginate:
 <!-- Happenings -->
 <section class="container">
   <h3 id="happening-filter-label" class="collection-header clearfix">happening at crossroads</h3>
-  <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-filterable data-filter-label="Churchwide" data-filter-parent="#happening-filter-label" data-filter-reset-label="Churchwide">
+  <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-filterable data-filter-label="Churchwide"
+    data-filter-parent="#happening-filter-label" data-filter-reset-label="Churchwide">
     <div id="section-what-s-happening" class="feature-cards" data-automation-id="happenings-cards">
-        {% assign date_sorted_promos = site.promos | sort: 'date' | reverse | group_by: 'date' %}
-        {% for date_group in date_sorted_promos %}
-          {% assign name_sorted_promos = date_group.items | sort: 'title' %}
-          {% for item in name_sorted_promos %}
-            {% include _promo-card.html %}
-          {% endfor %}
-        {% endfor %}
+      {% assign date_sorted_promos = site.promos | sort: 'date' | reverse | group_by: 'date' %}
+      {% for date_group in date_sorted_promos %}
+      {% assign name_sorted_promos = date_group.items | sort: 'title' %}
+      {% for item in name_sorted_promos %}
+      {% include _promo-card.html %}
+      {% endfor %}
+      {% endfor %}
     </div>
   </div>
 </section>
