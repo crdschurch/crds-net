@@ -28,7 +28,7 @@
     "bootstrap-sass": "^3.4.0",
     "@cypress/browserify-preprocessor": "^2.0.0",
     "contentful-cli": "^0.16.1",
-    "crds-cypress-tools": "^1.1.0",
+    "crds-cypress-tools": "^1.2.0",
     "crds-styles": "3.2.2",
     "cypress": "^3.2.0",
     "del": "^3.0.0",

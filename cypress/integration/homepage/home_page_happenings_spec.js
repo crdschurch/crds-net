@@ -2,9 +2,7 @@ import { PromoQueryManager } from '../../Contentful/QueryManagers/PromoQueryMana
 
 function promoShouldMatchContent(displayedCard, promo) {
   displayedCard.find('.card-title').as('title');
-  cy.get('@title').normalizedText().then(elementText => {
-    expect(promo.title.text).to.contain(elementText);
-  });
+  cy.get('@title').text().should('contain', promo.title.text);
 }
 
 function selectFilter(audience) {
@@ -24,22 +22,6 @@ describe('Given I have not applied a filter to the Happenings section on the Hom
     cy.get('@currentFilter').should('have.text', 'Churchwide');
   });
 
-  it('Only the "Churchwide" promos should be displayed and sorted by date then title', function () {
-    const audience = 'Churchwide';
-
-    cy.get(`[data-automation-id="happenings-cards"] > [data-filter*="${audience}"]`).as('churchwideCards');
-
-    const pm = new PromoQueryManager();
-    pm.fetchPromosByAudience(audience).then(() => {
-      const churchwidePromos = pm.queryResult;
-      cy.get('@churchwideCards').should('have.length', churchwidePromos.length);
-
-      churchwidePromos.forEach(($promo, $i) => {
-        promoShouldMatchContent(cy.get('@churchwideCards').eq($i), $promo);
-      });
-    });
-  });
-
   it('The filter list should include every Target Audience on published promos', function () {
     const pm = new PromoQueryManager();
     pm.fetchAudiencesOnPromos().then(() => {
@@ -57,24 +39,27 @@ describe('Given I have not applied a filter to the Happenings section on the Hom
 });
 
 describe('Given I want to filter the Happenings section on the Homepage:', function () {
-  const audience = 'Oakley';
-
   before(function () {
     cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/');
   });
 
-  it(`Then filtering by "${audience}" should display only ${audience} promos sorted by date then title`, function () {
-    selectFilter(audience);
+  ['Churchwide', 'Oakley'].forEach(audience => {
+    it(`Filtering by "${audience}" should display only ${audience} promos sorted by date then title`, function () {
+      const pm = new PromoQueryManager();
+      pm.fetchPromosByAudience(audience).then(() => {
+        const promos = pm.queryResult;
+        expect(promos.length).to.be.above(0);
+        return promos;
+      }).then(expectedPromos => {
+        selectFilter(audience);
 
-    cy.get(`[data-automation-id="happenings-cards"] > [data-filter*="${audience}"]`).as('locationCards');
-    const pm = new PromoQueryManager();
-    pm.fetchPromosByAudience(audience).then(() => {
-      const locationPromos = pm.queryResult;
-      cy.get('@locationCards').should('have.length', locationPromos.length);
+        cy.get(`[data-automation-id="happenings-cards"] > [data-filter*="${audience}"]`).as(`${audience}Cards`);
 
-      locationPromos.forEach(($promo, $i) => {
-        promoShouldMatchContent(cy.get('@locationCards').eq($i), $promo);
+        cy.get(`@${audience}Cards`).should('have.length', expectedPromos.length);
+        expectedPromos.forEach(($promo, $i) => {
+          promoShouldMatchContent(cy.get(`@${audience}Cards`).eq($i), $promo);
+        });
       });
     });
   });
