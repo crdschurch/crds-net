@@ -67,6 +67,30 @@ limit: 1
   </div>
 </section>
 
+<div class="hidden-xs flush-bottom hard-bottom inline-video jumbotron jumbotron-xl" data-optimize-bg-img
+  style="position: relative; background-color: rgba(0, 0, 0, 0); background-image: url('https://crds-media.imgix.net/3rHQQ7nA4Aa7OXn54utovC/23d9db943d9c521ba8d18f1c1c2fb993/crossroads-easter-bg-2019.jpg?w=2000');">
+  <div class="container-fluid push-top soft-top">
+    <div class="push-top row soft-sides soft-top">
+      <div class="inline-video-player"></div>
+
+      <div class="jumbotron-content">
+        <div class="col-xs-12 col-sm-12 text-center soft-top">
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 text-center soft-top"><img
+                src="//images.ctfassets.net/y3a9myzsdjan/4dtkr5f1RWnO3jhIagqTyq/e8ea16fcf4d44049518fa8c03d0c8769/crossroads-easter-logo-2019.png?w=800">
+            </div>
+
+            <div class="col-xs-12 col-sm-12 text-center push-ends soft-bottom">
+              <h3 class="flush-top section-header text-white">April 19-21</h3>
+              <a class="btn btn-white btn-outline" href="/easter">view locations &amp; service times</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="container">
   <div class="row">
     <div class="col-md-push-8 col-md-4 push-bottom">
@@ -231,7 +255,7 @@ limit: 1
       <div class="row">
         <div class="col-sm-12">
           <hr class="push-half-bottom flush-top">
-          <h2 class="flush-top font-size-base text-gray-light" style="">latest podcast episodes</h2>
+          <h2 class="flush-top font-size-base text-gray-light">latest podcast episodes</h2>
         </div>
       </div>
       <div class="push-bottom soft-bottom">
@@ -271,8 +295,7 @@ limit: 1
 
       {% for topic in site.categories %}
       <div class="card carousel-cell topic-card-simple"
-        style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}?auto=compress&&w=500{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');"
-        data-hero-img>
+        style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}?auto=compress&&w=300{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');">
         <div class="bg-overlay"></div>
         <div class="topic-card-content">
           <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
@@ -286,8 +309,8 @@ limit: 1
 </section>
 
 <!-- About Crossroads -->
-<section class="jumbotron inline-video jumbotron-xl"
-  style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-church-home.jpg?auto=compress&w=1000');">
+<section class="jumbotron inline-video jumbotron-xl" data-optimize-bg-img
+  style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-church-home.jpg?auto=compress&w=100');">
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
