@@ -71,7 +71,7 @@ http_interactions:
           "sys": {
             "type": "Array"
           },
-          "total": 126,
+          "total": 122,
           "skip": 0,
           "limit": 1000,
           "items": [
@@ -819,10 +819,10 @@ http_interactions:
                     "id": "y3a9myzsdjan"
                   }
                 },
-                "id": "PJUY7VsdqMm8eooKCwKSM",
+                "id": "3VD2RuvWLCGEmgyiSogkCI",
                 "type": "Entry",
-                "createdAt": "2018-12-27T20:02:26.089Z",
-                "updatedAt": "2018-12-27T20:02:26.089Z",
+                "createdAt": "2018-12-27T20:01:57.787Z",
+                "updatedAt": "2018-12-27T20:01:57.787Z",
                 "environment": {
                   "sys": {
                     "id": "int",
@@ -841,8 +841,8 @@ http_interactions:
                 "locale": "en-US"
               },
               "fields": {
-                "from": "/nextsteps/",
-                "to": "/nextsteps/"
+                "from": "/whizkids/",
+                "to": "/reachout/local/whiz-kids/"
               }
             },
             {
@@ -935,7 +935,7 @@ http_interactions:
                     "linkType": "Environment"
                   }
                 },
-                "revision": 1,
+                "revision": 2,
                 "contentType": {
                   "sys": {
                     "type": "Link",
@@ -3105,7 +3105,7 @@ http_interactions:
                     "linkType": "Environment"
                   }
                 },
-                "revision": 2,
+                "revision": 1,
                 "contentType": {
                   "sys": {
                     "type": "Link",
@@ -4015,7 +4015,7 @@ http_interactions:
                     "linkType": "Environment"
                   }
                 },
-                "revision": 1,
+                "revision": 2,
                 "contentType": {
                   "sys": {
                     "type": "Link",
@@ -4085,7 +4085,7 @@ http_interactions:
                     "linkType": "Environment"
                   }
                 },
-                "revision": 1,
+                "revision": 3,
                 "contentType": {
                   "sys": {
                     "type": "Link",
@@ -4319,7 +4319,7 @@ http_interactions:
                     "id": "y3a9myzsdjan"
                   }
                 },
-                "id": "4DmfXCGns4ECeYAK0w2wou",
+                "id": "22ONyKgYxumoakSI8Sa8oI",
                 "type": "Entry",
                 "createdAt": "2018-12-27T20:01:56.780Z",
                 "updatedAt": "2019-02-24T02:28:23.137Z",
@@ -4344,7 +4344,86 @@ http_interactions:
                 "from": "/podcasts/ikr/episode-9-the-one-about-loss-and-poop/",
                 "to": "https://mediaint.crossroads.net/podcasts/ikr/the-one-about-loss-and-poop"
               }
-            },
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Wed, 13 Feb 2019 20:22:10 GMT
+- request:
+    method: get
+    uri: http://cdn.contentful.com/spaces/y3a9myzsdjan/environments/int/entries?access_token=cdc473421d1e2f089515a5fe791ef575715b67024840b6aa1ee157b0e43d18d3&content_type=redirect&limit=1000
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent,X-Contentful-Enable-Alpha-Feature
+      Access-Control-Allow-Methods:
+      - GET,HEAD,OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Etag
+      Access-Control-Max-Age:
+      - '86400'
+      Cache-Control:
+      - max-age=0
+      Content-Type:
+      - application/vnd.contentful.delivery.v1+json
+      Contentful-Api:
+      - cda_cached
+      Etag:
+      - W/"cc57c7be7ffdb9f9a29af90449c5b72e"
+      Server:
+      - Contentful
+      X-Content-Type-Options:
+      - nosniff
+      X-Contentful-Region:
+      - us-east-1
+      X-Contentful-Request-Id:
+      - e04d13b627abebc51fe714efb55ce9fc
+      Content-Length:
+      - '8063'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Wed, 13 Feb 2019 20:22:10 GMT
+      Via:
+      - 1.1 varnish
+      Age:
+      - '0'
+      Connection:
+      - keep-alive
+      X-Served-By:
+      - cache-cmh8820-CMH
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      Vary:
+      - Accept-Encoding
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "sys": {
+            "type": "Array"
+          },
+          "total": 122,
+          "skip": 0,
+          "limit": 1000,
+          "items": [
             {
               "sys": {
                 "space": {
@@ -5004,7 +5083,7 @@ http_interactions:
                     "linkType": "Environment"
                   }
                 },
-                "revision": 1,
+                "revision": 3,
                 "contentType": {
                   "sys": {
                     "type": "Link",
@@ -5308,10 +5387,10 @@ http_interactions:
                     "id": "y3a9myzsdjan"
                   }
                 },
-                "id": "PJUY7VsdqMm8eooKCwKSM",
+                "id": "ayGsf8eyJiqSWCgUSo68W",
                 "type": "Entry",
-                "createdAt": "2018-12-27T20:02:26.089Z",
-                "updatedAt": "2018-12-27T20:02:26.089Z",
+                "createdAt": "2018-12-27T20:02:46.749Z",
+                "updatedAt": "2018-12-27T20:02:46.749Z",
                 "environment": {
                   "sys": {
                     "id": "int",
@@ -5330,8 +5409,8 @@ http_interactions:
                 "locale": "en-US"
               },
               "fields": {
-                "from": "/nextsteps/",
-                "to": "/nextsteps/"
+                "from": "/goindianewsletter/",
+                "to": "https://share.hsforms.com/1WmumtknWQTarFpvcqoGNsA2dls1"
               }
             },
             {
@@ -5494,7 +5573,7 @@ http_interactions:
                     "linkType": "Environment"
                   }
                 },
-                "revision": 1,
+                "revision": 2,
                 "contentType": {
                   "sys": {
                     "type": "Link",
@@ -5564,7 +5643,7 @@ http_interactions:
                     "linkType": "Environment"
                   }
                 },
-                "revision": 1,
+                "revision": 2,
                 "contentType": {
                   "sys": {
                     "type": "Link",
@@ -7594,7 +7673,7 @@ http_interactions:
                     "linkType": "Environment"
                   }
                 },
-                "revision": 2,
+                "revision": 1,
                 "contentType": {
                   "sys": {
                     "type": "Link",
@@ -8644,7 +8723,7 @@ http_interactions:
                     "linkType": "Environment"
                   }
                 },
-                "revision": 1,
+                "revision": 2,
                 "contentType": {
                   "sys": {
                     "type": "Link",
@@ -8714,7 +8793,7 @@ http_interactions:
                     "linkType": "Environment"
                   }
                 },
-                "revision": 1,
+                "revision": 3,
                 "contentType": {
                   "sys": {
                     "type": "Link",
@@ -8808,7 +8887,7 @@ http_interactions:
                     "id": "y3a9myzsdjan"
                   }
                 },
-                "id": "4DmfXCGns4ECeYAK0w2wou",
+                "id": "64V8d94H5KQgYWQSqKKIis",
                 "type": "Entry",
                 "createdAt": "2018-12-27T20:01:56.780Z",
                 "updatedAt": "2019-02-24T02:28:23.137Z",
