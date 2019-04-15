@@ -54,13 +54,13 @@
   flex: 1 0 auto;
 
   @media (min-width: $screen-sm) {
-    flex-basis: calc(100%/3);
-    max-width: calc(100%/3);
+    flex-basis: calc(100% / 3);
+    max-width: calc(100% / 3);
     padding-left: 15px;
     padding-right: 15px;
 
     // every 4th item starting at 1
-    &:nth-child(3n+1) {
+    &:nth-child(3n + 1) {
       margin-left: -15px;
     }
 
@@ -97,7 +97,7 @@
 
 .card {
   .font-family-condensed-extra.font-size-h3 {
-    line-height: .9;
+    line-height: 0.9;
   }
 
   > a {
@@ -135,10 +135,9 @@
 
 .card-block {
   .component-header {
-    line-height: .95;
+    line-height: 0.95;
   }
 }
-
 
 .overlay-card {
   display: block;
@@ -172,7 +171,7 @@
   }
 
   .overlay-card-category {
-    color: rgba($cr-white, .8);
+    color: rgba($cr-white, 0.8);
     font-size: $font-size-smaller;
     line-height: 1.6;
     margin-bottom: 4px;
@@ -183,7 +182,7 @@
     color: $cr-white;
     font-family: $condensed-extra-font-face;
     font-size: 8vw;
-    line-height: .9;
+    line-height: 0.9;
     margin-top: 0;
     text-transform: uppercase;
   }
@@ -223,7 +222,7 @@
   @media screen and (min-width: $screen-lg) {
     .overlay-card-title {
       font-size: 4.5rem;
-      line-height: .8;
+      line-height: 0.8;
     }
 
     .overlay-card-image {
@@ -250,7 +249,7 @@
     }
     .overlay-card-title {
       font-size: 4rem;
-      margin-left: -.2rem;
+      margin-left: -0.2rem;
 
       @media (min-width: $screen-sm) {
         font-size: 6.875rem;
@@ -287,10 +286,10 @@
     position: relative;
 
     .overlay-feature-card-category {
-      color: rgba($cr-white, .8);
+      color: rgba($cr-white, 0.8);
       font-size: $font-size-small;
       line-height: 1.2;
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
       text-transform: uppercase;
     }
 
@@ -298,7 +297,7 @@
       color: $cr-white;
       font-family: $condensed-extra-font-face;
       font-size: 4rem;
-      line-height: .9;
+      line-height: 0.9;
       margin-top: 0;
       text-transform: uppercase;
 
@@ -315,89 +314,62 @@
   }
 }
 
-
-
+.card-deck--expanded-layout .card.topic-card-simple {
+  max-width: 20%;
+}
 
 // Topic cards
-.topic-card-sizer {
-  width: 100%;
+.topic-card-simple {
+  padding: 0 !important;
+  overflow: hidden;
 
-  @media (min-width: $screen-sm) {
-    width: calc(50% - 24px);
+  &,
+  .topic-card-img {
+    max-height: 282px;
   }
 
-  @media (min-width: $screen-md) {
-    width: calc(33.333% - 16px);
-  }
-}
-
-.topic-card {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: $cr-white;
-  margin-bottom: 24px;
-  padding: 2rem 2rem 3rem;
-  position: relative;
-  width: 100%;
-
-  @media (min-width: $screen-sm) {
-    display: inline-block;
-    width: calc(50% - 24px);
+  .topic-card-content {
+    position: relative;
   }
 
-  @media (min-width: $screen-md) {
-    width: calc(33.333% - 16px);
-  }
-}
+  .topic-card-link {
+    color: $cr-white;
 
-.topic-card-content {
-  position: relative;
-  z-index: 10;
-}
-
-.topic-card-link {
-  color: $cr-white;
-
-  &:hover,
-  &:focus {
-    color: rgba($cr-white, .85);
-    text-decoration: none;
-  }
-
-  .icon {
-    vertical-align: middle;
-  }
-}
-
-.topic-card-title {
-  color: $cr-white;
-  margin: 170px 0 1rem;
-
-  a {
     &:hover,
     &:focus {
-      color: rgba($cr-white, .85);
+      color: rgba($cr-white, 0.85);
       text-decoration: none;
     }
-  }
-}
 
-.topic-card-simple-title {
+    .icon {
+      vertical-align: middle;
+    }
+  }
+
+  .topic-card-title {
+    color: $cr-white;
+    margin: 170px 0 1rem;
+
+    a {
+      &:hover,
+      &:focus {
+        color: rgba($cr-white, 0.85);
+        text-decoration: none;
+      }
+    }
+  }
+
+  .topic-card-simple-title {
     color: white;
     margin: 119px 0 8rem;
-}
+  }
 
-.card-deck--expanded-layout
-.card.topic-card-simple {
-  max-width: 20%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.topic-card-simple {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  .topic-card-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
 }
