@@ -5,30 +5,32 @@
 1. [Quick Start](#quick-start)
 2. [Working With Content](#working-with-content)
 3. [Submodules](#submodules)
-4. [Advanced Setup](#setup)
+4. [Advanced Setup](#advanced-setup)
 5. [Contributing To The Repo](#contributing-to-the-repo)
 6. [License](#license)
 
 ## Quick Start
-1. Clone the repo: `git clone https://github.com/crdschurch/crds-net.git` 
+1. Clone the repo: `git clone https://github.com/crdschurch/crds-net.git` then `cd ./crds-net`
 2. If you don't have Bundler/Jekyll, install it: `gem install bundler jekyll`
 3. Run `bundle install && npm i` to add dependencies
 4. Make sure you have [Contentful environment variables set](#working-with-content) and then run `bundle exec jekyll contentful` to get the site's content
 5. Now you are ready to start a local dev server: `bundle exec jekyll serve`
 
+<strong>Protip:</strong> If you are Windows user, jump down to the [OS specific install instructions](#windows).
+
 ## Working With Content
-First, you need to export the following environment variables (you can get these values directly from Contentful)...
+First, you need to export the following environment variables (you can get these values directly from Contentful or from Netlify)...
 ```bash
 CONTENTFUL_SPACE_ID=
 CONTENTFUL_ENV=
 CONTENTFUL_ACCESS_TOKEN=
+CONTENTFUL_MANAGEMENT_TOKEN=
 ```
-Then run the following command in your bash prompt to download content to your local
-`collections` directory.
+Then run the following command in your bash prompt to download content to your local `collections` directory:
 ```bash
 bundle exec jekyll contentful
 ```
-<strong style="background: yellow;">Protip:</strong> you can limit the amount of content coming back from the CMS to 10 entries per collection like this: `bundle exec jekyll contentful --limit 10`. More documentation on `jekyll-contentful` [here](https://github.com/crdschurch/jekyll-contentful).
+<strong>Protip:</strong> you can limit the amount of content coming back from the CMS to 10 entries per collection like this: `bundle exec jekyll contentful --limit 10`. More documentation on `jekyll-contentful` [here](https://github.com/crdschurch/jekyll-contentful).
 
 ### Images
 With the help of imgix, we are using two strategies to increase performance while rendering images:
@@ -70,7 +72,7 @@ meta:
   image:
     url: "https://amazing-photos.net/cool"
 ```
-<strong style="background: yellow;">Protip:</strong> indentation matters in `yaml`.  Watchout for code formatting that may remove spaces and jack up your frontmatter.
+<strong>Protip:</strong> indentation matters in `yaml`.  Watchout for code formatting that may remove spaces and jack up your frontmatter.
 
 ## Submodules
 We’re using submodules to share code across multiple repos. You can think of a submodule as a repository within a repository. 
@@ -135,10 +137,12 @@ work that you have done.
 
 ####  Windows
 First, make sure you have Ruby v2.5.1 installed on your machine. You can find Windows installers (with devkit) [here](https://rubyinstaller.org/downloads/).
-Once you have Ruby version v2.5.1 installed, use Powershell to install the Ruby bundler by running
+Once you have Ruby version v2.5.1 installed, use Powershell or CMD Prompt to install the Ruby bundler by running
 `gem install bundler`
+
 After installing bundler, navigate to this project and install the project's dependencies that are defined in the `Gemfile`. You can do that by running
 `bundle install`
+
 Once the project dependencies are installed, you can now kick off a build of the
 project:
 `bundle exec jekyll serve`
