@@ -103,7 +103,7 @@ collections:
   system_pages:
     output: true
   content_blocks:
-    output: true
+    output: false
 
 defaults:
   - scope:
