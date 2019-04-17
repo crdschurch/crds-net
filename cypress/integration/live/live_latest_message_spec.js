@@ -1,26 +1,6 @@
 import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
 import { MessageQueryManager } from '../../Contentful/QueryManagers/MessageQueryManager';
 
-function check_message_card_content(index, message) {
-  cy.get('[data-automation-id="recent-message-card"]').eq(index).as('messageCard');
-  cy.get('@messageCard').should('be.visible');
-
-  cy.get('@messageCard').find('[data-automation-id="recent-message-title"]').as('messageTitle');
-  cy.get('@messageTitle').should('have.text', message.title.text);
-
-  cy.get('@messageCard').find('[data-automation-id="recent-message-description"]').as('messageDescription');
-  cy.get('@messageDescription').normalizedText().then(elementText => {
-    expect(message.description.displayedText).to.include(elementText);
-  });
-
-  cy.get('@messageCard').find('[data-automation-id="recent-message-image-link"]').as('messageURL');
-  cy.get('@messageURL').should('have.attr', 'href', message.URL.absolute);
-
-  cy.get('@messageCard').find('[data-automation-id="recent-message-image"]').as('messageImage');
-  cy.get('@messageImage').should('have.attr', 'alt').and('contain', message.title.text);
-  new ImageDisplayValidator('messageImage', false).shouldHaveImgixImage(message.image);
-}
-
 describe('Testing the Past Weekends section on the Live page:', function () {
   let recentMessages;
   before(function () {
@@ -38,24 +18,27 @@ describe('Testing the Past Weekends section on the Live page:', function () {
     });
   });
 
-  it('Most recent message card should contain title, image, description and link', function () {
-    const index = 0;
-    check_message_card_content(index, recentMessages[index]);
-  });
+  [0,1,2,3].forEach((index) => {
+    it(`The card for message #${index} should contain title, image, description and link`, function () {
+      const message = recentMessages[index];
+      cy.get('[data-automation-id="recent-message-card"]').eq(index).as('messageCard');
+      cy.get('@messageCard').should('be.visible');
 
-  it('Second most recent message card should contain title, image, description and link', function () {
-    const index = 1;
-    check_message_card_content(index, recentMessages[index]);
-  });
+      cy.get('@messageCard').find('[data-automation-id="recent-message-title"]').as('messageTitle');
+      cy.get('@messageTitle').should('have.text', message.title.text);
 
-  it('Third most recent message card should contain title, image, description and link', function () {
-    const index = 2;
-    check_message_card_content(index, recentMessages[index]);
-  });
+      cy.get('@messageCard').find('[data-automation-id="recent-message-description"]').as('messageDescription');
+      cy.get('@messageDescription').normalizedText().then(elementText => {
+        expect(message.description.displayedText).to.include(elementText);
+      });
 
-  it('Fourth most recent message card should contain title, image, description and link', function () {
-    const index = 3;
-    check_message_card_content(index, recentMessages[index]);
+      cy.get('@messageCard').find('[data-automation-id="recent-message-image-link"]').as('messageURL');
+      cy.get('@messageURL').should('have.attr', 'href', message.URL.absolute);
+
+      cy.get('@messageCard').find('[data-automation-id="recent-message-image"]').as('messageImage');
+      cy.get('@messageImage').should('have.attr', 'alt').and('contain', message.title.text);
+      new ImageDisplayValidator('messageImage', false).shouldHaveImgixImage(message.image);
+    });
   });
 });
 

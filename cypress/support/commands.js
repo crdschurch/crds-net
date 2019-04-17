@@ -29,11 +29,11 @@ import { Formatter } from './Formatter';
 
 AddCommand.crdsLogin();
 
-Cypress.Commands.add('normalizedText', {prevSubject: 'element'}, (subject) =>{
+Cypress.Commands.add('normalizedText', { prevSubject: 'element' }, (subject) => {
   return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => Formatter.normalizeText(elementText));
 });
 
-Cypress.Commands.add('text', {prevSubject: 'element'}, (subject) =>{
+Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
   return cy.wrap(subject).should('have.prop', 'textContent');
 });
 

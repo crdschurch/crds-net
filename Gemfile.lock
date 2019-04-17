@@ -25,18 +25,6 @@ GIT
       jekyll (~> 3.7)
 
 GIT
-  remote: https://github.com/crdschurch/jekyll-cloudsearch
-  revision: 485ba05052b208f2c6789c34ed88e438c9cf21e0
-  tag: 0.3.0
-  specs:
-    jekyll-cloudsearch (0.3.0)
-      activesupport
-      aws-sdk-cloudsearchdomain
-      contentful-management (~> 2.6)
-      jekyll
-      nokogiri
-
-GIT
   remote: https://github.com/crdschurch/jekyll-contentful.git
   revision: ce4246496ff59d38969cae61b2910acf9eedddaa
   tag: 1.2.1
@@ -77,18 +65,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    aws-eventstream (1.0.2)
-    aws-partitions (1.144.0)
-    aws-sdk-cloudsearchdomain (1.8.0)
-      aws-sdk-core (~> 3, >= 3.48.0)
-      aws-sigv4 (~> 1.1)
-    aws-sdk-core (3.48.0)
-      aws-eventstream (~> 1.0, >= 1.0.2)
-      aws-partitions (~> 1.0)
-      aws-sigv4 (~> 1.1)
-      jmespath (~> 1.0)
-    aws-sigv4 (1.1.0)
-      aws-eventstream (~> 1.0, >= 1.0.2)
     coderay (1.1.2)
     colorator (1.1.0)
     colorize (0.8.1)
@@ -161,7 +137,6 @@ GEM
       jekyll (~> 3.3)
     jekyll-watch (2.1.2)
       listen (~> 3.0)
-    jmespath (1.4.0)
     json (1.8.6)
     kramdown (1.17.0)
     liquid (4.0.3)
@@ -175,13 +150,10 @@ GEM
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
-    mini_portile2 (2.4.0)
     minitest (5.11.3)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     nenv (0.3.0)
-    nokogiri (1.10.1)
-      mini_portile2 (~> 2.4.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
@@ -241,7 +213,6 @@ DEPENDENCIES
   httparty
   jekyll (~> 3.7.4)
   jekyll-asset-pipeline!
-  jekyll-cloudsearch!
   jekyll-contentful!
   jekyll-crds!
   jekyll-placeholders (~> 0.0.1)!

@@ -1,0 +1,28 @@
+---
+layout: default
+permalink: /admin/
+---
+
+{% include header.html %}
+<section class="container push-bottom">
+  <div class="row">
+    <h1>You are authenticated!</h1>
+  </div>
+</section>
+
+{% include footer.html %}
+
+<script>
+  window.env = {
+    gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}',
+    streamspotId: '{{ site.streamspotId }}',
+    streamspotKey: '{{ site.streamspotKey }}'
+  };
+
+  document.addEventListener("deferred-js-ready", function () {
+    var c = new CRDS.Countdown();
+    c.getStreamspotStatus();
+  });
+</script>
+
+<!-- we are crossroads -->
