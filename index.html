@@ -92,40 +92,34 @@ paginate:
       </div>
     </div>
   </div>
-</div>
-</div>
 
-<div class="visible-xs flush-bottom hard-bottom inline-video jumbotron jumbotron-xl" data-optimize-bg-img
-  style="position: relative; background-color: rgba(0, 0, 0, 0); background-image: url('https://crds-media.imgix.net/6pTsXcpJidSOmhEonGnSqY/73931dfffdd0243827a8dae8378996f7/crossroads-easter-2019-bg2.jpg?w=1000');">
-  <div class="container-fluid push-top soft-top">
-    <div class="row mobile-hard-sides soft-sides">
-      <div class="jumbotron-content">
-        <div class="col-xs-12 col-sm-offset-2 col-sm-8 text-center">
-          <div class="row">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center soft"><img
-                src="https://crds-media.imgix.net/60QPfzsevi7nmoWHHZOwvK/d0a5f0577a3a0b1eedb0e74ca8dd8191/crossroads-easter-2019-text2.png?w=800"
-                data-optimize-img />
-            </div>
+  <div class="visible-xs flush-bottom hard-bottom inline-video jumbotron jumbotron-xl" data-optimize-bg-img
+    style="position: relative; background-color: rgba(0, 0, 0, 0); background-image: url('https://crds-media.imgix.net/6pTsXcpJidSOmhEonGnSqY/73931dfffdd0243827a8dae8378996f7/crossroads-easter-2019-bg2.jpg?w=1000');">
+    <div class="container-fluid push-top soft-top">
+      <div class="row mobile-hard-sides soft-sides">
+        <div class="jumbotron-content">
+          <div class="col-xs-12 col-sm-offset-2 col-sm-8 text-center">
+            <div class="row">
+              <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center soft"><img
+                  src="https://crds-media.imgix.net/60QPfzsevi7nmoWHHZOwvK/d0a5f0577a3a0b1eedb0e74ca8dd8191/crossroads-easter-2019-text2.png?w=800" data-optimize-img/>
+              </div>
 
-            <div class="col-xs-12 col-sm-12 text-center push-ends">
-              <h3 class="flush-top section-header text-white">April 19-21</h3>
-            </div>
+              <div class="col-xs-12 col-sm-12 text-center push-ends">
+                <h3 class="flush-top section-header text-white">April 19-21</h3>
+              </div>
 
-            <div class="col-xs-12 col-sm-12 text-center soft-bottom push-bottom">
-              <p class="text-center">
-                <a class="btn btn-white btn-outline push-quarter-sides" href="/easter">view locations &amp; service
-                  times</a>
-                <a class="btn btn-white btn-outline push-quarter-sides" href="/easter#watch-party">view our watch
-                  parties</a>
-              </p>
+              <div class="col-xs-12 col-sm-12 text-center soft-bottom push-bottom">
+                <p class="text-center">
+                  <a class="btn btn-white btn-outline push-quarter-sides" href="/easter">view locations &amp; service times</a>
+                  <a class="btn btn-white btn-outline push-quarter-sides" href="/easter#watch-party">view our watch parties</a>
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 </div>
 
 <section class="container">
@@ -331,10 +325,10 @@ paginate:
     <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
 
       {% for topic in site.categories %}
-      <div class="card carousel-cell topic-card-simple">
-        <div class="bg-overlay">
-        </div>
-        <a href="{{ topic.url }}" class="topic-card-content">
+      <div class="card carousel-cell topic-card-simple"
+        style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}?auto=compress&&w=300{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');">
+        <div class="bg-overlay"></div>
+        <div class="topic-card-content">
           <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
             <span>{{ topic.title }}</span>
           </h2>
