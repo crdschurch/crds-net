@@ -11,12 +11,12 @@
 
 ## Quick Start
 1. Clone the repo: `git clone https://github.com/crdschurch/crds-net.git` then `cd ./crds-net`
-2. If you don't have Bundler/Jekyll, install it: `gem install bundler jekyll`
-3. Run `bundle install && npm i` to add dependencies
-4. Make sure you have [Contentful environment variables set](#working-with-content) and then run `bundle exec jekyll contentful` to get the site's content
-5. Now you are ready to start a local dev server: `bundle exec jekyll serve`
-
-<strong>Protip:</strong> If you are Windows user, jump down to the [OS specific install instructions](#windows).
+2. Make sure you have Ruby installed - check the [OS specific install instructions](#os-specific-instructions) 
+3. If you don't have Bundler/Jekyll, install it: `gem install bundler jekyll`
+4. Run `bundle install && npm i` to add dependencies
+5. Make sure submodules are initialized and updated: `git submodule init && git submodule update`
+6. Make sure you have [Contentful environment variables set](#working-with-content) and then run `bundle exec jekyll contentful` to get the site's content
+7. Now you are ready to start a local dev server: `bundle exec jekyll serve`. If you are using Windows, you may need to refer to the [advanced instructions](#windows)
 
 ## Working With Content
 First, you need to export the following environment variables (you can get these values directly from Contentful or from Netlify)...
@@ -76,8 +76,10 @@ meta:
 
 ## Submodules
 We’re using submodules to share code across multiple repos. You can think of a submodule as a repository within a repository. 
+
 ### Setup
 When you first clone a repository with submodules, you’ll need to initialize and the pull in the latest changes. Like so:
+
 ```bash
     $ git clone git@github.com:crdschurch/crds-net.git
     Cloning into 'crds-net'...
@@ -94,21 +96,26 @@ When you first clone a repository with submodules, you’ll need to initialize a
     Cloning into '/Users/tcmacdonald/Sites/tmp/crds-net/_pages'...
     Submodule path '_pages': checked out '995bfc915e66962451107f29d69ad8e4d19fe840'
 ```
+
 ### Troubleshooting
 If you see a permissions error when trying to push the submodule, it'll look something like this:
+
 ```bash
 remote: Permission to crdschurch/crds-net-shared.git denied to [USERNAME].
 fatal: unable to access 'https://github.com/crdschurch/crds-net-shared.git/': The requested URL returned error: 403
 ```
+
 It's likely that where you see `[USERNAME]` does not match your GitHub username. If on a Mac, this means OS X Keychain has stored a value for your GitHub username and password that is being used wherever you use HTTPS (rather than SSH) to push and pull code from GitHub.
 
 To remedy this, you first have to delete the stored value:
+
 ```bash
 $ git credential-osxkeychain erase
   host=github.com
   protocol=https
   <press return>
 ```
+
 This behavior is odd. After hitting `Enter` after the first line, nothing happens -- you are directed to a blank line in the terminal. That's where you type in `host=github.com` and hit `Enter` again. Then followed by the next line. The third empty line you leave blank and hit `Enter` for a fourth time. Then your credentials should be stored.
 
 If you try to push again, you should be prompted for a new username and password and those will be stored in your keychain for future use.
@@ -117,7 +124,7 @@ If you try to push again, you should be prompted for a new username and password
 ### Building Assets
 `crds-net` uses `jekyll-asset-pipeline` to create Javascript/CSS assets. If you see that assets are not showing up make sure to check that [the pipeline is installed correctly](https://github.com/crdschurch/jekyll-asset-pipeline). If all else fails, try `rm -rf _site` and then start Jekyll back up.
 
-### OS Specific Issues
+### OS Specific Instructions
 #### Mac
 To get started with this project, first make sure you have Ruby installed. This
 project requires the use of Ruby version >= 2.5.1. If you are on a Mac, Ruby should
@@ -136,18 +143,20 @@ This will build the site and start up a preview server that allows you to view t
 work that you have done.
 
 ####  Windows
+##### Installing Ruby & Deps
 First, make sure you have Ruby v2.5.1 installed on your machine. You can find Windows installers (with devkit) [here](https://rubyinstaller.org/downloads/).
 Once you have Ruby version v2.5.1 installed, use Powershell or CMD Prompt to install the Ruby bundler by running
 `gem install bundler`
 
-After installing bundler, navigate to this project and install the project's dependencies that are defined in the `Gemfile`. You can do that by running
-`bundle install`
+After installing bundler, navigate to this project and install the project's dependencies that are defined in the `Gemfile`. You can do that by running `bundle install`
 
-Once the project dependencies are installed, you can now kick off a build of the
-project:
-`bundle exec jekyll serve`
-This will build the site and start up a preview server that allows you to view the
-work that you have done.
+##### Serving the site
+1. Initial site build: `bundle exec jekyll build`
+2. Find the asset hash value in the `/temp/.asset_hash` file and assign it to the 'ASSET_HASH' environment variable.
+3. Run `npm run build`
+4. Run `bundle exec jekyll serve --skip-initial-build`
+
+_Some background_: `bundle exec jekyll serve` serves the page but errors when loading anything from the `/assets` folder. This workaround makes it accessible.
 
 ####  Linux
 First, make sure you have Ruby v2.5.1 installed on your machine. There is a proven guide
