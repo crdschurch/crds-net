@@ -1,15 +1,14 @@
 # default build settings for int, preview deploys etc
 [build]
   command = '''
-    mkdir _site &&
-    bundle exec rspec > _site/buildlog.txt &&
-    ./bin/contentful-redirects >> _site/buildlog.txt &&
-    ./bin/netlify-redirector >> _site/buildlog.txt &&
-    bundle exec jekyll crds >> _site/buildlog.txt &&
-    bundle exec jekyll contentful 2>&1 > /dev/null -f >> _site/buildlog.txt &&
-    bundle exec jekyll build -- --update-search-index >> _site/buildlog.txt &&
-    bash ./cypress/kickOffCypress.sh >> _site/buildlog.txt &&
-    ./bin/health-check.sh "we are crossroads" >> _site/buildlog.txt
+    bundle exec rspec > buildlog.txt &&
+    ./bin/contentful-redirects >> buildlog.txt &&
+    ./bin/netlify-redirector >> buildlog.txt &&
+    bundle exec jekyll crds >> buildlog.txt &&
+    bundle exec jekyll contentful 2>&1 > /dev/null -f >> buildlog.txt &&
+    bundle exec jekyll build -- --update-search-index >> buildlog.txt &&
+    bash ./cypress/kickOffCypress.sh >> buildlog.txt &&
+    ./bin/health-check.sh "we are crossroads" >> buildlog.txt
   '''
 
 [context.branch-deploy.environment]
