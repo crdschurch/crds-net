@@ -1,6 +1,7 @@
 # default build settings for int, preview deploys etc
 [build]
   command = '''
+    mkdir _site &&
     bundle exec rspec > _site/buildlog.txt &&
     ./bin/contentful-redirects >> _site/buildlog.txt &&
     ./bin/netlify-redirector >> _site/buildlog.txt &&
