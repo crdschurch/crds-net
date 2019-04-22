@@ -5,7 +5,7 @@
     ./bin/contentful-redirects >> buildlog.txt &&
     ./bin/netlify-redirector >> buildlog.txt &&
     bundle exec jekyll crds >> buildlog.txt &&
-    bundle exec jekyll contentful 2>&1 > /dev/null -f >> buildlog.txt &&
+    bundle exec jekyll contentful -f >> buildlog.txt &&
     bundle exec jekyll build -- --update-search-index >> buildlog.txt &&
     bash ./cypress/kickOffCypress.sh >> buildlog.txt &&
     ./bin/health-check.sh "we are crossroads" >> buildlog.txt
