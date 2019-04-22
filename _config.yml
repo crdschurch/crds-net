@@ -45,6 +45,10 @@ contentful:
     - album
     - migration
     - sign_off
+  content_block:
+    query: fields.category=common
+    map:
+      content_block: content
 
 collections_dir: collections
 
@@ -98,6 +102,8 @@ collections:
     output: false
   system_pages:
     output: true
+  content_blocks:
+    output: false
 
 defaults:
   - scope:
