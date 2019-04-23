@@ -95,7 +95,12 @@ CRDS.DataTracker = class DataTracker {
 
   handleTrack(label, properties) {
     this.log("handleTrack()");
-    this.analytics.track(label, properties);
+    var callAnalytics = setInterval(function () {
+      if(this.analytics !== undefined){
+        this.analytics.track(label, properties);
+        clearInterval(callAnalytics);
+      }
+    }, 200);
   }
 
   log(str) {
