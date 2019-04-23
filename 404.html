@@ -38,8 +38,8 @@ permalink: /404.html
       Path: window.location.pathname,
       Referrer: document.referrer ? document.referrer : "Direct Navigation"
     }
-    var analytics = new CRDS.DataTracker();
-    analytics.handleTrack('PageNotFound', props);
+    var dataTracker = new CRDS.DataTracker();
+    dataTracker.handleTrack('PageNotFound', props);
   }
 
 </script>
