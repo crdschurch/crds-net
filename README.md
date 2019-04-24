@@ -5,9 +5,10 @@
 1. [Quick Start](#quick-start)
 2. [Working With Content](#working-with-content)
 3. [Submodules](#submodules)
-4. [Advanced Setup](#advanced-setup)
-5. [Contributing To The Repo](#contributing-to-the-repo)
-6. [License](#license)
+4. [Build Logs](#build-logs)
+5. [Advanced Setup](#advanced-setup)
+6. [Contributing To The Repo](#contributing-to-the-repo)
+7. [License](#license)
 
 ## Quick Start
 1. Clone the repo: `git clone https://github.com/crdschurch/crds-net.git` then `cd ./crds-net`
