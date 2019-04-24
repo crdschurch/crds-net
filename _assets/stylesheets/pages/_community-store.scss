@@ -67,7 +67,7 @@
 
   .carousel-container {
     margin: 30px auto 0px auto;
-    a {
+    .card-text a {
       color: $cr-cyan;
     }
 
@@ -144,6 +144,8 @@
   width: 100%;
   margin-bottom: 0px;
   background-color: $cr-gold-light;
+  padding-top: 77px;
+  padding-bottom: 77px;
 
   img {
     width: 91px;
@@ -151,10 +153,19 @@
   }
 }
 
-#people-container {
-  width: 100%;
-  margin-bottom: -24px;
+#contact-container {
   background-color: $cr-blue-dark;
+  color: white;
+  padding: 0;
+  margin-bottom: -24px;
+  overflow: hidden;
+
+  div {
+    padding-top: 90px;
+    padding-bottom: 80px;
+    background-position: center;
+    background-size: cover;
+  }
 }
 
 @media screen and (max-width: $screen-md - 1) {
