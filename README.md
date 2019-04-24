@@ -5,9 +5,10 @@
 1. [Quick Start](#quick-start)
 2. [Working With Content](#working-with-content)
 3. [Submodules](#submodules)
-4. [Advanced Setup](#advanced-setup)
-5. [Contributing To The Repo](#contributing-to-the-repo)
-6. [License](#license)
+4. [Build Logs](#build-logs)
+5. [Advanced Setup](#advanced-setup)
+6. [Contributing To The Repo](#contributing-to-the-repo)
+7. [License](#license)
 
 ## Quick Start
 1. Clone the repo: `git clone https://github.com/crdschurch/crds-net.git` then `cd ./crds-net`
@@ -119,6 +120,17 @@ $ git credential-osxkeychain erase
 This behavior is odd. After hitting `Enter` after the first line, nothing happens -- you are directed to a blank line in the terminal. That's where you type in `host=github.com` and hit `Enter` again. Then followed by the next line. The third empty line you leave blank and hit `Enter` for a fourth time. Then your credentials should be stored.
 
 If you try to push again, you should be prompted for a new username and password and those will be stored in your keychain for future use.
+
+## Build Logs
+
+Build logs output to `buildlogs.txt`
+
+* **Local development:**  
+  Log is located at `_site/buildlogs.txt`
+
+* **Netlify Build**  
+  The log can be found at `[DEPLOY_URL]/buildlog.txt` on any deploy preview
+  * Example: __https://YOUR_PROJECT_NAME.netlify.com/buildlog.txt__
 
 ## Advanced Setup
 ### Building Assets
