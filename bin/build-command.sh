@@ -12,3 +12,4 @@ bundle exec jekyll build -- --update-search-index 1> /dev/null 2>> buildlog.txt 
 bash ./cypress/kickOffCypress.sh 1> /dev/null 2>> buildlog.txt &&
 ./bin/health-check.sh "we are crossroads" 1> /dev/null 2>> buildlog.txt) ||
 ./bin/logzio.sh
+rm -rf buildlog.txt
