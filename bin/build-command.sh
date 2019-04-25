@@ -1,6 +1,4 @@
 #!/bin/bash
-# Channel that is output to logfile is stderr only
-# std out is output to /dev/null
 # Ships logs to logz.io if there is a failure
 
 {
