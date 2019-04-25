@@ -129,6 +129,12 @@ Build logs are dependant on two environment variables
 
 They will be shipped off to logzio only if there is an error and only STDERR is recorded
 
+To find an erroneous log use the following search term in the logz.io search bar:
+
+    type:"APPLICATION_NAME"
+
+APPLICATION_NAME is the value set to that environment variable
+
 ## Advanced Setup
 ### Building Assets
 `crds-net` uses `jekyll-asset-pipeline` to create Javascript/CSS assets. If you see that assets are not showing up make sure to check that [the pipeline is installed correctly](https://github.com/crdschurch/jekyll-asset-pipeline). If all else fails, try `rm -rf _site` and then start Jekyll back up.
