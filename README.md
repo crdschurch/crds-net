@@ -127,8 +127,6 @@ Build logs are dependant on two environment variables
 - APPLICATION_NAME
 - LOGZIO_API_KEY
 
-They will be shipped off to logzio only if there is an error and only STDERR is recorded
-
 To find an erroneous log use the following search term in the logz.io search bar:
 
     type:"APPLICATION_NAME"
