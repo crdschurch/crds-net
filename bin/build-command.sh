@@ -1,5 +1,5 @@
 #!/bin/bash
-# Ships logs to logz.io if there is a failure
+# Ships logs to logz.io
 
 {
   bundle exec rspec &&
