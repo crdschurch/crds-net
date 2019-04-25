@@ -7,7 +7,7 @@
   bundle exec rspec &&
   ./bin/contentful-redirects &&
   ./bin/netlify-redirector &&
-  bundle exec jekyll crdsnope &&
+  bundle exec jekyll crds &&
   bundle exec jekyll contentful -f &&
   bundle exec jekyll build -- --update-search-index &&
   bash ./cypress/kickOffCypress.sh &&
