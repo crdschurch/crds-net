@@ -29,6 +29,7 @@ exclude:
   - Rakefile
   - README.md
   - vendor
+  - buildlog.txt
 
 contentful:
   series:

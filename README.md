@@ -123,14 +123,15 @@ If you try to push again, you should be prompted for a new username and password
 
 ## Build Logs
 
-Build logs output to `buildlogs.txt`
+Build logs are dependant on two environment variables
+- APPLICATION_NAME
+- LOGZIO_API_KEY
 
-* **Local development:**  
-  Log is located at `_site/buildlogs.txt`
+To find an erroneous log use the following search term in the logz.io search bar:
 
-* **Netlify Build**  
-  The log can be found at `[DEPLOY_URL]/buildlog.txt` on any deploy preview
-  * Example: __https://YOUR_PROJECT_NAME.netlify.com/buildlog.txt__
+    type:"APPLICATION_NAME"
+
+APPLICATION_NAME is the value set to that environment variable
 
 ## Advanced Setup
 ### Building Assets
