@@ -1,15 +1,6 @@
 # default build settings for int, preview deploys etc
 [build]
-  command = '''
-    bundle exec rspec &&
-    ./bin/contentful-redirects &&
-    ./bin/netlify-redirector &&
-    bundle exec jekyll crds &&
-    bundle exec jekyll contentful 2>&1 > /dev/null -f &&
-    bundle exec jekyll build -- --update-search-index &&
-    bash ./cypress/kickOffCypress.sh &&
-    ./bin/health-check.sh "we are crossroads"
-  '''
+  command = "bin/build-command.sh"
 
 [context.branch-deploy.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"

@@ -55,4 +55,4 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /authors/*,/media/authors/:splat,302!
 /songs/*,/media/songs/:splat,302!
 /media/*,${env:CRDS_MEDIA_ENDPOINT}/:splat,200!
-/*,/404.html,404 
+/*,/404.html,404
