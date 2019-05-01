@@ -146,7 +146,7 @@ paginate:
         {% if managed_features.size > 0 %}
         featured
         {% else %}
-        latest articles
+          latest
         {% endif %}
       </h2>
 
@@ -237,7 +237,7 @@ paginate:
           <h2 class="flush-top font-size-base text-gray-light">latest podcast episodes</h2>
         </div>
       </div>
-      <div class="push-bottom soft-bottom">
+      <div class="push-bottom soft-bottom mobile-flush-bottom mobile-hard-bottom">
         {% assign home_episodes = page.episodes.docs %}
         {% for episodes in home_episodes %}
         <div class="media">
@@ -256,7 +256,9 @@ paginate:
               sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
           </a>
         </div>
-        <hr>
+          {% if forloop.last != true %}
+            <hr>
+          {% endif %}
         {% endfor %}
       </div>
     </div>
@@ -358,7 +360,7 @@ paginate:
     <!-- Big Content Feature -->
     <div class="col-md-8">
       <hr class="push-half-bottom">
-      <h2 class="flush-top font-size-base text-gray-light">recent articles</h2>
+      <h2 class="flush-top font-size-base text-gray-light">recent</h2>
 
       {% assign below_the_fold = page.home_collection.docs | slice: 4 %}
       {% for article in below_the_fold %}
@@ -437,7 +439,9 @@ paginate:
           </a>
         </div>
 
-        <hr>
+          {% if forloop.last != true %}
+            <hr>
+          {% endif %}
         {% endfor %}
 
         {% assign home_podcasts = page.podcasts.docs | slice: 2, 6 %}
@@ -458,7 +462,9 @@ paginate:
           </a>
         </div>
 
-        <hr>
+          {% if forloop.last != true %}
+            <hr>
+          {% endif %}
         {% endfor %}
       </div>
     </div>
