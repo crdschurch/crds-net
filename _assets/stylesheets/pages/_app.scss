@@ -65,12 +65,12 @@
     display: flex !important;
   }
   
-.crds-shared-header .navbar-brand.logo {
+  .logo-format {
     left: auto !important;
-    position: static !important;
-    transform: none !important;
-    margin-top: 4px !important;
-    padding-top: 0;
+      position: static !important;
+      transform: none !important;
+      margin-top: 4px !important;
+      padding-top: 0;
   }
 
   .privacy-format {
@@ -94,18 +94,18 @@
     }
   }
 /* Jumbotron Styling */
-img.jumbotron {
+.jumbotron {
   display: block;
   margin-right: auto;
   margin-left: auto;
 }
 
-img.left {
+.left {
   display: block;
   margin-right: auto;
 }
 
-img.right {
+.right {
   display: block;
   margin-left: auto;
 }
@@ -165,8 +165,8 @@ img.right {
   background-position: center;
 }
 
-.footer-text {
-  color: white; 
+.copyright-text {
+  color: white !important; 
   opacity: 0.6;
 }
 
@@ -189,11 +189,6 @@ p a:hover {
   opacity: 0.6;
 }
 
-.crds-shared-header p a {
-  color: white !important;
-  text-decoration: none;
-  opacity: 0.6;
-}
 
 .copyright-format {
   margin-left: auto;
@@ -215,6 +210,11 @@ p a:hover {
   padding-bottom: 11px;
 }
 
+.footer-text {
+  color: white !important;
+  text-decoration: none;
+  opacity: 0.6;
+}
 
 
 /* !important is used explicitly for the purpose of overriding styling of existing Crossroads classes */
