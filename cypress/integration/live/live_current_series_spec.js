@@ -1,12 +1,6 @@
 import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
 import { SeriesQueryManager } from '../../Contentful/QueryManagers/SeriesQueryManager';
 
-function formattedDate(date) {
-  if (date === undefined)
-    return '';
-  return Cypress.moment(date).format('MM.DD.YYYY');
-}
-
 describe('Testing the Current Series on the Live page:', function () {
   let currentSeries;
   before(function () {
