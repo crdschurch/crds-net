@@ -1,9 +1,10 @@
 import { RouteValidator } from '../../support/RouteValidator';
 import { fred_flintstone } from '../../fixtures/test_users';
-import { openProfileClickLinkAndConfirmLoad } from './support/my_profile_menu';
+import { ProfileMenu } from './support/ProfileMenu';
 
 describe('As a user I should be able to sign in and out through the shared header buttons:', function () {
   beforeEach(function () {
+    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/');
 
     //Define common buttons
@@ -39,9 +40,11 @@ describe('As a user I should be able to sign in and out through the shared heade
 
     cy.get('@myProfileIcon').should('be.visible');
 
-    const signoutURL = `${Cypress.config().baseUrl}/signout`;
-    openProfileClickLinkAndConfirmLoad('signOutButton', signoutURL);
+    const profileMenu = new ProfileMenu();
+    profileMenu.forceOpen();
+    profileMenu.clickLink('signOutButton');
 
+    RouteValidator.pageShouldNotBe404();
     cy.get('@myProfileIcon').should('not.be.visible');
     cy.get('@signInButton').should('be.visible');
     RouteValidator.pageFoundAndFromNetlify(`${Cypress.config().baseUrl}`);

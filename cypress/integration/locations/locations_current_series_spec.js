@@ -1,19 +1,20 @@
-import { SeriesManager } from '../../Contentful/Models/SeriesModel';
+import { SeriesQueryManager } from '../../Contentful/QueryManagers/SeriesQueryManager';
 
-describe('Testing the Current Series on the /dayton page:', function () {
+describe('Testing the Current Series on the a locations page:', function () {
   let currentSeries;
   before(function () {
-    const seriesManager = new SeriesManager();
-    seriesManager.saveCurrentSeries();
-    cy.wrap({ seriesManager }).its('seriesManager.currentSeries').should('not.be.undefined').then(() => {
-      currentSeries = seriesManager.currentSeries;
+    const sqm = new SeriesQueryManager();
+    sqm.fetchCurrentSeries().then(() => {
+      currentSeries = sqm.queryResult;
     });
-
-    cy.visit('/dayton');
   });
 
-  it('Check out latest series button should link to the current series', function () {
-    cy.get('[data-automation-id="series-slug"]').as('currentSeriesButton');
-    cy.get('@currentSeriesButton').should('be.visible').and('have.attr', 'href', `/series/${currentSeries.slug.text}`);
+  ['/dayton', '/oakley'].forEach(slug => {
+    it(`On crossroads.net${slug}, the latest series button should link to the current series`, function () {
+      cy.visit(slug);
+
+      cy.get('[data-automation-id="series-slug"]').as('currentSeriesButton');
+      cy.get('@currentSeriesButton').should('be.visible').and('have.attr', 'href', currentSeries.URL.relative);
+    });
   });
 });

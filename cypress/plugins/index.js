@@ -11,7 +11,6 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-const cypressTools = require('crds-cypress-tools');
 module.exports = (on, config) => {
-  cypressTools.initializePlugin(on, config);
+  //default - plugin index needs to export at least one module, even if empty
 };

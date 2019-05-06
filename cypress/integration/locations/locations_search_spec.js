@@ -1,78 +1,19 @@
-import { ContentfulElementValidator } from '../../Contentful/ContentfulElementValidator';
-import { LocationManager } from '../../Contentful/Models/LocationModel';
-
 function searchForLocation(keyword) {
   cy.server();
   cy.route('/gateway/api/v1.0.0/locations/proximities?origin=*').as('searchResults');
 
   cy.get('[data-automation-id="location-search"]').as('search');
   cy.get('@search').find('input').clear().type(keyword);
-  cy.get('@search').find('button').click();
 
-  //Wait for search request to return
-  cy.wait('@searchResults');
+  return cy.get('@search').find('button').click().should('not.have.attr', 'disabled').then(() => {
+    //Wait for search request to return
+    return cy.wait('@searchResults', { timeout: 50000 });
+  });
 }
 
-describe('Testing the Locations page without searching:', function () {
-  let locationList;
-
+describe('Given I search for a standard location on /locations:', function () {
   before(function () {
-    const locationManager = new LocationManager();
-    locationManager.saveLocationList();
-
-    cy.wrap({ locationManager }).its('locationManager.locationList').should('not.be.undefined').then(() => {
-      locationManager.sortByNameAndSlug();
-      locationList = locationManager.locationList;
-    });
-
-    cy.visit('/locations');
-  });
-
-  it('Location cards should display alphabetically followed by Anywhere', function () {
-    cy.get('#section-locations > .card').as('locationCards');
-
-    let i;
-    for (i = 0; i < locationList.length; i++) {
-      cy.get('@locationCards').eq(i).should('be.visible');
-      cy.get('@locationCards').eq(i).find('[data-automation-id="location-name"]').should('have.attr', 'href', `/${locationList[i].slug.text}`);
-    }
-
-    //Check anywhere
-    i = locationList.length;
-    cy.get('@locationCards').eq(i).find('[data-automation-id="anywhere-name"]').should('have.attr', 'href', '/live');
-  });
-
-  it('Distance should not be displayed on Location cards', function () {
-    cy.get('#section-locations > .card').first().as('firstLocation');
-
-    cy.get('@firstLocation').should('not.have.attr', 'data-distance');
-    cy.get('@firstLocation').find('.distance').should('not.exist');
-  });
-
-  it('Should have a Name, Image, Address, Service times and link to Map', function () {
-    const firstLocation = locationList[0];
-    cy.get('#section-locations > .card').first().as('firstLocation');
-
-    cy.get('@firstLocation').find('[data-automation-id="location-name"]').as('title');
-    ContentfulElementValidator.shouldContainText('title', firstLocation.name);
-    cy.get('@title').should('have.attr', 'href').and('contain', firstLocation.slug.text);
-
-    cy.get('@firstLocation').find('[data-automation-id="location-address"]').as('address');
-    ContentfulElementValidator.shouldContainText('address', firstLocation.address);
-
-    cy.get('@firstLocation').find('[data-automation-id="location-map-url"]').as('mapLink');
-    cy.get('@mapLink').should('have.attr', 'href', firstLocation.mapUrl.text);
-
-    cy.get('@firstLocation').find('[data-automation-id="location-service-times"]').as('serviceTimes');
-    ContentfulElementValidator.shouldContainText('serviceTimes', firstLocation.serviceTimes);
-
-    cy.get('@firstLocation').find('[data-automation-id="location-image"]').as('image');
-    ContentfulElementValidator.shouldHaveImgixImageFindImg('image', firstLocation.image);
-  });
-});
-
-describe('Testing the search functionality on the Locations page:', function () {
-  before(function () {
+    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'cards\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/locations');
   });
 
@@ -81,49 +22,56 @@ describe('Testing the search functionality on the Locations page:', function () 
     const oakleySlug = '/oakley';
     const oakleyZip = '45209';
 
-    searchForLocation(oakleyZip);
+    searchForLocation(oakleyZip).then(() => {
+      cy.get('#section-locations > .card').first().as('oakleyCard');
+      cy.get('@oakleyCard').should('be.visible');
+      cy.get('@oakleyCard').find('[data-automation-id="location-name"]').should('have.attr', 'href').and('contains', oakleySlug);
 
-    cy.get('#section-locations > .card').first().as('oakleyCard');
-    cy.get('@oakleyCard').should('be.visible');
-    cy.get('@oakleyCard').find('[data-automation-id="location-name"]').should('have.attr', 'href').and('contains', oakleySlug);
-
-    //Distance overlay displayed
-    cy.get('@oakleyCard').should('have.attr', 'data-distance').and('be.gte', 0);
-    cy.get('@oakleyCard').find('.distance').should('contain', 'miles');
+      //Distance overlay displayed
+      cy.get('@oakleyCard').should('have.attr', 'data-distance').and('be.gte', 0);
+      cy.get('@oakleyCard').find('.distance').should('contain', 'miles');
+    });
   });
 
   it('Searching for Florence by address should display the Florence card first', function () {
     const florenceSlug = '/florence';
     const florenceAddress = '828 Heights Blvd Florence KY';
 
-    searchForLocation(florenceAddress);
+    searchForLocation(florenceAddress).then(() => {
+      cy.get('#section-locations > .card').first().as('florenceCard');
+      cy.get('@florenceCard').should('be.visible');
+      cy.get('@florenceCard').find('[data-automation-id="location-name"]').should('have.attr', 'href').and('contains', florenceSlug);
+    });
+  });
+});
 
-    cy.get('#section-locations > .card').first().as('florenceCard');
-    cy.get('@florenceCard').should('be.visible');
-    cy.get('@florenceCard').find('[data-automation-id="location-name"]').should('have.attr', 'href').and('contains', florenceSlug);
+describe('Given I search for a non-standard location on /locations', function () {
+  before(function () {
+    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'cards\' of undefined'); //Remove once DE6613 is fixed
+    cy.visit('/locations');
   });
 
   it('Searching for an out of range location should display the Anywhere card first', function () {
     const outOfRangeLocation = 'Peru';
 
-    searchForLocation(outOfRangeLocation);
-
-    cy.get('#section-locations > .card').first().as('anywhereCard');
-    cy.get('@anywhereCard').should('be.visible');
-    cy.get('@anywhereCard').find('[data-automation-id="anywhere-name"]').should('have.attr', 'href').and('contains', '/live');
-    cy.get('@anywhereCard').find('[data-automation-id="anywhere-name"]').should('contain', 'Anywhere');
+    searchForLocation(outOfRangeLocation).then(() =>{
+      cy.get('#section-locations > .card').first().as('anywhereCard');
+      cy.get('@anywhereCard').should('be.visible');
+      cy.get('@anywhereCard').find('[data-automation-id="anywhere-name"]').should('have.attr', 'href').and('contains', '/live');
+      cy.get('@anywhereCard').find('[data-automation-id="anywhere-name"]').should('contain', 'Anywhere');
+    });
   });
 
   it('An error should display after searching for nonsense text, then should disappear after a valid search', function () {
     const invalidSearch = 'iqupwetoup;djnoipw';
     const validSearch = 'Peru';
 
-    searchForLocation(invalidSearch);
-
-    cy.get('[data-automation-id="locations-carousel"] > .error-text').as('searchError').should('be.visible');
-
-    searchForLocation(validSearch);
-
-    cy.get('@searchError').should('not.exist');
+    searchForLocation(invalidSearch).then(() =>{
+      cy.get('[data-automation-id="locations-carousel"] > .error-text').as('searchError').should('be.visible');
+    }).then(() =>{
+      searchForLocation(validSearch).then(() =>{
+        cy.get('@searchError').should('not.exist');
+      });
+    });
   });
 });

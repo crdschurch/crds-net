@@ -29,6 +29,7 @@ exclude:
   - Rakefile
   - README.md
   - vendor
+  - buildlog.txt
 
 contentful:
   series:
@@ -37,14 +38,18 @@ contentful:
   message:
     limit: 4
     order: "published_at desc"
+  featured_media:
+    query: fields.site=net
+    map:
+      page_path: path
   exclude:
     - album
-    - featured_media
     - migration
     - sign_off
-    - song
-    - video
-    - system_page
+  content_block:
+    query: fields.category=common
+    map:
+      content_block: content
 
 collections_dir: collections
 
@@ -90,6 +95,16 @@ collections:
   categories:
     output: false
     permalink: /topics/:title
+  featured_media:
+    output: false
+  songs:
+    output: false
+  videos:
+    output: false
+  system_pages:
+    output: true
+  content_blocks:
+    output: false
 
 defaults:
   - scope:
