@@ -2,8 +2,11 @@ language: node_js
 node_js: 10
 cache: npm
 install: npm ci
-script:
-  - "$(npm bin)/cypress run --record --key $cypressDashboard -c baseUrl=$baseURL --env CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ENV=$contentfulEnv,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,CRDS_MEDIA_ENDPOINT=$mediaEndpoint,CRDS_ENV=$crdsEnv,FRED_FLINTSTONE_PW=$FRED_FLINTSTONE_PW"
+jobs:
+  include:
+    - stage: Run tests and report to dashboard
+      script: "$(npm bin)/cypress run --record --key $cypressDashboard -c baseUrl=$baseURL --env CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ENV=$contentfulEnv,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,CRDS_MEDIA_ENDPOINT=$mediaEndpoint,CRDS_ENV=$crdsEnv,FRED_FLINTSTONE_PW=$FRED_FLINTSTONE_PW"
+      if: $reportToDashboard = true
 notifications:
   slack:
     rooms:
