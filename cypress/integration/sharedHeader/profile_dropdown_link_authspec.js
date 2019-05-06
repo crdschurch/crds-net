@@ -1,66 +1,76 @@
 import { RouteValidator } from '../../support/RouteValidator';
 import { fred_flintstone } from '../../fixtures/test_users';
-import { openProfileClickLinkAndConfirmLoad, forceOpenProfileDropdown } from './support/my_profile_menu';
+import { ProfileMenu } from './support/ProfileMenu';
 
 describe('As a signed-in user, the links in the My Profile menu should load pages', function () {
+  const profileLinksMatchURL = [{
+    name: 'MyProfile',
+    elementRef: '#crds-shared-header-profile',
+    url: `${Cypress.config().baseUrl}/profile/personal`
+  }, {
+    name: 'MyTrips',
+    elementRef: '#crds-shared-header-trips',
+    url: `${Cypress.config().baseUrl}/trips/mytrips`
+  }, {
+    name: 'MyCamps',
+    elementRef: '#crds-shared-header-camps',
+    url: `${Cypress.config().baseUrl}/mycamps`
+  }, {
+    name: 'Childcare',
+    elementRef: '#crds-shared-header-childcare',
+    url: `${Cypress.config().baseUrl}/childcare`
+  }];
+
+  const profileLinksContainURL =[{
+    name: 'SignUpToServe',
+    elementRef: '#crds-shared-header-serve',
+    url: 'serve.crossroads.net/groups/week-of'
+  }, {
+    name: 'MyGroups',
+    elementRef: '#crds-shared-header-groups',
+    url: 'connect'
+  }];
+
+  let profileMenu;
   beforeEach(function () {
-    cy.visit('/');
     cy.login(fred_flintstone.email, fred_flintstone.password);
-  });
 
-  it('Tests "My Profile" loads expected page when clicked', function () {
-    cy.get('#crds-shared-header-profile').as('myProfile');
+    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
+    cy.visit('/');
 
-    openProfileClickLinkAndConfirmLoad('myProfile');
-
-    const myProfileURL = `${Cypress.config().baseUrl}/profile/personal`;
-    RouteValidator.pageShouldMatchUrl(myProfileURL);
+    profileMenu = new ProfileMenu();
+    profileMenu.forceOpen();
   });
 
   it('Tests "Giving" loads expected page when clicked', function () {
-    forceOpenProfileDropdown();
     cy.get('#crds-shared-header-desktop').contains('Giving').as('giving');
-    cy.get('@giving').click();
+
+    profileMenu.clickLink('giving');
 
     RouteValidator.pageShouldNotBe404();
   });
 
-  it('Tests "Sign Up to Serve" does not 404 when clicked', function () {
-    cy.get('#crds-shared-header-serve').as('signUpToServe');
+  profileLinksMatchURL.forEach(profileLink => {
+    it(`Tests "${profileLink.name}" loads ${profileLink.url} when clicked`, function () {
+      const linkAlias = `${profileLink.name}Link`;
+      cy.get(profileLink.elementRef).as(linkAlias);
 
-    openProfileClickLinkAndConfirmLoad('signUpToServe');
+      profileMenu.clickLink(linkAlias);
+
+      RouteValidator.pageShouldNotBe404();
+      RouteValidator.pageShouldMatchUrl(profileLink.url);
+    });
   });
 
-  it('Tests "My Groups" does not 404 when clicked', function () {
-    cy.get('#crds-shared-header-groups').as('myGroups');
+  profileLinksContainURL.forEach(profileLink => {
+    it(`Tests "${profileLink.name}" does not 404 when clicked`, function () {
+      const linkAlias = `${profileLink.name}Link`;
+      cy.get(profileLink.elementRef).as(linkAlias);
 
-    openProfileClickLinkAndConfirmLoad('myGroups');
-  });
+      profileMenu.clickLink(linkAlias);
 
-  it('Tests "My Trips" loads expected page when clicked', function () {
-    cy.get('#crds-shared-header-trips').as('myTrips');
-
-    openProfileClickLinkAndConfirmLoad('myTrips');
-
-    const myTripsURL = `${Cypress.config().baseUrl}/trips/mytrips`;
-    RouteValidator.pageShouldMatchUrl(myTripsURL);
-  });
-
-  it('Tests "My Students Camps" loads expected page when clicked', function () {
-    cy.get('#crds-shared-header-camps').as('myCamps');
-
-    openProfileClickLinkAndConfirmLoad('myCamps');
-
-    const myCampsURL = `${Cypress.config().baseUrl}/mycamps`;
-    RouteValidator.pageShouldMatchUrl(myCampsURL);
-  });
-
-  it('Tests "Childcare" loads expected page when clicked', function () {
-    cy.get('#crds-shared-header-childcare').as('childcare');
-
-    openProfileClickLinkAndConfirmLoad('childcare');
-
-    const childcareURL = `${Cypress.config().baseUrl}/childcare`;
-    RouteValidator.pageShouldMatchUrl(childcareURL);
+      RouteValidator.pageShouldNotBe404();
+      cy.url().should('contain', profileLink.url);
+    });
   });
 });

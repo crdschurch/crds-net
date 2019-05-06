@@ -25,3 +25,21 @@ permalink: /404.html
       alt="Page not found!">
   </div>
 </div>
+
+<script type="text/javascript">
+
+  document.addEventListener("deferred-js-ready", function () {
+    trackPageNotFound();
+  });
+  function trackPageNotFound() {
+    var props = {
+      Name: 'PageNotFound',
+      URL: window.location.href,
+      Path: window.location.pathname,
+      Referrer: document.referrer ? document.referrer : "Direct Navigation"
+    }
+    var dataTracker = new CRDS.DataTracker();
+    dataTracker.handleTrack('PageNotFound', props);
+  }
+
+</script>
