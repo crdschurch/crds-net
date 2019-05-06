@@ -1,6 +1,12 @@
 import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
 import { SeriesQueryManager } from '../../Contentful/QueryManagers/SeriesQueryManager';
 
+function formattedDate(date) {
+  if (date === undefined)
+    return '';
+  return Cypress.moment(date).format('MM.DD.YYYY');
+}
+
 describe('Testing the Current Series on the Live page:', function () {
   let currentSeries;
   before(function () {
@@ -20,8 +26,10 @@ describe('Testing the Current Series on the Live page:', function () {
     cy.get('@currentSeriesBlock').find('[data-automation-id="series-title"]').as('currentSeriesTitle');
     cy.get('@currentSeriesTitle').should('be.visible').and('have.text', currentSeries.title.text);
 
-    const start = Cypress.moment(currentSeries.startDate.date).format('MM.DD.YYYY');
-    const end = Cypress.moment(currentSeries.endDate.date).format('MM.DD.YYYY');
+    const start = currentSeries.startDate.hasValue ?
+      Cypress.moment(currentSeries.startDate.date).format('MM.DD.YYYY') : '';
+    const end = currentSeries.endDate.hasValue ?
+      Cypress.moment(currentSeries.endDate.date).format('MM.DD.YYYY') : '';
 
     cy.get('@currentSeriesBlock').find('[data-automation-id="series-dates"]').as('currentSeriesDateRange');
     cy.get('@currentSeriesDateRange').should('be.visible').and('contain', `${start} - ${end}`);
