@@ -12,7 +12,7 @@ module.exports = [
       "vendor/imgix-optimizer",
       "vendor/bootstrap.min",
       "vendor/flickity.pkgd.min",
-      "vendor/crds-card-carousel-v0.2.0.min",
+      "vendor/crds-card-carousel-v0.2.1.min",
       "vendor/crds-jumbotron-video-v0.2.1.min",
       "vendor/crds-livestream-reminder-v0.0.16.min",
       "vendor/crds-rollcall.min",
