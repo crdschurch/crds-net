@@ -5,7 +5,7 @@ function clickCrossroadsLogoAndConfirmNetlifyHomepageLoads() {
   RouteValidator.pageFoundAndFromNetlify(`${Cypress.config().baseUrl}/`);
 }
 
-describe('Clicking the Crossroads logo from a non-Netlify page should load the Netlify homepage:', function () {
+describe('Clicking the Crossroads logo from page on a microclient should load the Netlify homepage:', function () {
   ['/search', '/leaveyourmark', '/corkboard'].forEach(slug => {
     it(`Starting from ${slug}`, function () {
       cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
@@ -19,15 +19,10 @@ describe('Clicking the Crossroads logo from a non-Netlify page should load the N
 });
 
 describe('Clicking the Crossroads logo from a Netlify page should load the Netlify homepage:', function () {
-  it.skip('Starting from /volunteer', function () {
-    cy.visit('/volunteer');
-    RouteValidator.pageShouldBeFromNetlify();
-
-    clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
-  });
-
-  ['/live', '/giving'].forEach(slug => {
+  ['/live', '/giving', '/volunteer'].forEach(slug => {
     it(`Starting from ${slug}`, function () {
+      cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
+
       cy.visit(slug, { timeout: 20000 });
       RouteValidator.pageShouldBeFromNetlify();
 

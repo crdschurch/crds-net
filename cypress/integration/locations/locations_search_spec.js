@@ -5,7 +5,7 @@ function searchForLocation(keyword) {
   cy.get('[data-automation-id="location-search"]').as('search');
   cy.get('@search').find('input').clear().type(keyword);
 
-  return cy.get('@search').find('button').click().should('not.have.attr', 'disabled').then(() => {
+  return cy.get('@search').find('button:not([disabled=""])').click().then(() => {
     //Wait for search request to return
     return cy.wait('@searchResults', { timeout: 50000 });
   });
@@ -14,7 +14,11 @@ function searchForLocation(keyword) {
 describe('Given I search for a standard location on /locations:', function () {
   before(function () {
     cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'cards\' of undefined'); //Remove once DE6613 is fixed
-    cy.visit('/locations');
+
+    //Workaround for DE6665 - The locations page sometimes loads with missing functionality. Loading the page twice from the start
+    //  prevents this issue, which is easier than trying to recover from the failure during the test.
+    cy.visit('/locations').then(() =>
+      cy.visit('/locations'));
   });
 
   //For a Contentful Location card to display the distance, its address must be valid
@@ -45,16 +49,21 @@ describe('Given I search for a standard location on /locations:', function () {
   });
 });
 
+
 describe('Given I search for a non-standard location on /locations', function () {
   before(function () {
     cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'cards\' of undefined'); //Remove once DE6613 is fixed
-    cy.visit('/locations');
+
+    //Workaround for DE6665 - The locations page sometimes loads with missing functionality. Loading the page twice from the start
+    //  prevents this issue, which is easier than trying to recover from the failure during the test.
+    cy.visit('/locations').then(() =>
+      cy.visit('/locations'));
   });
 
   it('Searching for an out of range location should display the Anywhere card first', function () {
     const outOfRangeLocation = 'Peru';
 
-    searchForLocation(outOfRangeLocation).then(() =>{
+    searchForLocation(outOfRangeLocation).then(() => {
       cy.get('#section-locations > .card').first().as('anywhereCard');
       cy.get('@anywhereCard').should('be.visible');
       cy.get('@anywhereCard').find('[data-automation-id="anywhere-name"]').should('have.attr', 'href').and('contains', '/live');
@@ -66,10 +75,10 @@ describe('Given I search for a non-standard location on /locations', function ()
     const invalidSearch = 'iqupwetoup;djnoipw';
     const validSearch = 'Peru';
 
-    searchForLocation(invalidSearch).then(() =>{
+    searchForLocation(invalidSearch).then(() => {
       cy.get('[data-automation-id="locations-carousel"] > .error-text').as('searchError').should('be.visible');
-    }).then(() =>{
-      searchForLocation(validSearch).then(() =>{
+    }).then(() => {
+      searchForLocation(validSearch).then(() => {
         cy.get('@searchError').should('not.exist');
       });
     });
