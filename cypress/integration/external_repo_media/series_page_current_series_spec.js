@@ -19,8 +19,10 @@ describe('Tesing the Current Series on the Media/Series page:', function () {
     cy.get('@currentSeriesBlock').find('h1').as('currentSeriesTitle');
     cy.get('@currentSeriesTitle').should('be.visible').and('have.text', currentSeries.title.text);
 
-    const start = Cypress.moment(currentSeries.startDate.date).format('MM.DD.YYYY');
-    const end = Cypress.moment(currentSeries.endDate.date).format('MM.DD.YYYY');
+    const start = currentSeries.startDate.hasValue ?
+      Cypress.moment(currentSeries.startDate.date).format('MM.DD.YYYY') : '';
+    const end = currentSeries.endDate.hasValue ?
+      Cypress.moment(currentSeries.endDate.date).format('MM.DD.YYYY') : '';
 
     cy.get('@currentSeriesBlock').find('date').as('currentSeriesDateRange');
     cy.get('@currentSeriesDateRange').should('be.visible').and('contain', `${start} — ${end}`);
