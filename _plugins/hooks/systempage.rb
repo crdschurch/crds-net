@@ -19,6 +19,7 @@ Jekyll::Hooks.register :site, :post_read do |site|
 
   def imgixify(item)
     item['image']['url'] = item['image']['url'].sub(/#{ENV['IMGIX_SRC']}/, ENV['IMGIX_DOMAIN'])
+    item['image']['url'] = "#{item['image']['url']}?auto=format\&w=1200\&h=630\&fit=crop"
   end
 
   def write_file(data)
