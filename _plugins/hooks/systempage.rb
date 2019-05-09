@@ -2,7 +2,7 @@ require 'net/http'
 require 'json'
 require 'pry'
 
-Jekyll::Hooks.register :site, :post_read do |site|  
+Jekyll::Hooks.register :site, :post_render do |site|  
   systemPages = {
     'systemPages' => []
   }
