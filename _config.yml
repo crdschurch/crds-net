@@ -13,7 +13,6 @@ include:
   - .aws
   - _redirects
   - _pages
-  - system-pages.json
 
 exclude:
   - bin
