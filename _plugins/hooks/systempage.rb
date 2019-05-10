@@ -24,7 +24,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
   end
 
   def write_file(data)
-    File.open("system-pages.json","w") do |f|
+    File.open("_site/system-pages.json","w") do |f|
       f.write(data.to_json)
     end
   end
