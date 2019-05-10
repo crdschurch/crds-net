@@ -18,9 +18,8 @@ Jekyll::Hooks.register :site, :post_write do |site|
   end
 
   def imgixify(item)
-    item['image']['url'] = item['image']['url'].sub(/#{ENV['IMGIX_SRC']}/, ENV['IMGIX_DOMAIN'])
-    # per FB's best practices for meta image
-    item['image']['url'] = "#{item['image']['url']}?auto=format\&w=1200\&h=630\&fit=crop"
+    params = "?auto=format\&w=1200\&h=630\&fit=crop" # per FB's best practices for meta image
+    item['image']['url'] = item['image']['url'].sub(/#{ENV['IMGIX_SRC']}/, ENV['IMGIX_DOMAIN']) + params
   end
 
   def write_file(data)
