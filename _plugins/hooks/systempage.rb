@@ -1,5 +1,6 @@
+require_relative '../../lib/utils/imgix_util'
+
 require 'net/http'
-require 'json'
 require 'pry'
 
 Jekyll::Hooks.register :site, :post_write do |site|  
@@ -17,11 +18,6 @@ Jekyll::Hooks.register :site, :post_write do |site|
     item['legacy_styles'] = item['legacy_styles'] ? 1 : 0
   end
 
-  def imgixify(item)
-    params = "?auto=format\&w=1200\&h=630\&fit=crop" # per FB's best practices for meta image
-    item['image']['url'] = item['image']['url'].sub(/#{ENV['IMGIX_SRC']}/, ENV['IMGIX_DOMAIN']) + params
-  end
-
   def write_file(data)
     File.open("_site/system-pages.json","w") do |f|
       f.write(data.to_json)
@@ -35,7 +31,8 @@ Jekyll::Hooks.register :site, :post_write do |site|
     end
 
     if field.include?('image')
-      imgixify(field)
+      params = "?auto=format\&w=1200\&h=630\&fit=crop"
+      field["image"]["url"] = ::Utils::ImgixUtil.convert_contentful_url(field["image"]["url"], params)
     end
 
     binarize_legacy_styles(field)
