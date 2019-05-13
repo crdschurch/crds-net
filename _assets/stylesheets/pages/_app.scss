@@ -1,4 +1,4 @@
-
+.app-page-styles {
 
 /* iPhone X & Pixel 2 XL */
 @media (max-height: 896px) and (max-width: 414px) {
@@ -215,6 +215,6 @@ p a:hover {
   text-decoration: none;
   opacity: 0.6;
 }
-
+}
 
 /* !important is used explicitly for the purpose of overriding styling of existing Crossroads classes */
