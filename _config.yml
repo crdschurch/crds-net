@@ -102,7 +102,7 @@ collections:
   videos:
     output: false
   system_pages:
-    output: true
+    output: false
   content_blocks:
     output: false
 
