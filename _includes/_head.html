@@ -19,6 +19,8 @@
   <meta property="og:description" content="{{ page | get_meta_description: site | markdownify | strip_html | strip_newlines | truncate: 155 }}">
   <meta property="og:title" content="{{ page | get_meta_title: site }}">
   <meta property="og:image" content="{{ page | get_meta_image: site | imgix: site.imgix }}?{{ site.imgix_params.meta_image }}">
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:url" content="{{ page | build_page_url: site }}">
   <meta property="og:site_name" content="{{ site.title | escape }}">
   <meta name="apple-itunes-app" content="app-id=1029478803">
