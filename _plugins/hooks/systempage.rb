@@ -1,23 +1,42 @@
+require_relative '../../lib/utils/imgix_util'
+
 require 'net/http'
 require 'pry'
 
-Jekyll::Hooks.register :site, :after_init do |site|
-  url = "https://cdn.contentful.com/spaces/#{ENV['CONTENTFUL_SPACE_ID']}/environments/#{ENV['CONTENTFUL_ENV']}/entries?access_token=#{ENV['CONTENTFUL_ACCESS_TOKEN']}&content_type=system_page"
-  uri = URI(url)
-  response = JSON.parse(Net::HTTP.get(uri))
-
+Jekyll::Hooks.register :site, :post_write do |site|  
   systemPages = {
     'systemPages' => []
   }
 
-  if response['items']
-    response['items'].each do |item|
-      item['fields']['legacyStyles'] = item['fields']['legacyStyles'] ? 1 : 0
-      systemPages['systemPages'] << item['fields']
+  sys_page_docs = site.collections['system_pages'].docs
+  
+  sys_page_docs.each {|doc|
+    systemPages['systemPages'] << doc.data
+  }
+
+  def binarize_legacy_styles(item)
+    item['legacy_styles'] = item['legacy_styles'] ? 1 : 0
+  end
+
+  def write_file(data)
+    File.open("_site/system-pages.json","w") do |f|
+      f.write(data.to_json)
     end
   end
 
-  File.open("system-pages.json","w") do |f|
-    f.write(systemPages.to_json)
-  end
+  systemPages['systemPages'].each {|field| 
+    # remove excerpt data which causes infinite loop when writing json
+    if field.include?('excerpt')
+      field['excerpt'] = ''
+    end
+
+    if field.include?('image')
+      params = "?auto=format\&w=1200\&h=630\&fit=crop"
+      field["image"]["url"] = ::Utils::ImgixUtil.convert_contentful_url(field["image"]["url"], params)
+    end
+
+    binarize_legacy_styles(field)
+  }
+  
+  write_file(systemPages)
 end
