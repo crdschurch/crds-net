@@ -2,8 +2,12 @@ import { RouteValidator } from '../../support/RouteValidator';
 import { fred_flintstone } from '../../fixtures/test_users';
 
 describe('As a signed-in user, clicking the Crossroads logo from a non-Netlify page should load the Netlify homepage:', function () {
-  beforeEach(function () {
+  before(function () {
     cy.login(fred_flintstone.email, fred_flintstone.password);
+  });
+
+  beforeEach(function () {
+    cy.stayLoggedIn();
   });
 
   ['/corkboard', '/childcare', '/serve-signup'].forEach(slug => {

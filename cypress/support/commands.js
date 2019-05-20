@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -29,6 +30,10 @@ import { Formatter } from './Formatter';
 
 AddCommand.crdsLogin();
 
+Cypress.Commands.add('stayLoggedIn', () => {
+  Cypress.Cookies.preserveOnce(`${Cypress.env('CRDS_ENV')}sessionId`, `${Cypress.env('CRDS_ENV')}refreshToken`, 'userId');
+});
+
 Cypress.Commands.add('normalizedText', { prevSubject: 'element' }, (subject) => {
   return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => Formatter.normalizeText(elementText));
 });
@@ -39,9 +44,9 @@ Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
 
 //Here for convenience but use sparingly - we usually want these to be thrown
 Cypress.Commands.add('ignoreUncaughtException', (expectedMessage) => {
-  cy.on('uncaught:exception', (err) => {
+  cy.on('uncaught:exception', (err, runnable) => {
     expect(err.message).to.include(expectedMessage);
-    done();
+    runnable.done();
     return false;
   });
 });
