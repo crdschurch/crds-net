@@ -94,6 +94,12 @@ module.exports = [
     ]
   },
   {
+    name: 'bitmovin',
+    files: [
+      'components/bitmovin',
+    ],
+  },
+  {
     name: "events",
     files: [
       "vendor/jquery.cycle2.min",

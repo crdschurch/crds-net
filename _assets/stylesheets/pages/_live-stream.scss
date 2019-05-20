@@ -69,4 +69,10 @@
   .list-header {
     line-height: $headings-line-height;
   }
+
+  // Bitmovin Live Stream Player
+  .bmpui-ui-container.bmpui-controlbar-top,
+  .bmpui-ui-watermark {
+    display: none;
+  }
 }
