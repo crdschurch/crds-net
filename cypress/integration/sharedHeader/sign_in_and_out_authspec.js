@@ -5,7 +5,7 @@ import { ProfileMenu } from './support/ProfileMenu';
 describe('As a user I should be able to sign in and out through the shared header buttons:', function () {
   const startingPage = `${Cypress.config().baseUrl}/prayer`;
   beforeEach(function () {
-    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
+    cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit(startingPage);
 
     //Define common buttons

@@ -39,7 +39,7 @@ describe('As a signed-in user, the links in the My Profile menu should load page
   beforeEach(function () {
     cy.stayLoggedIn();
 
-    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
+    cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/prayer');
 
     profileMenu = new ProfileMenu();

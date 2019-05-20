@@ -10,7 +10,7 @@ describe('Testing the Current Series on the Homepage:', function () {
       currentSeries.fetchLinkedResources();
     });
 
-    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
+    cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/');
   });
 

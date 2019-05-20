@@ -10,7 +10,7 @@ describe('Testing the Current Series in the Shared Header/Media dropdown:', func
       currentSeries.fetchLinkedResources();
     });
 
-    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
+    cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/prayer');
 
     cy.get('a[data-automation-id="sh-media"]').click();
