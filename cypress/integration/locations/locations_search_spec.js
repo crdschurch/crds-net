@@ -5,7 +5,7 @@ function searchForLocation(keyword) {
   cy.get('[data-automation-id="location-search"]').as('search');
   cy.get('@search').find('input').clear().type(keyword);
 
-  return cy.get('@search').find('button:not([disabled=""])').click().then(() => {
+  return cy.get('@search').find('button:not([disabled=""])', {timeout: 50000}).click().then(() => {
     //Wait for search request to return
     return cy.wait('@searchResults', { timeout: 50000 });
   });
@@ -15,14 +15,14 @@ describe('Given I search for a standard location on /locations:', function () {
   before(function () {
     cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'cards\' of undefined'); //Remove once DE6613 is fixed
 
-    //Workaround for DE6665 - The locations page sometimes loads with missing functionality. Loading the page twice from the start
-    //  prevents this issue, which is easier than trying to recover from the failure during the test.
-    cy.visit('/locations').then(() =>
-      cy.visit('/locations'));
+    //Workaround for DE6665 - The locations page sometimes loads with missing functionality. Loading a different page before /locations
+    //  seems to prevent this issue, which is easier than trying to recover from the failure during the test.
+    cy.visit('/prayer');
+    cy.visit('/locations');
   });
 
   //For a Contentful Location card to display the distance, its address must be valid
-  it('Searching for Oakley by zip should display the Oakley card first, with its distance', function () {
+  it.only('Searching for Oakley by zip should display the Oakley card first, with its distance', function () {
     const oakleySlug = '/oakley';
     const oakleyZip = '45209';
 
