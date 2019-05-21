@@ -33,7 +33,7 @@ CRDS.Countdown = class Countdown {
     this.TIMEZONE_OFFSET = ((new Date()).dst()) ? '-0400' : '-0500';
 
     if ($('.crds-countdown').length) {
-      this.getStreamspotStatus();
+      this.getEventStatus();
     }
   }
 
@@ -118,7 +118,7 @@ CRDS.Countdown = class Countdown {
     return `${hours}:${minutes}${ampm}`;
   }
 
-  getStreamspotStatus() {
+  getEventStatus() {
     Countdown.setLoadingStatus(true);
     CRDS.Countdown.getEvents()
       .done((events) => {
@@ -137,18 +137,12 @@ CRDS.Countdown = class Countdown {
   }
 
   static getEvents() {
-    const streamspotUrl = 'https://api.streamspot.com';
-    const streamspotId = window.CRDS.streamspotId;
-    const streamspotKey = window.CRDS.streamspotKey;
-
-    const eventUrl = `${streamspotUrl}/broadcaster/${streamspotId}/broadcasts/upcomingPlusCurrent`;
+    const eventUrl = `https://8k97vbzbrk.execute-api.us-east-1.amazonaws.com/int/streamSchedule`;
     return $.ajax({
+      type: 'GET',
       url: eventUrl,
       dataType: 'json',
-      crossDomain: true,
-      beforeSend(request) {
-        request.setRequestHeader('X-API-Key', streamspotKey);
-      }
+      crossDomain: true
     });
   }
 
@@ -168,15 +162,9 @@ CRDS.Countdown = class Countdown {
     const currentEndDate = this.currentEvent.end;
     const secondsUntilStreamEnd = (Countdown.convertDate(currentEndDate, this.TIMEZONE_OFFSET) - (new Date())) / 1000;
 
-    $('[data-streamspot-player]').each(function(idx) {
-      let playerId = $(this).data('streamspot-player');
-      let streamspotPlayerUrl = `https://player2.streamspot.com/?playerId=${playerId}`;
-      $(this).attr('src', streamspotPlayerUrl);
-    });
-
     this.timeoutId = setTimeout(() => {
       if (this.nextEvent == null) {
-        this.getStreamspotStatus();
+        this.getEventStatus();
       } else {
         this.showCountdown();
       }
