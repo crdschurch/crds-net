@@ -53,7 +53,7 @@ paginate:
           <div class="soft-quarter-top font-size-base flush-bottom" data-automation-id="live-message-description">
             Join the live stream hourly, on the hour, from 8am-10pm (EST).
           </div>
-          <a href="/live/stream/" class="btn btn-primary btn-sm push-half-top"
+          <a href="/live/stream?autoplay=true&sound=11" class="btn btn-primary btn-sm push-half-top"
             data-automation-id="live-watch-message-button">Watch now</a>
         </div>
         <a href="/live/stream/" class="push-half-bottom" data-automation-id="live-message-video">
@@ -493,14 +493,19 @@ paginate:
 <script>
   window.env = {
     gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}',
-    streamspotId: '{{ site.streamspotId }}',
-    streamspotKey: '{{ site.streamspotKey }}'
+    streamScheduleEndpoint: '{{ site.stream_schedule_endpoint }}'
   };
 
-  document.addEventListener("deferred-js-ready", function () {
+  document.addEventListener("deferred-js-ready", countdownInit);
+  
+  if (window.deferredJSReady) {
+    countdownInit();
+  }
+
+  function countdownInit() {
     var c = new CRDS.Countdown();
-    c.getStreamspotStatus();
-  });
+    c.getEventStatus();
+  }
 </script>
 
 <!-- we are crossroads -->
