@@ -1,15 +1,25 @@
-<div id="{% if include.isCard %}bitmovinPlayer{{video.slug | camelcase }}{% else %}VideoManager{% endif %}" data-video-player></div>
+<div id="{% if include.isCard %}bitmovinPlayer{{video.slug | camelcase }}{% else %}VideoManager{% endif %}"
+    data-video-player></div>
 <script src="https://bitmovin-a.akamaihd.net/bitmovin-player/stable/8.4.0/bitmovinplayer.js"></script>
 {% javascript_link_tag bitmovin %}
 <script type="text/javascript">
-    var videoManagerID = `{{ include.isCard }}` ? `bitmovinPlayer{{video.slug | camelcase }}` : 'VideoManager';
-    var bitmovinConfig = {
-        title: `{{video.title}}`,
-        url: `{{video.bitmovin_url}}`,
-        id: videoManagerID,
-        image: `{{ image | imgix: site.imgix }}`,
-        isCard: `{{include.isCard}}`
+    // if live-stream loads first
+    document.addEventListener("deferred-js-ready", bitmovinInit);
+
+    // if app-deferred loads first
+    if (window.deferredJSReady) {
+        bitmovinInit();
     }
-    CRDS[videoManagerID] = new BitmovinManager(bitmovinConfig);
-    
+
+    function bitmovinInit() {
+        var videoManagerID = `{{ include.isCard }}` ? `bitmovinPlayer{{video.slug | camelcase }}` : 'VideoManager';
+        var bitmovinConfig = {
+            title: `{{video.title}}`,
+            url: `{{video.bitmovin_url}}`,
+            id: videoManagerID,
+            image: `{{ image | imgix: site.imgix }}`,
+            isCard: `{{include.isCard}}`
+        }
+        CRDS[videoManagerID] = new BitmovinManager(bitmovinConfig);
+    }
 </script>
