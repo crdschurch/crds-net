@@ -33,7 +33,7 @@ CRDS.Countdown = class Countdown {
     this.TIMEZONE_OFFSET = ((new Date()).dst()) ? '-0400' : '-0500';
 
     if ($('.crds-countdown').length) {
-      this.getEventStatus();
+      this.streamStatusPromise = this.getEventStatus();
     }
   }
 
@@ -120,16 +120,18 @@ CRDS.Countdown = class Countdown {
 
   getEventStatus() {
     Countdown.setLoadingStatus(true);
-    CRDS.Countdown.getEvents()
+    return CRDS.Countdown.getEvents()
       .done((events) => {
         this.nextEvent = events.data.next;
         this.currentEvent = events.data.current;
         Countdown.setLoadingStatus(false);
-        if (events.data.current != null) {
+        if (events.data.current) {
           this.goLive();
         } else {
           this.showCountdown();
         }
+
+        return events;
       })
       .fail((xhr, ajaxOptions, thrownError) => {
         console.log(thrownError);
@@ -137,7 +139,7 @@ CRDS.Countdown = class Countdown {
   }
 
   static getEvents() {
-    const eventUrl = `https://8k97vbzbrk.execute-api.us-east-1.amazonaws.com/int/streamSchedule`;
+    const eventUrl = `${window.CRDS.env.streamScheduleEndpoint}`;
     return $.ajax({
       type: 'GET',
       url: eventUrl,
@@ -234,13 +236,10 @@ CRDS.Countdown = class Countdown {
   }
 
   static convertDate(dateString, timeZone) {
-    // Expected format of dateString: YYYY-MM-DD HH:MM:SS
-    // Output of dateString.match is an array
-    const date = dateString.match(/^(\d{4})-0?(\d+)-0?(\d+)[T ]0?(\d+):0?(\d+):0?(\d+)$/);
     // Here we assemble the array values to: M/D/YYYY HH:MM:SS TZ
     // We do this because this is the most commonly accepted format by our support
     // browsers
-    const formattedDateString = `${date[2]}/${date[3]}/${date[1]} ${date[4]}:${date[5]}:${date[6]} ${timeZone}`;
+    const formattedDateString = `${dateString} ${timeZone}`;
     return new Date(formattedDateString);
   }
 
