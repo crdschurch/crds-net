@@ -56,10 +56,6 @@
     background-color: $cr-gray-darker;
   }
 
-  [data-streamspot-player] {
-    width: 100%;
-  }
-
   [aria-label="carousel-controls"] {
     @media (min-width: $screen-md) {
       visibility: hidden;
@@ -71,8 +67,21 @@
   }
 
   // Bitmovin Live Stream Player
-  .bmpui-ui-container.bmpui-controlbar-top,
+  .bmpui-ui-seekbar,
   .bmpui-ui-watermark {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .bmpui-ui-playbacktogglebutton {
     display: none;
+  }
+
+  .bmpui-ui-uicontainer {
+    pointer-events: initial;
+  }
+
+  .bmpui-ui-hugeplaybacktogglebutton {
+    pointer-events: none;
   }
 }
