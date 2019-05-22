@@ -7,7 +7,6 @@ if (window.deferredJSReady) {
 }
 
 function liveStreamInit() {
-  setStreamspotPlayerId();
   // IFrame Resizer (for Give section)
   iFrameResize({
     heightCalculationMethod: 'taggedElement',
@@ -90,11 +89,6 @@ function liveStreamInit() {
         Method: method
       });
     }
-  }
-
-  function setStreamspotPlayerId() {
-    const el = document.querySelector('[data-streamspot-player]');
-    el.setAttribute('data-streamspot-player', window.CRDS.streamspotPlayerId);
   }
 
   window.env = window.env || {};
