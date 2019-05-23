@@ -1,5 +1,5 @@
 <div id="{% if include.isCard %}bitmovinPlayer{{video.slug | camelcase }}{% else %}VideoManager{% endif %}"
-    data-video-player></div>
+    data-video-player class="embed-responsive embed-responsive-16by9"></div>
 <script src="https://bitmovin-a.akamaihd.net/bitmovin-player/stable/8.4.0/bitmovinplayer.js"></script>
 {% javascript_link_tag bitmovin %}
 <script type="text/javascript">
