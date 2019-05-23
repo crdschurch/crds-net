@@ -84,4 +84,21 @@
   .bmpui-ui-hugeplaybacktogglebutton {
     pointer-events: none;
   }
+
+  #standby-message {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $cr-orange;
+    opacity: 0;
+    z-index: 0;
+    transition: .45s all ease-in-out;
+
+    .component-header,
+    #standby-time {
+      color: $cr-white;
+    }
+  }
 }
