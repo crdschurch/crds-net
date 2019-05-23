@@ -54,9 +54,8 @@ class BitmovinManager {
         .filter((e) => moment.tz(e.start, this.timezoneStr) > moment.tz(this.timezoneStr))
         .forEach((e) => {
             var timeTilEvent = moment.tz(e.start, this.timezoneStr) - moment.tz(this.timezoneStr);
-            setTimeout(function() {
-                console.log(this.bitmovinPlayer)
-                this.restartVideo()
+            setTimeout(() => {
+              this.restartVideo()
             }, timeTilEvent);
         })
   }
@@ -133,21 +132,24 @@ class BitmovinManager {
   }
 
   getQualityLabels(data) {
-    let label = '';
     let resolution = '';
-    let bitrate = `${(data.bitrate / 1000000).toFixed(2)} mbs`;
+    let kbps = Math.round((data.bitrate / 1000));
+
+    // convert to megabits if applicable
+    let bitrate =  kbps > 1000 ? `${(kbps / 1000).toFixed(1)} mbps` : `${kbps} kbps`;
+    console.log(bitrate);
 
     if (data.height <= 240) {
-      resolution = '240p SD';
+      resolution = '240p';
     } else if (data.height <= 480) {
-      resolution = '480p SD';
+      resolution = 'SD 480p';
     } else if (data.height <= 720) {
-      resolution = '720p HD';
+      resolution = 'HD 720p';
     } else if (data.height <= 1080) {
-        resolution = '1080p HD';
+        resolution = 'HD 1080p';
     }
 
-    label = `${resolution} - ${bitrate}`;
+    let label = `${resolution} (${bitrate})`;
     return label;
   }
 
@@ -159,8 +161,7 @@ class BitmovinManager {
   }
 
   restartVideo() {
-    this.pauseVideo();
-    // this.seekTo(0,0);
+    this.seekTo(0,0);
   }
 
   onUnmute() {
