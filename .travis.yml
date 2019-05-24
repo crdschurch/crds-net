@@ -29,4 +29,4 @@ notifications:
     on_failure: always
     on_pull_requests: false
     template:
-      - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{elapsed_time}"
+      - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} and elapsed time was %{elapsed_time} and duration time was %{duration}"
