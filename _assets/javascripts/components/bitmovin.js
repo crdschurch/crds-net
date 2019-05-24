@@ -3,19 +3,24 @@
 class BitmovinManager {
   constructor(bitmovinConfig) {
     this.isCard = bitmovinConfig.isCard;
-    this.timezoneStr = "America/New_York";
+    this.videoDuration = Number(bitmovinConfig.duration) * 1000 ;
+    this.timezoneStr = 'America/New_York';
     this.container = document.getElementById(`${bitmovinConfig.id}`);
     this.countdown = new CRDS.Countdown();
     this.playerConfig = {
       key: '224f523d-e1ba-4f96-ad4d-96365f461c93',
       playback: {
         autoplay: this.getAutoPlay(),
-        muted: this.getIsMuted(),
-
+        muted: this.getIsMuted()
       },
       analytics: {
         key: '01e90136-7623-4df4-b0d9-a3d975b00258',
         title: bitmovinConfig.title
+      },
+      events: {
+        onPlaybackFinished: () => {
+          this.showStandbyMessaging();
+        }
       }
     };
 
@@ -44,20 +49,14 @@ class BitmovinManager {
 
       this.events = events.data.broadcasts;
       this.scheduleFutureEvents();
+
+      this.nextStartTime = moment.tz(this.countdown.nextEvent.start, this.timezoneStr).calendar();
+      this.standbyElm = document.getElementById('standby-message');
+      this.standbyElm.querySelector('#standby-time').innerText = `The next event starts at ${this.nextStartTime}`;
+      
       this.manuallyTurnedOnCC = false;
       if (!this.isCard) this.createPlayer();
     });
-  }
-
-  scheduleFutureEvents() {
-    this.events
-        .filter((e) => moment.tz(e.start, this.timezoneStr) > moment.tz(this.timezoneStr))
-        .forEach((e) => {
-            var timeTilEvent = moment.tz(e.start, this.timezoneStr) - moment.tz(this.timezoneStr);
-            setTimeout(() => {
-              this.restartVideo()
-            }, timeTilEvent);
-        })
   }
 
   createPlayer() {
@@ -65,10 +64,31 @@ class BitmovinManager {
       this.container,
       this.playerConfig
     );
-    // this.bitmovinPlayer.on('play', this.onPlayerStart());
-    // this.bitmovinPlayer.on('playbackfinished', this.onPlayerEnd('Ended'));
-    // this.bitmovinPlayer.on('paused', this.onPlayerEnd('Paused'));
+    // this.bitmovinPlayer.on('playbackfinished', this.showStandbyMessaging());
+    // this.bitmovinPlayer.on('play', this.hideStandbyMessaging());
     return this.bitmovinPlayer.load(this.source);
+  }
+
+  scheduleFutureEvents() {
+    this.events
+     .forEach(e => {
+        console.log(e);
+        const now = moment.tz(this.timezoneStr);
+        const timeTilEventStart = moment.tz(e.start, this.timezoneStr) - now;
+        const videoEndTime = moment.tz(e.start, this.timezoneStr) + this.videoDuration; 
+        console.log(videoEndTime);
+        const timeTilVideoEnd = videoEndTime - moment.tz(this.timezoneStr);
+        console.log(timeTilVideoEnd)
+        if (moment.tz(e.start, this.timezoneStr) > moment.tz(this.timezoneStr)) {
+          setTimeout(() => {
+            this.restartVideo();
+          }, timeTilEventStart);
+        }  
+
+        setTimeout(() => {
+          this.showStandbyMessaging();
+        }, timeTilVideoEnd);
+      });
   }
 
   getHideUI() {
@@ -76,7 +96,7 @@ class BitmovinManager {
   }
 
   getAutoPlay() {
-    if (this.getStartTime() > 0) return true;
+    if (this.getStartTime() > 0 && !this.currentHasEnded()) return true;
     let urlParams = new URLSearchParams(window.location.search);
     let autoPlay = urlParams.has('autoplay')
       ? Boolean(urlParams.get('autoplay'))
@@ -93,7 +113,7 @@ class BitmovinManager {
 
   getStartTime() {
     let startTime = 0;
-    if (this.countdown.currentEvent) {
+    if (this.countdown.currentEvent && !this.currentHasEnded()) {
       startTime = this.calculateStreamElapsed();
     } else {
       let urlParams = new URLSearchParams(window.location.search);
@@ -105,6 +125,11 @@ class BitmovinManager {
     }
 
     return startTime;
+  }
+
+  currentHasEnded() {
+    const  now = moment.tz(this.timezoneStr);
+    return now - this.currentVideoEndTime > 0 ? true : false;
   }
 
   onPlayerStart() {
@@ -133,11 +158,11 @@ class BitmovinManager {
 
   getQualityLabels(data) {
     let resolution = '';
-    let kbps = Math.round((data.bitrate / 1000));
+    let kbps = Math.round(data.bitrate / 1000);
 
     // convert to megabits if applicable
-    let bitrate =  kbps > 1000 ? `${(kbps / 1000).toFixed(1)} mbps` : `${kbps} kbps`;
-    console.log(bitrate);
+    let bitrate =
+      kbps > 1000 ? `${(kbps / 1000).toFixed(1)} mbps` : `${kbps} kbps`;
 
     if (data.height <= 240) {
       resolution = '240p';
@@ -146,22 +171,35 @@ class BitmovinManager {
     } else if (data.height <= 720) {
       resolution = 'HD 720p';
     } else if (data.height <= 1080) {
-        resolution = 'HD 1080p';
+      resolution = 'HD 1080p';
     }
 
     let label = `${resolution} (${bitrate})`;
     return label;
   }
 
+  showStandbyMessaging() {
+    this.bitmovinPlayer.pause();
+    this.standbyElm.style.opacity = 1;
+    this.standbyElm.style.zIndex = 10;
+  }
+
+  hideStandbyMessaging() {
+    this.bitmovinPlayer.play();
+    this.standbyElm.style.opacity = 0;
+    this.standbyElm.style.zIndex = 0;
+  }
+
   calculateStreamElapsed() {
-    this.currentStreamStart = new Date(this.countdown.currentEvent.start);
-    this.now = new Date();
+    this.currentStreamStart = moment.tz(this.countdown.currentEvent.start, this.timezoneStr);
+    this.now = moment.tz(this.timezoneStr);
     this.timeElapsed = (this.now - this.currentStreamStart) / 1000;
     return this.timeElapsed;
   }
 
   restartVideo() {
-    this.seekTo(0,0);
+    this.hideStandbyMessaging();
+    this.seekTo(0, 0);
   }
 
   onUnmute() {
