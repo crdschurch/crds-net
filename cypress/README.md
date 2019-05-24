@@ -30,6 +30,7 @@ Environment variables to set in Travis.ci:
 ```bash
 cypressDashboard #Cypress's dashboard record key for this repo
 FRED_FLINTSTONE_PW
+parallelization_level # Options are no-parallel, 2x-parallel, 3x-parallel, 4x-parallel
 ```
 
 ## Run Locally
