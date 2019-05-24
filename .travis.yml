@@ -13,6 +13,8 @@ defaults: &defaults
 jobs:
   include:
     - stage: test
+      env:
+        - PARALLEL_LEVEL=noParallel
       <<: *defaults
     # we have multiple jobs to execute using just a single stage
     # but we can pass group name via environment variable to Cypress test runner
