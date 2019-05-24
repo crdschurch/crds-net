@@ -7,41 +7,20 @@ cache:
     - ~/.cache
 install:
     - npm ci
-defaults: &defaults
+defaults: &runCypress
   script:
     - "$(npm bin)/cypress run --record --key $cypressDashboard --parallel --group crds-net-parallel -c baseUrl=$baseURL --env CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ENV=$contentfulEnv,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,CRDS_MEDIA_ENDPOINT=$mediaEndpoint,CRDS_ENV=$crdsEnv,FRED_FLINTSTONE_PW=$FRED_FLINTSTONE_PW"
 jobs:
   include:
+  # run tests in parallel by including several test jobs with same "stage" name
     - stage: test
-      <<: *defaults
+      <<: *runCypress
     - stage: test
-      <<: *defaults
-    # we have multiple jobs to execute using just a single stage
-    # but we can pass group name via environment variable to Cypress test runner
-    # - stage: test
-    #   env:
-    #     - parallelization_level=no-parallel
-    #     - parallelization_level=2x-parallel
-    #     - parallelization_level=3x-parallel
-    #     - parallelization_level=4x-parallel
-    #   <<: *defaults
-    # # run tests in parallel by including several test jobs with same name variable
-    # - stage: test
-    #   env:
-    #     - parallelization_level=2x-parallel
-    #     - parallelization_level=3x-parallel
-    #     - parallelization_level=4x-parallel
-    #   <<: *defaults
-    # - stage: test
-    #   env:
-    #     - parallelization_level=3x-parallel
-    #     - parallelization_level=4x-parallel
-    #   <<: *defaults
-    # - stage: test
-    #   env:
-    #     - parallelization_level=4x-parallel
-    #     - parallelization_level=4x-parallel
-    #   <<: *defaults
+      <<: *runCypress
+    - stage: test
+      <<: *runCypress
+    - stage: test
+      <<: *runCypress
 notifications:
   slack:
     rooms:
