@@ -9,12 +9,12 @@ install:
     - npm ci
 defaults: &defaults
   script:
-    - "$(npm bin)/cypress run --record --key $cypressDashboard -c baseUrl=$baseURL --env CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ENV=$contentfulEnv,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,CRDS_MEDIA_ENDPOINT=$mediaEndpoint,CRDS_ENV=$crdsEnv,FRED_FLINTSTONE_PW=$FRED_FLINTSTONE_PW"
+    - npm run cy:run -- --record --key $cypressDashboard -c baseUrl=$baseURL --env CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ENV=$contentfulEnv,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,CRDS_MEDIA_ENDPOINT=$mediaEndpoint,CRDS_ENV=$crdsEnv,FRED_FLINTSTONE_PW=$FRED_FLINTSTONE_PW
 jobs:
   include:
     - stage: test
-      env:
-        - PARALLEL_LEVEL=noParallel
+      <<: *defaults
+    - stage: test
       <<: *defaults
     # we have multiple jobs to execute using just a single stage
     # but we can pass group name via environment variable to Cypress test runner
