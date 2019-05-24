@@ -21,6 +21,14 @@ jobs:
       <<: *runCypress
     - stage: test
       <<: *runCypress
+    - stage: test
+      <<: *runCypress
+    - stage: test
+      <<: *runCypress
+    - stage: test
+      <<: *runCypress
+    - stage: test
+      <<: *runCypress
 notifications:
   slack:
     template:
