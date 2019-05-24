@@ -12,7 +12,7 @@ defaults: &runCypress
     - "$(npm bin)/cypress run --record --key $cypressDashboard --parallel --group crds-net-parallel -c baseUrl=$baseURL --env CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ENV=$contentfulEnv,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,CRDS_MEDIA_ENDPOINT=$mediaEndpoint,CRDS_ENV=$crdsEnv,FRED_FLINTSTONE_PW=$FRED_FLINTSTONE_PW"
 jobs:
   include:
-  # run tests in parallel by including several test jobs with same "stage" name
+  # run tests in parallel by including several jobs with same "stage" name
     - stage: test
       <<: *runCypress
     - stage: test
@@ -28,3 +28,5 @@ notifications:
     on_success: always
     on_failure: always
     on_pull_requests: false
+    template:
+      - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{elapsed_time}"
