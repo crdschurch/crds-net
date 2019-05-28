@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-crds.git
-  revision: 85c709b5af7c826e93a178d3c480b41014024226
+  revision: a0b4293dea94ea0ea779276e108d07a4102b4c04
   branch: feature/US17295-jekyll-updates
   specs:
     jekyll-crds (1.1.0)
