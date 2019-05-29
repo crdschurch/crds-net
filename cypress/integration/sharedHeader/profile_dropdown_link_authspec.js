@@ -2,41 +2,45 @@ import { RouteValidator } from '../../support/RouteValidator';
 import { fred_flintstone } from '../../fixtures/test_users';
 import { ProfileMenu } from './support/ProfileMenu';
 
+const profileLinksMatchURL = [{
+  name: 'MyProfile',
+  elementRef: '#crds-shared-header-profile',
+  url: `${Cypress.config().baseUrl}/profile/personal`
+}, {
+  name: 'MyTrips',
+  elementRef: '#crds-shared-header-trips',
+  url: `${Cypress.config().baseUrl}/trips/mytrips`
+}, {
+  name: 'MyCamps',
+  elementRef: '#crds-shared-header-camps',
+  url: `${Cypress.config().baseUrl}/mycamps`
+}, {
+  name: 'Childcare',
+  elementRef: '#crds-shared-header-childcare',
+  url: `${Cypress.config().baseUrl}/childcare`
+}];
+
+const profileLinksContainURL =[{
+  name: 'SignUpToServe',
+  elementRef: '#crds-shared-header-serve',
+  url: 'serve.crossroads.net/groups/week-of'
+}, {
+  name: 'MyGroups',
+  elementRef: '#crds-shared-header-groups',
+  url: 'connect'
+}];
+
 describe('As a signed-in user, the links in the My Profile menu should load pages', function () {
-  const profileLinksMatchURL = [{
-    name: 'MyProfile',
-    elementRef: '#crds-shared-header-profile',
-    url: `${Cypress.config().baseUrl}/profile/personal`
-  }, {
-    name: 'MyTrips',
-    elementRef: '#crds-shared-header-trips',
-    url: `${Cypress.config().baseUrl}/trips/mytrips`
-  }, {
-    name: 'MyCamps',
-    elementRef: '#crds-shared-header-camps',
-    url: `${Cypress.config().baseUrl}/mycamps`
-  }, {
-    name: 'Childcare',
-    elementRef: '#crds-shared-header-childcare',
-    url: `${Cypress.config().baseUrl}/childcare`
-  }];
-
-  const profileLinksContainURL =[{
-    name: 'SignUpToServe',
-    elementRef: '#crds-shared-header-serve',
-    url: 'serve.crossroads.net/groups/week-of'
-  }, {
-    name: 'MyGroups',
-    elementRef: '#crds-shared-header-groups',
-    url: 'connect'
-  }];
-
   let profileMenu;
-  beforeEach(function () {
+  before(function () {
     cy.login(fred_flintstone.email, fred_flintstone.password);
+  });
 
-    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
-    cy.visit('/');
+  beforeEach(function () {
+    cy.stayLoggedIn();
+
+    cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
+    cy.visit('/prayer');
 
     profileMenu = new ProfileMenu();
     profileMenu.forceOpen();

@@ -32,6 +32,8 @@ exclude:
   - buildlog.txt
 
 contentful:
+  article:
+    query: "fields.exclude_from_crossroads[ne]=true"
   series:
     limit: 10
     order: "published_at desc"
@@ -42,14 +44,16 @@ contentful:
     query: fields.site=net
     map:
       page_path: path
-  exclude:
-    - album
-    - migration
-    - sign_off
   content_block:
     query: fields.category=common
     map:
       content_block: content
+  video:
+    query: "fields.exclude_from_crossroads[ne]=true"
+  exclude:
+    - album
+    - migration
+    - sign_off
 
 collections_dir: collections
 
@@ -131,3 +135,4 @@ image_sizes:
   three_fourths: "(min-width: 992px) 75vw, (min-width: 0px) 100vw"
 
 typekit_url: https://use.typekit.net/ccb3vpa.css
+typekit_scss: _assets/stylesheets/_fonts.scss
