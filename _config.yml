@@ -9,6 +9,7 @@ image: "https://crds-cms-uploads.imgix.net/content/images/cr-social-sharing-stil
 permalink: pretty
 markdown: kramdown
 
+
 include:
   - .aws
   - _pages
