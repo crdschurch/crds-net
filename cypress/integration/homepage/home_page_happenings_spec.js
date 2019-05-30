@@ -13,7 +13,7 @@ function selectFilter(audience) {
 
 describe('Given I have not applied a filter to the Happenings section on the Homepage:', function () {
   before(function () {
-    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
+    cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/');
   });
 
@@ -40,7 +40,7 @@ describe('Given I have not applied a filter to the Happenings section on the Hom
 
 describe('Given I want to filter the Happenings section on the Homepage:', function () {
   before(function () {
-    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
+    cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/');
   });
 
