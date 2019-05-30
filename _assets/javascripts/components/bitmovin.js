@@ -3,6 +3,7 @@
 class BitmovinManager {
   constructor(bitmovinConfig) {
     this.isCard = bitmovinConfig.isCard;
+    this.isStream = bitmovinConfig.isStream;
     this.videoDuration = Number(bitmovinConfig.duration) * 1000 ;
     this.timezoneStr = 'America/New_York';
     this.container = document.getElementById(`${bitmovinConfig.id}`);
@@ -17,6 +18,9 @@ class BitmovinManager {
         key: '01e90136-7623-4df4-b0d9-a3d975b00258',
         title: bitmovinConfig.title
       },
+      ui: {
+        playbackSpeedSelectionEnabled: true
+      },
       events: {
         onPlaybackFinished: () => {
           this.showStandbyMessaging();
@@ -25,7 +29,11 @@ class BitmovinManager {
     };
 
     if (this.getHideUI()) {
-      this.playerConfig = { ...this.playerConfig, ui: false };
+      this.playerConfig.ui = false;
+    } 
+    
+    if (this.getHidePlaybackSpeed()) {
+      this.playerConfig.ui.playbackSpeedSelectionEnabled = false;
     }
 
     this.countdown.streamStatusPromise.then(events => {
@@ -47,13 +55,15 @@ class BitmovinManager {
         }
       };
 
-      this.events = events.data.broadcasts;
-      this.scheduleFutureEvents();
-
-      this.nextStartTime = moment.tz(this.countdown.nextEvent.start, this.timezoneStr).calendar();
-      this.standbyElm = document.getElementById('standby-message');
-      this.standbyElm.querySelector('#standby-time').innerText = `The next event starts at ${this.nextStartTime}`;
-      
+      if (this.isStream) {
+        console.log(this.isStream);
+        this.events = events.data.broadcasts;
+        this.scheduleFutureEvents();
+        this.nextStartTime = moment.tz(this.countdown.nextEvent.start, this.timezoneStr).calendar();
+        this.standbyElm = document.getElementById('standby-message');
+        this.standbyElm.querySelector('#standby-time').innerText = `The next event starts at ${this.nextStartTime}`;
+      }
+            
       this.manuallyTurnedOnCC = false;
       if (!this.isCard) this.createPlayer();
     });
@@ -75,10 +85,8 @@ class BitmovinManager {
         console.log(e);
         const now = moment.tz(this.timezoneStr);
         const timeTilEventStart = moment.tz(e.start, this.timezoneStr) - now;
-        const videoEndTime = moment.tz(e.start, this.timezoneStr) + this.videoDuration; 
-        console.log(videoEndTime);
+        const videoEndTime = moment.tz(e.start, this.timezoneStr) + this.videoDuration;
         const timeTilVideoEnd = videoEndTime - moment.tz(this.timezoneStr);
-        console.log(timeTilVideoEnd)
         if (moment.tz(e.start, this.timezoneStr) > moment.tz(this.timezoneStr)) {
           setTimeout(() => {
             this.restartVideo();
@@ -93,6 +101,10 @@ class BitmovinManager {
 
   getHideUI() {
     return this.isCard;
+  }
+
+  getHidePlaybackSpeed() {
+    return this.isStream;
   }
 
   getAutoPlay() {
