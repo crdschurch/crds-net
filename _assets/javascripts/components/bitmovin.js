@@ -56,7 +56,6 @@ class BitmovinManager {
       };
 
       if (this.isStream) {
-        console.log(this.isStream);
         this.events = events.data.broadcasts;
         this.scheduleFutureEvents();
         this.nextStartTime = moment.tz(this.countdown.nextEvent.start, this.timezoneStr).calendar();
@@ -82,7 +81,6 @@ class BitmovinManager {
   scheduleFutureEvents() {
     this.events
      .forEach(e => {
-        console.log(e);
         const now = moment.tz(this.timezoneStr);
         const timeTilEventStart = moment.tz(e.start, this.timezoneStr) - now;
         const videoEndTime = moment.tz(e.start, this.timezoneStr) + this.videoDuration;
