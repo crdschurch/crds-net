@@ -30,6 +30,7 @@ exclude:
   - README.md
   - vendor
   - buildlog.txt
+  - collections
 
 contentful:
   article:
