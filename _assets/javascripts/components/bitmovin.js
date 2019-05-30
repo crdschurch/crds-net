@@ -176,6 +176,8 @@ class BitmovinManager {
 
     if (data.height <= 240) {
       resolution = '240p';
+    } else if (data.height <= 360) {
+      resolution = '360p';
     } else if (data.height <= 480) {
       resolution = 'SD 480p';
     } else if (data.height <= 720) {
