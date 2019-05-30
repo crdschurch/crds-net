@@ -11,8 +11,8 @@ markdown: kramdown
 
 include:
   - .aws
+  - _redirects
   - _pages
-
 
 exclude:
   - bin
