@@ -53,10 +53,10 @@ paginate:
           <div class="soft-quarter-top font-size-base flush-bottom" data-automation-id="live-message-description">
             Join the live stream hourly, on the hour, from 8am-10pm (EST).
           </div>
-          <a href="/live/stream?autoplay=true&sound=11" class="btn btn-primary btn-sm push-half-top"
+          <a href="{{ '/live/stream' | media_url }}" class="btn btn-primary btn-sm push-half-top"
             data-automation-id="live-watch-message-button">Watch now</a>
         </div>
-        <a href="/live/stream/" class="push-half-bottom" data-automation-id="live-message-video">
+        <a href="{{ '/live/stream' | media_url }}" class="push-half-bottom" data-automation-id="live-message-video">
           <img class="img-responsive" src="//crds-cms-uploads.imgix.net/content/images/crossroads-live-stream-CTA3.jpg"
             data-optimize-img />
           <p class="live-cta bg-charcoal display-table soft-half-sides soft-quarter-ends text-white"><span
