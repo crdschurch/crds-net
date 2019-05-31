@@ -39,7 +39,8 @@ module.exports = [
       "components/simple-fred",
       "components/smart-banner",
       "components/status-message",
-      "components/global"
+      "components/global",
+      "components/youtube"
     ]
   },
   {
