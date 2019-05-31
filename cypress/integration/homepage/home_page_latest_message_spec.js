@@ -1,6 +1,10 @@
 import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
 import { MessageQueryManager } from '../../Contentful/QueryManagers/MessageQueryManager';
 
+function getAutoplayUrl(url){
+  return `${url}?autoPlay=true&sound=11`;
+}
+
 describe('Testing the Current Message on the Homepage:', function () {
   let currentMessage;
   before(function () {
@@ -17,7 +21,7 @@ describe('Testing the Current Message on the Homepage:', function () {
   it('Current Message title, description, and image should match Contentful', function () {
     cy.get('[data-automation-id="message-title"]').as('title');
     cy.get('@title').text().should('contain', currentMessage.title.text);
-    cy.get('@title').should('have.attr', 'href', currentMessage.URL.relative);
+    cy.get('@title').should('have.attr', 'href', getAutoplayUrl(currentMessage.URL.relative));
 
     cy.get('[data-automation-id="message-description"]').as('description');
     cy.get('@description').normalizedText().then(elementText =>{
@@ -25,7 +29,7 @@ describe('Testing the Current Message on the Homepage:', function () {
     });
 
     cy.get('[data-automation-id="message-video"]').as('videoImagelink');
-    cy.get('@videoImagelink').should('have.attr', 'href', currentMessage.URL.relative);
+    cy.get('@videoImagelink').should('have.attr', 'href', getAutoplayUrl(currentMessage.URL.relative));
 
     cy.get('@videoImagelink').find('img').as('videoImage');
     new ImageDisplayValidator('videoImage', false).shouldHaveImgixImage(currentMessage.image);
@@ -34,6 +38,6 @@ describe('Testing the Current Message on the Homepage:', function () {
   it('"View latest now" button should link to the current message', function () {
     cy.get('[data-automation-id="watch-message-button"]').as('watchMessageButton');
     cy.get('@watchMessageButton').should('be.visible');
-    cy.get('@watchMessageButton').should('have.attr', 'href', currentMessage.URL.relative);
+    cy.get('@watchMessageButton').should('have.attr', 'href', getAutoplayUrl(currentMessage.URL.relative));
   });
 });
