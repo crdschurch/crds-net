@@ -1,8 +1,15 @@
 // detect android OS
+var ua = window.navigator.userAgent;
 var isAndroid = /(android)/i.test(navigator.userAgent);
-var isIos = /(iphone)/i.test(navigator.userAgent);
+var isiOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+var isWebkit = !!ua.match(/WebKit/i);
 var isChrome = /(CriOS)/i.test(navigator.userAgent);
-var isSafari = /(safari)/i.test(navigator.userAgent);
+var isSafari = isiOS && isWebkit && !ua.match(/CriOS/i);
+
+console.log(`is Android?: ${isAndroid}`)
+console.log(`is iOS?: ${isiOS}`)
+console.log(`is Chrome?: ${isChrome}`)
+console.log(`is Safari?: ${isSafari}`)
 
 if (isAndroid || (isIos && isChrome) || (isIos && !isSafari)) {
   // call smart-banner
