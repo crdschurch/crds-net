@@ -58,9 +58,9 @@ class BitmovinManager {
       if (this.isStream) {
         this.events = events.data.broadcasts;
         this.scheduleFutureEvents();
-        this.nextStartTime = moment.tz(this.countdown.nextEvent.start, this.timezoneStr).calendar();
+        this.nextStartTime = moment.tz(this.countdown.nextEvent.start, this.timezoneStr).format();
         this.standbyElm = document.getElementById('standby-message');
-        this.standbyElm.querySelector('#standby-time').innerText = `The next event starts at ${this.nextStartTime}`;
+        this.standbyElm.querySelector('#standby-time').innerText = `The next event starts at ${moment(this.nextStartTime).calendar()}`;
       }
             
       this.manuallyTurnedOnCC = false;
@@ -179,7 +179,7 @@ class BitmovinManager {
     } else if (data.height <= 360) {
       resolution = '360p';
     } else if (data.height <= 480) {
-      resolution = 'SD 480p';
+      resolution = '480p';
     } else if (data.height <= 720) {
       resolution = 'HD 720p';
     } else if (data.height <= 1080) {
