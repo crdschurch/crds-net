@@ -12,10 +12,13 @@
 {% endcase %}
 
 {% assign url = item.url %}
-{% unless url %}
+
+{% if url %}
+  {% assign url = item | media_url %}
+{% else %}
   {% assign doc = item | get_doc %}
   {% assign url = doc.url %}
-{% endunless %}
+{% endif %}
 
 <a href="{{ url }}" class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
   <div class="bg-overlay"></div>
