@@ -1,0 +1,64 @@
+{
+  "success": true,
+  "data": {
+      "broadcasts": [
+          {
+              "eventId": 1552113,
+              "scheduleId": 2106,
+              "startTime": "Saturday 06/08/19 01:45:00 PM",
+              "start": "2019-06-08 13:45:00",
+              "end": "2019-06-08 14:28:00",
+              "title": "Run Through",
+              "type": "R",
+              "skip": 0,
+              "private": 0,
+              "exclude": 0,
+              "facebookLiveAccountTitle": null,
+              "vimeo": 0,
+              "youtubeBroadcastId": null,
+              "youtubePersistent": 0,
+              "restreamUserId": "",
+              "countdown_text": "June 8th @ 1:45pm EDT",
+              "timezone": "America/New_York"
+          }
+      ],
+      "current": {
+        "eventId": 1552113,
+        "scheduleId": 2106,
+        "startTime": "Tuesday 06/04/19 04:45:00 PM",
+        "start": "2019-06-04 16:45:00",
+        "end": "2019-06-04 18:28:00",
+        "title": "Run Through",
+        "type": "R",
+        "skip": 0,
+        "private": 0,
+        "exclude": 0,
+        "facebookLiveAccountTitle": null,
+        "vimeo": 0,
+        "youtubeBroadcastId": null,
+        "youtubePersistent": 0,
+        "restreamUserId": "",
+        "countdown_text": "June 4th @ 1:45pm EDT",
+        "timezone": "America/New_York"
+    },
+      "next": {
+          "eventId": 1552113,
+          "scheduleId": 2106,
+          "startTime": "Saturday 06/08/19 01:45:00 PM",
+          "start": "2019-06-08 13:45:00",
+          "end": "2019-06-08 14:28:00",
+          "title": "Run Through",
+          "type": "R",
+          "skip": 0,
+          "private": 0,
+          "exclude": 0,
+          "facebookLiveAccountTitle": null,
+          "vimeo": 0,
+          "youtubeBroadcastId": null,
+          "youtubePersistent": 0,
+          "restreamUserId": "",
+          "countdown_text": "June 8th @ 1:45pm EDT",
+          "timezone": "America/New_York"
+      }
+  }
+}
