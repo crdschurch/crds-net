@@ -109,5 +109,17 @@ module.exports = [
       "vendor/scrollVert.min",
       "vendor/events.min"
     ]
-  }
+  },
+  {
+    name: 'bitmovin',
+    files: [
+      'components/bitmovin',
+    ],
+  },
+  {
+    name: 'autoplay',
+    files: [
+      'components/autoplay-controller',
+    ],
+  },
 ];

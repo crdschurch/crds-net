@@ -192,7 +192,7 @@ As with most crdschurch repos, local feature development should be done against 
 5. After a review, your work will be merged into `development`
    After these first 5 steps, there are 2 deployment possibilities: Standard or Expedited. See below and choose the right choice for your work.
 
-- Standard: Wait until the normal production deploy which takes place every 2 weeks on Wednesday afternoon. This is the best choice and should be used unless the work is extremely time sensative.
+- Standard: Wait until the normal production deploy which takes place every 2 weeks on Wednesday afternoon. This is the best choice and should be used unless the work is extremely time sensitive.
 - Expedited: Sometimes things just need to go to `prod` immediately. If this is the case follow the steps listed [in this doc](https://slack-files.com/T02C3F91X-FD2HHNMT7-c6400a04c1) or reachout to a Bearsharks team member.
 
 ## License
