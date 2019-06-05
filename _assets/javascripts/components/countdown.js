@@ -236,10 +236,9 @@ CRDS.Countdown = class Countdown {
   }
 
   static convertDate(dateString, timeZone) {
-    // Here we assemble the array values to: M/D/YYYY HH:MM:SS TZ
-    // We do this because this is the most commonly accepted format by our support
-    // browsers
-    const formattedDateString = `${dateString} ${timeZone}`;
+    // replace - with / for safari
+    const formattedDateString = `${dateString.replace(/-/g, "/")} ${timeZone}`;
+    console.log(formattedDateString)
     return new Date(formattedDateString);
   }
 
