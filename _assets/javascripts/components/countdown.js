@@ -238,7 +238,6 @@ CRDS.Countdown = class Countdown {
   static convertDate(dateString, timeZone) {
     // replace - with / for safari
     const formattedDateString = `${dateString.replace(/-/g, "/")} ${timeZone}`;
-    console.log(formattedDateString)
     return new Date(formattedDateString);
   }
 

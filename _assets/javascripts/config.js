@@ -96,9 +96,11 @@ module.exports = [
   },
   {
     name: 'bitmovin',
-    files: [
+    deps: [
       "vendor/moment-2.24.min",
       "vendor/moment-timezone-0.5.25.min",
+    ],
+    files: [
       "components/bitmovin"
     ],
   },

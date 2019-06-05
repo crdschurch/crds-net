@@ -53,6 +53,7 @@ class BitmovinManager {
     }
 
     createSource(bitmovinConfig) {
+
         this.source = {
             title: bitmovinConfig.title,
             //  description: desc,
@@ -140,7 +141,7 @@ class BitmovinManager {
                 startTime = min * 60 + sec;
             }
         }
-
+        console.log(startTime);
         return startTime;
     }
 
