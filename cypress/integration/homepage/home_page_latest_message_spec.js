@@ -9,8 +9,8 @@ describe('Testing the Current Message on the Homepage:', function () {
   let currentMessage;
   before(function () {
     const mqm = new MessageQueryManager();
-    mqm.fetchLatestMessage().then(() =>{
-      currentMessage = mqm.queryResult;
+    mqm.fetchLatestMessage().then((results) =>{
+      currentMessage = results;
       currentMessage.fetchLinkedResources();
     });
 

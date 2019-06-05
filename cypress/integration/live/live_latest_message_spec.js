@@ -5,8 +5,8 @@ describe('Testing the Past Weekends section on the Live page:', function () {
   let recentMessages;
   before(function () {
     const mqm = new MessageQueryManager();
-    mqm.fetchRecentMessages(4).then(() => {
-      recentMessages = mqm.queryResult;
+    mqm.fetchRecentMessages(4).then((results) => {
+      recentMessages = results;
       recentMessages.forEach(m => m.fetchLinkedResources());
     });
     cy.visit('/live');
@@ -46,8 +46,8 @@ describe('Testing the "Watch This Weeks Service" button', function () {
   let currentMessage;
   before(function () {
     const mqm = new MessageQueryManager();
-    mqm.fetchLatestMessage().then(() => {
-      currentMessage = mqm.queryResult;
+    mqm.fetchLatestMessage().then((results) => {
+      currentMessage = results;
       currentMessage.fetchLinkedResources();
     });
   });
