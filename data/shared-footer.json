@@ -1,0 +1,189 @@
+[
+  {
+    "title": "One Church, Many Locations",
+    "path": "/locations/",
+    "automation-id": "ftr-one-church-many-locations",
+    "children": [
+      {
+        "title": "Cincinnati Area",
+        "children": [
+          {
+            "title": "East Side",
+            "path": "/eastside/",
+            "automation-id": "ftr-east-side"
+          },
+          {
+            "title": "Florence ",
+            "path": "/florence/",
+            "automation-id": "ftr-florence"
+          },
+          {
+            "title": "Mason ",
+            "path": "/mason/",
+            "automation-id": "ftr-mason"
+          },
+          {
+            "title": "Oakley",
+            "path": "/oakley/",
+            "automation-id": "ftr-oakley"
+          },
+          {
+            "title": "Oxford ",
+            "path": "/oxford/",
+            "automation-id": "ftr-oxford"
+          },
+          {
+            "title": "Uptown",
+            "path": "/uptown/",
+            "automation-id": "ftr-uptown"
+          },
+          {
+            "title": "West Side",
+            "path": "/westside/",
+            "automation-id": "ftr-west-side"
+          }
+        ]
+      },
+      {
+        "title": "Central Kentucky Area",
+        "children": [
+          {
+            "title": "Lexington",
+            "path": "/lexington/",
+            "automation-id": "ftr-lexington"
+          },
+          {
+            "title": "Downtown Lexington",
+            "path": "/downtownlex/",
+            "automation-id": "ftr-downtown-lexington"
+          },
+          {
+            "title": "Georgetown",
+            "path": "/georgetown/",
+            "automation-id": "ftr-georgetown"
+          },
+          {
+            "title": "Richmond",
+            "path": "/richmond/",
+            "automation-id": "ftr-richmond"
+          }
+        ]
+      },
+      {
+        "children": [
+          {
+            "title": "Anywhere",
+            "path": "/live/",
+            "automation-id": "ftr-anywhere"
+          },
+          {
+            "title": "Cleveland",
+            "path": "/cleveland/",
+            "automation-id": "ftr-cleveland"
+          },
+          {
+            "title": "Columbus",
+            "path": "/columbus/",
+            "automation-id": "ftr-columbus"
+          },
+          {
+            "title": "Dayton",
+            "path": "/dayton/",
+            "automation-id": "ftr-dayton"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "I’M IN Campaign",
+    "path": "http://imincampaign.net/",
+    "automation-id": "ftr-header-im-in-campaign",
+    "children": [
+      {
+        "title": "I'M IN questions",
+        "path": "mailto:campaign@crossroads.net",
+        "automation-id": "ftr-im-in-questions"
+      },
+      {
+        "title": "Campaign Status",
+        "path": "/leaveyourmark",
+        "automation-id": "ftr-campaign-status"
+      }
+    ]
+  },
+  {
+    "title": "Contact",
+    "children": [
+      {
+        "title": "Prayer Requests",
+        "path": "/prayer/",
+        "automation-id": "ftr-prayer-requests"
+      },
+      {
+        "title": "Share Your Story",
+        "path": "/shareyourstory/",
+        "automation-id": "ftr-share-your-story"
+      },
+      {
+        "title": "Contact Us",
+        "path": "/contactus/",
+        "automation-id": "ftr-contact-us"
+      },
+      {
+        "title": "Privacy Policy",
+        "path": "/privacypolicy/",
+        "automation-id": "ftr-privacy-policy"
+      }
+    ]
+  },
+  {
+    "title": "Resources",
+    "children": [
+      {
+        "title": "In The News",
+        "path": "/inthenews/",
+        "automation-id": "ftr-in-the-news"
+      },
+      {
+        "title": "Church Resources",
+        "path": "/churchresources/",
+        "automation-id": "ftr-church-resources"
+      },
+      {
+        "title": "Get the Crossroads App",
+        "path": "/app/",
+        "automation-id": "ftr-get-the-Crossroads-app"
+      }
+    ]
+  },
+  {
+    "class": "social-icons",
+    "children": [
+      {
+        "title": "twitter account",
+        "path": "https://twitter.com/crdschurch/",
+        "img": "//d1tmclqz61gqwd.cloudfront.net/images/twitter.svg",
+        "automation-id": "ftr-twitter-account"
+      },
+      {
+        "title": "facebook account",
+        "path": "https://www.facebook.com/crdschurch/?_rdr=p",
+        "img": "//d1tmclqz61gqwd.cloudfront.net/images/facebook.svg",
+        "automation-id": "ftr-facebook-account"
+      },
+      {
+        "title": "youtube account",
+        "path": "https://www.youtube.com/user/crdschurch",
+        "img": "//d1tmclqz61gqwd.cloudfront.net/images/youtube.svg",
+        "automation-id": "ftr-youtube-account"
+      },
+      {
+        "title": "instagram account",
+        "path": "https://www.instagram.com/crdschurch/",
+        "img": "//d1tmclqz61gqwd.cloudfront.net/images/instagram.svg",
+        "automation-id": "ftr-instagram-account"
+      }
+    ]
+  }
+]
