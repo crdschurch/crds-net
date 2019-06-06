@@ -41,9 +41,7 @@ class BitmovinManager {
                 this.createSource(bitmovinConfig);
                 this.events = events.data.broadcasts;
                 this.scheduleFutureEvents();
-                this.nextStartTime = moment.tz(this.countdown.nextEvent.start, this.timezoneStr).format();
                 this.standbyElm = document.getElementById('standby-message');
-                this.standbyElm.querySelector('#standby-time').innerText = `The next event starts at ${moment(this.nextStartTime).calendar()}`;
                 this.manuallyTurnedOnCC = false;
                 if (!this.isCard) this.createPlayer();
             });
