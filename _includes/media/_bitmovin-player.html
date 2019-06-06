@@ -1,12 +1,8 @@
 <div id="{% if include.isCard %}bitmovinPlayer{{video.slug | camelcase }}{% else %}VideoManager{% endif %}"
     data-video-player class="embed-responsive embed-responsive-16by9">
+    {% assign standby = site.content_blocks | where: "slug", "Live-Stream-Standby" | first %}
     {% if include.isStream %}
-    <div class="d-flex align-items-center justify-content-center" id="standby-message">
-        <div class="text-center">
-            <h1 class="component-header">Please Standby</h1>
-            <h4 id="standby-time"></h4>
-        </div>
-    </div>
+        {{ standby.content_block }}
     {% endif %}
 </div>
 <script src="https://bitmovin-a.akamaihd.net/bitmovin-player/stable/8.4.0/bitmovinplayer.js"></script>
