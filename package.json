@@ -26,6 +26,7 @@
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "@cypress/browserify-preprocessor": "^2.0.0",
+    "bitmovin-javascript": "^2.22.0",
     "bootstrap-sass": "^3.4.0",
     "contentful-cli": "^0.26.5",
     "crds-cypress-tools": "^1.3.0",
