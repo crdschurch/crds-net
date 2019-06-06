@@ -95,7 +95,7 @@ class BitmovinManager {
                 if (moment.tz(e.start, this.timezoneStr) > moment.tz(this.timezoneStr)) {
                     console.log('setting timeout for restart', timeTilEventStart)
                     setTimeout(() => {
-                        console.log('restart event fired')
+                        console.log('restart event fired ')
                         this.restartVideo();
                     }, timeTilEventStart);
                 }
