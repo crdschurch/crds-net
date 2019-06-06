@@ -87,6 +87,7 @@ class BitmovinManager {
     }
 
     scheduleFutureEvents() {
+        console.log(this.events);
         this.events
             .forEach(e => {
                 const now = moment.tz(this.timezoneStr);
@@ -94,12 +95,16 @@ class BitmovinManager {
                 const videoEndTime = moment.tz(e.start, this.timezoneStr) + this.videoDuration;
                 const timeTilVideoEnd = videoEndTime - moment.tz(this.timezoneStr);
                 if (moment.tz(e.start, this.timezoneStr) > moment.tz(this.timezoneStr)) {
+                    console.log('setting timeout for restart', timeTilEventStart)
                     setTimeout(() => {
+                        console.log('restart event fired')
                         this.restartVideo();
                     }, timeTilEventStart);
                 }
 
+                console.log('setting timeout for standby', timeTilVideoEnd)
                 setTimeout(() => {
+                    console.log('standby event fired')
                     this.showStandbyMessaging();
                 }, timeTilVideoEnd);
             });
@@ -114,7 +119,7 @@ class BitmovinManager {
     }
 
     getAutoPlay() {
-        if (this.getStartTime() > 0 && !this.currentHasEnded()) return true;
+        if (this.isStream || (this.getStartTime() > 0 && !this.currentHasEnded())) return true;
         let urlParams = new URLSearchParams(window.location.search);
         let autoPlay = urlParams.has('autoplay')
             ? Boolean(urlParams.get('autoplay'))
@@ -132,6 +137,7 @@ class BitmovinManager {
     getStartTime() {
         let startTime = 0;
         if (this.isStream && this.countdown.currentEvent && !this.currentHasEnded()) {
+            console.log(this.isStream, this.countdown.currentEvent, !this.currentHasEnded())
             startTime = this.calculateStreamElapsed();
         } else {
             let urlParams = new URLSearchParams(window.location.search);
@@ -141,7 +147,6 @@ class BitmovinManager {
                 startTime = min * 60 + sec;
             }
         }
-        console.log(startTime);
         return startTime;
     }
 
