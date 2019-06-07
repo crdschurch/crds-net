@@ -4,7 +4,7 @@
 .page--live-stream {
   .crds-shared-header .header {
     ul.nav-pills > li:not(.open) {
-      padding: .625rem 0;
+      padding: 0.625rem 0;
 
       > a:not(.cta) {
         color: $cr-white;
@@ -20,7 +20,7 @@
 
       a > svg {
         display: inline-block;
-        margin: 0 .25rem 0 0;
+        margin: 0 0.25rem 0 0;
         vertical-align: middle;
       }
 
@@ -56,7 +56,7 @@
     background-color: $cr-gray-darker;
   }
 
-  [aria-label="carousel-controls"] {
+  [aria-label='carousel-controls'] {
     @media (min-width: $screen-md) {
       visibility: hidden;
     }
@@ -67,6 +67,18 @@
   }
 
   // Bitmovin Live Stream Player
+  .bmpui-ui-seekbar .bmpui-seekbar .bmpui-seekbar-playbackposition,
+  .bmpui-ui-volumeslider .bmpui-seekbar .bmpui-seekbar-playbackposition,
+  .bmpui-ui-volumeslider .bmpui-seekbar .bmpui-seekbar-playbackposition-marker,
+  .bmpui-ui-volumeslider .bmpui-seekbar .bmpui-seekbar-playbackposition {
+    background-color: $cr-cyan;
+  }
+
+  .bmpui-ui-seekbar .bmpui-seekbar .bmpui-seekbar-playbackposition-marker,
+  .bmpui-ui-volumeslider .bmpui-seekbar .bmpui-seekbar-playbackposition-marker {
+    border-color: $cr-cyan;
+  }
+
   .bmpui-ui-seekbar,
   .bmpui-ui-watermark {
     opacity: 0;
@@ -94,7 +106,7 @@
     background-color: $cr-black;
     opacity: 0;
     z-index: 0;
-    transition: .45s all ease-in-out;
+    transition: 0.45s all ease-in-out;
 
     .component-header,
     #standby-time {
