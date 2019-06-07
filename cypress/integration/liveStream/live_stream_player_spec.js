@@ -2,7 +2,7 @@ import { MessageQueryManager } from '../../Contentful/QueryManagers/MessageQuery
 import { AmplitudeEventChecker } from './helpers/AmplitudeEventChecker';
 import { BitmovinPlayer } from './helpers/BitmovinPlayer';
 
-//TODO remove this once new live stream is deployed
+//TODO remove this once US17311 is comitted
 Cypress.config({
   baseUrl: 'https://5cfa5f8b978a0d000a347d13--int-crds-net.netlify.com'
 });
@@ -43,7 +43,7 @@ describe('Tests the /live/stream page displays the expected player', function ()
         expect(manifest.url).to.eq(latestMessage.bitmovinURL.text);
       });
     } else if (latestMessage.youtubeURL.hasValue) {
-      //Uncomment and test when US17317 is committed
+      //TODO Uncomment and test when US17317 is committed
       // cy.get('#js-media-video').as('youtubePlayer').should('be.visible');
       // cy.get('#VideoManager').as('bitmovinPlayer').should('not.exist');
 
@@ -54,7 +54,7 @@ describe('Tests the /live/stream page displays the expected player', function ()
     }
   });
 
-  it.skip('Autoplays the stream muted with subtitles', function () {
+  it('Autoplays the stream muted with subtitles', function () {
     cy.server();
     cy.route('/int/streamSchedule', 'fixture:current_stream_custom.json');
     const ampEvents = new AmplitudeEventChecker();
@@ -63,7 +63,7 @@ describe('Tests the /live/stream page displays the expected player', function ()
     hideRollCall();
 
     if (latestMessage.bitmovinURL.hasValue) {
-      //ampEvents.waitForVideoEvents(['VideoStarted'], latestMessage.bitmovinURL.text, 3); //TODO this doesn't work on previews
+      //ampEvents.waitForVideoEvents(['VideoStarted'], latestMessage.bitmovinURL.text, 3); //TODO Uncomment and test when US17311 is committed
 
       const player = new BitmovinPlayer();
       player.waitUntilBuffered().then(() => {
@@ -71,7 +71,7 @@ describe('Tests the /live/stream page displays the expected player', function ()
         player.verifyPlayerMuted();
       });
     } else if (latestMessage.youtubeURL.hasValue) {
-      //ampEvents.waitForVideoEvents(['VideoStarted'], latestMessage.youtubeURL.text, 3); //TODO this doesn't work on preview branch
+      //ampEvents.waitForVideoEvents(['VideoStarted'], latestMessage.youtubeURL.text, 3); //TODO Uncomment and test when US17311 is committed
     } else {
       assert.isTrue(false, 'Latest message should have a Bitmovin URL or YouTube URL, but it does not');
     }
