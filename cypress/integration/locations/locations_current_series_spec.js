@@ -4,8 +4,8 @@ describe('Testing the Current Series on the a locations page:', function () {
   let currentSeries;
   before(function () {
     const sqm = new SeriesQueryManager();
-    sqm.fetchCurrentSeries().then(() => {
-      currentSeries = sqm.queryResult;
+    sqm.fetchCurrentSeries().then((result) => {
+      currentSeries = result;
     });
   });
 
