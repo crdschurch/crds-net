@@ -135,7 +135,6 @@ class BitmovinManager {
     getStartTime() {
         let startTime = 0;
         if (this.isStream && this.countdown.currentEvent && !this.currentHasEnded()) {
-            console.log(this.isStream, this.countdown.currentEvent, !this.currentHasEnded())
             startTime = this.calculateStreamElapsed();
         } else {
             let urlParams = new URLSearchParams(window.location.search);
