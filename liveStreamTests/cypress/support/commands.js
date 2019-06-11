@@ -26,13 +26,13 @@
 
 Cypress.on('fail', (err, runnable) => {
   sendSlackAlert(err.message);
+  sendEmailAlert(err.message)  ;
   throw err;
 });
 
 export function sendSlackAlert(alertMessage) {
   const slack = require('slack-notify')(Cypress.env('SLACK_WEBHOOK_URL'));
-  slack.alert({
-    'channel': Cypress.env('slack_channel'),
+  const body = {
     'username': 'Live Stream Encoding',
     'attachments': [
       {
@@ -41,9 +41,15 @@ export function sendSlackAlert(alertMessage) {
         'text': alertMessage
       }
     ]
+  };
+
+  let channels = Cypress.env('slack_channel').split(',');
+  channels.forEach(channel => {
+    body.channel = channel;
+    slack.alert(body);
   });
 }
 
-function sendEmailAlert() {
+function sendEmailAlert(alertMessage) {
   //TODO send email on failure
 }

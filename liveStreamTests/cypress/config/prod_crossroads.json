@@ -1,6 +1,6 @@
 {
   "baseUrl": "https://5cfa5f8b978a0d000a347d13--int-crds-net.netlify.com",
   "env": {
-    "slack_channel": "#bearsharktopus"
+    "slack_channel": "#bearsharktopus,#production-support"
   }
 }
