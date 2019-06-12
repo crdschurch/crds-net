@@ -38,10 +38,10 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-crds.git
-  revision: eb672563c61e72e5b2daf0de3c04a0c441b6f772
-  tag: 1.2.0
+  revision: a0e58fe9a16977faa42d468ce833e19d548ab6a3
+  tag: 1.3.0
   specs:
-    jekyll-crds (1.2.0)
+    jekyll-crds (1.3.0)
       activesupport
       httparty
       jekyll
@@ -103,7 +103,7 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
-    hashdiff (0.3.8)
+    hashdiff (0.4.0)
     http (2.2.2)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -133,8 +133,8 @@ GEM
       safe_yaml (~> 1.0)
     jekyll-sass-converter (1.5.2)
       sass (~> 3.4)
-    jekyll-sitemap (1.2.0)
-      jekyll (~> 3.3)
+    jekyll-sitemap (1.3.1)
+      jekyll (>= 3.7, < 5.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
     json (1.8.6)
@@ -163,7 +163,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     public_suffix (3.1.0)
-    rack (2.0.6)
+    rack (2.0.7)
     rake (12.3.2)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
@@ -176,7 +176,7 @@ GEM
       rspec-mocks (~> 3.8.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
-    rspec-expectations (3.8.2)
+    rspec-expectations (3.8.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
     rspec-mocks (3.8.0)
@@ -198,11 +198,11 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
-    vcr (4.0.0)
-    webmock (3.5.1)
+    vcr (5.0.0)
+    webmock (3.6.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
-      hashdiff
+      hashdiff (>= 0.4.0, < 2.0.0)
 
 PLATFORMS
   ruby
