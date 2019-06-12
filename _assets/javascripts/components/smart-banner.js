@@ -1,10 +1,10 @@
 // detect android OS
-var isAndroid = /(android)/i.test(navigator.userAgent);
-var isIos = /(iphone)/i.test(navigator.userAgent);
-var isChrome = /(CriOS)/i.test(navigator.userAgent);
-var isSafari = /(safari)/i.test(navigator.userAgent);
+var ua = window.navigator.userAgent;
+var isiOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+var isWebkit = !!ua.match(/WebKit/i);
+var isSafari = isiOS && isWebkit && !ua.match(/CriOS/i);
 
-if (isAndroid || (isIos && isChrome) || (isIos && !isSafari)) {
+if (!isSafari && window.innerWidth <= 768) {
   // call smart-banner
   new SmartBanner({
     daysHidden: 15,   // days to hide banner after close button is clicked (defaults to 15)
@@ -28,7 +28,8 @@ if (isAndroid || (isIos && isChrome) || (isIos && !isSafari)) {
     // force: 'ios' // Uncomment for platform emulation
   });
 
-  // fire ananlytics track here
-  var cta = document.querySelector('.smartbanner-button');
-  cta.setAttribute('data-track-click', 'smartBannerConversion');  
+  
+  // // fire ananlytics track here
+  // var cta = document.querySelector('.smartbanner-button');
+  // cta.setAttribute('data-track-click', 'smartBannerConversion');  
 }

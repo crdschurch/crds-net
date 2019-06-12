@@ -3,9 +3,10 @@ import { fred_flintstone } from '../../fixtures/test_users';
 import { ProfileMenu } from './support/ProfileMenu';
 
 describe('As a user I should be able to sign in and out through the shared header buttons:', function () {
+  const startingPage = `${Cypress.config().baseUrl}/prayer`;
   beforeEach(function () {
-    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
-    cy.visit('/');
+    cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
+    cy.visit(startingPage);
 
     //Define common buttons
     cy.get('#crds-shared-header-desktop-signin').as('signInButton');
@@ -31,7 +32,7 @@ describe('As a user I should be able to sign in and out through the shared heade
     cy.get('#login-page-password').as('passwordField').type(fred_flintstone.password);
     cy.get('#submit_nav').as('signin').click();
 
-    RouteValidator.pageFoundAndFromNetlify(`${Cypress.config().baseUrl}`);
+    RouteValidator.pageFoundAndFromNetlify(startingPage);
     cy.get('@myProfileIcon').should('be.visible');
   });
 
@@ -47,6 +48,6 @@ describe('As a user I should be able to sign in and out through the shared heade
     RouteValidator.pageShouldNotBe404();
     cy.get('@myProfileIcon').should('not.be.visible');
     cy.get('@signInButton').should('be.visible');
-    RouteValidator.pageFoundAndFromNetlify(`${Cypress.config().baseUrl}`);
+    RouteValidator.pageFoundAndFromNetlify(startingPage);
   });
 });
