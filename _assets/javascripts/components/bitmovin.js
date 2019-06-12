@@ -28,10 +28,6 @@ class BitmovinManager {
             }
         };
 
-        if (this.getHideUI()) {
-            this.playerConfig.ui = false;
-        }
-
         if (this.getHidePlaybackSpeed()) {
             this.playerConfig.ui.playbackSpeedSelectionEnabled = false;
         }
@@ -106,10 +102,6 @@ class BitmovinManager {
                     this.showStandbyMessaging();
                 }, timeTilVideoEnd);
             });
-    }
-
-    getHideUI() {
-        return this.isCard;
     }
 
     getHidePlaybackSpeed() {
