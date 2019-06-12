@@ -6,8 +6,10 @@ class BitmovinManager {
         this.isStream = bitmovinConfig.isStream;
         this.videoDuration = Number(bitmovinConfig.duration) * 1000;
         this.timezoneStr = 'America/New_York';
+        moment.tz.setDefault(this.timezoneStr);
         this.container = document.getElementById(`${bitmovinConfig.id}`);
         this.countdown = new CRDS.Countdown();
+
         this.playerConfig = {
             key: '224f523d-e1ba-4f96-ad4d-96365f461c93',
             playback: {
@@ -35,14 +37,18 @@ class BitmovinManager {
         if (this.isStream) {
             this.countdown.streamStatusPromise.then(events => {
                 this.createSource(bitmovinConfig);
-                this.events = events.data.broadcasts;
-                this.scheduleFutureEvents();
-                this.standbyElm = document.getElementById('standby-message');
-                this.manuallyTurnedOnCC = false;
-                if (!this.isCard) this.createPlayer();
+                this.createPlayer();
+                this.bitmovinPlayer.on('sourceloaded', () => {
+                    this.videoDuration = this.bitmovinPlayer.getDuration() * 1000;
+                    this.events = events.data.broadcasts;
+                    this.scheduleFutureEvents();
+                    this.standbyElm = document.getElementById('standby-message');
+                    this.manuallyTurnedOnCC = false;
+                });
             });
         } else {
             this.createSource(bitmovinConfig);
+            if (!this.isCard) this.createPlayer();
         }
     }
 
@@ -81,24 +87,19 @@ class BitmovinManager {
     }
 
     scheduleFutureEvents() {
-        console.log(this.events);
         this.events
             .forEach(e => {
-                const now = moment.tz(this.timezoneStr);
-                const timeTilEventStart = moment.tz(e.start, this.timezoneStr) - now;
-                const videoEndTime = moment.tz(e.start, this.timezoneStr) + this.videoDuration;
-                const timeTilVideoEnd = videoEndTime - moment.tz(this.timezoneStr);
-                if (moment.tz(e.start, this.timezoneStr) > moment.tz(this.timezoneStr)) {
-                    console.log('setting timeout for restart', timeTilEventStart)
+                const now = moment();
+                const timeTilEventStart = moment(e.start) - now;
+                const videoEndTime = moment(e.start) + this.videoDuration;
+                const timeTilVideoEnd = videoEndTime - now;
+                if (moment(e.start) > now) {
                     setTimeout(() => {
-                        console.log('restart event fired')
                         this.restartVideo();
                     }, timeTilEventStart);
                 }
 
-                console.log('setting timeout for standby', timeTilVideoEnd)
                 setTimeout(() => {
-                    console.log('standby event fired')
                     this.showStandbyMessaging();
                 }, timeTilVideoEnd);
             });
@@ -118,6 +119,7 @@ class BitmovinManager {
     }
 
     getIsMuted() {
+        if(this.isCard) return true;
         let urlParams = new URLSearchParams(window.location.search);
         let sound = urlParams.has('sound') ? parseInt(urlParams.get('sound')) : 0;
         if (sound == 11) return false;
@@ -126,7 +128,7 @@ class BitmovinManager {
 
     getStartTime() {
         let startTime = 0;
-        if (this.isStream && this.countdown.currentEvent && !this.currentHasEnded()) {
+        if (this.isStream && this.countdown.currentEvent) {
             startTime = this.calculateStreamElapsed();
         } else {
             let urlParams = new URLSearchParams(window.location.search);
@@ -137,11 +139,6 @@ class BitmovinManager {
             }
         }
         return startTime;
-    }
-
-    currentHasEnded() {
-        const now = moment.tz(this.timezoneStr);
-        return now - this.currentVideoEndTime > 0 ? true : false;
     }
 
     onPlayerStart() {
@@ -206,8 +203,8 @@ class BitmovinManager {
     }
 
     calculateStreamElapsed() {
-        this.currentStreamStart = moment.tz(this.countdown.currentEvent.start, this.timezoneStr);
-        this.now = moment.tz(this.timezoneStr);
+        this.currentStreamStart = moment(this.countdown.currentEvent.start);
+        this.now = moment();
         this.timeElapsed = (this.now - this.currentStreamStart) / 1000;
         return this.timeElapsed;
     }
