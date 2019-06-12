@@ -14,7 +14,7 @@ module.exports = [
       "vendor/flickity.pkgd.min",
       "vendor/crds-card-carousel-v0.2.2.min",
       "vendor/crds-jumbotron-video-v0.2.1.min",
-      "vendor/crds-livestream-reminder-v0.0.16.min",
+      "vendor/crds-livestream-reminder-v0.0.18.min",
       "vendor/crds-rollcall.min",
       "vendor/crds-status-message-v0.1.3.min",
       "vendor/feature-flags.min",
@@ -39,7 +39,8 @@ module.exports = [
       "components/simple-fred",
       "components/smart-banner",
       "components/status-message",
-      "components/global"
+      "components/global",
+      "components/youtube"
     ]
   },
   {
@@ -94,11 +95,33 @@ module.exports = [
     ]
   },
   {
+    name: 'bitmovin',
+    deps: [
+      "vendor/moment-2.24.min",
+      "vendor/moment-timezone-0.5.25.min",
+    ],
+    files: [
+      "components/bitmovin"
+    ],
+  },
+  {
     name: "events",
     files: [
       "vendor/jquery.cycle2.min",
       "vendor/scrollVert.min",
       "vendor/events.min"
     ]
-  }
+  },
+  {
+    name: 'bitmovin',
+    files: [
+      'components/bitmovin',
+    ],
+  },
+  {
+    name: 'autoplay',
+    files: [
+      'components/autoplay-controller',
+    ],
+  },
 ];
