@@ -30,10 +30,6 @@ class BitmovinManager {
             }
         };
 
-        if (this.getHideUI()) {
-            this.playerConfig.ui = false;
-        }
-
         if (this.getHidePlaybackSpeed()) {
             this.playerConfig.ui.playbackSpeedSelectionEnabled = false;
         }
@@ -109,10 +105,6 @@ class BitmovinManager {
             });
     }
 
-    getHideUI() {
-        return this.isCard;
-    }
-
     getHidePlaybackSpeed() {
         return this.isStream;
     }
@@ -127,6 +119,7 @@ class BitmovinManager {
     }
 
     getIsMuted() {
+        if(this.isCard) return true;
         let urlParams = new URLSearchParams(window.location.search);
         let sound = urlParams.has('sound') ? parseInt(urlParams.get('sound')) : 0;
         if (sound == 11) return false;
