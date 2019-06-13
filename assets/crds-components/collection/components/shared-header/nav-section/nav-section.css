@@ -1,0 +1,81 @@
+nav-section a {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  padding: 15px 20px;
+}
+@media (min-width: 992px) {
+  nav-section a {
+    height: 96px;
+    justify-content: center;
+    margin-bottom: 0;
+    position: relative;
+    width: 86%;
+  }
+}
+nav-section a::after {
+  border-color: transparent transparent transparent #0095d9;
+  border-style: solid;
+  border-width: 63px 0 63px 50px;
+  content: "";
+  height: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  width: 0;
+}
+nav-section a::before {
+  background-color: #0095d9;
+  content: "";
+  display: inline-block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+}
+@media (min-width: 992px) {
+  nav-section a:hover::before {
+    width: 4px;
+  }
+}
+@media (min-width: 992px) {
+  nav-section a.is-active::after {
+    left: 100%;
+    transition: left 0.4s ease;
+    visibility: visible;
+  }
+  nav-section a.is-active::before {
+    transition: width 0.4s ease;
+    width: 100%;
+  }
+}
+nav-section a h2 {
+  font-family: "acumin-pro-extra-condensed", sans-serif !important;
+  font-weight: 500 !important;
+  display: flex;
+  font-size: 48px;
+  justify-content: space-between;
+  line-height: 0.6;
+  margin: 0;
+  position: relative;
+  text-transform: uppercase;
+}
+@media (max-width: 992px) {
+  nav-section a h2::after {
+    background-image: url("/assets/images/chevron-right-light.svg");
+    background-size: 12px 22px;
+    content: "";
+    display: flex;
+    height: 22px;
+    position: absolute;
+    right: 0;
+    top: 20%;
+    width: 12px;
+  }
+}
+nav-section a p {
+  font-size: 14px;
+  margin: 12px 0 0;
+  opacity: 0.7;
+}

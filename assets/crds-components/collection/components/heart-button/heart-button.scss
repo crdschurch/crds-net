@@ -1,0 +1,64 @@
+@mixin heart-display {
+  &.heart {
+    display: inline-block;
+  }
+
+  &.heart-o {
+    display: none;
+  }
+}
+
+// --------------------------------------------------------
+
+a {
+  font-family: sans-serif;
+  display: block;
+  color: #979797;
+  font-size: 80%;
+  text-decoration: none;
+
+  > * {
+    vertical-align: middle;
+  }
+
+  &.on {
+    > span.heart,
+    > span.heart-o {
+      @include heart-display;
+
+      > svg {
+        fill: #c05c04;
+      }
+    }
+  }
+
+  span {
+    &.count {
+      padding-left: 0.5rem;
+    }
+
+    &.heart,
+    &.heart-o {
+      display: inline-block;
+      border: 1px solid;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+
+      svg {
+        margin: 9px;
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+      }
+    }
+
+    &.heart {
+      display: none;
+    }
+
+    &.heart-o {
+      display: inline-block;
+    }
+  }
+}

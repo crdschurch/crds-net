@@ -1,0 +1,65 @@
+.give-nav,
+.profile-nav {
+  @include nav-items;
+
+  background-color: $cr-black;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%;
+  left: 0;
+  overflow-y: auto;
+  position: fixed;
+  top: 47px;
+  width: 100vw;
+  z-index: 2;
+
+  @media (min-width: $screen-md) {
+    height: auto;
+    left: auto;
+    margin-right: -$global-nav-padding;
+    position: absolute;
+    right: $global-nav-padding;
+    width: 375px;
+  }
+
+  @media (min-width: $container-large-desktop) {
+    margin-right: 0;
+  }
+
+  ul {
+    &:last-of-type {
+      padding-bottom: 30px;
+    }
+  }
+}
+
+.give-nav {
+  background-image: url('https://crds-media.imgix.net/6sNxa1MWhMOfjhAB47yTCa/0acf1af4109f23abc0199b1e34abeb7a/give-bg_2x.jpg?auto=format%2Ccompress');
+}
+
+.profile-nav {
+  &:after {
+    background-color: rgba($cr-black, 0.75);
+    content: ' ';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+  }
+
+  .profile-nav-img {
+    background-position:top;
+    background-repeat: no-repeat;
+    background-size: contain;
+    filter: blur(2px);
+    transform: scale(1.1);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -2;
+  }
+}

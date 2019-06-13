@@ -1,0 +1,44 @@
+a {
+  font-family: sans-serif;
+  display: block;
+  color: #979797;
+  font-size: 80%;
+  text-decoration: none;
+}
+a > * {
+  vertical-align: middle;
+}
+a.on > span.heart.heart,
+a.on > span.heart-o.heart {
+  display: inline-block;
+}
+a.on > span.heart.heart-o,
+a.on > span.heart-o.heart-o {
+  display: none;
+}
+a.on > span.heart > svg,
+a.on > span.heart-o > svg {
+  fill: #c05c04;
+}
+a span.count {
+  padding-left: 0.5rem;
+}
+a span.heart, a span.heart-o {
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+}
+a span.heart svg, a span.heart-o svg {
+  margin: 9px;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+a span.heart {
+  display: none;
+}
+a span.heart-o {
+  display: inline-block;
+}

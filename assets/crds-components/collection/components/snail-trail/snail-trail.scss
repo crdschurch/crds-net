@@ -1,0 +1,118 @@
+// stylelint-disable a11y/font-size-is-readable
+nav {
+  @include font-family-base;
+
+  background-color: $cr-white;
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .14);
+  font-size: 14px;
+  padding-left: 20px;
+  position: relative;
+
+  @media (min-width: $container-large-desktop) {
+    padding-left: 0;
+  }
+
+  > div {
+    display: flex;
+
+    @include container;
+  }
+
+  &::after {
+    @media (max-width: $screen-md) {
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, .8) 100%);
+      content: '';
+      display: inline-block;
+      height: 100%;
+      opacity: .3;
+      position: absolute;
+      right: 0px;
+      top: 0;
+      width: 20px;
+    }
+  }
+}
+
+span {
+  color: $cr-gray-dark;
+  display: inline-block;
+  font-weight: 600;
+  padding: 11px 0;
+  text-transform: capitalize;
+  white-space: nowrap;
+
+  &::after {
+    border-right: 1px solid #d8d8d8;
+    content: '';
+    height: 100%;
+    margin-left: 15px;
+    width: 1px;
+  }
+}
+
+ul {
+  @include reset-list;
+
+  align-items: center;
+  display: flex;
+  margin-bottom: 0;
+  margin-top: 0;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+a {
+  color: $cr-gray-dark;
+  display: block;
+  font-weight: 300;
+  padding: 11px 15px;
+  position: relative;
+  text-decoration: none;
+
+  &.is-active,
+  &:hover {
+    &::after {
+      background-color: $cr-cyan;
+      bottom: 0;
+      content: '';
+      display: inline-block;
+      height: 2px;
+      left: 15px;
+      position: absolute;
+      width: calc(100% - 30px);
+    }
+  }
+}
+
+li {
+  display: inline-block;
+  flex: none;
+  text-transform: capitalize;
+
+  &:last-of-type {
+    a {
+      color: $cr-cyan;
+      position: relative;
+
+      &::before {
+        border-right: 1px solid #d8d8d8;
+        content: '';
+        display: inline-block;
+        height: calc(100% - 22px);
+        left: 0;
+        position: absolute;
+        width: 1px;
+      }
+
+      &:hover {
+        color: darken($cr-cyan, 10);
+      }
+    }
+  }
+}
