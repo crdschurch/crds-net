@@ -41,18 +41,18 @@ describe('Tests the /live/stream page displays the expected player', function ()
       cy.wait('@bitmovinManifest').then((manifest) => {
         expect(manifest.url).to.eq(latestMessage.bitmovinURL.text);
       });
-    } else if (latestMessage.youtubeURL.hasValue) {
+    } else {
       cy.get('#js-media-video').as('youtubePlayer').should('be.visible');
       cy.get('#VideoManager').as('bitmovinPlayer').should('not.exist');
 
-      const youtubeId = getYoutubeId(latestMessage.youtubeURL.text);
-      cy.get('@youtubePlayer').should('have.attr', 'video-id', youtubeId);
-    } else {
-      assert.isTrue(false, 'Latest message should have a Bitmovin URL or YouTube URL, but it does not');
+      if(latestMessage.youtubeURL.hasValue) {
+        const youtubeId = getYoutubeId(latestMessage.youtubeURL.text);
+        cy.get('@youtubePlayer').should('have.attr', 'video-id', youtubeId);
+      }
     }
   });
 
-  it('Autoplays the stream muted with subtitles', function () {
+  it('Autoplays the stream muted with subtitles if using Bitmovin player', function () {
     cy.server();
     cy.route('/int/streamSchedule', fakeSchedule);
     const ampEvents = new AmplitudeEventChecker();
@@ -68,10 +68,8 @@ describe('Tests the /live/stream page displays the expected player', function ()
         player.verifySubtitlesDisplayed();
         player.verifyPlayerMuted();
       });
-    } else if (latestMessage.youtubeURL.hasValue) {
-      ampEvents.waitForVideoEvents(['VideoStarted'], latestMessage.youtubeURL.text, 3);
     } else {
-      assert.isTrue(false, 'Latest message should have a Bitmovin URL or YouTube URL, but it does not');
+      ampEvents.failOnVideoEvent(['VideoStarted'], latestMessage.youtubeURL.text, 3);
     }
   });
 });
