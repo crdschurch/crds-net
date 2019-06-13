@@ -1,7 +1,7 @@
 module.exports = [
   {
     name: "application",
-    deps: ["vendor/jquery-3.3.1.min", "vendor/crds-shared-header-v0.8.4.min"],
+    deps: ["vendor/jquery-3.3.1.min"],
     files: ["lib/set-redirect-url"]
   },
   {
@@ -30,7 +30,6 @@ module.exports = [
       "lib/height-watcher",
       "lib/smooth-scroller",
       "components/legacy-imgix",
-      "components/header",
       "components/images",
       "components/carousels",
       "components/countdown",
