@@ -105,10 +105,6 @@ class BitmovinManager {
             });
     }
 
-    getHideUI() {
-        return this.isCard;
-    }
-
     getHidePlaybackSpeed() {
         return this.isStream;
     }
