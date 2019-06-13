@@ -155,7 +155,10 @@ class BitmovinManager {
     }
 
     onSubtitlesEnabled() {
-        if (this.container.offsetWidth <= 600) {
+        if (this.container.offsetWidth <= 300) {
+            this.container.querySelector(".bmpui-ui-subtitle-overlay").style.fontSize = '0.7em';
+        }
+        else if (this.container.offsetWidth <= 600) {
             this.container.querySelector(".bmpui-ui-subtitle-overlay").style.fontSize = '0.9em';
         }
     }
