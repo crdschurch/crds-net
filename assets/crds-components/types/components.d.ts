@@ -61,6 +61,7 @@ export namespace Components {
   interface GlobalNav {
     'config': Object;
     'env': string;
+    'giveData': JSON;
     'giveNavIsShowing': boolean;
     'href': string;
     'mainNavIsShowing': boolean;
@@ -70,6 +71,7 @@ export namespace Components {
   interface GlobalNavAttributes extends StencilHTMLAttributes {
     'config'?: Object;
     'env'?: string;
+    'giveData'?: JSON;
     'giveNavIsShowing'?: boolean;
     'href'?: string;
     'mainNavIsShowing'?: boolean;
@@ -111,9 +113,11 @@ export namespace Components {
   }
 
   interface GiveNav {
+    'data': JSON;
     'giveNavIsShowing': boolean;
   }
   interface GiveNavAttributes extends StencilHTMLAttributes {
+    'data'?: JSON;
     'giveNavIsShowing'?: boolean;
   }
 

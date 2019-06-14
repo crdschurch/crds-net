@@ -14,6 +14,10 @@
       },
       "props": [
         {
+          "name": "data",
+          "attr": "data"
+        },
+        {
           "name": "giveNavIsShowing",
           "type": "Boolean",
           "attr": "give-nav-is-showing"
@@ -53,6 +57,10 @@
           "name": "env",
           "type": "String",
           "attr": "env"
+        },
+        {
+          "name": "giveData",
+          "attr": "give-data"
         },
         {
           "name": "giveNavIsShowing",

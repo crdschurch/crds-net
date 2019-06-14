@@ -73,7 +73,7 @@ export class GlobalNav {
                                     h("div", { class: "account-authenticated", style: { backgroundImage: `url('${this.auth.currentUser.avatarUrl}')` } }))) : (h("div", { class: "account", innerHTML: account })),
                                 h("div", { class: "close", innerHTML: close })))),
                     h("profile-nav", { profileNavIsShowing: this.profileNavIsShowing && this.authenticated, onSignOut: this.handleSignOut.bind(this), currentUser: this.auth.currentUser }),
-                    h("give-nav", { giveNavIsShowing: this.giveNavIsShowing })))));
+                    h("give-nav", { data: this.giveData, giveNavIsShowing: this.giveNavIsShowing })))));
     }
     static get is() { return "global-nav"; }
     static get encapsulation() { return "shadow"; }
@@ -88,6 +88,10 @@ export class GlobalNav {
         "env": {
             "type": String,
             "attr": "env"
+        },
+        "giveData": {
+            "type": "Any",
+            "attr": "give-data"
         },
         "giveNavIsShowing": {
             "type": Boolean,

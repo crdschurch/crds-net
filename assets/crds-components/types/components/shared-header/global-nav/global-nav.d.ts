@@ -7,6 +7,7 @@ export declare class GlobalNav {
     mainNavIsShowing: boolean;
     navClickHandler: Function;
     profileNavIsShowing: boolean;
+    giveData: JSON;
     authenticated: boolean;
     auth: any;
     subdomainMap: {

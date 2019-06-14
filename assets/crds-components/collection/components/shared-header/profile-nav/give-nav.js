@@ -1,6 +1,26 @@
 export class GiveMenu {
     constructor() {
         this.giveNavIsShowing = true;
+        this.renderSections = payload => {
+            let top_level = false;
+            return (h("div", null,
+                h("h2", null,
+                    " ",
+                    payload.title,
+                    " "),
+                payload.children.map(child => {
+                    top_level = top_level || typeof child == 'string';
+                    return (h("div", { style: { padding: '0' } },
+                        typeof child == 'string' && h("h4", null, child),
+                        typeof child != 'string' && (h("ul", null, child.map(el => {
+                            if (typeof el != 'string')
+                                return (h("li", { class: top_level ? 'top-level' : '' },
+                                    h("a", { href: el.path, "automation-id": el['automation-id'] },
+                                        " ",
+                                        el.title)));
+                        })))));
+                })));
+        };
     }
     handleClick(event) {
         event.stopPropagation();
@@ -8,24 +28,15 @@ export class GiveMenu {
     render() {
         if (!this.giveNavIsShowing)
             return null;
-        return (h("div", { class: "give-nav" },
-            h("div", null,
-                h("h2", null, "Give"),
-                h("ul", null,
-                    h("li", { class: "top-level" },
-                        h("a", { href: "#", "data-automation-id": "sh-give-now" }, "Give now")),
-                    h("li", { class: "top-level" },
-                        h("a", { href: "#", "data-automation-id": "sh-my-giving" }, "My giving"))),
-                h("h4", null, "About giving"),
-                h("ul", null,
-                    h("li", null,
-                        h("a", { href: "#", "data-automation-id": "sh-why-give" }, "Why give?")),
-                    h("li", null,
-                        h("a", { href: "#", "data-automation-id": "sh-other-ways" }, "Other ways to give"))))));
+        return (h("div", { class: "give-nav", style: { backgroundImage: `url(${this.data.background_img})` } }, this.renderSections(this.data)));
     }
     static get is() { return "give-nav"; }
     static get encapsulation() { return "shadow"; }
     static get properties() { return {
+        "data": {
+            "type": "Any",
+            "attr": "data"
+        },
         "giveNavIsShowing": {
             "type": Boolean,
             "attr": "give-nav-is-showing"
