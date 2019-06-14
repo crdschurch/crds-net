@@ -81,6 +81,7 @@ class BitmovinManager {
         this.bitmovinPlayer.on('play', () => { this.onPlayerStart() });
         this.bitmovinPlayer.on('playbackfinished', () => { this.onPlayerEnd('Ended') });
         this.bitmovinPlayer.on('paused', () => { this.onPlayerEnd('Paused') });
+        this.bitmovinPlayer.on('subtitleenable', () => { this.onSubtitlesEnabled(); })
         // this.bitmovinPlayer.on('playbackfinished', this.showStandbyMessaging());
         // this.bitmovinPlayer.on('play', this.hideStandbyMessaging());
         return this.bitmovinPlayer.load(this.source);
@@ -121,6 +122,7 @@ class BitmovinManager {
     getIsMuted() {
         if(this.isCard) return true;
         if(!this.getAutoPlay()) return false;
+
         let urlParams = new URLSearchParams(window.location.search);
         let sound = urlParams.has('sound') ? parseInt(urlParams.get('sound')) : 0;
         if (sound == 11) return false;
@@ -151,6 +153,15 @@ class BitmovinManager {
                 Source: 'CrossroadsNet',
                 VideoTotalDuration: this.bitmovinPlayer.getDuration()
             });
+        }
+    }
+
+    onSubtitlesEnabled() {
+        if (this.container.offsetWidth <= 300) {
+            this.container.querySelector(".bmpui-ui-subtitle-overlay").style.fontSize = '0.7em';
+        }
+        else if (this.container.offsetWidth <= 600) {
+            this.container.querySelector(".bmpui-ui-subtitle-overlay").style.fontSize = '0.9em';
         }
     }
 
