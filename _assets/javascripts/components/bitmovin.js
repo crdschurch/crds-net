@@ -228,9 +228,16 @@ class BitmovinManager {
 
 
     enableSubtitles() {
-        const subtitles = this.bitmovinPlayer.subtitles.list();
-        if (subtitles.length)
-            this.bitmovinPlayer.subtitles.enable(subtitles[0].id);
+        let i = 0;
+        var interval = setInterval(() => {
+            const subtitles = this.bitmovinPlayer.subtitles.list();
+            if (subtitles.length) {
+                this.bitmovinPlayer.subtitles.enable(subtitles[0].id);
+                clearInterval(interval);
+            }
+            if (i >= 3) clearInterval(interval);
+            i += 1;
+        }, 1000)
     }
 
     onCCEnabled() {
