@@ -16,12 +16,10 @@
         img: '{{ site.shared_header.img }}',
         prefix: '{{ site.shared_header.prefix }}'
       },
-      streamspotId: '{{ site.streamspotId }}',
-      streamspotKey: '{{ site.streamspotKey }}',
-      streamspotPlayerId: '{{ site.streamspotPlayerId }}',
       env: {
         environment: '{{ site.jekyll_env }}',
-        "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}'
+        "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}',
+        "streamScheduleEndpoint": '{{ site.stream_schedule_endpoint }}'
       }
     };
   </script>

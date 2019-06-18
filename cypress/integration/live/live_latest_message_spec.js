@@ -5,8 +5,8 @@ describe('Testing the Past Weekends section on the Live page:', function () {
   let recentMessages;
   before(function () {
     const mqm = new MessageQueryManager();
-    mqm.fetchRecentMessages(4).then((results) => {
-      recentMessages = results;
+    mqm.fetchRecentMessages(4).then((messages) => {
+      recentMessages = messages;
       recentMessages.forEach(m => m.fetchLinkedResources());
     });
     cy.visit('/live');

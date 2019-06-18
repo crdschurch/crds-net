@@ -7,13 +7,12 @@ if (window.deferredJSReady) {
 }
 
 function liveStreamInit() {
-  setStreamspotPlayerId();
   // IFrame Resizer (for Give section)
-  iFrameResize({
-    heightCalculationMethod: 'taggedElement',
-    minHeight: 350,
-    checkOrigin: false
-  }, '#giveIframe');
+  // iFrameResize({
+  //   heightCalculationMethod: 'taggedElement',
+  //   minHeight: 350,
+  //   checkOrigin: false
+  // }, '#giveIframe');
 
   var dontMissCards = document.getElementsByClassName('.carousel--dont-miss .card');
   for (var i = 0; i < dontMissCards.length; i += 1) {
@@ -90,11 +89,6 @@ function liveStreamInit() {
         Method: method
       });
     }
-  }
-
-  function setStreamspotPlayerId() {
-    const el = document.querySelector('[data-streamspot-player]');
-    el.setAttribute('data-streamspot-player', window.CRDS.streamspotPlayerId);
   }
 
   window.env = window.env || {};
