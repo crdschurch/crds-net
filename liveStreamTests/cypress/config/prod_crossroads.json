@@ -1,6 +1,8 @@
 {
-  "baseUrl": "https://5cfa5f8b978a0d000a347d13--int-crds-net.netlify.com",
+  "baseUrl": "https://www.crossroads.net",
   "env": {
-    "slack_channel": "#bearsharktopus,#production-support"
+    "slack_channel": "#bearsharktopus,#production-support",
+    "email_recipients": "webteam@crossroads.net,dalbanese@crossroads.net",
+    "CONTENTFUL_ENV": "master"
   }
 }

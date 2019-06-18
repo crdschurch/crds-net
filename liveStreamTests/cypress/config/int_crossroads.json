@@ -1,6 +1,8 @@
 {
-  "baseUrl": "https://5cfa5f8b978a0d000a347d13--int-crds-net.netlify.com",
+  "baseUrl": "https://int.crossroads.net",
   "env": {
-    "slack_channel": "#bearsharktopus-qa"
+    "slack_channel": "#bearsharktopus-qa",
+    "email_recipients": "shenney@callibrity.com",
+    "CONTENTFUL_ENV": "int"
   }
 }

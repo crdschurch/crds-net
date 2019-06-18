@@ -1,4 +1,6 @@
 import { ContentfulLibrary } from 'crds-cypress-tools';
+import { AmplitudeEventChecker } from './helpers/AmplitudeEventChecker';
+import { StreamScheduleGenerator } from './helpers/ScheduleGenerator';
 import moment from 'moment';
 import 'moment-timezone';
 
@@ -67,10 +69,17 @@ function hideRollCall() {
 /** Tests */
 describe('Tests latest message is current and ready for live stream', function () {
   let contentfulLatestMessage;
+  let fakeSchedule;
   before(function () {
-    fetchLatestMessage().then((latestMessage) => {
+    fetchLatestMessage().then(latestMessage => {
       contentfulLatestMessage = latestMessage;
+      fakeSchedule = new StreamScheduleGenerator().streamStartingNow;
     });
+  });
+
+  after(function () {
+    cy.reportResultsToSlack();
+    cy.reportResultsByEmail();
   });
 
   it('Verify encoding is ready for the latest message in Bitmovin', function () {
@@ -78,8 +87,8 @@ describe('Tests latest message is current and ready for live stream', function (
       const latestMessageStatus = response.body;
 
       //Encodings should be finished
-      assert.equal(latestMessageStatus.encodingStatus, 'FINISHED', `Expect the latest message video's encoding status to be FINISHED, and status is '${latestMessageStatus.encodingStatus}'.`);
-      assert.equal(latestMessageStatus.manifestStatus, 'FINISHED', `Expect the latest message manifest creation status to be FINISHED, and status is '${latestMessageStatus.manifestStatus}'.`);
+      assert.equal(latestMessageStatus.encodingStatus, 'FINISHED', `Expect the latest message video's encoding status to be 'FINISHED', and status is '${latestMessageStatus.encodingStatus}'.`);
+      assert.equal(latestMessageStatus.manifestStatus, 'FINISHED', `Expect the latest message manifest creation status to be 'FINISHED', and status is '${latestMessageStatus.manifestStatus}'.`);
 
       //Latest message according to Bitmovin should match Contentful
       assert.equal(latestMessageStatus.messageId, contentfulLatestMessage.entryId, `Expect the latest message known to Bitmovin to match the latest message in Contentful. Bitmovin's latest message id is '${latestMessageStatus.messageId}' and Contentful's latest message id is '${contentfulLatestMessage.entryId}'`);
@@ -101,11 +110,12 @@ describe('Tests latest message is current and ready for live stream', function (
   it('Verify the new message is streamed using the Bitmovin player', function () {
     //Trick /live to think the live stream is playing
     cy.server();
-    cy.route('/int/streamSchedule', 'fixture:fake_current_stream_schedule.json');//NOTE this fixture just needs some object in the "current" property - dates don't seem to matter
+    cy.route('/int/streamSchedule', fakeSchedule);
     cy.route('manifest.m3u8').as('bitmovinManifest');
+    const ampEvents = new AmplitudeEventChecker();
 
     //Navigate to live stream
-    cy.visit('/live/stream-test/');
+    cy.visit('/live/stream/');
     hideRollCall();
 
     //Bitmovin player should be visible
@@ -118,6 +128,6 @@ describe('Tests latest message is current and ready for live stream', function (
     });
 
     //Stream should be autoplayed
-    //TODO add event listener once is live
+    ampEvents.waitForVideoEvents(['VideoStarted'], contentfulLatestMessage.bitmovinURL.toString, 3);
   });
 });
