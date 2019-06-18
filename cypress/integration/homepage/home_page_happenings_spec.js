@@ -17,8 +17,13 @@ describe('Given I have not applied a filter to the Happenings section on the Hom
     cy.visit('/');
   });
 
+  beforeEach(function () {
+    cy.get('[data-automation-id="happenings-dropdown"]').as('promoFilter');
+    cy.get('@promoFilter').scrollIntoView();
+  });
+
   it('The "Churchwide" filter should be selected by default', function () {
-    cy.get('[data-automation-id="happenings-dropdown"]').find('[data-current-label]').as('currentFilter');
+    cy.get('@promoFilter').find('[data-current-label]').as('currentFilter');
     cy.get('@currentFilter').should('have.text', 'Churchwide');
   });
 
@@ -28,11 +33,10 @@ describe('Given I have not applied a filter to the Happenings section on the Hom
       const audiences = pm.queryResult;
 
       expect(audiences.length).to.be.above(0);
-      cy.get('[data-automation-id="happenings-dropdown"]').as('happeningsFilter')
-        .find('[data-filter-select]').should('have.length', audiences.length);
+      cy.get('@promoFilter').find('[data-filter-select]').should('have.length', audiences.length);
 
       audiences.forEach(a => {
-        cy.get('@happeningsFilter').find(`[data-filter-select="${a}"]`).should('exist');
+        cy.get('@promoFilter').find(`[data-filter-select="${a}"]`).should('exist');
       });
     });
   });
