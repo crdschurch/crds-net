@@ -264,3 +264,7 @@ class BitmovinManager {
         else this.bitmovinPlayer.play();
     }
 }
+
+var defBitmovinLoaded = new Event('deferred-bitmovin-ready');
+document.dispatchEvent(defBitmovinLoaded);
+window.defBitmovinLoaded = true;
