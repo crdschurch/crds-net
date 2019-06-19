@@ -2,7 +2,7 @@
   "baseUrl": "https://int.crossroads.net",
   "env": {
     "slack_channel": "#bearsharktopus-qa",
-    "email_recipients": "shenney@callibrity.com",
+    "email_recipients": "",
     "CONTENTFUL_ENV": "int"
   }
 }
