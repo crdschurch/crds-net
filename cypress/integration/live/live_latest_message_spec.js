@@ -46,8 +46,8 @@ describe('Testing the "Watch This Weeks Service" button', function () {
   let currentMessage;
   before(function () {
     const mqm = new MessageQueryManager();
-    mqm.fetchLatestMessage().then((request) => {
-      currentMessage = request;
+    mqm.fetchLatestMessage().then((results) => {
+      currentMessage = results;
       currentMessage.fetchLinkedResources();
     });
   });
