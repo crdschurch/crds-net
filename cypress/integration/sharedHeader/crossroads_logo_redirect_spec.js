@@ -11,7 +11,7 @@ describe('Clicking the Crossroads logo from page on a microclient should load th
       cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
       cy.ignoreUncaughtException('Cypress detected that an uncaught error was thrown from a cross origin script.'); //Intermitted corkboard issue. Do not remove.
 
-      cy.visit(slug, { timeout: 30000 });
+      cy.visit(slug, { timeout: 60000 });
 
       clickCrossroadsLogoAndConfirmNetlifyHomepageLoads();
     });

@@ -33,7 +33,7 @@ CRDS.Countdown = class Countdown {
     this.TIMEZONE_OFFSET = ((new Date()).dst()) ? '-0400' : '-0500';
 
     if ($('.crds-countdown').length) {
-      this.getStreamspotStatus();
+      this.streamStatusPromise = this.getEventStatus();
     }
   }
 
@@ -118,18 +118,20 @@ CRDS.Countdown = class Countdown {
     return `${hours}:${minutes}${ampm}`;
   }
 
-  getStreamspotStatus() {
+  getEventStatus() {
     Countdown.setLoadingStatus(true);
-    CRDS.Countdown.getEvents()
+    return CRDS.Countdown.getEvents()
       .done((events) => {
         this.nextEvent = events.data.next;
         this.currentEvent = events.data.current;
         Countdown.setLoadingStatus(false);
-        if (events.data.current != null) {
+        if (events.data.current) {
           this.goLive();
         } else {
           this.showCountdown();
         }
+
+        return events;
       })
       .fail((xhr, ajaxOptions, thrownError) => {
         console.log(thrownError);
@@ -137,18 +139,12 @@ CRDS.Countdown = class Countdown {
   }
 
   static getEvents() {
-    const streamspotUrl = 'https://api.streamspot.com';
-    const streamspotId = window.CRDS.streamspotId;
-    const streamspotKey = window.CRDS.streamspotKey;
-
-    const eventUrl = `${streamspotUrl}/broadcaster/${streamspotId}/broadcasts/upcomingPlusCurrent`;
+    const eventUrl = `${window.CRDS.env.streamScheduleEndpoint}`;
     return $.ajax({
+      type: 'GET',
       url: eventUrl,
       dataType: 'json',
-      crossDomain: true,
-      beforeSend(request) {
-        request.setRequestHeader('X-API-Key', streamspotKey);
-      }
+      crossDomain: true
     });
   }
 
@@ -168,15 +164,9 @@ CRDS.Countdown = class Countdown {
     const currentEndDate = this.currentEvent.end;
     const secondsUntilStreamEnd = (Countdown.convertDate(currentEndDate, this.TIMEZONE_OFFSET) - (new Date())) / 1000;
 
-    $('[data-streamspot-player]').each(function(idx) {
-      let playerId = $(this).data('streamspot-player');
-      let streamspotPlayerUrl = `https://player2.streamspot.com/?playerId=${playerId}`;
-      $(this).attr('src', streamspotPlayerUrl);
-    });
-
     this.timeoutId = setTimeout(() => {
       if (this.nextEvent == null) {
-        this.getStreamspotStatus();
+        this.getEventStatus();
       } else {
         this.showCountdown();
       }
@@ -246,13 +236,8 @@ CRDS.Countdown = class Countdown {
   }
 
   static convertDate(dateString, timeZone) {
-    // Expected format of dateString: YYYY-MM-DD HH:MM:SS
-    // Output of dateString.match is an array
-    const date = dateString.match(/^(\d{4})-0?(\d+)-0?(\d+)[T ]0?(\d+):0?(\d+):0?(\d+)$/);
-    // Here we assemble the array values to: M/D/YYYY HH:MM:SS TZ
-    // We do this because this is the most commonly accepted format by our support
-    // browsers
-    const formattedDateString = `${date[2]}/${date[3]}/${date[1]} ${date[4]}:${date[5]}:${date[6]} ${timeZone}`;
+    // replace - with / for safari
+    const formattedDateString = `${dateString.replace(/-/g, "/")} ${timeZone}`;
     return new Date(formattedDateString);
   }
 

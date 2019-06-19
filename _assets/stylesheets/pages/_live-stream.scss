@@ -4,7 +4,7 @@
 .page--live-stream {
   .crds-shared-header .header {
     ul.nav-pills > li:not(.open) {
-      padding: .625rem 0;
+      padding: 0.625rem 0;
 
       > a:not(.cta) {
         color: $cr-white;
@@ -20,7 +20,7 @@
 
       a > svg {
         display: inline-block;
-        margin: 0 .25rem 0 0;
+        margin: 0 0.25rem 0 0;
         vertical-align: middle;
       }
 
@@ -56,11 +56,7 @@
     background-color: $cr-gray-darker;
   }
 
-  [data-streamspot-player] {
-    width: 100%;
-  }
-
-  [aria-label="carousel-controls"] {
+  [aria-label='carousel-controls'] {
     @media (min-width: $screen-md) {
       visibility: hidden;
     }
@@ -68,5 +64,40 @@
 
   .list-header {
     line-height: $headings-line-height;
+  }
+
+  .bmpui-ui-playbacktogglebutton {
+    display: none;
+  }
+
+  .bmpui-ui-uicontainer {
+    pointer-events: initial;
+  }
+
+  .bmpui-ui-hugeplaybacktogglebutton {
+    pointer-events: none;
+  }
+
+  // hide for live stream
+  .bmpui-ui-seekbar {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  #standby-message {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $cr-black;
+    opacity: 0;
+    z-index: 0;
+    transition: 0.45s all ease-in-out;
+
+    .component-header,
+    #standby-time {
+      color: $cr-white;
+    }
   }
 }
