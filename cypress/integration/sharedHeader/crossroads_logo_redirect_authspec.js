@@ -17,7 +17,7 @@ describe('As a signed-in user, clicking the Crossroads logo from a non-Netlify p
 
       cy.visit(slug);
 
-      cy.get('#crds-shared-header-logo', { timeout: 20000 }).as('crossroadsLogo').click();
+      cy.get('#crds-shared-header-logo', { timeout: 60000 }).as('crossroadsLogo').click();
       RouteValidator.pageFoundAndFromNetlify(`${Cypress.config().baseUrl}/`);
     });
   });
