@@ -1,5 +1,4 @@
 const errors = [];
-
 Cypress.on('fail', (err) => {
   errors.push(err.message);
   throw err;
@@ -23,11 +22,15 @@ function reportResultsToSlack() {
   _addSlackTextAndAttachments(body);
 
   //Post message to Slack
-  let postType = errors.length > 0 ? slack.alert : slack.success;
   let channels = Cypress.env('slack_channel').split(',');
   channels.forEach(channel => {
     body.channel = channel;
-    postType(body);
+
+    if(errors.length == 0){
+      slack.success(body);
+    } else {
+      slack.alert(body);
+    }
   });
 }
 
@@ -47,14 +50,22 @@ function _addSlackTextAndAttachments(body) {
 
 function reportResultsByEmail() {
   //Only send email if something went wrong
-  if (errors.length == 0)
+  if (errors.length == 0){
+    console.log('No errors, not sending emails');
     return;
+  }
 
+  if (Cypress.env('email_recipients').length == 0) {
+    console.log('No recipients, not sending emails');
+    return;
+  }
+
+  let recipients = Cypress.env('email_recipients').split(',');
   let emailBody = {
     api_user: Cypress.env('SENDGRID_USER'),
     api_key: Cypress.env('SENDGRID_PW'),
     from: 'no-reply@crossroads.net',
-    to: Cypress.env('email_recipients').split(',')
+    to: recipients
   };
   _addEmailSubjectAndBody(emailBody);
 

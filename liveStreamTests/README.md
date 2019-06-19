@@ -7,7 +7,7 @@ If tests fail, notifications will be sent via Slack and email.
 ### Environment Variables
 
 ```
-config_file #int_crossroads or prod_crossroads
+config_file #int_crossroads, demo_crossroads or prod_crossroads
 BITMOVIN_API_KEY
 CROSSROADS_API_ENDPOINT
 SLACK_WEBHOOK_URL

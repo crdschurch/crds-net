@@ -2,7 +2,7 @@ const querystring = require('querystring');
 
 export class AmplitudeEventChecker {
   constructor () {
-    this._wait_timeout = 6000;
+    this._wait_timeout = 60000;
     cy.server();
     this.defineRoute();
   }

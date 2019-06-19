@@ -77,10 +77,13 @@ describe('Tests latest message is current and ready for live stream', function (
     });
   });
 
-  after(function () {
-    cy.reportResultsToSlack();
-    cy.reportResultsByEmail();
-  });
+  //TODO make this listen for test suite completion - is buggy and not always called when run
+  //ideal solution - use test:after:run event to recreate the after functionality
+  //hacky solution - create a second test 'suite' run after this that just calls the reporters
+  // after(function () {
+  //   // cy.reportResultsToSlack();
+  //   // cy.reportResultsByEmail();
+  // });
 
   it('Verify encoding is ready for the latest message in Bitmovin', function () {
     cy.request(`${Cypress.env('CROSSROADS_API_ENDPOINT')}/video-service/encode/latestMessageStatus`).then(response => {
@@ -123,11 +126,21 @@ describe('Tests latest message is current and ready for live stream', function (
     cy.get('#js-media-video').as('youtubePlayer').should('not.exist');
 
     //Latest message should be streaming
-    cy.wait('@bitmovinManifest').then((manifest) => {
+    cy.wait('@bitmovinManifest', {timeout: 60000}).then((manifest) => {
       assert.equal(manifest.url, contentfulLatestMessage.bitmovinURL.toString, `Expect the live stream to play the latest message which has Bitmovin URL '${contentfulLatestMessage.bitmovinURL.toString}'. Stream is playing message from '${manifest.url}'`);
     });
 
     //Stream should be autoplayed
     ampEvents.waitForVideoEvents(['VideoStarted'], contentfulLatestMessage.bitmovinURL.toString, 3);
+  });
+});
+
+/** Using the "after" hook or listening for events sometimes doesn't send messages due to bugs in Cypress (issue #2831)
+ * This is a hacky but consistent way to get around the issue.
+*/
+describe('Sends out results', function () {
+  it('Sends out Slack and Email alerts', function() {
+    cy.reportResultsToSlack();
+    cy.reportResultsByEmail();
   });
 });
