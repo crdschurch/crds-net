@@ -38,7 +38,7 @@ describe('Tests the /live/stream page displays the expected player', function ()
       cy.get('#VideoManager').as('bitmovinPlayer').should('be.visible');
       cy.get('#js-media-video').as('youtubePlayer').should('not.exist');
 
-      cy.wait('@bitmovinManifest').then((manifest) => {
+      cy.wait('@bitmovinManifest', {timeout: 30000}).then((manifest) => {
         expect(manifest.url).to.eq(latestMessage.bitmovinURL.text);
       });
     } else {
