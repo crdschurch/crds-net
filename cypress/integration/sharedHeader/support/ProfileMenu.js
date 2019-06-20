@@ -8,7 +8,7 @@ export class ProfileMenu {
 
     cy.get('#crds-shared-header-desktop-toggle').parent().as('myProfileMenu');
     cy.get('@myProfileMenu').invoke('attr', 'class').then(($classValues) => {
-      let newClass = `${$classValues} open`;
+      const newClass = `${$classValues} open`;
       cy.get('@myProfileMenu').invoke('attr', 'class', newClass);
     });
 

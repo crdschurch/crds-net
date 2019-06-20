@@ -2,18 +2,21 @@
     data-video-player class="embed-responsive embed-responsive-16by9">
     {% assign standby = site.content_blocks | where: "slug", "Live-Stream-Standby" | first %}
     {% if include.isStream %}
-        {{ standby.content_block }}
+    {{ standby.content_block }}
     {% endif %}
 </div>
-<script src="https://bitmovin-a.akamaihd.net/bitmovin-player/stable/8.4.0/bitmovinplayer.js"></script>
-{% javascript_link_tag bitmovin %}
-<script type="text/javascript">
+<script async src="https://cdn.bitmovin.com/player/web/8.10.1/bitmovinplayer.js"></script>
+{% javascript_link_tag bitmovin async %}
+<script async type="text/javascript">
     // if live-stream loads first
-    document.addEventListener("deferred-js-ready", bitmovinInit);
-
+    ready();
+    document.addEventListener("deferred-js-ready", ready);
+    document.addEventListener("deferred-bitmovin-ready", ready);
     // if app-deferred loads first
-    if (window.deferredJSReady) {
-        bitmovinInit();
+    function ready() {
+        if (window.deferredJSReady && window.defBitmovinLoaded) {
+            bitmovinInit();
+        }
     }
 
     function bitmovinInit() {
@@ -28,6 +31,7 @@
             isStream: `{{ include.isStream }}`
         }
         CRDS[videoManagerID] = new BitmovinManager(bitmovinConfig);
-
+        var videoManagerReadyEvent = new Event(videoManagerID);
+        document.dispatchEvent(videoManagerReadyEvent);
     }
 </script>

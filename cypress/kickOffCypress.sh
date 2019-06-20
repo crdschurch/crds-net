@@ -7,7 +7,7 @@ then
     exit 0
 fi
 
-#Skip all testing in Prod
+# Skip all testing in Prod
 if [[ "$CRDS_APP_CLIENT_ENDPOINT" = *"www.crossroads.net" ]];
 then
     exit 0

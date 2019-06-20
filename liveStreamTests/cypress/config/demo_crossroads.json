@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://demo.crossroads.net",
+  "env": {
+    "slack_channel": "#bearsharktopus-qa",
+    "email_recipients": "",
+    "CONTENTFUL_ENV": "demo"
+  }
+}
