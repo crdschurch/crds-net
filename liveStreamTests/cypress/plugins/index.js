@@ -16,7 +16,7 @@ const path = require('path');
 
 
 //Config files live in /config. To specify which one to use, open or run with command line argument:
-//"--env useConfig='demo_crossroads'"
+//"--env useConfig=demo_crossroads"
 module.exports = (on, config) => {
   const filename = config.env.useConfig || 'int_crossroads';
   const configPath = path.resolve('cypress', 'config', `${filename}.json`);
