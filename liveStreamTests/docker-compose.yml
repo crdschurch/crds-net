@@ -1,0 +1,16 @@
+version: '3'
+services:
+  stream_tests:
+    build: .
+    container_name: cypress_live_stream_tests
+    image: crdschurch/crds-net-live-stream-tests:${DOCKER_TAG:-local}
+    environment:
+      - CYPRESS_useConfig=${config_file}
+      - CYPRESS_BITMOVIN_API_KEY=${BITMOVIN_API_KEY}
+      - CYPRESS_CROSSROADS_API_ENDPOINT=${CROSSROADS_API_ENDPOINT}
+      - CYPRESS_SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
+      - CYPRESS_CONTENTFUL_ACCESS_TOKEN=${CONTENTFUL_ACCESS_TOKEN}
+      - CYPRESS_CONTENTFUL_SPACE_ID=${CONTENTFUL_SPACE_ID}
+      - CYPRESS_SENDGRID_USER=${SENDGRID_USER}
+      - CYPRESS_SENDGRID_PW=${SENDGRID_PW}
+    entrypoint: npx cypress run

@@ -5,8 +5,8 @@ describe('Testing the Current Series in the Shared Header/Media dropdown:', func
   let currentSeries;
   before(function () {
     const sqm = new SeriesQueryManager();
-    sqm.fetchCurrentSeries().then(() => {
-      currentSeries = sqm.queryResult;
+    sqm.fetchCurrentSeries().then((result) => {
+      currentSeries = result;
       currentSeries.fetchLinkedResources();
     });
 
