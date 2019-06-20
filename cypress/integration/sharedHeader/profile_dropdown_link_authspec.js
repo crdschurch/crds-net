@@ -21,10 +21,6 @@ const profileLinksMatchURL = [{
 }];
 
 const profileLinksContainURL =[{
-  name: 'SignUpToServe',
-  elementRef: '#crds-shared-header-serve',
-  url: 'serve.crossroads.net/groups/week-of'
-}, {
   name: 'MyGroups',
   elementRef: '#crds-shared-header-groups',
   url: 'connect'
@@ -75,6 +71,19 @@ describe('As a signed-in user, the links in the My Profile menu should load page
 
       RouteValidator.pageShouldNotBe404();
       cy.url().should('contain', profileLink.url);
+    });
+  });
+
+  it('Tests "SignUpToServe" does not 404 when clicked', function () {
+    const linkAlias = 'SignUpToServeLink';
+    cy.get('#crds-shared-header-serve').as(linkAlias);
+
+    profileMenu.clickLink(linkAlias);
+
+    RouteValidator.pageShouldNotBe404();
+    //Wait for page to load before checking the url
+    cy.get('#navbarDropdown').should('be.visible').then(() => {
+      cy.url().should('contain', 'serve.crossroads.net/groups/week-of');
     });
   });
 });
