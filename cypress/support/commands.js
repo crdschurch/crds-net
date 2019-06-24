@@ -25,14 +25,14 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-import { AddCommand } from 'crds-cypress-tools';
+// import { AddCommand } from 'crds-cypress-tools';
 import { Formatter } from './Formatter';
 
-AddCommand.crdsLogin();
+// AddCommand.crdsLogin();
 
-Cypress.Commands.add('stayLoggedIn', () => {
-  Cypress.Cookies.preserveOnce(`${Cypress.env('CRDS_ENV')}sessionId`, `${Cypress.env('CRDS_ENV')}refreshToken`, 'userId');
-});
+// Cypress.Commands.add('stayLoggedIn', () => {
+//   Cypress.Cookies.preserveOnce(`${Cypress.env('CRDS_ENV')}sessionId`, `${Cypress.env('CRDS_ENV')}refreshToken`, 'userId');
+// });
 
 Cypress.Commands.add('normalizedText', { prevSubject: 'element' }, (subject) => {
   return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => Formatter.normalizeText(elementText));
@@ -44,9 +44,17 @@ Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
 
 //Here for convenience but use sparingly - we usually want these to be thrown
 Cypress.Commands.add('ignoreUncaughtException', (expectedMessage) => {
-  cy.on('uncaught:exception', (err, runnable) => {
+  cy.on('uncaught:exception', (err) => {
     expect(err.message).to.include(expectedMessage);
-    runnable.done();
     return false;
+  });
+});
+
+//If the shared header is blocking click events, hide it with this
+Cypress.Commands.add('hideSharedHeader', () => {
+  cy.get('shared-header').as('sharedHeader');
+  cy.get('@sharedHeader').invoke('attr', 'class').then(($classValues) => {
+    const newClass = `${$classValues} hide`;
+    cy.get('@sharedHeader').invoke('attr', 'class', newClass);
   });
 });

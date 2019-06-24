@@ -54,6 +54,7 @@ describe('Testing the "Watch This Weeks Service" button', function () {
 
   beforeEach(function () {
     cy.visit('/live');
+    cy.hideSharedHeader();
   });
 
   it('Button should link to latest message', function () {
