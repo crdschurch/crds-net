@@ -11,5 +11,5 @@
   bash ./cypress/kickOffCypress.sh &&
   ./bin/prerenderio-bust.sh &&
   ./bin/health-check.sh "we are crossroads"
-} 2>&1 | tee buildlog.txt
+} 2>buildlog.txt
 ./bin/logzio.sh
