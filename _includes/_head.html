@@ -8,24 +8,7 @@
 
   {% include _gtm-head.html %}
   {% include _monetate-head.html %}
-
-  <meta name="Netlify" content="This page was rendered with Netlify">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="title" content="{{ page | get_meta_title: site }}">
-  <meta name="description" content="{{ page | get_meta_description: site | markdownify | strip_liquid | strip_html | strip_newlines | strip | truncate: 155 }}">
-  <meta name="image" content="{{ page | get_meta_image: site | imgix: site.imgix }}?{{ site.imgix_params.meta_image }}">
-  <meta property="og:description" content="{{ page | get_meta_description: site | markdownify | strip_liquid | strip_html | strip_newlines | strip | truncate: 155 }}">
-  <meta property="og:title" content="{{ page | get_meta_title: site }}">
-  <meta property="og:image" content="{{ page | get_meta_image: site | imgix: site.imgix }}?{{ site.imgix_params.meta_image }}">
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:url" content="{{ page | build_page_url: site }}">
-  <meta property="og:site_name" content="{{ site.title | escape }}">
-  <meta name="apple-itunes-app" content="app-id=1029478803">
-  <meta name="google-play-app" content="app-id=net.crossroads.crossroads">
-  <title>{{ page | get_title: site }}</title>
+  {% include _meta-tags.html %}}
 
   <link rel="apple-touch-icon" sizes="57x57" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-60x60.png">
