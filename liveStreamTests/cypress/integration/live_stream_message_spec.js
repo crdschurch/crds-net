@@ -52,8 +52,7 @@ function fetchLatestMessage() {
   });
 }
 
-//Note: last recordable service ends ~7:15 so assume stream must be uploaded sometime after then
-function getLatestDate(dayOfWeek = 'Saturday', timeOfDay = '7:15PM') {
+function getLatestDate(dayOfWeek = 'Saturday', timeOfDay = '12:00AM') {
   const momentZone = 'America/New_York';
   const now = moment.tz(momentZone);
   let latestTimeOnDay = moment.tz(timeOfDay, 'hh:mmA', momentZone).day(dayOfWeek);
@@ -95,8 +94,8 @@ describe('Tests latest message is current and ready for live stream', function (
   it('Verify the message for this week\'s live stream has been published', function () {
     //Message should be published after the latests Saturday service
     const publishedDate = moment(contentfulLatestMessage.publishedAt.toString);
-    const earliestPublishableDate = getLatestDate('Saturday', '7:15PM'); //Roughly when last Saturday service ends
-    assert.isTrue(publishedDate.isAfter(earliestPublishableDate), `Expect latest message to be published after ${earliestPublishableDate}. It was published ${publishedDate}`);
+    const earliestPublishableDate = getLatestDate('Saturday', '12:00AM');
+    assert.isTrue(publishedDate.isSameOrAfter(earliestPublishableDate), `Expect latest message to be published after ${earliestPublishableDate}. It was published ${publishedDate}`);
 
     //Message should have Bitmovin URL
     assert.isTrue(contentfulLatestMessage.bitmovinURL.hasValue, `Expect latest message to have a Bitmovin URL, and it is ${contentfulLatestMessage.bitmovinURL.toString}`);
@@ -105,7 +104,7 @@ describe('Tests latest message is current and ready for live stream', function (
   it('Verify the new message is streamed using the Bitmovin player', function () {
     //Trick /live to think the live stream is playing
     cy.server();
-    cy.route('/int/streamSchedule', fakeSchedule);
+    cy.route(`${Cypress.env('schedule_env')}/streamSchedule`, fakeSchedule);
     cy.route('manifest.m3u8').as('bitmovinManifest');
     const ampEvents = new AmplitudeEventChecker();
 

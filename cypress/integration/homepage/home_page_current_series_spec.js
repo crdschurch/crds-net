@@ -30,7 +30,8 @@ describe('Testing the Current Series on the Homepage:', function () {
     new ImageDisplayValidator('seriesImage').shouldHaveImgixImage(currentSeries.image);
   });
 
-  it('"Watch Latest Service" button should link to the current series', function () {
+  //Skipping until DE6922 is fixed
+  it.skip('"Watch Latest Service" button should link to the current series', function () {
     //Desktop version
     cy.get('[data-automation-id="watch-series-button"]').as('watchServiceButton');
     cy.get('@watchServiceButton').should('be.visible').and('have.attr', 'href', currentSeries.URL.absolute);

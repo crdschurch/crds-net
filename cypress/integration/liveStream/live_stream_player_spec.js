@@ -28,7 +28,7 @@ describe('Tests the /live/stream page displays the expected player', function ()
 
   it('Displays the Bitmovin player or fallback Youtube player', function () {
     cy.server();
-    cy.route('/int/streamSchedule', fakeSchedule);
+    cy.route(`${Cypress.env('schedule_env')}/streamSchedule`, fakeSchedule);
     cy.route('manifest.m3u8').as('bitmovinManifest');
 
     cy.visit('/live/stream/');
@@ -54,7 +54,7 @@ describe('Tests the /live/stream page displays the expected player', function ()
 
   it('Autoplays the stream muted with subtitles if using Bitmovin player', function () {
     cy.server();
-    cy.route('/int/streamSchedule', fakeSchedule);
+    cy.route(`${Cypress.env('schedule_env')}/streamSchedule`, fakeSchedule);
     const ampEvents = new AmplitudeEventChecker();
 
     cy.visit('/live/stream/');
