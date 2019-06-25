@@ -30,14 +30,13 @@ describe('Testing the Current Series on the Homepage:', function () {
     new ImageDisplayValidator('seriesImage').shouldHaveImgixImage(currentSeries.image);
   });
 
-  //Skipping until DE6922 is fixed
-  it.skip('"Watch Latest Service" button should link to the current series', function () {
+  it('"Watch Latest Service" button should link to the current series', function () {
     //Desktop version
     cy.get('[data-automation-id="watch-series-button"]').as('watchServiceButton');
-    cy.get('@watchServiceButton').should('be.visible').and('have.attr', 'href', currentSeries.URL.absolute);
+    cy.get('@watchServiceButton').should('be.visible').and('have.attr', 'href', currentSeries.URL.relative);
 
     //Mobile version
     cy.get('[data-automation-id="mobile-watch-series-button"]').as('mobileWatchServiceButton');
-    cy.get('@mobileWatchServiceButton').should('not.be.visible').and('have.attr', 'href', currentSeries.URL.absolute);
+    cy.get('@mobileWatchServiceButton').should('not.be.visible').and('have.attr', 'href', currentSeries.URL.relative);
   });
 });

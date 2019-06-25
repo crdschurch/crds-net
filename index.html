@@ -314,7 +314,7 @@ paginate:
               <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a
                   service</span><br><span class="text-white">online</span></h4>
               <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]"
+              <a class="btn btn-secondary btn-lg" href="{{ series.url }}"
                 data-automation-id="watch-series-button">Watch the latest service</a>
             </div>
 
@@ -322,7 +322,7 @@ paginate:
               <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a
                   service</span><br><span class="text-white">online</span></h4>
               <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]"
+              <a class="btn btn-secondary btn-lg" href="{{ series.url }}"
                 data-automation-id="mobile-watch-series-button">Watch the latest service</a>
             </div>
 
@@ -504,7 +504,7 @@ paginate:
   };
 
   document.addEventListener("deferred-js-ready", countdownInit);
-  
+
   if (window.deferredJSReady) {
     countdownInit();
   }
