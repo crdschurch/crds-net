@@ -4,7 +4,6 @@
   "env": {
     "schedule_env": "/prod",
     "CONTENTFUL_ENV": "master",
-    "CRDS_ENV": "",
     "CRDS_MEDIA_ENDPOINT": "https://www.crossroads.net/media"
   }
 }

@@ -3,7 +3,6 @@
   "env": {
     "schedule_env": "/int",
     "CONTENTFUL_ENV": "int",
-    "CRDS_ENV": "int",
     "CRDS_MEDIA_ENDPOINT": "https://int.crossroads.net/media"
   }
 }
