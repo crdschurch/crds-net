@@ -2,47 +2,47 @@
 layout: default
 monetate_page_type: index-main
 meta:
-  title: Crossroads
-  description: No matter what your beliefs, you are welcome here.
-  image:
-    url: "//crds-cms-uploads.imgix.net/content/images/cr-social-sharing-still-bg.jpg?w=1200&h=630&fit=crop"
+title: Crossroads
+description: No matter what your beliefs, you are welcome here.
+image:
+url: "//crds-cms-uploads.imgix.net/content/images/cr-social-sharing-still-bg.jpg?w=1200&h=630&fit=crop"
 paginate:
-  articles:
-    per: 15
-    offset: 1
-    limit: 1
-    sort: published_at desc
-  perspectives:
-    per: 3
-    limit: 1
-    sort: published_at desc
-  topics:
-    per: 5
-    limit: 1
-    sort: published_at
-  series:
-    per: 1
-    limit: 1
-    sort: starts_at desc
-  messages:
-    per: 1
-    limit: 1
-    sort: published_at desc
-  home_collection:
-    collections:
-      - articles
-    per: 10
-    limit: 1
-    offset: 2
-    sort: published_at desc
-  episodes:
-    per: 3
-    limit: 1
-    sort: published_at desc
-  podcasts:
-    per: 6
-    offset: 1
-    limit: 1
+articles:
+per: 15
+offset: 1
+limit: 1
+sort: published_at desc
+perspectives:
+per: 3
+limit: 1
+sort: published_at desc
+topics:
+per: 5
+limit: 1
+sort: published_at
+series:
+per: 1
+limit: 1
+sort: starts_at desc
+messages:
+per: 1
+limit: 1
+sort: published_at desc
+home_collection:
+collections:
+- articles
+per: 10
+limit: 1
+offset: 2
+sort: published_at desc
+episodes:
+per: 3
+limit: 1
+sort: published_at desc
+podcasts:
+per: 6
+offset: 1
+limit: 1
 ---
 
 {% include header.html %}
@@ -153,7 +153,7 @@ paginate:
         {% if managed_features.size > 0 %}
         featured
         {% else %}
-          latest
+        latest
         {% endif %}
       </h2>
 
@@ -263,9 +263,9 @@ paginate:
               sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
           </a>
         </div>
-          {% if forloop.last != true %}
-            <hr>
-          {% endif %}
+        {% if forloop.last != true %}
+        <hr>
+        {% endif %}
         {% endfor %}
       </div>
     </div>
@@ -314,8 +314,8 @@ paginate:
               <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a
                   service</span><br><span class="text-white">online</span></h4>
               <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-{% assign recent_series = home_series | first %}
-<a class="btn btn-secondary btn-lg" href="{{ recent_series.url }}"
+              {% assign recent_series = home_series | first %}
+              <a class="btn btn-secondary btn-lg" href="{{ recent_series.url }}"
                 data-automation-id="watch-series-button">Watch the latest service</a>
             </div>
 
@@ -447,9 +447,9 @@ paginate:
           </a>
         </div>
 
-          {% if forloop.last != true %}
-            <hr>
-          {% endif %}
+        {% if forloop.last != true %}
+        <hr>
+        {% endif %}
         {% endfor %}
 
         {% assign home_podcasts = page.podcasts.docs | slice: 2, 6 %}
@@ -470,9 +470,9 @@ paginate:
           </a>
         </div>
 
-          {% if forloop.last != true %}
-            <hr>
-          {% endif %}
+        {% if forloop.last != true %}
+        <hr>
+        {% endif %}
         {% endfor %}
       </div>
     </div>
