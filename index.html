@@ -310,11 +310,11 @@ limit: 1
           <p>An authentic community of Christ-followers who believe that your life is made for more.</p>
 
           <div class="row push-top soft-top">
+            {% assign recent_series = home_series | first %}
             <div class="col-sm-4 col-sm-offset-2 text-right hidden-xs soft-sides">
               <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a
                   service</span><br><span class="text-white">online</span></h4>
               <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              {% assign recent_series = home_series | first %}
               <a class="btn btn-secondary btn-lg" href="{{ recent_series.url }}"
                 data-automation-id="watch-series-button">Watch the latest service</a>
             </div>
@@ -323,7 +323,7 @@ limit: 1
               <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a
                   service</span><br><span class="text-white">online</span></h4>
               <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              <a class="btn btn-secondary btn-lg" href="{{ series.url }}"
+              <a class="btn btn-secondary btn-lg" href="{{ recent_series.url }}"
                 data-automation-id="mobile-watch-series-button">Watch the latest service</a>
             </div>
 
