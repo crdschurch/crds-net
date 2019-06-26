@@ -1,6 +1,8 @@
 require 'pry'
 require 'vcr'
 require 'csv'
+require 'utils/html_util'	
+require 'utils/meta_util'
 require 'crds/redirects'
 
 Dir['./spec/support/**/*.rb'].each { |f| require f }
