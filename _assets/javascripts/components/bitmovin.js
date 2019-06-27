@@ -10,7 +10,6 @@ class BitmovinManager {
         moment.tz.setDefault(this.timezoneStr);
         this.container = document.getElementById(`${bitmovinConfig.id}`);
         this.countdown = new CRDS.Countdown();
-        this.playStarted = null;
 
         this.playerConfig = {
             key: '224f523d-e1ba-4f96-ad4d-96365f461c93',
@@ -85,8 +84,8 @@ class BitmovinManager {
         this.bitmovinPlayer.on('paused', () => { this.onPlayerEnd('Paused') });
         this.bitmovinPlayer.on('subtitleenable', () => { this.onSubtitlesEnabled() });
         this.bitmovinPlayer.on('sourceloaded', () => { this.addExternalSubtitles() });
-        // this.bitmovinPlayer.on('playbackfinished', this.showStandbyMessaging());
-        // this.bitmovinPlayer.on('play', this.hideStandbyMessaging());
+        this.bitmovinPlayer.on('ready', () => { this.onPlayerReady(new Date()) });
+
         return this.bitmovinPlayer.load(this.source);
     }
 
@@ -150,15 +149,13 @@ class BitmovinManager {
     onPlayerStart() {
         if (this.getIsMuted()) this.enableSubtitles();
         if (typeof analytics !== 'undefined') {
-            this.playStarted = new Date();
-            analytics.track('VideoStarted', {
-                Title: this.bitmovinPlayer.getSource().title,
-                VideoId: this.bitmovinPlayer.getSource().hls,
-                Source: 'CrossroadsNet',
-                VideoTotalDuration: this.bitmovinPlayer.getDuration(),
-                VideoTimeToStart: this.playStarted - window.performance.timing.domContentLoadedEventEnd
-            });
-            console.log('Video Start sent to analytics');
+            if (this.getAutoPlay)
+                analytics.track('VideoStarted', {
+                    Title: this.bitmovinPlayer.getSource().title,
+                    VideoId: this.bitmovinPlayer.getSource().hls,
+                    Source: 'CrossroadsNet',
+                    VideoTotalDuration: this.bitmovinPlayer.getDuration()
+                });
         }
     }
 
@@ -279,6 +276,16 @@ class BitmovinManager {
                 this.bitmovinPlayer.play();
             });
         else this.bitmovinPlayer.play();
+    }
+
+    onPlayerReady(readyTime) {
+        analytics.track('VideoReady', {
+            Title: this.bitmovinPlayer.getSource().title,
+            VideoId: this.bitmovinPlayer.getSource().hls,
+            Source: 'CrossroadsNet',
+            VideoTimeToReady: readyTime.getTime() - window.performance.timing.domContentLoadedEventEnd
+        });
+        console.log("analytics for player ready fired!");
     }
 }
 
