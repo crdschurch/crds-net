@@ -4,8 +4,10 @@ class BitmovinManager {
     constructor(bitmovinConfig) {
         this.isCard = bitmovinConfig.isCard;
         this.isStream = bitmovinConfig.isStream;
+        this.subtitles_url = bitmovinConfig.subtitles_url;
         this.videoDuration = Number(bitmovinConfig.duration) * 1000;
         this.timezoneStr = 'America/New_York';
+        this.timeouts = [];
         moment.tz.setDefault(this.timezoneStr);
         this.container = document.getElementById(`${bitmovinConfig.id}`);
         this.countdown = new CRDS.Countdown();
@@ -81,7 +83,11 @@ class BitmovinManager {
         this.bitmovinPlayer.on('play', () => { this.onPlayerStart() });
         this.bitmovinPlayer.on('playbackfinished', () => { this.onPlayerEnd('Ended') });
         this.bitmovinPlayer.on('paused', () => { this.onPlayerEnd('Paused') });
-        this.bitmovinPlayer.on('subtitleenable', () => { this.onSubtitlesEnabled(); })
+        if (this.isStream) {
+            this.bitmovinPlayer.on('paused', () => { this.cancelStreams() });
+        }
+        this.bitmovinPlayer.on('subtitleenable', () => { this.onSubtitlesEnabled() });
+        this.bitmovinPlayer.on('sourceloaded', () => { this.addExternalSubtitles() });
         // this.bitmovinPlayer.on('playbackfinished', this.showStandbyMessaging());
         // this.bitmovinPlayer.on('play', this.hideStandbyMessaging());
         return this.bitmovinPlayer.load(this.source);
@@ -95,15 +101,23 @@ class BitmovinManager {
                 const videoEndTime = moment(e.start) + this.videoDuration;
                 const timeTilVideoEnd = videoEndTime - now;
                 if (moment(e.start) > now) {
-                    setTimeout(() => {
+                    let eventStartTimeout = setTimeout(() => {
                         this.restartVideo();
                     }, timeTilEventStart);
+                    this.timeouts.push(eventStartTimeout);
                 }
 
-                setTimeout(() => {
+                let videoEndTimeout = setTimeout(() => {
                     this.showStandbyMessaging();
                 }, timeTilVideoEnd);
+                this.timeouts.push(videoEndTimeout);
             });
+    }
+
+    cancelStreams() {
+        for (var i in this.timeouts) {
+            clearTimeout(this.timeouts[i]);
+        }
     }
 
     getHidePlaybackSpeed() {
@@ -120,8 +134,8 @@ class BitmovinManager {
     }
 
     getIsMuted() {
-        if(this.isCard) return true;
-        if(!this.getAutoPlay()) return false;
+        if (this.isCard) return true;
+        if (!this.getAutoPlay()) return false;
 
         let urlParams = new URLSearchParams(window.location.search);
         let sound = urlParams.has('sound') ? parseInt(urlParams.get('sound')) : 0;
@@ -226,18 +240,29 @@ class BitmovinManager {
         this.seekTo(0, 0);
     }
 
-
     enableSubtitles() {
         let i = 0;
         var interval = setInterval(() => {
             const subtitles = this.bitmovinPlayer.subtitles.list();
             if (subtitles.length) {
-                this.bitmovinPlayer.subtitles.enable(subtitles[0].id);
+                this.bitmovinPlayer.subtitles.enable('external');
                 clearInterval(interval);
             }
             if (i >= 3) clearInterval(interval);
             i += 1;
         }, 1000)
+    }
+
+    addExternalSubtitles() {
+        if (!this.subtitles_url) return;
+        var enSubtitle = {
+            id: "external",
+            lang: "en",
+            label: "English",
+            url: this.subtitles_url,
+            kind: "subtitle"
+        };
+        this.bitmovinPlayer.subtitles.add(enSubtitle);
     }
 
     onCCEnabled() {

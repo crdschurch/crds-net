@@ -153,7 +153,7 @@ paginate:
         {% if managed_features.size > 0 %}
         featured
         {% else %}
-          latest
+        latest
         {% endif %}
       </h2>
 
@@ -263,9 +263,9 @@ paginate:
               sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
           </a>
         </div>
-          {% if forloop.last != true %}
-            <hr>
-          {% endif %}
+        {% if forloop.last != true %}
+        <hr>
+        {% endif %}
         {% endfor %}
       </div>
     </div>
@@ -310,11 +310,12 @@ paginate:
           <p>An authentic community of Christ-followers who believe that your life is made for more.</p>
 
           <div class="row push-top soft-top">
+            {% assign recent_series = home_series | first %}
             <div class="col-sm-4 col-sm-offset-2 text-right hidden-xs soft-sides">
               <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a
                   service</span><br><span class="text-white">online</span></h4>
               <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]"
+              <a class="btn btn-secondary btn-lg" href="{{ recent_series.url }}"
                 data-automation-id="watch-series-button">Watch the latest service</a>
             </div>
 
@@ -322,7 +323,7 @@ paginate:
               <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a
                   service</span><br><span class="text-white">online</span></h4>
               <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              <a class="btn btn-secondary btn-lg" data-media-snippet="get_current_series_url:attr[href]"
+              <a class="btn btn-secondary btn-lg" href="{{ recent_series.url }}"
                 data-automation-id="mobile-watch-series-button">Watch the latest service</a>
             </div>
 
@@ -446,9 +447,9 @@ paginate:
           </a>
         </div>
 
-          {% if forloop.last != true %}
-            <hr>
-          {% endif %}
+        {% if forloop.last != true %}
+        <hr>
+        {% endif %}
         {% endfor %}
 
         {% assign home_podcasts = page.podcasts.docs | slice: 2, 6 %}
@@ -469,9 +470,9 @@ paginate:
           </a>
         </div>
 
-          {% if forloop.last != true %}
-            <hr>
-          {% endif %}
+        {% if forloop.last != true %}
+        <hr>
+        {% endif %}
         {% endfor %}
       </div>
     </div>
@@ -504,7 +505,7 @@ paginate:
   };
 
   document.addEventListener("deferred-js-ready", countdownInit);
-  
+
   if (window.deferredJSReady) {
     countdownInit();
   }

@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://demo.crossroads.net",
+  "env": {
+    "schedule_env": "/demo",
+    "CONTENTFUL_ENV": "demo",
+    "CRDS_MEDIA_ENDPOINT": "https://demo.crossroads.net/media"
+  }
+}
