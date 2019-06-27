@@ -10,6 +10,7 @@ class BitmovinManager {
         moment.tz.setDefault(this.timezoneStr);
         this.container = document.getElementById(`${bitmovinConfig.id}`);
         this.countdown = new CRDS.Countdown();
+        this.playStarted = null;
 
         this.playerConfig = {
             key: '224f523d-e1ba-4f96-ad4d-96365f461c93',
@@ -149,12 +150,15 @@ class BitmovinManager {
     onPlayerStart() {
         if (this.getIsMuted()) this.enableSubtitles();
         if (typeof analytics !== 'undefined') {
+            this.playStarted = new Date();
             analytics.track('VideoStarted', {
                 Title: this.bitmovinPlayer.getSource().title,
                 VideoId: this.bitmovinPlayer.getSource().hls,
                 Source: 'CrossroadsNet',
-                VideoTotalDuration: this.bitmovinPlayer.getDuration()
+                VideoTotalDuration: this.bitmovinPlayer.getDuration(),
+                VideoTimeToStart: this.playStarted - window.performance.timing.domContentLoadedEventEnd
             });
+            console.log('Video Start sent to analytics');
         }
     }
 
