@@ -29,6 +29,8 @@ jobs:
       <<: *runCypress
     - stage: test
       <<: *runCypress
+    - stage: peformance
+      <<: "npm run size"
 notifications:
   slack:
     template:
