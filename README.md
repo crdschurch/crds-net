@@ -6,7 +6,7 @@
 2. [Working With Content](#working-with-content)
 3. [Submodules](#submodules)
 4. [Build Logs](#build-logs)
-5. [Advanced Setup](#advanced-setup)
+5. [Advanced](#advanced-setup)
 6. [Contributing To The Repo](#contributing-to-the-repo)
 7. [License](#license)
 
@@ -133,7 +133,13 @@ To find an erroneous log use the following search term in the logz.io search bar
 
 APPLICATION_NAME is the value set to that environment variable
 
-## Advanced Setup
+## Advanced
+### Performance Budget (Size Limit)
+`crds-net` uses [size-limit](https://github.com/ai/size-limit) to measure the performance impact of 
+JS (specifically application, application_deferred, and bitmovin). To check the numbers locally try
+running `npm run size` which will build the jekyll site and run a performance check on slow 3G. We also run
+this check against open PRs with Travis CI.
+
 ### Building Assets
 `crds-net` uses `jekyll-asset-pipeline` to create Javascript/CSS assets. If you see that assets are not showing up make sure to check that [the pipeline is installed correctly](https://github.com/crdschurch/jekyll-asset-pipeline). If all else fails, try `rm -rf _site` and then start Jekyll back up.
 
