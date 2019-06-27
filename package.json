@@ -6,8 +6,20 @@
   "directories": {
     "lib": "lib"
   },
+  "size-limit": [
+    {
+      "webpack": false,
+      "path": [
+        "_site/assets/application-*.js",
+        "_site/assets/application_deferred-*.js",
+        "_site/assets/bitmovin-*.js"
+      ]
+    }
+  ],
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "size": "bundle exec jekyll build && size-limit",
+    "limit": "300 KB"
   },
   "repository": {
     "type": "git",
@@ -24,7 +36,7 @@
     "@babel/preset-env": "^7.2.0",
     "@cypress/browserify-preprocessor": "^2.1.1",
     "bootstrap-sass": "^3.4.0",
-    "contentful-cli": "^0.28.0",
+    "contentful-cli": "^0.30.0",
     "crds-cypress-tools": "^1.4.1",
     "crds-styles": "^3.2.3",
     "cypress": "^3.3.1",
@@ -44,7 +56,8 @@
     "node-sass-tilde-importer": "^1.0.2",
     "path": "^0.12.7",
     "prettier": "1.18.2",
-    "remove-markdown": "^0.3.0"
+    "remove-markdown": "^0.3.0",
+    "size-limit": "^1.3.7"
   },
   "dependencies": {}
 }
