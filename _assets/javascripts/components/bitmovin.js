@@ -25,6 +25,12 @@ class BitmovinManager {
             ui: {
                 playbackSpeedSelectionEnabled: true
             },
+            remotecontrol: {
+                type: 'googlecast',
+                customReceiverConfig: {
+                    receiverStylesheetUrl: "https://d1gb5n5uoite2y.cloudfront.net/bitmovin-cast-v1.0.css"
+                }
+            },
             events: {
                 onPlaybackFinished: () => {
                     this.showStandbyMessaging();
