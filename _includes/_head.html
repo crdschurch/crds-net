@@ -1,11 +1,10 @@
 <head>
 
+  <script src="https://crds-components-int.netlify.com/dist/crds-components.js"></script>
   {% javascript_link_tag set-redirect-url %}
-
   {% if page.requires_auth %}
     {% javascript_link_tag auth-required %}
   {% endif %}
-
   {% include _gtm-head.html %}
   {% include _monetate-head.html %}
 
@@ -77,6 +76,4 @@
   {% stylesheet_link_tag application %}
   <!-- after -->
   <script> window.prerenderReady = true; </script>
-
-  <script src="https://crds-components-int.netlify.com/dist/crds-components.js"></script>
 </head>
