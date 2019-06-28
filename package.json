@@ -7,7 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "integration_test": "npx cypress run"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,7 @@
     "contentful-cli": "^0.28.0",
     "crds-cypress-tools": "^1.4.1",
     "crds-styles": "^3.2.3",
-    "cypress": "^3.3.1",
+    "cypress": "^3.3.2",
     "del": "^3.0.0",
     "eslint": "^5.11.1",
     "eslint-plugin-cypress": "^2.2.0",

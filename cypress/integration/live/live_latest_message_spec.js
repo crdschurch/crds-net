@@ -1,14 +1,17 @@
+import { ContentfulLibrary } from 'crds-cypress-tools';
+import { ExtendedMessageEntry } from '../../Contentful/Entries/ExtendedMessageEntry';
 import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
-import { MessageQueryManager } from '../../Contentful/QueryManagers/MessageQueryManager';
 
 describe('Testing the Past Weekends section on the Live page:', function () {
   let recentMessages;
   before(function () {
-    const mqm = new MessageQueryManager();
-    mqm.fetchRecentMessages(4).then((messages) => {
-      recentMessages = messages;
+    const mqm = new ContentfulLibrary.queryManager.messageQueryManager();
+    mqm.entryClass = ExtendedMessageEntry;
+    mqm.fetchListOfEntries(mqm.query.latestMessage, 4).then(messageList => {
+      recentMessages = messageList;
       recentMessages.forEach(m => m.fetchLinkedResources());
     });
+
     cy.visit('/live');
   });
 
@@ -33,7 +36,7 @@ describe('Testing the Past Weekends section on the Live page:', function () {
       });
 
       cy.get('@messageCard').find('[data-automation-id="recent-message-image-link"]').as('messageURL');
-      cy.get('@messageURL').should('have.attr', 'href', message.URL.absolute);
+      cy.get('@messageURL').should('have.attr', 'href', message.autoplayURL.relative);
 
       cy.get('@messageCard').find('[data-automation-id="recent-message-image"]').as('messageImage');
       cy.get('@messageImage').should('have.attr', 'alt').and('contain', message.title.text);
@@ -45,9 +48,10 @@ describe('Testing the Past Weekends section on the Live page:', function () {
 describe('Testing the "Watch This Weeks Service" button', function () {
   let currentMessage;
   before(function () {
-    const mqm = new MessageQueryManager();
-    mqm.fetchLatestMessage().then((results) => {
-      currentMessage = results;
+    const mqm = new ContentfulLibrary.queryManager.messageQueryManager();
+    mqm.entryClass = ExtendedMessageEntry;
+    mqm.fetchSingleEntry(mqm.query.latestMessage).then(message => {
+      currentMessage = message;
       currentMessage.fetchLinkedResources();
     });
   });
@@ -58,7 +62,7 @@ describe('Testing the "Watch This Weeks Service" button', function () {
   });
 
   it('Button should link to latest message', function () {
-    cy.get('[data-automation-id="watch-service-button"]').should('be.visible').and('have.attr', 'href', currentMessage.URL.absolute);
+    cy.get('[data-automation-id="watch-service-button"]').should('be.visible').and('have.attr', 'href', currentMessage.autoplayURL.relative);
   });
 
   it('When clicked, latest message page should load', function () {

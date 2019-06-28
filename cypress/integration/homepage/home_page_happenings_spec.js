@@ -1,4 +1,5 @@
-import { PromoQueryManager } from '../../Contentful/QueryManagers/PromoQueryManager';
+import { ContentfulLibrary } from 'crds-cypress-tools';
+import { target_audiences } from '../../fixtures/target_audiences';
 
 function promoShouldMatchContent(displayedCard, promo) {
   displayedCard.find('.card-title').as('title');
@@ -13,11 +14,10 @@ function selectFilter(audience) {
   cy.get('@audienceSelector').click();
 }
 
-describe('Given I have not applied a filter to the Happenings section on the Homepage:', function () {
+describe('Tests Happening section without filters', function () {
   before(function () {
     cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/');
-    cy.hideSharedHeader();
   });
 
   beforeEach(function () {
@@ -29,45 +29,36 @@ describe('Given I have not applied a filter to the Happenings section on the Hom
     cy.get('@promoFilter').find('[data-current-label]').as('currentFilter');
     cy.get('@currentFilter').should('have.text', 'Churchwide');
   });
-
-  it('The filter list should include every Target Audience on published promos', function () {
-    const pm = new PromoQueryManager();
-    pm.fetchAudiencesOnPromos().then(() => {
-      const audiences = pm.queryResult;
-
-      expect(audiences.length).to.be.above(0);
-      cy.get('@promoFilter').find('[data-filter-select]').should('have.length', audiences.length);
-
-      audiences.forEach(a => {
-        cy.get('@promoFilter').find(`[data-filter-select="${a}"]`).should('exist');
-      });
-    });
-  });
 });
 
-describe('Given I want to filter the Happenings section on the Homepage:', function () {
+describe('Tests Happenings can be filtered by audience', function () {
+  let pqm;
   before(function () {
     cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/');
     cy.hideSharedHeader();
+    pqm = new ContentfulLibrary.queryManager.promoQueryManager();
   });
 
-  ['Churchwide', 'Oakley'].forEach(audience => {
+  target_audiences.forEach(audience => {
     it(`Filtering by "${audience}" should display only ${audience} promos sorted by date then title`, function () {
-      const pm = new PromoQueryManager();
-      pm.fetchPromosByAudience(audience).then(() => {
-        const promos = pm.queryResult;
-        expect(promos.length).to.be.above(0);
-        return promos;
-      }).then(expectedPromos => {
-        selectFilter(audience);
+      const promosForAudienceQuery = `${pqm.query.forAudience(audience)}&${pqm.query.orderBy.publishedMostRecentlyThenTitle}`;
+      pqm.fetchListOfEntries(promosForAudienceQuery, 1000).then(promos => {
+        if (promos.length == 0) {
+          cy.log(`There are no published promos for "${audience}"`);
+        } else {
+          cy.get('[data-automation-id="happenings-dropdown"]').as('promoFilter');
+          cy.get('@promoFilter').scrollIntoView();
 
-        cy.get(`[data-automation-id="happenings-cards"] > [data-filter*="${audience}"]`).as(`${audience}Cards`);
+          cy.get('@promoFilter').find(`[data-filter-select="${audience}"]`).should('exist');
+          selectFilter(audience);
 
-        cy.get(`@${audience}Cards`).should('have.length', expectedPromos.length);
-        expectedPromos.forEach(($promo, $i) => {
-          promoShouldMatchContent(cy.get(`@${audience}Cards`).eq($i), $promo);
-        });
+          cy.get('[data-automation-id="happenings-cards"] > [style="display: block;"]').as(`${audience}Cards`);
+          cy.get(`@${audience}Cards`).should('have.length', promos.length);
+          promos.forEach((promo, i) => {
+            promoShouldMatchContent(cy.get(`@${audience}Cards`).eq(i), promo);
+          });
+        }
       });
     });
   });

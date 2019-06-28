@@ -3,7 +3,7 @@ export class RouteValidator{
     cy.get('[data-automation-id="404-search-field"]').as('404SearchField').should('not.exist');
   }
 
-  static pageFoundAndFromNetlify(url) {
+  static pageFoundAndURLMatches(url) {
     RouteValidator.pageShouldMatchUrl(url);
     RouteValidator.pageShouldNotBe404();
   }
