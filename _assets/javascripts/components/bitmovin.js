@@ -297,13 +297,13 @@ class BitmovinManager {
     }
 
     onPlayerReady(readyTime) {
+        $(".inline-preloader-wrapper").hide();
         analytics.track('VideoReady', {
             Title: this.bitmovinPlayer.getSource().title,
             VideoId: this.bitmovinPlayer.getSource().hls,
             Source: 'CrossroadsNet',
             VideoTimeToReady: readyTime.getTime() - window.performance.timing.domContentLoadedEventEnd
         });
-        console.log("analytics for player ready fired!");
     }
 }
 
