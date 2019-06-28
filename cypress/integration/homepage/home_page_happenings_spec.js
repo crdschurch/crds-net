@@ -8,13 +8,16 @@ function promoShouldMatchContent(displayedCard, promo) {
 function selectFilter(audience) {
   cy.get('[data-automation-id="happenings-dropdown"]').as('promoFilter');
   cy.get('@promoFilter').scrollIntoView().click();
-  cy.get('@promoFilter').find(`[data-filter-select="${audience}"]`).click();
+
+  cy.get('@promoFilter').find(`[data-filter-select="${audience}"]`).as('audienceSelector');
+  cy.get('@audienceSelector').click();
 }
 
 describe('Given I have not applied a filter to the Happenings section on the Homepage:', function () {
   before(function () {
     cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/');
+    cy.hideSharedHeader();
   });
 
   beforeEach(function () {
@@ -46,6 +49,7 @@ describe('Given I want to filter the Happenings section on the Homepage:', funct
   before(function () {
     cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/');
+    cy.hideSharedHeader();
   });
 
   ['Churchwide', 'Oakley'].forEach(audience => {

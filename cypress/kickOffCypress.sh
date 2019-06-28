@@ -29,8 +29,7 @@ fi
 # fi
 
 test_this_URL=$CRDS_APP_CLIENT_ENDPOINT
-media_endpoint="$CRDS_APP_CLIENT_ENDPOINT/media"
-body="{\"request\": { \"branch\":\"$HEAD\", \"config\": {\"env\": { \"baseURL\": \"$test_this_URL\", \"contentfulSpaceId\": \"$CONTENTFUL_SPACE_ID\", \"contentfulEnv\": \"$CONTENTFUL_ENV\", \"contentfulToken\": \"$CONTENTFUL_ACCESS_TOKEN\", \"mediaEndpoint\": \"$media_endpoint\", \"crdsEnv\": \"$CRDS_ENV\", \"DEBUG_NetlifyContext\": \"$CONTEXT\"}}}}"
+body="{\"request\": { \"branch\":\"$HEAD\", \"config\": {\"env\": { \"baseURL\": \"$test_this_URL\", \"config_file\": \"$CYPRESS_CONFIG_FILE\", \"contentfulSpaceId\": \"$CONTENTFUL_SPACE_ID\", \"contentfulToken\": \"$CONTENTFUL_ACCESS_TOKEN\", \"DEBUG_NetlifyContext\": \"$CONTEXT\"}}}}"
 
 curl -s -X POST \
 -H "Content-Type: application/json" \

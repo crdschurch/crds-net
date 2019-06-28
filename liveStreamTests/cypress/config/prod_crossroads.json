@@ -3,6 +3,7 @@
   "env": {
     "slack_channel": "#bearsharktopus,#production-support",
     "email_recipients": "webteam@crossroads.net,dalbanese@crossroads.net",
-    "CONTENTFUL_ENV": "master"
+    "CONTENTFUL_ENV": "master",
+    "schedule_env": "/prod"
   }
 }
