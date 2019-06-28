@@ -297,7 +297,7 @@ class BitmovinManager {
     }
 
     onPlayerReady(readyTime) {
-        $(".inline-preloader-wrapper").hide();
+        document.querySelector('.inline-preloader-wrapper').setAttribute("style", "opacity: 0; z-index: 0;");
         analytics.track('VideoReady', {
             Title: this.bitmovinPlayer.getSource().title,
             VideoId: this.bitmovinPlayer.getSource().hls,
