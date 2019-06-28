@@ -1,4 +1,4 @@
-import { MessageQueryManager } from '../../Contentful/QueryManagers/MessageQueryManager';
+import { ContentfulLibrary } from 'crds-cypress-tools';
 import { AmplitudeEventChecker } from './helpers/AmplitudeEventChecker';
 import { BitmovinPlayer } from './helpers/BitmovinPlayer';
 import { StreamScheduleGenerator } from './helpers/ScheduleGenerator';
@@ -18,9 +18,9 @@ describe('Tests the /live/stream page displays the expected player', function ()
   let latestMessage;
   let fakeSchedule;
   before(function () {
-    const mqm = new MessageQueryManager();
-    mqm.fetchLatestMessage().then(result => {
-      latestMessage = result;
+    const mqm = new ContentfulLibrary.queryManager.messageQueryManager();
+    mqm.fetchSingleEntry(mqm.query.latestMessage).then(message => {
+      latestMessage = message;
     });
 
     fakeSchedule = new StreamScheduleGenerator().streamStartingNow;
