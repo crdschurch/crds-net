@@ -7,7 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "integration_test": "npx cypress run"
   },
   "repository": {
     "type": "git",
@@ -27,10 +28,12 @@
     "contentful-cli": "^0.28.0",
     "crds-cypress-tools": "^1.4.1",
     "crds-styles": "^3.2.3",
-    "cypress": "^3.3.1",
+    "cypress": "^3.3.2",
     "del": "^3.0.0",
     "eslint": "^5.11.1",
+    "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-cypress": "^2.2.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "fs-extra": "^8.0.1",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
@@ -41,6 +44,7 @@
     "gulp-uglify": "^3.0.1",
     "node-sass-tilde-importer": "^1.0.2",
     "path": "^0.12.7",
+    "prettier": "1.18.2",
     "remove-markdown": "^0.3.0"
   },
   "dependencies": {}

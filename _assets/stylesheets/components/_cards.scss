@@ -373,3 +373,8 @@
     z-index: -1;
   }
 }
+
+// prevent subtitles on autoplay cards from jumping
+.bmpui-ui-subtitle-overlay.bmpui-controlbar-visible {
+  bottom: 2em;
+}

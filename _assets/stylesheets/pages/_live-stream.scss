@@ -66,16 +66,8 @@
     line-height: $headings-line-height;
   }
 
-  .bmpui-ui-playbacktogglebutton {
-    display: none;
-  }
-
   .bmpui-ui-uicontainer {
     pointer-events: initial;
-  }
-
-  .bmpui-ui-hugeplaybacktogglebutton {
-    pointer-events: none;
   }
 
   // hide for live stream

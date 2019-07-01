@@ -1,12 +1,12 @@
 import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
-import { LocationQueryManager } from '../../Contentful/QueryManagers/LocationQueryManager';
+import { ContentfulLibrary } from 'crds-cypress-tools';
 
 describe('Given I navigate to /locations and do not search:', function () {
   let locationList;
   before(function () {
-    const queryManager = new LocationQueryManager();
-    queryManager.fetchLocationsSortedByNameThenSlug().then(() => {
-      locationList = queryManager.queryResult;
+    const lqm = new ContentfulLibrary.queryManager.locationQueryManager();
+    lqm.fetchListOfEntries(lqm.query.orderBy.nameThenSlug, 1000).then(locations => {
+      locationList = locations;
     });
 
     cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property `reload` of undefined'); //Remove once DE6613 is fixed
