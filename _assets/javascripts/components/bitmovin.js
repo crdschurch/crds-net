@@ -94,8 +94,8 @@ class BitmovinManager {
         }
         this.bitmovinPlayer.on('subtitleenable', () => { this.onSubtitlesEnabled() });
         this.bitmovinPlayer.on('sourceloaded', () => { this.addExternalSubtitles() });
-        this.bitmovinPlayer.on('ready', () => { this.onPlayerReady(new Date()) });
-
+        // this.bitmovinPlayer.on('playbackfinished', this.showStandbyMessaging());
+        // this.bitmovinPlayer.on('play', this.hideStandbyMessaging());
         return this.bitmovinPlayer.load(this.source);
     }
 
@@ -167,13 +167,12 @@ class BitmovinManager {
     onPlayerStart() {
         if (this.getIsMuted()) this.enableSubtitles();
         if (typeof analytics !== 'undefined') {
-            if (this.getAutoPlay)
-                analytics.track('VideoStarted', {
-                    Title: this.bitmovinPlayer.getSource().title,
-                    VideoId: this.bitmovinPlayer.getSource().hls,
-                    Source: 'CrossroadsNet',
-                    VideoTotalDuration: this.bitmovinPlayer.getDuration()
-                });
+            analytics.track('VideoStarted', {
+                Title: this.bitmovinPlayer.getSource().title,
+                VideoId: this.bitmovinPlayer.getSource().hls,
+                Source: 'CrossroadsNet',
+                VideoTotalDuration: this.bitmovinPlayer.getDuration()
+            });
         }
     }
 
@@ -294,16 +293,6 @@ class BitmovinManager {
                 this.bitmovinPlayer.play();
             });
         else this.bitmovinPlayer.play();
-    }
-
-    onPlayerReady(readyTime) {
-        document.querySelector('.inline-preloader-wrapper').setAttribute("style", "opacity: 0; z-index: 0;");
-        analytics.track('VideoReady', {
-            Title: this.bitmovinPlayer.getSource().title,
-            VideoId: this.bitmovinPlayer.getSource().hls,
-            Source: 'CrossroadsNet',
-            VideoTimeToReady: readyTime.getTime() - window.performance.timing.domContentLoadedEventEnd
-        });
     }
 }
 
