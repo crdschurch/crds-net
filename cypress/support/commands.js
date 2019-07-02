@@ -45,7 +45,7 @@ Cypress.Commands.add('ignoreUncaughtException', (expectedMessage) => {
 
 //If the shared header is blocking click events, hide it with this
 Cypress.Commands.add('hideSharedHeader', () => {
-  cy.get('shared-header').as('sharedHeader');
+  cy.get('crds-shared-header').as('sharedHeader');
   cy.get('@sharedHeader').invoke('attr', 'class').then(($classValues) => {
     const newClass = `${$classValues} hide`;
     cy.get('@sharedHeader').invoke('attr', 'class', newClass);
