@@ -4,8 +4,8 @@ describe('Testing the 404 page:', function () {
   });
 
   it('/404 should have the header, footer and search button', function () {
-    cy.get('shared-header').should('exist');
-    cy.get('shared-footer').should('exist');
+    cy.get('crds-shared-header').should('exist');
+    cy.get('crds-shared-footer').should('exist');
     cy.get('[data-automation-id="404-search-button"]').as('404SearchButton').should('exist').and('be.visible');
   });
 
@@ -24,8 +24,8 @@ describe('Testing invalid routes serve the expected 404 page:', function () {
     it(`crossroads.net${slug}`, function () {
       cy.visit(slug, { failOnStatusCode: false });
 
-      cy.get('shared-header').should('exist');
-      cy.get('shared-footer').should('exist');
+      cy.get('crds-shared-header').should('exist');
+      cy.get('crds-shared-footer').should('exist');
       cy.get('[data-automation-id="404-search-button"]').as('404SearchButton').should('exist').and('be.visible');
     });
   });
