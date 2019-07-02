@@ -37,16 +37,6 @@ GIT
       jekyll
 
 GIT
-  remote: https://github.com/crdschurch/jekyll-crds.git
-  revision: aec048b280ebcb61452c34072a3ec04da82ddaa6
-  tag: 1.3.4
-  specs:
-    jekyll-crds (1.3.4)
-      activesupport
-      httparty
-      jekyll
-
-GIT
   remote: https://github.com/crdschurch/netlify-redirector.git
   revision: 8869f37bf026701e04f5a56f2be994d0c5efc36a
   specs:
@@ -54,6 +44,14 @@ GIT
       activesupport
       colorize
       rake
+
+PATH
+  remote: /Users/jasonbrammer/jekyll-crds
+  specs:
+    jekyll-crds (1.4.0)
+      activesupport
+      httparty
+      jekyll
 
 GEM
   remote: https://rubygems.org/
