@@ -1,12 +1,12 @@
 import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
-import { SeriesQueryManager } from '../../Contentful/QueryManagers/SeriesQueryManager';
+import { ContentfulLibrary } from 'crds-cypress-tools';
 
 describe('Testing the Current Series on the Homepage:', function () {
   let currentSeries;
   before(function () {
-    const sqm = new SeriesQueryManager();
-    sqm.fetchCurrentSeries().then((results) => {
-      currentSeries = results;
+    const sqm = new ContentfulLibrary.queryManager.seriesQueryManager();
+    sqm.fetchSingleEntry(sqm.query.latestSeries).then(series => {
+      currentSeries = series;
       currentSeries.fetchLinkedResources();
     });
 
@@ -33,10 +33,10 @@ describe('Testing the Current Series on the Homepage:', function () {
   it('"Watch Latest Service" button should link to the current series', function () {
     //Desktop version
     cy.get('[data-automation-id="watch-series-button"]').as('watchServiceButton');
-    cy.get('@watchServiceButton').should('be.visible').and('have.attr', 'href', currentSeries.URL.absolute);
+    cy.get('@watchServiceButton').should('be.visible').and('have.attr', 'href', currentSeries.URL.relative);
 
     //Mobile version
     cy.get('[data-automation-id="mobile-watch-series-button"]').as('mobileWatchServiceButton');
-    cy.get('@mobileWatchServiceButton').should('not.be.visible').and('have.attr', 'href', currentSeries.URL.absolute);
+    cy.get('@mobileWatchServiceButton').should('not.be.visible').and('have.attr', 'href', currentSeries.URL.relative);
   });
 });
