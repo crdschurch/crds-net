@@ -54,7 +54,6 @@ class BitmovinManager {
     }
 
     createSource(bitmovinConfig) {
-        console.log('creating source')
         this.source = {
             title: bitmovinConfig.title,
             //  description: desc,
@@ -300,7 +299,6 @@ class BitmovinManager {
     }
 
     streamInit(events, bitmovinConfig){ 
-        console.log('we here')
         this.createSource(bitmovinConfig);
         this.createPlayer();
         this.bitmovinPlayer.on('sourceloaded', () => {
