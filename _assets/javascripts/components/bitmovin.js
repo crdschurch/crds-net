@@ -7,8 +7,8 @@ class BitmovinManager {
         this.subtitles_url = bitmovinConfig.subtitles_url;
         this.videoDuration = Number(bitmovinConfig.duration) * 1000;
         this.timezoneStr = 'America/New_York';
+        this.dateStringFormat = 'YYYY/MM/DD HH:mm:ss'
         this.timeouts = [];
-        moment.tz.setDefault(this.timezoneStr);
         this.container = document.getElementById(`${bitmovinConfig.id}`);
         this.countdown = new CRDS.Countdown();
 
@@ -103,10 +103,10 @@ class BitmovinManager {
         this.events
             .forEach(e => {
                 const now = moment();
-                const timeTilEventStart = moment(e.start) - now;
-                const videoEndTime = moment(e.start) + this.videoDuration;
+                const timeTilEventStart = moment.tz(e.start, this.dateStringFormat, this.timezoneStr) - now;
+                const videoEndTime = moment.tz(e.start, this.dateStringFormat, this.timezoneStr) + this.videoDuration;
                 const timeTilVideoEnd = videoEndTime - now;
-                if (moment(e.start) > now) {
+                if (moment.tz(e.start, this.dateStringFormat, this.timezoneStr) > now) {
                     let eventStartTimeout = setTimeout(() => {
                         this.restartVideo();
                     }, timeTilEventStart);
@@ -236,7 +236,7 @@ class BitmovinManager {
     }
 
     calculateStreamElapsed() {
-        this.currentStreamStart = moment(this.countdown.currentEvent.start);
+        this.currentStreamStart = moment.tz(this.countdown.currentEvent.start, this.dateStringFormat, this.timezoneStr);
         this.now = moment();
         this.timeElapsed = (this.now - this.currentStreamStart) / 1000;
         return this.timeElapsed;
@@ -310,3 +310,4 @@ class BitmovinManager {
 var defBitmovinLoaded = new Event('deferred-bitmovin-ready');
 document.dispatchEvent(defBitmovinLoaded);
 window.defBitmovinLoaded = true;
+
