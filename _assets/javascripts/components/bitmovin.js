@@ -25,6 +25,9 @@ class BitmovinManager {
             ui: {
                 playbackSpeedSelectionEnabled: true
             },
+            cast: {
+                enable: true
+            },
             remotecontrol: {
                 type: 'googlecast',
                 customReceiverConfig: {
