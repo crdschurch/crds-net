@@ -13,13 +13,13 @@ class BitmovinManager {
         this.countdown = new CRDS.Countdown();
 
         this.playerConfig = {
-            key: '224f523d-e1ba-4f96-ad4d-96365f461c93',
+            key: `${window.CRDS.env.bitmovinPlayerLicense}`,
             playback: {
                 autoplay: this.getAutoPlay(),
                 muted: this.getIsMuted()
             },
             analytics: {
-                key: '01e90136-7623-4df4-b0d9-a3d975b00258',
+                key: `${window.CRDS.env.bitmovinAnalyticsLicense}`,
                 title: bitmovinConfig.title
             },
             ui: {
