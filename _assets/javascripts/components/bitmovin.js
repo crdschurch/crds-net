@@ -43,16 +43,9 @@ class BitmovinManager {
         }
 
         if (this.isStream) {
+            if(this.countdown.events) this.streamInit(this.countdown.events, bitmovinConfig);
             this.countdown.streamStatusPromise.then(events => {
-                this.createSource(bitmovinConfig);
-                this.createPlayer();
-                this.bitmovinPlayer.on('sourceloaded', () => {
-                    this.videoDuration = this.bitmovinPlayer.getDuration() * 1000;
-                    this.events = events.data.broadcasts;
-                    this.scheduleFutureEvents();
-                    this.standbyElm = document.getElementById('standby-message');
-                    this.manuallyTurnedOnCC = false;
-                });
+                this.streamInit(events, bitmovinConfig);
             });
         } else {
             this.createSource(bitmovinConfig);
@@ -61,7 +54,6 @@ class BitmovinManager {
     }
 
     createSource(bitmovinConfig) {
-
         this.source = {
             title: bitmovinConfig.title,
             //  description: desc,
@@ -303,6 +295,18 @@ class BitmovinManager {
             VideoId: this.bitmovinPlayer.getSource().hls,
             Source: 'CrossroadsNet',
             VideoTimeToReady: readyTime.getTime() - window.performance.timing.domContentLoadedEventEnd
+        });
+    }
+
+    streamInit(events, bitmovinConfig){ 
+        this.createSource(bitmovinConfig);
+        this.createPlayer();
+        this.bitmovinPlayer.on('sourceloaded', () => {
+            this.videoDuration = this.bitmovinPlayer.getDuration() * 1000;
+            this.events = events.data.broadcasts;
+            this.scheduleFutureEvents();
+            this.standbyElm = document.getElementById('standby-message');
+            this.manuallyTurnedOnCC = false;
         });
     }
 }
