@@ -2,6 +2,7 @@ import { ContentfulLibrary } from 'crds-cypress-tools';
 import { AmplitudeEventChecker } from './helpers/AmplitudeEventChecker';
 import { BitmovinPlayer } from './helpers/BitmovinPlayer';
 import { StreamScheduleGenerator } from './helpers/ScheduleGenerator';
+import { ExtendedMessageEntry } from '../../Contentful/Entries/ExtendedMessageEntry';
 
 function hideRollCall() {
   localStorage.setItem('crds-roll-call-state', 'dismissed');
@@ -19,6 +20,7 @@ describe('Tests the /live/stream page displays the expected player', function ()
   let fakeSchedule;
   before(function () {
     const mqm = new ContentfulLibrary.queryManager.messageQueryManager();
+    mqm.entryClass = ExtendedMessageEntry;
     mqm.fetchSingleEntry(mqm.query.latestMessage).then(message => {
       latestMessage = message;
     });
@@ -65,8 +67,10 @@ describe('Tests the /live/stream page displays the expected player', function ()
 
       const player = new BitmovinPlayer();
       player.waitUntilBuffered().then(() => {
-        player.verifySubtitlesDisplayed();
         player.verifyPlayerMuted();
+        if(latestMessage.hasSubtitles){
+          player.verifySubtitlesDisplayed();
+        }
       });
     } else {
       ampEvents.failOnVideoEvent(['VideoStarted'], latestMessage.youtubeURL.text, 3);
