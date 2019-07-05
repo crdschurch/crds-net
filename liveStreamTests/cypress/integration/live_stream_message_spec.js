@@ -19,23 +19,13 @@ class ExtendedMessageEntry extends ContentfulLibrary.entry.message {
   constructor (entryObject, seriesEntry) {
     super(entryObject, seriesEntry);
 
-    this._entry_id = entryObject.sys !== undefined ? entryObject.sys.id : '';
-    this._bitmovin_url = new ContentfulLibrary.resourceField.plainTextField(this._fields.bitmovin_url);
-    this._published_at = new ContentfulLibrary.resourceField.dateField(this._fields.published_at, true);
+    // this._entry_id = entryObject.sys !== undefined ? entryObject.sys.id : '';
     this._video = new VideoAsset(this._fields.video_file);
   }
 
-  get entryId() {
-    return this._entry_id;
-  }
-
-  get publishedAt() {
-    return this._published_at;
-  }
-
-  get bitmovinURL() {
-    return this._bitmovin_url;
-  }
+  // get entryId() {
+  //   return this._entry_id;
+  // }
 
   get video() {
     return this._video;
@@ -43,15 +33,6 @@ class ExtendedMessageEntry extends ContentfulLibrary.entry.message {
 }
 
 /** Helper functions */
-function fetchLatestMessage() {
-  const now = Cypress.moment(Date.now()).utc().format();
-  const list = ContentfulLibrary.query.entryList(`content_type=message&fields.published_at[lte]=${now}&order=-fields.published_at&limit=1`);
-  return cy.wrap({ list }).its('list.responseReady').should('be.true').then(() => {
-    const firstEntry = list.responseBody.items[0];
-    return new ExtendedMessageEntry(firstEntry, {});
-  });
-}
-
 function getLatestDate(dayOfWeek = 'Saturday', timeOfDay = '12:00AM') {
   const momentZone = 'America/New_York';
   const now = moment.tz(momentZone);
@@ -70,8 +51,10 @@ describe('Tests latest message is current and ready for live stream', function (
   let contentfulLatestMessage;
   let fakeSchedule;
   before(function () {
-    fetchLatestMessage().then(latestMessage => {
-      contentfulLatestMessage = latestMessage;
+    const mqm = new ContentfulLibrary.queryManager.messageQueryManager();
+    mqm.entryClass = ExtendedMessageEntry;
+    mqm.fetchSingleEntry(mqm.query.latestMessage).then(message => {
+      contentfulLatestMessage = message;
       fakeSchedule = new StreamScheduleGenerator().streamStartingNow;
     });
   });
@@ -85,7 +68,7 @@ describe('Tests latest message is current and ready for live stream', function (
       assert.equal(latestMessageStatus.manifestStatus, 'FINISHED', `Expect the latest message manifest creation status to be 'FINISHED', and status is '${latestMessageStatus.manifestStatus}'.`);
 
       //Latest message according to Bitmovin should match Contentful
-      assert.equal(latestMessageStatus.messageId, contentfulLatestMessage.entryId, `Expect the latest message known to Bitmovin to match the latest message in Contentful. Bitmovin's latest message id is '${latestMessageStatus.messageId}' and Contentful's latest message id is '${contentfulLatestMessage.entryId}'`);
+      assert.equal(latestMessageStatus.messageId, contentfulLatestMessage.id, `Expect the latest message known to Bitmovin to match the latest message in Contentful. Bitmovin's latest message id is '${latestMessageStatus.messageId}' and Contentful's latest message id is '${contentfulLatestMessage.id}'`);
       assert.equal(latestMessageStatus.videoId, contentfulLatestMessage.video.id, `Expect the latest message's video id in Bitmovin to match the video id in Contentful. Bitmovin's video id is '${latestMessageStatus.videoId}' and Contentful's video id is '${contentfulLatestMessage.video.id}'`);
       assert.equal(latestMessageStatus.messageBitmovinUrl, contentfulLatestMessage.bitmovinURL.toString, `Expect the latest message's Bitmovin url to be the same in Bitmovin and Contentful. Bitmovin's latest message url is '${latestMessageStatus.messageBitmovinUrl}' and in Contentful is '${contentfulLatestMessage.bitmovinURL.toString}'`);
     });
