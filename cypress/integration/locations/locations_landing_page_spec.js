@@ -9,7 +9,7 @@ describe('Given I navigate to /locations and do not search:', function () {
       locationList = locations;
     });
 
-    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property `reload` of undefined'); //Remove once DE6613 is fixed
+    cy.ignorePropertyUndefinedTypeError();
     cy.visit('/locations');
   });
 

@@ -12,7 +12,7 @@ describe('Testing the Current Message on the Homepage:', function () {
       currentMessage.fetchLinkedResources();
     });
 
-    cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
+    cy.ignorePropertyUndefinedTypeError();
     cy.visit('/');
   });
 
