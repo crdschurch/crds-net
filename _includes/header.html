@@ -3,5 +3,15 @@
 </div>
 
 <div class="snail-trail-skeleton">
-  <crds-snail-trail name="trending" env="{{ site.jekyll_env }}"></crds-snail-trail>
+  {% if page.snail_trail  %} 
+  <crds-snail-trail
+  name="{{ page.snail_trail }}"
+  env="{{ site.jekyll_env }}"
+  ></crds-snail-trail>
+  {% else %}
+  <crds-snail-trail
+    name="{{ 'trending' }}"
+    env="{{ site.jekyll_env }}"
+    ></crds-snail-trail>
+  {%endif%}
 </div>
