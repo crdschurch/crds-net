@@ -47,7 +47,7 @@ Cypress.Commands.add('ignoreUncaughtException', (expectedMessage) => {
 Cypress.Commands.add('ignorePropertyUndefinedTypeError', () => {
   cy.on('uncaught:exception', (err) => {
     //Sees error, posts assertion to console, fails if not matching
-    const propertyUndefinedRegex = new RegExp('.*Cannot read property \\W\\w+\\W of undefined.*');
+    const propertyUndefinedRegex = /.*Cannot read property\W+\w+\W+of undefined.*/;
     expect(err.message).to.match(propertyUndefinedRegex);
     return err.message.match(propertyUndefinedRegex) == null;
   });
