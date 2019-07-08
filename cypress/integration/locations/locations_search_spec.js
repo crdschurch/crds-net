@@ -13,7 +13,7 @@ function searchForLocation(keyword) {
 
 describe('Given I search for a standard location on /locations:', function () {
   before(function () {
-    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'cards\' of undefined'); //Remove once DE6613 is fixed
+    cy.ignorePropertyUndefinedTypeError();
 
     //Workaround for DE6665 - The locations page sometimes loads with missing functionality. Loading a different page before /locations
     //  seems to prevent this issue, which is easier than trying to recover from the failure during the test.
@@ -23,7 +23,7 @@ describe('Given I search for a standard location on /locations:', function () {
   });
 
   //For a Contentful Location card to display the distance, its address must be valid
-  it.only('Searching for Oakley by zip should display the Oakley card first, with its distance', function () {
+  it('Searching for Oakley by zip should display the Oakley card first, with its distance', function () {
     const oakleySlug = '/oakley';
     const oakleyZip = '45209';
 
@@ -53,7 +53,7 @@ describe('Given I search for a standard location on /locations:', function () {
 
 describe('Given I search for a non-standard location on /locations', function () {
   before(function () {
-    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'cards\' of undefined'); //Remove once DE6613 is fixed
+    cy.ignorePropertyUndefinedTypeError();
 
     //Workaround for DE6665 - The locations page sometimes loads with missing functionality. Loading the page twice from the start
     //  prevents this issue, which is easier than trying to recover from the failure during the test.
