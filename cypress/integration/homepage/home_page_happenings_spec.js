@@ -36,7 +36,6 @@ describe('Tests Happenings can be filtered by audience', function () {
   before(function () {
     cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
     cy.visit('/');
-    cy.hideSharedHeader();
     pqm = new ContentfulLibrary.queryManager.promoQueryManager();
   });
 

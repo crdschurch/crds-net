@@ -1,7 +1,7 @@
 import { ContentfulLibrary } from 'crds-cypress-tools';
 import { AmplitudeEventChecker } from './helpers/AmplitudeEventChecker';
 import { BitmovinPlayer } from './helpers/BitmovinPlayer';
-import { StreamScheduleGenerator } from './helpers/ScheduleGenerator';
+import { StreamScheduleGenerator } from '../../support/StreamScheduleGenerator';
 
 function hideRollCall() {
   localStorage.setItem('crds-roll-call-state', 'dismissed');
@@ -23,7 +23,7 @@ describe('Tests the /live/stream page displays the expected player', function ()
       latestMessage = message;
     });
 
-    fakeSchedule = new StreamScheduleGenerator().streamStartingNow;
+    fakeSchedule = new StreamScheduleGenerator().getStreamStartingAfterHours(0);
   });
 
   it('Displays the Bitmovin player or fallback Youtube player', function () {

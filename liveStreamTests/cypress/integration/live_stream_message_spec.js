@@ -5,27 +5,12 @@ import moment from 'moment';
 import 'moment-timezone';
 
 /** Extended Contentful Models */
-class VideoAsset {
-  constructor (videoObject) {
-    this._video_object = videoObject !== undefined ? videoObject : {};
-  }
-
-  get id() {
-    return this._video_object.sys !== undefined ? this._video_object.sys.id : undefined;
-  }
-}
-
 class ExtendedMessageEntry extends ContentfulLibrary.entry.message {
   constructor (entryObject, seriesEntry) {
     super(entryObject, seriesEntry);
 
-    // this._entry_id = entryObject.sys !== undefined ? entryObject.sys.id : '';
-    this._video = new VideoAsset(this._fields.video_file);
+    this._video = new ContentfulLibrary.entry.contentfulEntry(this._fields.video_file);
   }
-
-  // get entryId() {
-  //   return this._entry_id;
-  // }
 
   get video() {
     return this._video;
@@ -55,7 +40,7 @@ describe('Tests latest message is current and ready for live stream', function (
     mqm.entryClass = ExtendedMessageEntry;
     mqm.fetchSingleEntry(mqm.query.latestMessage).then(message => {
       contentfulLatestMessage = message;
-      fakeSchedule = new StreamScheduleGenerator().streamStartingNow;
+      fakeSchedule = new StreamScheduleGenerator().getStreamStartingAfterHours(0);
     });
   });
 

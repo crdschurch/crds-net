@@ -11,7 +11,6 @@ describe('Testing the 404 page:', function () {
 
   it('/search page should load when the search button is clicked', function () {
     cy.get('[data-automation-id="404-search-button"]').as('404SearchButton');
-    cy.hideSharedHeader();
     cy.get('@404SearchButton').click();
 
     cy.get('.ais-SearchBox-input').as('searchField');

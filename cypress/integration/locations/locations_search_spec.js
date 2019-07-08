@@ -19,7 +19,6 @@ describe('Given I search for a standard location on /locations:', function () {
     //  seems to prevent this issue, which is easier than trying to recover from the failure during the test.
     cy.visit('/prayer');
     cy.visit('/locations');
-    cy.hideSharedHeader();
   });
 
   //For a Contentful Location card to display the distance, its address must be valid
