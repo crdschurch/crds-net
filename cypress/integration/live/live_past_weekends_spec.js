@@ -44,35 +44,3 @@ describe('Testing the Past Weekends section on the Live page:', function () {
     });
   });
 });
-
-describe('Testing the "Watch This Weeks Service" button', function () {
-  let currentMessage;
-  before(function () {
-    const mqm = new ContentfulLibrary.queryManager.messageQueryManager();
-    mqm.entryClass = ExtendedMessageEntry;
-    mqm.fetchSingleEntry(mqm.query.latestMessage).then(message => {
-      currentMessage = message;
-      currentMessage.fetchLinkedResources();
-    });
-  });
-
-  beforeEach(function () {
-    cy.visit('/live');
-    cy.hideSharedHeader();
-  });
-
-  it('Button should link to latest message', function () {
-    cy.get('[data-automation-id="watch-service-button"]').should('be.visible').and('have.attr', 'href', currentMessage.autoplayURL.relative);
-  });
-
-  it('When clicked, latest message page should load', function () {
-    cy.get('[data-automation-id="watch-service-button"]').click();
-
-    if (currentMessage.description.hasValue === true) {
-      cy.get('#description').as('currentMessageDescription').should('be.visible');
-      cy.get('@currentMessageDescription').normalizedText().then(elementText => {
-        expect(currentMessage.description.displayedText).to.include(elementText);
-      });
-    }
-  });
-});

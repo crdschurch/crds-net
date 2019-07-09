@@ -1,4 +1,4 @@
-FROM cypress/included:3.3.1
+FROM cypress/browsers:chrome69
 WORKDIR /cypress_live_stream
 
 COPY package.json .

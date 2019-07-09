@@ -36,7 +36,6 @@ describe('Tests Happenings can be filtered by audience', function () {
   before(function () {
     cy.ignorePropertyUndefinedTypeError();
     cy.visit('/');
-    cy.hideSharedHeader();
     pqm = new ContentfulLibrary.queryManager.promoQueryManager();
   });
 

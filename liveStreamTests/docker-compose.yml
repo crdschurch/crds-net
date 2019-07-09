@@ -13,4 +13,4 @@ services:
       - CYPRESS_CONTENTFUL_SPACE_ID=${CONTENTFUL_SPACE_ID}
       - CYPRESS_SENDGRID_USER=${SENDGRID_USER}
       - CYPRESS_SENDGRID_PW=${SENDGRID_PW}
-    entrypoint: npx cypress run
+    entrypoint: npx cypress run --browser chrome

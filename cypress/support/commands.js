@@ -47,17 +47,8 @@ Cypress.Commands.add('ignoreUncaughtException', (expectedMessage) => {
 Cypress.Commands.add('ignorePropertyUndefinedTypeError', () => {
   cy.on('uncaught:exception', (err) => {
     //Sees error, posts assertion to console, fails if not matching
-    const propertyUndefinedRegex = new RegExp(`.*Cannot read property \\W\\w+\\W of undefined.*`);
+    const propertyUndefinedRegex = /.*Cannot read property\W+\w+\W+of undefined.*/;
     expect(err.message).to.match(propertyUndefinedRegex);
     return err.message.match(propertyUndefinedRegex) == null;
-  });
-});
-
-//If the shared header is blocking click events, hide it with this
-Cypress.Commands.add('hideSharedHeader', () => {
-  cy.get('crds-shared-header').as('sharedHeader');
-  cy.get('@sharedHeader').invoke('attr', 'class').then(($classValues) => {
-    const newClass = `${$classValues} hide`;
-    cy.get('@sharedHeader').invoke('attr', 'class', newClass);
   });
 });
