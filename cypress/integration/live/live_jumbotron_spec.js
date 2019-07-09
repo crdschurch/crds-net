@@ -67,7 +67,7 @@ describe('Tests the /live jumbotron content with different stream times', functi
     }
     else if (hoursBefore < 16) {
 
-      describe(`Tests state when the stream will start in ${hoursBefore} hours`, function () {
+      describe.skip(`Tests state when the stream will start in ${hoursBefore} hours`, function () {
         before(function () {
           visitLiveWithSchedule(scheduleGenerator.getStreamStartingAfterHours(hoursBefore));
         });
