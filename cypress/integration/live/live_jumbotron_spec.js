@@ -1,4 +1,4 @@
-import { ContentfulLibrary } from '../../../liveStreamTests/node_modules/crds-cypress-tools/lib';
+import { ContentfulLibrary } from 'crds-cypress-tools';
 import { ExtendedMessageEntry } from '../../Contentful/Entries/ExtendedMessageEntry';
 import { StreamScheduleGenerator } from '../../support/StreamScheduleGenerator';
 import { RouteValidator } from '../../support/RouteValidator';
