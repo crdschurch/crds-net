@@ -48,7 +48,7 @@ describe('Tests the /live jumbotron content with different stream times', functi
 
       describe('Tests state when stream is running', function () {
         before(function () {
-          visitLiveWithSchedule(scheduleGenerator.getStreamStartingAfterHours(0));
+          visitLiveWithSchedule(scheduleGenerator.getStreamStartingAfterHours(hoursBefore));
         });
 
         it('Checks live content is displayed', function () {
@@ -90,7 +90,7 @@ describe('Tests the /live jumbotron content with different stream times', functi
 
       describe(`Tests state when the stream will start in ${hoursBefore} hours`, function () {
         before(function () {
-          visitLiveWithSchedule(scheduleGenerator.getStreamStartingAfterHours(24));
+          visitLiveWithSchedule(scheduleGenerator.getStreamStartingAfterHours(hoursBefore));
         });
 
         it('Checks offstream content is displayed', function () {
