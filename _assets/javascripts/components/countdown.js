@@ -122,6 +122,7 @@ CRDS.Countdown = class Countdown {
     Countdown.setLoadingStatus(true);
     return CRDS.Countdown.getEvents()
       .done((events) => {
+        this.events = events;
         this.nextEvent = events.data.next;
         this.currentEvent = events.data.current;
         Countdown.setLoadingStatus(false);

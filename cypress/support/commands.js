@@ -39,15 +39,16 @@ Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
 Cypress.Commands.add('ignoreUncaughtException', (expectedMessage) => {
   cy.on('uncaught:exception', (err) => {
     expect(err.message).to.include(expectedMessage);
-    return false;
+    return !err.message.includes(expectedMessage);
   });
 });
 
-//If the shared header is blocking click events, hide it with this
-Cypress.Commands.add('hideSharedHeader', () => {
-  cy.get('crds-shared-header').as('sharedHeader');
-  cy.get('@sharedHeader').invoke('attr', 'class').then(($classValues) => {
-    const newClass = `${$classValues} hide`;
-    cy.get('@sharedHeader').invoke('attr', 'class', newClass);
+//Here for convenience but use sparingly - we usually want these to be thrown
+Cypress.Commands.add('ignorePropertyUndefinedTypeError', () => {
+  cy.on('uncaught:exception', (err) => {
+    //Sees error, posts assertion to console, fails if not matching
+    const propertyUndefinedRegex = /.*Cannot read property\W+\w+\W+of undefined.*/;
+    expect(err.message).to.match(propertyUndefinedRegex);
+    return err.message.match(propertyUndefinedRegex) == null;
   });
 });

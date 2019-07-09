@@ -8,9 +8,10 @@ export class RouteValidator{
     RouteValidator.pageShouldNotBe404();
   }
 
-  //Tailing slashes should be omitted, they'll be allowed in a successful match
-  static pageShouldMatchUrl(url){
-    const urlRegex = new RegExp(`${url}/?$`);
-    cy.url().should('match', urlRegex);
+  static pageShouldMatchUrl(url){;
+    cy.url().then(pageUrl => {
+      const noTrailinSlashRegex = /\/$/g;
+      expect(pageUrl.replace(noTrailinSlashRegex, '')).to.eq(url.replace(noTrailinSlashRegex, ''));
+    })
   }
 }
