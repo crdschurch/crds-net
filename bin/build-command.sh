@@ -1,23 +1,23 @@
 #!/bin/bash
-
+printf "Setting up environment variables..."
 VAULT_TOKEN=$(curl -X POST -s \
-  https://vault.crossroads.net/v1/auth/approle/login \
+  $VAULT_ENDPOINT/v1/auth/approle/login \
   -d "{
         \"role_id\": \"$VAULT_ROLE_ID\",
         \"secret_id\": \"$VAULT_SECRET_ID\"
 }" | jq -r '.auth.client_token')
 
 VAR_ARRAY=$(curl -X GET -s \
-  https://vault.crossroads.net/v1/kv/data/int/crds-net \
+  $VAULT_ENDPOINT/v1/kv/data/$VAULT_BUCKET_NAME \
   -H "x-vault-token: $VAULT_TOKEN" | jq -r '.data.data')
 
 export KEYS=$(echo $VAR_ARRAY | jq -r 'keys | .[]')
 
-echo $KEYS
 for key in $KEYS; do
     value=$(echo $VAR_ARRAY | jq -r --arg key "$key" '.[$key]')
     export $key=$value
 done
+printf "done\n"
 
 {
   bundle exec rspec &&
