@@ -133,6 +133,15 @@ To find an erroneous log use the following search term in the logz.io search bar
 
 APPLICATION_NAME is the value set to that environment variable
 
+## Production Build Using Vault
+
+Set up for build pipeline variables relies on Vault. We need only set up the following 4 environment variables in our build pipeline to get build-time environment variable retrieval and configuration.
+
+    export VAULT_BUCKET_NAME=
+    export VAULT_ENDPOINT=
+    export VAULT_ROLE_ID=
+    export VAULT_SECRET_ID=
+
 ## Advanced Setup
 ### Building Assets
 `crds-net` uses `jekyll-asset-pipeline` to create Javascript/CSS assets. If you see that assets are not showing up make sure to check that [the pipeline is installed correctly](https://github.com/crdschurch/jekyll-asset-pipeline). If all else fails, try `rm -rf _site` and then start Jekyll back up.
