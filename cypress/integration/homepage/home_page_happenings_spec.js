@@ -16,7 +16,7 @@ function selectFilter(audience) {
 
 describe('Tests Happening section without filters', function () {
   before(function () {
-    cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
+    cy.ignorePropertyUndefinedTypeError();
     cy.visit('/');
   });
 
@@ -34,9 +34,8 @@ describe('Tests Happening section without filters', function () {
 describe('Tests Happenings can be filtered by audience', function () {
   let pqm;
   before(function () {
-    cy.ignoreUncaughtException('Cannot read property \'reload\' of undefined'); //Remove once DE6613 is fixed
+    cy.ignorePropertyUndefinedTypeError();
     cy.visit('/');
-    cy.hideSharedHeader();
     pqm = new ContentfulLibrary.queryManager.promoQueryManager();
   });
 
