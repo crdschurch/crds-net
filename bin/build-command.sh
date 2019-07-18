@@ -1,5 +1,5 @@
 #!/bin/bash
-printf "Setting up environment variables..."
+printf "Setting up environment variables... \n"
 VAULT_TOKEN=$(curl -X POST -s \
   $VAULT_ENDPOINT/v1/auth/approle/login \
   -d "{
@@ -13,11 +13,14 @@ VAR_ARRAY=$(curl -X GET -s \
 
 export KEYS=$(echo $VAR_ARRAY | jq -r 'keys | .[]')
 
+printf "Variables set:\n"
+
 for key in $KEYS; do
     value=$(echo $VAR_ARRAY | jq -r --arg key "$key" '.[$key]')
     export $key=$value
+    printf "$key\n"
 done
-printf "done\n"
+printf "Done setting environment variables! \n"
 
 {
   bundle exec rspec &&
