@@ -26,7 +26,10 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
   background-image: none;
   border: 1px solid #f4f4f4;
   border-radius: 0;
-  margin-bottom: 15px;
+}
+
+[data-role="hsform"] .field {
+  margin-bottom: 22px;
 }
 
 [data-role="hsform"] input:focus:required:invalid {
@@ -79,6 +82,39 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
   border-radius: 0;
   padding: 0 12px;
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+[data-role="hsform"] .hs-fieldtype-radio input[type="radio"] {
+  position: absolute;
+  margin-left: -20px;
+  margin-top: -8px;
+}
+
+[data-role="hsform"] .hs-fieldtype-radio label {
+  margin-bottom: 0;
+  font-weight: 400;
+  cursor: pointer;
+  display: inline-block;
+  max-width: 100%;
+  margin-top: -10px;
+  min-height: 24px;
+}
+
+[data-role="hsform"] .hs-fieldtype-radio ul {
+  padding-left: 19px;
+}
+
+[data-role="hsform"] .hs-fieldtype-radio ul li {
+  position: relative;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+[data-role="hsform"] .hs-fieldtype-radio ul li label span {
+  padding-left: 10px;
+  font-family: "acumin-pro",helvetica,arial,sans-serif;
+  font-weight: 300;
 }
 
 [data-role="hsform"] input.hs-input {
