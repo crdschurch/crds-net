@@ -8,10 +8,10 @@ export class RouteValidator{
     RouteValidator.pageShouldNotBe404();
   }
 
-  static pageShouldMatchUrl(url){;
+  static pageShouldMatchUrl(url){
     cy.url().then(pageUrl => {
       const noTrailinSlashRegex = /\/$/g;
       expect(pageUrl.replace(noTrailinSlashRegex, '')).to.eq(url.replace(noTrailinSlashRegex, ''));
-    })
+    });
   }
 }
