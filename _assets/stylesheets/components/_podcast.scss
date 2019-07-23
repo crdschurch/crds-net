@@ -1,0 +1,253 @@
+// 1. Master podcast styles
+// 2. Podcast series styles
+// 3. Podcast episode styles
+
+// 1. Master podcast styles
+.media-podcast {
+  max-width: 750px;
+
+  .landing-header {
+    font-size: $font-size-h1;
+    line-height: 2.75rem;
+
+    @media screen and (min-width: $screen-xs) {
+      font-size: 4rem;
+      line-height: 4rem;
+    }
+  }
+
+
+  .card {
+    margin-top: 2.75rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    @media screen and (min-width: $screen-sm) {
+      &:nth-child(2) {
+        margin-top: 0;
+      }
+    }
+
+    & img:not(.tmp-img-placeholder) {
+      min-width: 100%; // 🛠 probably remove once we refactor cards
+    }
+  }
+}
+
+// 2. Podcast series styles
+.media-podcast-show {
+
+  .feature-img {
+    width: 100%;
+  }
+
+  .mobile-wrapper {
+    .podcast-header-text {
+      padding-top: 2rem;
+      text-align: left;
+    }
+
+    @media screen and (min-width: $screen-xs) {
+
+      .podcast-header-artwork {
+        position: absolute;
+        width: 12.5rem; // 200px
+      }
+
+      .podcast-header-text {
+        left: 200px;
+        padding-top: 0;
+        padding-left: .5rem;
+        position: relative;
+        width: calc(100% - 200px);
+      }
+    }
+
+    @media screen and (max-width: $screen-sm) and (orientation: landscape) {
+      .podcast-header-artwork {
+        height: 200px;
+        width: 200px;
+      }
+    }
+
+    @media screen and (min-width: $screen-sm) {
+      .podcast-header-text {
+        left: 400px;
+        padding-left: 1rem;
+        width: calc(100% - 330px);
+      }
+    }
+
+    @media screen and (min-width: $screen-md) {
+      .podcast-header-text {
+        padding-left: 2.75rem;
+      }
+
+      .podcast-header-artwork {
+        width: 25rem; // 400px
+        height: 25rem; // 400px
+      }
+    }
+  }
+
+  .podcast-hero {
+    color: $cr-white;
+    padding-bottom: 0;
+    width: 100%;
+
+    @media screen and (min-width: $screen-sm) {
+      &, .header-content {
+        min-height: 350px;
+      }
+    }
+
+    a, a:visited, a:hover, a:focus, a:active {
+      color: $cr-white;
+    }
+
+    .header-content {
+      padding: 1rem 0;
+
+      @media screen and (min-width: $screen-sm) {
+        min-height: 18.75rem; // prevents layout issues with text if no description
+        padding-top: 3.75rem;
+      }
+    }
+  }
+
+  .feature-img {
+    z-index: 2;
+
+    &.tmp-img-placeholder {
+      z-index: 1 !important;
+    }
+  }
+
+  .subtitle {
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+
+    @media screen and (min-width: $screen-sm) {
+      font-size: $font-size-large;
+      line-height: $line-height-large;
+    }
+  }
+
+  .content {
+    margin-top: 1.875rem;
+
+    @media screen and (min-width: $screen-sm) {
+      margin-top: 9.5rem;
+    }
+
+    & p {
+      font-size: $font-size-large;
+      line-height: $line-height-large;
+
+      &.metadata {
+        font-size: $font-size-smaller;
+        line-height: 0.8125rem; //13px
+      }
+
+      &.episode-description {
+        font-size: $font-size-small;
+        line-height: 1.4;
+      }
+    }
+
+    & .list-title {
+      font-size: $font-size-large;
+      line-height: 1.4;
+
+      &:first-child{
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+
+// 3. Podcast episode styles
+.media-podcast-episode {
+  .breadcrumb {
+    margin-bottom: .5rem;
+  }
+
+  .episode-header {
+    margin: 2rem 0;
+  }
+
+  .episode-header-content {
+    padding-right: .5rem;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    justify-content: flex-end;
+
+    .episode-artwork {
+      box-shadow: 0 0 .5rem 0 rgba($cr-black, .15);
+      flex: 0 0 80px;
+      margin-left: 2rem;
+      z-index: 2;
+
+      > img {
+        width: 100%;
+      }
+    }
+
+
+    > h1 {
+      padding-right: .5rem;
+    }
+  }
+
+  @media screen and (min-width: $screen-sm) {
+    .episode-header {
+      .breadcrumb {
+        margin-bottom: 0;
+        padding-left: 140px;
+      }
+    }
+
+    .episode-header-content {
+      flex-direction: row;
+      justify-content: unset;
+
+      .episode-artwork {
+        flex-basis: 120px;
+        margin-left: 0;
+        position: absolute;
+        top: 4rem;
+        width: 120px;
+      }
+
+      > h1 {
+        padding-right: 0;
+        padding-left: 140px;
+      }
+    }
+  }
+
+  .embedded-audio-player {
+    margin: 1rem 0 3rem;
+  }
+
+  @media (min-width: $screen-sm) {
+    .feature-cards {
+      margin-left: -.5rem;
+      margin-right: -.5rem;
+
+      .card {
+        max-width: calc(100%/3);
+      }
+    }
+  }
+}
+
+//🛠 Remove when replace Stitcher png with svg
+img.btn-logo {
+  width: 32px;
+  height: 35px;
+}
