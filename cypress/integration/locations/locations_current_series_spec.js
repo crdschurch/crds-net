@@ -15,10 +15,7 @@ describe('Testing the Current Series on the a locations page:', function () {
       cy.visit(slug);
 
       cy.get('[data-automation-id="series-slug"]').as('currentSeriesButton');
-      currentSeries.getURL().then(url => {
-        cy.get('@currentSeriesButton').should('be.visible').and('have.attr', 'href', url.relative);
-      });
-      // cy.get('@currentSeriesButton').should('be.visible').and('have.attr', 'href', currentSeries.URL.relative);
+      cy.get('@currentSeriesButton').should('be.visible').and('have.attr', 'href', currentSeries.URL.relative);
     });
   });
 });

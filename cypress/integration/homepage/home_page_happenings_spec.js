@@ -45,7 +45,7 @@ describe('Tests Happenings can be filtered by audience', function () {
     it(`Filtering by "${audience}" should display only ${audience} promos sorted by date then title`, function () {
       const promosForAudienceQuery = `${pqm.query.forAudience(audience)}&${pqm.query.orderBy.publishedMostRecentlyThenTitle}`;
       //pqm.fetchListOfEntries(promosForAudienceQuery, 1000).then(promos => {
-      pqm.getLisOfEntries(promosForAudienceQuery).then(promos => {
+      pqm.getListOfEntries(promosForAudienceQuery).then(promos => {
         if (promos.length == 0) {
           cy.log(`There are no published promos for "${audience}"`);
         } else {

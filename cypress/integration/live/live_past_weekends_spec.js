@@ -7,7 +7,7 @@ describe('Testing the Past Weekends section on the Live page:', function () {
   let recentMessages;
   before(function () {
     const mqm = new MessageQueryManager();
-    mqm.getListOFEntries(mqm.query.latestMessage, 4).then(messageList => {
+    mqm.getListOfEntries(mqm.query.latestMessage, 4).then(messageList => {
       recentMessages = messageList;
     });
     // const mqm = new ContentfulLibrary.queryManager.messageQueryManager();

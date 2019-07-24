@@ -13,12 +13,16 @@ function visitLiveWithSchedule(fakeSchedule) {
 describe('Tests the /live jumbotron content with different stream times:', function () {
   let scheduleGenerator;
   let currentMessage;
+  let autoplayURL;
   before(function () {
     scheduleGenerator = new StreamScheduleGenerator();
 
     const mqm = new MessageQueryManager();
     mqm.getSingleEntry(mqm.query.latestMessage).then(message => {
       currentMessage = message;
+      currentMessage.getURL().then(url => {
+        autoplayURL = url.autoplay;
+      });
     });
     // const mqm = new ContentfulLibrary.queryManager.messageQueryManager();
     // mqm.entryClass = ExtendedMessageEntry;
@@ -43,7 +47,7 @@ describe('Tests the /live jumbotron content with different stream times:', funct
     it('Offstream State: Checks clicking "Watch This Weeks Service" navs to the latest message', function () {
       visitLiveWithSchedule(scheduleGenerator.getStreamStartingAfterHours(24));
       cy.get('[data-automation-id="watch-service-button"]').click();
-      RouteValidator.pageFoundAndURLMatches(currentMessage.autoplayURL.absolute);
+      RouteValidator.pageFoundAndURLMatches(autoplayURL.absolute);//currentMessage.autoplayURL.absolute);
     });
   });
 
@@ -99,14 +103,9 @@ describe('Tests the /live jumbotron content with different stream times:', funct
     });
 
     it('Check "Watch This Weeks Service" is displayed and has correct link', function () {
-      currentMessage.getURL().then(url => {
-        cy.get('[data-automation-id="watch-service-button"]')
-          .should('be.visible')
-          .and('have.attr', 'href', url.autoplay.relative);
-      });
-      // cy.get('[data-automation-id="watch-service-button"]')
-      //   .should('be.visible')
-      //   .and('have.attr', 'href', currentMessage.autoplayURL.relative);
+      cy.get('[data-automation-id="watch-service-button"]')
+        .should('be.visible')
+        .and('have.attr', 'href', autoplayURL.relative);//currentMessage.autoplayURL.relative);
     });
   });
 });
