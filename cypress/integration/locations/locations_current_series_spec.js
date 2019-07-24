@@ -1,10 +1,11 @@
-import { ContentfulLibrary } from 'crds-cypress-tools';
+// import { ContentfulLibrary } from 'crds-cypress-tools';
+import { SeriesQueryManager } from 'crds-cypress-contentful';
 
 describe('Testing the Current Series on the a locations page:', function () {
   let currentSeries;
   before(function () {
-    const sqm = new ContentfulLibrary.queryManager.seriesQueryManager();
-    sqm.fetchSingleEntry(sqm.query.latestSeries).then(series => {
+    const sqm = new SeriesQueryManager(); //new ContentfulLibrary.queryManager.seriesQueryManager();
+    sqm.getSingleEntry(sqm.query.latestSeries).then(series => {
       currentSeries = series;
     });
   });
@@ -14,7 +15,10 @@ describe('Testing the Current Series on the a locations page:', function () {
       cy.visit(slug);
 
       cy.get('[data-automation-id="series-slug"]').as('currentSeriesButton');
-      cy.get('@currentSeriesButton').should('be.visible').and('have.attr', 'href', currentSeries.URL.relative);
+      currentSeries.getURL().then(url => {
+        cy.get('@currentSeriesButton').should('be.visible').and('have.attr', 'href', url.relative);
+      });
+      // cy.get('@currentSeriesButton').should('be.visible').and('have.attr', 'href', currentSeries.URL.relative);
     });
   });
 });

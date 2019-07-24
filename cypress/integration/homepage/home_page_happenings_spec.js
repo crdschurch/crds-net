@@ -1,5 +1,6 @@
-import { ContentfulLibrary } from 'crds-cypress-tools';
+// import { ContentfulLibrary } from 'crds-cypress-tools';
 import { target_audiences } from '../../fixtures/target_audiences';
+import { PromoQueryManager } from 'crds-cypress-contentful';
 
 function promoShouldMatchContent(displayedCard, promo) {
   displayedCard.find('.card-title').as('title');
@@ -36,13 +37,15 @@ describe('Tests Happenings can be filtered by audience', function () {
   before(function () {
     cy.ignorePropertyUndefinedTypeError();
     cy.visit('/');
-    pqm = new ContentfulLibrary.queryManager.promoQueryManager();
+    pqm = new PromoQueryManager();
+    //new ContentfulLibrary.queryManager.promoQueryManager();
   });
 
   target_audiences.forEach(audience => {
     it(`Filtering by "${audience}" should display only ${audience} promos sorted by date then title`, function () {
       const promosForAudienceQuery = `${pqm.query.forAudience(audience)}&${pqm.query.orderBy.publishedMostRecentlyThenTitle}`;
-      pqm.fetchListOfEntries(promosForAudienceQuery, 1000).then(promos => {
+      //pqm.fetchListOfEntries(promosForAudienceQuery, 1000).then(promos => {
+      pqm.getLisOfEntries(promosForAudienceQuery).then(promos => {
         if (promos.length == 0) {
           cy.log(`There are no published promos for "${audience}"`);
         } else {

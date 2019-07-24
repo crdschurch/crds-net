@@ -1,7 +1,8 @@
-import { ContentfulLibrary } from 'crds-cypress-tools';
-import { ExtendedMessageEntry } from '../../Contentful/Entries/ExtendedMessageEntry';
+// import { ContentfulLibrary } from 'crds-cypress-tools';
+// import { ExtendedMessageEntry } from '../../Contentful/Entries/ExtendedMessageEntry';
 import { StreamScheduleGenerator } from '../../support/StreamScheduleGenerator';
 import { RouteValidator } from '../../support/RouteValidator';
+import { MessageQueryManager } from 'crds-cypress-contentful';
 
 function visitLiveWithSchedule(fakeSchedule) {
   cy.server();
@@ -15,11 +16,15 @@ describe('Tests the /live jumbotron content with different stream times:', funct
   before(function () {
     scheduleGenerator = new StreamScheduleGenerator();
 
-    const mqm = new ContentfulLibrary.queryManager.messageQueryManager();
-    mqm.entryClass = ExtendedMessageEntry;
-    mqm.fetchSingleEntry(mqm.query.latestMessage).then(message => {
+    const mqm = new MessageQueryManager();
+    mqm.getSingleEntry(mqm.query.latestMessage).then(message => {
       currentMessage = message;
     });
+    // const mqm = new ContentfulLibrary.queryManager.messageQueryManager();
+    // mqm.entryClass = ExtendedMessageEntry;
+    // mqm.fetchSingleEntry(mqm.query.latestMessage).then(message => {
+    //   currentMessage = message;
+    // });
   });
 
   describe('Tests button navigation:', function () {
@@ -94,9 +99,14 @@ describe('Tests the /live jumbotron content with different stream times:', funct
     });
 
     it('Check "Watch This Weeks Service" is displayed and has correct link', function () {
-      cy.get('[data-automation-id="watch-service-button"]')
-        .should('be.visible')
-        .and('have.attr', 'href', currentMessage.autoplayURL.relative);
+      currentMessage.getURL().then(url => {
+        cy.get('[data-automation-id="watch-service-button"]')
+          .should('be.visible')
+          .and('have.attr', 'href', url.autoplay.relative);
+      });
+      // cy.get('[data-automation-id="watch-service-button"]')
+      //   .should('be.visible')
+      //   .and('have.attr', 'href', currentMessage.autoplayURL.relative);
     });
   });
 });

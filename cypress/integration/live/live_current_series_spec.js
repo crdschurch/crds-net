@@ -1,14 +1,19 @@
 import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
-import { ContentfulLibrary } from 'crds-cypress-tools';
+// import { ContentfulLibrary } from 'crds-cypress-tools';
+import { SeriesQueryManager } from 'crds-cypress-contentful';
 
 describe('Testing the Current Series on the Live page:', function () {
   let currentSeries;
   before(function () {
-    const sqm = new ContentfulLibrary.queryManager.seriesQueryManager();
-    sqm.fetchSingleEntry(sqm.query.latestSeries).then(series => {
+    const sqm = new SeriesQueryManager();
+    sqm.getSingleEntry(sqm.query.latestSeries).then(series => {
       currentSeries = series;
-      currentSeries.fetchLinkedResources();
     });
+    // const sqm = new ContentfulLibrary.queryManager.seriesQueryManager();
+    // sqm.fetchSingleEntry(sqm.query.latestSeries).then(series => {
+    //   currentSeries = series;
+    //   currentSeries.fetchLinkedResources();
+    // });
 
     cy.visit('/live');
   });
@@ -29,12 +34,15 @@ describe('Testing the Current Series on the Live page:', function () {
     cy.get('@currentSeriesDateRange').should('be.visible').and('contain', `${start} - ${end}`);
 
     cy.get('@currentSeriesBlock').find('[data-automation-id="series-description"]').as('currentSeriesDescription');
-    cy.get('@currentSeriesDescription').normalizedText().should('contain', currentSeries.description.displayedText);
+    cy.get('@currentSeriesDescription').normalizedText().should('contain', currentSeries.description.unformattedText);
   });
 
   it('Current Series image should match Contentful', function () {
     cy.get('[data-automation-id="series-image"]').as('currentSeriesImage');
-    new ImageDisplayValidator('currentSeriesImage').shouldHaveImgixImage(currentSeries.image);
+    currentSeries.imageLink.getResource(image => {
+      new ImageDisplayValidator('currentSeriesImage').shouldHaveImgixImage(image);
+    });
+    // new ImageDisplayValidator('currentSeriesImage').shouldHaveImgixImage(currentSeries.image);
   });
 
   it('"Watch Trailer" button should open a youtube modal, iff series has trailer', function () {
