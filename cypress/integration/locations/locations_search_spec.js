@@ -51,7 +51,7 @@ describe('Given I search for a standard location on /locations:', function () {
 
 
 describe('Given I search for a non-standard location on /locations', function () {
-  before(function () {
+  beforeEach(function () {
     cy.ignorePropertyUndefinedTypeError();
 
     //Workaround for DE6665 - The locations page sometimes loads with missing functionality. Loading the page twice from the start

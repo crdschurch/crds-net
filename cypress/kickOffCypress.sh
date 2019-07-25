@@ -28,8 +28,7 @@ fi
 #     test_this_URL=$DEPLOY_URL
 # fi
 
-test_this_URL=$CRDS_APP_CLIENT_ENDPOINT
-body="{\"request\": { \"branch\":\"$HEAD\", \"config\": {\"env\": { \"baseURL\": \"$test_this_URL\", \"config_file\": \"$CYPRESS_CONFIG_FILE\", \"contentfulSpaceId\": \"$CONTENTFUL_SPACE_ID\", \"contentfulToken\": \"$CONTENTFUL_ACCESS_TOKEN\", \"DEBUG_NetlifyContext\": \"$CONTEXT\"}}}}"
+body="{\"request\": { \"branch\":\"$HEAD\", \"config\": {\"env\": { \"config_file\": \"$CYPRESS_CONFIG_FILE\", \"contentfulSpaceId\": \"$CONTENTFUL_SPACE_ID\", \"contentfulToken\": \"$CONTENTFUL_ACCESS_TOKEN\", \"DEBUG_NetlifyContext\": \"$CONTEXT\"}}}}"
 
 curl -s -X POST \
 -H "Content-Type: application/json" \

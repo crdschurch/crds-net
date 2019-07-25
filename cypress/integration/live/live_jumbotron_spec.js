@@ -1,7 +1,6 @@
-import { ContentfulLibrary } from 'crds-cypress-tools';
-import { ExtendedMessageEntry } from '../../Contentful/Entries/ExtendedMessageEntry';
 import { StreamScheduleGenerator } from '../../support/StreamScheduleGenerator';
 import { RouteValidator } from '../../support/RouteValidator';
+import { MessageQueryManager } from 'crds-cypress-contentful';
 
 function visitLiveWithSchedule(fakeSchedule) {
   cy.server();
@@ -12,13 +11,16 @@ function visitLiveWithSchedule(fakeSchedule) {
 describe('Tests the /live jumbotron content with different stream times:', function () {
   let scheduleGenerator;
   let currentMessage;
+  let autoplayURL;
   before(function () {
     scheduleGenerator = new StreamScheduleGenerator();
 
-    const mqm = new ContentfulLibrary.queryManager.messageQueryManager();
-    mqm.entryClass = ExtendedMessageEntry;
-    mqm.fetchSingleEntry(mqm.query.latestMessage).then(message => {
+    const mqm = new MessageQueryManager();
+    mqm.getSingleEntry(mqm.query.latestMessage).then(message => {
       currentMessage = message;
+      currentMessage.getURL().then(url => {
+        autoplayURL = url.autoplay;
+      });
     });
   });
 
@@ -38,7 +40,7 @@ describe('Tests the /live jumbotron content with different stream times:', funct
     it('Offstream State: Checks clicking "Watch This Weeks Service" navs to the latest message', function () {
       visitLiveWithSchedule(scheduleGenerator.getStreamStartingAfterHours(24));
       cy.get('[data-automation-id="watch-service-button"]').click();
-      RouteValidator.pageFoundAndURLMatches(currentMessage.autoplayURL.absolute);
+      RouteValidator.pageFoundAndURLMatches(autoplayURL.absolute);
     });
   });
 
@@ -96,7 +98,7 @@ describe('Tests the /live jumbotron content with different stream times:', funct
     it('Check "Watch This Weeks Service" is displayed and has correct link', function () {
       cy.get('[data-automation-id="watch-service-button"]')
         .should('be.visible')
-        .and('have.attr', 'href', currentMessage.autoplayURL.relative);
+        .and('have.attr', 'href', autoplayURL.relative);
     });
   });
 });
