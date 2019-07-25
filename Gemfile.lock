@@ -38,10 +38,10 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-crds.git
-  revision: 22704e26e10b72aa6297e5fbbd2eeae8ccd1fd8d
-  tag: 1.4.2
+  revision: 789fb894c2cc7b7de813150c745cc77db999f990
+  tag: 1.4.3
   specs:
-    jekyll-crds (1.4.2)
+    jekyll-crds (1.4.3)
       activesupport
       httparty
       jekyll
@@ -234,4 +234,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   2.0.1
+   2.0.2
