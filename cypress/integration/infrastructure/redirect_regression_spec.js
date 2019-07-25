@@ -1,5 +1,4 @@
 import { RouteValidator } from '../../support/RouteValidator';
-// import { ContentfulLibrary } from 'crds-cypress-tools';
 import { RedirectQueryManager } from 'crds-cypress-contentful';
 
 describe('Testing navigation between pages:', function () {
@@ -7,7 +6,7 @@ describe('Testing navigation between pages:', function () {
     const andoverSlug = '/andover';
     const lexingtonSlug = '/lexington';
 
-    const rqm = new RedirectQueryManager();//new ContentfulLibrary.queryManager.redirectQueryManager();
+    const rqm = new RedirectQueryManager();
     rqm.getSingleEntry(rqm.query.fromSlug(andoverSlug)).then(redirect =>{
       expect(redirect).to.not.be.undefined;
       expect(redirect.to.text).to.equal(lexingtonSlug);

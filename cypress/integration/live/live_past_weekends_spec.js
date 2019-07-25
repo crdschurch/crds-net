@@ -1,5 +1,3 @@
-// import { ContentfulLibrary } from 'crds-cypress-tools';
-// import { ExtendedMessageEntry } from '../../Contentful/Entries/ExtendedMessageEntry';
 import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
 import { MessageQueryManager } from 'crds-cypress-contentful';
 
@@ -10,12 +8,6 @@ describe('Testing the Past Weekends section on the Live page:', function () {
     mqm.getListOfEntries(mqm.query.latestMessage, 4).then(messageList => {
       recentMessages = messageList;
     });
-    // const mqm = new ContentfulLibrary.queryManager.messageQueryManager();
-    // mqm.entryClass = ExtendedMessageEntry;
-    // mqm.fetchListOfEntries(mqm.query.latestMessage, 4).then(messageList => {
-    //   recentMessages = messageList;
-    //   recentMessages.forEach(m => m.fetchLinkedResources());
-    // });
 
     cy.visit('/live');
   });
@@ -44,14 +36,12 @@ describe('Testing the Past Weekends section on the Live page:', function () {
       message.getURL().then(url => {
         cy.get('@messageURL').should('have.attr', 'href', url.autoplay.relative);
       });
-      // cy.get('@messageURL').should('have.attr', 'href', message.autoplayURL.relative);
 
       cy.get('@messageCard').find('[data-automation-id="recent-message-image"]').as('messageImage');
       cy.get('@messageImage').should('have.attr', 'alt').and('contain', message.title.text);
       message.imageLink.getResource().then(image => {
         new ImageDisplayValidator('messageImage', false).shouldHaveImgixImage(image);
       });
-      // new ImageDisplayValidator('messageImage', false).shouldHaveImgixImage(message.image);
     });
   });
 });

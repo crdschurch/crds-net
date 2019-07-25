@@ -1,5 +1,4 @@
 import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
-// import { ContentfulLibrary } from 'crds-cypress-tools';
 import { SeriesQueryManager } from 'crds-cypress-contentful';
 
 describe('Testing the Current Series on the Homepage:', function () {
@@ -9,11 +8,6 @@ describe('Testing the Current Series on the Homepage:', function () {
     sqm.getSingleEntry(sqm.query.latestSeries).then(series => {
       currentSeries = series;
     });
-    // const sqm = new ContentfulLibrary.queryManager.seriesQueryManager();
-    // sqm.fetchSingleEntry(sqm.query.latestSeries).then(series => {
-    //   currentSeries = series;
-    //   currentSeries.fetchLinkedResources();
-    // });
 
     cy.ignorePropertyUndefinedTypeError();
     cy.visit('/');
@@ -36,7 +30,6 @@ describe('Testing the Current Series on the Homepage:', function () {
     currentSeries.imageLink.getResource().then(image => {
       new ImageDisplayValidator('seriesImage').shouldHaveImgixImage(image);
     });
-    // new ImageDisplayValidator('seriesImage').shouldHaveImgixImage(currentSeries.image);
   });
 
   it('"Watch Latest Service" button should link to the current series', function () {

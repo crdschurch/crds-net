@@ -1,5 +1,4 @@
 import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
-// import { ContentfulLibrary } from 'crds-cypress-tools';
 import { SeriesQueryManager } from 'crds-cypress-contentful';
 
 describe('Testing the Current Series on the Live page:', function () {
@@ -9,11 +8,6 @@ describe('Testing the Current Series on the Live page:', function () {
     sqm.getSingleEntry(sqm.query.latestSeries).then(series => {
       currentSeries = series;
     });
-    // const sqm = new ContentfulLibrary.queryManager.seriesQueryManager();
-    // sqm.fetchSingleEntry(sqm.query.latestSeries).then(series => {
-    //   currentSeries = series;
-    //   currentSeries.fetchLinkedResources();
-    // });
 
     cy.visit('/live');
   });
@@ -42,12 +36,11 @@ describe('Testing the Current Series on the Live page:', function () {
     currentSeries.imageLink.getResource(image => {
       new ImageDisplayValidator('currentSeriesImage').shouldHaveImgixImage(image);
     });
-    // new ImageDisplayValidator('currentSeriesImage').shouldHaveImgixImage(currentSeries.image);
   });
 
   it('"Watch Trailer" button should open a youtube modal, iff series has trailer', function () {
     //Test trailer button attributes
-    if (currentSeries.youtubeURL === undefined) {
+    if (!currentSeries.youtubeURL.hasValue) {
       cy.get('[data-automation-id="series-youtube"]').should('not.exist');
     } else {
       cy.get('[data-automation-id="series-youtube"]').as('trailerButton');

@@ -2,6 +2,5 @@
   "projectId": "dnbm5t",
   "testFiles": "**/*spec.js",
   "numTestsKeptInMemory": 0,
-  "video": false,
-  "pageLoadTimeout": 120000
+  "video": false
 }

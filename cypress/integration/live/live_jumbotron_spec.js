@@ -1,5 +1,3 @@
-// import { ContentfulLibrary } from 'crds-cypress-tools';
-// import { ExtendedMessageEntry } from '../../Contentful/Entries/ExtendedMessageEntry';
 import { StreamScheduleGenerator } from '../../support/StreamScheduleGenerator';
 import { RouteValidator } from '../../support/RouteValidator';
 import { MessageQueryManager } from 'crds-cypress-contentful';
@@ -24,11 +22,6 @@ describe('Tests the /live jumbotron content with different stream times:', funct
         autoplayURL = url.autoplay;
       });
     });
-    // const mqm = new ContentfulLibrary.queryManager.messageQueryManager();
-    // mqm.entryClass = ExtendedMessageEntry;
-    // mqm.fetchSingleEntry(mqm.query.latestMessage).then(message => {
-    //   currentMessage = message;
-    // });
   });
 
   describe('Tests button navigation:', function () {
@@ -47,7 +40,7 @@ describe('Tests the /live jumbotron content with different stream times:', funct
     it('Offstream State: Checks clicking "Watch This Weeks Service" navs to the latest message', function () {
       visitLiveWithSchedule(scheduleGenerator.getStreamStartingAfterHours(24));
       cy.get('[data-automation-id="watch-service-button"]').click();
-      RouteValidator.pageFoundAndURLMatches(autoplayURL.absolute);//currentMessage.autoplayURL.absolute);
+      RouteValidator.pageFoundAndURLMatches(autoplayURL.absolute);
     });
   });
 
@@ -105,7 +98,7 @@ describe('Tests the /live jumbotron content with different stream times:', funct
     it('Check "Watch This Weeks Service" is displayed and has correct link', function () {
       cy.get('[data-automation-id="watch-service-button"]')
         .should('be.visible')
-        .and('have.attr', 'href', autoplayURL.relative);//currentMessage.autoplayURL.relative);
+        .and('have.attr', 'href', autoplayURL.relative);
     });
   });
 });
