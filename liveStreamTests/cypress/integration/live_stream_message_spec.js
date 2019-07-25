@@ -1,19 +1,19 @@
-import { ContentfulLibrary } from 'crds-cypress-tools';
+import { MessageEntry, MessageQueryManager, Asset, LinkField } from 'crds-cypress-contentful';
 import { AmplitudeEventChecker } from './helpers/AmplitudeEventChecker';
 import { StreamScheduleGenerator } from './helpers/ScheduleGenerator';
 import moment from 'moment';
 import 'moment-timezone';
 
 /** Extended Contentful Models */
-class ExtendedMessageEntry extends ContentfulLibrary.entry.message {
-  constructor (entryObject, seriesEntry) {
-    super(entryObject, seriesEntry);
+class ExtendedMessageEntry extends MessageEntry {
+  constructor (entryObject) {
+    super(entryObject);
 
-    this._video = new ContentfulLibrary.entry.contentfulEntry(this._fields.video_file);
+    this._video_link = new LinkField(this._fields.video_file, Asset);
   }
 
-  get video() {
-    return this._video;
+  get videoLink() {
+    return this._video_link;
   }
 }
 
@@ -36,12 +36,13 @@ describe('Tests latest message is current and ready for live stream', function (
   let contentfulLatestMessage;
   let fakeSchedule;
   before(function () {
-    const mqm = new ContentfulLibrary.queryManager.messageQueryManager();
-    mqm.entryClass = ExtendedMessageEntry;
-    mqm.fetchSingleEntry(mqm.query.latestMessage).then(message => {
+    const mqm = new MessageQueryManager();
+    mqm.entryConstructor = ExtendedMessageEntry;
+    mqm.getSingleEntry(mqm.query.latestMessage).then(message => {
       contentfulLatestMessage = message;
-      fakeSchedule = new StreamScheduleGenerator().getStreamStartingAfterHours(0);
     });
+
+    fakeSchedule = new StreamScheduleGenerator().getStreamStartingAfterHours(0);
   });
 
   it('Verify encoding is ready for the latest message in Bitmovin', function () {
@@ -54,7 +55,7 @@ describe('Tests latest message is current and ready for live stream', function (
 
       //Latest message according to Bitmovin should match Contentful
       assert.equal(latestMessageStatus.messageId, contentfulLatestMessage.id, `Expect the latest message known to Bitmovin to match the latest message in Contentful. Bitmovin's latest message id is '${latestMessageStatus.messageId}' and Contentful's latest message id is '${contentfulLatestMessage.id}'`);
-      assert.equal(latestMessageStatus.videoId, contentfulLatestMessage.video.id, `Expect the latest message's video id in Bitmovin to match the video id in Contentful. Bitmovin's video id is '${latestMessageStatus.videoId}' and Contentful's video id is '${contentfulLatestMessage.video.id}'`);
+      assert.equal(latestMessageStatus.videoId, contentfulLatestMessage.videoLink.id, `Expect the latest message's video id in Bitmovin to match the video id in Contentful. Bitmovin's video id is '${latestMessageStatus.videoId}' and Contentful's video id is '${contentfulLatestMessage.videoLink.id}'`);
       assert.equal(latestMessageStatus.messageBitmovinUrl, contentfulLatestMessage.bitmovinURL.toString, `Expect the latest message's Bitmovin url to be the same in Bitmovin and Contentful. Bitmovin's latest message url is '${latestMessageStatus.messageBitmovinUrl}' and in Contentful is '${contentfulLatestMessage.bitmovinURL.toString}'`);
     });
   });
@@ -95,7 +96,7 @@ describe('Tests latest message is current and ready for live stream', function (
 });
 
 /** Using the "after" hook or listening for events sometimes doesn't send messages due to bugs in Cypress (issue #2831)
- * This is a hacky but consistent way to get around the issue.
+ * This is a hacky but reliable way to get around the issue.
 */
 describe('Sends out results', function () {
   it('Sends out Slack and Email alerts', function() {
