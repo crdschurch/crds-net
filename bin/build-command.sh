@@ -7,7 +7,7 @@
   ./bin/netlify-redirector &&
   bundle exec jekyll crds &&
   bundle exec jekyll contentful -f &&
-  bundle exec jekyll build -- --update-search-index &&
+  bundle exec jekyll build -t -- --update-search-index &&
   bash ./cypress/kickOffCypress.sh &&
   ./bin/prerenderio-bust.sh &&
   ./bin/health-check.sh "we are crossroads"
