@@ -1,3 +1,28 @@
+//Workaround for DE6665 - The locations page sometimes loads with missing functionality.
+function visitLocationsWithRetry(retries){
+  cy.on('uncaught:exception', (err) => {
+    //Sees error, posts assertion to console, fails if not matching
+    const propertyUndefinedRegex = /.*Cannot read property\W+\w+\W+of undefined.*/;
+    const undefinedObjectRegex = /.*Cannot convert undefined or null to object.*/;
+    if(err.message.match(propertyUndefinedRegex) !== null ||
+    err.message.match(undefinedObjectRegex) !== null){
+
+      retries -= 1;
+      console.log(`ERROR found! ${err.message}. Retries left visiting locations ${retries}`);
+      if(retries > 0){
+        visitLocationsWithRetry(retries);
+        return false;
+      }
+    }
+    return true;
+  });
+
+  cy.visit('/locations');
+
+  //Searching triggers the errors we're catching above. If search is successful, page should be ready.
+  searchForLocation(' ');
+}
+
 function searchForLocation(keyword) {
   cy.server();
   cy.route('/gateway/api/v1.0.0/locations/proximities?origin=*').as('searchResults');
@@ -11,42 +36,9 @@ function searchForLocation(keyword) {
   });
 }
 
-function visitLocationsSafeForSearch(retries){
-  cy.on('uncaught:exception', (err) => {
-    //Sees error, posts assertion to console, fails if not matching
-    const propertyUndefinedRegex = /.*Cannot read property\W+\w+\W+of undefined.*/;
-    if(err.message.match(propertyUndefinedRegex) !== null){
-      console.log(`ERROR found! retries left visiting locations ${retries}`);
-      retries -= 1; //TODO is retries accessible by this?
-      if(retries > 0){
-        visitLocationsSafeForSearch(retries);
-      }
-      else {
-        return true;
-      }
-      return false;
-    }
-    else
-    {
-      return true;
-    }
-  });
-
-  cy.visit('/locations');
-  searchForLocation(' ');
-}
-
 describe('Given I search for a standard location on /locations:', function () {
   before(function () {
-    visitLocationsSafeForSearch(2);
-    // cy.ignorePropertyUndefinedTypeError();
-
-    // //Workaround for DE6665 - The locations page sometimes loads with missing functionality. Loading a different page before /locations
-    // //  then waiting seems to prevent this issue, which is easier than trying to recover from the failure during the test.
-    // cy.visit('/prayer');
-    // cy.visit('/locations');
-    // cy.wait(1000); //We really want to do this
-    // //TODO this didn't work. Add method - is locations fully loaded that reloads itself until can be searched
+    visitLocationsWithRetry(2);
   });
 
   //For a Contentful Location card to display the distance, its address must be valid
@@ -80,13 +72,7 @@ describe('Given I search for a standard location on /locations:', function () {
 
 describe('Given I search for a non-standard location on /locations', function () {
   beforeEach(function () {
-    cy.ignorePropertyUndefinedTypeError();
-
-    //Workaround for DE6665 - The locations page sometimes loads with missing functionality. Loading a different page before /locations
-    //  then waiting seems to prevent this issue, which is easier than trying to recover from the failure during the test.
-    cy.visit('/prayer');
-    cy.visit('/locations');
-    cy.wait(1000); //We really want to do this
+    visitLocationsWithRetry(2);
   });
 
   it('Searching for an out of range location should display the Anywhere card first', function () {

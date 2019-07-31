@@ -13,8 +13,8 @@ function selectFilter(audience) {
   cy.get('@promoFilter').find(`[data-filter-select="${audience}"]`).as('audienceSelector');
   cy.get('@audienceSelector').click();
 }
-//TODO need to update for personalised happenings app
-describe.skip('Tests Happening section without filters', function () {
+
+describe('Tests Happening section without filters', function () {
   before(function () {
     cy.ignorePropertyUndefinedTypeError();
     cy.visit('/');
@@ -31,8 +31,7 @@ describe.skip('Tests Happening section without filters', function () {
   });
 });
 
-//TODO need to update for personalised happenings app
-describe.skip('Tests Happenings can be filtered by audience', function () {
+describe('Tests Happenings can be filtered by audience', function () {
   let pqm;
   before(function () {
     cy.ignorePropertyUndefinedTypeError();
