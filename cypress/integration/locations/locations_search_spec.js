@@ -1,7 +1,7 @@
 //Workaround for DE6665 - The locations page sometimes loads with missing functionality.
 function visitLocationsWithRetry(retries){
   cy.on('uncaught:exception', (err) => {
-    //Sees error, posts assertion to console, fails if not matching
+    //Sees error, posts message to console, fails if not matching
     const propertyUndefinedRegex = /.*Cannot read property\W+\w+\W+of undefined.*/;
     const undefinedObjectRegex = /.*Cannot convert undefined or null to object.*/;
     if(err.message.match(propertyUndefinedRegex) !== null ||
