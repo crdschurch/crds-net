@@ -481,18 +481,8 @@ paginate:
 
 <!-- Happenings -->
 <section class="container">
-  <h3 id="happening-filter-label" class="collection-header clearfix">happening at crossroads</h3>
-  <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-filterable data-filter-label="Churchwide"
-    data-filter-parent="#happening-filter-label" data-filter-reset-label="Churchwide">
-    <div id="section-what-s-happening" class="feature-cards" data-automation-id="happenings-cards">
-      {% assign date_sorted_promos = site.promos | sort: 'date' | reverse | group_by: 'date' %}
-      {% for date_group in date_sorted_promos %}
-      {% assign name_sorted_promos = date_group.items | sort: 'title' %}
-      {% for item in name_sorted_promos %}
-      {% include _promo-card.html %}
-      {% endfor %}
-      {% endfor %}
-    </div>
+  <div class="site-happenings-skeleton">
+    <crds-site-happenings auth-token></crds-site-happenings>
   </div>
 </section>
 
