@@ -2,47 +2,47 @@
 layout: default
 monetate_page_type: index-main
 meta:
-  title: Crossroads
-  description: No matter what your beliefs, you are welcome here.
-  image:
-    url: "//crds-cms-uploads.imgix.net/content/images/cr-social-sharing-still-bg.jpg?w=1200&h=630&fit=crop"
+title: Crossroads
+description: No matter what your beliefs, you are welcome here.
+image:
+url: "//crds-cms-uploads.imgix.net/content/images/cr-social-sharing-still-bg.jpg?w=1200&h=630&fit=crop"
 paginate:
-  articles:
-    per: 15
-    offset: 1
-    limit: 1
-    sort: published_at desc
-  perspectives:
-    per: 3
-    limit: 1
-    sort: published_at desc
-  topics:
-    per: 5
-    limit: 1
-    sort: published_at
-  series:
-    per: 1
-    limit: 1
-    sort: starts_at desc
-  messages:
-    per: 1
-    limit: 1
-    sort: published_at desc
-  home_collection:
-    collections:
-      - articles
-    per: 10
-    limit: 1
-    offset: 2
-    sort: published_at desc
-  episodes:
-    per: 3
-    limit: 1
-    sort: published_at desc
-  podcasts:
-    per: 6
-    offset: 1
-    limit: 1
+articles:
+per: 15
+offset: 1
+limit: 1
+sort: published_at desc
+perspectives:
+per: 3
+limit: 1
+sort: published_at desc
+topics:
+per: 5
+limit: 1
+sort: published_at
+series:
+per: 1
+limit: 1
+sort: starts_at desc
+messages:
+per: 1
+limit: 1
+sort: published_at desc
+home_collection:
+collections:
+- articles
+per: 10
+limit: 1
+offset: 2
+sort: published_at desc
+episodes:
+per: 3
+limit: 1
+sort: published_at desc
+podcasts:
+per: 6
+offset: 1
+limit: 1
 ---
 
 {% include header.html %}
@@ -481,9 +481,27 @@ paginate:
 
 <!-- Happenings -->
 <section class="container">
-  <div class="site-happenings-skeleton">
-    <crds-site-happenings auth-token></crds-site-happenings>
+  <div class="site-happenings-skeleton" data-component-skeleton>
+    {% for i in (1..4) %}
+      <div class="card-skeleton">
+        <svg width="270px" height="302px" viewBox="0 0 323 302" version="1.1" xmlns="http://www.w3.org/2000/svg"
+          xmlns-xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.5">
+            <g id="Short-skeleton-double" transform="translate(-30.000000, -30.000000)" fill="#979797">
+              <g transform="translate(30.000000, 30.000000)">
+                <rect id="bg-recent-1-copy" x="0" y="0" width="323" height="182" rx="1" />
+                <rect id="Rectangle" x="0" y="196" width="94" height="9" rx="1" />
+                <rect id="Rectangle" x="0" y="293" width="72" height="9" rx="1" />
+                <rect id="Rectangle" x="0" y="219" width="275" height="25" rx="1" />
+                <rect id="Rectangle" x="0" y="254" width="145" height="25" rx="1" />
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+    {% endfor %}
   </div>
+  <crds-site-happenings auth-token></crds-site-happenings>
 </section>
 
 {% include footer.html %}
@@ -505,6 +523,6 @@ paginate:
     c.getEventStatus();
   }
 </script>
-
 {% javascript_link_tag autoplay async %}
+{% javascript_link_tag skeleton async %}
 <!-- we are crossroads -->
