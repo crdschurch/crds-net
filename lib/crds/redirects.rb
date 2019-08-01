@@ -17,7 +17,7 @@ class Redirects
   end
 
   def redirects
-    JSON.parse(get_redirects).dig('items').collect { |item| item_to_csv(item) }
+    JSON.parse(get_redirects).dig('items').collect { |item| item_attrs(item) }
   end
 
   def to_csv!(path = './redirects.csv')
@@ -29,7 +29,7 @@ class Redirects
 
   private
 
-    def item_to_csv(item)
+    def item_attrs(item)
       [
         item.dig('fields', 'from'),
         item.dig('fields', 'to'),

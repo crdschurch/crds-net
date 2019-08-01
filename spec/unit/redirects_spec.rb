@@ -16,7 +16,7 @@ describe 'Redirects' do
     end
   end
 
-  describe 'item_to_csv' do
+  describe 'item_attrs' do
     let(:item) {
       {
         "sys"=>{
@@ -35,25 +35,25 @@ describe 'Redirects' do
     }
 
     it 'should apply the proper to and from fields' do
-      attrs = @redirects.send(:item_to_csv, item)
+      attrs = @redirects.send(:item_attrs, item)
       expect(attrs.compact.size).to eq(3)
       expect(attrs[0]).to eq(item.dig('fields', 'from'))
     end
 
     it 'default to temporary (302) status code' do
-      attrs = @redirects.send(:item_to_csv, item)
+      attrs = @redirects.send(:item_attrs, item)
       expect(attrs[2]).to eq('302')
     end
 
     it 'should accept status code' do
       item['fields']['status_code'] = '410'
-      attrs = @redirects.send(:item_to_csv, item)
+      attrs = @redirects.send(:item_attrs, item)
       expect(attrs[2]).to eq('410')
     end
 
     it 'should accept forced' do
       item['fields']['is_forced'] = true
-      attrs = @redirects.send(:item_to_csv, item)
+      attrs = @redirects.send(:item_attrs, item)
       expect(attrs[2]).to eq('302!')
     end
   end
