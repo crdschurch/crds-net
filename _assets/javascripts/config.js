@@ -117,4 +117,10 @@ module.exports = [
       'components/autoplay-controller',
     ],
   },
+  {
+    name: 'skeleton',
+    files: [
+      'components/skeleton',
+    ],
+  }
 ];
