@@ -15,21 +15,47 @@ describe 'Redirects' do
       file.write("http://crossroads.net/*,https://www.crossroads.net/:splat,301!,master\nhttp://int.crossroads.net/*,https://int.crossroads.net/:splat,301!\n/groupleaderresources/,/groups/leader/resources/,302")
     end
   end
-  
-  it 'should always give a temporary (302) status code' do
-    item = {"sys"=>
-    {"space"=>{"sys"=>{"type"=>"Link", "linkType"=>"Space", "id"=>"p9oq1ve41d7r"}},
-     "id"=>"2mCiLxg9BW8sI4imgIMgW2",
-     "type"=>"Entry",
-     "createdAt"=>"2018-11-12T18:24:49.888Z",
-     "updatedAt"=>"2018-11-12T18:25:31.092Z",
-     "environment"=>{"sys"=>{"id"=>"master", "type"=>"Link", "linkType"=>"Environment"}},
-     "revision"=>2,
-     "contentType"=>{"sys"=>{"type"=>"Link", "linkType"=>"ContentType", "id"=>"redirect"}},
-     "locale"=>"en-US"},
-     "fields"=>{"from"=>"/giving-help", "to"=>"/pushpay/faq"}}
-    @redirects.set_tmp_status(item)
-    expect(item["fields"]["status"]).to eq 302
+
+  describe 'item_to_csv' do
+    let(:item) {
+      {
+        "sys"=>{
+          "space"=>{"sys"=>{"type"=>"Link", "linkType"=>"Space", "id"=>"p9oq1ve41d7r"}},
+          "id"=>"2mCiLxg9BW8sI4imgIMgW2",
+          "type"=>"Entry",
+          "createdAt"=>"2018-11-12T18:24:49.888Z",
+          "updatedAt"=>"2018-11-12T18:25:31.092Z",
+          "environment"=>{"sys"=>{"id"=>"master", "type"=>"Link", "linkType"=>"Environment"}},
+          "revision"=>2,
+          "contentType"=>{"sys"=>{"type"=>"Link", "linkType"=>"ContentType", "id"=>"redirect"}},
+          "locale"=>"en-US"
+        },
+        "fields"=>{"from"=>"/giving-help", "to"=>"/pushpay/faq"}
+      }
+    }
+
+    it 'should apply the proper to and from fields' do
+      attrs = @redirects.send(:item_to_csv, item)
+      expect(attrs.compact.size).to eq(3)
+      expect(attrs[0]).to eq(item.dig('fields', 'from'))
+    end
+
+    it 'default to temporary (302) status code' do
+      attrs = @redirects.send(:item_to_csv, item)
+      expect(attrs[2]).to eq('302')
+    end
+
+    it 'should accept status code' do
+      item['fields']['status_code'] = '410'
+      attrs = @redirects.send(:item_to_csv, item)
+      expect(attrs[2]).to eq('410')
+    end
+
+    it 'should accept forced' do
+      item['fields']['is_forced'] = true
+      attrs = @redirects.send(:item_to_csv, item)
+      expect(attrs[2]).to eq('302!')
+    end
   end
 
   it 'should write rows to a csv after the second line' do

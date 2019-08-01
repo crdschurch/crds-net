@@ -17,13 +17,7 @@ class Redirects
   end
 
   def redirects
-    JSON.parse(get_redirects).dig('items').collect do |item|
-      [
-        item.dig('fields', 'from'),
-        item.dig('fields', 'to'),
-        "#{item.dig('fields', 'status_code') || 302}#{'!' if item.dig('fields', 'is_forced')}"
-      ]
-    end
+    JSON.parse(get_redirects).dig('items').collect { |item| item_to_csv(item) }
   end
 
   def to_csv!(path = './redirects.csv')
@@ -34,6 +28,14 @@ class Redirects
   end
 
   private
+
+    def item_to_csv(item)
+      [
+        item.dig('fields', 'from'),
+        item.dig('fields', 'to'),
+        "#{item.dig('fields', 'status_code') || 302}#{'!' if item.dig('fields', 'is_forced')}"
+      ]
+    end
 
     def get_redirects
       self.class.get("/spaces/#{ENV['CONTENTFUL_SPACE_ID']}/environments/#{ENV['CONTENTFUL_ENV']}/entries", @options)
