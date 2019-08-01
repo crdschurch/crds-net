@@ -18,8 +18,11 @@ class Redirects
 
   def redirects
     JSON.parse(get_redirects).dig('items').collect do |item|
-      set_tmp_status(item)
-      item.dig('fields').values 
+      [
+        item.dig('fields', 'from'),
+        item.dig('fields', 'to'),
+        "#{item.dig('fields', 'status_code') || 302}#{'!' if item.dig('fields', 'is_forced')}"
+      ]
     end
   end
 
@@ -28,11 +31,6 @@ class Redirects
     rows.insert(2, *redirects)
     File.write(path, rows.map(&:to_csv).join)
     puts "\n + #{redirects.size} redirects from Contentful".colorize(:cyan)
-  end
-
-  def set_tmp_status(item)
-    item['fields']['status'] = 302
-    item
   end
 
   private
