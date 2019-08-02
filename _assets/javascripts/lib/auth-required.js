@@ -1,22 +1,40 @@
 function redirectUnauthenticated() {
-  if (document.cookie.includes(CRDS.media.prefix + 'refreshToken')) {
-    getAuth().done((data, textStatus, xhr) => {
 
-      var sessionId = xhr.getResponseHeader('sessionId');
-      var refreshToken = xhr.getResponseHeader('refreshToken');
+  let oktaConfig = {
+    clientId: '{{site.okta_client_id}}',
+    issuer: '{{site.okta_oauth_base_url}}', //This one is a bit tricky. There are two parts. 1. This should be the fully qualified base url where your app is hosted. Maybe that's https://int.crossroads.net, https://media.crossroads.net, https://www.crossroads.net. 2. The url must be registered in the okta portal under the application redirectUri settings.
+    redirectUri: getCookie('redirectUrl'),
+    tokenManager: {
+      storage: 'cookie'
+    },
+  }
 
+  let mpConfig = {
+    accessTokenCookie: CRDS.media.prefix + 'sessionId',
+    refreshTokenCookie: CRDS.media.prefix + 'refreshToken',
+    issuer: `${CRDS.env.gatewayServerEndpoint}api/authenticated`
+  }
+
+  let authConfig = {
+    oktaConfig: oktaConfig,
+    mpConfig: mpConfig,
+    logging: false, //Do you want to log debug info to the web console?
+    providerPreference: [
+      // Put these in the order you want the library to check for auth status
+      crdsAuth.CrdsAuthenticationProviders.Okta,
+      crdsAuth.CrdsAuthenticationProviders.Mp
+    ]
+  }
+
+  let authService = new crdsAuth.CrdsAuthenticationService(authConfig);
+
+  authService.authenticated().subscribe(tokens => {
+    if (!tokens) window.location.href = '/signin';
+    else {
       document.querySelector('[data-preloader]').style.opacity = 0;
       document.querySelector('[data-preloader]').style.zIndex = -1;
-
-      if (!sessionId) return;
-
-      setCookie(CRDS.media.prefix + 'refreshToken', refreshToken, 24);
-      setCookie(CRDS.media.prefix + 'sessionId', sessionId, 24);
-
-    }).fail(() => { window.location.href = '/signin'; });
-  } else {
-    window.location.href = '/signin';
-  }
+    }
+  });
 }
 
 document.addEventListener("redirect-url-set", redirectUnauthenticated);
@@ -25,34 +43,8 @@ if (window.isRedirectUrlSet) {
   redirectUnauthenticated();
 }
 
-function getAuth() {
-  const authURL = `${CRDS.env.gatewayServerEndpoint}api/authenticated`;
-  return $.ajax({
-    url: authURL,
-    dataType: 'json',
-    crossDomain: true,
-    xhrFields: {
-      withCredentials: true
-    },
-    beforeSend(request) {
-      request.setRequestHeader('Authorization', getCookie(CRDS.media.prefix + 'sessionId'));
-      request.setRequestHeader('RefreshToken', getCookie(CRDS.media.prefix + 'refreshToken'));
-    }
-  });
-}
-
 function getCookie(name) {
   var value = "; " + document.cookie;
   var parts = value.split("; " + name + "=");
   if (parts.length == 2) return parts.pop().split(";").shift();
-}
-
-function setCookie(name, value, days) {
-  var expires = "";
-  if (days) {
-    var date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    expires = ";domain=.crossroads.net;expires=" + date.toUTCString();
-  }
-  document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }

@@ -51,7 +51,10 @@ module.exports = [
   },
   {
     name: "auth-required",
-    files: ["lib/auth-required"]
+    files: ["lib/auth-required"],
+    deps: [
+      "vendor/client-auth"
+    ]
   },
   {
     name: "reachout-trip",
@@ -116,5 +119,12 @@ module.exports = [
     files: [
       'components/autoplay-controller',
     ],
+  },
+  {
+    name: "authentication",
+    files: ["lib/authentication"],
+    deps: [
+      "vendor/client-auth"
+    ]
   },
 ];

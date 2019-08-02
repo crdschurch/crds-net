@@ -44,7 +44,7 @@ paginate:
     offset: 1
     limit: 1
 ---
-
+{% javascript_link_tag authentication async %}
 {% include header.html %}
 {% assign homePageBanner = site.content_blocks | where: 'slug', 'home-page-promo-banner' | first %}
 
@@ -507,4 +507,5 @@ paginate:
 </script>
 
 {% javascript_link_tag autoplay async %}
+
 <!-- we are crossroads -->
