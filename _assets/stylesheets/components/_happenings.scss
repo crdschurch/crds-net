@@ -13,10 +13,10 @@
     flex-basis: 270px;
     margin-left: 7.5px;
     margin-right: 7.5px;
+    margin-bottom: 1rem;
     padding: 0 0.5rem;
-    position: relative;
     max-width: 100%;
-    max-height: 460px;
+    height: 460px;
     background-color: rgb(231, 231, 231);
     overflow: hidden;
     border-radius: 2px;
@@ -43,7 +43,7 @@
         rgba(#ddd, 0.5) 60%,
         rgba(#333, 0) 80%,
       );
-      animation: shimmer 2s infinite;
+      animation: shimmer 1.5s infinite;
       content: '';
     }
   
