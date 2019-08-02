@@ -53,7 +53,8 @@ module.exports = [
     name: "auth-required",
     files: ["lib/auth-required"],
     deps: [
-      "vendor/client-auth"
+      "vendor/client-auth",
+      "lib/authentication"
     ]
   },
   {
