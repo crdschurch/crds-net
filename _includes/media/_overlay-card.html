@@ -7,17 +7,25 @@
     {% assign image = item.background_image.url %}
   {% when 'episode' %}
     {% assign image = item.podcast.image.url %}
+  {% when 'song' %}
+    {% assign image = item.bg_image.url %}
   {% else %}
     {% assign image = item.image.url %}
 {% endcase %}
 
 {% assign url = item.url %}
+{% assign author = item.author.full_name %}
 
 {% if url %}
   {% assign url = item | media_url %}
 {% else %}
   {% assign doc = item | get_doc %}
   {% assign url = doc.url %}
+{% endif %}
+
+{% if handle == 'song' %}
+  {% assign url = '/media/songs/' | append: item.slug %}
+  {% assign author = item.written_by %}
 {% endif %}
 
 <a href="{{ item | media_url }}" class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
@@ -32,7 +40,7 @@
     <p class="overlay-card-category">{{ item.category.title }}</p>
     <h2 class="overlay-card-title {% if include.title == 'h2' %}font-size-h2{% endif %}">{{ item.title | truncate: 55
       }}</h2>
-    <p class="overlay-card-author">{{ item.author.full_name }}</p>
+    <p class="overlay-card-author">{{ author }}</p>
     {% include media/_media-label.html source=item %}
   </div>
 </a>

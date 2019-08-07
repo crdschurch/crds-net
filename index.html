@@ -31,6 +31,7 @@ paginate:
   home_collection:
     collections:
       - articles
+      - songs
     per: 10
     limit: 1
     offset: 2
@@ -207,29 +208,41 @@ paginate:
         <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
           {% assign above_the_fold = page.home_collection.docs | slice: 0, 4 %}
 
-          {% for article in above_the_fold %}
-          {% assign author = article.author | get_doc %}
-          {% assign category = article.category | get_doc %}
-          <div class="card carousel-cell card-2x">
-            <a class="relative" href="{{ article.url }}">
-              {% include media/_media-label.html source=article %}
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
-            </a>
+          {% for content in above_the_fold %}
 
-            <div class="card-block hard soft-quarter-top">
-              <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{
-                category.title }}</a>
+          {% if content.content_type == 'song' %}
 
-              <h3 class="component-header flush">
-                <a href="{{ article.url }}">{{ article.title }}</a>
-              </h3>
+            {% assign author = content.written_by | get_doc %}
+            {% assign image = content.bg_image %}
 
-              <p class="card-text soft-quarter-top">
-                <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>
-              </p>
+          {% else %}
+            {% assign author = content.author.full_name | get_doc %}
+            {% assign image = content.image %}
+
+          {% endif %}
+
+            {% assign category = content.category | get_doc %}
+
+            <div class="card carousel-cell card-2x">
+              <a class="relative" href="{{ content.url }}">
+                {% include media/_media-label.html source=content %}
+                <img src="{{ image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                  sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+              </a>
+
+              <div class="card-block hard soft-quarter-top">
+                <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ content.category.url }}">{{
+                  category.title }}</a>
+
+                <h3 class="component-header flush">
+                  <a href="{{ content.url }}">{{ content.title }}</a>
+                </h3>
+
+                <p class="card-text soft-quarter-top">
+                  <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author }}</a>
+                </p>
+              </div>
             </div>
-          </div>
           {% endfor %}
         </div>
       </div>

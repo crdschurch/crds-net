@@ -55,6 +55,8 @@ contentful:
     query: "content_type=episode&fields.podcast.sys.contentType.sys.id=podcast&fields.podcast.fields.exclude_from_crossroads[ne]=true"
   video:
     query: "fields.exclude_from_crossroads[ne]=true"
+  song:
+    query: "fields.video[exists]=true"
   exclude:
     - album
     - migration
