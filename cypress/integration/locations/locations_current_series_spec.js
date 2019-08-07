@@ -1,10 +1,10 @@
-import { ContentfulLibrary } from 'crds-cypress-tools';
+import { SeriesQueryManager } from 'crds-cypress-contentful';
 
 describe('Testing the Current Series on the a locations page:', function () {
   let currentSeries;
   before(function () {
-    const sqm = new ContentfulLibrary.queryManager.seriesQueryManager();
-    sqm.fetchSingleEntry(sqm.query.latestSeries).then(series => {
+    const sqm = new SeriesQueryManager();
+    sqm.getSingleEntry(sqm.query.latestSeries).then(series => {
       currentSeries = series;
     });
   });
