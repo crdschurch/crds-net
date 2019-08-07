@@ -1,58 +1,20 @@
-function redirectUnauthenticated() {
-  if (document.cookie.includes(CRDS.media.prefix + 'refreshToken')) {
-    getAuth().done((data, textStatus, xhr) => {
+function auth() {
+  if(!window.authReady || !window.envReady) return;
+  
+  var auth = new Authentication();
 
-      var sessionId = xhr.getResponseHeader('sessionId');
-      var refreshToken = xhr.getResponseHeader('refreshToken');
-
+  function callback(tokens) {
+    if (!tokens) window.location.href = '/signin';
+    else {
       document.querySelector('[data-preloader]').style.opacity = 0;
       document.querySelector('[data-preloader]').style.zIndex = -1;
-
-      if (!sessionId) return;
-
-      setCookie(CRDS.media.prefix + 'refreshToken', refreshToken, 24);
-      setCookie(CRDS.media.prefix + 'sessionId', sessionId, 24);
-
-    }).fail(() => { window.location.href = '/signin'; });
-  } else {
-    window.location.href = '/signin';
-  }
-}
-
-document.addEventListener("redirect-url-set", redirectUnauthenticated);
-
-if (window.isRedirectUrlSet) {
-  redirectUnauthenticated();
-}
-
-function getAuth() {
-  const authURL = `${CRDS.env.gatewayServerEndpoint}api/authenticated`;
-  return $.ajax({
-    url: authURL,
-    dataType: 'json',
-    crossDomain: true,
-    xhrFields: {
-      withCredentials: true
-    },
-    beforeSend(request) {
-      request.setRequestHeader('Authorization', getCookie(CRDS.media.prefix + 'sessionId'));
-      request.setRequestHeader('RefreshToken', getCookie(CRDS.media.prefix + 'refreshToken'));
     }
-  });
-}
-
-function getCookie(name) {
-  var value = "; " + document.cookie;
-  var parts = value.split("; " + name + "=");
-  if (parts.length == 2) return parts.pop().split(";").shift();
-}
-
-function setCookie(name, value, days) {
-  var expires = "";
-  if (days) {
-    var date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    expires = ";domain=.crossroads.net;expires=" + date.toUTCString();
   }
-  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  
+  auth.authenticate(callback);
 }
+
+document.addEventListener('auth-ready', auth)
+document.addEventListener('env-ready', auth)
+if(window.authReady && window.envReady) auth();
+

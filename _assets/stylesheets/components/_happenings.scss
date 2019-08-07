@@ -1,0 +1,80 @@
+.site-happenings-skeleton {
+  min-height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .card-skeleton {
+    display: flex;
+    position: relative;
+    cursor: auto;
+    -webkit-flex: 1 0 270px;
+    -ms-flex: 1 0 270px;
+    flex: 1 0 270px;
+    flex-basis: 270px;
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
+    max-width: 100%;
+    height: 460px;
+    background-color: rgb(231, 231, 231);
+    overflow: hidden;
+    border-radius: 2px;
+
+    &:first {
+      margin-left: 0;
+    }
+    
+    &:last {
+      margin-right: 0;
+    }
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: translateX(-100%);
+      background-image: linear-gradient(
+        100deg,
+        rgba(#eee, 0) 0,
+        rgba(231, 231, 231, 0.7) 30%,
+        rgba(#ddd, 0.5) 60%,
+        rgba(#333, 0) 80%,
+      );
+      animation: shimmer 1.5s infinite;
+      content: '';
+    }
+  
+    @keyframes shimmer {
+      to {
+        transform: translateX(50%);
+      }
+    }
+
+    @media (min-width: 480px) {
+      max-width: 50%;
+    }
+
+    @media (min-width: 768px) {
+      max-width: 33.333333%;
+    }
+
+    @media (min-width: 960px) {
+      max-width: 25%;
+    }
+    
+    svg {
+      position: relative;
+      display: block;
+      height: auto;
+      width: 100%;
+      z-index: 1;
+
+      g {
+        fill: #fff;
+      }
+    }
+  }
+}

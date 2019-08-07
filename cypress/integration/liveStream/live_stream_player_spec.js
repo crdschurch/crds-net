@@ -1,8 +1,7 @@
-import { ContentfulLibrary } from 'crds-cypress-tools';
 import { AmplitudeEventChecker } from './helpers/AmplitudeEventChecker';
 import { BitmovinPlayer } from './helpers/BitmovinPlayer';
 import { StreamScheduleGenerator } from '../../support/StreamScheduleGenerator';
-import { ExtendedMessageEntry } from '../../Contentful/Entries/ExtendedMessageEntry';
+import { MessageQueryManager } from 'crds-cypress-contentful';
 
 function hideRollCall() {
   localStorage.setItem('crds-roll-call-state', 'dismissed');
@@ -19,9 +18,8 @@ describe('Tests the /live/stream page displays the expected player', function ()
   let latestMessage;
   let fakeSchedule;
   before(function () {
-    const mqm = new ContentfulLibrary.queryManager.messageQueryManager();
-    mqm.entryClass = ExtendedMessageEntry;
-    mqm.fetchSingleEntry(mqm.query.latestMessage).then(message => {
+    const mqm = new MessageQueryManager();
+    mqm.getSingleEntry(mqm.query.latestMessage).then(message => {
       latestMessage = message;
     });
 

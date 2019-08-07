@@ -17,10 +17,7 @@ class Redirects
   end
 
   def redirects
-    JSON.parse(get_redirects).dig('items').collect do |item|
-      set_tmp_status(item)
-      item.dig('fields').values 
-    end
+    JSON.parse(get_redirects).dig('items').collect { |item| item_attrs(item) }
   end
 
   def to_csv!(path = './redirects.csv')
@@ -30,12 +27,15 @@ class Redirects
     puts "\n + #{redirects.size} redirects from Contentful".colorize(:cyan)
   end
 
-  def set_tmp_status(item)
-    item['fields']['status'] = 302
-    item
-  end
-
   private
+
+    def item_attrs(item)
+      [
+        item.dig('fields', 'from'),
+        item.dig('fields', 'to'),
+        "#{item.dig('fields', 'status_code') || 302}#{'!' if item.dig('fields', 'is_forced')}"
+      ]
+    end
 
     def get_redirects
       self.class.get("/spaces/#{ENV['CONTENTFUL_SPACE_ID']}/environments/#{ENV['CONTENTFUL_ENV']}/entries", @options)
