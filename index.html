@@ -50,18 +50,21 @@ paginate:
 {% assign homePageBanner = site.content_blocks | where: 'slug', 'home-page-promo-banner' | first %}
 {% javascript_link_tag authentication async %}
 <script async>
+  var ranAuth = false;
   document.addEventListener('auth-ready', auth)
   document.addEventListener('env-ready', auth)
   if (window.authReady && window.envReady) auth();
 
   function auth() {
-    if (!window.authReady || !window.envReady) return;
+    if (!window.authReady || !window.envReady || ranAuth) return;
+    ranAuth = true;
     var auth = new Authentication();
     function callback(tokens) {
-      if (tokens)
+      if (tokens){
         document.querySelectorAll('[auth-token]').forEach(el => {
-          el.setAttribute("auth-token", tokens.access_token.access_token);
+          el.setAttribute("auth-token", tokens.access_token.accessToken);
         })
+      }
     }
 
     auth.authenticate(callback);
