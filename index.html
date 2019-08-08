@@ -178,28 +178,16 @@ paginate:
       </h2>
 
       {% if managed_features.size > 0 %}
-      {% assign features = managed_features | slice: 0, 100 %}
-      {% if features.size > 0 %}
-      {% for item in features %}
-      <div>{% include media/_overlay-card.html autoplay=true %}</div>
-      {% endfor %}
-      {% endif %}
+        {% assign features = managed_features | slice: 0, 100 %}
+        {% if features.size > 0 %}
+          {% for item in features %}
+            <div>{% include media/_overlay-card.html autoplay=true %}</div>
+          {% endfor %}
+        {% endif %}
       {% else %}
-      {% for article in page.home_collection.offset %}
-      <a href="{{ article.url }}" class="overlay-card">
-        <div class="bg-overlay"></div>
-        <div class="overlay-card-image">
-          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.three_fourths }}"
-            data-optimize-img />
-        </div>
-        <div class="overlay-card-content">
-          <p class="overlay-card-category">{{ article.category.title }}</p>
-          <h2 class="overlay-card-title">{{ article.title }}</h2>
-          <p class="overlay-card-author">{{ article.author.full_name }}</p>
-          {% include media/_media-label.html source=article %}
-        </div>
-      </a>
-      {% endfor %}
+        {% for item in page.home_collection.offset %}
+            <div>{% include media/_overlay-card.html autoplay=true %}</div>
+        {% endfor %}
       {% endif %}
     </div>
   </div>
@@ -211,38 +199,31 @@ paginate:
         <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
           {% assign above_the_fold = page.home_collection.docs | slice: 0, 4 %}
 
-          {% for content in above_the_fold %}
-
-          {% if content.content_type == 'song' %}
-
-            {% assign author = content.written_by | get_doc %}
-            {% assign image = content.bg_image %}
-
-          {% else %}
-            {% assign author = content.author.full_name | get_doc %}
-            {% assign image = content.image %}
-
-          {% endif %}
-
-            {% assign category = content.category | get_doc %}
+          {% for item in above_the_fold %}
+            {% assign image = item.image %}
+            {% unless image %}{% assign image = item.bg_image %}{% endunless %}
 
             <div class="card carousel-cell card-2x">
-              <a class="relative" href="{{ content.url }}">
-                {% include media/_media-label.html source=content %}
-                <img src="{{ image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                  sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+              <a class="relative" href="{{ item | media_url }}">
+                {% include media/_media-label.html source=item %}
+                <img src="{{ image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
               </a>
 
               <div class="card-block hard soft-quarter-top">
-                <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ content.category.url }}">{{
-                  category.title }}</a>
+                {% if item.category %}
+                  <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{ item.category.title }}</a>
+                {% endif %}
 
                 <h3 class="component-header flush">
-                  <a href="{{ content.url }}">{{ content.title }}</a>
+                  <a href="{{ item | media_url }}">{{ item.title }}</a>
                 </h3>
 
                 <p class="card-text soft-quarter-top">
-                  <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author }}</a>
+                  {% if item.author %}
+                    <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ item.author.full_name }}</a>
+                  {% elsif item.written_by %}
+                    <span class="text-gray-light font-size-smaller">{{ item.written_by }}</span>
+                  {% endif %}
                 </p>
               </div>
             </div>
@@ -250,23 +231,6 @@ paginate:
         </div>
       </div>
     </div>
-
-    <!--<div class="col-md-4">
-      {% if page.perspectives.docs.size > 0 %}d
-      <section class="perspectives-landing flush-top">
-        <a href="{{ '/perspectives/' }}">
-          <header style="background-image: url('//crds-cms-uploads.imgix.net/content/images/another-perspective-bg.png?blend64=MTUxNTE1&balph=60&bm=normal&w=10')" data-optimize-bg-img>
-            <img class="branding" src="//crds-cms-uploads.imgix.net/content/images/logo-another-perspective.svg" alt="another perspective">
-          </header>
-        </a>
-        <div class="perspectives-list">
-          {% for perspective in page.perspectives.docs %}
-            {% include media/_perspective.html perspective=perspective exclude_footer=true %}
-          {% endfor %}
-        </div>
-      </section>
-      {% endif %}
-    </div>-->
 
     <!-- Podcast Episodes -->
     <div class="col-sm-12 col-md-4">

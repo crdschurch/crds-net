@@ -14,7 +14,6 @@
 {% endcase %}
 
 {% assign url = item.url %}
-{% assign author = item.author.full_name %}
 
 {% if url %}
   {% assign url = item | media_url %}
@@ -23,10 +22,10 @@
   {% assign url = doc.url %}
 {% endif %}
 
-{% if handle == 'song' %}
-  {% assign url = '/media/songs/' | append: item.slug %}
+{% assign author = item.author.full_name %}
+{% unless author %}
   {% assign author = item.written_by %}
-{% endif %}
+{% endunless %}
 
 <a href="{{ item | media_url }}" class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
   <div class="bg-overlay"></div>
@@ -38,8 +37,9 @@
   </div>
   <div class="overlay-card-content">
     <p class="overlay-card-category">{{ item.category.title }}</p>
-    <h2 class="overlay-card-title {% if include.title == 'h2' %}font-size-h2{% endif %}">{{ item.title | truncate: 55
-      }}</h2>
+    <h2 class="overlay-card-title {% if include.title == 'h2' %}font-size-h2{% endif %}">
+      {{ item.title | truncate: 55 }}
+    </h2>
     <p class="overlay-card-author">{{ author }}</p>
     {% include media/_media-label.html source=item %}
   </div>
