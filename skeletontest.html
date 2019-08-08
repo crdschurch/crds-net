@@ -1,0 +1,41 @@
+---
+layout: default
+---
+
+<!-- Happenings -->
+<section class="container">
+  <div data-component-skeleton>
+    <hr class="push-half-bottom">
+    <div class="d-flex align-items-center push-half-bottom" style="padding: 10px 0">
+      <h4 class="flush font-size-base font-family-base text-gray-light">
+        happening at crossroads
+      </h4>
+    </div>
+    <div class="site-happenings-skeleton">
+      {% for i in (1..2) %}
+      <div class="card-skeleton">
+        <svg width="270px" height="202px" viewBox="0 0 323 302" version="1.1" xmlns="http://www.w3.org/2000/svg"
+          xmlns-xlink="http://www.w3.org/1999/xlink">
+          <g id="Short-skeleton-double" transform="translate(-20, -30)" fill="#fff">
+            <g transform="translate(30, 30)">
+              <rect id="Rectangle" x="0" y="160" width="275" height="25" rx="1" />
+              <rect id="Rectangle" x="0" y="200" width="145" height="25" rx="1" />
+              <rect id="Rectangle" x="0" y="260" width="120" height="9" rx="1" />
+              <rect id="Rectangle" x="0" y="280" width="280" height="9" rx="1" />
+              <rect id="Rectangle" x="0" y="300" width="225" height="9" rx="1" />
+              <rect id="Rectangle" x="0" y="320" width="100" height="9" rx="1" />
+              <rect id="Rectangle" x="0" y="340" width="300" height="9" rx="1" />
+              <rect id="Rectangle" x="0" y="360" width="260" height="9" rx="1" />
+              <rect id="Rectangle" x="0" y="380" width="150" height="9" rx="1" />
+            </g>
+          </g>
+        </svg>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <!-- <crds-site-happenings auth-token></crds-site-happenings> -->
+</section>
+
+{% javascript_link_tag skeleton async %}
+
