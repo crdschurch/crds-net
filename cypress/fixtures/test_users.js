@@ -7,5 +7,5 @@ export const fred_flintstone = {
 export const sherlock_holmes = {
   email: 'mpcrds+sherlock@gmail.com',
   password: Cypress.env('SHERLOCK_HOLMES_PW'),
-  congregation: 'Not site specifig'
+  congregation: 'Not site specific'
 };

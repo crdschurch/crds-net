@@ -8,6 +8,7 @@ describe('Tests Happening section for user with site selected', function () {
     cy.login(fred_flintstone.email, fred_flintstone.password);
     cy.visit('/', {
       onBeforeLoad: (win) => {
+        loadStatus.site_happenings_loaded = false;
         win.document.addEventListener('component rendered', () => {
           loadStatus.site_happenings_loaded = true;
         });
@@ -34,15 +35,14 @@ describe('Tests Happening section for user with site selected', function () {
   });
 
   it(`Checks the "${fred_flintstone.congregation}" promos are displayed`, function () {
-    const promosQuery = `${pqm.query.forAudience(fred_flintstone.congregation)}&${pqm.query.orderBy.publishedMostRecentlyThenTitle}`;
+    const promosQuery = `${pqm.query.forAudience(fred_flintstone.congregation)}`;
     pqm.getListOfEntries(promosQuery).then(promos => {
+      const promoTitles = promos.map(p => p.title.text);
 
       cy.get('@happeningsRoot').should('have.prop', 'shadowRoot').then(root => {
         const cards = root.querySelector('[data-automation-id="happenings-cards"]').querySelectorAll('.card-title');
         const cardTitles = [];
         cards.forEach(c => cardTitles.push(c.textContent));
-
-        const promoTitles = promos.map(p => p.title.text);
 
         expect(promoTitles.length).to.eq(cardTitles.length);
         expect(promoTitles.sort()).to.deep.equal(cardTitles.sort());
@@ -57,6 +57,7 @@ describe('Tests Happening section for user without site', function () {
     cy.login(sherlock_holmes.email, sherlock_holmes.password);
     cy.visit('/', {
       onBeforeLoad: (win) => {
+        loadStatus.site_happenings_loaded = false;
         win.document.addEventListener('component rendered', () => {
           loadStatus.site_happenings_loaded = true;
         });
@@ -79,11 +80,13 @@ describe('Tests Happening section for user without site', function () {
   });
 
   it('Checks site select message can be closed without selecting a site', function () {
+    const defaultAudience = 'Churchwide';
+
     cy.get('@happeningsRoot').should('have.prop', 'shadowRoot').then(root => {
       root.querySelector('.site-select-message').querySelector('.close').click();
 
       const selector = root.querySelector('[data-automation-id="happenings-filter"]').querySelector('select');
-      expect(selector.value).to.eq('Churchwide', 'Churchwide filter should be applied');
+      expect(selector.value).to.eq(defaultAudience, `"${defaultAudience}" filter should be applied`);
     });
   });
 });

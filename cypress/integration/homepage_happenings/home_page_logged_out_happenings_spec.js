@@ -7,6 +7,7 @@ describe('Tests Happening section with default filter', function () {
   before(function () {
     cy.visit('/', {
       onBeforeLoad: (win) => {
+        loadStatus.site_happenings_loaded = false;
         win.document.addEventListener('component rendered', () => {
           loadStatus.site_happenings_loaded = true;
         });
@@ -25,7 +26,7 @@ describe('Tests Happening section with default filter', function () {
     cy.get('@happeningsRoot').should('have.prop', 'shadowRoot').then(root => {
       const happeningsFilter = root.querySelector('[data-automation-id="happenings-filter"]');
       const selector = happeningsFilter.querySelector('select');
-      expect(selector.value).to.eq(defaultAudience, 'Churchwide should be selected');
+      expect(selector.value).to.eq(defaultAudience, `"${defaultAudience}" should be selected`);
     });
   });
 
