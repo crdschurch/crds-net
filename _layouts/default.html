@@ -21,15 +21,22 @@
         "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}',
         "streamScheduleEndpoint": '{{ site.stream_schedule_endpoint }}',
         "bitmovinPlayerLicense": '{{ site.bitmovin_player_license }}',
-        "bitmovinAnalyticsLicense": '{{ site.bitmovin_analytics_license }}'
+        "bitmovinAnalyticsLicense": '{{ site.bitmovin_analytics_license }}',
+        "okta_client_id": '{{ site.okta_client_id }}',
+        "okta_oauth_base_url": '{{ site.okta_oauth_base_url }}'
       }
     };
+
+    var envReady = new Event('env-ready');
+    document.dispatchEvent(envReady);
+    window.envReady = true;
+
   </script>
   {% javascript_link_tag application %}
   {% javascript_link_tag application_deferred async %}
   {{ content }}
   {% if page.title == "Atrium Events" %}
-    {% javascript_link_tag events async %}
+  {% javascript_link_tag events async %}
   {% endif %}
 </body>
 

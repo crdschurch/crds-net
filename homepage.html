@@ -1,6 +1,6 @@
 ---
 layout: default
-monetate_page_type: index-main
+permalink: /homepage.html
 meta:
   title: Crossroads
   description: No matter what your beliefs, you are welcome here.
@@ -45,30 +45,60 @@ paginate:
     limit: 1
 ---
 
-{% include header.html %}
-{% assign homePageBanner = site.content_blocks | where: 'slug', 'home-page-promo-banner' | first %}
+<script>
+  sessionStorage.setItem('timeToPaint', new Date().getTime());
+  document.getElementsByTagName('body')[0].setAttribute("style", "opacity: 0");
+  console.log("body is hidden")
+</script>
+
 {% javascript_link_tag authentication async %}
 <script async>
-  var ranAuth = false;
+ document.addEventListener('auth-ready', auth)
+ document.addEventListener('env-ready', auth)
+ if (window.authReady && window.envReady) auth();
+
+ function auth() {
+   if (!window.authReady || !window.envReady) return;
+   var auth = new Authentication();
+   function callback(tokens) {
+     if (tokens) {
+       sessionStorage.setItem('authStart', new Date().getTime());
+       window.location.replace("/client-auth/");
+     } else {
+       console.log("not logged in");
+       var timeToPaint = new Date().getTime() - sessionStorage.getItem('timeToPaint');
+       document.getElementById('timeToPaint').innerHTML = `Time to paint after auth decision: ${timeToPaint} milliseconds`
+       document.getElementsByTagName('body')[0].setAttribute("style", "opacity: 100");
+       console.log("body is shown")
+     }
+   }
+   auth.authenticate(callback);
+ }
+</script>
+
+<p id="timeToPaint"></p>
+
+{% include header.html %}
+{% assign homePageBanner = site.content_blocks | where: 'slug', 'home-page-promo-banner' | first %}
+<!-- {% javascript_link_tag authentication async %}
+<script async>
   document.addEventListener('auth-ready', auth)
   document.addEventListener('env-ready', auth)
   if (window.authReady && window.envReady) auth();
 
   function auth() {
-    if (!window.authReady || !window.envReady || ranAuth) return;
-    ranAuth = true;
+    if (!window.authReady || !window.envReady) return;
     var auth = new Authentication();
     function callback(tokens) {
-      if (tokens){
+      if (tokens)
         document.querySelectorAll('[auth-token]').forEach(el => {
-          el.setAttribute("auth-token", tokens.access_token.accessToken);
+          el.setAttribute("auth-token", tokens.access_token.access_token);
         })
-      }
     }
 
     auth.authenticate(callback);
   }
-</script>
+</script> -->
 <section class="container content-live hide push-bottom" data-stream-live="show">
   <div class="row">
     {% assign home_messages = page.messages.docs %}
@@ -504,7 +534,7 @@ paginate:
       </h4>
     </div>
     <div class="site-happenings-skeleton">
-      {% for i in (1..4) %}
+      {% for i in (1..2) %}
       <div class="card-skeleton">
         <svg width="270px" height="202px" viewBox="0 0 323 302" version="1.1" xmlns="http://www.w3.org/2000/svg"
           xmlns-xlink="http://www.w3.org/1999/xlink">
