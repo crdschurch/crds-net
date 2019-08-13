@@ -26,6 +26,9 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 import { Formatter } from './Formatter';
+import { addCommandLogin } from 'crds-cypress-login';
+
+addCommandLogin();
 
 Cypress.Commands.add('normalizedText', { prevSubject: 'element' }, (subject) => {
   return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => Formatter.normalizeText(elementText));
