@@ -1,3 +1,13 @@
+.kc-body {
+  margin:0;
+  padding:0;
+  perspective: 1px;
+  transform-style: preserve-3d;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 .kc-jumbotron {
   min-height: 780px;
   height: 100vh;
@@ -23,21 +33,12 @@
 }
 
 .kc-mobile-height {
+  display: flex;
+  align-items: center;
+  height: 100vh;
   @media screen and (max-width: $screen-sm-min) {
     min-height: 480px;
     height: auto;
-  }
-}
-
-.kc-center-text {
-  @media screen and (max-width: $screen-sm-min) {
-    display: inline-block;
-    left: 48%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    vertical-align: middle;
-    width: 90%;
   }
 }
 
@@ -65,13 +66,15 @@
   height: auto;
   position: absolute;
   left: 69%;
-  top: 50%;
+  top: 70%;;
   width: 30%;
   z-index: 1;
+  transform: translateZ(0.25px) scale(0.75) translateX(8%) translateY(-184%) rotate(0deg);
   @media screen and (max-width: $screen-sm-min) {
     left: 0px;
     top: 295px;
     width: 280px;
+    transform: none;
   }
 }
 
@@ -79,13 +82,15 @@
   height: auto;
   position: absolute;
   left: -3%;
-  top: 50%;
+  top: 80%;
   width: 40%;
   z-index: 1;
+  transform: translateZ(0.25px) scale(0.75) translateX(-4%) translateY(-237%) rotate(0deg);
   @media screen and (max-width: $screen-sm-min) {
     left: 0px;
     top: 385px;
     width: 270px;
+    transform: none;
   }
 }
 
@@ -93,13 +98,15 @@
   height: auto;
   position: absolute;
   left: 69%;
-  top: 12%;
+  top: 52%;
   width: 30%;
   z-index: 1;
+  transform: translateZ(0.25px) scale(0.75) translateX(5.7%) translateY(-97.1%) rotate(0deg);
   @media screen and (max-width: $screen-sm-min) {
     left: 0px;
     top: 385px;
     width: 170px;
+    transform: none;
   }
 }
 
@@ -107,12 +114,26 @@
   height: auto;
   position: absolute;
   left: -3%;
-  top: 50%;
+  top: 95%;
   width: 40%;
   z-index: 1;
+  transform: translateZ(0.25px) scale(0.75) translateX(-4%) translateY(-270%) rotate(0deg);
   @media screen and (max-width: $screen-sm-min) {
     left: 0px;
     top: 365px;
     width: 290px;
+    transform: none;
+  }
+}
+
+.kc-center-text {
+  @media screen and (max-width: $screen-sm-min) {
+    display: inline-block;
+    left: 48%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    vertical-align: middle;
+    width: 90%;
   }
 }
