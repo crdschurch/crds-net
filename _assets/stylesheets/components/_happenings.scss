@@ -2,6 +2,7 @@
   min-height: 500px;
   display: flex;
   flex-wrap: nowrap;
+  overflow: hidden;
 
   .card-skeleton {
     display: flex;
