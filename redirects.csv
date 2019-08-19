@@ -60,6 +60,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /media/*,${env:CRDS_MEDIA_ENDPOINT}/:splat,200!
 /oktasignin*,https://${env:CRDS_SIGNIN_ENDPOINT}:splat,200!
 /signin/*,https://${env:CRDS_SIGNIN_ENDPOINT}/signin/:splat,200!
+/h/*,/:splat,200!
 
 /media/songs/god-of-the-breakthrough,https://${env:CRDS_MUSIC_ENDPOINT}/music/let-me/let-me,301!
 /media/songs/god-of-the-breakthrough,https://${env:CRDS_MUSIC_ENDPOINT}/music/god-of-the-breakthrough/god-of-the-breakthrough,301!
@@ -96,5 +97,4 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /media/songs/be-thou-my-vision,https://${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/be-thou-my-vision,301!
 /media/songs/listen,https://${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/listen,301!
 /media/songs/*,https://${env:CRDS_MUSIC_ENDPOINT}/:splat,302
-/h*,/,200
 /*,/404.html,404
