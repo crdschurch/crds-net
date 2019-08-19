@@ -36,6 +36,10 @@ function auth() {
 
 function handleLoggedInState(path) {
   if (path === 'h') { // h is the location of the new logged in homepage
+    let stateObj = {
+      h: "",
+    };
+    history.pushState(stateObj, "Crossroads", "/");
     showPage();
   } else {
     window.location.href = '/h';
