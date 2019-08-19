@@ -58,6 +58,10 @@ module.exports = [
     ]
   },
   {
+    name: "homepage-auth",
+    files: ["views/homepage-auth"]
+  },
+  {
     name: "reachout-trip",
     files: [
       "lib/reachout-trip"
