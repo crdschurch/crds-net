@@ -1,5 +1,6 @@
 class Authentication {
   constructor() {
+    console.log(encodeURIComponent(window.location.href));
     const oktaConfig = {
       clientId: CRDS.env.okta_client_id,
       issuer: CRDS.env.okta_oauth_base_url,
