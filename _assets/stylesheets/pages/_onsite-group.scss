@@ -6,20 +6,32 @@
   margin: -2rem -0.5rem 0;
   padding: 0.25rem 0.5rem;
   position: relative;
+
+  &:after {
+    color: transparent;
+    content: '\2014';
+    display: block;
+    font-family: $base-font-face;
+    font-size: 1.25rem;
+    font-weight: 100;
+    line-height: 1.5;
+  }
 }
 
-.card-title--overlap-remove-divider:after {
-  color: transparent;
-  content: '\2014';
-  display: block;
-  font-family: $base-font-face;
-  font-size: 1.25rem;
-  font-weight: 100;
-  line-height: 1.5;
+.heading-line-height-sm {
+  line-height: .75;
 }
 .heading-line-height-sm {
   line-height: .75;
 
 .tooltip-inner {
   max-width: 100%;
+}
+
+.onsite-group-negative-margin-bottom {
+  margin-bottom: -15px;
+
+  @media only screen and (min-width: $screen-md-min) {
+    margin-bottom: 0px;
+  }
 }
