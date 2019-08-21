@@ -22,16 +22,6 @@
   line-height: .75;
 }
 
-.card-title--overlap-remove-divider:after {
-  color: transparent;
-  content: '\2014';
-  display: block;
-  font-family: $base-font-face;
-  font-size: 1.25rem;
-  font-weight: 100;
-  line-height: 1.5;
-}
-
 .tooltip-inner {
   max-width: 100%;
 }
