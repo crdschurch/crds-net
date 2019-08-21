@@ -6,6 +6,7 @@ Environment variables needed to run locally:
 CYPRESS_CONTENTFUL_ACCESS_TOKEN
 CYPRESS_CONTENTFUL_SPACE_ID
 CYPRESS_FRED_FLINTSTONE_PW
+CYPRESS_SHERLOCK_HOLMES_PW
 ```
 
 
@@ -27,6 +28,7 @@ Environment variables to set in Travis.ci:
 ```bash
 cypressDashboard #Cypress's dashboard record key for this repo
 FRED_FLINTSTONE_PW
+SHERLOCK_HOLMES_PW
 ```
 
 ## Run Locally
