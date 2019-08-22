@@ -5,6 +5,11 @@
     {% javascript_link_tag auth-required %}
   {% endif %}
 
+  {% if page.url == "/" or page.url == "/h" %}
+    {% javascript_link_tag authentication async %}
+    {% javascript_link_tag homepage-auth %}
+  {% endif %}
+
   {% include _gtm-head.html %}
   {% include _monetate-head.html %}
   {% include _meta-tags.html %}
