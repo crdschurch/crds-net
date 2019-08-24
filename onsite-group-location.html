@@ -11,7 +11,12 @@ permalink: /onsite-group-location/
   <div class="row push-bottom">
     <div class="col-md-3">
       <img
-        src="https://crds-media.imgix.net/53Hn1ikskgKccwCyWsmoYC/3b5c7501c3e22a7c642b907da144aa34/locations-mason.jpg?auto=format,compress&w=273&h=200&fit=crop&ixlib=imgixjs-3.3.2"
+        src="{{ page.location.image.url | imgix: site.imgix }}?{{
+          site.imgix_params.placeholder_sixteen_nine
+        }}"
+        sizes="{{ site.image_sizes.one_fourth }}"
+        style="width: 100%"
+        data-optimize-img
       />
     </div>
     <div class="col-md-9">
