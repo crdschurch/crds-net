@@ -5,116 +5,72 @@ permalink: /onsite-group-location/
 ---
 
 <section class="container">
-
   <div class="row push-ends">
-    <div class="col-md-12">
-      <a href="#">&lt; Back to All Onsite Groups</a>
-    </div>
+    <div class="col-md-12"><a href="#">&lt; Back to All Onsite Groups</a></div>
   </div>
   <div class="row push-bottom">
     <div class="col-md-3">
       <img
-        src="https://crds-media.imgix.net/53Hn1ikskgKccwCyWsmoYC/3b5c7501c3e22a7c642b907da144aa34/locations-mason.jpg?auto=format,compress&w=273&h=200&fit=crop&ixlib=imgixjs-3.3.2" />
+        src="https://crds-media.imgix.net/53Hn1ikskgKccwCyWsmoYC/3b5c7501c3e22a7c642b907da144aa34/locations-mason.jpg?auto=format,compress&w=273&h=200&fit=crop&ixlib=imgixjs-3.3.2"
+      />
     </div>
     <div class="col-md-9">
-      <h3 class="font-family-condensed-extra flush-ends mobile-soft-half-top text-uppercase">Mason Onsite Groups</h3>
-      <a href="#">See what else is happening at Crossroads Mason</a>
-      <p class="font-size-base push-bottom push-half-top">We're all about groups here and want you to have great
-        friends. Below are groups we have
-        inside our building. There are tons of other groups that meet outside the building (trivia night, running,
-        basketball) and you can find those by visiting the <a href="#">Group Tool</a>.</p>
-      <hr>
+      <h3
+        class="font-family-condensed-extra flush-ends mobile-soft-half-top text-uppercase"
+      >
+        {{ page.location.name }} Onsite Groups
+      </h3>
+      <a href="#"
+        >See what else is happening at Crossroads {{ page.location.name }}</a
+      >
+      <p class="font-size-base push-bottom push-half-top">
+        {{ page.location.onsite_group_description | markdownify }}
+      </p>
+      <hr />
     </div>
   </div>
+
   <div class="row push-bottom onsite-group-negative-margin-bottom">
+    {% for meeting in page.meetings %}
     <div class="col-md-3">
-      <h4 class="font-family-condensed-extra text-uppercase">The Chaser</h4>
-      <p class="text-gray flush-bottom small"><strong>Perfect for:</strong> Everyone. Post-Weekend Convo Starters</p>
-      <p class="flush-bottom push-quarter-top small"><strong>Monday 6:30-8:00 PM</strong></p>
-      <button class="btn btn-cyan push-top" type="button">Register</button>
+      <h4 class="font-family-condensed-extra text-uppercase">
+        {{ meeting.title }}
+      </h4>
+      <p class="text-gray flush-bottom small">{{ meeting.description }}</p>
+      <p class="flush-bottom push-quarter-top small">
+        {{ meeting.meeting_time }}
+      </p>
+      <a
+        href="{{ meeting.registration_link }}"
+        class="btn btn-cyan push-top"
+        type="button"
+        >Register</a
+      >
     </div>
-    <div class="col-md-3">
-      <h4 class="font-family-condensed-extra text-uppercase">Mens (AM)</h4>
-      <p class="text-gray flush-bottom small"><strong>Perfect for:</strong> Men of all ages</p>
-      <p class="flush-bottom push-quarter-top small"><strong>Friday 7:00-8:00 AM</strong></p>
-      <button class="btn btn-cyan push-top" type="button">Register</button>
-    </div>
-    <div class="col-md-3">
-      <h4 class="font-family-condensed-extra text-uppercase">Women (PM)</h4>
-      <p class="text-gray flush-bottom small"><strong>Perfect for:</strong> Women of all ages</p>
-      <p class="flush-bottom push-quarter-top small"><strong>Thursday 6:30-8:30 PM</strong></p>
-      <button class="btn btn-cyan push-top" type="button">Register</button>
-    </div>
-    <div class="col-md-3">
-      <h4 class="font-family-condensed-extra text-uppercase">Womens PM (Divorce Care)</h4>
-      <p class="text-gray flush-bottom small"><strong>Perfect for:</strong> Women seeking healing after divorce</p>
-      <p class="flush-bottom push-quarter-top small"><strong>Wednesday 6:30-8:30 PM</strong></p>
-      <button class="btn btn-cyan push-top" type="button">Register</button>
-    </div>
+    {% endfor %}
   </div>
 
-  <div class="row push-ends onsite-group-negative-margin-bottom">
-    <div class="col-md-3">
-      <h4 class="font-family-condensed-extra text-uppercase">The Bible: Digging Deeper</h4>
-      <p class="text-gray flush-flush-bottom bottom small"><strong>Perfect for:</strong> Anyone looking to study God's
-        Word</p>
-      <p class="flush-bottom push-quarter-top small"><strong>Wednesday 6:30-8:00 PM</strong></p>
-      <button class="btn btn-cyan push-top" type="button">Register</button>
-    </div>
-    <div class="col-md-3">
-      <h4 class="font-family-condensed-extra text-uppercase">The Bible: Armor of God (Womens)</h4>
-      <p class="text-gray flush-bottom small"><strong>Perfect for:</strong> Women of all ages</p>
-      <p class="flush-bottom push-quarter-top small"><strong>Thursday 6:30-8:30 PM</strong></p>
-      <button class="btn btn-cyan push-top" type="button">Register</button>
-    </div>
-    <div class="col-md-3">
-      <h4 class="font-family-condensed-extra text-uppercase">All Addictions Big Book Meeting</h4>
-      <p class="text-gray flush-bottom small"><strong>Perfect for:</strong> Anyone struggling wiht any addiction.</p>
-      <p class="flush-bottom push-quarter-top small"><strong>Thursday 6:30-8:30 PM</strong></p>
-      <button class="btn btn-cyan push-top" type="button">Register</button>
-    </div>
-    <div class="col-md-3">
-      <h4 class="font-family-condensed-extra text-uppercase">Womens PM (Divorce Care)</h4>
-      <p class="text-gray flush-bottom small"><strong>Perfect for:</strong> Women seeking healing after divorce</p>
-      <p class="flush-bottom push-quarter-top small"><strong>Wednesday 6:30-8:30 PM</strong></p>
-      <button class="btn btn-cyan push-top" type="button">Register</button>
-    </div>
-  </div>
-
-  <div class="row push-ends soft-bottom onsite-group-negative-margin-bottom">
-    <div class="col-md-3">
-      <h4 class="font-family-condensed-extra text-uppercase">Senior Connection</h4>
-      <p class="text-gray flush-bottom small"><strong>Perfect for:</strong> Anyone looking to study God's Word</p>
-      <p class="flush-bottom push-quarter-top small"><strong>Day varies 6:30-8:30 PM</strong></p>
-      <button href="#" type="button" class="btn btn-link hard-left" data-placement="bottom" data-toggle="tooltip"
-        title="seniorconnection.mason@crossroads.net">Email
-        for more info</button>
-    </div>
-    <div class="col-md-3">
-      <h4 class="font-family-condensed-extra text-uppercase">Ocean</h4>
-      <p class="text-gray flush-bottom small"><strong>Perfect for:</strong> Any entrepreneur, artist, business owner, or
-        any leader interested in launching something new, and looking for a community to support their vision. </p>
-      <p class="flush-bottom push-quarter-top small"><strong>Thursday 6:30-8:30 PM</strong></p>
-      <button class="btn btn-cyan push-top" type="button">Register</button>
-    </div>
-  </div>
-
-  <hr>
+  <hr />
   <div class="row soft-half-bottom soft-top">
     <div class="col-md-6">
-      <p><strong>Can't find what you are looking for?</strong><br>
-        Visit the <a href="#">Group Tool</a> to connect with others looking for the same thing.</p>
+      <p>
+        <strong>Can't find what you are looking for?</strong><br />
+        Visit the <a href="#">Group Tool</a> to connect with others looking for
+        the same thing.
+      </p>
     </div>
     <div class="col-md-6">
       <p>Questions? Email us at <a href="#">hello@crossroads.net</a></p>
-      <p> If you need immediate care, please contact our team for a Listening
-        Appointment at <a href="#">hello@crossroads.net</a></p>
+      <p>
+        If you need immediate care, please contact our team for a Listening
+        Appointment at <a href="#">hello@crossroads.net</a>
+      </p>
     </div>
   </div>
 </section>
 
-<script> 
-$(document).ready(function(){
+<script>
+  $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
-});
+  });
 </script>

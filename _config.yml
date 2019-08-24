@@ -114,6 +114,8 @@ collections:
     output: false
   content_blocks:
     output: false
+  onsite_group_meetings:
+    output: false
 
 defaults:
   - scope:
