@@ -119,6 +119,8 @@ collections:
     permalink: /groups/(:category/:slug)/:slug
   onsite_group_categories:
     output: false
+  onsite_group_meetings:
+    output: false
 
 defaults:
   - scope:
