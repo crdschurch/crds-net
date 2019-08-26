@@ -114,6 +114,11 @@ collections:
     output: false
   content_blocks:
     output: false
+  onsite_groups:
+    output: true 
+    permalink: /groups/(:category/:slug)/:slug
+  onsite_group_meetings:
+    output: false
 
 defaults:
   - scope:
@@ -121,6 +126,11 @@ defaults:
       type: "locations"
     values:
       layout: location
+  - scope:
+      path: ""
+      type: "onsite_groups"
+    values:
+      layout: onsite-group-detail
 
 imgix_params:
   placeholder: "auto=format,compress&w=10"
