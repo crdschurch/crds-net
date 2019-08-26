@@ -1,6 +1,6 @@
 ---
 layout: container-fluid
-title: Onsite group
+title: Onsite Groups
 permalink: /groups/onsite
 ---
 
@@ -25,7 +25,7 @@ permalink: /groups/onsite
     <div class="col-sm-3">
       <img src="{{ category.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
         sizes="{{ site.image_sizes.one_fourth }}"
-        style="width: 100%;"
+        class="full-width"
         data-optimize-img
       />
     </div>
@@ -72,7 +72,7 @@ permalink: /groups/onsite
         <img src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
             alt="{{ location.title }}"
             sizes="{{ site.image_sizes.one_fourth }}"
-            style="width: 100%;"
+            class="full-width"
             data-optimize-img
           />
 
@@ -86,5 +86,15 @@ permalink: /groups/onsite
     </div>
   </div>
 
-  {% include _sub-footer.html %}
+  <hr>
+  <div class="row soft-half-bottom soft-top">
+    <div class="col-md-6">
+      <p><strong>Don't see the healing group you need?</strong><br>
+        Email us at <a href="mailto:hello@crossroads.net">hello@crossroads.net</a></p>
+    </div>
+    <div class="col-md-6">
+      <p><strong>Can't find what you are looking for?</strong><br>
+        Visit the <a href="/groups">Group Tool</a> to connect with others looking for the same thing.</p>
+    </div>
+  </div>
 </section>
