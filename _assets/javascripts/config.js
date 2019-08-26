@@ -126,12 +126,6 @@ module.exports = [
     ],
   },
   {
-    name: 'skeleton',
-    files: [
-      'components/skeleton',
-    ],
-  }, 
-  {
     name: "authentication",
     files: ["lib/authentication"],
     deps: [
