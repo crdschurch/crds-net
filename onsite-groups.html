@@ -6,7 +6,7 @@ permalink: /groups/onsite
 
 <div
   class="jumbotron"
-  style="background-image: url('/assets/img/onsite-groups-header@2x.jpg');"
+  style="background-image: url('https://crds-media.imgix.net/5CaAjF9bDkXWOw6YXl92cZ/fccff599d00f378c1aae525bfff94a2b/onsite-groups-header_2x.jpg?format=auto,compress');"
 >
   <h1>
     onsite groups
@@ -25,7 +25,7 @@ permalink: /groups/onsite
     <div class="col-sm-3">
       <img src="{{ category.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
         sizes="{{ site.image_sizes.one_fourth }}"
-        class="full-width"
+        class="width-100"
         data-optimize-img
       />
     </div>
@@ -35,7 +35,7 @@ permalink: /groups/onsite
           <h2 class="font-family-condensed-extra flush-top mobile-soft-top text-uppercase">
             {{ category.title }}
           </h2>
-          <p class="font-size-base">{{ category.description }}</p>
+          <div class="font-size-base">{{ category.description | markdownify }}</div>
         </div>
       </div>
       <hr />
@@ -45,9 +45,9 @@ permalink: /groups/onsite
         {% for col in row %}
         <div class="col-md-6">
           <h3 class="font-family-condensed-extra text-uppercase">
-            <a href="/groups/{{ category.slug }}/{{ col.slug }}">{{ col.title }}</a>
+            <a href="{{ col.url }}">{{ col.title }}</a>
           </h3>
-          <p class="text-gray small">{{ col.description }}</p>
+          <div class="text-gray small">{{ col.description | markdownify }}</div>
         </div>
         {% endfor %}
       </div>
@@ -72,7 +72,7 @@ permalink: /groups/onsite
         <img src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
             alt="{{ location.title }}"
             sizes="{{ site.image_sizes.one_fourth }}"
-            class="full-width"
+            class="width-100"
             data-optimize-img
           />
 
