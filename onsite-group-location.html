@@ -6,16 +6,15 @@ permalink: /onsite-group-location/
 
 <section class="container">
   <div class="row push-ends">
-    <div class="col-md-12"><a href="#">&lt; Back to All Onsite Groups</a></div>
+    <div class="col-md-12"><a href="/groups/onsite">&lt; Back to All Onsite Groups</a></div>
   </div>
   <div class="row push-bottom">
     <div class="col-md-3">
-      <img
+      <img class="width-100"
         src="{{ page.location.image.url | imgix: site.imgix }}?{{
           site.imgix_params.placeholder_sixteen_nine
         }}"
         sizes="{{ site.image_sizes.one_fourth }}"
-        style="width: 100%"
         data-optimize-img
       />
     </div>
@@ -25,12 +24,13 @@ permalink: /onsite-group-location/
       >
         {{ page.location.name }} Onsite Groups
       </h3>
-      <a href="#"
+      <a href="https://www.crossroads.net/{{ page.location.slug }}"
         >See what else is happening at Crossroads {{ page.location.name }}</a
       >
-      <p class="font-size-base push-bottom push-half-top">
-        {{ page.location.onsite_group_description | markdownify }}
-      </p>
+      <div class="font-size-base push-bottom push-half-top">
+        {{ page.location.onsite_group_description }}
+      </div>
+
       <hr />
     </div>
   </div>
@@ -60,15 +60,15 @@ permalink: /onsite-group-location/
     <div class="col-md-6">
       <p>
         <strong>Can't find what you are looking for?</strong><br />
-        Visit the <a href="#">Group Tool</a> to connect with others looking for
+        Visit the <a href="https://www.crossroads.net/connect/?filters=Online%20Groups%3D&view=List%20View&my=0">Group Tool</a> to connect with others looking for
         the same thing.
       </p>
     </div>
     <div class="col-md-6">
-      <p>Questions? Email us at <a href="#">hello@crossroads.net</a></p>
+      <p>Questions? Email us at <a href="mailto: hello@crossroads.net">hello@crossroads.net</a></p>
       <p>
         If you need immediate care, please contact our team for a Listening
-        Appointment at <a href="#">hello@crossroads.net</a>
+        Appointment at <a href="mailto: hello@crossroads.net">hello@crossroads.net</a>
       </p>
     </div>
   </div>

@@ -14,7 +14,7 @@ module Jekyll
       locations = meetings.
         collect{|m| m.data['location'] }.
         uniq{|l| l['slug'] }.
-        collect{|l| l.slice('name', 'slug', 'image') }
+        collect{|l| l.slice('name', 'slug', 'image','onsite_group_description') }
 
       # Generate "page" for each location...
       locations.each do |location|
