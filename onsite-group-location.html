@@ -4,7 +4,7 @@ title: Onsite group
 permalink: /onsite-group-location/
 ---
 
-{% assign locaiton_footnote = site.content_blocks | where: 'slug', 'OSG-location-footnote' | first %}
+{% assign location_footnote = site.content_blocks | where: 'slug', 'onsite-group-location-footnote' | first %}
 
 <section class="container">
     <div class="row push-ends">
@@ -57,7 +57,7 @@ permalink: /onsite-group-location/
             </p>
         </div>
         <div class="col-md-6">
-            {{ location_footnote }}
+            {{ location_footnote.content_block }}
         </div>
     </div>
 </section>
