@@ -59,8 +59,6 @@ function handleLoggedOutState(path) {
   }
 }
 
-
-
 hidePage();
 
 document.addEventListener('auth-ready', auth)
