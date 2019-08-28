@@ -4,6 +4,8 @@ title: Onsite group
 permalink: /onsite-group-location/
 ---
 
+{% assign locaiton_footnote = site.content_blocks | where: 'slug', 'OSG-location-footnote' | first %}
+
 <section class="container">
     <div class="row push-ends">
         <div class="col-md-12">
@@ -55,15 +57,7 @@ permalink: /onsite-group-location/
             </p>
         </div>
         <div class="col-md-6">
-            <p>
-                Questions? Email us at
-                <a href="mailto:hello@crossroads.net">hello@crossroads.net</a>
-            </p>
-            <p>
-                If you need immediate care, please contact our team for a Listening
-                        Appointment at
-                <a href="mailto:hello@crossroads.net">hello@crossroads.net</a>
-            </p>
+            {{ location_footnote }}
         </div>
     </div>
 </section>

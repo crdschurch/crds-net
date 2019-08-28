@@ -2,6 +2,8 @@
 layout: container-fluid
 ---
 
+{% assign group_footnote = site.content_blocks | where: 'slug', 'onsite-group-footnote' | first %}
+
 <section class="container">
 
   <div class="row push-ends">
@@ -77,9 +79,7 @@ layout: container-fluid
       <hr>
       <div class="row soft-half-bottom soft-top">
         <div class="col-md-6">
-            <p>Questions? Email us at <a href="#">hello@crossroads.net</a></p>
-            <p> If you need immediate care, please contact our team for a Listening
-              Appointment at <a href="#">hello@crossroads.net</a></p>
+           {{ group_footnote | markdownify }}
         </div>
       </div>
     </div>
