@@ -26,6 +26,8 @@ CONTENTFUL_SPACE_ID=
 CONTENTFUL_ENV=
 CONTENTFUL_ACCESS_TOKEN=
 CONTENTFUL_MANAGEMENT_TOKEN=
+OKTA_CLIENT_ID=
+OKTA_OAUTH_BASE_URL=
 ```
 Then run the following command in your bash prompt to download content to your local `collections` directory:
 ```bash
