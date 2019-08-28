@@ -132,7 +132,7 @@ defaults:
       path: ""
       type: "onsite_groups"
     values:
-      layout: onsite-group
+      layout: onsite-group-detail
 
 imgix_params:
   placeholder: "auto=format,compress&w=10"
