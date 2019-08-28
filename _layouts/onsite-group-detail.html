@@ -11,8 +11,8 @@ layout: container-fluid
   <div class="row push-bottom">
     <div class="col-md-4 soft-right">
       <h3 class="font-family-condensed-extra flush-ends text-uppercase">{{ page.title }}</h3>
-      <p class="flush-ends"><strong>Perfect for:</strong>{{ page.detail }}</p>
-      <p class="push-bottom"><strong>How Long:</strong>{{ page.length }}</p>
+      <p class="flush-ends"><strong>Perfect for:</strong> {{ page.detail }}</p>
+      <p class="push-bottom"><strong>How Long:</strong> {{ page.length }}</p>
       <hr>
     </div>
     <div class="col-md-8">
@@ -31,9 +31,9 @@ layout: container-fluid
           <div class="col-md-5 push-top push-right soft-right">
               <h4 class="flush-ends font-family-condensed-extra text-uppercase">{{ meeting.location.slug }}</h4>
               <h4 class="flush-ends font-family-condensed-extra heading-line-height-sm text-uppercase">{{ meeting.meeting_time }}</h4>
-              <p class="flush-bottom push-half-top small"><strong> Starts{{ meeting.starts_at | date: "%B %e, %Y"}}</strong></p>
-              <p class="text-gray flush-bottom push-quarter-top small">Room:{{ meeting.room }}</p>
-              <p class="text-gray flush-bottom push-quarter-top small"> *{{ meeting.description }}</p>
+              <p class="flush-bottom push-half-top small"><strong> Starts {{ meeting.starts_at | date: "%B %e, %Y"}}</strong></p>
+              <p class="text-gray flush-bottom push-quarter-top small">Room: {{ meeting.room }}</p>
+              <p class="text-gray flush-bottom push-quarter-top small">{{ meeting.description }}</p>
               <a class="btn btn-cyan push-top" type="button" href="{{ meeting.registration_link }}">Register</a>
             </div>
         {% endfor %}
