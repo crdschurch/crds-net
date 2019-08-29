@@ -44,7 +44,6 @@
   CRDS_ANGULAR_ENDPOINT = "release--crds-angular.netlify.com"
   CRDS_SIGNIN_ENDPOINT = "release--crds-signin.netlify.com"
   CRDS_GROUP_LEADER_DOMAIN = "demo-group-leader.netlify.com"
-  CRDS_FINDER_ENDPOINT = "demo-crds-finder.netlify.com"
   CRDS_SERVE_ENDPOINT = "release.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "release.profile.crossroads.net"
 
@@ -54,6 +53,5 @@
   CRDS_ANGULAR_ENDPOINT = "crds-angular.netlify.com"
   CRDS_SIGNIN_ENDPOINT = "crds-signin.netlify.com"
   CRDS_GROUP_LEADER_DOMAIN = "group-leader.netlify.com"
-  CRDS_FINDER_ENDPOINT = "crds-finder.netlify.com"
   CRDS_SERVE_ENDPOINT = "serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "profile.crossroads.net"
