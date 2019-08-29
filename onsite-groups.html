@@ -4,10 +4,8 @@ title: Onsite Groups
 permalink: /groups/onsite
 ---
 
-<div
-  class="jumbotron"
-  style="background-image: url('https://crds-media.imgix.net/5CaAjF9bDkXWOw6YXl92cZ/fccff599d00f378c1aae525bfff94a2b/onsite-groups-header_2x.jpg?format=auto,compress');"
->
+<div class="jumbotron"
+  style="background-image: url('https://crds-media.imgix.net/5CaAjF9bDkXWOw6YXl92cZ/fccff599d00f378c1aae525bfff94a2b/onsite-groups-header_2x.jpg?format=auto,compress');">
   <h1>
     onsite groups
     <svg class="icon icon-1 text-white" viewBox="0 0 256 256">
@@ -24,10 +22,7 @@ permalink: /groups/onsite
   <div class="row soft-ends push-bottom push-quarter-top">
     <div class="col-sm-3">
       <img src="{{ category.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-        sizes="{{ site.image_sizes.one_fourth }}"
-        class="width-100"
-        data-optimize-img
-      />
+        sizes="{{ site.image_sizes.one_fourth }}" class="width-100" data-optimize-img />
     </div>
     <div class="col-sm-9 push-bottom">
       <div class="row">
@@ -70,11 +65,7 @@ permalink: /groups/onsite
       {% for location in locations %}
       <a class="card flush-bottom hard-bottom" href="#">
         <img src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-            alt="{{ location.title }}"
-            sizes="{{ site.image_sizes.one_fourth }}"
-            class="width-100"
-            data-optimize-img
-          />
+          alt="{{ location.title }}" sizes="{{ site.image_sizes.one_fourth }}" class="width-100" data-optimize-img />
 
         <div class="card-block hard-bottom">
           <h4 class="card-title card-title--overlap-remove-divider text-uppercase">
