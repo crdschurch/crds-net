@@ -17,7 +17,8 @@ function setComponentToken(token) {
 }
 
 function auth() {
-  if (!window.authReady || !window.envReady) return;
+  if (!window.authReady || !window.envReady || hasAuthed) return;
+  hasAuthed = true;
 
   var auth = new Authentication();
   var path = window.document.location.pathname.replace(/^\/|\/$/g, '');
@@ -51,7 +52,7 @@ function handleLoggedOutState(path) {
 }
 
 hidePage();
-
+var hasAuthed = false;
 document.addEventListener('auth-ready', auth)
 document.addEventListener('env-ready', auth)
 if (window.authReady && window.envReady) auth();
