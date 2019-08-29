@@ -17,9 +17,8 @@ function setComponentToken(token) {
 }
 
 function auth() {
-  if (!window.authReady || !window.envReady) return;
-
-  if (!CRDS.env.okta_client_id || !CRDS.env.okta_oauth_base_url){
+  hasAuthed == true;
+  if (!CRDS.env.okta_client_id || !CRDS.env.okta_oauth_base_url) {
     console.error(`Logged in homepage is not accessible without the following variables set:
 OKTA_CLIENT_ID 
 OKTA_OAUTH_BASE_URL`
@@ -60,7 +59,8 @@ function handleLoggedOutState(path) {
 }
 
 hidePage();
-
+hasAuthed = false;
 document.addEventListener('auth-ready', auth)
 document.addEventListener('env-ready', auth)
-if (window.authReady && window.envReady) auth();
+document.addEventListener('redirect-url-set', auth);
+if (window.authReady && window.envReady && window.isRedirectUrlSet && !hasAuthed) auth();
