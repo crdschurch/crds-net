@@ -9,7 +9,7 @@ module Jekyll
       # Group meetings by location slug
       meetings_by_location = meetings.
         select{|m| m.data.keys.include?('location') }.
-        group_by{|m| m.data['location'].try('slug') }
+        group_by{|m| m.data['location']['slug'] }
 
       # Return a few properties for only locations that have meetings
       locations = meetings.
