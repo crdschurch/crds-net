@@ -2,5 +2,6 @@
   "projectId": "dnbm5t",
   "testFiles": "**/*spec.js",
   "numTestsKeptInMemory": 0,
-  "video": false
+  "video": false,
+  "blacklistHosts": "*.monetate.net"
 }
