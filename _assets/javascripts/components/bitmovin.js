@@ -86,11 +86,9 @@ class BitmovinManager {
         this.bitmovinPlayer.on('paused', (eventProps) => {
             if (eventProps.issuer !== "ui") return;
             this.onPlayerEnd('Paused')
-            this.cancelStreams();
+            if (this.isStream) this.cancelStreams();
         });
-        if (this.isStream) {
 
-        }
         this.bitmovinPlayer.on('subtitleenable', () => { this.onSubtitlesEnabled() });
         this.bitmovinPlayer.on('sourceloaded', () => { this.addExternalSubtitles() });
         this.bitmovinPlayer.on('ready', () => { this.onPlayerReady(new Date()) });
