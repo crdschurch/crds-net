@@ -8,10 +8,12 @@ module Jekyll
 
       # Group meetings by location slug
       meetings_by_location = meetings.
+        select{|m| m.data.keys.include?('location') }.
         group_by{|m| m.data['location']['slug'] }
 
       # Return a few properties for only locations that have meetings
       locations = meetings.
+        select{|m| m.data.keys.include?('location') }.
         collect{|m| m.data['location'] }.
         uniq{|l| l['slug'] }.
         collect{|l| l.slice('name', 'slug', 'image','onsite_group_description') }
@@ -29,7 +31,6 @@ module Jekyll
         # Add the page to Jekyll's pages array
         site.pages << page
       end
-
     end
 
   end

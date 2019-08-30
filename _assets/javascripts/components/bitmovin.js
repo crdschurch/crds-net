@@ -46,7 +46,7 @@ class BitmovinManager {
         }
 
         if (this.isStream) {
-            if(this.countdown.events) this.streamInit(this.countdown.events, bitmovinConfig);
+            if (this.countdown.events) this.streamInit(this.countdown.events, bitmovinConfig);
             this.countdown.streamStatusPromise.then(events => {
                 this.streamInit(events, bitmovinConfig);
             });
@@ -83,10 +83,12 @@ class BitmovinManager {
         );
         this.bitmovinPlayer.on('play', () => { this.onPlayerStart() });
         this.bitmovinPlayer.on('playbackfinished', () => { this.onPlayerEnd('Ended') });
-        this.bitmovinPlayer.on('paused', () => { this.onPlayerEnd('Paused') });
-        if (this.isStream) {
-            this.bitmovinPlayer.on('paused', () => { this.cancelStreams() });
-        }
+        this.bitmovinPlayer.on('paused', (eventProps) => {
+            if (eventProps.issuer !== "ui") return;
+            this.onPlayerEnd('Paused')
+            if (this.isStream) this.cancelStreams();
+        });
+
         this.bitmovinPlayer.on('subtitleenable', () => { this.onSubtitlesEnabled() });
         this.bitmovinPlayer.on('sourceloaded', () => { this.addExternalSubtitles() });
         this.bitmovinPlayer.on('ready', () => { this.onPlayerReady(new Date()) });
@@ -219,13 +221,12 @@ class BitmovinManager {
     }
 
     showStandbyMessaging() {
-        this.bitmovinPlayer.pause();
+        this.pauseVideo();
         this.standbyElm.style.opacity = 1;
         this.standbyElm.style.zIndex = 10;
     }
 
     hideStandbyMessaging() {
-        this.bitmovinPlayer.play();
         this.standbyElm.style.opacity = 0;
         this.standbyElm.style.zIndex = 0;
     }
@@ -275,7 +276,7 @@ class BitmovinManager {
         min = min || 0;
         sec = sec || 0;
         this.bitmovinPlayer.seek(min * 60 + sec, true);
-        this.bitmovinPlayer.play();
+        this.playVideo();
         history.pushState({}, document.title, '?min=' + min + '&sec=' + sec);
     }
 
@@ -300,7 +301,7 @@ class BitmovinManager {
         });
     }
 
-    streamInit(events, bitmovinConfig){ 
+    streamInit(events, bitmovinConfig) {
         this.createSource(bitmovinConfig);
         this.createPlayer();
         this.bitmovinPlayer.on('sourceloaded', () => {
