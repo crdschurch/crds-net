@@ -1,7 +1,7 @@
 module.exports = [
   {
     name: "application",
-    deps: ["vendor/jquery-3.3.1.min", "vendor/crds-shared-header-v0.8.4.min"],
+    deps: ["vendor/jquery-3.3.1.min"],
     files: ["lib/set-redirect-url"]
   },
   {
@@ -29,7 +29,6 @@ module.exports = [
       "lib/height-watcher",
       "lib/smooth-scroller",
       "components/legacy-imgix",
-      "components/header",
       "components/images",
       "components/carousels",
       "components/countdown",
@@ -39,7 +38,8 @@ module.exports = [
       "components/smart-banner",
       "components/status-message",
       "components/global",
-      "components/youtube"
+      "components/youtube",
+      "components/toggle-tooltip"
     ]
   },
   {
@@ -52,13 +52,16 @@ module.exports = [
   },
   {
     name: "auth-required",
-    files: ["lib/auth-required"]
+    files: ["lib/auth-required"],
+    deps: ["vendor/client-auth", "lib/authentication"]
+  },
+  {
+    name: "homepage-auth",
+    files: ["views/homepage-auth"]
   },
   {
     name: "reachout-trip",
-    files: [
-      "lib/reachout-trip"
-    ]
+    files: ["lib/reachout-trip"]
   },
   {
     name: "family-meeting-stream",
@@ -95,14 +98,9 @@ module.exports = [
     ]
   },
   {
-    name: 'bitmovin',
-    deps: [
-      "vendor/moment-2.24.min",
-      "vendor/moment-timezone-0.5.25.min",
-    ],
-    files: [
-      "components/bitmovin"
-    ],
+    name: "bitmovin",
+    deps: ["vendor/moment-2.24.min", "vendor/moment-timezone-0.5.25.min"],
+    files: ["components/bitmovin"]
   },
   {
     name: "events",
@@ -113,15 +111,16 @@ module.exports = [
     ]
   },
   {
-    name: 'bitmovin',
-    files: [
-      'components/bitmovin',
-    ],
+    name: "autoplay",
+    files: ["components/autoplay-controller"]
   },
   {
-    name: 'autoplay',
-    files: [
-      'components/autoplay-controller',
-    ],
+    name: "skeleton",
+    files: ["components/skeleton"]
   },
+  {
+    name: "authentication",
+    files: ["lib/authentication"],
+    deps: ["vendor/client-auth"]
+  }
 ];

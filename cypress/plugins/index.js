@@ -11,6 +11,18 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+const fs = require('fs-extra');
+const path = require('path');
+
+
+//Config files live in /config. To specify which one to use, open or run with command line argument:
+//"--env useConfig=demo_crossroads"
 module.exports = (on, config) => {
-  //default - plugin index needs to export at least one module, even if empty
+  const filename = config.env.useConfig || 'int_crossroads';
+  const configPath = path.resolve('cypress', 'config', `${filename}.json`);
+
+  return fs.readJSON(configPath).then(newConfig => {
+    console.log(`Loading config file ${filename} with baseUrl ${newConfig.baseUrl}`);
+    return newConfig;
+  });
 };

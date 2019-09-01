@@ -1,7 +1,7 @@
-import { MessageQueryManager } from '../../Contentful/QueryManagers/MessageQueryManager';
 import { AmplitudeEventChecker } from './helpers/AmplitudeEventChecker';
 import { BitmovinPlayer } from './helpers/BitmovinPlayer';
-import { StreamScheduleGenerator } from './helpers/ScheduleGenerator';
+import { StreamScheduleGenerator } from '../../support/StreamScheduleGenerator';
+import { MessageQueryManager } from 'crds-cypress-contentful';
 
 function hideRollCall() {
   localStorage.setItem('crds-roll-call-state', 'dismissed');
@@ -19,16 +19,16 @@ describe('Tests the /live/stream page displays the expected player', function ()
   let fakeSchedule;
   before(function () {
     const mqm = new MessageQueryManager();
-    mqm.fetchLatestMessage().then(result => {
-      latestMessage = result;
+    mqm.getSingleEntry(mqm.query.latestMessage).then(message => {
+      latestMessage = message;
     });
 
-    fakeSchedule = new StreamScheduleGenerator().streamStartingNow;
+    fakeSchedule = new StreamScheduleGenerator().getStreamStartingAfterHours(0);
   });
 
   it('Displays the Bitmovin player or fallback Youtube player', function () {
     cy.server();
-    cy.route('/int/streamSchedule', fakeSchedule);
+    cy.route(`${Cypress.env('schedule_env')}/streamSchedule`, fakeSchedule);
     cy.route('manifest.m3u8').as('bitmovinManifest');
 
     cy.visit('/live/stream/');
@@ -38,7 +38,7 @@ describe('Tests the /live/stream page displays the expected player', function ()
       cy.get('#VideoManager').as('bitmovinPlayer').should('be.visible');
       cy.get('#js-media-video').as('youtubePlayer').should('not.exist');
 
-      cy.wait('@bitmovinManifest').then((manifest) => {
+      cy.wait('@bitmovinManifest', {timeout: 60000}).then((manifest) => {
         expect(manifest.url).to.eq(latestMessage.bitmovinURL.text);
       });
     } else {
@@ -54,7 +54,7 @@ describe('Tests the /live/stream page displays the expected player', function ()
 
   it('Autoplays the stream muted with subtitles if using Bitmovin player', function () {
     cy.server();
-    cy.route('/int/streamSchedule', fakeSchedule);
+    cy.route(`${Cypress.env('schedule_env')}/streamSchedule`, fakeSchedule);
     const ampEvents = new AmplitudeEventChecker();
 
     cy.visit('/live/stream/');
@@ -65,8 +65,10 @@ describe('Tests the /live/stream page displays the expected player', function ()
 
       const player = new BitmovinPlayer();
       player.waitUntilBuffered().then(() => {
-        player.verifySubtitlesDisplayed();
         player.verifyPlayerMuted();
+        if(latestMessage.hasSubtitles){
+          player.verifySubtitlesDisplayed();
+        }
       });
     } else {
       ampEvents.failOnVideoEvent(['VideoStarted'], latestMessage.youtubeURL.text, 3);

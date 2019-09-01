@@ -2,6 +2,7 @@
  * Live Stream
  */
 .page--live-stream {
+  background-color: #171717 !important;
   .crds-shared-header .header {
     ul.nav-pills > li:not(.open) {
       padding: 0.625rem 0;
@@ -66,35 +67,14 @@
     line-height: $headings-line-height;
   }
 
-  // Bitmovin Live Stream Player
-  .bmpui-ui-seekbar .bmpui-seekbar .bmpui-seekbar-playbackposition,
-  .bmpui-ui-volumeslider .bmpui-seekbar .bmpui-seekbar-playbackposition,
-  .bmpui-ui-volumeslider .bmpui-seekbar .bmpui-seekbar-playbackposition-marker,
-  .bmpui-ui-volumeslider .bmpui-seekbar .bmpui-seekbar-playbackposition {
-    background-color: $cr-cyan;
-  }
-
-  .bmpui-ui-seekbar .bmpui-seekbar .bmpui-seekbar-playbackposition-marker,
-  .bmpui-ui-volumeslider .bmpui-seekbar .bmpui-seekbar-playbackposition-marker {
-    border-color: $cr-cyan;
-  }
-
-  .bmpui-ui-seekbar,
-  .bmpui-ui-watermark {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  .bmpui-ui-playbacktogglebutton {
-    display: none;
-  }
-
   .bmpui-ui-uicontainer {
     pointer-events: initial;
   }
 
-  .bmpui-ui-hugeplaybacktogglebutton {
-    pointer-events: none;
+  // hide for live stream
+  .bmpui-ui-seekbar {
+    opacity: 0;
+    visibility: hidden;
   }
 
   #standby-message {

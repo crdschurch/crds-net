@@ -49,6 +49,10 @@ contentful:
     query: fields.category=common
     map:
       content_block: content
+  podcast:
+    query: "fields.exclude_from_crossroads[ne]=true"
+  episode:
+    query: "content_type=episode&fields.podcast.sys.contentType.sys.id=podcast&fields.podcast.fields.exclude_from_crossroads[ne]=true"
   video:
     query: "fields.exclude_from_crossroads[ne]=true"
   exclude:
@@ -110,6 +114,13 @@ collections:
     output: false
   content_blocks:
     output: false
+  onsite_groups:
+    output: true
+    permalink: /groups/(:category/:slug)/:slug
+  onsite_group_categories:
+    output: false
+  onsite_group_meetings:
+    output: false
 
 defaults:
   - scope:
@@ -117,6 +128,11 @@ defaults:
       type: "locations"
     values:
       layout: location
+  - scope:
+      path: ""
+      type: "onsite_groups"
+    values:
+      layout: onsite-group-detail
 
 imgix_params:
   placeholder: "auto=format,compress&w=10"

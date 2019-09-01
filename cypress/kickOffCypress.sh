@@ -7,7 +7,7 @@ then
     exit 0
 fi
 
-#Skip all testing in Prod
+# Skip all testing in Prod
 if [[ "$CRDS_APP_CLIENT_ENDPOINT" = *"www.crossroads.net" ]];
 then
     exit 0
@@ -28,9 +28,7 @@ fi
 #     test_this_URL=$DEPLOY_URL
 # fi
 
-test_this_URL=$CRDS_APP_CLIENT_ENDPOINT
-media_endpoint="$CRDS_APP_CLIENT_ENDPOINT/media"
-body="{\"request\": { \"branch\":\"$HEAD\", \"config\": {\"env\": { \"baseURL\": \"$test_this_URL\", \"contentfulSpaceId\": \"$CONTENTFUL_SPACE_ID\", \"contentfulEnv\": \"$CONTENTFUL_ENV\", \"contentfulToken\": \"$CONTENTFUL_ACCESS_TOKEN\", \"mediaEndpoint\": \"$media_endpoint\", \"crdsEnv\": \"$CRDS_ENV\", \"DEBUG_NetlifyContext\": \"$CONTEXT\"}}}}"
+body="{\"request\": { \"branch\":\"$HEAD\", \"config\": {\"env\": { \"config_file\": \"$CYPRESS_CONFIG_FILE\", \"contentfulSpaceId\": \"$CONTENTFUL_SPACE_ID\", \"contentfulToken\": \"$CONTENTFUL_ACCESS_TOKEN\", \"DEBUG_NetlifyContext\": \"$CONTEXT\"}}}}"
 
 curl -s -X POST \
 -H "Content-Type: application/json" \

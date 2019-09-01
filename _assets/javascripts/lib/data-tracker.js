@@ -5,6 +5,7 @@ window.CRDS = window.CRDS || {};
 
 CRDS.DataTracker = class DataTracker {
   constructor() {
+    window['CRDS']._instances = window['CRDS']._instances || {};
     this.debug = false;
 
     if (CRDS._instances["DataTracker"]) {

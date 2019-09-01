@@ -1,3 +1,28 @@
+//Workaround for DE6665 - The locations page sometimes loads with missing functionality.
+function visitLocationsWithRetry(retries){
+  cy.on('uncaught:exception', (err) => {
+    //Sees error, posts message to console, fails if not matching
+    const propertyUndefinedRegex = /.*Cannot read property\W+\w+\W+of undefined.*/;
+    const undefinedObjectRegex = /.*Cannot convert undefined or null to object.*/;
+    if(err.message.match(propertyUndefinedRegex) !== null ||
+    err.message.match(undefinedObjectRegex) !== null){
+
+      retries -= 1;
+      console.log(`ERROR found! ${err.message}. Retries left visiting locations ${retries}`);
+      if(retries > 0){
+        visitLocationsWithRetry(retries);
+        return false;
+      }
+    }
+    return true;
+  });
+
+  cy.visit('/locations');
+
+  //Searching triggers the errors we're catching above. If search is successful, page should be ready.
+  searchForLocation(' ');
+}
+
 function searchForLocation(keyword) {
   cy.server();
   cy.route('/gateway/api/v1.0.0/locations/proximities?origin=*').as('searchResults');
@@ -13,16 +38,11 @@ function searchForLocation(keyword) {
 
 describe('Given I search for a standard location on /locations:', function () {
   before(function () {
-    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'cards\' of undefined'); //Remove once DE6613 is fixed
-
-    //Workaround for DE6665 - The locations page sometimes loads with missing functionality. Loading a different page before /locations
-    //  seems to prevent this issue, which is easier than trying to recover from the failure during the test.
-    cy.visit('/prayer');
-    cy.visit('/locations');
+    visitLocationsWithRetry(2);
   });
 
   //For a Contentful Location card to display the distance, its address must be valid
-  it.only('Searching for Oakley by zip should display the Oakley card first, with its distance', function () {
+  it('Searching for Oakley by zip should display the Oakley card first, with its distance', function () {
     const oakleySlug = '/oakley';
     const oakleyZip = '45209';
 
@@ -51,13 +71,8 @@ describe('Given I search for a standard location on /locations:', function () {
 
 
 describe('Given I search for a non-standard location on /locations', function () {
-  before(function () {
-    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property \'cards\' of undefined'); //Remove once DE6613 is fixed
-
-    //Workaround for DE6665 - The locations page sometimes loads with missing functionality. Loading the page twice from the start
-    //  prevents this issue, which is easier than trying to recover from the failure during the test.
-    cy.visit('/locations').then(() =>
-      cy.visit('/locations'));
+  beforeEach(function () {
+    visitLocationsWithRetry(2);
   });
 
   it('Searching for an out of range location should display the Anywhere card first', function () {

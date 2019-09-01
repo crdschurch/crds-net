@@ -5,34 +5,47 @@ var options = {
 let currentPlayer = null;
 let queuedPlayers = [];
 
-observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        let target = getPlayerId(entry.target);
-        if (!target) return;
-        if (entry.intersectionRatio >= 0.99) {
-            if (!currentPlayer) {
-                currentPlayer = target.id;
-                showOverlayVideo(entry.target);
-            } else {
-                queuedPlayers.push(target.id);
-            }
-        } else {
-            if (target.id == currentPlayer) {
-                showOverlayCard();
-                currentPlayer = queuedPlayers.pop();
-                if (currentPlayer) {
-                    showOverlayVideo()
+ready();
+document.addEventListener("deferred-js-ready", ready);
+document.addEventListener("deferred-bitmovin-ready", ready);
+// if app-deferred loads first
+function ready() {
+    if (window.deferredJSReady && window.defBitmovinLoaded) {
+        autoplayInit();
+    }
+}
+
+function autoplayInit() {
+    observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            let target = getPlayerId(entry.target);
+            if (!target) return;
+            if (entry.intersectionRatio >= 0.99) {
+                if (!currentPlayer) {
+                    currentPlayer = target.id;
+                    showOverlayVideo(entry.target);
+                } else {
+                    queuedPlayers.push(target.id);
                 }
             } else {
-                queuedPlayers = queuedPlayers.filter(p => p !== target.id)
+                if (target.id == currentPlayer) {
+                    showOverlayCard();
+                    currentPlayer = queuedPlayers.pop();
+                    if (currentPlayer) {
+                        showOverlayVideo()
+                    }
+                } else {
+                    queuedPlayers = queuedPlayers.filter(p => p !== target.id)
+                }
             }
-        }
-    });
-}, options);
+        });
+    }, options);
 
-$("div[id^='bitmovinPlayer']").each(function (i, el) {
-    observer.observe(el.parentElement.parentElement);
-});
+    $("div[id^='bitmovinPlayer']").each(function (i, el) {
+        observer.observe(el.parentElement.parentElement);
+    });
+
+}
 
 function showOverlayVideo() {
     setTimeout(() => {
@@ -41,12 +54,14 @@ function showOverlayVideo() {
         videoContainer = videoPlayer.parentElement;
         hideSiblings(videoContainer);
         videoContainer.style.opacity = '1';
-        CRDS[currentPlayer].playVideo();
+        if (!CRDS[currentPlayer]) document.addEventListener(currentPlayer, () => CRDS[currentPlayer].playVideo());
+        else CRDS[currentPlayer].playVideo();
     }, 1000);
 }
 
 function showOverlayCard() {
-    CRDS[currentPlayer].pauseVideo();
+    if (!CRDS[currentPlayer]) document.addEventListener(currentPlayer, () => CRDS[currentPlayer].pauseVideo());
+    else CRDS[currentPlayer].pauseVideo();
     let videoContainer = document.getElementById(currentPlayer).parentElement;
     showSiblings(videoContainer);
     videoContainer.style.opacity = '0';

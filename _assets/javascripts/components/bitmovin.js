@@ -4,24 +4,35 @@ class BitmovinManager {
     constructor(bitmovinConfig) {
         this.isCard = bitmovinConfig.isCard;
         this.isStream = bitmovinConfig.isStream;
+        this.subtitles_url = bitmovinConfig.subtitles_url;
         this.videoDuration = Number(bitmovinConfig.duration) * 1000;
         this.timezoneStr = 'America/New_York';
-        moment.tz.setDefault(this.timezoneStr);
+        this.dateStringFormat = 'YYYY/MM/DD HH:mm:ss'
+        this.timeouts = [];
         this.container = document.getElementById(`${bitmovinConfig.id}`);
         this.countdown = new CRDS.Countdown();
 
         this.playerConfig = {
-            key: '224f523d-e1ba-4f96-ad4d-96365f461c93',
+            key: `${window.CRDS.env.bitmovinPlayerLicense}`,
             playback: {
                 autoplay: this.getAutoPlay(),
                 muted: this.getIsMuted()
             },
             analytics: {
-                key: '01e90136-7623-4df4-b0d9-a3d975b00258',
+                key: `${window.CRDS.env.bitmovinAnalyticsLicense}`,
                 title: bitmovinConfig.title
             },
             ui: {
                 playbackSpeedSelectionEnabled: true
+            },
+            cast: {
+                enable: true
+            },
+            remotecontrol: {
+                type: 'googlecast',
+                customReceiverConfig: {
+                    receiverStylesheetUrl: "https://d1gb5n5uoite2y.cloudfront.net/bitmovin-cast-v1.0.css"
+                }
             },
             events: {
                 onPlaybackFinished: () => {
@@ -35,16 +46,9 @@ class BitmovinManager {
         }
 
         if (this.isStream) {
+            if (this.countdown.events) this.streamInit(this.countdown.events, bitmovinConfig);
             this.countdown.streamStatusPromise.then(events => {
-                this.createSource(bitmovinConfig);
-                this.createPlayer();
-                this.bitmovinPlayer.on('sourceloaded', () => {
-                    this.videoDuration = this.bitmovinPlayer.getDuration() * 1000;
-                    this.events = events.data.broadcasts;
-                    this.scheduleFutureEvents();
-                    this.standbyElm = document.getElementById('standby-message');
-                    this.manuallyTurnedOnCC = false;
-                });
+                this.streamInit(events, bitmovinConfig);
             });
         } else {
             this.createSource(bitmovinConfig);
@@ -53,7 +57,6 @@ class BitmovinManager {
     }
 
     createSource(bitmovinConfig) {
-
         this.source = {
             title: bitmovinConfig.title,
             //  description: desc,
@@ -80,10 +83,16 @@ class BitmovinManager {
         );
         this.bitmovinPlayer.on('play', () => { this.onPlayerStart() });
         this.bitmovinPlayer.on('playbackfinished', () => { this.onPlayerEnd('Ended') });
-        this.bitmovinPlayer.on('paused', () => { this.onPlayerEnd('Paused') });
-        this.bitmovinPlayer.on('subtitleenable', () => { this.onSubtitlesEnabled(); })
-        // this.bitmovinPlayer.on('playbackfinished', this.showStandbyMessaging());
-        // this.bitmovinPlayer.on('play', this.hideStandbyMessaging());
+        this.bitmovinPlayer.on('paused', (eventProps) => {
+            if (eventProps.issuer !== "ui") return;
+            this.onPlayerEnd('Paused')
+            if (this.isStream) this.cancelStreams();
+        });
+
+        this.bitmovinPlayer.on('subtitleenable', () => { this.onSubtitlesEnabled() });
+        this.bitmovinPlayer.on('sourceloaded', () => { this.addExternalSubtitles() });
+        this.bitmovinPlayer.on('ready', () => { this.onPlayerReady(new Date()) });
+
         return this.bitmovinPlayer.load(this.source);
     }
 
@@ -91,19 +100,27 @@ class BitmovinManager {
         this.events
             .forEach(e => {
                 const now = moment();
-                const timeTilEventStart = moment(e.start) - now;
-                const videoEndTime = moment(e.start) + this.videoDuration;
+                const timeTilEventStart = moment.tz(e.start, this.dateStringFormat, this.timezoneStr) - now;
+                const videoEndTime = moment.tz(e.start, this.dateStringFormat, this.timezoneStr) + this.videoDuration;
                 const timeTilVideoEnd = videoEndTime - now;
-                if (moment(e.start) > now) {
-                    setTimeout(() => {
+                if (moment.tz(e.start, this.dateStringFormat, this.timezoneStr) > now) {
+                    let eventStartTimeout = setTimeout(() => {
                         this.restartVideo();
                     }, timeTilEventStart);
+                    this.timeouts.push(eventStartTimeout);
                 }
 
-                setTimeout(() => {
+                let videoEndTimeout = setTimeout(() => {
                     this.showStandbyMessaging();
                 }, timeTilVideoEnd);
+                this.timeouts.push(videoEndTimeout);
             });
+    }
+
+    cancelStreams() {
+        for (var i in this.timeouts) {
+            clearTimeout(this.timeouts[i]);
+        }
     }
 
     getHidePlaybackSpeed() {
@@ -120,8 +137,8 @@ class BitmovinManager {
     }
 
     getIsMuted() {
-        if(this.isCard) return true;
-        if(!this.getAutoPlay()) return false;
+        if (this.isCard) return true;
+        if (!this.getAutoPlay()) return false;
 
         let urlParams = new URLSearchParams(window.location.search);
         let sound = urlParams.has('sound') ? parseInt(urlParams.get('sound')) : 0;
@@ -147,12 +164,13 @@ class BitmovinManager {
     onPlayerStart() {
         if (this.getIsMuted()) this.enableSubtitles();
         if (typeof analytics !== 'undefined') {
-            analytics.track('VideoStarted', {
-                Title: this.bitmovinPlayer.getSource().title,
-                VideoId: this.bitmovinPlayer.getSource().hls,
-                Source: 'CrossroadsNet',
-                VideoTotalDuration: this.bitmovinPlayer.getDuration()
-            });
+            if (this.getAutoPlay)
+                analytics.track('VideoStarted', {
+                    Title: this.bitmovinPlayer.getSource().title,
+                    VideoId: this.bitmovinPlayer.getSource().hls,
+                    Source: 'CrossroadsNet',
+                    VideoTotalDuration: this.bitmovinPlayer.getDuration()
+                });
         }
     }
 
@@ -203,19 +221,18 @@ class BitmovinManager {
     }
 
     showStandbyMessaging() {
-        this.bitmovinPlayer.pause();
+        this.pauseVideo();
         this.standbyElm.style.opacity = 1;
         this.standbyElm.style.zIndex = 10;
     }
 
     hideStandbyMessaging() {
-        this.bitmovinPlayer.play();
         this.standbyElm.style.opacity = 0;
         this.standbyElm.style.zIndex = 0;
     }
 
     calculateStreamElapsed() {
-        this.currentStreamStart = moment(this.countdown.currentEvent.start);
+        this.currentStreamStart = moment.tz(this.countdown.currentEvent.start, this.dateStringFormat, this.timezoneStr);
         this.now = moment();
         this.timeElapsed = (this.now - this.currentStreamStart) / 1000;
         return this.timeElapsed;
@@ -226,11 +243,29 @@ class BitmovinManager {
         this.seekTo(0, 0);
     }
 
-
     enableSubtitles() {
-        const subtitles = this.bitmovinPlayer.subtitles.list();
-        if (subtitles.length)
-            this.bitmovinPlayer.subtitles.enable(subtitles[0].id);
+        let i = 0;
+        var interval = setInterval(() => {
+            const subtitles = this.bitmovinPlayer.subtitles.list();
+            if (subtitles.length) {
+                this.bitmovinPlayer.subtitles.enable('external');
+                clearInterval(interval);
+            }
+            if (i >= 3) clearInterval(interval);
+            i += 1;
+        }, 1000)
+    }
+
+    addExternalSubtitles() {
+        if (!this.subtitles_url) return;
+        var enSubtitle = {
+            id: "external",
+            lang: "en",
+            label: "English",
+            url: this.subtitles_url,
+            kind: "subtitle"
+        };
+        this.bitmovinPlayer.subtitles.add(enSubtitle);
     }
 
     onCCEnabled() {
@@ -241,7 +276,7 @@ class BitmovinManager {
         min = min || 0;
         sec = sec || 0;
         this.bitmovinPlayer.seek(min * 60 + sec, true);
-        this.bitmovinPlayer.play();
+        this.playVideo();
         history.pushState({}, document.title, '?min=' + min + '&sec=' + sec);
     }
 
@@ -256,4 +291,29 @@ class BitmovinManager {
             });
         else this.bitmovinPlayer.play();
     }
+
+    onPlayerReady(readyTime) {
+        analytics.track('VideoReady', {
+            Title: this.bitmovinPlayer.getSource().title,
+            VideoId: this.bitmovinPlayer.getSource().hls,
+            Source: 'CrossroadsNet',
+            VideoTimeToReady: readyTime.getTime() - window.performance.timing.domContentLoadedEventEnd
+        });
+    }
+
+    streamInit(events, bitmovinConfig) {
+        this.createSource(bitmovinConfig);
+        this.createPlayer();
+        this.bitmovinPlayer.on('sourceloaded', () => {
+            this.videoDuration = this.bitmovinPlayer.getDuration() * 1000;
+            this.events = events.data.broadcasts;
+            this.scheduleFutureEvents();
+            this.standbyElm = document.getElementById('standby-message');
+            this.manuallyTurnedOnCC = false;
+        });
+    }
 }
+
+var defBitmovinLoaded = new Event('deferred-bitmovin-ready');
+document.dispatchEvent(defBitmovinLoaded);
+window.defBitmovinLoaded = true;
