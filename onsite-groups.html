@@ -63,7 +63,7 @@ permalink: /groups/onsite
     <div class="row">
       {% assign locations = site['locations'] | locations_with_onsite_groups %}
       {% for location in locations %}
-      <a class="card flush-bottom hard-bottom" href="#">
+      <a class="card flush-bottom hard-bottom" href="/groups/{{ location.slug }}">
         <img src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
           alt="{{ location.title }}" sizes="{{ site.image_sizes.one_fourth }}" class="width-100" data-optimize-img />
 
