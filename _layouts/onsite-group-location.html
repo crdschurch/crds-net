@@ -5,57 +5,59 @@ layout: container-fluid
 {% assign location_footnote = site.content_blocks | where: 'slug', 'onsite-group-location-footnote' | first %}
 
 <section class="container">
-    <div class="row push-ends">
-        <div class="col-md-12">
-            <a href="/groups/onsite">&lt; Back to All Onsite Groups</a>
-        </div>
+  <div class="row push-ends">
+    <div class="col-md-12">
+      <a href="/groups/onsite">&lt; Back to All Onsite Groups</a>
     </div>
-    <div class="row push-bottom">
-        <div class="col-md-3">
-            <img class="width-100" src="{{ page.location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img/>
-        </div>
-        <div class="col-md-9">
-            <h3 class="font-family-condensed-extra flush-ends mobile-soft-half-top text-uppercase">
-                {{ page.location.name }}
-                Onsite Groups
-            </h3>
-            <a href="https://www.crossroads.net/{{ page.location.slug }}">See what else is happening at Crossroads
-                {{ page.location.name }}</a>
-            <div class="font-size-base push-bottom push-half-top">
-                {{ page.location.onsite_group_description | markdownify }}
-            </div>
+  </div>
+  <div class="row push-bottom">
+    <div class="col-md-3">
+      <img class="width-100"
+        src="{{ page.location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+        sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+    </div>
+    <div class="col-md-9">
+      <h3 class="font-family-condensed-extra flush-ends mobile-soft-half-top text-uppercase">
+        {{ page.location.name }}
+        Onsite Groups
+      </h3>
+      <a href="https://www.crossroads.net/{{ page.location.slug }}">See what else is happening at Crossroads
+        {{ page.location.name }}</a>
+      <div class="font-size-base push-bottom push-half-top">
+        {{ page.location.onsite_group_description | markdownify }}
+      </div>
 
-            <hr/>
-        </div>
+      <hr />
     </div>
+  </div>
 
-    <div class="row push-bottom onsite-group-negative-margin-bottom">
-        {% for meeting in page.meetings %}
-            <div class="col-md-3">
-                <h4 class="font-family-condensed-extra text-uppercase">
-                    {{ meeting.title }}
-                </h4>
-                <p class="text-gray flush-bottom small">{{ meeting.description }}</p>
-                <p class="flush-bottom push-quarter-top small">
-                    {{ meeting.meeting_time }}
-                </p>
-                <a href="{{ meeting.registration_link }}" class="btn btn-cyan push-top" type="button">Register</a>
-            </div>
-        {% endfor %}
+  <div class="row push-bottom onsite-group-negative-margin-bottom">
+    {% for meeting in page.meetings %}
+    <div class="col-md-3">
+      <h4 class="font-family-condensed-extra text-uppercase">
+        {{ meeting.title }}
+      </h4>
+      <p class="text-gray flush-bottom small">{{ meeting.description }}</p>
+      <p class="flush-bottom push-quarter-top small">
+        {{ meeting.meeting_time }}
+      </p>
+      <a href="{{ meeting.registration_link }}" class="btn btn-cyan push-top" type="button">Register</a>
     </div>
+    {% endfor %}
+  </div>
 
-    <hr/>
-    <div class="row soft-half-bottom soft-top">
-        <div class="col-md-6">
-            <p>
-                <strong>Can't find what you are looking for?</strong><br/>
-                Visit the
-                <a href="https://www.crossroads.net/connect/?filters=Online%20Groups%3D&view=List%20View&my=0">Group Tool</a>
-                to connect with others looking for the same thing.
-            </p>
-        </div>
-        <div class="col-md-6">
-            {{ location_footnote.content_block | markdownify }}
-        </div>
+  <hr />
+  <div class="row soft-half-bottom soft-top">
+    <div class="col-md-6">
+      <p>
+        <strong>Can't find what you are looking for?</strong><br />
+        Visit the
+        <a href="https://www.crossroads.net/connect/?filters=Online%20Groups%3D&view=List%20View&my=0">Group Tool</a>
+        to connect with others looking for the same thing.
+      </p>
     </div>
+    <div class="col-md-6">
+      {{ location_footnote.content_block | markdownify }}
+    </div>
+  </div>
 </section>
