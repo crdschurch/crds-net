@@ -3,7 +3,6 @@ class Authentication {
     const oktaConfig = {
       clientId: CRDS.env.okta_client_id,
       issuer: CRDS.env.okta_oauth_base_url,
-      redirectUri: encodeURIComponent(window.location.href), //This one is a bit tricky. There are two parts. 1. This should be the fully qualified base url where your app is hosted. Maybe that's https://int.crossroads.net, https://media.crossroads.net, https://www.crossroads.net. 2. The url must be registered in the okta portal under the application redirectUri settings.
       tokenManager: {
         storage: 'cookie'
       }
