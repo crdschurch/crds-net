@@ -59,22 +59,21 @@ permalink: /groups/onsite
       </p>
     </div>
   </div>
-  <div class="cards-4x cards-2x-xs push-top">
-    <div class="row">
-      {% assign locations = site['locations'] | locations_with_onsite_groups %}
-      {% for location in locations %}
-      <a class="card flush-bottom hard-bottom" href="/groups/{{ location.slug }}">
-        <img src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-          alt="{{ location.title }}" sizes="{{ site.image_sizes.one_fourth }}" class="width-100" data-optimize-img />
 
-        <div class="card-block hard-bottom">
-          <h4 class="card-title card-title--overlap-remove-divider text-uppercase">
-            {{ location.title }}
-          </h4>
-        </div>
-      </a>
-      {% endfor %}
-    </div>
+  <div class="card-deck carousel push-top" data-crds-carousel="mobile-scroll">
+      <div class="feature-cards card-deck--expanded-layout">
+
+          {% assign locations = site['locations'] | locations_with_onsite_groups %}
+          {% for location in locations %}
+
+              <a class="card carousel-cell" href="/groups/{{ location.slug }}">
+                  <img class="card-img-top img-responsive " src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ location.title }}" sizes="{{ site.image_sizes.one_fourth }}" class="width-100" data-optimize-img/>
+                  <div class="card-block">
+                      <h4 class="card-title card-title--overlap text-uppercase transparent-after">{{ location.title }}</h4>
+                  </div>
+              </a>
+          {% endfor %}
+      </div>
   </div>
 
   <hr>
@@ -88,4 +87,6 @@ permalink: /groups/onsite
         Visit the <a href="/groups">Group Tool</a> to connect with others looking for the same thing.</p>
     </div>
   </div>
+
+
 </section>
