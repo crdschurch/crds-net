@@ -2,6 +2,9 @@ module Jekyll
   class OnsiteGroupsGenerator < Generator
 
     def generate(site)
+      # Temporarily disable new page generation
+      return
+
       # Get all meetings documents from Jekyll collections
       meetings = site.
         collections['onsite_group_meetings'].docs
