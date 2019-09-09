@@ -9,7 +9,7 @@ function hideRollCall() {
 }
 
 function getYoutubeId(youtubeURL) {
-  const regex = /youtu(?:be|.be)?(?:.+)\/(?:.+v=)?(.{11})/;//TODO make not capture groups
+  const regex = /youtu(?:be|.be)?(?:.+)\/(?:.+v=)?(.{11})/;
   const match = regex.exec(youtubeURL)[1];
   expect(match).to.exist;
   return match;
