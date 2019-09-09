@@ -9,9 +9,10 @@ function hideRollCall() {
 }
 
 function getYoutubeId(youtubeURL) {
-  const regex = '\\w+://\\S+/(?:watch\\?v=)?(\\w{11}).*';
-  const match = new RegExp(regex).exec(youtubeURL);
-  return match[1];
+  const regex = /youtu(?:be|.be)?(?:.+)\/(?:.+v=)?(.{11})/;//TODO make not capture groups
+  const match = regex.exec(youtubeURL)[1];
+  expect(match).to.exist;
+  return match;
 }
 
 describe('Tests the /live/stream page displays the expected player', function () {
@@ -38,14 +39,14 @@ describe('Tests the /live/stream page displays the expected player', function ()
       cy.get('#VideoManager').as('bitmovinPlayer').should('be.visible');
       cy.get('#js-media-video').as('youtubePlayer').should('not.exist');
 
-      cy.wait('@bitmovinManifest', {timeout: 60000}).then((manifest) => {
+      cy.wait('@bitmovinManifest', { timeout: 60000 }).then((manifest) => {
         expect(manifest.url).to.eq(latestMessage.bitmovinURL.text);
       });
     } else {
       cy.get('#js-media-video').as('youtubePlayer').should('be.visible');
       cy.get('#VideoManager').as('bitmovinPlayer').should('not.exist');
 
-      if(latestMessage.youtubeURL.hasValue) {
+      if (latestMessage.youtubeURL.hasValue) {
         const youtubeId = getYoutubeId(latestMessage.youtubeURL.text);
         cy.get('@youtubePlayer').should('have.attr', 'video-id', youtubeId);
       }
@@ -66,7 +67,7 @@ describe('Tests the /live/stream page displays the expected player', function ()
       const player = new BitmovinPlayer();
       player.waitUntilBuffered().then(() => {
         player.verifyPlayerMuted();
-        if(latestMessage.hasSubtitles){
+        if (latestMessage.hasSubtitles) {
           player.verifySubtitlesDisplayed();
         }
       });
