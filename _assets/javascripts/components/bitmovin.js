@@ -293,12 +293,21 @@ class BitmovinManager {
     }
 
     onPlayerReady(readyTime) {
+        this.setCardQuality();
         analytics.track('VideoReady', {
             Title: this.bitmovinPlayer.getSource().title,
             VideoId: this.bitmovinPlayer.getSource().hls,
             Source: 'CrossroadsNet',
             VideoTimeToReady: readyTime.getTime() - window.performance.timing.domContentLoadedEventEnd
         });
+    }
+
+    setCardQuality() {
+        if (this.isCard) {
+            const qualities = this.bitmovinPlayer.getAvailableVideoQualities();
+            const quality = qualities.find(quality => quality.label.includes('720'));
+            this.bitmovinPlayer.setVideoQuality(quality.id);
+        }
     }
 
     streamInit(events, bitmovinConfig) {
