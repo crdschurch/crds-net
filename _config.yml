@@ -115,7 +115,7 @@ collections:
   content_blocks:
     output: false
   onsite_groups:
-    output: true
+    output: false
     permalink: /groups/(:category/:slug)/:slug
   onsite_group_categories:
     output: false
