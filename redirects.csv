@@ -1,4 +1,4 @@
-/,/logged-in-homepage.html,200!,Role=user
+/,/logged-in-homepage.html,200! Role=user
 /,/index.html,200!
 http://crossroads.net/*,https://www.crossroads.net/:splat,301!,master
 http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
