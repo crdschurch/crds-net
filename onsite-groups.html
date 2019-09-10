@@ -19,6 +19,8 @@ permalink: /groups/onsite
 
 <section class="container">
   {% for category in site['onsite_group_categories'] %}
+  {% assign groups = category | onsite_groups_for_category %}
+  {% if groups.size > 0 %}
   <div class="row soft-ends push-bottom push-quarter-top">
     <div class="col-sm-3">
       <img src="{{ category.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
@@ -34,7 +36,6 @@ permalink: /groups/onsite
         </div>
       </div>
       <hr />
-      {% assign groups = category | onsite_groups_for_category %}
       {% for row in groups %}
       <div class="row onsite-group-negative-margin-bottom">
         {% for col in row %}
@@ -49,6 +50,7 @@ permalink: /groups/onsite
       {% endfor %}
     </div>
   </div>
+  {% endif %}
   {% endfor %}
 
   <div class="row">
