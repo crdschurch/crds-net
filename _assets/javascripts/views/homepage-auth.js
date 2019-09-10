@@ -11,9 +11,26 @@ function hidePage() {
 }
 
 function setComponentToken(token) {
-  document.querySelectorAll('[auth-token]').forEach(el => {
-    el.setAttribute("auth-token", token.access_token.accessToken);
-  });
+  function replaceAuthToken() {
+    document.querySelectorAll('[auth-token]').forEach(el => {
+      el.setAttribute("auth-token", token.access_token.accessToken);
+    });
+  }
+
+  if (window.componentsReady)
+    replaceAuthToken();
+  document.addEventListener('components-ready', replaceAuthToken);
+
+}
+
+function callback(token) {
+  const path = window.document.location.pathname.replace(/^\/|\/$/g, '');
+  if (token) {
+    handleLoggedInState(path);
+    setComponentToken(token);
+  } else {
+    handleLoggedOutState(path);
+  }
 }
 
 function auth() {
@@ -21,17 +38,6 @@ function auth() {
   hasAuthed = true;
 
   var auth = new Authentication();
-  var path = window.document.location.pathname.replace(/^\/|\/$/g, '');
-
-  function callback(token) {
-    if (token) {
-      handleLoggedInState(path);
-      setComponentToken(token);
-    } else {
-      handleLoggedOutState(path);
-    }
-  }
-
   auth.authenticate(callback);
 }
 
