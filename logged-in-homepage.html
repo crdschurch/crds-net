@@ -47,6 +47,9 @@ paginate:
     limit: 1
 ---
 
+{% javascript_link_tag authentication async %}
+{% javascript_link_tag homepage-auth %}
+
 {% include header.html %}
 {% assign homePageBanner = site.content_blocks | where: 'slug', 'home-page-promo-banner' | first %}
 
