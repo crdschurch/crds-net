@@ -1,6 +1,5 @@
 ---
 layout: container-fluid
-snail_trail: connect
 ---
 
 <section class="container">
@@ -27,8 +26,8 @@ snail_trail: connect
         </div>
       </div>
 
-      {% assign meetings = page.meetings | in_groups: 2 %} {% for row in
-      meetings %}
+      {% assign meetings = page.meetings | in_groups: 2 %}
+      {% for row in meetings %}
       <div class="row onsite-group-negative-margin-bottom">
         {% for meeting in row %}
         <div class="col-md-5 push-top push-right soft-right">
@@ -47,12 +46,7 @@ snail_trail: connect
           <p class="text-gray flush-bottom push-quarter-top small">
             {{ meeting.description }}
           </p>
-          <a
-            class="btn btn-cyan push-top"
-            type="button"
-            href="{{ meeting.registration_link }}"
-            >Register</a
-          >
+          <a class="btn btn-cyan push-top" type="button" href="{{ meeting.registration_link }}">Register</a>
         </div>
         {% endfor %}
       </div>
