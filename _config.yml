@@ -49,6 +49,8 @@ contentful:
     query: fields.category=common
     map:
       content_block: content
+  page:
+    query: "fields.collections[exists]=false"
   podcast:
     query: "fields.exclude_from_crossroads[ne]=true"
   episode:
