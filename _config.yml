@@ -49,6 +49,8 @@ contentful:
     query: fields.category=common
     map:
       content_block: content
+  page:
+    query: "fields.collections[exists]=false"
   podcast:
     query: "fields.exclude_from_crossroads[ne]=true"
   episode:
@@ -115,7 +117,7 @@ collections:
   content_blocks:
     output: false
   onsite_groups:
-    output: false
+    output: true
     permalink: /groups/(:category/:slug)/:slug
   onsite_group_categories:
     output: false
