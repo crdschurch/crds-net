@@ -5,6 +5,7 @@ class BitmovinManager {
         this.isCard = bitmovinConfig.isCard;
         this.isStream = bitmovinConfig.isStream;
         this.subtitles_url = bitmovinConfig.subtitles_url;
+        this.spn_subtitles_url = bitmovinConfig.spn_subtitles_url;
         this.videoDuration = Number(bitmovinConfig.duration) * 1000;
         this.timezoneStr = 'America/New_York';
         this.dateStringFormat = 'YYYY/MM/DD HH:mm:ss'
@@ -89,7 +90,8 @@ class BitmovinManager {
             if (this.isStream) this.cancelStreams();
         });
 
-        this.bitmovinPlayer.on('subtitleenable', () => { this.onSubtitlesEnabled() });
+        this.bitmovinPlayer.on('subtitleenable', (subtitle) => { this.onSubtitlesEnabled(subtitle); })
+        this.bitmovinPlayer.on('subtitledisable', () => { this.onSubtitleDisabled(); })
         this.bitmovinPlayer.on('sourceloaded', () => { this.addExternalSubtitles() });
         this.bitmovinPlayer.on('ready', () => { this.onPlayerReady(new Date()) });
 
@@ -174,13 +176,22 @@ class BitmovinManager {
         }
     }
 
-    onSubtitlesEnabled() {
+    onSubtitlesEnabled(subtitle) {
+        if(subtitle.subtitle.lang == "spn")
+            document.cookie = "spn_subs=true";
+        else
+            document.cookie = 'spn_subs=; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+
         if (this.container.offsetWidth <= 300) {
             this.container.querySelector(".bmpui-ui-subtitle-overlay").style.fontSize = '0.7em';
         }
         else if (this.container.offsetWidth <= 600) {
             this.container.querySelector(".bmpui-ui-subtitle-overlay").style.fontSize = '0.9em';
         }
+    }
+
+    onSubtitleDisabled(){
+        document.cookie = 'spn_subs=; expires=Thu, 01 Jan 1970 00:00:00 UTC';
     }
 
     onPlayerEnd(reason) {
@@ -248,7 +259,10 @@ class BitmovinManager {
         var interval = setInterval(() => {
             const subtitles = this.bitmovinPlayer.subtitles.list();
             if (subtitles.length) {
-                this.bitmovinPlayer.subtitles.enable('external');
+                if(this.getCookie('spn_subs') == 'true' && this.spn_subtitles_url)
+                    this.bitmovinPlayer.subtitles.enable('external_spn');
+                else
+                    this.bitmovinPlayer.subtitles.enable('external');
                 clearInterval(interval);
             }
             if (i >= 3) clearInterval(interval);
@@ -257,7 +271,7 @@ class BitmovinManager {
     }
 
     addExternalSubtitles() {
-        if (!this.subtitles_url) return;
+        if(!this.subtitles_url) return;
         var enSubtitle = {
             id: "external",
             lang: "en",
@@ -265,8 +279,19 @@ class BitmovinManager {
             url: this.subtitles_url,
             kind: "subtitle"
         };
+        if(!this.spn_subtitles_url) return;
+        var spnSubtitle = {
+            id: "external_spn",
+            lang: "spn",
+            label: "Spanish",
+            url: this.spn_subtitles_url,
+            kind: "subtitle"
+        };
+
         this.bitmovinPlayer.subtitles.add(enSubtitle);
+        this.bitmovinPlayer.subtitles.add(spnSubtitle);
     }
+
 
     onCCEnabled() {
         this.manuallyTurnedOnCC = true;

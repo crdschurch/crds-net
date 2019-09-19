@@ -28,7 +28,8 @@
                 isCard: `{{ include.isCard }}`,
                 duration: `{{ video.duration }}`,
                 isStream: `{{ include.isStream }}`,
-                subtitles_url: '{{ video.transcription.url }}'
+                subtitles_url: '{{ video.transcription.url }}',
+                spn_subtitles_url: '{{ video.spn_transcription.url }}'
             }
             CRDS[videoManagerID] = new BitmovinManager(bitmovinConfig);
             var videoManagerReadyEvent = new Event(videoManagerID);
