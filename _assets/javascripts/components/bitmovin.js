@@ -318,7 +318,7 @@ class BitmovinManager {
     }
 
     onPlayerReady(readyTime) {
-        this.setCardQuality();
+        this.setQualityOptions();
         analytics.track('VideoReady', {
             Title: this.bitmovinPlayer.getSource().title,
             VideoId: this.bitmovinPlayer.getSource().hls,
@@ -327,13 +327,19 @@ class BitmovinManager {
         });
     }
 
-    setCardQuality() {
+    setQualityOptions() {
+        const qualities = this.bitmovinPlayer.getAvailableVideoQualities();
+        const dedupedQualities = qualities.reduce((unique, item) => {
+          if (unique.find(u => u.width == item.width && u.height == item.height)) {
+            this.removeQualityByIndex(item.id);
+            return unique;
+          } else return [...unique, item];
+        }, []);
         if (this.isCard) {
-            const qualities = this.bitmovinPlayer.getAvailableVideoQualities();
-            const quality = qualities.find(quality => quality.label.includes('720'));
-            this.bitmovinPlayer.setVideoQuality(quality.id);
+          const quality = dedupedQualities.find(quality => quality.label.includes("720"));
+          this.bitmovinPlayer.setVideoQuality(quality.id);
         }
-    }
+      }
 
     streamInit(events, bitmovinConfig) {
         this.createSource(bitmovinConfig);
@@ -346,6 +352,28 @@ class BitmovinManager {
             this.manuallyTurnedOnCC = false;
         });
     }
+
+    removeQualityByIndex(id) {
+        const selector = "bmpui-ui-selectbox bmpui-ui-videoqualityselectbox";
+    
+        function waitForElementToDisplay() {
+          const elem = document.getElementsByClassName(selector);
+          if (elem.length) {
+            for (var i = 0; i < elem[0].length; i++) {
+              if (elem[0].options[i].value == id) {
+                console.log(elem[0].options[i], id);
+                elem[0].options[i].remove();
+              }
+            }
+            return;
+          } else {
+            setTimeout(function() {
+              waitForElementToDisplay(selector, 100);
+            }, 100);
+          }
+        }
+        waitForElementToDisplay();
+      }
 }
 
 var defBitmovinLoaded = new Event('deferred-bitmovin-ready');
