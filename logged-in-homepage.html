@@ -155,7 +155,7 @@ paginate:
     <!-- Big Content Feature -->
     <div class="col-md-8 col-md-pull-4">
 
-      {% assign feature_obj = site.featured_media | where: 'page_path', page.url | first %}
+      {% assign feature_obj = site.featured_media | where: 'page_path', '/' | first %}
       {% assign managed_features = feature_obj.docs %}
 
       <hr class="push-half-bottom flush-top">
