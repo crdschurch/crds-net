@@ -1,12 +1,6 @@
 import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
 import { LocationQueryManager } from 'crds-cypress-contentful';
 
-//TODO this method will be unnecessary once DE7158 is published
-function removeWhitespace(textField) {
-  const noWhiteSpace = textField.text.replace(/(\s+)/g, ' ');
-  textField._value = noWhiteSpace;
-}
-
 describe('Given I navigate to /locations and do not search:', function () {
   let locationList;
   before(function () {
@@ -55,7 +49,6 @@ describe('Given I navigate to /locations and do not search:', function () {
       cy.get('#section-locations > .card').eq(index).as(`${name}Card`);
       cy.get(`@${name}Card`).find('[data-automation-id="location-address"]').as(`${name}Address`);
 
-      removeWhitespace(location.address);
       cy.get(`@${name}Address`).normalizedText().should('contain', location.address.unformattedText);
 
       cy.get(`@${name}Card`).find('[data-automation-id="location-map-url"]').as(`${name}MapLink`);
