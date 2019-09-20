@@ -185,7 +185,7 @@ class BitmovinManager {
 
   onSubtitlesEnabled(subtitle) {
     if (subtitle.subtitle.lang == "spn") document.cookie = "spn_subs=true;domain=.crossroads.net;path=/";
-    else document.cookie = "spn_subs=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    else document.cookie = "spn_subs=;domain=.crossroads.net;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC";
 
     if (this.container.offsetWidth <= 300) {
       this.container.querySelector(".bmpui-ui-subtitle-overlay").style.fontSize = "0.7em";
@@ -195,7 +195,7 @@ class BitmovinManager {
   }
 
   onSubtitleDisabled() {
-    document.cookie = "spn_subs=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "spn_subs=;domain=.crossroads.net;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC";
   }
 
   onPlayerEnd(reason) {
