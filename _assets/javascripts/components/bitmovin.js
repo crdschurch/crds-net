@@ -322,7 +322,7 @@ class BitmovinManager {
   }
 
   onPlayerReady(readyTime) {
-    this.setCardQuality();
+    this.setQualityOptions();
     analytics.track("VideoReady", {
       Title: this.bitmovinPlayer.getSource().title,
       VideoId: this.bitmovinPlayer.getSource().hls,
@@ -331,10 +331,16 @@ class BitmovinManager {
     });
   }
 
-  setCardQuality() {
+  setQualityOptions() {
+    const qualities = this.bitmovinPlayer.getAvailableVideoQualities();
+    const dedupedQualities = qualities.reduce((unique, item) => {
+      if (unique.find(u => u.width == item.width && u.height == item.height)) {
+        this.removeQualityByIndex(item.id);
+        return unique;
+      } else return [...unique, item];
+    }, []);
     if (this.isCard) {
-      const qualities = this.bitmovinPlayer.getAvailableVideoQualities();
-      const quality = qualities.find(quality => quality.label.includes("720"));
+      const quality = dedupedQualities.find(quality => quality.label.includes("720"));
       this.bitmovinPlayer.setVideoQuality(quality.id);
     }
   }
@@ -359,6 +365,7 @@ class BitmovinManager {
       if (elem.length) {
         for (var i = 0; i < elem[0].length; i++) {
           if (elem[0].options[i].value == id) {
+            console.log(elem[0].options[i], id);
             elem[0].options[i].remove();
           }
         }
@@ -371,11 +378,15 @@ class BitmovinManager {
     }
     waitForElementToDisplay();
   }
-
+  
   getCookie(name) {
     var value = "; " + document.cookie;
     var parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
+    if (parts.length == 2)
+      return parts
+        .pop()
+        .split(";")
+        .shift();
   }
 }
 
