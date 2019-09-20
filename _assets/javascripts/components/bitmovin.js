@@ -184,7 +184,7 @@ class BitmovinManager {
   }
 
   onSubtitlesEnabled(subtitle) {
-    if (subtitle.subtitle.lang == "spn") document.cookie = "spn_subs=true";
+    if (subtitle.subtitle.lang == "spn") document.cookie = "spn_subs=true;domain=.crossroads.net;path=/";
     else document.cookie = "spn_subs=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 
     if (this.container.offsetWidth <= 300) {
