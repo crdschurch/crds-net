@@ -43,7 +43,7 @@ contentful:
     map:
       date: published_at
   message:
-    limit: 4
+    limit: 6
     order: "published_at desc"
     map:
       date: published_at
