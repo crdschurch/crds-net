@@ -15,4 +15,4 @@ curl -s -X POST \
 -H "Travis-API-Version: 3" \
 -H "Authorization: token $TRAVIS_CI" \
 -d "$body" \
-https://api.travis-ci.com/repo/crdschurch%2Fcrds-net/requests
+https://api.travis-ci.net/repo/crdschurch%2Fcrds-net/requests
