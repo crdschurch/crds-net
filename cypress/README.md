@@ -20,7 +20,7 @@ CONTENTFUL_ACCESS_TOKEN
 CONTENTFUL_SPACE_ID
 RUN_CYPRESS #true/false
 TRAVIS_CI #Travis's API Authentication token
-CYPRESS_INSTALL_BINARY = 0
+CYPRESS_INSTALL_BINARY = 0 #Stop Cypress from installing in Netlify
 ```
 
 Environment variables to set in Travis.ci:
@@ -46,7 +46,7 @@ npx cypress run --browser chrome
 To run or open in an environment other than int, specifiy the /config file to use.
 ex. to run headless in demo:
 ```
-npx cypress open --env useConfig=demo_crossroads
+npx cypress open --env configFile=demo_crossroads
 ```
 
 To customize a Cypress run beyond what's defined, check out their documentation [here](https://docs.cypress.io/guides/guides/command-line.html).
