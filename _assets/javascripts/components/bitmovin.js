@@ -184,7 +184,8 @@ class BitmovinManager {
   }
 
   onSubtitlesEnabled(subtitle) {
-    if (subtitle.subtitle.lang == "spn") document.cookie = "spn_subs=true;domain=.crossroads.net;path=/";
+    if (subtitle.subtitle.lang == "spn")
+      document.cookie = "spn_subs=true;domain=.crossroads.net;path=/";
     else document.cookie = "spn_subs=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 
     if (this.container.offsetWidth <= 300) {
@@ -218,17 +219,14 @@ class BitmovinManager {
     // convert to megabits if applicable
     let bitrate = kbps > 1000 ? `${(kbps / 1000).toFixed(1)} mbps` : `${kbps} kbps`;
 
-    if (data.height <= 240) {
-      resolution = "240p";
-    } else if (data.height <= 360) {
-      resolution = "360p";
-    } else if (data.height <= 480) {
-      resolution = "480p";
-    } else if (data.height <= 720) {
-      resolution = "HD 720p";
-    } else if (data.height <= 1080) {
-      resolution = "HD 1080p";
-    }
+    if (data.height < 240) resolution = "144p";
+    else if (data.height < 360) resolution = "240p";
+    else if (data.height < 480) resolution = "360p";
+    else if (data.height < 720) resolution = "480p";
+    else if (data.height < 1080) resolution = "HD 720p";
+    else if (data.height < 1440) resolution = "HD 1080p";
+    else if (data.height < 2160) resolution = "HD 1440p";
+    else resolution = "4k 2160p";
 
     let label = `${resolution} (${bitrate})`;
     return label;
@@ -334,7 +332,7 @@ class BitmovinManager {
   setQualityOptions() {
     const qualities = this.bitmovinPlayer.getAvailableVideoQualities();
     const dedupedQualities = qualities.reduce((unique, item) => {
-      if (unique.find(u => u.width == item.width && u.height == item.height)) {
+      if (unique.find(u => u.label.split("(").shift() == item.label.split("(").shift())) {
         this.removeQualityByIndex(item.id);
         return unique;
       } else return [...unique, item];
@@ -365,7 +363,6 @@ class BitmovinManager {
       if (elem.length) {
         for (var i = 0; i < elem[0].length; i++) {
           if (elem[0].options[i].value == id) {
-            console.log(elem[0].options[i], id);
             elem[0].options[i].remove();
           }
         }
@@ -378,7 +375,7 @@ class BitmovinManager {
     }
     waitForElementToDisplay();
   }
-  
+
   getCookie(name) {
     var value = "; " + document.cookie;
     var parts = value.split("; " + name + "=");
