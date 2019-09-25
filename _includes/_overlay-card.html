@@ -1,0 +1,17 @@
+{% comment %}
+// This assures the messages content type uses the background image instead of the thumbnail image like all other content types.
+{% endcomment %}
+{% assign image_source = item | card_image %}
+
+<a href="{{ item.url }}" class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
+  <div class="bg-overlay"></div>
+  <div class="overlay-card-image">
+    <img src="{% if image_source %}{{ image_source | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}" alt="{{ image_source.title }}" data-optimize-img>
+  </div>
+  <div class="overlay-card-content">
+    <p class="overlay-card-category">{{ item.category.title }}</p>
+    <h2 class="overlay-card-title {% if include.title == 'h2' %}font-size-h2{% endif %}">{{ item.title | truncate: 55 }}</h2>
+    <p class="overlay-card-author">{{ item.author.full_name }}</p>
+    {% include _media-label.html source=item %}
+  </div>
+</a>
