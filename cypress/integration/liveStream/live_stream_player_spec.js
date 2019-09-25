@@ -81,9 +81,9 @@ describe('Tests the /live/stream page video player', function () {
         }
       });
 
-      cy.wrap(requestFilter).its('matches').should('have.length', 1);
+      cy.wrap(requestFilter).as('autoplayEvent').its('matches').should('have.length', 1);
     } else {
-      cy.wrap(requestFilter).its('matches').should('have.length', 0);
+      cy.wrap(requestFilter).as('autoplayEvent').its('matches').should('have.length', 0);
     }
   });
 });
