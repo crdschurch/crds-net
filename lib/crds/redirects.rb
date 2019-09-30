@@ -66,7 +66,7 @@ class Redirects
     def login_attrs(item) 
       [
         item.dig('fields', 'permalink'),
-        'https://${env:CRDS_SIGNIN_ENDPOINT}/signin/:splat,200!',
+        'https://${env:CRDS_SIGNIN_ENDPOINT}/signin/:splat',
         '401!'
       ]
     end
