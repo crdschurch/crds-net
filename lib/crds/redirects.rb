@@ -67,7 +67,7 @@ class Redirects
       [
         item.dig('fields', 'permalink'),
         'https://${env:CRDS_SIGNIN_ENDPOINT}/signin/',
-        '200'
+        '401!'
       ]
     end
 
