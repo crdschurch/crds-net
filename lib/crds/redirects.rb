@@ -58,7 +58,7 @@ class Redirects
     def page_attrs(item)
       [
         item.dig('fields', 'permalink'),
-        '' ,
+        item.dig('fields', 'permalink'),
         '200! Role=user'
       ]
     end
