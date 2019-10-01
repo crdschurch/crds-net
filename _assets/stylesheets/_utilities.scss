@@ -110,13 +110,16 @@
   }
 }
 
-
-
-//TODO: move these to proper place. Move to DDK.
 .border-light-gray {
   border: 1px solid rgba($cr-gray-light, 0.3)
 }
-.jumbotron[style*='background-image'] a, .jumbotron[data-optimize-bg-img] a, .jumbotron.bg-video a {
-  padding-bottom: 0.2rem;
-  padding-top: 0.2rem;
+
+.overlap-header {
+  top: -5.25rem;
+  margin-bottom: -5.25rem;
+
+  @media screen and (min-width: $screen-md) {
+    top: -7.5rem;
+    margin-bottom: -7.5rem;
+  }
 }
