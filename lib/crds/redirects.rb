@@ -33,8 +33,8 @@ class Redirects
   def auth_required
     auth_pages = JSON.parse(get_data(@auth_required_options))
     pages = auth_pages.dig('items').collect { |item| page_attrs(item) }
-    # logins = auth_pages.dig('items').collect { |item| login_attrs(item) }
-    pages
+    logins = auth_pages.dig('items').collect { |item| login_attrs(item) }
+    pages + logins
   end
 
   def to_csv!(path = './redirects.csv')
@@ -67,7 +67,7 @@ class Redirects
       [
         item.dig('fields', 'permalink'),
         '/signin',
-        '200!'
+        '302!'
       ]
     end
 
