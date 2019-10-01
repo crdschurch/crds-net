@@ -67,7 +67,7 @@ class Redirects
       [
         item.dig('fields', 'permalink'),
         '/signin',
-        '302!'
+        '200!'
       ]
     end
 
