@@ -67,7 +67,7 @@ class Redirects
       [
         item.dig('fields', 'permalink'),
         "https://${env:CRDS_ANGULAR_ENDPOINT}/signin?RedirectUrl=#{item.dig('fields', 'permalink')}",
-        '401!'
+        '302!'
       ]
     end
 
