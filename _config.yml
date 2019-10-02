@@ -35,18 +35,12 @@ exclude:
 contentful:
   article:
     query: "fields.exclude_from_crossroads[ne]=true"
-    map:
-      date: published_at
   series:
     limit: 10
     order: "published_at desc"
-    map:
-      date: published_at
   message:
     limit: 6
     order: "published_at desc"
-    map:
-      date: published_at
   featured_media:
     query: fields.site=net
     map:
@@ -61,12 +55,8 @@ contentful:
     query: "fields.exclude_from_crossroads[ne]=true"
   episode:
     query: "content_type=episode&fields.podcast.sys.contentType.sys.id=podcast&fields.podcast.fields.exclude_from_crossroads[ne]=true"
-    map:
-      date: published_at
   video:
     query: "fields.exclude_from_crossroads[ne]=true"
-    map:
-      date: published_at
   exclude:
     - album
     - migration
