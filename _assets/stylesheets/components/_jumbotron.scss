@@ -51,7 +51,7 @@
 
 }
 
-.jumbotron[style*='background-image'] a, .jumbotron[data-optimize-bg-img] a, .jumbotron.bg-video a {
+.jumbotron[style*='background-image'] list-unstyled a, .jumbotron[data-optimize-bg-img] list-unstyled a {
   padding-bottom: 0.2rem;
   padding-top: 0.2rem;
 }
