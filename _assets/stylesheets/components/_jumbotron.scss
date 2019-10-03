@@ -1,4 +1,17 @@
 .jumbotron {
+
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+
+  &.jumbotron-overlay {
+    padding-bottom: 6.5rem;
+
+    @media screen and (min-width: $screen-md) {
+        padding-bottom: 3.1rem;
+      }
+      
+  }
+
   &:not(.bg-blue) {
     background-color: transparent;
   }
@@ -35,4 +48,10 @@
       padding-bottom: 2rem;
     }
   }
+
+}
+
+.jumbotron[style*='background-image'] a, .jumbotron[data-optimize-bg-img] a, .jumbotron.bg-video a {
+  padding-bottom: 0.2rem;
+  padding-top: 0.2rem;
 }
