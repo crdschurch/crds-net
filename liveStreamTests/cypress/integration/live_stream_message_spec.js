@@ -1,21 +1,9 @@
-import { MessageEntry, MessageQueryManager, Asset, LinkField } from 'crds-cypress-contentful';
-import { AmplitudeEventChecker } from './helpers/AmplitudeEventChecker';
+import { MessageQueryManager } from 'crds-cypress-contentful';
 import { StreamScheduleGenerator } from './helpers/ScheduleGenerator';
+import { RequestFilter } from '../Analytics/RequestFilter';
+import { amplitude } from '../fixtures/event_filters';
 import moment from 'moment';
 import 'moment-timezone';
-
-/** Extended Contentful Models */
-class ExtendedMessageEntry extends MessageEntry {
-  constructor (entryObject) {
-    super(entryObject);
-
-    this._video_link = new LinkField(this._fields.video_file, Asset);
-  }
-
-  get videoLink() {
-    return this._video_link;
-  }
-}
 
 /** Helper functions */
 function getLatestDate(dayOfWeek = 'Saturday', timeOfDay = '12:00AM') {
@@ -37,7 +25,6 @@ describe('Tests latest message is current and ready for live stream', function (
   let fakeSchedule;
   before(function () {
     const mqm = new MessageQueryManager();
-    mqm.entryConstructor = ExtendedMessageEntry;
     mqm.getSingleEntry(mqm.query.latestMessage).then(message => {
       contentfulLatestMessage = message;
     });
@@ -75,7 +62,16 @@ describe('Tests latest message is current and ready for live stream', function (
     cy.server();
     cy.route(`${Cypress.env('schedule_env')}/streamSchedule`, fakeSchedule);
     cy.route('manifest.m3u8').as('bitmovinManifest');
-    const ampEvents = new AmplitudeEventChecker();
+
+    //Listen for video started event
+    const requestFilter = new RequestFilter(amplitude.isVideoStarted);
+    cy.route({
+      method: 'POST',
+      url: 'api.amplitude.com',
+      onResponse: (xhr) => {
+        requestFilter.keepMatch(xhr.request);
+      }
+    });
 
     //Navigate to live stream
     cy.visit('/live/stream/');
@@ -91,14 +87,14 @@ describe('Tests latest message is current and ready for live stream', function (
     });
 
     //Stream should be autoplayed
-    ampEvents.waitForVideoEvents(['VideoStarted'], contentfulLatestMessage.bitmovinURL.toString, 3);
+    cy.wrap(requestFilter).its('matches').should('have.length', 1);
   });
 });
 
 /** Using the "after" hook or listening for events sometimes doesn't send messages due to bugs in Cypress (issue #2831)
  * This is a hacky but reliable way to get around the issue.
 */
-describe('Sends out results', function () {
+describe.skip('Sends out results', function () {
   it('Sends out Slack and Email alerts', function() {
     cy.reportResultsToSlack();
     cy.reportResultsByEmail();

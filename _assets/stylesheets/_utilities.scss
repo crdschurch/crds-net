@@ -109,3 +109,17 @@
     color: transparent;
   }
 }
+
+.border-light-gray {
+  border: 1px solid rgba($cr-gray-light, 0.3)
+}
+
+.overlap-header {
+  top: -8.25rem;
+  margin-bottom: -5.25rem;
+
+  @media screen and (min-width: $screen-md) {
+    top: -8.8rem;
+    margin-bottom: -8.8rem;
+  }
+}

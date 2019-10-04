@@ -51,11 +51,6 @@ module.exports = [
     files: ["lib/set-redirect-url"]
   },
   {
-    name: "auth-required",
-    files: ["lib/auth-required"],
-    deps: ["vendor/client-auth", "lib/authentication"]
-  },
-  {
     name: "homepage-auth",
     files: ["views/homepage-auth"]
   },

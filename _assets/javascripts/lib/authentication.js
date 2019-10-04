@@ -4,7 +4,7 @@ class Authentication {
       clientId: CRDS.env.okta_client_id,
       issuer: CRDS.env.okta_oauth_base_url,
       tokenManager: {
-        storage: 'cookie'
+        storage: 'localStorage'
       }
     };
 
