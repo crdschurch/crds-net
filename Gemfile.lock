@@ -26,10 +26,10 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-contentful.git
-  revision: 74a1b38391742b350b4ada82f667728f303f2bd4
-  tag: 1.2.2
+  revision: c1e626b9856de73c2ad59b9a1d4dc71972f8843b
+  tag: 2.0.1
   specs:
-    jekyll-contentful (1.2.2)
+    jekyll-contentful (2.0.1)
       activesupport
       contentful (>= 2.6.0)
       contentful-management (~> 2.6)
@@ -69,19 +69,19 @@ GEM
     colorator (1.1.0)
     colorize (0.8.1)
     concurrent-ruby (1.1.5)
-    contentful (2.12.0)
-      http (> 0.8, < 4.0)
+    contentful (2.13.3)
+      http (> 0.8, < 5.0)
       multi_json (~> 1)
-    contentful-management (2.10.0)
-      http (> 1.0, < 3.0)
+    contentful-management (2.11.0)
+      http (> 1.0, < 5.0)
       json (>= 1.8, < 3.0)
       multi_json (~> 1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.3)
-    domain_name (0.5.20180417)
+    domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    dotenv (2.7.4)
+    dotenv (2.7.5)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -106,14 +106,14 @@ GEM
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
     hashdiff (0.4.0)
-    http (2.2.2)
+    http (4.1.1)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
-      http-form_data (~> 1.0.1)
+      http-form_data (~> 2.0)
       http_parser.rb (~> 0.6.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    http-form_data (1.0.3)
+    http-form_data (2.1.1)
     http_parser.rb (0.6.0)
     httparty (0.17.0)
       mime-types (~> 3.0)

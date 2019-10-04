@@ -1,4 +1,4 @@
-FROM cypress/included:3.4.0
+FROM cypress/included:3.4.1
 WORKDIR /cypress_live_stream
 
 COPY package.json .

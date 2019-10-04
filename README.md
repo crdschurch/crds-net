@@ -123,6 +123,15 @@ This behavior is odd. After hitting `Enter` after the first line, nothing happen
 
 If you try to push again, you should be prompted for a new username and password and those will be stored in your keychain for future use.
 
+## Future Dated content
+The file name is what keeps future dated content from showing on non layout pages. There are examples of this in the config.yml.
+
+```yaml
+collections:
+  articles:
+    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
+```
+
 ## Build Logs
 
 Build logs are dependant on two environment variables
