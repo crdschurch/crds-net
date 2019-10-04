@@ -86,7 +86,6 @@ collections:
     filename: "{{ published_at | date: '%Y-%m-%d-%H-%M-%S' }}-{{ title | slugify }}-{{ slug }}"
     output: false
   articles:
-    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
   topics:
     output: false
@@ -95,7 +94,6 @@ collections:
   podcasts:
     output: false
   episodes:
-    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
     permalink: /podcasts/(:podcast/:slug)/:title
   tags:
@@ -113,7 +111,6 @@ collections:
   songs:
     output: false
   videos:
-    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
   system_pages:
     output: false
