@@ -7,7 +7,7 @@ then
     exit 0
 fi
 
-body="{\"request\": { \"branch\":\"$HEAD\", \"config\": {\"env\": { \"RUN_CYPRESS\": \"$RUN_CYPRESS\", \"configFile\": \"$CYPRESS_CONFIG_FILE\", \"contentfulSpaceId\": \"$CONTENTFUL_SPACE_ID\", \"contentfulToken\": \"$CONTENTFUL_ACCESS_TOKEN\", \"DEBUG_NetlifyContext\": \"$CONTEXT\"}}}}"
+body="{\"request\": { \"branch\":\"$HEAD\", \"config\": {\"env\": { \"RUN_CYPRESS\": \"$RUN_CYPRESS\", \"configFile\": \"$CYPRESS_CONFIG_FILE\", \"VAULT_SECRET_ID\": \"$VAULT_SECRET_ID\", \"VAULT_ROLE_ID\": \"$VAULT_ROLE_ID\", \"DEBUG_NetlifyContext\": \"$CONTEXT\"}}}}"
 
 curl -s -X POST \
 -H "Content-Type: application/json" \
