@@ -17,7 +17,7 @@ install:
 # Integration Test stage
 integrationTests: &integrationTest
   if: env(RUN_CYPRESS) = true
-  script: "npx cypress run --record --key $cypressDashboard --parallel --group crds-net-parallel --browser chrome --env configFile=$configFile,CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,FRED_FLINTSTONE_PW=$FRED_FLINTSTONE_PW"
+  script: "npx cypress run --record --key $cypressDashboard --parallel --group crds-net-parallel --browser chrome"
 
 jobs:
   include:

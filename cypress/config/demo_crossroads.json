@@ -4,6 +4,7 @@
     "schedule_env": "/demo",
     "CONTENTFUL_ENV": "demo",
     "CRDS_ENV": "demo",
-    "CRDS_MEDIA_ENDPOINT": "https://demo.crossroads.net/media"
+    "CRDS_MEDIA_ENDPOINT": "https://demo.crossroads.net/media",
+    "vaultEnv": "demo"
   }
 }
