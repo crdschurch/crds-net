@@ -8,31 +8,6 @@ export function stubLocationSearch(responseStub, statusCode=200) {
   });
 }
 
-// function visitLocationsWithRetry(retries){
-//   cy.on('uncaught:exception', (err) => {
-//     //Sees error, posts message to console, fails if not matching
-//     const propertyUndefinedRegex = /.*Cannot read property\W+\w+\W+of undefined.*/;
-//     const undefinedObjectRegex = /.*Cannot convert undefined or null to object.*/;
-//     if(err.message.match(propertyUndefinedRegex) !== null ||
-//     err.message.match(undefinedObjectRegex) !== null){
-
-//       retries -= 1;
-//       console.log(`ERROR found! ${err.message}. Retries left visiting locations ${retries}`);
-//       if(retries > 0){
-//         visitLocationsWithRetry(retries);
-//         return false;
-//       }
-//     }
-//     return true;
-//   });
-
-//   cy.visit('/locations');
-
-//   //Searching triggers the errors we're catching above. If search is successful, page should be ready.
-//   searchForLocation(' ');
-// }
-
-
 export function visitLocationsAndSearch(keyword, retries = 2) {
   cy.on('uncaught:exception', (err) => {
     //Sees error, posts message to console, fails if not matching

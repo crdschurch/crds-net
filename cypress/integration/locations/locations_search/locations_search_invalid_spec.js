@@ -1,4 +1,4 @@
-import { stubLocationSearch, visitLocationsAndSearch } from './location_search_helpers';
+import { stubLocationSearch, visitLocationsAndSearch } from './helpers/location_search';
 
 //Warning! - The locations page sometimes loads with missing functionality. Issue captured DE6665
 describe('Tests invalid search', () => {

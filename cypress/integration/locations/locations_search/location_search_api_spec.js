@@ -1,4 +1,4 @@
-describe('Tests the location api call', () => {
+describe('Tests the location search API call', () => {
   before(() => {
     cy.server();
   });

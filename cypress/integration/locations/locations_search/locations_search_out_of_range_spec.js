@@ -1,5 +1,5 @@
 import { oakleyResult } from '../../../fixtures/location_search_results';
-import { stubLocationSearch, visitLocationsAndSearch, checkDistanceOverlayDisplayed } from './location_search_helpers';
+import { stubLocationSearch, visitLocationsAndSearch, checkDistanceOverlayDisplayed } from './helpers/location_search';
 
 //Warning! - The locations page sometimes loads with missing functionality. Issue captured DE6665
 describe('Tests out of range location result cards', () => {
