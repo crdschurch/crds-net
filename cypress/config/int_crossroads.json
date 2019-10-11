@@ -5,6 +5,7 @@
     "CONTENTFUL_ENV": "int",
     "CRDS_ENV": "int",
     "CRDS_MEDIA_ENDPOINT": "https://int.crossroads.net/media",
+    "gateway_endpoint": "https://gatewayint.crossroads.net",
     "vaultEnv": "int"
   }
 }
