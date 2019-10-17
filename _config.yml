@@ -92,7 +92,7 @@ collections:
   authors:
     output: false
   podcasts:
-    output: false
+    output: true
   episodes:
     output: false
     permalink: /podcasts/(:podcast/:slug)/:title
