@@ -9,7 +9,8 @@ describe('Given I navigate to /locations and do not search:', function () {
       locationList = locations;
     });
 
-    cy.ignorePropertyUndefinedTypeError();
+    const errorsToIgnore = [/.*Cannot read property\W+\w+\W+of undefined.*/, /.*Cannot convert undefined or null to object.*/];
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit('/locations');
   });
 
@@ -47,6 +48,7 @@ describe('Given I navigate to /locations and do not search:', function () {
     it(`Location card #${index} should have an Address and a link to Map`, function () {
       cy.get('#section-locations > .card').eq(index).as(`${name}Card`);
       cy.get(`@${name}Card`).find('[data-automation-id="location-address"]').as(`${name}Address`);
+
       cy.get(`@${name}Address`).normalizedText().should('contain', location.address.unformattedText);
 
       cy.get(`@${name}Card`).find('[data-automation-id="location-map-url"]').as(`${name}MapLink`);

@@ -1,10 +1,6 @@
 <head>
   {% javascript_link_tag set-redirect-url %}
 
-  {% if page.requires_auth %}
-    {% javascript_link_tag auth-required %}
-  {% endif %}
-
   {% include _gtm-head.html %}
   {% include _monetate-head.html %}
   {% include _meta-tags.html %}
@@ -28,26 +24,33 @@
   <meta name="theme-color" content="#ffffff">
 
   {% if page.legacy_styles %}
-    <link rel="stylesheet" href="/assets/static/legacy.min.css">
+  <link rel="stylesheet" href="/assets/static/legacy.min.css">
   {% endif %}
 
   {% if page.title == "Atrium Events" %}
-    {% include atrium_events/_atrium-events.html %}
+  {% include atrium_events/_atrium-events.html %}
   {% endif %}
 
   {% if page.title == "Explore" %}
-    {% include explore/_explore-resources.html %}
+  {% include explore/_explore-resources.html %}
   {% endif %}
 
   {% if page.search_excluded or jekyll.environment != "production" %}
-    <meta name="robots" content="noindex" />
-    <meta name="AdsBot-Google" content="noindex" />
+  <meta name="robots" content="noindex" />
+  <meta name="AdsBot-Google" content="noindex" />
   {% endif %}
   <!-- before -->
   {% stylesheet_link_tag application %}
   <!-- after -->
   <script> window.prerenderReady = true; </script>
 
-  <script type="module" src="https://crds-components{% if site.jekyll_env != 'prod' and site.jekyll_env != 'production' %}-int{% endif %}.netlify.com/dist/crds-components/crds-components.esm.js"></script>
-  <script nomodule="" src="https://crds-components{% if site.jekyll_env != 'prod' and site.jekyll_env != 'production' %}-int{% endif %}.netlify.com/dist/crds-components.js"></script>
+  <script type="module" onload="componentsLoaded()" src="https://crds-components{% if site.jekyll_env != 'prod' and site.jekyll_env != 'production' %}-int{% endif %}.netlify.com/dist/crds-components/crds-components.esm.js"></script>
+  <script nomodule="" onload="componentsLoaded()" src="https://crds-components{% if site.jekyll_env != 'prod' and site.jekyll_env != 'production' %}-int{% endif %}.netlify.com/dist/crds-components.js"></script>
+  <script>
+    function componentsLoaded() {
+      var componentsReady = new Event('components-ready');
+      document.dispatchEvent(componentsReady);
+      window.componentsReady = true;
+    }
+  </script>
 </head>

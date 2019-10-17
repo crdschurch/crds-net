@@ -26,6 +26,9 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 import { Formatter } from './Formatter';
+import { addCommandLogin } from 'crds-cypress-login';
+
+addCommandLogin();
 
 Cypress.Commands.add('normalizedText', { prevSubject: 'element' }, (subject) => {
   return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => Formatter.normalizeText(elementText));
@@ -50,5 +53,18 @@ Cypress.Commands.add('ignorePropertyUndefinedTypeError', () => {
     const propertyUndefinedRegex = /.*Cannot read property\W+\w+\W+of undefined.*/;
     expect(err.message).to.match(propertyUndefinedRegex);
     return err.message.match(propertyUndefinedRegex) == null;
+  });
+});
+
+//Given list of regex, will ignore if error matches any
+Cypress.Commands.add('ignoreMatchingErrors', (errorList) => {
+  cy.on('uncaught:exception', (err) => {
+    const matchingError = errorList.find(errorRegex => err.message.match(errorRegex) !== null);
+
+    if(matchingError){
+      expect(err.message).to.match(matchingError); //Post result to console
+    }
+
+    return matchingError === undefined;
   });
 });

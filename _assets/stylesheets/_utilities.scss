@@ -22,13 +22,17 @@
   right: 0;
   left: 0;
   bottom: 0;
-  background-image: linear-gradient(to bottom, rgba(23, 23, 23, 0), $cr-gray-darker);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(23, 23, 23, 0),
+    $cr-gray-darker
+  );
 }
 
 .text-uppercase {
   &.font-size-smaller {
     font-size: 13px !important;
-    letter-spacing: .5px;
+    letter-spacing: 0.5px;
   }
 }
 
@@ -37,7 +41,7 @@
 }
 
 .font-family-base-mid {
-  font-family: "acumin-pro",helvetica,arial,sans-serif;
+  font-family: "acumin-pro", helvetica, arial, sans-serif;
   font-weight: 500;
 }
 
@@ -98,4 +102,24 @@
 
 .width-100 {
   width: 100%;
+}
+
+.transparent-after {
+  &::after {
+    color: transparent;
+  }
+}
+
+.border-light-gray {
+  border: 1px solid rgba($cr-gray-light, 0.3)
+}
+
+.overlap-header {
+  top: -8.25rem;
+  margin-bottom: -5.25rem;
+
+  @media screen and (min-width: $screen-md) {
+    top: -8.8rem;
+    margin-bottom: -8.8rem;
+  }
 }

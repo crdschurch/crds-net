@@ -12,7 +12,6 @@ describe('Testing the Current Series on the Live page:', function () {
     cy.visit('/live');
   });
 
-  //DO NOT RUN in open mode - Causes Cypress to hang
   it('Current Series title, date, and description should match Contentful', function () {
     cy.get('.current-series').as('currentSeriesBlock');
 

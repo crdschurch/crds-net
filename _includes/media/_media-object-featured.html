@@ -1,0 +1,36 @@
+<div class="media featured">
+  <div class="media-body">
+    <h5 class="component-header flush-ends">
+      <a href="{{ featured.url }}" data-automation-id="featured-title">{{ featured.title }}</a>
+    </h5>
+    <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="featured-description">
+      {{ featured.description | markdownify | strip_html | truncatewords: 15 }}
+    </div>
+    {% if include.media_type == "podcast" %}
+      <p class="font-size-smaller text-gray-light">{% include _count.html key="podcast.title" subject=featured.title collection=site.episodes label="episode" %}</p>
+    {% elsif featured.content_type == "collection" %}
+      {% assign collection_size = featured.docs | size %}
+      <p class="font-size-smaller text-gray-light">
+      {% if collection_size > 0 %}
+        {{ collection_size | pluralize: 'story', 'stories' }}
+      {% endif %}</p>
+    {% else %}
+      <p class="font-size-smaller text-gray-light">{% include _count.html key="series" subject=featured.title collection=site.messages label="message" %}</p>
+    {% endif %}
+  </div>
+  <a href="{{ featured.url }}" class="push-half-bottom" data-automation-id="featured-image">
+    {% if include.media_type == "podcast" or include.media_type == "episode" %}
+      {% if featured.image.url %}
+        <img class="media-img" src="{{ featured.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
+      {% else %}
+        <img class="media-img" src="{{ site.default_image }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
+      {% endif %}
+    {% elsif featured.secondary_image.url %}
+      <img class="media-img" src="{{ featured.secondary_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
+    {% elsif featured.image.url %}
+      <img class="media-img" src="{{ featured.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
+    {% else %}
+      <img class="media-img" src="{{ site.default_image }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
+    {% endif %}
+  </a>
+</div>

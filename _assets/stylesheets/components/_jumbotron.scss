@@ -1,4 +1,13 @@
 .jumbotron {
+
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+
+  &.jumbotron-overlay {
+    padding-bottom: 6.1rem;
+      
+  }
+
   &:not(.bg-blue) {
     background-color: transparent;
   }
@@ -35,4 +44,10 @@
       padding-bottom: 2rem;
     }
   }
+
+}
+
+.jumbotron[style*='background-image'] list-unstyled a, .jumbotron[data-optimize-bg-img] list-unstyled a {
+  padding-bottom: 0.2rem;
+  padding-top: 0.2rem;
 }
