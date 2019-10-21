@@ -55,8 +55,6 @@ contentful:
     query: fields.category=common
     map:
       content_block: content
-  page:
-    query: "fields.collections[exists]=false"
   podcast:
     query: "fields.exclude_from_crossroads[ne]=true"
   episode:
@@ -67,6 +65,9 @@ contentful:
     query: "fields.exclude_from_crossroads[ne]=true"
     map:
       date: published_at
+  category:
+    query: "fields.collections.sys.id[nin]=3F1707Eeiu50rMaxCf6wNN,3X7oFhglWTJGXy3TD5u5br,6XwgUaVRdsKzXrncprwJMt,3E8JlwCIG49c00bU7MXEuL"
+
   exclude:
     - album
     - migration
