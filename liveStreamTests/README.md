@@ -8,13 +8,8 @@ If tests fail, notifications will be sent via Slack and email.
 
 ```
 config_file #int_crossroads, demo_crossroads or prod_crossroads
-BITMOVIN_API_KEY
-CROSSROADS_API_ENDPOINT
-SLACK_WEBHOOK_URL
-CONTENTFUL_ACCESS_TOKEN
-CONTENTFUL_SPACE_ID
-SENDGRID_USER
-SENDGRID_PW
+VAULT_ROLE_ID
+VAULT_SECRET_ID
 ```
 
 ### Running on Docker

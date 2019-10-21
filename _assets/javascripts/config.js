@@ -14,7 +14,6 @@ module.exports = [
       "vendor/flickity.pkgd.min",
       "vendor/crds-card-carousel-v0.2.2.min",
       "vendor/crds-jumbotron-video-v0.2.1.min",
-      "vendor/crds-livestream-reminder-v0.0.18.min",
       "vendor/crds-status-message-v0.1.3.min",
       "vendor/feature-flags.min",
       "vendor/isotope.min",
@@ -49,11 +48,6 @@ module.exports = [
   {
     name: "set-redirect-url",
     files: ["lib/set-redirect-url"]
-  },
-  {
-    name: "auth-required",
-    files: ["lib/auth-required"],
-    deps: ["vendor/client-auth", "lib/authentication"]
   },
   {
     name: "homepage-auth",

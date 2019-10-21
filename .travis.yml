@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 10
+  - '10'
 dist: trusty #Needed to include Chrome
 addons:
   chrome: stable
@@ -13,22 +13,26 @@ cache:
     - ~/.cache
 install:
     - npm ci
-defaults: &runCypress
-  script:
-    - "$(npm bin)/cypress run --record --key $cypressDashboard --parallel --group crds-net-parallel --browser chrome --env useConfig=$config_file,CONTENTFUL_SPACE_ID=$contentfulSpaceId,CONTENTFUL_ACCESS_TOKEN=$contentfulToken,FRED_FLINTSTONE_PW=$FRED_FLINTSTONE_PW"
+
+# Integration Test stage
+integrationTests: &integrationTest
+  if: env(RUN_CYPRESS) = true
+  script: "npx cypress run --record --key $cypressDashboard --parallel --group crds-net-parallel --browser chrome"
+
 jobs:
   include:
   # run tests in parallel by including several jobs with same "stage" name
-    - stage: test
-      <<: *runCypress
-    - stage: test
-      <<: *runCypress
-    - stage: test
-      <<: *runCypress
-    - stage: test
-      <<: *runCypress
-    - stage: test
-      <<: *runCypress
+    - stage: Integraion Tests
+      <<: *integrationTest
+    - stage: Integraion Tests
+      <<: *integrationTest
+    - stage: Integraion Tests
+      <<: *integrationTest
+    - stage: Integraion Tests
+      <<: *integrationTest
+    - stage: Integraion Tests
+      <<: *integrationTest
+
 notifications:
   slack:
     template:

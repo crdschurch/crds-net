@@ -9,11 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "crds-cypress-contentful": "^1.0.0",
-    "cypress": "^3.4.0",
-    "fs-extra": "^8.0.1",
+    "crds-cypress-config": "^1.0.0",
+    "crds-cypress-contentful": "^1.0.1",
+    "cypress": "^3.4.1",
     "moment-timezone": "^0.5.25",
-    "path": "^0.12.7",
     "slack-notify": "^0.1.7"
   },
   "devDependencies": {}

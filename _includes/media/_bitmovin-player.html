@@ -24,7 +24,7 @@
                 title: `{{ video.title }}`,
                 url: `{{ video.bitmovin_url }}`,
                 id: videoManagerID,
-                image: `{{ video.image.url | imgix: site.imgix }}`,
+                image: `{{ banner_image | imgix: site.imgix }}`,
                 isCard: `{{ include.isCard }}`,
                 duration: `{{ video.duration }}`,
                 isStream: `{{ include.isStream }}`,

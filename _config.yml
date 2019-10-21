@@ -9,11 +9,6 @@ image: "https://crds-cms-uploads.imgix.net/content/images/cr-social-sharing-stil
 permalink: pretty
 markdown: kramdown
 
-include:
-  - .aws
-  - _redirects
-  - _pages
-
 exclude:
   - bin
   - cypress.json
@@ -32,21 +27,20 @@ exclude:
   - buildlog.txt
   - collections
 
+include:
+  - .aws
+  - _redirects
+  - _pages
+
 contentful:
   article:
     query: "fields.exclude_from_crossroads[ne]=true"
-    map:
-      date: published_at
   series:
     limit: 10
     order: "published_at desc"
-    map:
-      date: published_at
   message:
-    limit: 4
+    limit: 6
     order: "published_at desc"
-    map:
-      date: published_at
   featured_media:
     query: fields.site=net
     map:
@@ -59,8 +53,6 @@ contentful:
     query: "fields.exclude_from_crossroads[ne]=true"
   episode:
     query: "content_type=episode&fields.podcast.sys.contentType.sys.id=podcast&fields.podcast.fields.exclude_from_crossroads[ne]=true"
-    map:
-      date: published_at
   video:
     query: "fields.exclude_from_crossroads[ne]=true"
     map:
@@ -97,16 +89,14 @@ collections:
     filename: "{{ published_at | date: '%Y-%m-%d-%H-%M-%S' }}-{{ title | slugify }}-{{ slug }}"
     output: false
   articles:
-    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
   topics:
     output: false
   authors:
     output: false
   podcasts:
-    output: false
+    output: true
   episodes:
-    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
     permalink: /podcasts/(:podcast/:slug)/:title
   tags:
@@ -124,7 +114,6 @@ collections:
   songs:
     output: false
   videos:
-    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
   system_pages:
     output: false
@@ -138,6 +127,46 @@ collections:
   onsite_group_meetings:
     output: false
 
+contentful:
+  article:
+    query: "fields.exclude_from_crossroads[ne]=true"
+    map:
+      date: published_at
+  series:
+    limit: 10
+    order: "published_at desc"
+    map:
+      date: published_at
+  message:
+    limit: 6
+    order: "published_at desc"
+    map:
+      date: published_at
+  featured_media:
+    query: fields.site=net
+    map:
+      page_path: path
+  content_block:
+    query: fields.category=common
+    map:
+      content_block: content
+  page:
+    query: "fields.collections[exists]=false"
+  podcast:
+    query: "fields.exclude_from_crossroads[ne]=true"
+  episode:
+    query: "content_type=episode&fields.podcast.sys.contentType.sys.id=podcast&fields.podcast.fields.exclude_from_crossroads[ne]=true"
+    map:
+      date: published_at
+  video:
+    query: "fields.exclude_from_crossroads[ne]=true"
+    map:
+      date: published_at
+  exclude:
+    - album
+    - migration
+    - sign_off
+
 defaults:
   - scope:
       path: ""
@@ -149,6 +178,7 @@ defaults:
       type: "onsite_groups"
     values:
       layout: onsite-group-detail
+      snail_trail: connect
 
 imgix_params:
   placeholder: "auto=format,compress&w=10"
