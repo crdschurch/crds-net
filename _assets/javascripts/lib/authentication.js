@@ -22,7 +22,8 @@ class Authentication {
         // Put these in the order you want the library to check for auth status
         crdsAuth.CrdsAuthenticationProviders.Okta,
         crdsAuth.CrdsAuthenticationProviders.Mp
-      ]
+      ],
+      cookieDomain: CRDS.media.prefix + '.crossroads.net'
     }
 
     this.authService = new crdsAuth.CrdsAuthenticationService(authConfig);
