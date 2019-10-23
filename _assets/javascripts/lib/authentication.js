@@ -23,7 +23,7 @@ class Authentication {
         crdsAuth.CrdsAuthenticationProviders.Okta,
         crdsAuth.CrdsAuthenticationProviders.Mp
       ],
-      cookieDomain: CRDS.media.prefix + '.crossroads.net'
+      env: CRDS.media.prefix
     }
 
     this.authService = new crdsAuth.CrdsAuthenticationService(authConfig);
