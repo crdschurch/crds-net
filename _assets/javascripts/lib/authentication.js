@@ -22,7 +22,8 @@ class Authentication {
         // Put these in the order you want the library to check for auth status
         crdsAuth.CrdsAuthenticationProviders.Okta,
         crdsAuth.CrdsAuthenticationProviders.Mp
-      ]
+      ],
+      env: CRDS.media.prefix
     }
 
     this.authService = new crdsAuth.CrdsAuthenticationService(authConfig);
