@@ -46,12 +46,12 @@ layout: container-fluid
           <p class="text-gray flush-bottom push-quarter-top small">
             {{ meeting.description }}
           </p>
-          <a
-            class="btn btn-cyan push-top"
-            type="button"
-            href="{{ meeting.registration_link }}"
-            >Register</a
-          >
+          {% if meeting.childcare %}
+          <p class="text-gray flush-bottom push-quarter-top small">
+            *childcare is available with one week advance registration.
+          </p>
+          {% endif %}
+          <a class="btn btn-cyan push-top" type="button" href="{{ meeting.registration_link }}">Register</a>
         </div>
         {% endfor %}
       </div>
