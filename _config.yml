@@ -159,16 +159,13 @@ contentful:
       date: published_at
   video:
     query: "fields.exclude_from_crossroads[ne]=true"
-    map:
-      date: published_at
   category:
-    query: "fields.collections.sys.id[nin]=3F1707Eeiu50rMaxCf6wNN,3X7oFhglWTJGXy3TD5u5br,6XwgUaVRdsKzXrncprwJMt,3E8JlwCIG49c00bU7MXEuL"
-  collection: 
-    query: "fields.slug[ne]=isgodreal-com"
+    query: "fields.exclude_from_crossroads[ne]=true"
   exclude:
     - album
     - migration
     - sign_off
+    - collections
 
 defaults:
   - scope:
