@@ -40,9 +40,13 @@ layout: container-fluid
           <p class="flush-bottom push-half-top small">
             <strong> Starts {{ meeting.starts_at | date: "%B %e, %Y" }}</strong>
           </p>
+
+          {% if meeting.room%}
           <p class="text-gray flush-bottom push-quarter-top small">
             Room: {{ meeting.room }}
           </p>
+          {% endif %}
+          
           <p class="text-gray flush-bottom push-quarter-top small">
             {{ meeting.description }}
           </p>
