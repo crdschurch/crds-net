@@ -29,13 +29,14 @@ layout: container-fluid
       {% assign meetings = page.meetings | in_groups: 2 %} {% for row in
       meetings %}
       <div class="row onsite-group-negative-margin-bottom">
-        {% for meeting in row %}
+        {% for obj in row %}
+        {% assign meeting = site.onsite_group_meetings | where: 'contentful_id', obj.id | first %}
         <div class="col-md-5 push-top push-right soft-right">
           <h4 class="flush-ends font-family-condensed-extra text-uppercase">
-            {{ meeting.location.slug }}
+            {{ meeting.location.name }}
           </h4>
           <h4 class="flush-ends font-family-condensed-extra text-uppercase">
-            {{ meeting.title }} {{ meeting.meeting_time }}
+            {{ meeting.meeting_time }}
           </h4>
           <p class="flush-bottom push-half-top small">
             <strong> Starts {{ meeting.starts_at | date: "%B %e, %Y" }}</strong>
