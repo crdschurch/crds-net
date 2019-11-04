@@ -57,6 +57,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /songs/*,/media/songs/:splat,302!
 /oktasignin*,https://${env:CRDS_SIGNIN_ENDPOINT}:splat,200!
 /signin/*,https://${env:CRDS_SIGNIN_ENDPOINT}/signin/:splat,200!
+/event-checkin/*,https://${env:CRDS_EVENT_CHECKIN_ENDPOINT},302!
 /media/music/,${env:CRDS_MUSIC_ENDPOINT},301!
 /media/*,${env:CRDS_MEDIA_ENDPOINT}/:splat,200!
 /music/,${env:CRDS_MUSIC_ENDPOINT},301!
