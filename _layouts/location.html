@@ -80,33 +80,33 @@ layout: default
 <!-- Christmas Section -->
 
 {% if page.name == 'Downtown Lexington' or page.name == 'East Side' or page.name == 'Florence' or page.name == 'Georgetown' or page.name == 'Lexington' or page.name == 'Mason' or page.name == 'Oakley' or page.name == 'Richmond' or page.name == 'Uptown' or page.name == 'West Side' %}
-<section class="bg-charcoal">
+<section class="" style="background-color: #d82f2f;">
   <div class="container soft">
     <div class="row">
       <div class="col-sm-12">
         <p class="lead text-center text-white">CHRISTMAS VOLUNTEER OPPORTUNITIES</p>
-        <hr style="border-top: 1px solid #5d5d5d;">
+        <hr style="border-top: 1px solid #a51717">
       </div>
     </div>
     <div class="row push-ends">
       {% if fi_link %}
       <div class="col-sm-4 soft-sides">
         <h2 class="component-header text-white flush-top">First Impressions</h2>
-        <p>From decorating the atrium to behind-the-scenes support, sign up here to volunteer in First Impressions this season.</p>
+        <p style="color: #eab6b6;">From decorating the atrium to behind-the-scenes support, sign up here to volunteer in First Impressions this season.</p>
         <a href="{{ fi_link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Sign up for First Impressions</a>
       {% endif %}
       </div>
       {% if cgd_link %}
       <div class="col-sm-4 soft-sides push-bottom">
         <h2 class="component-header text-white flush-top">Christmas Gift Drive</h2>
-        <p>Help give out gift tags, organize gifts, or deliver the gifts to the kids on a Saturday morning prior to Christmas.</p>
-          <a href="{{ cgd_link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Sign up for Christmas Gift Drive</a>
+        <p style="color: #eab6b6;">Help give out gift tags, organize gifts, or deliver the gifts to the kids on a Saturday morning prior to Christmas.</p>
+        <a href="{{ cgd_link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Sign up for Christmas Gift Drive</a>
       </div>
       {% endif %}
       {% if eve_link %}
       <div class="col-sm-4 soft-sides push-bottom">
         <h2 class="component-header text-white flush-top">Christmas Eve Services</h2>
-        <p>We’re looking for people to help us create a great experience for our friends and family. You can do things like park cars, serve hot cocoa, or greet people at the door.</p>
+        <p style="color: #eab6b6;">We’re looking for people to help us create a great experience for our friends and family. You can do things like park cars, serve hot cocoa, or greet people at the door.</p>
         <a href="{{ eve_link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Sign up for Christmas Eve Services</a>
       </div>
       {% endif %}
