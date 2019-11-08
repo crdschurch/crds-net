@@ -137,10 +137,6 @@ paginate:
   </div>
 </section>
 
-<<<<<<< HEAD
-<!-- Tithe Challenge -->
-=======
->>>>>>> development
 <section class="container">
   <div class="row">
     <div class="col-md-12">
@@ -176,25 +172,13 @@ paginate:
 
 <!-- More Content -->
 <section class="container">
-<<<<<<< HEAD
-  <hr class="push-half-bottom">
-  <div id="monetate-cta" class="row">
-
-    <!-- Big Content Feature -->
-=======
   <div class="row">
     <!-- Overlay Cards -->
->>>>>>> development
     <div class="col-md-8">
       <hr class="push-half-bottom" />
       <h2 class="flush-top font-size-base text-gray-light">latest</h2>
 
-<<<<<<< HEAD
-      {% assign below_the_fold = page.home_collection.docs | slice: 0 %}
-      {% for article in below_the_fold %}
-=======
       {% assign below_the_fold = page.home_collection.docs | slice: 4 %} {% for article in below_the_fold %}
->>>>>>> development
       <a href="{{ article.url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
@@ -216,36 +200,8 @@ paginate:
       <!-- Content Cards -->
       <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
         <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
-<<<<<<< HEAD
-
-          {% assign above_the_fold = page.home_collection.docs | slice: 1, 4 %}
-          {% for article in above_the_fold %}
-
-          {% assign author = article.author | get_doc %}
-          {% assign category = article.category | get_doc %}
-          <div class="card carousel-cell card-2x">
-            <a class="relative" href="{{ article.url }}">
-              {% include media/_media-label.html source=article %}
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
-            </a>
-
-            <div class="card-block hard soft-quarter-top">
-              <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{
-                category.title }}</a>
-              <h3 class="component-header flush">
-                <a href="{{ article.url }}">{{ article.title }}</a>
-              </h3>
-              <p class="card-text soft-quarter-top">
-                <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>
-              </p>
-            </div>
-          </div>
-          {% endfor %}
-=======
           {% assign above_the_fold = page.home_collection.docs | slice: 5, 10 %} {% for item in above_the_fold %} {%
           include media/_media-card.html autoplay=true carousel=true %} {% endfor %}
->>>>>>> development
         </div>
       </div>
     </div>
@@ -309,10 +265,5 @@ paginate:
     c.getEventStatus();
   }
 </script>
-<<<<<<< HEAD
-{% javascript_link_tag autoplay async %}
-{% javascript_link_tag skeleton async %}
-=======
 
 {% javascript_link_tag autoplay async %} {% javascript_link_tag skeleton async %}
->>>>>>> development
