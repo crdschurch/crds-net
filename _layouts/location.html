@@ -74,13 +74,15 @@ layout: default
     <a href="javascript:void(0)" class="btn btn-primary push-half-sides" data-smooth-scroll-to="happenings">See what's
       happening at {{ page.name | downcase }}</a>
     {% endif %}
-
   </div>
 </div>
 
 <!-- Christmas Section -->
+
+{% if page.name == 'Downtownlex' or 'Eastside' or 'Florence' or 'Georgetown' or 'Lexington' or 'Mason' or 'Oakley' or 'Richmond' or 'Uptown' or 'Westside' %}
 <section class="bg-charcoal">
   <div class="container soft">
+
     <div class="row">
       <div class="col-sm-12">
         <p class="lead text-center text-white">CHRISTMAS VOLUNTEER OPPORTUNITIES</p>
@@ -111,6 +113,7 @@ layout: default
       {% endif %}
     </div>
 </section>
+{% endif %}
 
 <!-- General Info Section -->
 <section class="bg-blue-dark soft-ends">
