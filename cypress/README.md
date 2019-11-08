@@ -3,9 +3,8 @@
 
 Environment variables needed to run locally:
 ```bash
-CYPRESS_CONTENTFUL_ACCESS_TOKEN
-CYPRESS_CONTENTFUL_SPACE_ID
-CYPRESS_FRED_FLINTSTONE_PW
+VAULT_ROLE_ID
+VAULT_SECRET_ID
 ```
 
 
@@ -16,8 +15,8 @@ If you decide to use another method, please be sure these variables are *not* ch
 Environment variables set in Netlify to run Cypress through Travis.ci:
 ```bash
 CYPRESS_CONFIG_FILE #int_crossroads, demo_crossroads
-CONTENTFUL_ACCESS_TOKEN
-CONTENTFUL_SPACE_ID
+VAULT_ROLE_ID
+VAULT_SECRET_ID
 RUN_CYPRESS #true/false
 TRAVIS_CI #Travis's API Authentication token
 CYPRESS_INSTALL_BINARY = 0 #Stop Cypress from installing in Netlify
@@ -26,7 +25,6 @@ CYPRESS_INSTALL_BINARY = 0 #Stop Cypress from installing in Netlify
 Environment variables to set in Travis.ci:
 ```bash
 cypressDashboard #Cypress's dashboard record key for this repo
-FRED_FLINTSTONE_PW
 ```
 
 ## Run Locally
