@@ -4,6 +4,8 @@
     "slack_channel": "#bearsharktopus-qa",
     "email_recipients": "",
     "CONTENTFUL_ENV": "demo",
-    "schedule_env": "/demo"
+    "CROSSROADS_API_ENDPOINT": "https://api-demo.crossroads.net",
+    "schedule_env": "/demo",
+    "vaultEnv": "demo"
   }
 }

@@ -1,5 +1,5 @@
 export const fred_flintstone = {
   email: 'mpcrds+auto+fredflintstone@gmail.com',
-  password: Cypress.env('FRED_FLINTSTONE_PW'),
+  password: Cypress.env('TEST_USER_PW'),
   congregation: 'Mason'
 };
