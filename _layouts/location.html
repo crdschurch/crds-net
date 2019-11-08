@@ -6,47 +6,47 @@ layout: default
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
 {% include header.html %}
 
-{% if page.name == "Andover" %}
+{% if page.title == "Andover" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSc_tN4sn2STiUwDuAj2kkvD586-gE6Ztp5MI7es6D46hx1zyQ/viewform" %}
-{% elsif page.name == "Lexington" %}
+{% elsif page.title == "Lexington" %}
 {% assign fi_link = "http://www.crossroads.net/lexington/christmasdecoratingsignup/" %}
 {% assign cgd_link = "http://www.crossroads.net/cgd/lexington" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSc_tN4sn2STiUwDuAj2kkvD586-gE6Ztp5MI7es6D46hx1zyQ/viewform" %}
-{% elsif page.name == "Columbus" %}
-{% elsif page.name == "Dayton" %}
+{% elsif page.title == "Columbus" %}
+{% elsif page.title == "Dayton" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScA4hpYfwYROgpwQs1iDelr5nahobys0SuK_Tm8cfOANTR-Dg/viewform" %}
-{% elsif page.name == "Downtown-Lexington" %}
+{% elsif page.title == "Downtownlexington" %}
 {% assign fi_link = "https://www.crossroads.net/downtown/christmasdecoratingsignup/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSeyqUR1KRRQnQJDSdX3cPgzfHgXKNK18ABzk2Cl6g99jtRrsA/viewform" %}
-{% elsif page.name == "Eastside" %}
+{% elsif page.title == "Eastside" %}
 {% assign fi_link = "https://www.crossroads.net/eastside/christmasdecoratingsignup/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScMpEO29vIDaUMuQkjlu-Jcf6II8jL4JG-wyLFA5yKBBCWWDA/viewform" %}
-{% elsif page.name == "Florence" %}
+{% elsif page.title == "Florence" %}
 {% assign fi_link = "http://www.crossroads.net/florence/christmasdecoratingsignup/" %}
 {% assign cgd_link = "http://www.crossroads.net/cgd/florence" %}
 {% assign eve_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?start_over&id=43913" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSfo2ywXjTQuxNUx5uIa7T3n2K_rZ9rWc2F_3CJCM4x8dMvN3w/viewform" %}
-{% elsif page.name == "Georgetown" %}
+{% elsif page.title == "Georgetown" %}
 {% assign fi_link = "http://www.crossroads.net/georgetown/christmasdecoratingsignup/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSf1VIGPA3qcmjtXb2JG4tCz-LhwoLNPDjPloHLTJ-72u15HQw/viewform" %}
-{% elsif page.name == "Mason" %}
+{% elsif page.title == "Mason" %}
 {% assign fi_link = "https://www.crossroads.net/mason/christmasdecoratingsignup/" %}
 {% assign cgd_link = "https://www.crossroads.net/cgd/mason/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSctEwPK6JmDtzB6iN4J4a2cSUWme4BeefEHr2xzqTYorQBr7Q/viewform" %}
-{% elsif page.name == "Oakley" %}
+{% elsif page.title == "Oakley" %}
 {% assign fi_link = "http://www.crossroads.net/oakley/christmasdecoratingsignup/" %}
 {% assign eve_link = "http://crossroadsallothervolunteers.volunteerlocal.com/volunteer/?id=43586" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSdjDSPZQil5lZAipQnodua9xaj0zhrgI1fl0lt6dC2617AJPw/viewform" %}
-{% elsif page.name == "Oxford" %}
+{% elsif page.title == "Oxford" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSc_zIJaeQHa7H5ZfkSgrNxzjZb6-2Liycyf5P9hYkuK4BRqrQ/viewform" %}
-{% elsif page.name == "Richmond" %}
+{% elsif page.title == "Richmond" %}
 {% assign fi_link = "http://www.crossroads.net/richmond/christmasdecoratingsignup/" %}
 {% assign eve_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=43719" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSegG0d3hMLUpQL-_m65FHG1tniT2TtRODEPQtegPl76qnAq7A/viewform" %}
-{% elsif page.name == "Uptown" %}
+{% elsif page.title == "Uptown" %}
 {% assign fi_link = "http://www.crossroads.net/uptown/christmasdecoratingsignup/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScTectxJ6mKo-UvZVv4Av8Q5kWkTZZypAGdqLldnR50hYnWGA/viewform" %}
-{% elsif page.name == "Westside" %}
+{% elsif page.title == "Westside" %}
 {% assign fi_link = "http://www.crossroads.net/westside/christmasdecoratingsignup/" %}
 {% assign cgd_link = "http://www.crossroads.net/cgd/westside" %}
 {% assign eve_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?id=43547" %}
@@ -79,7 +79,7 @@ layout: default
 
 <!-- Christmas Section -->
 
-{% if page.name == 'Downtown-Lexington' or page.name == 'Eastside' or page.name == 'Florence' or page.name == 'Georgetown' or page.name == 'Lexington' or page.name == 'Mason' or page.name == 'Oakley' or page.name == 'Richmond' or page.name == 'Uptown' or page.name == 'Westside' %}
+{% if page.name == 'Downtownlexington' or page.name == 'Eastside' or page.name == 'Florence' or page.name == 'Georgetown' or page.name == 'Lexington' or page.name == 'Mason' or page.name == 'Oakley' or page.name == 'Richmond' or page.name == 'Uptown' or page.name == 'Westside' %}
 <section class="bg-charcoal">
   <div class="container soft">
     <div class="row">
