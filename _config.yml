@@ -49,7 +49,7 @@ contentful:
     query: fields.category=common
     map:
       content_block: content
-  page:
+  page:	
     query: "fields.collections[exists]=false"
   podcast:
     query: "fields.exclude_from_crossroads[ne]=true"
@@ -57,6 +57,8 @@ contentful:
     query: "content_type=episode&fields.podcast.sys.contentType.sys.id=podcast&fields.podcast.fields.exclude_from_crossroads[ne]=true"
   video:
     query: "fields.exclude_from_crossroads[ne]=true"
+    map:
+      date: published_at
   exclude:
     - album
     - migration
@@ -86,16 +88,14 @@ collections:
     filename: "{{ published_at | date: '%Y-%m-%d-%H-%M-%S' }}-{{ title | slugify }}-{{ slug }}"
     output: false
   articles:
-    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
   topics:
     output: false
   authors:
     output: false
   podcasts:
-    output: false
+    output: true
   episodes:
-    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
     permalink: /podcasts/(:podcast/:slug)/:title
   tags:
@@ -113,7 +113,6 @@ collections:
   songs:
     output: false
   videos:
-    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
   system_pages:
     output: false
@@ -160,12 +159,13 @@ contentful:
       date: published_at
   video:
     query: "fields.exclude_from_crossroads[ne]=true"
-    map:
-      date: published_at
+  category:
+    query: "fields.exclude_from_crossroads[ne]=true"
   exclude:
     - album
     - migration
     - sign_off
+    - collections
 
 defaults:
   - scope:
@@ -178,6 +178,7 @@ defaults:
       type: "onsite_groups"
     values:
       layout: onsite-group-detail
+      snail_trail: connect
 
 imgix_params:
   placeholder: "auto=format,compress&w=10"

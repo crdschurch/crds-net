@@ -9,6 +9,7 @@
   CRDS_SIGNIN_ENDPOINT = "development--crds-signin.netlify.com"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
+  CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
 
 [context.deploy-preview.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
@@ -17,6 +18,7 @@
   CRDS_SIGNIN_ENDPOINT = "development--crds-signin.netlify.com"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
+  CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
 
 [context.development.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
@@ -25,6 +27,7 @@
   CRDS_SIGNIN_ENDPOINT = "development--crds-signin.netlify.com"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
+  CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
 
 [context.runway.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
@@ -33,6 +36,7 @@
   CRDS_SIGNIN_ENDPOINT = "development--crds-signin.netlify.com"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
+  CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
 
 [context.release.environment]
   CRDS_PEOPLE_DOMAIN = "crdspeople.netlify.com"
@@ -41,6 +45,7 @@
   CRDS_SIGNIN_ENDPOINT = "release--crds-signin.netlify.com"
   CRDS_SERVE_ENDPOINT = "release.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "release.profile.crossroads.net"
+  CRDS_EVENT_CHECKIN_ENDPOINT = "release.event-checkin.crossroads.net"
 
 [context.master.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-prod.netlify.com"
@@ -49,3 +54,4 @@
   CRDS_SIGNIN_ENDPOINT = "crds-signin.netlify.com"
   CRDS_SERVE_ENDPOINT = "serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "profile.crossroads.net"
+  CRDS_EVENT_CHECKIN_ENDPOINT = "event-checkin.crossroads.net"

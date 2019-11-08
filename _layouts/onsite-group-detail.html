@@ -26,8 +26,8 @@ layout: container-fluid
         </div>
       </div>
 
-      {% assign meetings = page.meetings | in_groups: 2 %} {% for row in
-      meetings %}
+      {% assign meetings = page.meetings | in_groups: 2 %}
+      {% for row in meetings %}
       <div class="row onsite-group-negative-margin-bottom">
         {% for obj in row %}
         {% assign meeting = site.onsite_group_meetings | where: 'contentful_id', obj.id | first %}
