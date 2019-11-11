@@ -178,23 +178,9 @@ paginate:
       <hr class="push-half-bottom" />
       <h2 class="flush-top font-size-base text-gray-light">latest</h2>
 
-      {% assign below_the_fold = page.home_collection.docs | slice: 4 %} {% for article in below_the_fold %}
-      <a href="{{ article.url }}" class="overlay-card">
-        <div class="bg-overlay"></div>
-        <div class="overlay-card-image">
-          <img
-            src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-            sizes="{{ site.image_sizes.three_fourths }}"
-            data-optimize-img
-          />
-        </div>
-        <div class="overlay-card-content">
-          <p class="overlay-card-category">{{ article.category.title }}</p>
-          <h2 class="overlay-card-title">{{ article.title }}</h2>
-          <p class="overlay-card-author">{{ article.author.full_name }}</p>
-          {% include media/_media-label.html source=article %}
-        </div>
-      </a>
+      {% assign below_the_fold = page.home_collection.docs | slice: 4 %} 
+      {% for item in below_the_fold %}
+        {% include media/_overlay-card.html %}
       {% endfor %}
 
       <!-- Content Cards -->
