@@ -10,26 +10,39 @@ CRDS.DistanceSorter = class DistanceSorter {
     this.searchForm = undefined;
     this.searchInput = undefined;
     this.formSubmitButton = undefined;
+    this.geoSubmit = undefined;
     this.cards = undefined;
     this.locationFinder = undefined;
     this.init();
   }
 
   init() {
-    this.searchForm =  document.getElementById('locations-address-input');
-    this.searchForm.addEventListener('submit', this.handleFormSubmit.bind(this));
-    this.searchInput = this.searchForm.getElementsByTagName('input')[0];
-    this.formSubmit = this.searchForm.getElementsByTagName('button')[0];
+    this.searchForm = document.getElementById('locations-address-input');
+    this.searchInput = document.getElementById('search-input');
+    this.formSubmit = document.getElementById('input-search');
+    this.geoSubmit = document.getElementById('geo-search');
+    this.geoSubmit.disabled = false;
     this.formSubmit.disabled = false;
+    this.geoSubmit.addEventListener('click', this.handleGeoSubmit.bind(this));
+    this.searchForm.addEventListener('submit', this.handleFormSubmit.bind(this));
     this.locationsCarousel = DistanceSorter.getLocationsCarousel();
     this.cards = this.locationsCarousel.cards;
     this.locationFinder = new CRDS.LocationFinder();
+    navigator.geolocation.getCurrentPosition(position => {
+    }, error => {
+      this.hideGeoButton();
+    });
   }
 
   static getLocationsCarousel() {
     return Object.values(CRDS._instances).find(
       (instance) => DistanceSorter._isSectionLocationsCarousel(instance)
     );
+  }
+
+  hideGeoButton() {
+    console.log('hiding geo button');
+    this.geoSubmit.style = 'display: none;';
   }
 
   static _isSectionLocationsCarousel(instance) {
@@ -48,14 +61,33 @@ CRDS.DistanceSorter = class DistanceSorter {
       });
   }
 
+  handleGeoSubmit(event) {
+    this._disableGeoButton();
+    navigator.geolocation.getCurrentPosition(position => {
+      this.getDistance(position)
+        .done((locationDistances) => { this._updateDomWithSortedCards(locationDistances); })
+        .fail((xhr, ajaxOptions, thrownError) => {
+          console.log(thrownError);
+          this.showError();
+          this.geoSubmit.disabled = false;
+          this.removeLabels();
+        });
+    });
+  }
+
   _disableForm() {
     event.preventDefault();
     this.formSubmit.disabled = true;
   }
 
-  getDistance() {
+  _disableGeoButton() {
+    event.preventDefault();
+    this.geoSubmit.disabled = true;
+  }
+
+  getDistance(data) {
     this.locationDistances = [];
-    return this.locationFinder.getLocationDistances(this.searchInput.value);
+    return this.locationFinder.getLocationDistances(data ? `${data.coords.latitude}, ${data.coords.longitude}` : this.searchInput.value);
   }
 
   _updateDomWithSortedCards(locationDistances) {
@@ -128,6 +160,7 @@ CRDS.DistanceSorter = class DistanceSorter {
 
   _resetFormOnSuccess() {
     this.clearError();
+    this.geoSubmit.disabled = false;
     this.formSubmit.disabled = false;
   }
 
