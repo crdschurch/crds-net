@@ -28,10 +28,7 @@ CRDS.DistanceSorter = class DistanceSorter {
     this.locationsCarousel = DistanceSorter.getLocationsCarousel();
     this.cards = this.locationsCarousel.cards;
     this.locationFinder = new CRDS.LocationFinder();
-    navigator.geolocation.getCurrentPosition(position => {
-    }, error => {
-      this.hideGeoButton();
-    });
+    this.getGeoPermissions();
   }
 
   static getLocationsCarousel() {
@@ -40,13 +37,34 @@ CRDS.DistanceSorter = class DistanceSorter {
     );
   }
 
-  hideGeoButton() {
-    console.log('hiding geo button');
-    this.geoSubmit.style = 'display: none;';
-  }
-
   static _isSectionLocationsCarousel(instance) {
     return instance.carousel !== undefined && instance.carousel !== null && instance.carousel.id === 'section-locations';
+  }
+
+  getGeoPermissions() {
+    if(navigator.permissions){
+      this.isGeoAllowed().then(permission => {
+        if(permission === true) this.showGeoButton();
+        else if(permission !== false) permission.onchange = this.getGeoPermissions();
+      });
+    } else { // if navigator.persmissions is not supported
+      navigator.geolocation.getCurrentPosition(position => {
+          this.showGeoButton();
+      });
+    }
+  }
+
+  isGeoAllowed() {
+    return navigator.permissions.query({name: 'geolocation'})
+      .then(permission => {
+        if(permission.state === 'granted') return true;
+        else if(permission.state === 'prompt') return permission;
+        return false;
+      })
+  }
+
+  showGeoButton() {
+    this.geoSubmit.style.display = 'block';
   }
 
   handleFormSubmit(event) {
