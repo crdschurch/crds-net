@@ -36,7 +36,9 @@ snail_trail: connect
     {% for meeting in page.meetings %}
     <div class="col-md-3">
       <h4 class="font-family-condensed-extra text-uppercase">
-        {{ meeting.title }}
+        <a href="{{ page.meeting_group_permalinks[meeting.contentful_id] }}">
+          {{ meeting.title }}
+        </a>
       </h4>
       <p class="text-gray flush-bottom small">{{ meeting.description }}</p>
       <p class="flush-bottom push-quarter-top small">
