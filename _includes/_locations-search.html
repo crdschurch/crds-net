@@ -1,8 +1,15 @@
 <form class="searchbar" id="locations-address-input" data-track-search="locationsLocationSearch" data-automation-id="location-search">
   <div class="input-group">
-    <input class="form-control" placeholder="Search by address or zipcode" type="text" />
     <span class="input-group-btn">
-      <button class="btn btn-secondary" type="submit">
+      <button id='geo-search' class="btn btn-gray-light geo-search" type="button">
+        <svg class="icon icon-1" viewBox="0 0 256 256">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#map-marker"></use>
+        </svg>
+      </button>
+    </span>
+    <input id="search-input" class="form-control" placeholder="Search by address or zipcode" type="text" />
+    <span class="input-group-btn">
+      <button id="input-search" class="btn btn-secondary search-submit" type="submit">
         <svg class="icon icon-1" viewBox="0 0 256 256">
           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#search"></use>
         </svg>
