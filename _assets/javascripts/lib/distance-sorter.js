@@ -57,6 +57,7 @@ CRDS.DistanceSorter = class DistanceSorter {
 
   handleGeoClick(event) {
     this._disableGeoButton();
+    this.searchInput.value = '';
     this.getGeo()
       .then(position => {
         this.getDistance(position)
