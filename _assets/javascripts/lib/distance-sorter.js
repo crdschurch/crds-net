@@ -82,8 +82,6 @@ CRDS.DistanceSorter = class DistanceSorter {
       });
   }
 
-
-
   _disableForm() {
     event.preventDefault();
     this.formSubmit.disabled = true;
