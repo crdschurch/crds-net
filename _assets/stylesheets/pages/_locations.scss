@@ -17,3 +17,13 @@
     }
   }
 }
+
+#search-input {
+  @media (max-width: 766px) {
+    font-size: 14px;
+  }
+}
+
+#geo-search {
+  display: none;
+}
