@@ -6,29 +6,21 @@ window.CRDS = window.CRDS || {};
 
 CRDS.DistanceSorter = class DistanceSorter {
   constructor() {
-    this.locationDistances = [];
-    this.searchForm = undefined;
-    this.searchInput = undefined;
-    this.formSubmitButton = undefined;
-    this.geoSubmit = undefined;
-    this.cards = undefined;
-    this.locationFinder = undefined;
     this.init();
   }
 
   init() {
     this.searchForm = document.getElementById('locations-address-input');
-    this.searchInput = document.getElementById('search-input');
-    this.formSubmit = document.getElementById('input-search');
-    this.geoSubmit = document.getElementById('geo-search');
-    this.geoSubmit.disabled = false;
-    this.formSubmit.disabled = false;
-    this.geoSubmit.addEventListener('click', this.handleGeoSubmit.bind(this));
-    this.searchForm.addEventListener('submit', this.handleFormSubmit.bind(this));
+    this.searchInput = this.searchForm.elements.namedItem('search-input');
+    this.formSubmit = this.searchForm.elements.namedItem('input-search');
+    this.geoSubmit = this.searchForm.elements.namedItem('geo-search');
+    this.geoSubmit.addEventListener('click', this.handleGeoClick.bind(this));
+    this.formSubmit.addEventListener('click', this.handleSubmit.bind(this));
+    this.searchInput.addEventListener('submit', this.handleSubmit.bind(this));
     this.locationsCarousel = DistanceSorter.getLocationsCarousel();
     this.cards = this.locationsCarousel.cards;
     this.locationFinder = new CRDS.LocationFinder();
-    this.getGeoPermissions();
+    this.isGeoAllowed();
   }
 
   static getLocationsCarousel() {
@@ -41,33 +33,44 @@ CRDS.DistanceSorter = class DistanceSorter {
     return instance.carousel !== undefined && instance.carousel !== null && instance.carousel.id === 'section-locations';
   }
 
-  getGeoPermissions() {
+  isGeoAllowed() {
     if(navigator.permissions){
-      this.isGeoAllowed().then(permission => {
-        if(permission === true) this.showGeoButton();
-        else if(permission !== false) permission.onchange = this.getGeoPermissions();
-      });
-    } else { // if navigator.persmissions is not supported
-      navigator.geolocation.getCurrentPosition(position => {
-          this.showGeoButton();
-      });
+      navigator.permissions.query({name: 'geolocation'})
+        .then(permission => {
+          if(permission.state === 'granted') this.showGeoButton();
+          else if(permission.state === 'prompt') this.getGeo().then(() => this.showGeoButton());;
+        })
+    } else {
+      this.getGeo().then(() => this.showGeoButton());
     }
   }
 
-  isGeoAllowed() {
-    return navigator.permissions.query({name: 'geolocation'})
-      .then(permission => {
-        if(permission.state === 'granted') return true;
-        else if(permission.state === 'prompt') return permission;
-        return false;
-      })
+  getGeo() {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
   }
 
   showGeoButton() {
     this.geoSubmit.style.display = 'block';
   }
 
-  handleFormSubmit(event) {
+  handleGeoClick(event) {
+    this._disableGeoButton();
+    this.getGeo()
+      .then(position => {
+        this.getDistance(position)
+        .done((locationDistances) => { this._updateDomWithSortedCards(locationDistances); })
+        .fail((xhr, ajaxOptions, thrownError) => {
+          console.log(thrownError);
+          this.showError();
+          this.geoSubmit.disabled = false;
+          this.removeLabels();
+        });
+      })
+  }
+
+  handleSubmit(event) {
     this._disableForm();
     this.getDistance()
       .done((locationDistances) => { this._updateDomWithSortedCards(locationDistances); })
@@ -79,19 +82,7 @@ CRDS.DistanceSorter = class DistanceSorter {
       });
   }
 
-  handleGeoSubmit(event) {
-    this._disableGeoButton();
-    navigator.geolocation.getCurrentPosition(position => {
-      this.getDistance(position)
-        .done((locationDistances) => { this._updateDomWithSortedCards(locationDistances); })
-        .fail((xhr, ajaxOptions, thrownError) => {
-          console.log(thrownError);
-          this.showError();
-          this.geoSubmit.disabled = false;
-          this.removeLabels();
-        });
-    });
-  }
+
 
   _disableForm() {
     event.preventDefault();
