@@ -37,6 +37,27 @@ crds-site-select {
     bottom: 0;
     left: 125px;
 }
+
+@media screen and (min-width: 995px){
+  crds-site-select {
+      left: 125px;
+  }
+}
+@media screen and (max-width: 995px){
+  crds-site-select {
+      left: 110px;
+  }
+}
+@media screen and (max-width: 640px){
+  crds-site-select {
+      left: 125px;
+  }
+}
+
 .card-text {
     padding-bottom: 30px;
+}
+
+.card-deck--expanded-layout .card{
+  margin-bottom: 3.5em;
 }
