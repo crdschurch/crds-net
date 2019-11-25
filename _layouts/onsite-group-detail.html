@@ -33,7 +33,7 @@ layout: container-fluid
         {% assign meeting = site.onsite_group_meetings | where: 'contentful_id', obj.id | first %}
         <div class="col-md-5 push-top push-right soft-right">
           <h4 class="flush-ends font-family-condensed-extra text-uppercase">
-            {{ meeting.location.name }}
+            <a href="/groups/{{ meeting.location.slug }}">{{ meeting.location.name }}</a>
           </h4>
           <h4 class="flush-ends font-family-condensed-extra text-uppercase">
             {{ meeting.meeting_time }}

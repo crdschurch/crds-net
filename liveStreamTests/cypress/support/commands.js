@@ -15,7 +15,7 @@ Cypress.Commands.add('reportResultsByEmail', () => {
 function reportResultsToSlack() {
   const slack = require('slack-notify')(Cypress.env('SLACK_WEBHOOK_URL'));
 
-  //Construct Slack message
+   //Construct Slack message
   const body = {
     'username': 'Live Stream Encoding'
   };
@@ -27,7 +27,7 @@ function reportResultsToSlack() {
     body.channel = channel;
 
     if(errors.length == 0){
-      slack.success(body);
+    //  slack.success(body); uncomment to report success message to slack
     } else {
       slack.alert(body);
     }
