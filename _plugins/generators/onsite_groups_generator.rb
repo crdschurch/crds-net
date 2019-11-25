@@ -2,6 +2,17 @@ module Jekyll
   class OnsiteGroupsGenerator < Generator
 
     def generate(site)
+      # Get the meeting group permalinks
+      meeting_group_permalinks = Hash.new
+      site.
+        collections['onsite_groups'].docs.each do |group|
+          if !group.data['meetings'].nil?
+            group.data['meetings'].each do |meeting|
+              meeting_group_permalinks[meeting['id']] = group.url
+            end
+          end
+        end
+
       # Get all meetings documents from Jekyll collections
       meetings = site.
         collections['onsite_group_meetings'].docs
@@ -28,6 +39,7 @@ module Jekyll
         # Add location and meeting info to page's data object
         page.data['location'] = location
         page.data['meetings'] = meetings_by_location[slug]
+        page.data['meeting_group_permalinks'] = meeting_group_permalinks
         # Add the page to Jekyll's pages array
         site.pages << page
       end
