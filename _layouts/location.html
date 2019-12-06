@@ -27,10 +27,10 @@ layout: default
 {% assign eve_link = "http://crossroadschurch1.volunteerlocal.com/volunteer/?start_over&id=43913" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSfo2ywXjTQuxNUx5uIa7T3n2K_rZ9rWc2F_3CJCM4x8dMvN3w/viewform" %}
 {% elsif page.title == "Georgetown" %}
-
+{% assign fi_link = "http://www.crossroads.net/georgetown/christmasvolunteersignup/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSf1VIGPA3qcmjtXb2JG4tCz-LhwoLNPDjPloHLTJ-72u15HQw/viewform" %}
 {% elsif page.title == "Mason" %}
-
+{% assign fi_link = "https://www.crossroads.net/mason/christmasvolunteersignup/" %}
 {% assign cgd_link = "https://www.crossroads.net/cgd/mason/" %}
 {% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSctEwPK6JmDtzB6iN4J4a2cSUWme4BeefEHr2xzqTYorQBr7Q/viewform" %}
 {% elsif page.title == "Oakley" %}
@@ -94,6 +94,13 @@ layout: default
         <h2 class="component-header text-white flush-top">Christmas Gift Drive</h2>
         <p style="color: #eab6b6;">Help give out gift tags, organize gifts, or deliver the gifts to the kids on a Saturday morning prior to Christmas.</p>
         <a href="{{ cgd_link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Sign up for Christmas Gift Drive</a>
+      </div>
+      {% endif %}
+      {% if fi_link %}
+      <div class="col-sm-4 soft-sides push-bottom">
+        <h2 class="component-header text-white flush-top">Christmas Decorating Party</h2>
+        <p style="color: #eab6b6;">From decorating the atrium to behind-the-scenes support, sign up here to volunteer for the Christmas Decorating Party this season.</p>
+        <a href="{{ fi_link }}" class="btn btn-outline btn-white push-quarter-ends text-white" target="_blank">Sign up for Christmas Decorating Party</a>
       </div>
       {% endif %}
       {% if eve_link %}
