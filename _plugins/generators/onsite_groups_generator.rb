@@ -3,7 +3,7 @@ module Jekyll
 
     def generate(site)
       # Get the meeting group permalinks
-      meeting_group_permalinks = Hash.new
+      meeting_group_permalinks = Hash.new("onsite")
       site.
         collections['onsite_groups'].docs.each do |group|
           if !group.data['meetings'].nil?
@@ -35,7 +35,7 @@ module Jekyll
         # Render the `onsite-group-location.html` template
         page = Jekyll::Page.new(site, '_layouts', '', 'onsite-group-location.html')
         # Tell Jekyll what URL we want for out page
-        page.instance_variable_set('@url', "/groups/#{slug}/index.html")
+        page.instance_variable_set('@url', "/groups/onsite/#{slug}/index.html")
         # Add location and meeting info to page's data object
         page.data['location'] = location
         page.data['meetings'] = meetings_by_location[slug]

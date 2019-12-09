@@ -120,7 +120,7 @@ collections:
     output: false
   onsite_groups:
     output: true
-    permalink: /groups/(:category/:slug)/:slug
+    permalink: /groups/onsite/(:category/:slug)/:slug
   onsite_group_categories:
     output: false
   onsite_group_meetings:
