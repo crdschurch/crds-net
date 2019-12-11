@@ -78,8 +78,7 @@ layout: default
 </div>
 
 <!-- Christmas Section -->
-
-
+{% if page.special_service_times or cgd_link or fi_link or eve_link %}
 <section class="" style="background-color: #d82f2f;">
   <div class="container soft">
     <div class="row">
@@ -89,10 +88,12 @@ layout: default
       </div>
     </div>
     <div class="row push-ends">
+      {% if page.special_service_times %}
       <div class="col-sm-3 soft-sides push-bottom">
         <h2 class="component-header text-white flush-top">Christmas Eve Services Times</h2>
         <p style="color: #eab6b6;">{{ page.special_service_times | markdownify | remove: '<p>'| remove: '</p>' }}</p>
       </div>
+      {% endif %}
       {% if cgd_link %}
       <div class="col-sm-3 soft-sides push-bottom">
         <h2 class="component-header text-white flush-top">Christmas Gift Drive</h2>
@@ -117,6 +118,7 @@ layout: default
     </div>
   </div>
 </section>
+{% endif %}
 
 
 <!-- General Info Section -->
