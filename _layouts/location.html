@@ -77,9 +77,14 @@ layout: default
   </div>
 </div>
 
+<!-- Featured Section - Below Jumbotron-->
+{% if page.featured_below.size > 0 %}
+  {{ page.featured_below }}
+{% endif %}
+
 <!-- Christmas Section -->
 
-{% if page.name == 'Downtown Lexington' or page.name == 'East Side' or page.name == 'Florence' or page.name == 'Georgetown' or page.name == 'Lexington' or page.name == 'Mason' or page.name == 'Oakley' or page.name == 'Richmond' or page.name == 'Uptown' or page.name == 'West Side' %}
+<!-- {% if page.name == 'Downtown Lexington' or page.name == 'East Side' or page.name == 'Florence' or page.name == 'Georgetown' or page.name == 'Lexington' or page.name == 'Mason' or page.name == 'Oakley' or page.name == 'Richmond' or page.name == 'Uptown' or page.name == 'West Side' %}
 <section class="" style="background-color: #d82f2f;">
   <div class="container soft">
     <div class="row">
@@ -106,7 +111,7 @@ layout: default
     </div>
   </div>
 </section>
-{% endif %}
+{% endif %} -->
 
 <!-- General Info Section -->
 <section class="bg-blue-dark soft-ends">
