@@ -56,9 +56,7 @@ layout: container-fluid
             *childcare is available with one week advance registration.
           </p>
           {% endif %}
-          {% if meeting.childcare %}          
-            <a class="btn btn-cyan push-top" type="button" href="{{ meeting.registration_link }}">Register</a>
-          {% endif %}
+          <a class="btn btn-cyan push-top" type="button" href="{{ meeting.registration_link }}">Register</a>
         </div>
         {% endfor %}
       </div>

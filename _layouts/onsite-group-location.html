@@ -48,9 +48,7 @@ snail_trail: connect
       <p class="flush-bottom push-quarter-top small">
         {{ meeting.meeting_time }}
       </p>
-      {% if page.registration_link %}      
-        <a href="{{ meeting.registration_link }}" class="btn btn-cyan push-top" type="button">Register</a>
-      {% endif %}
+      <a href="{{ meeting.registration_link }}" class="btn btn-cyan push-top" type="button">Register</a>
     </div>
     {% endfor %}
   </div>
