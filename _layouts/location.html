@@ -77,6 +77,11 @@ layout: default
   </div>
 </div>
 
+<!-- Featured Section - Below Jumbotron-->
+{% if page.featured_below.size > 0 %}
+  {{ page.featured_below }}
+{% endif %}
+
 <!-- Christmas Section -->
 {% if page.special_service_times or cgd_link or fi_link or eve_link %}
 <section class="" style="background-color: #d82f2f;">
