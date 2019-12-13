@@ -68,9 +68,9 @@ collections_dir: collections
 
 collections:
   pages:
-    filename: "{{ permalink }} index"
+    filename: "{{ permalink | split:'?' | first }} index"
     output: true
-    permalink: /:permalink/index.html
+    permalink: "{{ permalink | split:'?' | first }}/index.html"
   locations:
     output: true
     permalink: /:slug
