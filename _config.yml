@@ -70,7 +70,7 @@ collections:
   pages:
     filename: "{{ permalink | split:'?' | first }} index"
     output: true
-    permalink: "{{ permalink | split:'?' | first }}/index.html"
+    permalink: /:permalink/index.html
   locations:
     output: true
     permalink: /:slug
