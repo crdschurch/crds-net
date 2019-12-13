@@ -6,7 +6,7 @@
   {% when 'message' %}
     {% assign image = item.background_image.url %}
   {% when 'episode' %}
-    {% assign image = item.podcast.image.url %}
+    {% assign image = item.podcast.bg_image.url %}
   {% else %}
     {% assign image = item.image.url %}
 {% endcase %}

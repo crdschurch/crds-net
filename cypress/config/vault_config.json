@@ -1,0 +1,12 @@
+{
+  "sources": [
+    {
+      "secret": "crds-net",
+      "keys": ["CONTENTFUL_SPACE_ID", "CONTENTFUL_ACCESS_TOKEN"]
+    },
+    {
+      "secret": "Crossroads.Automation",
+      "keys": ["TEST_USER_PW"]
+    }
+  ]
+}

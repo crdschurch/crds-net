@@ -2,7 +2,7 @@ import { SeriesQueryManager } from 'crds-cypress-contentful';
 
 describe('Testing the Current Series on the a locations page:', function () {
   let currentSeries;
-  before(function () {
+    before(function () {
     const sqm = new SeriesQueryManager();
     sqm.getSingleEntry(sqm.query.latestSeries).then(series => {
       currentSeries = series;
@@ -11,9 +11,11 @@ describe('Testing the Current Series on the a locations page:', function () {
 
   ['/dayton', '/oakley'].forEach(slug => {
     it(`On crossroads.net${slug}, the latest series button should link to the current series`, function () {
-      cy.visit(slug);
-
-      cy.get('[data-automation-id="series-slug"]').as('currentSeriesButton');
+        cy.on('uncaught:exception', (err, runnable) => {
+            return false
+        }) 
+        cy.visit(slug);
+        cy.get('[data-automation-id="series-slug"]').as('currentSeriesButton');
       cy.get('@currentSeriesButton').should('be.visible').and('have.attr', 'href', currentSeries.URL.relative);
     });
   });

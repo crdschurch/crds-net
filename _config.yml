@@ -92,7 +92,7 @@ collections:
   authors:
     output: false
   podcasts:
-    output: false
+    output: true
   episodes:
     output: false
     permalink: /podcasts/(:podcast/:slug)/:title
@@ -175,6 +175,7 @@ defaults:
       type: "onsite_groups"
     values:
       layout: onsite-group-detail
+      snail_trail: connect
 
 imgix_params:
   placeholder: "auto=format,compress&w=10"

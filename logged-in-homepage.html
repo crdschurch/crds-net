@@ -4,9 +4,11 @@ permalink: /h
 paginate:
   home_collection:
     collections:
+      - messages
       - articles
       - videos
-    per: 10
+      - episodes
+    per: 11
     limit: 1
     sort: published_at desc
   messages:
@@ -14,7 +16,7 @@ paginate:
     limit: 1
     sort: published_at desc
   podcasts:
-    per: 6
+    per: 4
     limit: 1
   series:
     per: 4
@@ -92,30 +94,35 @@ paginate:
     </div>
 </section>
 
-<!-- Current Message/Series -->
+<!-- Most Recent / Featured Media -->
 <section class="container push-top">
   <div class="row">
 
-    <!-- Current Message -->
+    <!-- Featured -->
     <div class="col-md-8 overlap-header">
-      <hr class="flush-top push-half-bottom border-light-gray">
-      <h2 class="flush-top font-size-base text-gray-light">current message</h2>
-      {% assign home_messages = page.messages.docs %}
-      {% for message in home_messages %}
-      {% assign item = message %}
-      {% include media/_overlay-card.html autoplay=true %}
+      {% assign features = page.home_collection.docs | slice: 0, 3 %}
+      {% for item in features %}
+        {% include media/_overlay-card.html autoplay=true %}
       {% endfor %}
     </div>
 
-    <!-- Current Series -->
+    
     <div class="col-md-4" data-automation-id="series-section">
+
+      <!-- Current Series -->
       {% if page.series.docs.size != 0 %}
-        <hr class="flush-top push-half-bottom">
+        <hr class="push-half-bottom">
         <h2 class="flush-bottom flush-top font-size-base text-gray-light">current series</h2>
         {% assign featured = page.series.docs | first %}
         {% assign unfeatured_series = page.series.docs | slice: 1, 3 %}
-        {% include _media-object-featured.html %}
+        {% include media/_media-object-featured.html %}
       {% endif %}
+
+      <!-- Group List: Desktop -->
+      <div class="hidden-xs hidden-sm push-top">
+        <crds-group-list auth-token></crds-group-list>
+      </div>
+
     </div>
 
   </div>
@@ -143,26 +150,30 @@ paginate:
   </div>
 </section>
 
-<!-- Groups List -->
-<section class="container">
+<!-- Groups List: Mobile -->
+<section class="container hidden-lg hidden-md push-bottom">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8">
       <crds-group-list auth-token></crds-group-list>
     </div>
   </div>
 </section>
 
+<!-- Monetate CTA -->
+<section class="container">
+  <div id="monetate-cta" class="row"></div>
+</section>
+
 <!-- More Content -->
 <section class="container">
-  <hr class="push-half-bottom">
-  <div id="monetate-cta" class="row">
+  <div class="row">
 
-    <!-- Big Content Feature -->
+    <!-- Overlay Cards -->
     <div class="col-md-8">
       <hr class="push-half-bottom">
-      <h2 class="flush-top font-size-base text-gray-light">recent</h2>
+      <h2 class="flush-top font-size-base text-gray-light">latest</h2>
 
-      {% assign below_the_fold = page.home_collection.docs | slice: 0 %}
+      {% assign below_the_fold = page.home_collection.docs | slice: 4 %}
       {% for article in below_the_fold %}
       <a href="{{ article.url }}" class="overlay-card">
         <div class="bg-overlay"></div>
@@ -183,30 +194,14 @@ paginate:
       <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
         <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
 
-          {% assign above_the_fold = page.home_collection.docs | slice: 1, 4 %}
-          {% for article in above_the_fold %}
+          {% assign above_the_fold = page.home_collection.docs | slice: 5, 10 %}
+          
 
-          {% assign author = article.author | get_doc %}
-          {% assign category = article.category | get_doc %}
-          <div class="card carousel-cell card-2x">
-            <a class="relative" href="{{ article.url }}">
-              {% include media/_media-label.html source=article %}
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
-            </a>
+              {% for item in above_the_fold %}
+                {% include media/_media-card.html autoplay=true carousel=true %}
+              {% endfor %}
 
-            <div class="card-block hard soft-quarter-top">
-              <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{
-                category.title }}</a>
-              <h3 class="component-header flush">
-                <a href="{{ article.url }}">{{ article.title }}</a>
-              </h3>
-              <p class="card-text soft-quarter-top">
-                <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>
-              </p>
-            </div>
-          </div>
-          {% endfor %}
+
         </div>
       </div>
     </div>
@@ -218,13 +213,15 @@ paginate:
       <h2 class="flush-top font-size-base text-gray-light">our podcasts</h2>
 
       <div class="push-bottom soft-bottom">
-        {% assign featured = page.podcasts.docs | first %}
-        {% assign unfeatured_podcasts = page.podcasts.docs |slice: 1, 3 %}
-        {% include _media-object-featured.html media_type="podcast" %}
-        <hr>
+        {% assign featured_podcast = page.podcasts.docs | slice: 0 %}
+        {% for featured in featured_podcast %}
+          {% include media/_media-object-featured.html media_type="podcast" %}
+          <hr />
+        {% endfor %}  
 
+        {% assign unfeatured_podcasts = page.podcasts.docs | slice: 1, 4 %}
         {% for media in unfeatured_podcasts %}
-          {% include _media-object.html media_type="podcast" %}
+          {% include media/_media-object.html media_type="podcast" %}
           {% unless forloop.last %}
           <hr />
           {% endunless %}
@@ -275,5 +272,6 @@ paginate:
     c.getEventStatus();
   }
 </script>
+
 {% javascript_link_tag autoplay async %}
 {% javascript_link_tag skeleton async %}
