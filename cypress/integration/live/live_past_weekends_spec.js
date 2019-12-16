@@ -9,6 +9,10 @@ describe('Testing the Past Weekends section on the Live page:', function () {
       recentMessages = messageList;
     });
 
+    cy.on('uncaught:exception', (err, runnable) => {
+        return false
+    })
+
     cy.visit('/live');
   });
 
