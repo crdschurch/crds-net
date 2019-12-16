@@ -9,7 +9,10 @@ describe('Testing the Current Series on the Homepage:', function () {
       currentSeries = series;
     });
 
-    cy.ignorePropertyUndefinedTypeError();
+      cy.ignorePropertyUndefinedTypeError();
+      cy.on('uncaught:exception', (err, runnable) => {
+          return false
+      })
     cy.visit('/');
   });
 
