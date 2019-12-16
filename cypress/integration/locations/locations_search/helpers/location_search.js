@@ -26,12 +26,15 @@ export function visitLocationsAndSearch(keyword, retries = 2) {
     return true;
   });
 
+    cy.on('uncaught:exception', (err, runnable) => {
+        return false
+    }) 
   cy.visit('/locations');
 
   cy.get('[data-automation-id="location-search"]').as('search');
-  cy.get('@search').find('input').clear().type(keyword);
-  cy.get('@search').find('button:not([disabled=""])', { timeout: 50000 }).click();
-}
+  cy.get('#search-input').clear().type(keyword);
+  cy.get('#input-search').click();
+   }
 
 export function checkDistanceOverlayDisplayed(alias, distance) {
   cy.get(alias).should('have.attr', 'data-distance').and('eq', distance);
