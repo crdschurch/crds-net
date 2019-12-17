@@ -32,7 +32,7 @@ snail_trail: connect
     </div>
   </div>
 
-  <div class="row push-bottom onsite-group-negative-margin-bottom">
+  <div class="row onsite-group-location-row push-bottom onsite-group-negative-margin-bottom">
     {% for meeting in page.meetings %}
     <div class="col-md-3">
       <h4 class="font-family-condensed-extra text-uppercase">
@@ -46,7 +46,7 @@ snail_trail: connect
       </h4>
       <p class="text-gray flush-bottom small">{{ meeting.description }}</p>
       <p class="flush-bottom push-quarter-top small">
-        {{ meeting.meeting_time }}
+        {{ meeting.meeting_time }} {{ meeting.starts_at | date: "%A" }}s
       </p>
       {% if meeting.registration_link %}
         <a href="{{ meeting.registration_link }}" class="btn btn-cyan push-top" type="button">Register</a>
