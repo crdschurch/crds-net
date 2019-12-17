@@ -36,7 +36,7 @@ layout: container-fluid
             <a href="/groups/{{ meeting.location.slug }}">{{ meeting.location.name }}</a>
           </h4>
           <h4 class="flush-ends font-family-condensed-extra text-uppercase">
-            {{ meeting.meeting_time }}
+            {{ meeting.meeting_time }} {{ meeting.starts_at | date: "%A" }}s
           </h4>
           <p class="flush-bottom push-half-top small">
             <strong> Starts {{ meeting.starts_at | date: "%B %e, %Y" }}</strong>
