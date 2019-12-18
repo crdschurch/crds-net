@@ -1,5 +1,8 @@
 describe('Testing the 404 page:', function () {
-  before(function () {
+    before(function () {
+    cy.on('uncaught:exception', (err, runnable) => {
+        return false
+    })
     cy.visit('/404');
   });
 
@@ -20,7 +23,10 @@ describe('Testing the 404 page:', function () {
 
 describe('Testing invalid routes serve the expected 404 page:', function () {
   ['/notapage', '/live/notapage'].forEach(slug => {
-    it(`crossroads.net${slug}`, function () {
+      it(`crossroads.net${slug}`, function () {
+        cy.on('uncaught:exception', (err, runnable) => {
+            return false
+        })
       cy.visit(slug, { failOnStatusCode: false });
 
       cy.get('crds-shared-header').should('exist');
