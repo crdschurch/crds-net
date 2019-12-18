@@ -1,5 +1,6 @@
 describe('Testing the 404 page:', function () {
     before(function () {
+
     cy.on('uncaught:exception', (err, runnable) => {
         return false
     })
