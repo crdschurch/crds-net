@@ -11,7 +11,10 @@ describe('Given I navigate to /locations and do not search:', function () {
 
     const errorsToIgnore = [/.*Cannot read property\W+\w+\W+of undefined.*/, /.*Cannot convert undefined or null to object.*/];
     cy.ignoreMatchingErrors(errorsToIgnore);
-    cy.visit('/locations');
+      cy.visit('/locations');
+      cy.on('uncaught:exception', (err, runnable) => {
+          return false
+      }) 
   });
 
   it('Location card for Anywhere should be displayed after standard location cards', function (){
