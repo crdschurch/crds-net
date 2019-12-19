@@ -44,7 +44,7 @@ snail_trail: connect
           {{ meeting.title }}
         {% endif %}
       </h4>
-      <p class="text-gray flush-bottom small">{{ meeting.description }}</p>
+      <p class="text-gray flush-bottom small">{{ meeting.description | markdownify }}</p>
       <p class="flush-bottom push-quarter-top small">
         {{ meeting.meeting_time }} {{ meeting.starts_at | date: "%A" }}s
       </p>
