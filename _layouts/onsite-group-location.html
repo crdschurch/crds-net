@@ -46,6 +46,9 @@ snail_trail: connect
       </h4>
       <p class="text-gray flush-bottom small">{{ meeting.description | markdownify }}</p>
       <p class="flush-bottom push-quarter-top small">
+        Starts {{ meeting.starts_at | date: "%B %-d" }}
+      </p>
+      <p class="flush-bottom push-quarter-top small">
         {{ meeting.meeting_time }} {{ meeting.starts_at | date: "%A" }}s
       </p>
       {% if meeting.registration_link %}
