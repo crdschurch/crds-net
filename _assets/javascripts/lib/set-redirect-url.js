@@ -8,12 +8,23 @@ window.onload = function() {
       .split(";")
       .find(selectedCookie => selectedCookie.startsWith(" " + cookieName));
     var isCorrectName = cookieValue ? cookieValue.includes(domainValue) : false;
+    var subDomain = filterForCorrectSubdomain(CRDS.env.environment);
 
     if (isCorrectName == true || cookieValue == undefined) {
       document.cookie =
         cookieName +
         encodeURIComponent(window.location.href) +
-        ";domain=.crossroads.net;path=/";
+        ";domain=" +
+        subDomain +
+        ".crossroads.net;path=/";
+    }
+
+    function filterForCorrectSubdomain(subDomainPrefix) {
+      if (subDomainPrefix == "") {
+        return "www";
+      } else if (subDomainPrefix == "development") {
+        return "local";
+      }
     }
 
     document.dispatchEvent(isRedirectUrlSet);
