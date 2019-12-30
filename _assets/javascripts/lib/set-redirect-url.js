@@ -20,11 +20,10 @@ window.onload = function() {
     }
 
     function filterForCorrectSubdomain(subDomainPrefix) {
-      if (subDomainPrefix == "") {
+      if (subDomainPrefix == "" || subDomainPrefix == "production")
         return "www";
-      } else if (subDomainPrefix == "development") {
-        return "local";
-      }
+      if (subDomainPrefix == "development") return "local";
+      return subDomainPrefix;
     }
 
     document.dispatchEvent(isRedirectUrlSet);
