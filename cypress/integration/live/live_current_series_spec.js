@@ -8,7 +8,9 @@ describe('Testing the Current Series on the Live page:', function () {
     sqm.getSingleEntry(sqm.query.latestSeries).then(series => {
       currentSeries = series;
     });
-
+    cy.on('uncaught:exception', (err, runnable) => {
+        return false
+    })
     cy.visit('/live');
   });
 
