@@ -14,6 +14,7 @@ describe('Testing navigation between pages:', function () {
     cy.on('uncaught:exception', (err, runnable) => {
         return false
     }) 
+
     cy.visit(andoverSlug);
     RouteValidator.pageFoundAndURLMatches(`${Cypress.config().baseUrl}${lexingtonSlug}`);
   });
