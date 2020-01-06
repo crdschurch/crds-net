@@ -13,7 +13,7 @@ describe('Testing the Current Series on the Homepage:', function () {
     cy.on('uncaught:exception', (err, runnable) => {
         return false
     })
-    cy.visit('/');
+   cy.visit('/');
   });
 
   it('Current series title, description, and image should match Contentful', function () {
