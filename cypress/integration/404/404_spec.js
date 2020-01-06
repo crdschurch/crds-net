@@ -1,6 +1,5 @@
 describe('Testing the 404 page:', function () {
-    before(function () {
-
+  before(function () {
     cy.on('uncaught:exception', (err, runnable) => {
         return false
     })
@@ -27,7 +26,7 @@ describe('Testing invalid routes serve the expected 404 page:', function () {
   ['/notapage', '/live/notapage'].forEach(slug => {
       it(`crossroads.net${slug}`, function () {
         cy.on('uncaught:exception', (err, runnable) => {
-              return false
+            return false
         })
       cy.visit(slug, { failOnStatusCode: false });
 

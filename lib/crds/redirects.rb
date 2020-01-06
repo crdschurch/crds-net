@@ -39,8 +39,8 @@ class Redirects
 
   def to_csv!(path = './redirects.csv')
     rows = CSV.read(path)
-    rows.insert(2, *redirects)
-    rows.insert(2, *auth_required)
+    rows.insert(3, *redirects)
+    rows.insert(3, *auth_required)
     File.write(path, rows.map(&:to_csv).join)
     puts "\n + #{redirects.size + auth_required.size} redirects from Contentful".colorize(:cyan)
   end
@@ -57,15 +57,25 @@ class Redirects
 
     def page_attrs(item)
       [
-        item.dig('fields', 'permalink'),
-        item.dig('fields', 'permalink'),
+        URI.parse(item.dig('fields', 'permalink')).path,
+        URI.parse(item.dig('fields', 'permalink')).path,
         '200! Role=user'
       ]
     end
 
     def login_attrs(item) 
+      uri = URI.parse(item.dig('fields', 'permalink'))
+      ary = Array.new
+      if uri && uri.query
+        params = CGI.parse(uri.query)
+        params.each do |key, value|
+          puts "k: #{key}, v: #{value.first}"
+          ary.push("#{key}=#{value.first}")
+        end
+      end
       [
-        item.dig('fields', 'permalink'),
+        URI.parse(item.dig('fields', 'permalink')).path,
+        *ary,
         "/signin?redirectUrl=#{item.dig('fields', 'permalink')}",
         '302!'
       ]

@@ -1,10 +1,15 @@
 /,/h,200! Role=user
+/group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
+/group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
 http://crossroads.net/*,https://www.crossroads.net/:splat,301!,master
 http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,master
 /undivided-training,https://undivided.netlify.com,301
 /people/*,https://${env:CRDS_PEOPLE_DOMAIN}/:splat,200!
+/connect/?my=1,/mygroups,301!
+/connect/* my=:1,/mygroups,301!
 /connect/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
+/connectv2/*,https://${env:CRDS_CONNECT_DOMAIN}/:splat,200!
 /group-leader/*,https://${env:CRDS_GROUP_LEADER_DOMAIN}/:splat,200!
 /groups/search/*,https://${env:CRDS_FINDER_ENDPOINT}/:splat,200!
 /map/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
@@ -57,6 +62,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /songs/*,/media/songs/:splat,302!
 /oktasignin*,https://${env:CRDS_SIGNIN_ENDPOINT}:splat,200!
 /signin/*,https://${env:CRDS_SIGNIN_ENDPOINT}/signin/:splat,200!
+/event-checkin/*,https://${env:CRDS_EVENT_CHECKIN_ENDPOINT},302!
 /media/music/,${env:CRDS_MUSIC_ENDPOINT},301!
 /media/*,${env:CRDS_MEDIA_ENDPOINT}/:splat,200!
 /music/,${env:CRDS_MUSIC_ENDPOINT},301!
@@ -94,4 +100,41 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /media/songs/be-thou-my-vision,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/be-thou-my-vision,301!
 /media/songs/listen,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/listen,301!
 /media/songs/*,${env:CRDS_MUSIC_ENDPOINT}/:splat,302
+/onsitegroups,/groups/onsite,301!
+/groups/online,/connect/?filters=Online%20Groups%3D,301!
+/groups/home,/connect/?filters=At%20Home%20Groups%3D,301!
+/groups/at-home,/connect/?filters=At%20Home%20Groups%3D,301!
+/groups/chaser,/connect/?filters=At%20Home%20Groups%5BGroup%20Category%5D%5B0%5D%3DChaser,301!
+/groups/journey,/connect/?filters=At%20Home%20Groups%5BGroup%20Category%5D%5B0%5D%3DJourney,301!
+/florence/florence-onsite-groups,/groups/florence,301!
+/uptown/uptown-onsite-groups,/groups/uptown,301!
+/westside/west-side-onsite-groups,/groups/westside,301!
+/mason/masononsitegroups,/groups/mason,301!
+/oakley/oakleyonsitegroups,/groups/oakley,301!
+/eastside/eastsideonsitegroups,/groups/eastside,301!
+/richmondonsitegroups,/groups/richmond,301!
+/lexingtononsitegroups,/groups/lexington,301!
+/georgetownonsitegroups,/groups/georgetown,301!
+/healing/alladdictionsbigbookmeeting,/groups/onsite-healing-groups/all-addictions-big-book-meeting,301!
+/griefsupport,/groups/onsite-healing-groups/grief-support,301!
+/healing/real-marriage,/groups/onsite-healing-groups/real-marriage,301!
+/healing/undefeated,/groups/onsite-healing-groups/undefeated,301!
+/momsgroup,/groups/onsite-groups/moms,301!
+/fathers,/groups/onsite-groups/fathers,301!
+/youngadults,/groups/onsite-groups/young-adults,301!
+/onsitegroups/mens,/groups/onsite-groups/mens,301!
+/onsitegroups/womens,/groups/onsite-groups/womens,301!
+/onsitegroups/financial-peace-university,/groups/onsite-groups/financial-peace-university,301!
+/onsitegroups/bible-groups,/groups/onsite-groups/bible-groups,301!
+/onsitegroups/going-deeper,/groups/onsite-groups/going-deeper,301!
+/healing/aa-groups,/groups/onsite-healing-groups/aa,301!
+/healing/severepersistentmentalillness,/groups/onsite-healing-groups/severe-and-persistent-mental-illness-support-group,301!
+/healing/transformingbetrayal,/groups/onsite-healing-groups/transforming-betrayal,301!
+/healing/mens-healthy-choices,/groups/onsite-healing-groups/mens-healthy-choices,301!
+/healing/recovery-and-redemption,/groups/onsite-healing-groups/recovery-and-redemption,301!
+/healing/beautyforashes,/groups/onsite-healing-groups/beauty-for-ashes,301!
+/cst,/groups/onsite-healing-groups/cst,301!
+/healing/eyeswideopen,/groups/onsite-healing-groups/eyes-wide-open,301!
+/healing/divorcecare,/groups/onsite-healing-groups/divorce-care,301!
+/healing/postpartum-healing,/groups/onsite-healing-groups/postpartum,301!
 /*,/404.html,404

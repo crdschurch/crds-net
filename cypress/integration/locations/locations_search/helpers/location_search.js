@@ -32,9 +32,9 @@ export function visitLocationsAndSearch(keyword, retries = 2) {
   cy.visit('/locations');
 
   cy.get('[data-automation-id="location-search"]').as('search');
-  cy.get('#search-input').clear().type(keyword);
-  cy.get('#input-search').click();
-   }
+    cy.get('#search-input').clear().type(keyword);
+    cy.get('#input-search').click();
+}
 
 export function checkDistanceOverlayDisplayed(alias, distance) {
   cy.get(alias).should('have.attr', 'data-distance').and('eq', distance);
