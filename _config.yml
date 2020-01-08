@@ -199,3 +199,7 @@ image_sizes:
 
 typekit_url: https://use.typekit.net/ccb3vpa.css
 typekit_scss: _assets/stylesheets/_fonts.scss
+
+strict_front_matter: true
+liquid:
+  error_mode: strict
