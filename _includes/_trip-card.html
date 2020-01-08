@@ -1,6 +1,6 @@
 {% assign targets = item.country | join: ',' %}
 
-<div class="{{ targets| downcase }} card push-ends col-xs-12 col-sm-4 col-md-3" >
+<div class="{{ targets| downcase | replace: ' ' , '-' }} card push-ends col-xs-12 col-sm-4 col-md-3" >
     <a href="{{ link_url }}">
         <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}"
             class="card-img-top img-responsive" alt="{{ item.country }}" data-optimize-img >
