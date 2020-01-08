@@ -125,6 +125,8 @@ collections:
     output: false
   onsite_group_meetings:
     output: false
+  trips: 
+    output: false
 
 contentful:
   article:
