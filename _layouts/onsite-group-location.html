@@ -33,7 +33,8 @@ snail_trail: connect
   </div>
 
   <div class="row onsite-group-location-row push-bottom onsite-group-negative-margin-bottom">
-    {% for meeting in page.meetings %}
+    {% assign sorted_meeting = page.meetings | sort_natural: "title" %}
+    {% for meeting in sorted_meeting %}
     <div class="col-md-3">
       <h4 class="font-family-condensed-extra text-uppercase">
         {% if page.meeting_group_permalinks[meeting.contentful_id] %}
