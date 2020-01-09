@@ -51,6 +51,11 @@ snail_trail: connect
       <p class="flush-bottom push-quarter-top small">
         {{ meeting.meeting_time }} {{ meeting.starts_at | date: "%A" }}s
       </p>
+      {% if meeting.childcare %}
+      <p class="text-gray flush-bottom push-quarter-top small">
+        *childcare is available with one week advance registration.
+      </p>
+      {% endif %}
       {% if meeting.registration_link %}
         <a href="{{ meeting.registration_link }}" class="btn btn-cyan push-top" type="button">Register</a>
       {% endif %}
