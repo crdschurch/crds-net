@@ -1,7 +1,7 @@
 {% assign targets = item.country | join: ',' %}
 
 <div class="{{ targets| downcase | replace: ' ' , '-' }} card push-ends col-xs-12 col-sm-4 col-md-3" >
-    <a href="{{ link_url }}">
+    <a href="{{ item.link_url }}">
         <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}"
             class="card-img-top img-responsive" alt="{{ item.country }}" data-optimize-img >
     </a>
@@ -19,8 +19,9 @@
         <crds-button
         color="blue"
         text="View all details"
-        href="{{ link_url }}">
+        href="{{ item.link_url }}">
       </crds-button>
     </div>
 </div>
+
   
