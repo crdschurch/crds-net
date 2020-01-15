@@ -9,7 +9,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /connect/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
 /group-leader/*,https://${env:CRDS_GROUP_LEADER_DOMAIN}/:splat,200!
 /groups/search/*,https://${env:CRDS_FINDER_ENDPOINT}/:splat,200!
-/map/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
+/map/*,/connect/:splat,302!
 /search/*,https://${env:CRDS_SEARCH_ENDPOINT}/:splat,200!
 /search-component/*,https://${env:CRDS_SEARCH_COMPONENT_ENDPOINT}/:splat,200!
 /proxy/content/*,${env:CRDS_CMS_ENDPOINT}/:splat,200!
@@ -98,11 +98,11 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /media/songs/listen,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/listen,301!
 /media/songs/*,${env:CRDS_MUSIC_ENDPOINT}/:splat,302
 /onsitegroups,/groups/onsite,301!
-/groups/online,/connect/?filters=Online%20Groups%3D,301!
-/groups/home,/connect/?filters=At%20Home%20Groups%3D,301!
-/groups/at-home,/connect/?filters=At%20Home%20Groups%3D,301!
-/groups/chaser,/connect/?filters=At%20Home%20Groups%5BGroup%20Category%5D%5B0%5D%3DChaser,301!
-/groups/journey,/connect/?filters=At%20Home%20Groups%5BGroup%20Category%5D%5B0%5D%3DJourney,301!
+/groups/online,/connect/?refinementList%5BgroupType%5D%5B0%5D=Online,301!
+/groups/home,/connect/?refinementList%5BgroupType%5D%5B0%5D=At%20Home,301!
+/groups/at-home,/connect/?refinementList%5BgroupType%5D%5B0%5D=At%20Home,301!
+/groups/chaser,/connect,301!
+/groups/journey,/connect,301!
 /florence/florence-onsite-groups,/groups/florence,301!
 /uptown/uptown-onsite-groups,/groups/uptown,301!
 /westside/west-side-onsite-groups,/groups/westside,301!
