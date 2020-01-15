@@ -407,4 +407,9 @@ layout: default
   </div>
 </section>
 
+<!--Facebook Pixel Script -->
+{% if page.title == "Columbus" %}
+  {% include _fb-pixel.html %}
+{% endif %}
+
 {% include footer.html %}
