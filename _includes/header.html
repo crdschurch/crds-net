@@ -7,7 +7,7 @@
   </svg>
   <crds-shared-header env="{{ site.jekyll_env }}"></crds-shared-header>
 </div>
-{% if page.snail_trail.name != disabled %}
+{% if page.snail_trail != "disabled" %}
   <div class="snail-trail-skeleton">
     {% if page.snail_trail  %}
     <crds-snail-trail name="{{ page.snail_trail }}" env="{{ site.jekyll_env }}"></crds-snail-trail>
