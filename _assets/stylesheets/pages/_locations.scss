@@ -27,3 +27,42 @@
 #geo-search {
   display: none;
 }
+
+#section-locations crds-button {
+    position: absolute;
+    bottom: 0;
+}
+crds-site-select {
+    position: absolute;
+}
+
+@media screen and (min-width: 995px){
+  crds-site-select {
+      left: 125px;
+      bottom: 0px;
+  }
+}
+
+@media screen and (max-width: 995px){
+  crds-site-select {
+      left: 10px;
+      bottom: -45px;
+  }
+}
+
+@media screen and (max-width: 770px){
+  crds-site-select {
+      left: 125px;
+      bottom: 0px;
+  }
+}
+
+
+.card-text {
+    padding-bottom: 30px;
+    cursor: auto;
+}
+
+.card-deck--expanded-layout .card{
+  margin-bottom: 3.5em;
+}

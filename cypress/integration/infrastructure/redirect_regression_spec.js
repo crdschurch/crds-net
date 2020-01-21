@@ -11,6 +11,9 @@ describe('Testing navigation between pages:', function () {
       expect(redirect).to.not.be.undefined;
       expect(redirect.to.text).to.equal(lexingtonSlug);
     });
+    cy.on('uncaught:exception', (err, runnable) => {
+        return false
+    }) 
 
     cy.visit(andoverSlug);
     RouteValidator.pageFoundAndURLMatches(`${Cypress.config().baseUrl}${lexingtonSlug}`);

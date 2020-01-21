@@ -1,3 +1,4 @@
+
 import { BitmovinPlayer } from './helpers/BitmovinPlayer';
 import { StreamScheduleGenerator } from '../../support/StreamScheduleGenerator';
 import { MessageQueryManager } from 'crds-cypress-contentful';
@@ -35,6 +36,9 @@ describe('Tests the /live/stream page video player', function () {
 
   it('Checks player is Bitmovin player or fallback Youtube player', function () {
     cy.route('manifest.m3u8').as('bitmovinManifest');
+      cy.on('uncaught:exception', (err, runnable) => {
+          return false
+      })
 
     cy.visit('/live/stream/');
     hideRollCall();
@@ -67,6 +71,10 @@ describe('Tests the /live/stream page video player', function () {
         requestFilter.keepMatch(xhr.request);
       }
     });
+
+    cy.on('uncaught:exception', (err, runnable) => {
+        return false
+    })
 
     cy.visit('/live/stream/');
     hideRollCall();

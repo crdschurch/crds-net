@@ -5,6 +5,10 @@ import { MessageQueryManager } from 'crds-cypress-contentful';
 function visitLiveWithSchedule(fakeSchedule) {
   cy.server();
   cy.route(`${Cypress.env('schedule_env')}/streamSchedule`, fakeSchedule);
+  cy.on('uncaught:exception', (err, runnable) => {
+     return false
+  })
+
   cy.visit('/live');
 }
 

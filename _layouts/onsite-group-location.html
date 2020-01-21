@@ -32,17 +32,34 @@ snail_trail: connect
     </div>
   </div>
 
-  <div class="row push-bottom onsite-group-negative-margin-bottom">
-    {% for meeting in page.meetings %}
+  <div class="row onsite-group-location-row push-bottom onsite-group-negative-margin-bottom">
+    {% assign sorted_meeting = page.meetings | sort_natural: "title" %}
+    {% for meeting in sorted_meeting %}
     <div class="col-md-3">
       <h4 class="font-family-condensed-extra text-uppercase">
-        {{ meeting.title }}
+        {% if page.meeting_group_permalinks[meeting.contentful_id] %}
+        <a href="{{ page.meeting_group_permalinks[meeting.contentful_id] }}">
+          {{ meeting.title }}
+        </a>
+        {% else %}
+          {{ meeting.title }}
+        {% endif %}
       </h4>
-      <p class="text-gray flush-bottom small">{{ meeting.description }}</p>
+      <p class="text-gray flush-bottom small">{{ meeting.description | markdownify }}</p>
       <p class="flush-bottom push-quarter-top small">
-        {{ meeting.meeting_time }}
+        Starts {{ meeting.starts_at | date: "%B %-d" }}
       </p>
-      <a href="{{ meeting.registration_link }}" class="btn btn-cyan push-top" type="button">Register</a>
+      <p class="flush-bottom push-quarter-top small">
+        {{ meeting.meeting_time }} {{ meeting.starts_at | date: "%A" }}s
+      </p>
+      {% if meeting.childcare %}
+      <p class="text-gray flush-bottom push-quarter-top small">
+        *childcare is available with one week advance registration.
+      </p>
+      {% endif %}
+      {% if meeting.registration_link %}
+        <a href="{{ meeting.registration_link }}" class="btn btn-cyan push-top" type="button">Register</a>
+      {% endif %}
     </div>
     {% endfor %}
   </div>
