@@ -180,7 +180,7 @@ defaults:
       path: ""
       type: "onsite_groups"
     values:
-      layoube c: onsite-group-detail
+      layout: onsite-group-detail
       snail_trail: connect
 
 imgix_params:
