@@ -42,6 +42,10 @@ module.exports = [
     ]
   },
   {
+    name: "parallax",
+    files: ["vendor/rellax-1.10.0.min"]
+  },
+  {
     name: "masonry_deferred",
     files: ["components/masonry"]
   },
