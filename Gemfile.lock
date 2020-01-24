@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/ample/jekyll-placeholders
   revision: 503eef68d21b020b8d611025ab7029c80e569186
+  tag: 0.0.1
   specs:
     jekyll-placeholders (0.0.1)
       activesupport
@@ -9,7 +10,7 @@ GIT
 GIT
   remote: https://github.com/ample/paging-mister-hyde.git
   revision: 742a94fae650a0a93f175f95d70515aaee9a8025
-  branch: master
+  tag: 0.2.0
   specs:
     paging-mister-hyde (0.2.0)
       activesupport
@@ -221,7 +222,7 @@ DEPENDENCIES
   jekyll-asset-pipeline!
   jekyll-contentful!
   jekyll-crds!
-  jekyll-placeholders (~> 0.0.1)!
+  jekyll-placeholders!
   jekyll-sitemap
   netlify-redirector!
   paging-mister-hyde!
