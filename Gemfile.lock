@@ -1,21 +1,16 @@
 GIT
-  remote: https://github.com/crdschurch/netlify-redirector.git
-  revision: 8869f37bf026701e04f5a56f2be994d0c5efc36a
-  specs:
-    netlify-redirector (0.0.1)
-      activesupport
-      colorize
-      rake
-
-PATH
-  remote: /Users/jasonbrammer/jekyll-asset-pipeline
+  remote: https://github.com/crdschurch/jekyll-asset-pipeline
+  revision: 803295b5d4d35c667e0808941fb55dd7a12049eb
+  branch: jekyll-4
   specs:
     jekyll-asset-pipeline (1.0.0)
       activesupport
       jekyll (~> 4.0.0)
 
-PATH
-  remote: /Users/jasonbrammer/jekyll-contentful
+GIT
+  remote: https://github.com/crdschurch/jekyll-contentful.git
+  revision: 8e1902503bff10dbdca3a1c377cbc7aa905134b0
+  branch: jekyll-4
   specs:
     jekyll-contentful (3.0.0)
       activesupport
@@ -24,23 +19,38 @@ PATH
       dotenv
       jekyll
 
-PATH
-  remote: /Users/jasonbrammer/jekyll-crds
+GIT
+  remote: https://github.com/crdschurch/jekyll-crds.git
+  revision: f1b822908b793a4c534c6d116270c751cadfa0fa
+  branch: jekyll-4
   specs:
     jekyll-crds (2.0.0)
       activesupport
       httparty
       jekyll
 
-PATH
-  remote: /Users/jasonbrammer/jekyll-placeholders
+GIT
+  remote: https://github.com/crdschurch/jekyll-placeholders
+  revision: 23254777bd49a60a8e293ebdc46e6ab3df82677c
+  branch: jekyll-4
   specs:
     jekyll-placeholders (1.0.0)
       activesupport
       jekyll
 
-PATH
-  remote: /Users/jasonbrammer/paging-mister-hyde
+GIT
+  remote: https://github.com/crdschurch/netlify-redirector.git
+  revision: 8869f37bf026701e04f5a56f2be994d0c5efc36a
+  specs:
+    netlify-redirector (0.0.1)
+      activesupport
+      colorize
+      rake
+
+GIT
+  remote: https://github.com/crdschurch/paging-mister-hyde.git
+  revision: 1d2bc7e7ccfc68e564c89c3e65bc69c6ca7ca72b
+  branch: jekyll-4
   specs:
     paging-mister-hyde (1.0.0)
       activesupport
