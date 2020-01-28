@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/crdschurch/jekyll-asset-pipeline
-  revision: 803295b5d4d35c667e0808941fb55dd7a12049eb
-  branch: jekyll-4
+  revision: 0e40c49113f06cd0ffe94b7f4f1669ce5a7a0bc6
+  tag: 1.0.0
   specs:
     jekyll-asset-pipeline (1.0.0)
       activesupport
@@ -9,8 +9,8 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-contentful.git
-  revision: 8e1902503bff10dbdca3a1c377cbc7aa905134b0
-  branch: jekyll-4
+  revision: da26ed9fa370723eb5529e841387cbc53e575ddd
+  tag: 3.0.0
   specs:
     jekyll-contentful (3.0.0)
       activesupport
@@ -21,8 +21,8 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-crds.git
-  revision: f1b822908b793a4c534c6d116270c751cadfa0fa
-  branch: jekyll-4
+  revision: 76c27e39de9f2363a2925fe3af51b8e0e39f1507
+  tag: 2.0.0
   specs:
     jekyll-crds (2.0.0)
       activesupport
@@ -31,8 +31,8 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-placeholders
-  revision: 23254777bd49a60a8e293ebdc46e6ab3df82677c
-  branch: jekyll-4
+  revision: 434530c46229f675959194b551222cafde47c4ac
+  tag: 1.0.0
   specs:
     jekyll-placeholders (1.0.0)
       activesupport
@@ -49,8 +49,8 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/paging-mister-hyde.git
-  revision: 1d2bc7e7ccfc68e564c89c3e65bc69c6ca7ca72b
-  branch: jekyll-4
+  revision: c10a292ed29f23239c30b660a1b738a862d6e1f7
+  tag: 1.0.0
   specs:
     paging-mister-hyde (1.0.0)
       activesupport

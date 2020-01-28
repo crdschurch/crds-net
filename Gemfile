@@ -11,15 +11,15 @@ gem "rack", ">= 2.0.6"
 group :jekyll_plugins do
   gem 'jekyll-sitemap'
   # gem 'jekyll-asset-pipeline', path: File.expand_path('../jekyll-asset-pipeline', __dir__)
-  gem 'jekyll-asset-pipeline', git: 'https://github.com/crdschurch/jekyll-asset-pipeline', branch: 'jekyll-4' #tag: '0.0.4'
+  gem 'jekyll-asset-pipeline', git: 'https://github.com/crdschurch/jekyll-asset-pipeline', tag: '1.0.0'
   # gem 'jekyll-contentful', path: File.expand_path('../jekyll-contentful', __dir__)
-  gem "jekyll-contentful", git: 'https://github.com/crdschurch/jekyll-contentful.git', branch: 'jekyll-4'  #tag: '2.0.1'
+  gem "jekyll-contentful", git: 'https://github.com/crdschurch/jekyll-contentful.git', tag: '3.0.0'
   # gem 'jekyll-crds', path: File.expand_path('../jekyll-crds', __dir__)
-  gem "jekyll-crds", git: 'https://github.com/crdschurch/jekyll-crds.git', branch: 'jekyll-4' #tag: '1.4.6'
+  gem "jekyll-crds", git: 'https://github.com/crdschurch/jekyll-crds.git', tag: '2.0.0'
   # gem 'jekyll-placeholders', path: File.expand_path('../jekyll-placeholders', __dir__)
-  gem "jekyll-placeholders", git: 'https://github.com/crdschurch/jekyll-placeholders', branch: 'jekyll-4'
+  gem "jekyll-placeholders", git: 'https://github.com/crdschurch/jekyll-placeholders', tag: '1.0.0'
   # gem 'paging-mister-hyde', path: File.expand_path('../paging-mister-hyde', __dir__)
-  gem "paging-mister-hyde", git: 'https://github.com/crdschurch/paging-mister-hyde.git', branch: 'jekyll-4'
+  gem "paging-mister-hyde", git: 'https://github.com/crdschurch/paging-mister-hyde.git', tag: '1.0.0'
 end
 
 group :test do
