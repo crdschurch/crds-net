@@ -54,10 +54,6 @@ module.exports = [
     files: ["lib/set-redirect-url"]
   },
   {
-    name: "homepage-auth",
-    files: ["views/homepage-auth"]
-  },
-  {
     name: "reachout-trip",
     files: ["lib/reachout-trip"]
   },
@@ -115,10 +111,5 @@ module.exports = [
   {
     name: "skeleton",
     files: ["components/skeleton"]
-  },
-  {
-    name: "authentication",
-    files: ["lib/authentication"],
-    deps: ["vendor/client-auth"]
   }
 ];
