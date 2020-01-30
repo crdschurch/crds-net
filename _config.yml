@@ -33,14 +33,21 @@ exclude:
   - collections
 
 contentful:
+  config:
+    sites: "www.crossroads.net"
   article:
-    query: "fields.exclude_from_crossroads[ne]=true"
+    map:
+      date: published_at
   series:
     limit: 10
     order: "published_at desc"
+    map:
+      date: published_at
   message:
     limit: 4
     order: "published_at desc"
+    map:
+      date: published_at
   featured_media:
     query: fields.site=net
     map:
@@ -49,12 +56,14 @@ contentful:
     query: fields.category=common
     map:
       content_block: content
-  video:
-    query: "fields.exclude_from_crossroads[ne]=true"
+  episode:
+    map:
+      date: published_at
   exclude:
     - album
     - migration
     - sign_off
+    - collections
 
 collections_dir: collections
 
