@@ -1,0 +1,11 @@
+{
+  "baseUrl": "https://www.crossroads.net",
+  "env": {
+    "slack_channel": "#bearsharktopus,#production-support",
+    "email_recipients": "webteam@crossroads.net,dalbanese@crossroads.net",
+    "CONTENTFUL_ENV": "master",
+    "CROSSROADS_API_ENDPOINT": "https://api.crossroads.net",
+    "schedule_env": "/prod",
+    "vaultEnv": "prod"
+  }
+}

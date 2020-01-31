@@ -1,7 +1,10 @@
 {
   "projectId": "dnbm5t",
-  "baseUrl": "https://int.crossroads.net",
   "testFiles": "**/*spec.js",
   "numTestsKeptInMemory": 0,
-  "video": false
+  "video": false,
+  "blacklistHosts": "*.monetate.net",
+  "env": {
+    "RETRIES": 2
+  }
 }

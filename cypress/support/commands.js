@@ -25,14 +25,10 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-import { AddCommand } from 'crds-cypress-tools';
 import { Formatter } from './Formatter';
+import { addCommandLogin } from 'crds-cypress-login';
 
-AddCommand.crdsLogin();
-
-Cypress.Commands.add('stayLoggedIn', () => {
-  Cypress.Cookies.preserveOnce(`${Cypress.env('CRDS_ENV')}sessionId`, `${Cypress.env('CRDS_ENV')}refreshToken`, 'userId');
-});
+addCommandLogin();
 
 Cypress.Commands.add('normalizedText', { prevSubject: 'element' }, (subject) => {
   return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => Formatter.normalizeText(elementText));
@@ -44,9 +40,31 @@ Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
 
 //Here for convenience but use sparingly - we usually want these to be thrown
 Cypress.Commands.add('ignoreUncaughtException', (expectedMessage) => {
-  cy.on('uncaught:exception', (err, runnable) => {
+  cy.on('uncaught:exception', (err) => {
     expect(err.message).to.include(expectedMessage);
-    runnable.done();
-    return false;
+    return !err.message.includes(expectedMessage);
+  });
+});
+
+//Here for convenience but use sparingly - we usually want these to be thrown
+Cypress.Commands.add('ignorePropertyUndefinedTypeError', () => {
+  cy.on('uncaught:exception', (err) => {
+    //Sees error, posts assertion to console, fails if not matching
+    const propertyUndefinedRegex = /.*Cannot read property\W+\w+\W+of undefined.*/;
+    expect(err.message).to.match(propertyUndefinedRegex);
+    return err.message.match(propertyUndefinedRegex) == null;
+  });
+});
+
+//Given list of regex, will ignore if error matches any
+Cypress.Commands.add('ignoreMatchingErrors', (errorList) => {
+  cy.on('uncaught:exception', (err) => {
+    const matchingError = errorList.find(errorRegex => err.message.match(errorRegex) !== null);
+
+    if(matchingError){
+      expect(err.message).to.match(matchingError); //Post result to console
+    }
+
+    return matchingError === undefined;
   });
 });

@@ -11,6 +11,10 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+const loadConfig = require('crds-cypress-config');
+
+//Config files live in /config. To specify which one to use, open or run with command line argument:
+//"--env configFile=demo_crossroads"
 module.exports = (on, config) => {
-  //default - plugin index needs to export at least one module, even if empty
+  return loadConfig.loadConfigFromFile(config).then(newConfig => loadConfig.loadConfigFromVault(newConfig));
 };

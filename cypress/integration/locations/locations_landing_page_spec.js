@@ -1,16 +1,20 @@
 import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
-import { LocationQueryManager } from '../../Contentful/QueryManagers/LocationQueryManager';
+import { LocationQueryManager } from 'crds-cypress-contentful';
 
 describe('Given I navigate to /locations and do not search:', function () {
   let locationList;
   before(function () {
-    const queryManager = new LocationQueryManager();
-    queryManager.fetchLocationsSortedByNameThenSlug().then(() => {
-      locationList = queryManager.queryResult;
+    const lqm = new LocationQueryManager();
+    lqm.getListOfEntries(lqm.query.orderBy.nameThenSlug).then(locations => {
+      locationList = locations;
     });
 
-    cy.ignoreUncaughtException('Uncaught TypeError: Cannot read property `reload` of undefined'); //Remove once DE6613 is fixed
-    cy.visit('/locations');
+    const errorsToIgnore = [/.*Cannot read property\W+\w+\W+of undefined.*/, /.*Cannot convert undefined or null to object.*/];
+    cy.ignoreMatchingErrors(errorsToIgnore);
+      cy.visit('/locations');
+      cy.on('uncaught:exception', (err, runnable) => {
+          return false
+      }) 
   });
 
   it('Location card for Anywhere should be displayed after standard location cards', function (){
@@ -39,15 +43,16 @@ describe('Given I navigate to /locations and do not search:', function () {
     it(`Location card #${index} should have an Image`, function () {
       cy.get('#section-locations > .card').eq(index).as(`${name}Card`);
       cy.get(`@${name}Card`).find('[data-automation-id="location-image"]').find('img').as(`${name}Image`);
-      location.fetchLinkedResources().then(() =>{
-        new ImageDisplayValidator(`${name}Image`, false).shouldHaveImgixImage(location.image);
+      location.imageLink.getResource().then(image =>{
+        new ImageDisplayValidator(`${name}Image`, false).shouldHaveImgixImage(image);
       });
     });
 
     it(`Location card #${index} should have an Address and a link to Map`, function () {
       cy.get('#section-locations > .card').eq(index).as(`${name}Card`);
       cy.get(`@${name}Card`).find('[data-automation-id="location-address"]').as(`${name}Address`);
-      cy.get(`@${name}Address`).normalizedText().should('contain', location.address.displayedText);
+
+      cy.get(`@${name}Address`).normalizedText().should('contain', location.address.unformattedText);
 
       cy.get(`@${name}Card`).find('[data-automation-id="location-map-url"]').as(`${name}MapLink`);
       cy.get(`@${name}MapLink`).should('have.attr', 'href', location.mapURL.text);
@@ -56,7 +61,7 @@ describe('Given I navigate to /locations and do not search:', function () {
     it(`Location card #${index} should have Service times`, function () {
       cy.get('#section-locations > .card').eq(index).as(`${name}Card`);
       cy.get(`@${name}Card`).find('[data-automation-id="location-service-times"]').as(`${name}ServiceTimes`);
-      cy.get(`@${name}ServiceTimes`).normalizedText().should('contain', location.serviceTimes.displayedText);
+      cy.get(`@${name}ServiceTimes`).normalizedText().should('contain', location.serviceTimes.unformattedText);
     });
 
     it(`Location card #${index} should not have a distance`, function () {

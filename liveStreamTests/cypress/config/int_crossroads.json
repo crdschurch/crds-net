@@ -1,0 +1,11 @@
+{
+  "baseUrl": "https://int.crossroads.net",
+  "env": {
+    "slack_channel": "#bearsharktopus-qa",
+    "email_recipients": "",
+    "CONTENTFUL_ENV": "int",
+    "CROSSROADS_API_ENDPOINT": "https://api-int.crossroads.net",
+    "schedule_env": "/int",
+    "vaultEnv": "int"
+  }
+}

@@ -4,9 +4,6 @@
 
 <body class="crds-styles">
   {% include _gtm-body.html %}
-  {% if page.requires_auth %}
-  {% include _preloader.html %}
-  {% endif %}
   {% include _monetate-body.html %}
   <script>
     var CRDS = {
@@ -16,20 +13,27 @@
         img: '{{ site.shared_header.img }}',
         prefix: '{{ site.shared_header.prefix }}'
       },
-      streamspotId: '{{ site.streamspotId }}',
-      streamspotKey: '{{ site.streamspotKey }}',
-      streamspotPlayerId: '{{ site.streamspotPlayerId }}',
       env: {
         environment: '{{ site.jekyll_env }}',
-        "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}'
+        "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}',
+        "streamScheduleEndpoint": '{{ site.stream_schedule_endpoint }}',
+        "bitmovinPlayerLicense": '{{ site.bitmovin_player_license }}',
+        "bitmovinAnalyticsLicense": '{{ site.bitmovin_analytics_license }}',
+        "okta_client_id": '{{ site.okta_client_id }}',
+        "okta_oauth_base_url": '{{ site.okta_oauth_base_url }}'
       }
     };
+
+    var envReady = new Event('env-ready');
+    document.dispatchEvent(envReady);
+    window.envReady = true;
+
   </script>
   {% javascript_link_tag application %}
   {% javascript_link_tag application_deferred async %}
   {{ content }}
   {% if page.title == "Atrium Events" %}
-    {% javascript_link_tag events async %}
+  {% javascript_link_tag events async %}
   {% endif %}
 </body>
 

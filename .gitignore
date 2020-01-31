@@ -1,5 +1,6 @@
 _site
 _redirects
+.netlify
 .aws
 .sass-cache
 .jekyll-metadata
@@ -13,10 +14,16 @@ node_modules
 loadenv.ps1
 tmp
 .vscode
+buildlog.txt
+
+#Ignore cypress generated files
 cypress/videos
 cypress/screenshots
-cypress.env.json
-cypress/fixtures/example.json
-cypress/fixtures/profile.json
-cypress/fixtures/users.json
-buildlog.txt
+
+liveStreamTests/cypress/videos
+liveStreamTests/cypress/screenshots
+liveStreamTests/node_modules
+/.vs/config/applicationhost.config
+/.vs/crds-net/v15/.suo
+/.vs/slnx.sqlite
+/.vs

@@ -8,7 +8,8 @@
   bundle exec jekyll crds &&
   bundle exec jekyll contentful -f &&
   bundle exec jekyll build -- --update-search-index &&
-  bash ./cypress/kickOffCypress.sh &&
-  ./bin/health-check.sh "we are crossroads"
-} 2>&1 | tee buildlog.txt
+  ./bin/prerenderio-bust.sh &&
+  ./bin/health-check.sh "we are crossroads" &&
+  ./bin/kickOffCypress.sh
+} 2>buildlog.txt
 ./bin/logzio.sh
