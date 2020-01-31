@@ -14,8 +14,8 @@ group :jekyll_plugins do
   # gem 'jekyll-contentful', path: File.expand_path('../jekyll-contentful', __dir__)
   gem "jekyll-contentful", git: 'https://github.com/crdschurch/jekyll-contentful.git', tag: '2.0.1'
   gem "jekyll-crds", git: 'https://github.com/crdschurch/jekyll-crds.git', tag: '1.4.6'
-  gem "jekyll-placeholders", "~> 0.0.1", git: 'https://github.com/ample/jekyll-placeholders'
-  gem "paging-mister-hyde", git: 'https://github.com/ample/paging-mister-hyde.git', branch: 'master'
+  gem "jekyll-placeholders", git: 'https://github.com/ample/jekyll-placeholders', tag: '0.0.1'
+  gem "paging-mister-hyde", git: 'https://github.com/ample/paging-mister-hyde.git', tag: '0.2.0'
 end
 
 group :test do

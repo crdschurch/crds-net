@@ -128,7 +128,7 @@ paginate:
 
 <!-- Happenings -->
 <section class="container">
-  <div class="row">
+  <div id="phantom-lake" class="row">
     <div class="col-md-12">
       <div class="site-happenings-skeleton">
         <crds-site-happenings auth-token></crds-site-happenings>
@@ -206,6 +206,22 @@ paginate:
         <hr />
         {% endunless %} {% endfor %}
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Music -->
+<section class="container soft-half push-bottom">
+  <hr class="push-half-bottom">
+  <h2 class="flush-top font-size-base text-gray-light">latest music releases</h2>
+  <div class="card-deck carousel text-center" data-crds-carousel="mobile-scroll">
+    <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
+      {% assign album_card = site.albums | sort: "published_at" | reverse %}
+      {% for album in album_card limit: 5 %}
+        <div class="album-container card carousel-cell flush hard">
+          {% include media/_album-card.html %}
+        </div>
+      {% endfor %}
     </div>
   </div>
 </section>

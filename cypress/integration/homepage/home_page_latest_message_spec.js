@@ -26,7 +26,11 @@ describe('Tests the Current Message on the Homepage', function () {
     });
 
     //Navigate
-    cy.ignorePropertyUndefinedTypeError();
+      cy.ignorePropertyUndefinedTypeError();
+      cy.on('uncaught:exception', (err, runnable) => {
+          return false
+      })
+
     cy.visit('/');
   });
 

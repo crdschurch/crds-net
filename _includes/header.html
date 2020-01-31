@@ -7,11 +7,12 @@
   </svg>
   <crds-shared-header env="{{ site.jekyll_env }}"></crds-shared-header>
 </div>
-
-<div class="snail-trail-skeleton">
-  {% if page.snail_trail  %}
-  <crds-snail-trail name="{{ page.snail_trail }}" env="{{ site.jekyll_env }}"></crds-snail-trail>
-  {% else %}
-  <crds-snail-trail name="trending" env="{{ site.jekyll_env }}"></crds-snail-trail>
-  {%endif%}
-</div>
+{% if page.snail_trail != "disabled" %}
+  <div class="snail-trail-skeleton">
+    {% if page.snail_trail  %}
+    <crds-snail-trail name="{{ page.snail_trail }}" env="{{ site.jekyll_env }}"></crds-snail-trail>
+    {% else %}
+    <crds-snail-trail name="trending" env="{{ site.jekyll_env }}"></crds-snail-trail>
+    {%endif%}
+  </div>
+{% endif %}
