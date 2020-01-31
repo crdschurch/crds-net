@@ -8,11 +8,7 @@ describe('Testing the Current Series on the Homepage:', function () {
     sqm.getSingleEntry(sqm.query.latestSeries).then(series => {
       currentSeries = series;
     });
-
-    cy.ignorePropertyUndefinedTypeError();
-    cy.on('uncaught:exception', (err, runnable) => {
-        return false
-    })
+  
     cy.visit('/');
   });
 

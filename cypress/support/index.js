@@ -16,6 +16,11 @@
 // Import commands.js using ES2015 syntax:
 import './commands';
 
+Cypress.on('uncaught:exception', (err, runnable) => {
+    return !( err.message.includes('Cannot set property \'status\' of undefined'));
+  });
+
+
 require('cypress-plugin-retries');
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
