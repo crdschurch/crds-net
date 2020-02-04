@@ -26,10 +26,10 @@ describe('Tests the Current Message on the Homepage', function () {
     });
 
     //Navigate
-      cy.ignorePropertyUndefinedTypeError();
-      cy.on('uncaught:exception', (err, runnable) => {
-          return false
-      })
+    cy.ignorePropertyUndefinedTypeError();
+    cy.on('uncaught:exception', (err, runnable) => {
+      return false
+    })
 
     cy.visit('/');
   });
@@ -51,11 +51,11 @@ describe('Tests the Current Message on the Homepage', function () {
     });
   });
 
-  it('Checks card image and, if Bitmovin video, player exists and video autoplays', () => {
+  it.skip('Checks card image and, if Bitmovin video, player exists and video autoplays', () => {
     cy.get('[data-automation-id="message-video"]').as('videoImagelink');
     cy.get('@videoImagelink').find('img').as('videoImage');
-  const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus of undefined.*/, /.*Bit movin is undefined.*/];
-  cy.ignoreMatchingErrors(errorsToIgnore);
+    const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus of undefined.*/, /.*Bit movin is undefined.*/];
+    cy.ignoreMatchingErrors(errorsToIgnore);
     currentMessage.imageLink.getResource(image => {
       new ImageDisplayValidator('videoImage', false).shouldHaveImgixImage(image);
     });
