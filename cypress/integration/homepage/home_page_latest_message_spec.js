@@ -51,7 +51,7 @@ describe('Tests the Current Message on the Homepage', function () {
     });
   });
 
-  it('\itmovin video, player exists and video autoplays', () => {
+  it('Checks card image and, if Bitmovin video, player exists and video autoplays', () => {
     cy.get('[data-automation-id="message-video"]').as('videoImagelink');
     cy.get('@videoImagelink').find('img').as('videoImage');
   const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus of undefined.*/, /.*Bit movin is undefined.*/];
