@@ -30,6 +30,8 @@ describe('Tests the /live jumbotron content with different stream times:', funct
 
   describe('Tests button navigation:', function () {
     it('Live Stream State: Checks clicking "Watch Now" navs to the live stream', function () {
+      const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus of undefined.*/, /.*Bit movin is undefined.*/];
+      cy.ignoreMatchingErrors(errorsToIgnore);
       const fakeCurrentSchedule = scheduleGenerator.getStreamStartingAfterHours(0);
       visitLiveWithSchedule(fakeCurrentSchedule);
 

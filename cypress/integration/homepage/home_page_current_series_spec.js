@@ -4,6 +4,8 @@ import { SeriesQueryManager } from 'crds-cypress-contentful';
 describe('Testing the Current Series on the Homepage:', function () {
   let currentSeries;
   before(function () {
+  const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property status of undefined.*/, /.*Bit movin is not defined.*/];
+  cy.ignoreMatchingErrors(errorsToIgnore);
     const sqm = new SeriesQueryManager();
     sqm.getSingleEntry(sqm.query.latestSeries).then(series => {
       currentSeries = series;
@@ -13,6 +15,8 @@ describe('Testing the Current Series on the Homepage:', function () {
   });
 
   it('Current series title, description, and image should match Contentful', function () {
+  const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property status of undefined.*/, /.*Bit movin is not defined.*/];
+  cy.ignoreMatchingErrors(errorsToIgnore);
     cy.get('[data-automation-id="series-title"]').as('seriesTitle');
     cy.get('@seriesTitle').should('be.visible').and('have.text', currentSeries.title.text);
     cy.get('@seriesTitle').should('have.attr', 'href', currentSeries.URL.relative);

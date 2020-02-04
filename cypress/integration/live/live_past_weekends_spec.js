@@ -24,6 +24,8 @@ describe('Testing the Past Weekends section on the Live page:', function () {
 
   [0,1,2,3].forEach((index) => {
     it(`The card for message #${index} should contain title, image, description and link`, function () {
+    const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus of undefined.*/];
+    cy.ignoreMatchingErrors(errorsToIgnore);
       const message = recentMessages[index];
       cy.get('[data-automation-id="recent-message-card"]').eq(index).as('messageCard');
       cy.get('@messageCard').should('be.visible');

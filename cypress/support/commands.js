@@ -68,3 +68,4 @@ Cypress.Commands.add('ignoreMatchingErrors', (errorList) => {
     return matchingError === undefined;
   });
 });
+

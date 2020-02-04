@@ -13,7 +13,9 @@ describe('Testing the 404 page:', function () {
   });
 
   it('/search page should load when the search button is clicked', function () {
-      cy.wait(5000);
+  const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus of undefined.*/];
+  cy.ignoreMatchingErrors(errorsToIgnore);
+    cy.wait(5000);
       cy.get('[data-automation-id="404-search-button"]').as('404SearchButton');
       cy.get('@404SearchButton').click();
 
