@@ -22,6 +22,7 @@ snail_trail: connect
   {% for category in site['onsite_group_categories'] %}
   {% assign groups = category | onsite_groups_for_category %}
   {% if groups.size > 0 %}
+  <a class="anchor" id="{{ category.title | slugify }}"></a>
   <div class="row soft-ends push-bottom push-quarter-top">
     <div class="col-sm-3">
       <img src="{{ category.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"

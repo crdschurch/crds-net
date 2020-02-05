@@ -49,7 +49,7 @@ layout: container-fluid
           {% endif %}
 
           <p class="text-gray flush-bottom push-quarter-top small">
-            {{ meeting.description }}
+            {{ meeting.description | markdownify }}
           </p>
           {% if meeting.childcare %}
           <p class="text-gray flush-bottom push-quarter-top small">

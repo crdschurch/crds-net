@@ -125,6 +125,10 @@ collections:
     output: false
   onsite_group_meetings:
     output: false
+  trips: 
+    output: false
+  albums:
+    output: false
 
 contentful:
   article:
@@ -162,7 +166,6 @@ contentful:
   category:
     query: "fields.exclude_from_crossroads[ne]=true"
   exclude:
-    - album
     - migration
     - sign_off
     - collections

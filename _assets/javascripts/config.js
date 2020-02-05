@@ -42,16 +42,16 @@ module.exports = [
     ]
   },
   {
+    name: "parallax",
+    files: ["vendor/rellax-1.10.0.min"]
+  },
+  {
     name: "masonry_deferred",
     files: ["components/masonry"]
   },
   {
     name: "set-redirect-url",
     files: ["lib/set-redirect-url"]
-  },
-  {
-    name: "homepage-auth",
-    files: ["views/homepage-auth"]
   },
   {
     name: "reachout-trip",
@@ -111,10 +111,5 @@ module.exports = [
   {
     name: "skeleton",
     files: ["components/skeleton"]
-  },
-  {
-    name: "authentication",
-    files: ["lib/authentication"],
-    deps: ["vendor/client-auth"]
   }
 ];
