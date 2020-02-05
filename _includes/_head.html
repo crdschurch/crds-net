@@ -44,8 +44,15 @@
   <!-- after -->
   <script> window.prerenderReady = true; </script>
 
-  <script type="module" onload="componentsLoaded()" src="https://crds-components{% if site.jekyll_env != 'prod' and site.jekyll_env != 'production' %}-int{% endif %}.netlify.com/dist/crds-components/crds-components.esm.js"></script>
-  <script nomodule="" onload="componentsLoaded()" src="https://crds-components{% if site.jekyll_env != 'prod' and site.jekyll_env != 'production' %}-int{% endif %}.netlify.com/dist/crds-components.js"></script>
+  {% if site.jekyll_env == 'int' %}
+    {% assign subdomain = 'components-int' %}
+  {% elsif site.jekyll_env == 'demo' %}
+    {% assign subdomain = 'components-demo' %}
+  {% else %}
+    {% assign subdomain = 'components' %}
+  {% endif %}
+  <script type="module" onload="componentsLoaded()" src="https://{{subdomain}}.crossroads.net/dist/crds-components/crds-components.esm.js"></script>
+  <script nomodule="" onload="componentsLoaded()" src="https://{{subdomain}}.crossroads.net/dist/crds-components.js"></script>
   <script>
     function componentsLoaded() {
       var componentsReady = new Event('components-ready');
