@@ -10,7 +10,6 @@ describe('Testing the Current Series on the Homepage:', function () {
     sqm.getSingleEntry(sqm.query.latestSeries).then(series => {
       currentSeries = series;
     });
-  
     cy.visit('/');
   });
 
