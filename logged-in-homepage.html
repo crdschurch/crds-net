@@ -178,7 +178,7 @@ paginate:
       <hr class="push-half-bottom" />
       <h2 class="flush-top font-size-base text-gray-light">latest</h2>
 
-      {% assign below_the_fold = page.home_collection.docs | slice: 4 %} 
+      {% assign below_the_fold = page.home_collection.docs | slice: 4 %}
       {% for item in below_the_fold %}
         {% include media/_overlay-card.html %}
       {% endfor %}
@@ -250,6 +250,13 @@ paginate:
     var c = new CRDS.Countdown();
     c.getEventStatus();
   }
+</script>
+
+
+<!-- Trigger for Hotjar to start tracking visitors to home page who are authenticated -->
+<script>
+  hj('trigger', 'track_authenticated_homepage_users');
+  console.log('authenticated user - hotjar trigger');
 </script>
 
 {% javascript_link_tag autoplay async %} {% javascript_link_tag skeleton async %}
