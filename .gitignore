@@ -24,3 +24,4 @@ liveStreamTests/cypress/videos
 liveStreamTests/cypress/screenshots
 liveStreamTests/node_modules
 /.vs
+.idea
