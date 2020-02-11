@@ -13,4 +13,3 @@
   ./bin/kickOffCypress.sh
 } 2>buildlog.txt
 ./bin/logzio.sh
-cat buildlog.txt
