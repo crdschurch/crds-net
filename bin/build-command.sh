@@ -11,5 +11,5 @@
   ./bin/prerenderio-bust.sh &&
   ./bin/health-check.sh "we are crossroads" &&
   ./bin/kickOffCypress.sh
-} #2>buildlog.txt
-#./bin/logzio.sh
+} 2>buildlog.txt
+./bin/logzio.sh
