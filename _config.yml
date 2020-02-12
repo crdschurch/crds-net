@@ -56,14 +56,6 @@ contentful:
     query: fields.category=common
     map:
       content_block: content
-  page:	
-    query: "fields.collections[exists]=false"
-  podcast:
-    query: "fields.exclude_from_crossroads[ne]=true"
-  episode:
-    query: "content_type=episode&fields.podcast.sys.contentType.sys.id=podcast&fields.podcast.fields.exclude_from_crossroads[ne]=true"
-  video:
-    query: "fields.exclude_from_crossroads[ne]=true"
     map:
       date: published_at
   exclude:
