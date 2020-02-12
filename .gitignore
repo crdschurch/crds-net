@@ -27,3 +27,4 @@ liveStreamTests/node_modules
 /.vs/crds-net/v15/.suo
 /.vs/slnx.sqlite
 /.vs
+.idea
