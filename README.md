@@ -26,6 +26,8 @@ CONTENTFUL_SPACE_ID=
 CONTENTFUL_ENV=
 CONTENTFUL_ACCESS_TOKEN=
 CONTENTFUL_MANAGEMENT_TOKEN=
+OKTA_CLIENT_ID=
+OKTA_OAUTH_BASE_URL=
 ```
 Then run the following command in your bash prompt to download content to your local `collections` directory:
 ```bash
@@ -120,6 +122,15 @@ $ git credential-osxkeychain erase
 This behavior is odd. After hitting `Enter` after the first line, nothing happens -- you are directed to a blank line in the terminal. That's where you type in `host=github.com` and hit `Enter` again. Then followed by the next line. The third empty line you leave blank and hit `Enter` for a fourth time. Then your credentials should be stored.
 
 If you try to push again, you should be prompted for a new username and password and those will be stored in your keychain for future use.
+
+## Future Dated content
+The file name is what keeps future dated content from showing on non layout pages. There are examples of this in the config.yml.
+
+```yaml
+collections:
+  articles:
+    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
+```
 
 ## Build Logs
 

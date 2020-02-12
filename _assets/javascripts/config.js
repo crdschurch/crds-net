@@ -1,7 +1,7 @@
 module.exports = [
   {
     name: "application",
-    deps: ["vendor/jquery-3.3.1.min", "vendor/crds-shared-header-v0.8.4.min"],
+    deps: ["vendor/jquery-3.3.1.min"],
     files: ["lib/set-redirect-url"]
   },
   {
@@ -14,8 +14,6 @@ module.exports = [
       "vendor/flickity.pkgd.min",
       "vendor/crds-card-carousel-v0.2.2.min",
       "vendor/crds-jumbotron-video-v0.2.1.min",
-      "vendor/crds-livestream-reminder-v0.0.16.min",
-      "vendor/crds-rollcall.min",
       "vendor/crds-status-message-v0.1.3.min",
       "vendor/feature-flags.min",
       "vendor/isotope.min",
@@ -30,7 +28,6 @@ module.exports = [
       "lib/height-watcher",
       "lib/smooth-scroller",
       "components/legacy-imgix",
-      "components/header",
       "components/images",
       "components/carousels",
       "components/countdown",
@@ -39,8 +36,14 @@ module.exports = [
       "components/simple-fred",
       "components/smart-banner",
       "components/status-message",
-      "components/global"
+      "components/global",
+      "components/youtube",
+      "components/toggle-tooltip"
     ]
+  },
+  {
+    name: "parallax",
+    files: ["vendor/rellax-1.10.0.min"]
   },
   {
     name: "masonry_deferred",
@@ -51,14 +54,8 @@ module.exports = [
     files: ["lib/set-redirect-url"]
   },
   {
-    name: "auth-required",
-    files: ["lib/auth-required"]
-  },
-  {
     name: "reachout-trip",
-    files: [
-      "lib/reachout-trip"
-    ]
+    files: ["lib/reachout-trip"]
   },
   {
     name: "family-meeting-stream",
@@ -74,6 +71,7 @@ module.exports = [
   },
   {
     name: "live-stream",
+    deps: ["vendor/crds-rollcall-v0.1.0.min"],
     files: ["views/live-stream"]
   },
   {
@@ -94,11 +92,24 @@ module.exports = [
     ]
   },
   {
+    name: "bitmovin",
+    deps: ["vendor/moment-2.24.min", "vendor/moment-timezone-0.5.25.min"],
+    files: ["components/bitmovin"]
+  },
+  {
     name: "events",
     files: [
       "vendor/jquery.cycle2.min",
       "vendor/scrollVert.min",
       "vendor/events.min"
     ]
+  },
+  {
+    name: "autoplay",
+    files: ["components/autoplay-controller"]
+  },
+  {
+    name: "skeleton",
+    files: ["components/skeleton"]
   }
 ];

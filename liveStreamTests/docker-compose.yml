@@ -1,0 +1,11 @@
+version: '3'
+services:
+  stream_tests:
+    build: .
+    container_name: cypress_live_stream_tests
+    image: crdschurch/crds-net-live-stream-tests:${DOCKER_TAG:-local}
+    environment:
+      - CYPRESS_configFile=${config_file}
+      - VAULT_ROLE_ID=${VAULT_ROLE_ID}
+      - VAULT_SECRET_ID=${VAULT_SECRET_ID}
+    entrypoint: npm run test

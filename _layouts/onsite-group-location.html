@@ -1,0 +1,81 @@
+---
+layout: container-fluid
+snail_trail: connect
+---
+
+{% assign location_footnote = site.content_blocks | where: 'slug', 'onsite-group-location-footnote' | first %}
+
+<section class="container">
+  <div class="row push-ends">
+    <div class="col-md-12">
+      <a href="/groups/onsite">&lt; Back to All Onsite Groups</a>
+    </div>
+  </div>
+  <div class="row push-bottom">
+    <div class="col-md-3">
+      <img class="width-100"
+        src="{{ page.location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+        sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+    </div>
+    <div class="col-md-9">
+      <h3 class="font-family-condensed-extra flush-ends mobile-soft-half-top text-uppercase">
+        {{ page.location.name }}
+        Onsite Groups
+      </h3>
+      <a href="https://www.crossroads.net/{{ page.location.slug }}">See what else is happening at Crossroads
+        {{ page.location.name }}</a>
+      <div class="font-size-base push-bottom push-half-top">
+        {{ page.location.onsite_group_description | markdownify }}
+      </div>
+
+      <hr />
+    </div>
+  </div>
+
+  <div class="row onsite-group-location-row push-bottom onsite-group-negative-margin-bottom">
+    {% assign sorted_meeting = page.meetings | sort_natural:"title" %}
+    {% for meeting in sorted_meeting %}
+    <div class="col-md-3">
+      <h4 class="font-family-condensed-extra text-uppercase">
+        {% if page.meeting_group_permalinks[meeting.contentful_id] %}
+        <a href="{{ page.meeting_group_permalinks[meeting.contentful_id] }}">
+          {{ meeting.title }}
+        </a>
+        {% else %}
+          {{ meeting.title }}
+        {% endif %}
+      </h4>
+      <p class="text-gray flush-bottom small">{{ meeting.description | markdownify }}</p>
+      <p class="flush-bottom push-quarter-top small">
+        Starts {{ meeting.starts_at | date: "%B %-d" }}
+      </p>
+      <p class="flush-bottom push-quarter-top small">
+        {{ meeting.meeting_time }} {{ meeting.starts_at | date: "%A" }}s
+      </p>
+      {% if meeting.childcare %}
+      <p class="text-gray flush-bottom push-quarter-top small">
+        *childcare is available with one week advance registration.
+      </p>
+      {% endif %}
+      {% if meeting.registration_link %}
+        <a href="{{ meeting.registration_link }}" class="btn btn-cyan push-top" type="button">Register</a>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+  <hr />
+  <div class="row soft-half-bottom soft-top">
+    <div class="col-md-6">
+      <p>
+        <strong>Can't find what you are looking for?</strong><br />
+        Visit the
+        <a href="https://www.crossroads.net/connect/?filters=Online%20Groups%3D&view=List%20View&my=0">Group Tool</a>
+        to connect with others looking for the same thing.
+      </p>
+    </div>
+    <div class="col-md-6">
+      {{ location_footnote.content_block | markdownify }}
+    </div>
+  </div>
+</section>

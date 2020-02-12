@@ -1,3 +1,6 @@
+/,/h,200! Role=user
+/group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
+/group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
 http://crossroads.net/*,https://www.crossroads.net/:splat,301!,master
 http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,master
@@ -6,11 +9,9 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /connect/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
 /group-leader/*,https://${env:CRDS_GROUP_LEADER_DOMAIN}/:splat,200!
 /groups/search/*,https://${env:CRDS_FINDER_ENDPOINT}/:splat,200!
-/map/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
+/map/*,/connect/:splat,302!
 /search/*,https://${env:CRDS_SEARCH_ENDPOINT}/:splat,200!
 /search-component/*,https://${env:CRDS_SEARCH_COMPONENT_ENDPOINT}/:splat,200!
-/admin/*, 200! Role=admin
-/admin/*,	/auth-fail,	401!
 /proxy/content/*,${env:CRDS_CMS_ENDPOINT}/:splat,200!
 /proxy/gateway/*,${env:CRDS_GATEWAY_ENDPOINT}/:splat,200!
 /mycamps*,https://${env:CRDS_ANGULAR_ENDPOINT}/mycamps:splat,200!
@@ -26,6 +27,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /profile/communications,https://${env:CRDS_ANGULAR_ENDPOINT}/profile/communications,200!
 /profile/skills,https://${env:CRDS_ANGULAR_ENDPOINT}/profile/skills,200!
 /signin,https://${env:CRDS_ANGULAR_ENDPOINT}/signin,200!
+/signin redirectUrl=:redirectUrl,https://${env:CRDS_ANGULAR_ENDPOINT}/signin?redirectUrl:redirectUrl,200!
 /signout,https://${env:CRDS_ANGULAR_ENDPOINT}/signout,200!
 /register,https://${env:CRDS_ANGULAR_ENDPOINT}/register,200!
 /forgot-password,https://${env:CRDS_ANGULAR_ENDPOINT}/forgot-password,200!
@@ -42,7 +44,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /waivers/*,https://${env:CRDS_ANGULAR_ENDPOINT}/waivers/:splat,200!
 /give,${env:PUSHPAY_GIVE_ENDPOINT},301
 /me/giving*,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301
-/giving/*,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301
 /givinghistory,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301
 /series/* autoPlay=:autoPlay sound=:sound,/media/series/:splat?autoPlay=:autoPlay&sound=:sound,302!
 /series/* autoPlay=:autoPlay,/media/series/:splat?autoPlay=:autoPlay,302!
@@ -50,13 +51,87 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /series/*,/media/series/:splat,302!
 /articles/*,/media/articles/:splat,302!
 /podcasts/*,/media/podcasts/:splat,302!
-/music/*,/media/songs/:splat,302!
 /videos/*,/media/videos/:splat,302!
 /message/*,/media/message/:splat,302!
 /tags/*,/media/topics/:splat,302!
 /topics/*,/media/topics/:splat,302!
 /authors/*,/media/authors/:splat,302!
 /songs/*,/media/songs/:splat,302!
+/oktasignin*,https://${env:CRDS_SIGNIN_ENDPOINT}:splat,200!
+/signin/*,https://${env:CRDS_SIGNIN_ENDPOINT}/signin/:splat,200!
+/event-checkin/*,https://${env:CRDS_EVENT_CHECKIN_ENDPOINT},302!
+/media/music/,${env:CRDS_MUSIC_ENDPOINT},301!
 /media/*,${env:CRDS_MEDIA_ENDPOINT}/:splat,200!
-/oktasignin,https://${env:CRDS_SIGNIN_ENDPOINT},200!
+/music/,${env:CRDS_MUSIC_ENDPOINT},301!
+/media/songs/god-of-the-breakthrough,${env:CRDS_MUSIC_ENDPOINT}/music/god-of-the-breakthrough/god-of-the-breakthrough,301!
+/media/songs/oh-the-power,${env:CRDS_MUSIC_ENDPOINT}/music/oh-the-power/oh-the-power,301!
+/media/songs/little-drummer-boy,${env:CRDS_MUSIC_ENDPOINT}/music/christmas/little-drummer-boy,301!
+/media/songs/the-first-noel,${env:CRDS_MUSIC_ENDPOINT}/music/christmas/the-first-noel,301!
+/media/songs/o-come-all-ye-faithful,${env:CRDS_MUSIC_ENDPOINT}/music/christmas/o-come-all-ye-faithful,301!
+/media/songs/glorious-day-live,${env:CRDS_MUSIC_ENDPOINT}/music/you-are-able/glorious-day-live,301!
+/media/songs/never-let-go-live,${env:CRDS_MUSIC_ENDPOINT}/music/you-are-able/never-let-go-live,301!
+/media/songs/you-are-able-song,${env:CRDS_MUSIC_ENDPOINT}/music/you-are-able/you-are-able-song,301!
+/media/songs/never-let-go-you-are-able,${env:CRDS_MUSIC_ENDPOINT}/music/you-are-able/never-let-go-you-are-able,301!
+/media/songs/never-let-go-lyric-video,${env:CRDS_MUSIC_ENDPOINT}/music/you-are-able/never-let-go-lyric-video,301!
+/media/songs/rejoice-live,${env:CRDS_MUSIC_ENDPOINT}/music/you-are-able/rejoice-live,301!
+/media/songs/lord-of-all-intro,${env:CRDS_MUSIC_ENDPOINT}/music/you-are-able/lord-of-all-intro,301!
+/media/songs/lord-of-all-you-are-able,${env:CRDS_MUSIC_ENDPOINT}/music/you-are-able/lord-of-all-you-are-able,301!
+/media/songs/no-longer-slaves-live,${env:CRDS_MUSIC_ENDPOINT}/music/you-are-able/no-longer-slaves-live,301!
+/media/songs/the-passion-live,${env:CRDS_MUSIC_ENDPOINT}/music/you-are-able/the-passion-live,301!
+/media/songs/peace-live,${env:CRDS_MUSIC_ENDPOINT}/music/you-are-able/peace-live,301!
+/media/songs/redemption-song,${env:CRDS_MUSIC_ENDPOINT}/music/you-are-able/redemption-song-you-are-able,301!
+/media/songs/who-you-say-i-am-live,${env:CRDS_MUSIC_ENDPOINT}/music/you-are-able/who-you-say-i-am-live,301!
+/media/songs/faithful-you-are-able,${env:CRDS_MUSIC_ENDPOINT}/music/you-are-able/faithful-you-are-able,301!
+/media/songs/faithful,${env:CRDS_MUSIC_ENDPOINT}/music/faithful/faithful,301!
+/media/songs/you-are-able-live,${env:CRDS_MUSIC_ENDPOINT}/music/you-are-able/you-are-able-live,301!
+/media/songs/seek-the-lord,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/seek-the-lord,301!
+/media/songs/whatever-pleases-you,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/whatever-pleases-you,301!
+/media/songs/anybody-else,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/anybody-else,301!
+/media/songs/redemption-song,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/redemption-song,301!
+/media/songs/redemption-song-remix-live,${env:CRDS_MUSIC_ENDPOINT}/redemption-song-remix-live/redemption-song-remix-live,301!
+/media/songs/be-strong,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/be-strong,301!
+/media/songs/not-be-silent,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/not-be-silent,301!
+/media/songs/psalm-31,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/psalm-31,301!
+/media/songs/i-will-not-be-consumed,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/i-will-not-be-consumed,301!
+/media/songs/lord-of-all,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/lord-of-all,301!
+/media/songs/be-thou-my-vision,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/be-thou-my-vision,301!
+/media/songs/listen,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/listen,301!
+/media/songs/*,${env:CRDS_MUSIC_ENDPOINT}/:splat,302
+/onsitegroups,/groups/onsite,301!
+/groups/online,/connect/?refinementList%5BgroupType%5D%5B0%5D=Online,301!
+/groups/home,/connect/?refinementList%5BgroupType%5D%5B0%5D=At%20Home,301!
+/groups/at-home,/connect/?refinementList%5BgroupType%5D%5B0%5D=At%20Home,301!
+/groups/chaser,/connect,301!
+/groups/journey,/connect,301!
+/florence/florence-onsite-groups,/groups/florence,301!
+/uptown/uptown-onsite-groups,/groups/uptown,301!
+/westside/west-side-onsite-groups,/groups/westside,301!
+/mason/masononsitegroups,/groups/mason,301!
+/oakley/oakleyonsitegroups,/groups/oakley,301!
+/eastside/eastsideonsitegroups,/groups/eastside,301!
+/richmondonsitegroups,/groups/richmond,301!
+/lexingtononsitegroups,/groups/lexington,301!
+/georgetownonsitegroups,/groups/georgetown,301!
+/healing/alladdictionsbigbookmeeting,/groups/onsite-healing-groups/all-addictions-big-book-meeting,301!
+/griefsupport,/groups/onsite-healing-groups/grief-support,301!
+/healing/real-marriage,/groups/onsite-healing-groups/real-marriage,301!
+/healing/undefeated,/groups/onsite-healing-groups/undefeated,301!
+/momsgroup,/groups/onsite-groups/moms,301!
+/fathers,/groups/onsite-groups/fathers,301!
+/youngadults,/groups/onsite-groups/young-adults,301!
+/onsitegroups/mens,/groups/onsite-groups/mens,301!
+/onsitegroups/womens,/groups/onsite-groups/womens,301!
+/onsitegroups/financial-peace-university,/groups/onsite-groups/financial-peace-university,301!
+/onsitegroups/bible-groups,/groups/onsite-groups/bible-groups,301!
+/onsitegroups/going-deeper,/groups/onsite-groups/going-deeper,301!
+/healing/aa-groups,/groups/onsite-healing-groups/aa,301!
+/healing/severepersistentmentalillness,/groups/onsite-healing-groups/severe-and-persistent-mental-illness-support-group,301!
+/healing/transformingbetrayal,/groups/onsite-healing-groups/transforming-betrayal,301!
+/healing/mens-healthy-choices,/groups/onsite-healing-groups/mens-healthy-choices,301!
+/healing/recovery-and-redemption,/groups/onsite-healing-groups/recovery-and-redemption,301!
+/healing/beautyforashes,/groups/onsite-healing-groups/beauty-for-ashes,301!
+/cst,/groups/onsite-healing-groups/cst,301!
+/healing/eyeswideopen,/groups/onsite-healing-groups/eyes-wide-open,301!
+/healing/divorcecare,/groups/onsite-healing-groups/divorce-care,301!
+/healing/postpartum-healing,/groups/onsite-healing-groups/postpartum,301!
 /*,/404.html,404
