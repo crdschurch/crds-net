@@ -39,8 +39,8 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-crds.git
-  revision: fa00a5d3ec944fe89ff71ca55bf1b7dd502cb1c6
-  tag: 2.0.1
+  revision: 670bf54c7897cd7a56ec5e667d36417d6d2ca597
+  tag: 2.0.2
   specs:
     jekyll-crds (2.0.0)
       activesupport
@@ -87,8 +87,8 @@ GEM
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
-    eventmachine (1.2.7)
-    ffi (1.12.2)
+    eventmachine (1.2.7-x64-mingw32)
+    ffi (1.12.2-x64-mingw32)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
@@ -194,7 +194,7 @@ GEM
       rspec-support (~> 3.9.0)
     rspec-support (3.9.2)
     safe_yaml (1.0.5)
-    sassc (2.2.1)
+    sassc (2.2.1-x64-mingw32)
       ffi (~> 1.9)
     shellany (0.0.1)
     terminal-table (1.8.0)
@@ -203,11 +203,14 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.6)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2019.3)
+      tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
     unicode-display_width (1.6.1)
     vcr (5.1.0)
+    wdm (0.1.1)
     webmock (3.8.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -215,7 +218,7 @@ GEM
     zeitwerk (2.2.2)
 
 PLATFORMS
-  ruby
+  x64-mingw32
 
 DEPENDENCIES
   activesupport
