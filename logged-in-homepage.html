@@ -112,7 +112,9 @@ paginate:
       <!-- Current Series -->
       {% if page.series.docs.size != 0 %}
       <hr class="push-half-bottom" />
+
       <h2 class="flush-bottom flush-top font-size-base text-gray-light">current series</h2>
+
       {% assign featured = page.series.docs | first %} {% assign unfeatured_series = page.series.docs | slice: 1, 3 %}
       {% include media/_media-object-featured.html %} {% endif %}
 
@@ -280,6 +282,20 @@ paginate:
     clearInterval(triggerTimer);
     console.log('authenticated user - hotjar trigger');
   }
+</script>
+
+
+<!-- Amplitude events -->
+
+<script>
+    let videos = document.getElementsByClassName('card-video-player');
+    for (var i = 0; i <= videos.length; i++) {
+      videos[i].addEventListener('click', function (event) {
+        analytics.track('Homepage Logged In Video Clicked', {
+          'videoURL': event.currentTarget.parentElement.href
+        })
+      });
+    }
 </script>
 
 {% javascript_link_tag autoplay async %} {% javascript_link_tag skeleton async %}
