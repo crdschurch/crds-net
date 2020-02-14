@@ -26,13 +26,10 @@ describe('Tests the Current Message on the Homepage', function () {
     });
 
     //Navigate
-      cy.ignorePropertyUndefinedTypeError();
-      cy.on('uncaught:exception', (err, runnable) => {
-          return false
-      })
-
-    cy.visit('/');
-  });
+  const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus or undefined.*/];
+  cy.ignoreMatchingErrors(errorsToIgnore); 
+  cy.visit('/');
+ });
 
   it('Checks title, image, and "View latest now" button have correct link', () => {
     currentMessage.getURL().then(url => {
