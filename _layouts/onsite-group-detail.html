@@ -35,12 +35,17 @@ layout: container-fluid
           <h4 class="flush-ends font-family-condensed-extra text-uppercase">
             <a href="/groups/{{ meeting.location.slug }}">{{ meeting.location.name }}</a>
           </h4>
+
+          {% if meeting.starts_at %}
           <h4 class="flush-ends font-family-condensed-extra text-uppercase">
             {{ meeting.meeting_time }} {{ meeting.starts_at | date: "%A" }}s
           </h4>
           <p class="flush-bottom push-half-top small">
-            <strong> Starts {{ meeting.starts_at | date: "%B %e, %Y" }}</strong>
+              <strong>  
+                Starts {{ meeting.starts_at | date: "%B %e, %Y" }}
+              </strong>
           </p>
+          {% endif %}
 
           {% if meeting.room%}
           <p class="text-gray flush-bottom push-quarter-top small">

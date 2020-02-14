@@ -112,7 +112,9 @@ paginate:
       <!-- Current Series -->
       {% if page.series.docs.size != 0 %}
       <hr class="push-half-bottom" />
+
       <h2 class="flush-bottom flush-top font-size-base text-gray-light">current series</h2>
+
       {% assign featured = page.series.docs | first %} {% assign unfeatured_series = page.series.docs | slice: 1, 3 %}
       {% include media/_media-object-featured.html %} {% endif %}
 
@@ -264,6 +266,37 @@ paginate:
     var c = new CRDS.Countdown();
     c.getEventStatus();
   }
+</script>
+
+
+<!-- Trigger for Hotjar to start tracking visitors to home page who are authenticated -->
+<script>
+  var triggerTimer = setInterval(hotJarTrigger, 1000);
+  function hotJarTrigger() {
+    if(window.hj.scriptLoaded == true) {
+      hj('trigger','track_authenticated_homepage_users');
+      triggerFired();
+    }
+  }
+  function triggerFired() {
+    clearInterval(triggerTimer);
+    console.log('authenticated user - hotjar trigger');
+  }
+</script>
+
+
+<!-- Amplitude events -->
+
+<script>
+    let videos = document.getElementsByClassName('card-video-player');
+    for (var i = 0; i < videos.length; i++) {
+      let link = videos[i].parentElement;
+      link.addEventListener('click', function (event) {
+        analytics.track('Homepage Logged In Video Clicked', {
+          'videoURL': link.href
+        })
+      });
+    }
 </script>
 
 {% javascript_link_tag autoplay async %} {% javascript_link_tag skeleton async %}
