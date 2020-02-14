@@ -26,13 +26,10 @@ describe('Tests the Current Message on the Homepage', function () {
     });
 
     //Navigate
-      cy.ignorePropertyUndefinedTypeError();
-      cy.on('uncaught:exception', (err, runnable) => {
-          return false
-      })
-
-    cy.visit('/');
-  });
+  const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus or undefined.*/];
+  cy.ignoreMatchingErrors(errorsToIgnore); 
+  cy.visit('/');
+ });
 
   it('Checks title, image, and "View latest now" button have correct link', () => {
     currentMessage.getURL().then(url => {
@@ -52,8 +49,6 @@ describe('Tests the Current Message on the Homepage', function () {
   });
 
   it('Checks card image and, if Bitmovin video, player exists and video autoplays', () => {
-  const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus or undefined.*/];
-  cy.ignoreMatchingErrors(errorsToIgnore);  
     cy.get('[data-automation-id="message-video"]').as('videoImagelink');
     cy.get('@videoImagelink').find('img').as('videoImage');
     currentMessage.imageLink.getResource(image => {
