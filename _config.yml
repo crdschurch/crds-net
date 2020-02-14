@@ -74,9 +74,12 @@ collections:
   locations:
     output: true
     permalink: /:slug
+<<<<<<< HEAD
   trips: 
     output: true
     permalink: /reachout/go/:country/:slug
+=======
+>>>>>>> parent of 70cf3d42... creating trip detail content model
   series:
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
@@ -127,6 +130,8 @@ collections:
   onsite_group_categories:
     output: false
   onsite_group_meetings:
+    output: false
+  trips: 
     output: false
   albums:
     output: false
@@ -183,11 +188,6 @@ defaults:
     values:
       layout: onsite-group-detail
       snail_trail: connect
-  - scope:
-      path: ""
-      type: "trips"
-    values:
-      layout: trip
 
 imgix_params:
   placeholder: "auto=format,compress&w=10"
