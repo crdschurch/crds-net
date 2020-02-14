@@ -75,7 +75,6 @@ collections:
     output: true
     permalink: /:slug
   trips: 
-    # filename: "{{ country | slugify }}"
     output: true
     permalink: /reachout/go/:country/:slug
   series:
