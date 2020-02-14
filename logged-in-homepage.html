@@ -83,7 +83,7 @@ paginate:
             <li><a href="{{ site.url }}/profile/personal">My Profile</a></li>
             <li><a href="{{ site.url }}/me/giving">My Giving</a></li>
             <li><a href="{{ site.url }}/connect/?my=1">My Groups</a></li>
-            <li><a href="{{ site.url }}/trips/mytrips">My Trips</a></li>
+            <li><a href="{{ site.focus_mission_url }}">My Trips</a></li>
           </ul>
         </div>
         <div class="col-xs-6 col-md-6 hard-left push-bottom push-top">
@@ -176,7 +176,7 @@ paginate:
       <hr class="push-half-bottom" />
       <h2 class="flush-top font-size-base text-gray-light">latest</h2>
 
-      {% assign below_the_fold = page.home_collection.docs | slice: 4 %} 
+      {% assign below_the_fold = page.home_collection.docs | slice: 4 %}
       {% for item in below_the_fold %}
         {% include media/_overlay-card.html %}
       {% endfor %}
