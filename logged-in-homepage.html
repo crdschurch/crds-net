@@ -83,7 +83,7 @@ paginate:
             <li><a href="{{ site.url }}/profile/personal">My Profile</a></li>
             <li><a href="{{ site.url }}/me/giving">My Giving</a></li>
             <li><a href="{{ site.url }}/connect/?my=1">My Groups</a></li>
-            <li><a href="{{ site.url }}/trips/mytrips">My Trips</a></li>
+            <li><a href="{{ site.focus_mission_url }}">My Trips</a></li>
           </ul>
         </div>
         <div class="col-xs-6 col-md-6 hard-left push-bottom push-top">
@@ -112,7 +112,9 @@ paginate:
       <!-- Current Series -->
       {% if page.series.docs.size != 0 %}
       <hr class="push-half-bottom" />
+
       <h2 class="flush-bottom flush-top font-size-base text-gray-light">current series</h2>
+
       {% assign featured = page.series.docs | first %} {% assign unfeatured_series = page.series.docs | slice: 1, 3 %}
       {% include media/_media-object-featured.html %} {% endif %}
 
@@ -280,6 +282,21 @@ paginate:
     clearInterval(triggerTimer);
     console.log('authenticated user - hotjar trigger');
   }
+</script>
+
+
+<!-- Amplitude events -->
+
+<script>
+    let videos = document.getElementsByClassName('card-video-player');
+    for (var i = 0; i < videos.length; i++) {
+      let link = videos[i].parentElement;
+      link.addEventListener('click', function (event) {
+        analytics.track('Homepage Logged In Video Clicked', {
+          'videoURL': link.href
+        })
+      });
+    }
 </script>
 
 {% javascript_link_tag autoplay async %} {% javascript_link_tag skeleton async %}
