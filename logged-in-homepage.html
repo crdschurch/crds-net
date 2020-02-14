@@ -289,10 +289,11 @@ paginate:
 
 <script>
     let videos = document.getElementsByClassName('card-video-player');
-    for (var i = 0; i <= videos.length; i++) {
-      videos[i].addEventListener('click', function (event) {
+    for (var i = 0; i < videos.length; i++) {
+      let link = videos[i].parentElement;
+      link.addEventListener('click', function (event) {
         analytics.track('Homepage Logged In Video Clicked', {
-          'videoURL': event.currentTarget.parentElement.href
+          'videoURL': link.href
         })
       });
     }
