@@ -36,11 +36,9 @@ describe('Tests the /live/stream page video player', function () {
 
   it('Checks player is Bitmovin player or fallback Youtube player', function () {
     cy.route('manifest.m3u8').as('bitmovinManifest');
-      cy.on('uncaught:exception', (err, runnable) => {
-          return false
-      })
-
-    cy.visit('/live/stream/');
+    const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus or undefined.*/];
+    cy.ignoreMatchingErrors(errorsToIgnore);
+       cy.visit('/live/stream/');
     hideRollCall();
 
     if (latestMessage.bitmovinURL.hasValue) {
@@ -72,10 +70,8 @@ describe('Tests the /live/stream page video player', function () {
       }
     });
 
-    cy.on('uncaught:exception', (err, runnable) => {
-        return false
-    })
-
+    const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus or undefined.*/];
+    cy.ignoreMatchingErrors(errorsToIgnore);  
     cy.visit('/live/stream/');
     hideRollCall();
 
