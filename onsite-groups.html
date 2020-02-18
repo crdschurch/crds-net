@@ -45,7 +45,7 @@ snail_trail: connect
           <h3 class="font-family-condensed-extra text-uppercase">
             <a href="{{ col.url }}">{{ col.title }}</a>
           </h3>
-          <div class="text-gray small">{{ col.description | markdownify }}</div>
+          <div class="text-gray small">{{ col.description | markdownify | strip_html | truncate: 275 }}</div>
         </div>
         {% endfor %}
       </div>
