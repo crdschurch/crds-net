@@ -14,7 +14,7 @@ layout: default
       <div class="row soft-top text-left push-top">
         <div class="col-sm-10 col-sm-offset-1 push-top">
           <h1 class="font-family-condensed-extra text-uppercase" style="line-height: .9em;">
-            <strong>{{ page.country | replace: '-' , ' '}}</strong><br>
+            <strong>{{ page.country }}</strong><br>
             {{ page.trip_details }}</h1>
           <span class="font-family-base font-size-base push-half-top">{{ page.start_date | date:"%-m/%-d/%Y" }}
             - {{ page.end_date | date:"%-m/%-d/%Y" }}</span>
@@ -100,7 +100,7 @@ layout: default
                     {{ page.faq2 | markdownify }}
                   </p>
                 </div>
-                <div class="col-sm-12"><a href="{{jekyll_env}}/reachout/go/faqs/faqs-{{ page.country }}/"
+                <div class="col-sm-12"><a href="{{jekyll_env}}/reachout/go/faqs/faqs-{{ page.country_slug }}/"
                     class="btn btn-gray">View all FAQs</a>   <a class="link" href="mailto:gotrips@crossroads.net">Ask us
                     a question</a></div>
               </div>
