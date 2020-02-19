@@ -9,7 +9,7 @@
 
   &:after {
     color: transparent;
-    content: '\2014';
+    content: "\2014";
     display: block;
     font-family: $base-font-face;
     font-size: 1.25rem;
@@ -19,7 +19,7 @@
 }
 
 .heading-line-height-sm {
-  line-height: .75;
+  line-height: 0.75;
 }
 
 .tooltip-inner {
@@ -53,7 +53,6 @@
     line-height: 1em;
     align-items: center;
     font-size: 14px;
-    // outline: 1px solid red;
 
     &:after {
       content: "";
