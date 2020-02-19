@@ -90,8 +90,7 @@ collections:
   content_blocks:
     output: false
   onsite_groups:
-    output: true
-    permalink: /groups/(:category/:slug)/:slug
+    output: false
   onsite_group_categories:
     output: false
   onsite_group_meetings:
