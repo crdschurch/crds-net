@@ -1,6 +1,18 @@
 module Jekyll
   module OnsiteGroupsFilters
 
+    def onsite_group_meeting_location(meeting)
+      return nil if meeting.nil?
+
+      match = site.collections['onsite_group_meetings'].docs.
+        select{|m| m['id'] === meeting['id']}.
+        first
+
+      return nil if match.nil?
+
+      match.data['location']
+    end
+
     def onsite_groups_for_category(category)
       groups = site.collections['onsite_groups'].docs.
         select{|g| g.data.keys.include?('category') }.

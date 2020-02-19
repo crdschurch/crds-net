@@ -41,3 +41,33 @@
     }
   }
 }
+
+.onsite-group-meeting-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+
+  li {
+    display: flex;
+    line-height: 1em;
+    align-items: center;
+    font-size: 14px;
+    // outline: 1px solid red;
+
+    &:after {
+      content: "";
+      height: 3px;
+      width: 3px;
+      display: block;
+      background-color: $cr-black;
+      margin: 4px 4px 0;
+    }
+
+    &:last-child {
+      &:after {
+        display: none;
+      }
+    }
+  }
+}

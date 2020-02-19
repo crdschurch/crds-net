@@ -38,14 +38,29 @@ snail_trail: connect
         </div>
       </div>
       <hr />
+
       {% for row in groups %}
       <div class="row onsite-group-negative-margin-bottom">
         {% for col in row %}
         <div class="col-md-6">
           <h3 class="font-family-condensed-extra text-uppercase">
-            <a href="{{ col.url }}">{{ col.title }}</a>
+            {{ col.title }}
           </h3>
           <div class="text-gray small">{{ col.description | markdownify }}</div>
+          {% if col.meetings %}
+          <ul class="onsite-group-meeting-list">
+            {% for meeting in col.meetings %}
+            {% assign meetingLocation = meeting | onsite_group_meeting_location %}
+            {% if meetingLocation %}
+            <li>
+              <a href="">
+                {{ meetingLocation.name }}
+              </a>
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+          {% endif %}
         </div>
         {% endfor %}
       </div>
