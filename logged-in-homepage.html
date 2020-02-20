@@ -112,9 +112,7 @@ paginate:
       <!-- Current Series -->
       {% if page.series.docs.size != 0 %}
       <hr class="push-half-bottom" />
-
       <h2 class="flush-bottom flush-top font-size-base text-gray-light">current series</h2>
-
       {% assign featured = page.series.docs | first %} {% assign unfeatured_series = page.series.docs | slice: 1, 3 %}
       {% include media/_media-object-featured.html %} {% endif %}
 
