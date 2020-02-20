@@ -50,7 +50,11 @@ layout: default
               <div class="row">
                 <div class="col-sm-12 push-ends">
                   <p class="lead">{{ page.trip_description }}</p>
+                  {% if page.trip_full%}
+                  <crds-button color="blue" disabled="true" text="Trip is Full" href=""></crds-button>
+                  {% else %}
                   <crds-button color="blue" text="Sign up" href="{{ page.sign_up_link }}"></crds-button>
+                  {% endif %}
                 </div>
               </div>
               <!-- Trip Details -->
@@ -69,7 +73,11 @@ layout: default
                       href="{{ jekyll_env }}/reachout/go/support-raising">Check this
                       out.</a>)<br>{% if page.other_requirements %}<strong>Other Requirements</strong>:
                     {{ page.other_requirements }} {% endif %} </p>
-                  <crds-button color="blue" text="Sign up" href="{{ page.sign_up_link }}"></crds-button>
+                    {% if page.trip_full%}
+                    <crds-button color="blue" disabled="true" text="Trip is Full" href=""></crds-button>
+                    {% else %}
+                    <crds-button color="blue" text="Sign up" href="{{ page.sign_up_link }}"></crds-button>
+                    {% endif %}
                 </div>
                 <div class="col-sm-6 soft-top" style="min-height: 365px;">
                   {% include _reachout-google-map.html %}
@@ -151,8 +159,10 @@ layout: default
                       target="_blank">{{ page.partner_name }}</a>
                   </h4>
                   <p>{{ page.partner_description | markdownify }}</p>
-                  <a href="{{ page.partner_website }}" class="btn btn-primary" target="_blank">Learn more about
-                    {{ page.partner_name }}</a>
+                  {% if page.partner_website %}
+                  <crds-button color="blue" text="Learn more about
+                  {{ page.partner_name }}" href="{{ page.partner_website }}"></crds-button>
+                    {% endif %}
                 </div>
               </div>
             </div>
