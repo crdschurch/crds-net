@@ -100,6 +100,11 @@ collections:
     output: false
 
 contentful:
+  page:
+  podcast:
+  query: 
+  video: 
+  category:
   config:
     sites: distribution_channels
   article:
