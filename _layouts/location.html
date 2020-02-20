@@ -128,9 +128,8 @@ layout: default
       <img class="img-circle" src="{{ page.community_pastor_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
         sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
       <div class="card-block text-left">
-        <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">Meet {{
-          page.community_pastor_name }}</h4>
-        <p class="card-text">{{ page.community_pastor_bio | markdownify }}</p>
+        <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">Meet {{ page.community_pastor_name }}</h4>
+        {{ page.community_pastor_bio | markdownify }}
       </div>
     </div>
     {% endif %}
@@ -140,7 +139,7 @@ layout: default
         sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
       <div class="card-block text-left">
         <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">{{ page.spotlight_title }}</h4>
-        <p class="card-text">{{ page.spotlight_text | markdownify }}</p>
+        {{ page.spotlight_text | markdownify }}
       </div>
     </div>
     {% endif %}
