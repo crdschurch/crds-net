@@ -6,36 +6,6 @@ layout: default
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
 {% include header.html %}
 
-{% if page.title == "Andover" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSfJyJKWyuKjgywbNMSXKFPH6c9qsNhfDLiC98vrL-QztPZ0tQ/viewform" %}
-{% elsif page.title == "Lexington" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSfJyJKWyuKjgywbNMSXKFPH6c9qsNhfDLiC98vrL-QztPZ0tQ/viewform" %}
-{% elsif page.title == "Columbus" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSfZA75ayTdzRK75u2wQa4491_hht1ZXXSEfOXLmP14hCGZ9Og/viewform" %}
-{% elsif page.title == "Dayton" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSfFrTrLT0HMVv8Z9DYdF9mYWJY1RVPboABnkv3zfeO5sIoH8Q/viewform" %}
-{% elsif page.name == "Downtown Lexington" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSeOFH2pQNF1p5kXIfbX354QV03GqI_ZLZoKqYbYqnc7VJJaPA/viewform" %}
-{% elsif page.title == "Eastside" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSdkjaM6RZ8CbulOBWFn0FX9xOI1aXGsEa1JkBud8R78QZlRuw/viewform" %}
-{% elsif page.title == "Florence" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScwf8tbwZK9P20CRmfo4YP0Ijf_DPRABWz312acIQmHDGghww/viewform" %}
-{% elsif page.title == "Georgetown" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSdllRrX6QV3itTr3Tofd9jJiVUT1lAMETJ5xUUdqMoxzXfyYg/viewform" %}
-{% elsif page.title == "Mason" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScZFNqTT8YMs3XLoeXoWJglISLA-XMqkBpoBoBpmor35-U5vA/viewform" %}
-{% elsif page.title == "Oakley" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSeqZye68nkJ7wAViQRhsZhJsA7pW86FJesFEseuL9YtJJ58fg/viewform" %}
-{% elsif page.title == "Oxford" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScBkWB-GywmeJXZr2eETCRXnZGdkPfabTOeIcNao5r8q7Lq0Q/viewform" %}
-{% elsif page.title == "Richmond" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSdQ6wWh7Q4uwb5KsqJS4OcrB0FuEQWuOn2mQLc0QkD7gsLl-Q/viewform" %}
-{% elsif page.title == "Uptown" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSc5XzN2tXxu4dR8Q8xoH9qXgagINeH_taNpVBla7V2I4YB-vw/viewform" %}
-{% elsif page.title == "Westside" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSe_23QyTWT7qZqQAiYOVYOvQ-b8DJUdnJ04uZjRsGXDBTYDpQ/viewform" %}
-{% endif %}
-
 <!-- Featured Section -->
 {% if page.featured_section.size > 0 %}
   {{ page.featured_section }}
@@ -192,14 +162,14 @@ layout: default
 
 
 <!-- Community Care -->
-{% if care_link %}
+{% if page.care_link %}
 <section>
   <div class="container push-ends">
     <div class="row well text-center soft-ends">
       <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
         <h3 class="section-header push-half-ends">Community Care Requests</h3>
         <p class="lead">Prayer requests, listening appointments, hospital visits, or questions about weddings or funerals– we're here to help.</p>
-        <a href="{{ care_link }}" class="btn btn-primary" target="_blank">Request care here</a><br />
+        <a href="{{ page.care_link }}" class="btn btn-primary" target="_blank">Request care here</a><br />
         <a href="/care" class="btn btn-primary btn-gray-light text-center">View all community care services</a>
       </div>
     </div>
