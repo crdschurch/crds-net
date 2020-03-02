@@ -131,12 +131,12 @@ layout: default
             <div role="tabpanel" class="tab-pane" id="lodging">
               <div class="row">
                 <div class="col-sm-12 col-md-push-6 col-md-6 push-ends">
-                  {% if page.lodging_video %}
-                  <div class="push-top embed-responsive embed-responsive-16by9">
-                    <iframe width="320" height="240" frameborder="0" allowfullscreen="" src="{{ page.lodging_video }}"></iframe>
-                  </div>
-                  {% endif %}
                   <img class="imgix-fluid img-responsive" src="{{ page.lodging_image1.url }}" data-optimize-img>
+                  {% if page.lodging_video %}
+                    <div class="push-top embed-responsive embed-responsive-16by9">
+                      <iframe width="320" height="240" frameborder="0" allowfullscreen="" src="{{ page.lodging_video }}"></iframe>
+                    </div>
+                  {% endif %}
                 </div>
                 <div class="col-sm-12 col-md-pull-6 col-md-6">
                   <h4 class="component-header">{{ page.lodging_name }}</h4>
@@ -145,10 +145,10 @@ layout: default
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-12 col-md-6 col-md-push-6 push-top">
+                <div class="col-sm-12 col-md-6 col-md-push-6">
                   <img class="imgix-fluid img-responsive" src="{{ page.lodging_image2.url}}" data-optimize-img>
                 </div>
-                <div class="col-sm-12 col-md-pull-6 col-md-6 push-top">
+                <div class="col-sm-12 col-md-pull-6 col-md-6">
                   <img class="imgix-fluid img-responsive" src="{{ page.lodging_image3.url }}" data-optimize-img>
                 </div>
               </div>
