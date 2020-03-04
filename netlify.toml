@@ -53,7 +53,7 @@
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
 
 [context.master.environment]
-  CRDS_PEOPLE_DOMAIN = "crds-people-prod.netlify.com"
+  CRDS_PEOPLE_DOMAIN = "people.crossroads.net"
   CRDS_MAP_DOMAIN = "connect.crossroads.net"
   CRDS_ANGULAR_ENDPOINT = "crds-angular.netlify.com"
   CRDS_SIGNIN_ENDPOINT = "crds-signin.netlify.com"
