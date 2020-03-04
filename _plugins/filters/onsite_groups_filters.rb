@@ -1,11 +1,11 @@
 module Jekyll
   module OnsiteGroupsFilters
 
-    def onsite_groups_for_category(category)
+    def onsite_groups_for_category(category, perSlice = 2)
       groups = site.collections['onsite_groups'].docs.
         select{|g| g.data.keys.include?('category') }.
         select{|g| g['category']['slug'] == category['slug'] }
-      groups.each_slice(2).to_a
+      groups.each_slice(perSlice).to_a
     end
 
     def locations_with_onsite_groups(collection)
