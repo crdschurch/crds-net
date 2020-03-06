@@ -9,7 +9,7 @@ module.exports = [
     deps: [
       "vendor/webcomponents-lite.min",
       "vendor/imgix.min",
-      "vendor/imgix-optimizer",
+      "vendor/imgix-optimizer-0.0.10.min.js",
       "vendor/bootstrap.min",
       "vendor/flickity.pkgd.min",
       "vendor/crds-card-carousel-v0.2.2.min",
