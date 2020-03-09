@@ -1,19 +1,20 @@
-<div class="card">
+<div class="card" vocab="http://schema.org/" typeof="Church">
   <a href="{{ location.url }}" class="block" data-automation-id="location-image">
     <img
       src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}"
       sizes="{{ site.image_sizes.cards_4x }}"
       alt="{{ location.title }}"
+      property="image"
       data-optimize-img
     />
   </a>
   <div class="card-block">
     <h4 class="card-title card-title--overlap text-uppercase">
-      <a href="{{ location.url }}" data-automation-id="location-name">{{ location.name }}</a>
+      <a href="{{ location.url }}" data-automation-id="location-name" property="name">{{ location.name }}</a>
     </h4>
     <div class="card-text">
       <div data-automation-id="location-address">
-        {{ location.address | markdownify }} (<a target="_blank" href="{{ location.map_url }}" data-automation-id="location-map-url">Map</a
+        <span property="address">{{ location.address | markdownify }}</span> (<a target="_blank" href="{{ location.map_url }}" data-automation-id="location-map-url">Map</a
         >)
       </div>
       <div data-automation-id="location-service-times">
