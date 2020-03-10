@@ -7,7 +7,7 @@ exports.handler = function(event, context, callback) {
     const referer = event.headers.referer
     const conditions = ['localhost', '0.0.0.0', '127.0.0.1', 'int', 'demo', 'development', 'release']
     if(referer && conditions.some(el => referer.includes(el))) {
-      dest = "https://sandbox.pushpay.io/g/crossroadscincinnati"
+      dest = "https://sandbox.pushpay.io/g/crossroadscincinnatiint"
     }
   } catch (err) {}
 
