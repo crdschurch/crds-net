@@ -10,7 +10,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /group-leader/*,https://${env:CRDS_GROUP_LEADER_DOMAIN}/:splat,200!
 /groups/,/groups/,200!
 /groups/search/*,/groups/:splat,301!
-/groups/*,https://${env:CRDS_FINDER_ENDPOINT}/:splat,200!
 /map/*,/connect/:splat,302!
 /search/*,https://${env:CRDS_SEARCH_ENDPOINT}/:splat,200!
 /search-component/*,https://${env:CRDS_SEARCH_COMPONENT_ENDPOINT}/:splat,200!
