@@ -62,7 +62,7 @@ describe 'Redirects' do
     VCR.use_cassette 'contentful/redirects' do
       current = @csv
       tmp_csv_path = './spec/fixtures/redirects.csv'
-      @redirects.to_csv!(tmp_csv_path)
+      @redirects.to_csv!(tmp_csv_path, false)
       future = CSV.read(tmp_csv_path)
       expect(current[1] == future[1]).to eq true
       expect(current == future).to eq false
