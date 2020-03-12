@@ -1,9 +1,15 @@
 require 'pry'
 require 'vcr'
 require 'csv'
-require 'utils/html_util'	
+require 'jekyll'
+require 'colorize'
+require 'utils/html_util'
 require 'utils/meta_util'
 require 'crds/redirects'
+require 'crds/jekyll_pages'
+require 'crds/onsite_groups'
+
+# require_relative './support/jekyll_helper'
 
 Dir['./spec/support/**/*.rb'].each { |f| require f }
 
