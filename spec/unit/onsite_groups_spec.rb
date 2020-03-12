@@ -45,4 +45,10 @@ describe CRDS::OnSiteGroups do
     expect(locations.first.content_type).to eq('location')
   end
 
+  it 'should return group for a meeting' do
+    meeting = @site.collections['onsite_group_meetings'].docs.first
+    group = @groups.group_by_meeting(meeting)
+    expect(group.data['id']).to eq('4odaAIaYkLOIZyNEJPWB7Y')
+  end
+
 end

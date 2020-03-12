@@ -53,5 +53,12 @@ module CRDS
         sort{|a,b| a.data['name'] <=> b.data['name'] }
     end
 
+    def group_by_meeting(meeting)
+      meeting_id = meeting.data.dig('id')
+      @collections['onsite_groups'].docs.detect do |group|
+        (group.data.dig('meetings') || []).collect{|m| m.dig('id') }.include?(meeting_id)
+      end
+    end
+
   end
 end

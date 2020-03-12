@@ -22,6 +22,11 @@ module Jekyll
       utils.locations_by_group(group)
     end
 
+    def group_for_meeting(obj)
+      meeting = obj.instance_variable_get("@obj")
+      utils.group_by_meeting(meeting)
+    end
+
     private
 
       def utils
