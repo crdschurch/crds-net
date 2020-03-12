@@ -13,18 +13,6 @@ description: We are adoptive, foster and kinship parents who are committed to ca
 length: Varies by Site
 detail: Adoptive, foster and kinship parents
 meetings:
-- title: Adoptive, Foster, Kinship Parent Group | Mason
-  registration_link: "/adoption/acoptive-foster-kinship-parent-speaker-series/"
-  description: "The Mason group will meet on Monday evenings once per month from January-April,
-    2020, 6:30-8:00. \n\nSpeakers will cover topics that bring healing, connection
-    and hope to\nfamilies parenting kids through adoption, foster or kinship situations.
-    \n\nClick Register for more details"
-  starts_at: '2020-01-27'
-  meeting_time: 6:30PM
-  room: Meeting Room C
-  childcare: true
-  id: 1xJH47b9VtMEHlN961zzTn
-  content_type: onsite_group_meeting
 - title: Adoptive Foster Kinship Parent Group | Florence
   registration_link: "/sign-up/adoption-foster-kinship-florence/"
   description: "Adoptive, Foster, Kinship Parent Group in Florence will meet on the

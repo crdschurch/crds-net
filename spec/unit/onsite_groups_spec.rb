@@ -11,13 +11,13 @@ describe CRDS::OnSiteGroups do
   end
 
   it 'should return meetings grouped by location' do
-    expect(@groups.by_location.keys).to include(*%w(oakley lexington mason))
+    expect(@groups.by_location.keys).to include(*%w(oakley mason))
     expect(@groups.by_location.keys).to_not include(nil)
     expect(@groups.by_location['oakley']).to be_a(Array)
   end
 
   it 'should return meetings grouped by category' do
-    expect(@groups.by_category.keys).to include(*%w(onsite-groups onsite-healing-groups))
+    expect(@groups.by_category.keys).to include(*%w(onsite-groups))
   end
 
   it 'should return location by slug' do
@@ -33,7 +33,7 @@ describe CRDS::OnSiteGroups do
   end
 
   it 'should return meetings by an array of ids' do
-    ids = %w( MZIx6QafhyGsjGTuiT5l6 68JS4CxiC03QbpxjJFLh6p 7gouz8TxMBSyZ7YlpBtGQX )
+    ids = %w(2fis1qVWaqR4Pow8UWMilD 1xJH47b9VtMEHlN961zzTn)
     meetings = @groups.meetings_by_id(ids)
     expect(meetings.first.content_type).to eq('onsite_group_meeting')
     expect(meetings.collect{|m| m['id']}).to match_array(ids)
@@ -48,7 +48,7 @@ describe CRDS::OnSiteGroups do
   it 'should return group for a meeting' do
     meeting = @site.collections['onsite_group_meetings'].docs.first
     group = @groups.group_by_meeting(meeting)
-    expect(group.data['id']).to eq('4odaAIaYkLOIZyNEJPWB7Y')
+    expect(group.data['id']).to eq('7deAOj56E3OHEmL0yQtCG7')
   end
 
 end
