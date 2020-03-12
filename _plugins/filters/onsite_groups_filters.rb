@@ -1,3 +1,5 @@
+require_relative '../../lib/crds/onsite_groups'
+
 module Jekyll
   module OnsiteGroupsFilters
 
@@ -14,6 +16,17 @@ module Jekyll
         collect{|m| m.data.dig('location','slug') }.compact.uniq
       collection.select{|location| locations.include? location.data['slug'] }
     end
+
+    def locations_for_meeting(obj)
+      group = obj.instance_variable_get("@obj")
+      utils.locations_by_group(group)
+    end
+
+    private
+
+      def utils
+        @utils ||= CRDS::OnSiteGroups.new(site)
+      end
 
   end
 end

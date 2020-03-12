@@ -31,5 +31,27 @@ module CRDS
       @collections['onsite_group_categories'].docs.detect{|c| c.data['slug'] === slug }
     end
 
+    def meetings_by_id(meeting_ids)
+      @collections['onsite_group_meetings'].
+        docs.
+        select{|m| meeting_ids.include?(m['id']) }.
+        compact.
+        uniq
+    end
+
+    def locations_by_group(group)
+      ids = group.data.dig('meetings').collect{|m| m['id'] }.compact
+      meetings = meetings_by_id(ids)
+      locations = @site.collections['locations'].docs
+
+      meetings.collect do |m|
+          slug = m.data.dig('location','slug')
+          locations.detect{|l| l.data.dig('slug') == slug }
+        end.
+        compact.
+        uniq{|m| m.data['id'] }.
+        sort{|a,b| a.data['name'] <=> b.data['name'] }
+    end
+
   end
 end

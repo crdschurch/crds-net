@@ -32,4 +32,17 @@ describe CRDS::OnSiteGroups do
     expect(@groups.category_by_slug(slug)).to eq(category)
   end
 
+  it 'should return meetings by an array of ids' do
+    ids = %w( MZIx6QafhyGsjGTuiT5l6 68JS4CxiC03QbpxjJFLh6p 7gouz8TxMBSyZ7YlpBtGQX )
+    meetings = @groups.meetings_by_id(ids)
+    expect(meetings.first.content_type).to eq('onsite_group_meeting')
+    expect(meetings.collect{|m| m['id']}).to match_array(ids)
+  end
+
+  it 'should return locations for a group' do
+    group = @site.collections['onsite_groups'].docs.first
+    locations = @groups.locations_by_group(group)
+    expect(locations.first.content_type).to eq('location')
+  end
+
 end
