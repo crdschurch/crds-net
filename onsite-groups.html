@@ -20,15 +20,11 @@ snail_trail: connect
 
 <section class="container">
   {% for category in site['onsite_group_categories'] %}
-  {% assign groups = category | onsite_groups_for_category %}
+  {% assign groups = category | onsite_groups_for_category: 3 %}
   {% if groups.size > 0 %}
   <a class="anchor" id="{{ category.title | slugify }}"></a>
-  <div class="row soft-ends push-bottom push-quarter-top">
-    <div class="col-sm-3">
-      <img src="{{ category.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-        sizes="{{ site.image_sizes.one_fourth }}" class="width-100" data-optimize-img />
-    </div>
-    <div class="col-sm-9 push-bottom">
+  <div class="soft-ends push-bottom push-quarter-top">
+    <div class="push-bottom">
       <div class="row">
         <div class="col-md-12">
           <h2 class="font-family-condensed-extra flush-top mobile-soft-top text-uppercase">
@@ -41,11 +37,11 @@ snail_trail: connect
       {% for row in groups %}
       <div class="row onsite-group-negative-margin-bottom">
         {% for col in row %}
-        <div class="col-md-6">
+        <div class="col-md-4">
           <h3 class="font-family-condensed-extra text-uppercase">
             <a href="{{ col.url }}">{{ col.title }}</a>
           </h3>
-          <div class="text-gray small">{{ col.description | markdownify }}</div>
+          <div class="text-gray small">{{ col.description | markdownify | strip_html | truncate: 275 }}</div>
         </div>
         {% endfor %}
       </div>

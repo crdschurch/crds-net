@@ -14,6 +14,7 @@ describe('Testing the Current Series on the Homepage:', function () {
       return false
   })
   cy.visit('/');
+
   });
 
   it('Current series title, description, and image should match Contentful', function () {
