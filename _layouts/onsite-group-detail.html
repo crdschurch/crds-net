@@ -33,7 +33,7 @@ layout: container-fluid
         {% assign meeting = site.onsite_group_meetings | where: 'contentful_id', obj.id | first %}
         <div class="col-md-5 push-top push-right soft-right">
           <h4 class="flush-ends font-family-condensed-extra text-uppercase">
-            <a href="/groups/{{ meeting.location.slug }}">{{ meeting.location.name }}</a>
+            <a href="/groups/onsite/{{ meeting.location.slug }}">{{ meeting.location.name }}</a>
           </h4>
 
           {% if meeting.starts_at %}
@@ -41,7 +41,7 @@ layout: container-fluid
             {{ meeting.meeting_time }} {{ meeting.starts_at | date: "%A" }}s
           </h4>
           <p class="flush-bottom push-half-top small">
-              <strong>  
+              <strong>
                 Starts {{ meeting.starts_at | date: "%B %e, %Y" }}
               </strong>
           </p>
