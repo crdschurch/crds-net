@@ -8,6 +8,7 @@ _redirects
 .envrc
 .env
 collections
+!spec/fixtures/collections
 system-pages.json
 node_modules
 .DS_Store
