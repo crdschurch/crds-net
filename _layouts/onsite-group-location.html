@@ -37,8 +37,9 @@ snail_trail: connect
     {% for meeting in sorted_meeting %}
     <div class="col-md-3">
       <h4 class="font-family-condensed-extra text-uppercase">
-        {% if page.meeting_group_permalinks[meeting.contentful_id] %}
-        <a href="{{ page.meeting_group_permalinks[meeting.contentful_id] }}">
+        {% assign group = meeting | group_for_meeting %}
+        {% if group %}
+        <a href="{{ group.url }}">
           {{ meeting.title }}
         </a>
         {% else %}
