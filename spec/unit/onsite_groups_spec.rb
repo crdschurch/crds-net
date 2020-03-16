@@ -51,4 +51,9 @@ describe CRDS::OnSiteGroups do
     expect(group.data['id']).to eq('7deAOj56E3OHEmL0yQtCG7')
   end
 
+  it 'should not return meetings that have no group association' do
+    total = @site.collections['onsite_group_meetings'].count
+    expect(@groups.send(:known_meeting_ids).count).to be(total - 1)
+  end
+
 end

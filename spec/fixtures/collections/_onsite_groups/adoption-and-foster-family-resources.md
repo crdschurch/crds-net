@@ -28,18 +28,6 @@ meetings:
   childcare: true
   id: 2fis1qVWaqR4Pow8UWMilD
   content_type: onsite_group_meeting
-- title: Adoptive, Foster, Kinship Parent Group | East Side
-  registration_link: "/adoptionfoster-parent-group-east-side/"
-  description: |-
-    We are adoptive, foster and kinship parents who are committed to caring for the fatherless. We join together to grow through training, education and most importantly building community with other adoptive and foster families. We are encouraged as we share stories and learn from others who are on a similar journey. We believe that the church can be a part of equipping and empowering families as we together “take up the cause of the fatherless” Isaiah 1:17.
-
-    We meet the second Thursday of every month January - May.
-  starts_at: '2020-01-09'
-  meeting_time: 2nd Thursday of Month (Jan - May) 6:30-8:30PM
-  room: Meeting Room C
-  childcare: true
-  id: 5157xqQ7zWsu5MYbDdqW2x
-  content_type: onsite_group_meeting
 - title: Adoptive, Foster, Kinship Parent Group | Oakley
   registration_link: "/sign-up/adoptive-foster-kinship-parent-group-oakley/"
   description: "Adoptive, Foster, Kinship Parent Group in Oakley will meet on the
