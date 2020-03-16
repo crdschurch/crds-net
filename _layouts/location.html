@@ -381,8 +381,8 @@ layout: default
   {% include _fb-pixel.html %}
 {% endif %}
 
-<script type="application/ld+json"> 
-  {{ page.schema }}
+<script type="application/ld+json">
+  {{ page.schema | jsonify }}
 </script>
 
 {% include footer.html %}
