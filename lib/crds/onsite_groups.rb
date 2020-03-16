@@ -1,11 +1,12 @@
 module CRDS
   class OnSiteGroups
-    attr_accessor :collections, :site
+    attr_accessor :collections, :site, :known_meeting_ids
 
     def initialize(site)
       @site = site
       @collections = site.collections.select{|k,v| k.include?('onsite_group') }
       @collections['locations'] = site.collections['locations']
+      @collections['onsite_group_meetings'].docs.reject!{|m| !known_meeting_ids.include?(m['id']) }
     end
 
     def by_location
@@ -59,6 +60,14 @@ module CRDS
         (group.data.dig('meetings') || []).collect{|m| m.dig('id') }.include?(meeting_id)
       end
     end
+
+    private
+
+      def known_meeting_ids
+        @known_meeting_ids ||= begin
+          @collections['onsite_groups'].docs.flat_map{|g| g.data.dig('meetings').collect{|m| m['id'] } }.flatten.compact
+        end
+      end
 
   end
 end
