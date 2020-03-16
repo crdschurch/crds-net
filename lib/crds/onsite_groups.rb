@@ -6,7 +6,7 @@ module CRDS
       @site = site
       @collections = site.collections.select{|k,v| k.include?('onsite_group') }
       @collections['locations'] = site.collections['locations']
-      @collections['onsite_group_meetings'].reject{|m| !known_meeting_ids.include?(m['id']) }
+      @collections['onsite_group_meetings'].docs.reject!{|m| !known_meeting_ids.include?(m['id']) }
     end
 
     def by_location

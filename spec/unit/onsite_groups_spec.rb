@@ -53,7 +53,7 @@ describe CRDS::OnSiteGroups do
 
   it 'should not return meetings that have no group association' do
     total = @site.collections['onsite_group_meetings'].count
-    expect(@groups.send(:known_meeting_ids).count).to be(total - 1)
+    expect(@groups.send(:known_meeting_ids).count).to be(total)
   end
 
 end
