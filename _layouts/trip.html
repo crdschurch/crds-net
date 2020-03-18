@@ -39,7 +39,7 @@ layout: default
             <li role="navigation" style="float: none; display: inline-block;"><a href="#lodging" aria-controls="lodging"
                 role="tab" data-toggle="tab">Lodging</a></li>
             {% endif %}
-            {% if page.partner_name or page.partner_description or page.partner_image %}
+            {% if page.partner %}
             <li role="navigation" style="float: none; display: inline-block;"><a href="#partner" aria-controls="partner"
                 role="tab" data-toggle="tab">Partner</a></li>
             {% endif %}
@@ -50,7 +50,11 @@ layout: default
               <div class="row">
                 <div class="col-sm-12 push-ends">
                   <p class="lead">{{ page.trip_description }}</p>
+                  {% if page.trip_full%}
+                  <crds-button color="blue" disabled="true" text="Trip is Full" href=""></crds-button>
+                  {% else %}
                   <crds-button color="blue" text="Sign up" href="{{ page.sign_up_link }}"></crds-button>
+                  {% endif %}
                 </div>
               </div>
               <!-- Trip Details -->
@@ -69,7 +73,11 @@ layout: default
                       href="{{ jekyll_env }}/reachout/go/support-raising">Check this
                       out.</a>)<br>{% if page.other_requirements %}<strong>Other Requirements</strong>:
                     {{ page.other_requirements }} {% endif %} </p>
+                  {% if page.trip_full%}
+                  <crds-button color="blue" disabled="true" text="Trip is Full" href=""></crds-button>
+                  {% else %}
                   <crds-button color="blue" text="Sign up" href="{{ page.sign_up_link }}"></crds-button>
+                  {% endif %}
                 </div>
                 <div class="col-sm-6 soft-top" style="min-height: 365px;">
                   {% include _reachout-google-map.html %}
@@ -124,6 +132,11 @@ layout: default
               <div class="row">
                 <div class="col-sm-12 col-md-push-6 col-md-6 push-ends">
                   <img class="imgix-fluid img-responsive" src="{{ page.lodging_image1.url }}" data-optimize-img>
+                  {% if page.lodging_video %}
+                    <div class="push-top embed-responsive embed-responsive-16by9">
+                      <iframe width="320" height="240" frameborder="0" allowfullscreen="" src="{{ page.lodging_video }}"></iframe>
+                    </div>
+                  {% endif %}
                 </div>
                 <div class="col-sm-12 col-md-pull-6 col-md-6">
                   <h4 class="component-header">{{ page.lodging_name }}</h4>
@@ -132,29 +145,45 @@ layout: default
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-12 col-md-6 col-md-push-6 push-top">
+                <div class="col-sm-12 col-md-6 col-md-push-6">
                   <img class="imgix-fluid img-responsive" src="{{ page.lodging_image2.url}}" data-optimize-img>
                 </div>
-                <div class="col-sm-12 col-md-pull-6 col-md-6 push-top">
+                <div class="col-sm-12 col-md-pull-6 col-md-6">
                   <img class="imgix-fluid img-responsive" src="{{ page.lodging_image3.url }}" data-optimize-img>
                 </div>
               </div>
             </div>
             <!-- Partner -->
             <div role="tabpanel" class="tab-pane" id="partner">
+              {% for item in page.partner %}
               <div class="row">
                 <div class="col-sm-12 col-md-push-6 col-md-6 push-top">
-                  <img class="imgix-fluid img-responsive" src="{{ page.partner_image.url }}">
+                  <img class="imgix-fluid img-responsive" src="{{ item.partner_image.url }}">
                 </div>
                 <div class="col-sm-12 col-md-pull-6 col-md-6">
-                  <h4 class="component-header"><a href="{{ page.partner_website }}"
-                      target="_blank">{{ page.partner_name }}</a>
+                  <h4 class="component-header"><a href="{{ item.partner_website }}"
+                      target="_blank">{{ item.partner_name }}</a>
                   </h4>
-                  <p>{{ page.partner_description | markdownify }}</p>
-                  <a href="{{ page.partner_website }}" class="btn btn-primary" target="_blank">Learn more about
-                    {{ page.partner_name }}</a>
+                  <p>{{ item.partner_description | markdownify }}</p>
+                  {% if item.partner_website %}
+                  <crds-button color="blue" text="Learn more about
+                  {{ item.partner_name }}" href="{{ item.partner_website }}"></crds-button>
+                  {% endif %}
                 </div>
               </div>
+              {% if item.partner_video %}
+              <div class="row">
+                <div class="col-md-6 col-md-offset-6 push-top">
+                  <div class="push-top embed-responsive embed-responsive-16by9">
+                  <iframe width="320" height="240" frameborder="0" allowfullscreen="" src="{{ item.partner_video }}"></iframe>
+                </div>
+                </div>
+              </div>
+              {% endif %}
+              {% if forloop.last == false %}
+                <hr class="push-ends">
+              {% endif %}
+              {% endfor %}
             </div>
           </div>
         </div>
