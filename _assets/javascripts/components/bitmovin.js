@@ -3,7 +3,7 @@
 class BitmovinManager {
   constructor(bitmovinConfig) {
     this.isCard = bitmovinConfig.isCard;
-    this.isStream = bitmovinConfig.isStream;
+    this.isStream = bitmovinConfig.isStream == 'true';
     this.subtitles_url = bitmovinConfig.subtitles_url;
     this.spn_subtitles_url = bitmovinConfig.spn_subtitles_url;
     this.videoDuration = Number(bitmovinConfig.duration) * 1000;
