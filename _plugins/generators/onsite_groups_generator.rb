@@ -17,10 +17,12 @@ module Jekyll
       end
 
       # Meeting details by location
+      gropusAll = groups.all.nil? ? [] : groups.all
       groups.all.each do |group|
         group_slug = group.data.dig('slug')
 
-        meeting_ids = group.data['meetings'].collect{|m| m['id'] }.compact
+        meetings = group.data['meetings'].nil? ? [] : group.data['meetings']
+        meeting_ids = meetings.collect{|m| m['id'] }.compact
         group_meetings = groups.meetings_by_id(meeting_ids)
         location_slugs = group_meetings.collect{|m| m.data.dig('location','slug') }.compact
 
