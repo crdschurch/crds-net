@@ -9,6 +9,10 @@ module CRDS
       @collections['onsite_group_meetings'].docs.reject!{|m| !known_meeting_ids.include?(m['id']) }
     end
 
+    def all
+      @all ||= @collections['onsite_groups'].docs
+    end
+
     def by_location
       @by_location ||= begin
         @collections['onsite_group_meetings'].docs.
