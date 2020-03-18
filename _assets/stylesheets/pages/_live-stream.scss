@@ -77,6 +77,30 @@
   //   visibility: hidden;
   // }
 
+  #post-video-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    background: rgba(0,0,0,.75);
+    opacity: 0;
+    z-index: -1;
+    transition: all .35s ease-in-out;
+  
+    .overlay-card {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  
+
   #standby-message {
     position: absolute;
     left: 0;
