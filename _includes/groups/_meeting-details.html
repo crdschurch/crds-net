@@ -1,0 +1,18 @@
+<p class="flush-bottom push-quarter-top">
+  {% if meeting.starts_at %}
+    Starts {{ meeting.starts_at | date: "%B %-d" }}<br>
+  {% endif %}
+
+  {% if meeting.starts_at %}{{ meeting.starts_at | date: "%A" }}s {% endif %}{{ meeting.meeting_time }}<br>
+
+  {% if meeting.room %}
+    Room {{ meeting.room }}<br>
+  {% endif %}
+
+  {% if meeting.childcare %}
+    <span class="text-gray flush-bottom push-top small">* childcare is available with one week advance registration</span>
+  {% endif %}
+</p>
+{% if meeting.registration_link %}
+  <p class="push-top"><a href="{{ meeting.registration_link }}" class="btn btn-cyan" type="button">Register</a></p>
+{% endif %}
