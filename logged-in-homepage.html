@@ -25,41 +25,8 @@ paginate:
 ---
 
 <!-- Homepage Banner -->
-{% assign homePageBanner = site.content_blocks | where: 'slug', 'home-page-promo-banner' | first %}
-{{ homePageBanner.content_block }}
-
-<!-- Live Streaming -->
-<section class="container content-live hide push-bottom" data-stream-live="show">
-  <div class="row">
-    {% assign home_messages = page.messages.docs %} {% for messages in home_messages %}
-    <div class="col-md-12">
-      <div class="media featured">
-        <div class="media-body">
-          <div class="soft-quarter-top font-size-base flush-bottom" data-automation-id="live-message-description">
-            Join the live stream hourly, on the hour, from 8am-10pm (EST).
-          </div>
-          <a
-            href="/live/stream/?autoPlay=true&sound=11"
-            class="btn btn-primary btn-sm push-half-top"
-            data-automation-id="live-watch-message-button"
-            >Watch now</a
-          >
-        </div>
-        <a href="/live/stream/?autoPlay=true&sound=11" class="push-half-bottom" data-automation-id="live-message-video">
-          <img
-            class="img-responsive"
-            src="//crds-cms-uploads.imgix.net/content/images/crossroads-live-stream-CTA3.jpg"
-            data-optimize-img
-          />
-          <p class="live-cta bg-charcoal display-table soft-half-sides soft-quarter-ends text-white">
-            <span class="push-quarter-right">LIVE</span><span class="live-dot"></span>
-          </p>
-        </a>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</section>
+{% assign homePageBanner = site.content_blocks | where: 'slug',
+'home-page-promo-banner' | first %} {{ homePageBanner.content_block }}
 
 <!-- Jumbotron -->
 <section
@@ -77,12 +44,14 @@ paginate:
         </div>
       </div>
       <div class="col-md-4 col-lg-4 text-left">
-        <hr class="visible-xs visible-sm flush-top flush-bottom border-light-gray" />
+        <hr
+          class="visible-xs visible-sm flush-top flush-bottom border-light-gray"
+        />
         <div class="col-xs-6 col-md-6 hard-left push-bottom push-top">
           <ul class="list-unstyled font-size-small font-family-base">
             <li><a href="{{ site.url }}/profile/personal">My Profile</a></li>
             <li><a href="{{ site.url }}/me/giving">My Giving</a></li>
-            <li><a href="{{ site.url }}/connect/?my=1">My Groups</a></li>
+            <li><a href="{{ site.url }}/mygroups">My Groups</a></li>
             <li><a href="{{ site.focus_mission_url }}">My Trips</a></li>
           </ul>
         </div>
@@ -104,20 +73,21 @@ paginate:
   <div class="row">
     <!-- Featured -->
     <div class="col-md-8 overlap-header">
-      {% assign features = page.home_collection.docs | slice: 0, 3 %} {% for item in features %} {% include
-      media/_overlay-card.html autoplay=true %} {% endfor %}
+      {% assign features = page.home_collection.docs | slice: 0, 3 %} {% for
+      item in features %} {% include media/_overlay-card.html autoplay=true %}
+      {% endfor %}
     </div>
 
     <div class="col-md-4" data-automation-id="series-section">
       <!-- Current Series -->
       {% if page.series.docs.size != 0 %}
       <hr class="push-half-bottom" />
-
-      <h2 class="flush-bottom flush-top font-size-base text-gray-light">current series</h2>
-
-      {% assign featured = page.series.docs | first %} {% assign unfeatured_series = page.series.docs | slice: 1, 3 %}
-      {% include media/_media-object-featured.html %} {% endif %}
-
+      <h2 class="flush-bottom flush-top font-size-base text-gray-light">
+        current series
+      </h2>
+      {% assign featured = page.series.docs | first %} {% assign
+      unfeatured_series = page.series.docs | slice: 1, 3 %} {% include
+      media/_media-object-featured.html %} {% endif %}
       <!-- Group List: Desktop -->
       <div class="hidden-xs hidden-sm push-top">
         <crds-group-list></crds-group-list>
@@ -178,16 +148,23 @@ paginate:
       <hr class="push-half-bottom" />
       <h2 class="flush-top font-size-base text-gray-light">latest</h2>
 
-      {% assign below_the_fold = page.home_collection.docs | slice: 4 %}
-      {% for item in below_the_fold %}
-        {% include media/_overlay-card.html %}
-      {% endfor %}
+      {% assign below_the_fold = page.home_collection.docs | slice: 4 %} {% for
+      item in below_the_fold %} {% include media/_overlay-card.html %} {% endfor
+      %}
 
       <!-- Content Cards -->
-      <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
-        <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
-          {% assign above_the_fold = page.home_collection.docs | slice: 5, 10 %} {% for item in above_the_fold %} {%
-          include media/_media-card.html autoplay=true carousel=true %} {% endfor %}
+      <div
+        class="card-deck carousel"
+        data-crds-carousel="mobile-scroll"
+        data-carousel-id="carousel-3cm29"
+      >
+        <div
+          class="feature-cards card-deck--expanded-layout"
+          data-crds-carousel="mobile-scroll"
+        >
+          {% assign above_the_fold = page.home_collection.docs | slice: 5, 10 %}
+          {% for item in above_the_fold %} {% include media/_media-card.html
+          autoplay=true carousel=true %} {% endfor %}
         </div>
       </div>
     </div>
@@ -198,11 +175,14 @@ paginate:
       <h2 class="flush-top font-size-base text-gray-light">our podcasts</h2>
 
       <div class="push-bottom soft-bottom">
-        {% assign featured_podcast = page.podcasts.docs | slice: 0 %} {% for featured in featured_podcast %} {% include
+        {% assign featured_podcast = page.podcasts.docs | slice: 0 %} {% for
+        featured in featured_podcast %} {% include
         media/_media-object-featured.html media_type="podcast" %}
         <hr />
-        {% endfor %} {% assign unfeatured_podcasts = page.podcasts.docs | slice: 1, 4 %} {% for media in
-        unfeatured_podcasts %} {% include media/_media-object.html media_type="podcast" %} {% unless forloop.last %}
+        {% endfor %} {% assign unfeatured_podcasts = page.podcasts.docs | slice:
+        1, 4 %} {% for media in unfeatured_podcasts %} {% include
+        media/_media-object.html media_type="podcast" %} {% unless forloop.last
+        %}
         <hr />
         {% endunless %} {% endfor %}
       </div>
@@ -212,15 +192,23 @@ paginate:
 
 <!-- Music -->
 <section class="container soft-half push-bottom">
-  <hr class="push-half-bottom">
-  <h2 class="flush-top font-size-base text-gray-light">latest music releases</h2>
-  <div class="card-deck carousel text-center" data-crds-carousel="mobile-scroll">
-    <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
-      {% assign album_card = site.albums | sort: "published_at" | reverse %}
-      {% for album in album_card limit: 5 %}
-        <div class="album-container card carousel-cell flush hard">
-          {% include media/_album-card.html %}
-        </div>
+  <hr class="push-half-bottom" />
+  <h2 class="flush-top font-size-base text-gray-light">
+    latest music releases
+  </h2>
+  <div
+    class="card-deck carousel text-center"
+    data-crds-carousel="mobile-scroll"
+  >
+    <div
+      class="feature-cards card-deck--expanded-layout"
+      data-crds-carousel="mobile-scroll"
+    >
+      {% assign album_card = site.albums | sort: "published_at" | reverse %} {%
+      for album in album_card limit: 5 %}
+      <div class="album-container card carousel-cell flush hard">
+        {% include media/_album-card.html %}
+      </div>
       {% endfor %}
     </div>
   </div>
@@ -231,13 +219,21 @@ paginate:
   <hr class="push-half-bottom" />
   <h2 class="flush-top font-size-base text-gray-light">explore our topics</h2>
 
-  <div class="card-deck carousel text-center" data-crds-carousel="mobile-scroll">
-    <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
+  <div
+    class="card-deck carousel text-center"
+    data-crds-carousel="mobile-scroll"
+  >
+    <div
+      class="feature-cards card-deck--expanded-layout"
+      data-crds-carousel="mobile-scroll"
+    >
       {% for topic in site.categories %}
       <div class="card carousel-cell topic-card-simple">
         <div class="bg-overlay"></div>
         <a href="{{ topic.url }}" class="topic-card-content">
-          <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
+          <h2
+            class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title"
+          >
             <span>{{ topic.title }}</span>
           </h2>
           <img
@@ -268,35 +264,34 @@ paginate:
   }
 </script>
 
-
 <!-- Trigger for Hotjar to start tracking visitors to home page who are authenticated -->
 <script>
   var triggerTimer = setInterval(hotJarTrigger, 1000);
   function hotJarTrigger() {
-    if(window.hj.scriptLoaded == true) {
-      hj('trigger','track_authenticated_homepage_users');
+    if (window.hj.scriptLoaded == true) {
+      hj("trigger", "track_authenticated_homepage_users");
       triggerFired();
     }
   }
   function triggerFired() {
     clearInterval(triggerTimer);
-    console.log('authenticated user - hotjar trigger');
+    console.log("authenticated user - hotjar trigger");
   }
 </script>
-
 
 <!-- Amplitude events -->
 
 <script>
-    let videos = document.getElementsByClassName('card-video-player');
-    for (var i = 0; i < videos.length; i++) {
-      let link = videos[i].parentElement;
-      link.addEventListener('click', function (event) {
-        analytics.track('Homepage Logged In Video Clicked', {
-          'videoURL': link.href
-        })
+  let videos = document.getElementsByClassName("card-video-player");
+  for (var i = 0; i < videos.length; i++) {
+    let link = videos[i].parentElement;
+    link.addEventListener("click", function(event) {
+      analytics.track("Homepage Logged In Video Clicked", {
+        videoURL: link.href
       });
-    }
+    });
+  }
 </script>
 
-{% javascript_link_tag autoplay async %} {% javascript_link_tag skeleton async %}
+{% javascript_link_tag autoplay async %} {% javascript_link_tag skeleton async
+%}
