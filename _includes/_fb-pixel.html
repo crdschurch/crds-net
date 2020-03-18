@@ -12,8 +12,10 @@
     }(window, document, 'script',
 
         'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '904825083231307');
-    fbq('track', 'PageView');
+if (CRDS.env.environment === "production") {
+    fbq("init", "904825083231307");
+    fbq("track", "PageView");
+  }
 </script>
 
 <noscript>
