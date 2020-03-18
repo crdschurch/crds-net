@@ -45,7 +45,8 @@ module CRDS
     end
 
     def locations_by_group(group)
-      ids = group.data.dig('meetings').collect{|m| m['id'] }.compact
+      mettings = group.data.dig('meetings').nil? ? [] : group.data.dig('meetings')
+      ids = mettings.collect{|m| m['id'] }.compact
       meetings = meetings_by_id(ids)
       locations = @site.collections['locations'].docs
 
@@ -69,7 +70,11 @@ module CRDS
 
       def known_meeting_ids
         @known_meeting_ids ||= begin
-          @collections['onsite_groups'].docs.flat_map{|g| g.data.dig('meetings').collect{|m| m['id'] } }.flatten.compact
+          @collections['onsite_groups'].docs.flat_map do |g|
+            meetings = g.data.dig('meetings').nil? ? [] : g.data.dig('meetings')
+
+            meetings.collect{|m| m['id'] }
+          end.flatten.compact
         end
       end
 
