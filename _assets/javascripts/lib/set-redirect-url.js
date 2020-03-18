@@ -15,7 +15,7 @@ window.onload = function() {
         cookieName +
         encodeURIComponent(window.location.href) +
         ";domain=" +
-        subDomain +
+        // subDomain + // removed for 404 so they can do work with go local
         ".crossroads.net;path=/";
     }
 
