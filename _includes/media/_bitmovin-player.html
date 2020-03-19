@@ -3,7 +3,7 @@
     {% if recommended_collection.size > 0 %}
     {% assign sorted_collection = recommended_collection | sort: 'date' | reverse %}
         {% for item in sorted_collection %}
-            {% if item.date < page.date %}
+            {% if item.date < video.date %}
                 <div id="post-video-message" data-post-video-message>
                     {% assign image = item | card_image %}
                     <a href="{{ item | media_url }}" class="overlay-card flush-bottom">
