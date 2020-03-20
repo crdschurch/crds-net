@@ -22,7 +22,6 @@
     {% if image == blank %}
       {% assign image = item.bg_image.url %}
     {% endif %}
-    <!-- {% assign recommended_collection=site.messages %} -->
     {% include _video-player-card.html %}
     {% if image %}
       <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
