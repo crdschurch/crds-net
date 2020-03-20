@@ -28,53 +28,6 @@ paginate:
 {% assign homePageBanner = site.content_blocks | where: 'slug',
 'home-page-promo-banner' | first %} {{ homePageBanner.content_block }}
 
-<!-- Live Streaming -->
-<section
-  class="container content-live hide push-bottom"
-  data-stream-live="show"
->
-  <div class="row">
-    {% assign home_messages = page.messages.docs %} {% for messages in
-    home_messages %}
-    <div class="col-md-12">
-      <div class="media featured">
-        <div class="media-body">
-          <div
-            class="soft-quarter-top font-size-base flush-bottom"
-            data-automation-id="live-message-description"
-          >
-            Join the live stream hourly, on the hour, from 8am-10pm (EST).
-          </div>
-          <a
-            href="/live/stream/?autoPlay=true&sound=11"
-            class="btn btn-primary btn-sm push-half-top"
-            data-automation-id="live-watch-message-button"
-            >Watch now</a
-          >
-        </div>
-        <a
-          href="/live/stream/?autoPlay=true&sound=11"
-          class="push-half-bottom"
-          data-automation-id="live-message-video"
-        >
-          <img
-            class="img-responsive"
-            src="//crds-cms-uploads.imgix.net/content/images/crossroads-live-stream-CTA3.jpg"
-            data-optimize-img
-          />
-          <p
-            class="live-cta bg-charcoal display-table soft-half-sides soft-quarter-ends text-white"
-          >
-            <span class="push-quarter-right">LIVE</span
-            ><span class="live-dot"></span>
-          </p>
-        </a>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</section>
-
 <!-- Jumbotron -->
 <section
   class="jumbotron jumbotron-media jumbotron-overlay hard-top"
