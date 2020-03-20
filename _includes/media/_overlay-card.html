@@ -8,7 +8,7 @@
   {% when 'episode' %}
     {% if item.image != nil %}
       {% assign image = item.image.url %}
-    {% elseif item.podcast.featured_image != nil %}
+    {% elsif item.podcast.featured_image != nil %}
       {% assign image = item.podcast.featured_image.url %}
     {% else %}
       {% assign image = item.podcast.bg_image.url %}
