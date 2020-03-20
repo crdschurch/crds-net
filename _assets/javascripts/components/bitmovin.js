@@ -3,7 +3,7 @@
 class BitmovinManager {
   constructor(bitmovinConfig) {
     this.isCard = bitmovinConfig.isCard;
-    this.isStream = bitmovinConfig.isStream;
+    this.isStream = bitmovinConfig.isStream == 'true';
     this.subtitles_url = bitmovinConfig.subtitles_url;
     this.spn_subtitles_url = bitmovinConfig.spn_subtitles_url;
     this.videoDuration = Number(bitmovinConfig.duration) * 1000;
@@ -84,6 +84,7 @@ class BitmovinManager {
     });
     this.bitmovinPlayer.on("playbackfinished", () => {
       this.onPlayerEnd("Ended");
+      this.revealPostVideoMessage();
     });
     this.bitmovinPlayer.on("paused", eventProps => {
       if (eventProps.issuer !== "ui") return;
@@ -153,6 +154,12 @@ class BitmovinManager {
     let sound = urlParams.has("sound") ? parseInt(urlParams.get("sound")) : 0;
     if (sound == 11) return false;
     return true;
+  }
+
+  revealPostVideoMessage() {
+    const messageEl = document.getElementById("post-video-message");
+    messageEl.style.opacity = 1;
+    messageEl.style.zIndex = 2;
   }
 
   getStartTime() {
