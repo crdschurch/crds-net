@@ -12,6 +12,7 @@ markdown: kramdown
 exclude:
   - bin
   - cypress.json
+  - _functions
   - Guardfile
   - Gemfile
   - Gemfile.lock
