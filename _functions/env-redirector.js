@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.environmentRedirection = (event, context, callback) => {
+exports.handler = (event, context, callback) => {
   let dest = "https://pushpay.com/g/crossroads";
 
   try {
