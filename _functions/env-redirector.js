@@ -5,9 +5,17 @@ module.exports.environmentRedirection = (event, context, callback) => {
 
   try {
     const referer = event.headers.referer
-    const conditions = ['localhost', '0.0.0.0', '127.0.0.1', 'int', 'demo', 'development', 'release']
-    if(referer && conditions.some(el => referer.includes(el))) {
-      dest = "https://sandbox.pushpay.io/g/crossroadscincinnati"
+    if(referer) {
+
+      // if referer resembles INT or local address...
+      if(['development', 'localhost', '0.0.0.0', '127.0.0.1', 'int' ].some(el => referer.includes(el))) {
+        dest = "https://sandbox.pushpay.io/g/crossroadscincinnatiint"
+
+      // if referer resembles DEMO address...
+      } else if (['demo', 'release'].some(el => referer.includes(el))) {
+        dest = "https://sandbox.pushpay.io/g/crossroadscincinnatilegacy"
+
+      }
     }
   } catch (err) {}
 
