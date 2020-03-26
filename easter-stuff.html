@@ -1,0 +1,212 @@
+---
+layout: default
+---
+
+<div class="modal modal-video fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+            {% assign video = site.messages | sort: "published_at" | reverse | first %}
+            {% if video.bitmovin_url %}
+            {% include media/_bitmovin-player.html %}
+            {% else %}
+            {% assign video_id = video.source_url | youtube_id %}
+            {% include media/_youtube-embed.html %}
+            {% endif %}
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+  <section>
+    <div class="inline-video jumbotron jumbotron-xl flush-bottom" style="background-image: url('//crds-media.imgix.net/1PVWmTeTZysr76qP9m1z5k/f66bc012e6efa17e504e12360e21f565/easter-2020-series-lg.jpg?{{ site.imgix_params.placeholder }}');" data-optimize-bg-img>
+      <div class="bg-overlay"></div>
+      <div class="container-fluid">
+        <div class="row soft-ends">
+          <div class="inline-video-player"></div>
+          <div class="jumbotron-content">
+            <div class="col-xs-12 col-sm-offset-2 col-sm-8 text-center">
+              <div class="row soft-top">
+                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 text-center">
+                  <img src="//crds-media.imgix.net/5tofSAnHMIsP6ZrxB9RKQE/7025ac199b4b841e4c815b48cea10c45/easter-2020-series-logo.png?w=800" data-optimize-img />
+                </div>
+                <div class="col-xs-12 col-sm-12 text-center push-ends soft-top">
+                  <p class="flush-top font-family-base lead text-white">
+                    Looking for a place to watch Easter online? Feeling socially distant?<br>
+                    Maybe you’re wondering what Easter is all about.<br>
+                    Look no further.
+                  </p>
+                  <!-- <button type="button" class="btn btn-default" data-toggle="modal" data-target="#videoModal">
+                    Video modal
+                  </button> -->
+                  <crds-button display="outline" color="white" text="Watch serivce now" data-toggle="modal" data-target="#videoModal"></crds-button>
+                   
+                </div>
+                <div class="col-xs-12 col-sm-12 text-center">
+                  <a href="#" class="inline-video-trigger btn btn-white btn-outline" data-video-id="53_-4PI1skM">Watch the trailer</a>
+                  <br>
+                  <a class="btn btn-white btn-outline" data-target="#subscribeModalFormColumbus" data-toggle="modal" href="">Get reminded via email</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- who we are -->
+  <section class="bg-gray">
+    <div class="container">
+      <div class="row soft-ends push-ends" id="">
+        <div class="col-sm-6 col-sm-push-6">
+          <img class="" src="//crds-media.imgix.net/31ntzfMxYtjJK38SXwUDLc/75e41773f2b8b49417112e2f69836746/crossroads-who-are-we1.jpg?auto=format,compress&w=1200" alt="" data-optimize-img />
+        </div>
+        <div class="col-sm-6 col-sm-pull-6 soft-top push-top">
+          <h2 class="section-header flush-ends soft-half-ends">WHO ARE YOU GUYS?</h2>
+          <p class="font-size-base">
+            Back in ‘95, eleven people got together to start a church for their friends who didn’t like church. Today, Crossroads is a movement of people meeting all over the country in person or digitally —and it’s just getting started. No memberships or awkward hand-holding, just unfiltered talk and biblical truth that’s a kick in the assumptions.
+          </p>
+          <h3 class="font-size-base text-uppercase font-family-base-bold">HOW DO I LEARN MORE?</h3>
+          <p class="font-size-base">
+            Great question.<br>
+            <a href="/new-around-here/">This will get you started</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- get involved -->
+  <section>
+    <div class="container">
+      <div class="row soft-ends push-ends" id="">
+        <div class="col-sm-12 text-center">
+          <h2 class="flush-top section-header soft-top text-center">
+            HOW DO I GET INVOLVED?
+          </h2>
+        </div>
+        <div class="col-sm-4 push-bottom">
+          <a href="/live/">
+            <img class="" src="//crds-media.imgix.net/zyE162O1ZwltjaNc98ko2/3c8cd92a4238994a85f6a7a598cc4ecb/brian-tome-img.jpg?auto=format,compress&w=1200" data-optimize-img>
+          </a>
+          <div>
+            <h4 class="card-title font-family-condensed-extra font-size-h4 flush-bottom text-uppercase" style="line-height: .9em;">
+              <a href="/live/">
+                Watch service next week
+              </a>
+            </h4>
+            <div class="card-text push-half-top">
+              <p class="font-size-small">
+                It’s an important step. And we wanna see if we like each other, after all.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 push-bottom">
+          <a href="/app/">
+            <img class="" src="//crds-media.imgix.net/7zATdaIpUvdx43aQalg4YY/72ca61d36b14a5abe6ded357ab83e925/resources-crossroads-app.jpg?auto=format,compress&w=1200" data-optimize-img>
+          </a>
+          <div>
+            <h4 class="card-title font-family-condensed-extra font-size-h4 flush-bottom text-uppercase" style="line-height: .9em;">
+              <a href="/app/">
+                Get the App
+              </a>
+            </h4>
+            <div class="card-text push-half-top">
+              <p class="font-size-small">
+                It’s a great way to connect with Crossroads and work on your spiritual fitness—every day.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 push-bottom">
+          <a href="/onlinecommunity/">
+            <img class="" src="//crds-media.imgix.net/6JnNVteBIE30RQIyejLpJy/7472cfb40672771db1d74d437bf3a6ae/meet-some-people.jpg?auto=format,compress&w=1200" data-optimize-img>
+          </a>
+          <div>
+            <h4 class="card-title font-family-condensed-extra font-size-h4 flush-bottom text-uppercase" style="line-height: .9em;">
+              <a href="/onlinecommunity/">
+                Meet some people
+              </a>
+            </h4>
+            <div class="card-text push-half-top">
+              <p class="font-size-small">
+                We’re doing Easter online, but that doesn’t mean church is a solo sport. Check out some ways to meet people.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- social media -->
+  <section class="bg-gray flush-bottom">
+    <div class="container soft-ends">
+      <div class="row soft" id="national">
+        <div class="col-sm-12 text-center soft">
+          <h2 class="section-header flush-ends soft-half-bottom">Follow Crossroads Church</h2>
+          <a class="btn btn-outline btn-secondary btn-sm" title="Crossroads Church on Facebook" href="https://www.facebook.com/crdschurch">
+            <svg class="icon icon-1" viewBox="0 0 256 256">
+              <use xlink:href="/assets/svgs/icons.svg#facebook"></use>
+            </svg>
+            Facebook
+          </a>
+          <a class="btn btn-outline btn-secondary btn-sm" title="Crossroads Church on Instagram" href="https://www.instagram.com/crdschurch/">
+            <svg class="icon icon-1" viewBox="0 0 256 256">
+              <use xlink:href="/assets/svgs/icons.svg#instagram"></use>
+            </svg>
+            Instagram
+          </a>
+          <a class="btn btn-outline btn-secondary btn-sm" title="Crossroads Church on Twitter" href="https://twitter.com/crdschurch">
+            <svg class="icon icon-1" viewBox="0 0 256 256">
+              <use xlink:href="/assets/svgs/icons.svg#twitter"></use>
+            </svg>
+            Twitter
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- modal -->
+  <div aria-labelledby="Subscribe email form" class="modal fade" id="subscribeModalFormColumbus" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" class="close pull-right" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body text-left hard-bottom">
+          <h3 class="font-family-condensed-extra font-size-h2 text-uppercase flush-top">Get reminded about Easter at Crossroads</h3>
+          <div class="form" data-role="hsform"><!--[if lte IE 8]>
+            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+            <![endif]-->
+            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <em>Crossroads needs the contact information you provide to contact you. We will not use your email for any other communication and you can unsubscribe at any time.</em>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <script type="text/javascript">
+    hbspt.forms.create({
+      portalId: '3993985',
+      formId: '20345bfa-cb36-42d4-beaf-9a433453ac2d',
+      target: "[data-role=hsform]",
+      css: ""
+    });
+    // ]]>
+  </script>
+  
