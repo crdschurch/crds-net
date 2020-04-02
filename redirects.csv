@@ -26,6 +26,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /profile/personal,https://${env:CRDS_ANGULAR_ENDPOINT}/profile/personal,200!
 /profile/communications,https://${env:CRDS_ANGULAR_ENDPOINT}/profile/communications,200!
 /profile/skills,https://${env:CRDS_ANGULAR_ENDPOINT}/profile/skills,200!
+/profile/security,https://${env:CRDS_ANGULAR_ENDPOINT}/profile/security,200!
 /signin,https://${env:CRDS_ANGULAR_ENDPOINT}/signin,200!
 /signin redirectUrl=:redirectUrl,https://${env:CRDS_ANGULAR_ENDPOINT}/signin?redirectUrl:redirectUrl,200!
 /signout,https://${env:CRDS_ANGULAR_ENDPOINT}/signout,200!
@@ -134,4 +135,5 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /healing/eyeswideopen,/groups/onsite-healing-groups/eyes-wide-open,301!
 /healing/divorcecare,/groups/onsite-healing-groups/divorce-care,301!
 /healing/postpartum-healing,/groups/onsite-healing-groups/postpartum,301!
+/groups/onsite-groups/*,/groups/onsite,301!
 /*,/404.html,404

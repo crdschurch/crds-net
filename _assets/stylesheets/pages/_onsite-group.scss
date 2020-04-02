@@ -9,7 +9,7 @@
 
   &:after {
     color: transparent;
-    content: '\2014';
+    content: "\2014";
     display: block;
     font-family: $base-font-face;
     font-size: 1.25rem;
@@ -19,7 +19,7 @@
 }
 
 .heading-line-height-sm {
-  line-height: .75;
+  line-height: 0.75;
 }
 
 .tooltip-inner {
@@ -38,6 +38,35 @@
   .col-md-3 {
     &:nth-child(4n + 1) {
       clear: left;
+    }
+  }
+}
+
+.onsite-group-meeting-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+
+  li {
+    display: flex;
+    line-height: 1em;
+    align-items: center;
+    font-size: 14px;
+
+    &:after {
+      content: "";
+      height: 3px;
+      width: 3px;
+      display: block;
+      background-color: $cr-black;
+      margin: 4px 4px 0;
+    }
+
+    &:last-child {
+      &:after {
+        display: none;
+      }
     }
   }
 }
