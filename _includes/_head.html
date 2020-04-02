@@ -55,13 +55,6 @@
   <!-- after -->
   <script> window.prerenderReady = true; </script>
 
-  <script type="module" onload="componentsLoaded()" src="https://{{subdomain}}.crossroads.net/dist/crds-components/crds-components.esm.js"></script>
-  <script nomodule="" onload="componentsLoaded()" src="https://{{subdomain}}.crossroads.net/dist/crds-components.js"></script>
-  <script>
-    function componentsLoaded() {
-      var componentsReady = new Event('components-ready');
-      document.dispatchEvent(componentsReady);
-      window.componentsReady = true;
-    }
-  </script>
+  <script async type="module" onload="componentsLoaded()" src="https://{{subdomain}}.crossroads.net/dist/crds-components/crds-components.esm.js"></script>
+  <script async nomodule="" onload="componentsLoaded()" src="https://{{subdomain}}.crossroads.net/dist/crds-components.js"></script>
 </head>
