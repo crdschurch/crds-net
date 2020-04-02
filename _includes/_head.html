@@ -5,6 +5,17 @@
   {% include _monetate-head.html %}
   {% include _meta-tags.html %}
 
+  {% if site.jekyll_env == 'int' %}
+    {% assign subdomain = 'components-int' %}
+  {% elsif site.jekyll_env == 'demo' %}
+    {% assign subdomain = 'components-demo' %}
+  {% else %}
+    {% assign subdomain = 'components' %}
+  {% endif %} 
+
+  <link rel="preload" href="https://{{subdomain}}.crossroads.net/dist/crds-components/crds-components.esm.js" as="script">
+  <link rel="preload" href="https://{{subdomain}}.crossroads.net/dist/crds-components.js" as="script">
+
   <link rel="apple-touch-icon" sizes="57x57" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-72x72.png">
@@ -44,13 +55,6 @@
   <!-- after -->
   <script> window.prerenderReady = true; </script>
 
-  {% if site.jekyll_env == 'int' %}
-    {% assign subdomain = 'components-int' %}
-  {% elsif site.jekyll_env == 'demo' %}
-    {% assign subdomain = 'components-demo' %}
-  {% else %}
-    {% assign subdomain = 'components' %}
-  {% endif %}
   <script type="module" onload="componentsLoaded()" src="https://{{subdomain}}.crossroads.net/dist/crds-components/crds-components.esm.js"></script>
   <script nomodule="" onload="componentsLoaded()" src="https://{{subdomain}}.crossroads.net/dist/crds-components.js"></script>
   <script>
