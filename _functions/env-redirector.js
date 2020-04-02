@@ -1,6 +1,6 @@
 'use strict';
 
-exports.handler = function(event, context, callback) {
+exports.handler = (event, context, callback) => {
   let dest = "https://pushpay.com/g/crossroads";
 
   try {
@@ -21,7 +21,6 @@ exports.handler = function(event, context, callback) {
 
   return callback(null, {
     statusCode: 307,
-    headers: { Location: dest },
-    body: `Redirecting to ${dest}...`
+    headers: { Location: dest }
   });
 };
