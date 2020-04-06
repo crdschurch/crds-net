@@ -6,7 +6,7 @@ http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,master
 /undivided-training,https://undivided.netlify.com,301
 /people/*,https://${env:CRDS_PEOPLE_DOMAIN}/:splat,200!
-/connect/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
+/connect/* mapView=:mapView,https://${env:CRDS_MAP_DOMAIN}/:splat?mapView=:mapView,200!
 /group-leader/*,https://${env:CRDS_GROUP_LEADER_DOMAIN}/:splat,200!
 /groups/search/*,https://${env:CRDS_FINDER_ENDPOINT}/:splat,200!
 /map/*,/connect/:splat,302!
