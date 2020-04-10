@@ -72,7 +72,6 @@ class BitmovinManager {
   }
 
   createSource(bitmovinConfig) {
-    console.log(this.getCookie('bitmovin_analytics_uuid'));
     this.source = {
       title: bitmovinConfig.title,
       //  description: desc,
