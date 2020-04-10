@@ -39,7 +39,22 @@ class BitmovinManager {
         onPlaybackFinished: () => {
           this.showStandbyMessaging();
         }
-      }
+      },
+      network: {
+        preprocessHttpRequest: function(type, request) {
+          let sessionId;
+          var cookie = "; " + document.cookie;
+          var parts = cookie.split("; bitmovin_analytics_uuid=");
+          if (parts.length == 2)
+             sessionId = parts
+              .pop()
+              .split(";")
+              .shift();
+          request.url = `${request.url}?source=web&product=crds-net&session=${sessionId}`;
+          console.log(request);
+          return Promise.resolve(request);
+        }
+      },
     };
 
     if (this.getHidePlaybackSpeed()) {
@@ -58,6 +73,7 @@ class BitmovinManager {
   }
 
   createSource(bitmovinConfig) {
+    console.log(this.getCookie('bitmovin_analytics_uuid'));
     this.source = {
       title: bitmovinConfig.title,
       //  description: desc,
