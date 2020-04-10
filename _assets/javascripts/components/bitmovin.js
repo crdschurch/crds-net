@@ -51,7 +51,6 @@ class BitmovinManager {
               .split(";")
               .shift();
           request.url = `${request.url}?source=web&product=crds-net&session=${sessionId}`;
-          console.log(request);
           return Promise.resolve(request);
         }
       },
