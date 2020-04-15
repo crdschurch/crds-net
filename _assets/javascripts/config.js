@@ -50,10 +50,6 @@ module.exports = [
     files: ["components/masonry"]
   },
   {
-    name: "set-redirect-url",
-    files: ["lib/set-redirect-url"]
-  },
-  {
     name: "reachout-trip",
     files: ["lib/reachout-trip"]
   },
