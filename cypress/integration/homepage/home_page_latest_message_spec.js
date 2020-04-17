@@ -9,29 +9,35 @@ describe('Tests the Current Message on the Homepage', function () {
 
   before(() => {
     //Fetch Current Message
+    
     const mqm = new MessageQueryManager();
     mqm.getSingleEntry(mqm.query.latestMessage).then(message => {
+    
       currentMessage = message;
-    });
-
+      });
     //Setup capture for events
     cy.server();
+
     requestFilter = new RequestFilter(amplitude.isVideoStarted);
-    cy.route({
+      cy.route({
       method: 'POST',
       url: 'api.amplitude.com',
       onResponse: (xhr) => {
         requestFilter.keepMatch(xhr.request);
-      }
+      const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property 'status' of undefined.*/];
+      cy.ignoreMatchingErrors(errorsToIgnore); 
+       }
     });
 
     //Navigate
-  const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus or undefined.*/];
-  cy.ignoreMatchingErrors(errorsToIgnore); 
-  cy.visit('/');
- });
+    const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property 'status' of undefined.*/];
+    cy.ignoreMatchingErrors(errorsToIgnore); 
+    cy.visit('/');
+    });
 
   it('Checks title, image, and "View latest now" button have correct link', () => {
+  const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property 'status' of undefined.*/];
+  cy.ignoreMatchingErrors(errorsToIgnore); 
     currentMessage.getURL().then(url => {
       const relativeAutoplayURL = url.autoplay.relative;
 
@@ -51,11 +57,14 @@ describe('Tests the Current Message on the Homepage', function () {
   it('Checks card image and, if Bitmovin video, player exists and video autoplays', () => {
     cy.get('[data-automation-id="message-video"]').as('videoImagelink');
     cy.get('@videoImagelink').find('img').as('videoImage');
+    const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus o undefined.*/];
+    cy.ignoreMatchingErrors(errorsToIgnore); 
     currentMessage.imageLink.getResource(image => {
       new ImageDisplayValidator('videoImage', false).shouldHaveImgixImage(image);
     });
 
     if (currentMessage.bitmovinURL.hasValue) {
+      cy.wait(500);
       cy.get('div[data-video-player]').as('videoPlayer').should('have.prop', 'id').and('contain', 'bitmovinPlayer');
 
       cy.wrap(requestFilter).as('autoplayEvent').its('matches').should('have.length', 1);
