@@ -17,7 +17,13 @@ class BitmovinManager {
       key: `${window.CRDS.env.bitmovinPlayerLicense}`,
       playback: {
         autoplay: this.getAutoPlay(),
-        muted: this.getIsMuted()
+        muted: this.getIsMuted(),
+        preferredTech: [
+          {
+            player: 'html5',
+            streaming: 'hls'
+          }
+        ]
       },
       analytics: {
         key: `${window.CRDS.env.bitmovinAnalyticsLicense}`,
