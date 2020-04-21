@@ -17,7 +17,13 @@ class BitmovinManager {
       key: `${window.CRDS.env.bitmovinPlayerLicense}`,
       playback: {
         autoplay: this.getAutoPlay(),
-        muted: this.getIsMuted()
+        muted: this.getIsMuted(),
+        preferredTech: [
+          {
+            player: 'html5',
+            streaming: 'hls'
+          }
+        ]
       },
       analytics: {
         key: `${window.CRDS.env.bitmovinAnalyticsLicense}`,
@@ -39,7 +45,21 @@ class BitmovinManager {
         onPlaybackFinished: () => {
           this.showStandbyMessaging();
         }
-      }
+      },
+      network: {
+        preprocessHttpRequest: function(type, request) {
+          let sessionId;
+          var cookie = "; " + document.cookie;
+          var parts = cookie.split("; bitmovin_analytics_uuid=");
+          if (parts.length == 2)
+             sessionId = parts
+              .pop()
+              .split(";")
+              .shift();
+          request.url = `${request.url}?source=web&product=crds-net&session=${sessionId}`;
+          return Promise.resolve(request);
+        }
+      },
     };
 
     if (this.getHidePlaybackSpeed()) {
