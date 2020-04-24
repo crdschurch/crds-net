@@ -49,6 +49,7 @@ class BitmovinManager {
       network: {
         preprocessHttpRequest: function(type, request) {
           let sessionId;
+          let noSound = ["/media/", "/media", "/"]; // list of pages where sound will never be enabled [Analytics]
           var cookie = "; " + document.cookie;
           var parts = cookie.split("; bitmovin_analytics_uuid=");
           if (parts.length == 2)
@@ -56,7 +57,8 @@ class BitmovinManager {
               .pop()
               .split(";")
               .shift();
-          request.url = `${request.url}?source=web&product=crds-net&session=${sessionId}`;
+          const hasSound = noSound.indexOf(window.location.pathname) < 1;
+          request.url = `${request.url}?source=web&product=crds-net&hasSound=${hasSound}&session=${sessionId}`;
           return Promise.resolve(request);
         }
       },
