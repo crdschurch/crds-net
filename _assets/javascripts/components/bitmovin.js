@@ -49,7 +49,7 @@ class BitmovinManager {
       network: {
         preprocessHttpRequest: function(type, request) {
           let sessionId;
-          let noSound = ["/media/", "/media", "/"];
+          let noSound = ["/media/", "/media", "/"]; // list of pages where sound will never be enabled [Analytics]
           var cookie = "; " + document.cookie;
           var parts = cookie.split("; bitmovin_analytics_uuid=");
           if (parts.length == 2)
