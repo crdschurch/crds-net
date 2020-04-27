@@ -68,3 +68,6 @@
   CRDS_EVENT_CHECKIN_ENDPOINT = "event-checkin.crossroads.net"
   CRDS_FOCUS_MISSION = "https://crds.focusmissions.com/"
   CRDS_COMPONENTS_ENDPOINT = "components.crossroads.net"
+
+[context.rebrand.environment]
+  CRDS_COMPONENTS_ENDPOINT = "deploy-preview-480--crds-components-int.netlify.app"
