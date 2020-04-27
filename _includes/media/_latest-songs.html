@@ -1,0 +1,10 @@
+<div class="col-md-4">
+  <div class="section-title-box">
+    <h2 class="font-size-base text-gray-light flush">latest songs</h2>
+    <a href="https://www.crdsmusic.com/music/songs/" target="_blank">view all</a>
+  </div>
+    {% assign album_card = site.albums | sort: "published_at" | reverse %} {%
+    for album in album_card limit: 2 %}
+      {% include media/_album-card.html %}
+    {% endfor %}
+  </div>
