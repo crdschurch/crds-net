@@ -2,7 +2,6 @@ module.exports = [
   {
     name: "application",
     deps: ["vendor/jquery-3.3.1.min"],
-    files: ["lib/set-redirect-url"]
   },
   {
     name: "application_deferred",
