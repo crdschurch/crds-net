@@ -71,3 +71,4 @@
 
 [context.rebrand.environment]
   CRDS_COMPONENTS_ENDPOINT = "deploy-preview-480--crds-components-int.netlify.app"
+  CRDS_DATA_ENDPOINT = "deploy-preview-38--crds-data.netlify.app"
