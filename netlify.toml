@@ -13,6 +13,7 @@
   CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_COMPONENTS_ENDPOINT = "components-int.crossroads.net"
+  CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
 
 [context.deploy-preview.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
@@ -24,6 +25,7 @@
   CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_COMPONENTS_ENDPOINT = "components-int.crossroads.net"
+  CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
 
 [context.development.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
@@ -35,6 +37,7 @@
   CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_COMPONENTS_ENDPOINT = "components-int.crossroads.net"
+  CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
 
 [context.runway.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
@@ -46,6 +49,7 @@
   CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_COMPONENTS_ENDPOINT = "components-int.crossroads.net"
+  CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
 
 [context.release.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
@@ -57,6 +61,7 @@
   CRDS_EVENT_CHECKIN_ENDPOINT = "release.event-checkin.crossroads.net"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_COMPONENTS_ENDPOINT = "components-demo.crossroads.net"
+  CRDS_MEDIA_ENDPOINT = "crds-media-demo.crossroads.net/"
 
 [context.master.environment]
   CRDS_PEOPLE_DOMAIN = "people.crossroads.net"
@@ -68,7 +73,9 @@
   CRDS_EVENT_CHECKIN_ENDPOINT = "event-checkin.crossroads.net"
   CRDS_FOCUS_MISSION = "https://crds.focusmissions.com/"
   CRDS_COMPONENTS_ENDPOINT = "components.crossroads.net"
+  CRDS_MEDIA_ENDPOINT = "crds-media.crossroads.net"
 
 [context.rebrand.environment]
   CRDS_COMPONENTS_ENDPOINT = "deploy-preview-480--crds-components-int.netlify.app"
   CRDS_DATA_ENDPOINT = "deploy-preview-38--crds-data.netlify.app"
+  CRDS_MEDIA_ENDPOINT = "deploy-preview-887--crds-mediaint.netlify.app"
