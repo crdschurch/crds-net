@@ -2,6 +2,7 @@
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
 http://crossroads.net/*,https://www.crossroads.net/:splat,301!,master
+https://crossroads.net/*,https://www.crossroads.net/:splat,301!,master
 http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,master
 /undivided-training,https://undivided.netlify.app,301!
