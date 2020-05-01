@@ -9,12 +9,11 @@ module.exports = [
     deps: [
       "vendor/webcomponents-lite.min",
       "vendor/imgix.min",
-      "vendor/imgix-optimizer",
+      "vendor/imgix-optimizer-0.0.10.min",
       "vendor/bootstrap.min",
       "vendor/flickity.pkgd.min",
       "vendor/crds-card-carousel-v0.2.2.min",
       "vendor/crds-jumbotron-video-v0.2.1.min",
-      "vendor/crds-livestream-reminder-v0.0.18.min",
       "vendor/crds-status-message-v0.1.3.min",
       "vendor/feature-flags.min",
       "vendor/isotope.min",
@@ -38,8 +37,13 @@ module.exports = [
       "components/smart-banner",
       "components/status-message",
       "components/global",
-      "components/youtube"
+      "components/youtube",
+      "components/toggle-tooltip"
     ]
+  },
+  {
+    name: "parallax",
+    files: ["vendor/rellax-1.10.0.min"]
   },
   {
     name: "masonry_deferred",
@@ -50,18 +54,8 @@ module.exports = [
     files: ["lib/set-redirect-url"]
   },
   {
-    name: "auth-required",
-    files: ["lib/auth-required"],
-    deps: [
-      "vendor/client-auth",
-      "lib/authentication"
-    ]
-  },
-  {
     name: "reachout-trip",
-    files: [
-      "lib/reachout-trip"
-    ]
+    files: ["lib/reachout-trip"]
   },
   {
     name: "family-meeting-stream",
@@ -98,14 +92,9 @@ module.exports = [
     ]
   },
   {
-    name: 'bitmovin',
-    deps: [
-      "vendor/moment-2.24.min",
-      "vendor/moment-timezone-0.5.25.min",
-    ],
-    files: [
-      "components/bitmovin"
-    ],
+    name: "bitmovin",
+    deps: ["vendor/moment-2.24.min", "vendor/moment-timezone-0.5.25.min"],
+    files: ["components/bitmovin"]
   },
   {
     name: "events",
@@ -116,22 +105,11 @@ module.exports = [
     ]
   },
   {
-    name: 'autoplay',
-    files: [
-      'components/autoplay-controller',
-    ],
+    name: "autoplay",
+    files: ["components/autoplay-controller"]
   },
   {
-    name: 'skeleton',
-    files: [
-      'components/skeleton',
-    ],
-  }, 
-  {
-    name: "authentication",
-    files: ["lib/authentication"],
-    deps: [
-      "vendor/client-auth"
-    ]
-  },
+    name: "skeleton",
+    files: ["components/skeleton"]
+  }
 ];

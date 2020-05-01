@@ -9,8 +9,11 @@ describe('Testing the Current Series on the Homepage:', function () {
       currentSeries = series;
     });
 
-    cy.ignorePropertyUndefinedTypeError();
-    cy.visit('/');
+  cy.ignorePropertyUndefinedTypeError();
+  cy.on('uncaught:exception', (err, runnable) => {
+      return false
+  })
+  cy.visit('/');
   });
 
   it('Current series title, description, and image should match Contentful', function () {

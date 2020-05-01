@@ -1,0 +1,27 @@
+{% assign targets = item.country | join: ',' %}
+
+<div class="{{ targets| downcase | replace: ' ' , '-' }} card push-ends col-xs-12 col-sm-4 col-md-3" >
+    <a href="/reachout/go/{{ item.country_slug }}{{item.slug }}">
+        <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}"
+            class="card-img-top img-responsive" alt="{{ item.country }}" data-optimize-img >
+    </a>
+    <div class="card-block hard-left hard-top">
+        <h3 class="font-family-condensed-extra text-uppercase font-size-h4 push-half-top"
+            style="line-height: .9em;">
+            {{ item.country }}<br>
+            <span style="color: #979797;">{{ item.trip_details}}</span>
+        </h3>
+        <p class="font-size-small font-family-base">{{ item.start_date | date:"%m/%d/%Y" }}<span> - </span>{{ item.end_date | date:"%m/%d/%Y" }}</p>
+        <hr style="width: 50px; margin: 20px 0px 20px 0px; border-top: 1px solid #797979;">
+        <p class="font-size-smaller font-family-base">
+            {{ item.trip_description | truncatewords: 40 }}
+        </p>
+        <crds-button
+        color="blue"
+        text="View all details"
+        href="/reachout/go/{{ item.country_slug }}{{ item.slug }}">
+      </crds-button>
+    </div>
+</div>
+
+   

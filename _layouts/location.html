@@ -6,46 +6,16 @@ layout: default
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
 {% include header.html %}
 
-{% if page.title == "Andover" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSc_tN4sn2STiUwDuAj2kkvD586-gE6Ztp5MI7es6D46hx1zyQ/viewform" %}
-{% elsif page.title == "Lexington" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSc_tN4sn2STiUwDuAj2kkvD586-gE6Ztp5MI7es6D46hx1zyQ/viewform" %}
-{% elsif page.title == "Columbus" %}
-{% elsif page.title == "Dayton" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScA4hpYfwYROgpwQs1iDelr5nahobys0SuK_Tm8cfOANTR-Dg/viewform" %}
-{% elsif page.title == "Downtownlex" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSeyqUR1KRRQnQJDSdX3cPgzfHgXKNK18ABzk2Cl6g99jtRrsA/viewform" %}
-{% elsif page.title == "Eastside" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScMpEO29vIDaUMuQkjlu-Jcf6II8jL4JG-wyLFA5yKBBCWWDA/viewform" %}
-{% elsif page.title == "Florence" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSfo2ywXjTQuxNUx5uIa7T3n2K_rZ9rWc2F_3CJCM4x8dMvN3w/viewform" %}
-{% elsif page.title == "Georgetown" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSf1VIGPA3qcmjtXb2JG4tCz-LhwoLNPDjPloHLTJ-72u15HQw/viewform" %}
-{% elsif page.title == "Mason" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSctEwPK6JmDtzB6iN4J4a2cSUWme4BeefEHr2xzqTYorQBr7Q/viewform" %}
-{% elsif page.title == "Oakley" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSdjDSPZQil5lZAipQnodua9xaj0zhrgI1fl0lt6dC2617AJPw/viewform" %}
-{% elsif page.title == "Oxford" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSc_zIJaeQHa7H5ZfkSgrNxzjZb6-2Liycyf5P9hYkuK4BRqrQ/viewform" %}
-{% elsif page.title == "Richmond" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSegG0d3hMLUpQL-_m65FHG1tniT2TtRODEPQtegPl76qnAq7A/viewform" %}
-{% elsif page.title == "Uptown" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLScTectxJ6mKo-UvZVv4Av8Q5kWkTZZypAGdqLldnR50hYnWGA/viewform" %}
-{% elsif page.title == "Westside" %}
-{% assign care_link = "https://docs.google.com/forms/d/e/1FAIpQLSdbCAA4ZqkefkWXOd5zl_B8t8fewruAhfaEXoKUoW9sgt8QGg/viewform" %}
-{% endif %}
-
 <!-- Featured Section -->
 {% if page.featured_section.size > 0 %}
   {{ page.featured_section }}
 {% endif %}
 
-
 <!-- Jumbotron section -->
 <div class="jumbotron jumbotron-xl flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
   data-optimize-bg-img>
   <div class="push-ends mobile-soft-sides">
-    <span class="font-family-base text-uppercase">
+    <span class="font-family-base text-uppercase text-white">
       <strong>welcome to</strong>
     </span>
     <h1 class="title hidden-xs" style="font-size: 5.0rem;">crossroads
@@ -57,9 +27,13 @@ layout: default
     <a href="javascript:void(0)" class="btn btn-primary push-half-sides" data-smooth-scroll-to="happenings">See what's
       happening at {{ page.name | downcase }}</a>
     {% endif %}
-
   </div>
 </div>
+
+<!-- Featured Section - Below Jumbotron-->
+{% if page.featured_below.size > 0 %}
+  {{ page.featured_below }}
+{% endif %}
 
 <!-- General Info Section -->
 <section class="bg-blue-dark soft-ends">
@@ -154,9 +128,8 @@ layout: default
       <img class="img-circle" src="{{ page.community_pastor_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
         sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
       <div class="card-block text-left">
-        <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">Meet {{
-          page.community_pastor_name }}</h4>
-        <p class="card-text">{{ page.community_pastor_bio | markdownify }}</p>
+        <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">Meet {{ page.community_pastor_name }}</h4>
+        {{ page.community_pastor_bio | markdownify }}
       </div>
     </div>
     {% endif %}
@@ -166,7 +139,7 @@ layout: default
         sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
       <div class="card-block text-left">
         <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">{{ page.spotlight_title }}</h4>
-        <p class="card-text">{{ page.spotlight_text | markdownify }}</p>
+        {{ page.spotlight_text | markdownify }}
       </div>
     </div>
     {% endif %}
@@ -189,14 +162,14 @@ layout: default
 
 
 <!-- Community Care -->
-{% if care_link %}
+{% if page.care_link %}
 <section>
   <div class="container push-ends">
     <div class="row well text-center soft-ends">
       <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
         <h3 class="section-header push-half-ends">Community Care Requests</h3>
         <p class="lead">Prayer requests, listening appointments, hospital visits, or questions about weddings or funerals– we're here to help.</p>
-        <a href="{{ care_link }}" class="btn btn-primary" target="_blank">Request care here</a><br />
+        <a href="{{ page.care_link }}" class="btn btn-primary" target="_blank">Request care here</a><br />
         <a href="/care" class="btn btn-primary btn-gray-light text-center">View all community care services</a>
       </div>
     </div>
@@ -305,11 +278,10 @@ layout: default
       <div class="col-sm-6 push-top soft-top soft-sides">
         <h4>Your kids will love Kids' Club</h4>
         <p dir="ltr">A fun learning environment designed especially for kids (birth through fifth grade). It’s free,
-          totally secure, and
-          don't worry-we'll let you know if your child needs you at any point during the service.
+          totally secure, and don't worry-we'll let you know if your child needs you at any point during the service.
         </p>
         <div></div>
-        <a class="btn btn-primary" href="http://crossroadskidsclub.net/" target="_blank">Check out Kids' Club</a>
+        <a class="btn btn-primary" href="https://www.crossroads.net/kids-club/" target="_blank">Learn more about Kids' Club</a>
         <p class="font-size-small push-half-top">
           <em>{{ page.kids_club_hours | markdownify }}</em>
         </p>
@@ -403,5 +375,8 @@ layout: default
     </div>
   </div>
 </section>
+
+<!--Facebook Pixel Script -->
+{% include _fb-pixel.html %}
 
 {% include footer.html %}

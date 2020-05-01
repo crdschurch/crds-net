@@ -6,24 +6,21 @@ window.CRDS = window.CRDS || {};
 
 CRDS.DistanceSorter = class DistanceSorter {
   constructor() {
-    this.locationDistances = [];
-    this.searchForm = undefined;
-    this.searchInput = undefined;
-    this.formSubmitButton = undefined;
-    this.cards = undefined;
-    this.locationFinder = undefined;
     this.init();
   }
 
   init() {
-    this.searchForm =  document.getElementById('locations-address-input');
-    this.searchForm.addEventListener('submit', this.handleFormSubmit.bind(this));
-    this.searchInput = this.searchForm.getElementsByTagName('input')[0];
-    this.formSubmit = this.searchForm.getElementsByTagName('button')[0];
-    this.formSubmit.disabled = false;
+    this.searchForm = document.getElementById('locations-address-input');
+    this.searchInput = this.searchForm.elements.namedItem('search-input');
+    this.formSubmit = this.searchForm.elements.namedItem('input-search');
+    this.geoSubmit = this.searchForm.elements.namedItem('geo-search');
+    this.geoSubmit.addEventListener('click', this.handleGeoClick.bind(this));
+    this.formSubmit.addEventListener('click', this.handleSubmit.bind(this));
+    this.searchInput.addEventListener('submit', this.handleSubmit.bind(this));
     this.locationsCarousel = DistanceSorter.getLocationsCarousel();
     this.cards = this.locationsCarousel.cards;
     this.locationFinder = new CRDS.LocationFinder();
+    this.isGeoAllowed();
   }
 
   static getLocationsCarousel() {
@@ -36,7 +33,45 @@ CRDS.DistanceSorter = class DistanceSorter {
     return instance.carousel !== undefined && instance.carousel !== null && instance.carousel.id === 'section-locations';
   }
 
-  handleFormSubmit(event) {
+  isGeoAllowed() {
+    if(navigator.permissions){
+      navigator.permissions.query({name: 'geolocation'})
+        .then(permission => {
+          if(permission.state === 'granted') this.showGeoButton();
+          else if(permission.state === 'prompt') this.getGeo().then(() => this.showGeoButton());;
+        })
+    } else {
+      this.getGeo().then(() => this.showGeoButton());
+    }
+  }
+
+  getGeo() {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+  }
+
+  showGeoButton() {
+    this.geoSubmit.style.display = 'block';
+  }
+
+  handleGeoClick(event) {
+    this._disableGeoButton();
+    this.searchInput.value = '';
+    this.getGeo()
+      .then(position => {
+        this.getDistance(position)
+        .done((locationDistances) => { this._updateDomWithSortedCards(locationDistances); })
+        .fail((xhr, ajaxOptions, thrownError) => {
+          console.log(thrownError);
+          this.showError();
+          this.geoSubmit.disabled = false;
+          this.removeLabels();
+        });
+      })
+  }
+
+  handleSubmit(event) {
     this._disableForm();
     this.getDistance()
       .done((locationDistances) => { this._updateDomWithSortedCards(locationDistances); })
@@ -53,9 +88,14 @@ CRDS.DistanceSorter = class DistanceSorter {
     this.formSubmit.disabled = true;
   }
 
-  getDistance() {
+  _disableGeoButton() {
+    event.preventDefault();
+    this.geoSubmit.disabled = true;
+  }
+
+  getDistance(data) {
     this.locationDistances = [];
-    return this.locationFinder.getLocationDistances(this.searchInput.value);
+    return this.locationFinder.getLocationDistances(data ? `${data.coords.latitude}, ${data.coords.longitude}` : this.searchInput.value);
   }
 
   _updateDomWithSortedCards(locationDistances) {
@@ -128,6 +168,7 @@ CRDS.DistanceSorter = class DistanceSorter {
 
   _resetFormOnSuccess() {
     this.clearError();
+    this.geoSubmit.disabled = false;
     this.formSubmit.disabled = false;
   }
 

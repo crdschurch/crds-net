@@ -3,10 +3,8 @@
 
 Environment variables needed to run locally:
 ```bash
-CYPRESS_CONTENTFUL_ACCESS_TOKEN
-CYPRESS_CONTENTFUL_SPACE_ID
-CYPRESS_FRED_FLINTSTONE_PW
-CYPRESS_SHERLOCK_HOLMES_PW
+VAULT_ROLE_ID
+VAULT_SECRET_ID
 ```
 
 
@@ -17,18 +15,16 @@ If you decide to use another method, please be sure these variables are *not* ch
 Environment variables set in Netlify to run Cypress through Travis.ci:
 ```bash
 CYPRESS_CONFIG_FILE #int_crossroads, demo_crossroads
-CONTENTFUL_ACCESS_TOKEN
-CONTENTFUL_SPACE_ID
+VAULT_ROLE_ID
+VAULT_SECRET_ID
 RUN_CYPRESS #true/false
 TRAVIS_CI #Travis's API Authentication token
-CYPRESS_INSTALL_BINARY = 0
+CYPRESS_INSTALL_BINARY = 0 #Stop Cypress from installing in Netlify
 ```
 
 Environment variables to set in Travis.ci:
 ```bash
 cypressDashboard #Cypress's dashboard record key for this repo
-FRED_FLINTSTONE_PW
-SHERLOCK_HOLMES_PW
 ```
 
 ## Run Locally
@@ -48,7 +44,7 @@ npx cypress run --browser chrome
 To run or open in an environment other than int, specifiy the /config file to use.
 ex. to run headless in demo:
 ```
-npx cypress open --env useConfig=demo_crossroads
+npx cypress open --env configFile=demo_crossroads
 ```
 
 To customize a Cypress run beyond what's defined, check out their documentation [here](https://docs.cypress.io/guides/guides/command-line.html).

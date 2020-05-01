@@ -8,11 +8,12 @@ describe('Testing the Current Series on the Live page:', function () {
     sqm.getSingleEntry(sqm.query.latestSeries).then(series => {
       currentSeries = series;
     });
-
+    cy.on('uncaught:exception', (err, runnable) => {
+        return false
+    })
     cy.visit('/live');
   });
 
-  //DO NOT RUN in open mode - Causes Cypress to hang
   it('Current Series title, date, and description should match Contentful', function () {
     cy.get('.current-series').as('currentSeriesBlock');
 

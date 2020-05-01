@@ -6,9 +6,10 @@ describe('Testing the Past Weekends section on the Live page:', function () {
   before(function () {
     const mqm = new MessageQueryManager();
     mqm.getListOfEntries(mqm.query.latestMessage, 4).then(messageList => {
+    const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property status of undefined.*/];
+    cy.ignoreMatchingErrors(errorsToIgnore); 
       recentMessages = messageList;
     });
-
     cy.visit('/live');
   });
 

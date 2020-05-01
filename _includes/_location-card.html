@@ -1,21 +1,28 @@
 <div class="card">
   <a href="{{ location.url }}" class="block" data-automation-id="location-image">
-    <img src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" sizes="{{ site.image_sizes.cards_4x }}"
-      alt="{{ location.title }}" data-optimize-img>
+    <img
+      src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}"
+      sizes="{{ site.image_sizes.cards_4x }}"
+      alt="{{ location.title }}"
+      data-optimize-img
+    />
   </a>
   <div class="card-block">
     <h4 class="card-title card-title--overlap text-uppercase">
       <a href="{{ location.url }}" data-automation-id="location-name">{{ location.name }}</a>
     </h4>
     <div class="card-text">
-      <div  data-automation-id="location-address">
-          {{ location.address | markdownify }} (<a target="_blank" href="{{ location.map_url }}" data-automation-id="location-map-url">Map</a>)
+      <div data-automation-id="location-address">
+        {{ location.address | markdownify }} (<a target="_blank" href="{{ location.map_url }}" data-automation-id="location-map-url">Map</a
+        >)
       </div>
       <div data-automation-id="location-service-times">
-          <strong>Service Times:</strong>
-          <br>
-          {{ location.service_times | markdownify }}
+        <strong>Service Times:</strong>
+        <br />
+        {{ location.service_times | markdownify }}
       </div>
     </div>
+    <crds-button type="primary" color="blue" text="Learn more" href="{{ location.url }}"></crds-button>
+    <crds-site-select card-site-id="{{ location.site_id }}"></crds-site-select>
   </div>
 </div>

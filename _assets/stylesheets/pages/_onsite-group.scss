@@ -33,3 +33,11 @@
     margin-bottom: 0px;
   }
 }
+
+.onsite-group-location-row {
+  .col-md-3 {
+    &:nth-child(4n + 1) {
+      clear: left;
+    }
+  }
+}

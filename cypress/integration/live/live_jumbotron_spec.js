@@ -5,6 +5,10 @@ import { MessageQueryManager } from 'crds-cypress-contentful';
 function visitLiveWithSchedule(fakeSchedule) {
   cy.server();
   cy.route(`${Cypress.env('schedule_env')}/streamSchedule`, fakeSchedule);
+  cy.on('uncaught:exception', (err, runnable) => {
+     return false
+  })
+
   cy.visit('/live');
 }
 
@@ -29,7 +33,7 @@ describe('Tests the /live jumbotron content with different stream times:', funct
       const fakeCurrentSchedule = scheduleGenerator.getStreamStartingAfterHours(0);
       visitLiveWithSchedule(fakeCurrentSchedule);
 
-      //Spoof shcedule route again before navigating
+      //Spoof schedule route again before navigating
       cy.server();
       cy.route(`${Cypress.env('schedule_env')}/streamSchedule`, fakeCurrentSchedule);
 
