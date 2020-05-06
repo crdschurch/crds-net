@@ -52,6 +52,7 @@ describe('Tests the Current Message on the Homepage', function () {
   });
 
   it('Checks card image and, if Bitmovin video, player exists and video autoplays', () => {
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.get('[data-automation-id="message-video"]').as('videoImagelink');
     cy.get('@videoImagelink').find('img').as('videoImage');
     currentMessage.imageLink.getResource(image => {
