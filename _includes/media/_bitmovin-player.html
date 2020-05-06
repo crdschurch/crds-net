@@ -50,7 +50,7 @@
             var videoManagerID = `{{ include.isCard }}` ? `bitmovinPlayer{{video.slug | camelcase }}` : 'VideoManager';
             var bitmovinConfig = {
                 title: `{{ video.title }}`,
-                url: `{{ video.bitmovin_url }}?source=web&product=crds-net`,
+                url: `{{ video.bitmovin_url }}`,
                 id: videoManagerID,
                 image: `{{ banner_image | imgix: site.imgix }}`,
                 isCard: `{{ include.isCard }}`,
