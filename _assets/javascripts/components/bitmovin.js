@@ -17,7 +17,13 @@ class BitmovinManager {
       key: `${window.CRDS.env.bitmovinPlayerLicense}`,
       playback: {
         autoplay: this.getAutoPlay(),
-        muted: this.getIsMuted()
+        muted: this.getIsMuted(),
+        preferredTech: [
+          {
+            player: 'html5',
+            streaming: 'hls'
+          }
+        ]
       },
       analytics: {
         key: `${window.CRDS.env.bitmovinAnalyticsLicense}`,
@@ -39,7 +45,23 @@ class BitmovinManager {
         onPlaybackFinished: () => {
           this.showStandbyMessaging();
         }
-      }
+      },
+      network: {
+        preprocessHttpRequest: function(type, request) {
+          let sessionId;
+          let noSound = ["/media/", "/media", "/"]; // list of pages where sound will never be enabled [Analytics]
+          var cookie = "; " + document.cookie;
+          var parts = cookie.split("; bitmovin_analytics_uuid=");
+          if (parts.length == 2)
+             sessionId = parts
+              .pop()
+              .split(";")
+              .shift();
+          const hasSound = noSound.indexOf(window.location.pathname) < 1;
+          request.url = `${request.url}?source=web&product=crds-net&hasSound=${hasSound}&session=${sessionId}`;
+          return Promise.resolve(request);
+        }
+      },
     };
 
     if (this.getHidePlaybackSpeed()) {
