@@ -1,8 +1,6 @@
 import { OnsiteGroupQueryManager } from '../../Contentful/OnsiteGroupQueryManager';
 const errorsToIgnore = [ /.*Cannot read property text of undefined.*/ , /.*Cannot set property\W+\w+\W+of undefined.*/,];
 
-//const errorsToIgnore = [/.*Cannot read property\W+\w+\W+of undefined.*/, /.*Cannot convert undefined or null to object.*/];
-
 describe('Given I navigate to /Onsite Group Page:', function () {
     let onsiteGroupList;
     before(function () {
@@ -16,7 +14,6 @@ describe('Given I navigate to /Onsite Group Page:', function () {
       });
  
     it ('Onsite Group card for Financial Peace should be last', function(){
-    //  cy.ignoreMatchingErrors(errorsToIgnore);
       cy.get('ul').as('onsiteGroupCards');
       cy.get('@onsiteGroupCards').should('have.length', onsiteGroupList.length);
       const financialPeaceIndex = onsiteGroupList.length;
@@ -32,12 +29,13 @@ describe('Given I navigate to /Onsite Group Page:', function () {
       let onsite;
       let title;
       before(function () {
-        onsite = onsiteGroupList[index];
-        title = onsite.title.text;
+      
         //category = onsite.category.text;
       });
    
       it(`Onsite card #${index} should have a Title`, function () {
+        onsite = onsiteGroupList[index];
+        title = onsite.title.text;
         cy.get('h3').eq(index).as(`${title}Card`);
       });
 
