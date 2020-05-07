@@ -26,15 +26,11 @@ describe('Given I navigate to /Onsite Group Page:', function () {
     });
 
     [0,1,2].forEach(index => {
-        before(function () {
-          
-      });
-   
+        
       it(`Onsite card #${index} should have a Title`, function () {
-        let onsite;
-        let title;
-        onsite = onsiteGroupList[index];
-        title = onsite.title.text;
+        let onsite = onsiteGroupList[index];;
+        let title  = onsite.title.text;
+       
         cy.get('h3').eq(index).as(`${title}Card`);
       });
 
