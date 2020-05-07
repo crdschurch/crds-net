@@ -34,6 +34,11 @@ describe('Tests the Current Message on the Homepage', function () {
     cy.visit('/');
     });
 
+    beforeEach(() =>{
+    cy.ignoreMatchingErrors(errorsToIgnore);
+  });
+
+
   it('Checks title, image, and "View latest now" button have correct link', () => {
      currentMessage.getURL().then(url => {
       const relativeAutoplayURL = url.autoplay.relative;
