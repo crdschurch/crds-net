@@ -76,6 +76,14 @@
   CRDS_MEDIA_ENDPOINT = "crds-media.crossroads.net"
 
 [context.rebrand.environment]
+  CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
+  CRDS_MAP_DOMAIN = "connect-int.crossroads.net"
+  CRDS_ANGULAR_ENDPOINT = "development--crds-angular.netlify.app"
+  CRDS_SIGNIN_ENDPOINT = "development.signin.crossroads.net"
+  CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
+  CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
+  CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
+  CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_COMPONENTS_ENDPOINT = "deploy-preview-480--crds-components-int.netlify.app"
   CRDS_DATA_ENDPOINT = "deploy-preview-38--crds-data.netlify.app"
   CRDS_MEDIA_ENDPOINT = "deploy-preview-887--crds-mediaint.netlify.app"
