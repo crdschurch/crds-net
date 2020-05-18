@@ -37,6 +37,14 @@ describe('Tests latest message is current and ready for live stream', function (
     fakeSchedule = new StreamScheduleGenerator().getStreamStartingAfterHours(0);
   });
 
+  beforeEach(() => {
+    cy.on('uncaught:exception', (err) => {
+      const errorRegex = RegExp(/.*Cannot [gs]et property\W+\w+\W+of undefined.*/);
+      const matchingError = errorRegex.test(err.message);
+      return !matchingError;
+    });
+  });
+
   it('Verify encoding is ready for the latest message in Bitmovin', function () {
     cy.request(`${Cypress.env('CROSSROADS_API_ENDPOINT')}/video-service/encode/latestMessageStatus`).then(response => {
       const latestMessageStatus = response.body;
@@ -102,8 +110,6 @@ describe('Tests latest message is current and ready for live stream', function (
 /** Using the "after" hook or listening for events sometimes doesn't send messages due to bugs in Cypress (issue #2831)
  * This is a hacky but reliable way to get around the issue.
 */
-
-
 describe('Sends out results', function () {
   it('Sends out Slack and Email alerts', function () {
     cy.reportResultsToSlack();
