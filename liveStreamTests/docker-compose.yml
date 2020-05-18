@@ -4,8 +4,8 @@ services:
     build: .
     container_name: cypress_live_stream_tests
     image: crdschurch/crds-net-live-stream-tests:${DOCKER_TAG:-local}
+    ipc: host #If browser crashes, don't hang docker. https://github.com/cypress-io/cypress/issues/350
     environment:
-      - CYPRESS_configFile=${config_file}
       - VAULT_ROLE_ID=${VAULT_ROLE_ID}
       - VAULT_SECRET_ID=${VAULT_SECRET_ID}
-    entrypoint: npm run test
+    entrypoint: npm run ${config_file}
