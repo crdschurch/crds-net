@@ -5,8 +5,8 @@
   {% include _monetate-head.html %}
   {% include _meta-tags.html %}
 
-  <link rel="preload" href="{{site.components_url}}/crds-components/crds-components.esm.js" as="script">
-  <link rel="preload" href="{{site.components_url}}/crds-components.js" as="script">
+  <link rel="preload" href="{{site.components_endpoint}}/crds-components/crds-components.esm.js" as="script">
+  <link rel="preload" href="{{site.components_endpoint}}/crds-components.js" as="script">
   <link rel="apple-touch-icon" sizes="57x57" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-72x72.png">
@@ -46,8 +46,8 @@
   <!-- after -->
   <script> window.prerenderReady = true; </script>
 
-  <script type="module" onload="componentsLoaded()" src="{{site.components_url}}/crds-components/crds-components.esm.js"></script>
-  <script nomodule="" onload="componentsLoaded()" src="{{site.components_url}}/crds-components.js"></script>
+  <script type="module" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components/crds-components.esm.js"></script>
+  <script nomodule="" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components.js"></script>
   <script>
     function componentsLoaded() {
       var componentsReady = new Event('components-ready');
