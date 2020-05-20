@@ -1,0 +1,72 @@
+---
+layout: default
+---
+
+<style>
+  html,
+  body {
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px;
+  }
+
+  .example {
+    outline: 1px solid red;
+    max-width: 100%;
+  }
+
+  .example img {
+    outline: 1px solid blue;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .example-1 {
+    display: inline-block;
+    position: relative;
+  }
+
+  .example-1-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+</style>
+<div>
+  <h1>Image Overlay Examples</h1>
+  <ul>
+    <li>
+        Image: https://crds-media.imgix.net/6Awavwgqatvd6re5aU84wj/4b31161bdde1598ee2186afa4304ffc2/IMG_9016.jpg?auto=format,compress&w=1000
+    </li>
+    <li>
+      SVG Overlay: https://crds-media.imgix.net/y3a9myzsdjan/5qETHKj1K0A1UjaHQXywSf/5a33d3008218b9e245af06b3dee8a8f2/texture-topo-dark-100.svg
+    </li>
+    <li>
+      PNG Overlay: https://crds-media.imgix.net//y3a9myzsdjan/3he51DpKYiK5q00iJkbQWf/a4083c236bbc56bf09b7d2c46553d250/texture-topo-dark-100.png
+    </li>
+  </ul>
+
+  <h2>Example 1</h2>
+  <p>Background image overlay</p>
+  <div class="example example-1">
+    <div class="example-1-overlay" style="background-image:url('https://crds-media.imgix.net/y3a9myzsdjan/5qETHKj1K0A1UjaHQXywSf/5a33d3008218b9e245af06b3dee8a8f2/texture-topo-dark-100.svg?h=250')"></div>
+    <img src="https://crds-media.imgix.net/6Awavwgqatvd6re5aU84wj/4b31161bdde1598ee2186afa4304ffc2/IMG_9016.jpg?auto=format,compress&w=2000" alt="Example 1">
+  </div>
+
+   <h2>Example 2</h2>
+   <p>Imgix watermark</p>
+  <div class="example example-2">
+    <img src="https://crds-media.imgix.net/6Awavwgqatvd6re5aU84wj/4b31161bdde1598ee2186afa4304ffc2/IMG_9016.jpg?auto=format,compress&mark-align=center,middle&mark=https%3A%2F%2Fcrds-media.imgix.net%2F%2Fy3a9myzsdjan%2F3he51DpKYiK5q00iJkbQWf%2Fa4083c236bbc56bf09b7d2c46553d250%2Ftexture-topo-dark-100.png&mark-h=1&mark-w=1&mark-fit=crop&w=2000" alt="Example 2">
+  </div>
+</div>
