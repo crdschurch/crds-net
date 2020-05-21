@@ -47,8 +47,8 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /trips/*,https://${env:CRDS_ANGULAR_ENDPOINT}/trips/:splat,200!
 /waivers/*,https://${env:CRDS_ANGULAR_ENDPOINT}/waivers/:splat,200!
 /give,${env:PUSHPAY_GIVE_ENDPOINT},301!
-/me/giving*,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301!
-/givinghistory,https://${env:CRDS_PROFILE_ENDPOINT}/giving,301!
+/me/giving*,https://${env:CRDS_GIVING_HISTORY}/giving,200!
+/givinghistory,https://${env:CRDS_GIVING_HISTORY}/giving,200!
 /series/* autoPlay=:autoPlay sound=:sound,/media/series/:splat?autoPlay=:autoPlay&sound=:sound,302!
 /series/* autoPlay=:autoPlay,/media/series/:splat?autoPlay=:autoPlay,302!
 /series/* sound=:sound,/media/series/:splat?sound=:sound,302!
