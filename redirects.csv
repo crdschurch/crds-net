@@ -136,5 +136,4 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /healing/postpartum-healing,/groups/onsite-healing-groups/postpartum,301!
 /groups/onsite-groups/*,/groups/onsite,301!
 /forms/*,https://${env:CRDS_FORMS_DOMAIN}/:splat,200!
-https://forms-int.crossroads.net/* https://int.crossroads.net/forms/:splat 301!
 /*,/404.html,404
