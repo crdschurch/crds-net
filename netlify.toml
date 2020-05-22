@@ -18,8 +18,8 @@
 [context.deploy-preview.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
   CRDS_MAP_DOMAIN = "connect-int.crossroads.net"
-  CRDS_ANGULAR_ENDPOINT = "development--crds-angular.netlify.app"
-  CRDS_SIGNIN_ENDPOINT = "development.signin.crossroads.net"
+  CRDS_ANGULAR_ENDPOINT = "rebrand--crds-angular.netlify.app"
+  CRDS_SIGNIN_ENDPOINT = "rebrand--crds-angular.netlify.app"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
   CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
@@ -30,8 +30,8 @@
 [context.development.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
   CRDS_MAP_DOMAIN = "connect-int.crossroads.net"
-  CRDS_ANGULAR_ENDPOINT = "development--crds-angular.netlify.app"
-  CRDS_SIGNIN_ENDPOINT = "development.signin.crossroads.net"
+  CRDS_ANGULAR_ENDPOINT = "rebrand--crds-angular.netlify.app"
+  CRDS_SIGNIN_ENDPOINT = "rebrand--crds-angular.netlify.app"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
   CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
@@ -42,8 +42,8 @@
 [context.runway.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
   CRDS_MAP_DOMAIN = "connect-int.crossroads.net"
-  CRDS_ANGULAR_ENDPOINT = "https://deploy-preview-33--crds-angular.netlify.app/"
-  CRDS_SIGNIN_ENDPOINT = "development.signin.crossroads.net"
+  CRDS_ANGULAR_ENDPOINT = "rebrand--crds-angular.netlify.app"
+  CRDS_SIGNIN_ENDPOINT = "rebrand--crds-angular.netlify.app"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
   CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
