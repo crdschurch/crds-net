@@ -12,9 +12,23 @@
 // the project's config changing)
 
 const loadConfig = require('crds-cypress-config');
+const contentfulPlugin = require('crds-cypress-contentful');
+
+function addContentfulTasks(on, config) {
+  const spaceId = config.env.CONTENTFUL_SPACE_ID;
+  const environment = config.env.CONTENTFUL_ENV;
+  const accessToken = config.env.CONTENTFUL_ACCESS_TOKEN;
+
+  const qp = contentfulPlugin.ContentfulQueryPlugin(spaceId, environment, accessToken);
+  on('task', qp);
+}
 
 //Config files live in /config. To specify which one to use, open or run with command line argument:
 //"--env useConfig=demo_crossroads"
 module.exports = (on, config) => {
-  return loadConfig.loadConfigFromFile(config).then(newConfig => loadConfig.loadConfigFromVault(newConfig));
+  return loadConfig.loadConfigFromVault(config)
+    .then(newConfig => {
+      addContentfulTasks(on, newConfig);
+      return newConfig;
+    });
 };

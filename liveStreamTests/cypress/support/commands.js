@@ -15,7 +15,7 @@ Cypress.Commands.add('reportResultsByEmail', () => {
 function reportResultsToSlack() {
   const slack = require('slack-notify')(Cypress.env('SLACK_WEBHOOK_URL'));
 
-   //Construct Slack message
+  //Construct Slack message
   const body = {
     'username': 'Live Stream Encoding'
   };
@@ -80,7 +80,7 @@ function reportResultsByEmail() {
 
 function _addEmailSubjectAndBody(body) {
   if (errors.length > 0) {
-    body['subject'] = "Warning! The latest message isn't ready for the live stream";
+    body['subject'] = 'Warning! The latest message isn\'t ready for the live stream';
     body['html'] = `Something went wrong preparing the latest message for the live stream:<ul>${errors.map(e => `<li>${e}</li>`)}</ul>`;
   } else {
     body['subject'] = 'The lates message is ready for the live stream';
