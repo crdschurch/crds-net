@@ -46,6 +46,9 @@ paginate:
 ---
 
 {% include header.html %}
+
+{% include home/_jumbotron.html %}
+
 {% assign homePageBanner = site.content_blocks | where: 'slug', 'home-page-promo-banner' | first %}
 
 {{ homePageBanner.content_block }}
