@@ -24,9 +24,9 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /undivided/participant/*,https://${env:CRDS_ANGULAR_ENDPOINT}/undivided/participant/:splat,200!
 /undivided/facilitator/*,https://${env:CRDS_ANGULAR_ENDPOINT}/undivided/facilitator/:splat,200!
 /mptools/*,https://${env:CRDS_ANGULAR_ENDPOINT}/mptools/:splat,200!
-/profile/*,https://profile-int.crossroads.net/:splat,200! Role=user
+/profile/*,https://${env:CRDS_PROFILE_ENDPOINT}/:splat,200! Role=user
 /profile/*,/signin?redirectUrl=/profile/:splat,302!
-/profile/personal,https://${env:CRDS_PROFILE_ENDPOINT}/profile/personal-info,302!
+/profile/personal,/profile/personal-info,302!
 /signin,https://${env:CRDS_ANGULAR_ENDPOINT}/signin,200!
 /signin redirectUrl=:redirectUrl,https://${env:CRDS_ANGULAR_ENDPOINT}/signin?redirectUrl:redirectUrl,200!
 /signout,https://${env:CRDS_ANGULAR_ENDPOINT}/signout,200!
