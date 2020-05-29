@@ -71,7 +71,7 @@ module.exports = [
   },
   {
     name: "live-stream",
-    deps: ["vendor/crds-rollcall-v0.1.0.min"],
+    deps: ["vendor/crds-rollcall-v1.0.0.min"],
     files: ["views/live-stream"]
   },
   {
