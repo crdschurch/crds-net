@@ -47,6 +47,22 @@
 
 }
 
+.jumbotron-kids-club-cta-box {
+  display: block;
+  
+  @media screen and (min-width: $screen-sm) {
+    display: flex;
+
+    .jumbotron-kids-club-cta  {
+      border-right: 1px solid $cr-gray;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+
 .jumbotron[style*='background-image'] list-unstyled a, .jumbotron[data-optimize-bg-img] list-unstyled a {
   padding-bottom: 0.2rem;
   padding-top: 0.2rem;
