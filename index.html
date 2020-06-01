@@ -48,8 +48,6 @@ paginate:
 {% include header.html %}
 {% assign homePageBanner = site.content_blocks | where: 'slug', 'home-page-promo-banner' | first %}
 
-{% include home/_kids-club-jumbotron.html %}
-
 {{ homePageBanner.content_block }}
 
 <section class="container">
