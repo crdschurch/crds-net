@@ -28,20 +28,6 @@
           }
         }
       }
-
-      &:last-child {
-        > a,
-        > a:hover,
-        > a:focus,
-        > a:active {
-          background-color: #0095D9;
-          border-color: #0095D9;
-
-          @media screen and (max-width: $screen-sm-min) {
-            color: #fff;
-          }
-        }
-      }
     }
 
     @media screen and (max-width: $screen-sm-min) {
