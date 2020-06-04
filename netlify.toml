@@ -18,6 +18,7 @@
   CRDS_COMPONENTS_ENDPOINT = "components-int.crossroads.net"
   CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
+  CRDS_COMPONENTS_ROOT_URL="https://int.crossroads.net"
 
 [context.deploy-preview.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
@@ -31,6 +32,7 @@
   CRDS_COMPONENTS_ENDPOINT = "components-int.crossroads.net"
   CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
+  CRDS_COMPONENTS_ROOT_URL="https://int.crossroads.net"
 
 [context.development.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
@@ -44,6 +46,7 @@
   CRDS_COMPONENTS_ENDPOINT = "components-int.crossroads.net"
   CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
+  CRDS_COMPONENTS_ROOT_URL="https://int.crossroads.net"
 
 [context.runway.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
@@ -57,6 +60,7 @@
   CRDS_COMPONENTS_ENDPOINT = "components-int.crossroads.net"
   CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
+  CRDS_COMPONENTS_ROOT_URL="https://runway.crossroads.net"
 
 [context.release.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
@@ -70,6 +74,7 @@
   CRDS_COMPONENTS_ENDPOINT = "components-demo.crossroads.net"
   CRDS_MEDIA_ENDPOINT = "crds-media-demo.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-demo.crossroads.net'
+  CRDS_COMPONENTS_ROOT_URL="https://demo.crossroads.net"
 
 [context.master.environment]
   CRDS_PEOPLE_DOMAIN = "people.crossroads.net"
@@ -83,6 +88,7 @@
   CRDS_COMPONENTS_ENDPOINT = "components.crossroads.net"
   CRDS_MEDIA_ENDPOINT = "crds-media.crossroads.net"
   CRDS_GIVING_HISTORY = 'https://giving-history.crossroads.net'
+  CRDS_COMPONENTS_ROOT_URL="https://www.crossroads.net"
 
 [context.rebrand.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
