@@ -13,7 +13,7 @@
       <div class="soft-quarter-ends font-size-smaller flush-bottom" data-automation-id="series-description">
         {{ series.description | markdownify | strip_html | truncatewords: 15 }}
       </div>
-      <crds-button href="{{ series.url }}" color="orange" text="Watch Now" />
+      <crds-button href="{{ series.url }}" color="orange" text="View all messages in this series" />
     </div>
     <a href="{{ series.url }}" class="push-half-bottom" data-automation-id="series-image">
       {% if series.image.url %}
