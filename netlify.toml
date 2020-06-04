@@ -9,7 +9,7 @@
   CRDS_ANGULAR_ENDPOINT = "development--crds-angular.netlify.app"
   CRDS_SIGNIN_ENDPOINT = "development.signin.crossroads.net"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
-  CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
+  CRDS_PROFILE_ENDPOINT = "profile-int.crossroads.net"
   CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
@@ -20,7 +20,7 @@
   CRDS_ANGULAR_ENDPOINT = "development--crds-angular.netlify.app"
   CRDS_SIGNIN_ENDPOINT = "development.signin.crossroads.net"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
-  CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
+  CRDS_PROFILE_ENDPOINT = "profile-int.crossroads.net"
   CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
@@ -31,7 +31,7 @@
   CRDS_ANGULAR_ENDPOINT = "development--crds-angular.netlify.app"
   CRDS_SIGNIN_ENDPOINT = "development.signin.crossroads.net"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
-  CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
+  CRDS_PROFILE_ENDPOINT = "profile-int.crossroads.net"
   CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
@@ -42,7 +42,7 @@
   CRDS_ANGULAR_ENDPOINT = "development--crds-angular.netlify.app"
   CRDS_SIGNIN_ENDPOINT = "development.signin.crossroads.net"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
-  CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
+  CRDS_PROFILE_ENDPOINT = "profile-int.crossroads.net"
   CRDS_EVENT_CHECKIN_ENDPOINT = "development.event-checkin.crossroads.net"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
@@ -53,7 +53,7 @@
   CRDS_ANGULAR_ENDPOINT = "release--crds-angular.netlify.app"
   CRDS_SIGNIN_ENDPOINT = "release.signin.crossroads.net"
   CRDS_SERVE_ENDPOINT = "release.serve.crossroads.net"
-  CRDS_PROFILE_ENDPOINT = "release.profile.crossroads.net"
+  CRDS_PROFILE_ENDPOINT = "profile-int.crossroads.net"
   CRDS_EVENT_CHECKIN_ENDPOINT = "release.event-checkin.crossroads.net"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_GIVING_HISTORY = 'https://giving-history-demo.crossroads.net'
