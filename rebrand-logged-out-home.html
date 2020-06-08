@@ -1,8 +1,51 @@
 ---
 layout: container-fluid
 permalink: /rebrand-logged-out-home
+paginate:
+  articles:
+    per: 15
+    offset: 1
+    limit: 1
+    sort: published_at desc
+  perspectives:
+    per: 3
+    limit: 1
+    sort: published_at desc
+  topics:
+    per: 5
+    limit: 1
+    sort: published_at
+  series:
+    per: 1
+    limit: 1
+    sort: starts_at desc
+  messages:
+    per: 1
+    limit: 1
+    sort: published_at desc
+  home_collection:
+    collections:
+      - articles
+    per: 10
+    limit: 1
+    offset: 2
+    sort: published_at desc
+  episodes:
+    per: 3
+    limit: 1
+    sort: published_at desc
+  podcasts:
+    per: 6
+    offset: 1
+    limit: 1
 ---
 
 {% include home/_jumbotron.html %}
+
+<div class="container">
+  <div class="col-sm-4">
+    {% include home/_current-series.html %}
+  </div>
+</div>
 
 {% include home/_kids-club-jumbotron.html %}
