@@ -18,15 +18,19 @@ layout: default
     <span class="font-family-base text-uppercase text-white">
       <strong>welcome to</strong>
     </span>
-    <h1 class="title hidden-xs" style="font-size: 5.0rem;">crossroads
-      <br>{{ page.name | downcase }}</h1>
-    <h2 class="title font-size-h1 text-white visible-xs">crossroads
-      <br>{{ page.name | downcase }}</h2>
-    {% if location_happenings.size > 0 %}
-    <br />
-    <a href="javascript:void(0)" class="btn btn-primary push-half-sides" data-smooth-scroll-to="happenings">See what's
-      happening at {{ page.name | downcase }}</a>
-    {% endif %}
+    <h1 class="font-family-condensed-extra text-uppercase">Crossroads <br />{{ page.name }}</h1>
+
+    <div class="row push-bottom">
+      <a href="javascript:void(0)" class="btn btn-orange" data-smooth-scroll-to="service-times">View service times</a>
+    </div>
+    <div class="row">
+      {% if location_happenings.size > 0 %}
+      <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="happenings">See what's
+        happening at {{ page.name | downcase }}</a>
+        {% endif %}
+      <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="kids-and-students">Kids &amp; Students</a>
+      <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="community-care">Community Care</a>
+    </div>
   </div>
 </div>
 
@@ -42,7 +46,7 @@ layout: default
       <div class="col-sm-6 soft-sides">
         <div class="lead">{{ page.description | markdownify }}</div>
         <div class="row push-ends soft-half-top mobile-hard-bottom">
-          <div class="col-sm-6">
+          <div class="col-sm-6" id="service-times">
             <p>
               <strong>Service Times</strong>
               <br />
@@ -163,7 +167,7 @@ layout: default
 
 <!-- Community Care -->
 {% if page.care_link %}
-<section>
+<section id="community-care">
   <div class="container push-ends">
     <div class="row well text-center soft-ends">
       <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
@@ -244,7 +248,7 @@ layout: default
 <!-- Kids club / Student ministry-->
 {% if page.kids_club_hours or page.student_ministry_hours %}
 <section class="bg-gray">
-  <div class="container">
+  <div class="container" id="kids-and-students">
     <div class="col-md-12">
       <h3 class="section-header text-center">For Kids &amp; Students</h3>
     </div>
