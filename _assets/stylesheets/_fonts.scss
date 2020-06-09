@@ -5,6 +5,7 @@
  * information, see the list below.
  *
  * acumin-pro:
+ *   - http://typekit.com/eulas/00000000000000003b9acafe
  *   - http://typekit.com/eulas/00000000000000003b9acafc
  *   - http://typekit.com/eulas/00000000000000003b9acaf7
  *   - http://typekit.com/eulas/00000000000000003b9acaf4
@@ -25,9 +26,9 @@
  *
  * © 2009-2020 Adobe Systems Incorporated. All Rights Reserved.
  */
-/*{"last_published":"2020-04-28 19:29:14 UTC"}*/
+/*{"last_published":"2020-06-09 14:12:00 UTC"}*/
 
-@import url("https://p.typekit.net/p.css?s=1&k=gir0nnu&ht=tk&f=9805.9806.26053.26056.26058.26059.26062.26065.26067.26016.26018.26024.26044.26045&a=6309984&app=typekit&e=css");
+@import url("https://p.typekit.net/p.css?s=1&k=gir0nnu&ht=tk&f=9805.9806.26034.26053.26056.26058.26059.26062.26065.26067.26016.26018.26024.26044.26045&a=6309984&app=typekit&e=css");
 
 @font-face {
 font-family:"lexia";
@@ -39,6 +40,12 @@ font-display:auto;font-style:normal;font-weight:400;
 font-family:"lexia";
 src:url("https://use.typekit.net/af/3c0bc8/00000000000000003b9b4030/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff2"),url("https://use.typekit.net/af/3c0bc8/00000000000000003b9b4030/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff"),url("https://use.typekit.net/af/3c0bc8/00000000000000003b9b4030/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("opentype");
 font-display:auto;font-style:italic;font-weight:400;
+}
+
+@font-face {
+font-family:"acumin-pro";
+src:url("https://use.typekit.net/af/ac1071/00000000000000003b9acafe/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3") format("woff2"),url("https://use.typekit.net/af/ac1071/00000000000000003b9acafe/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3") format("woff"),url("https://use.typekit.net/af/ac1071/00000000000000003b9acafe/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3") format("opentype");
+font-display:auto;font-style:normal;font-weight:800;
 }
 
 @font-face {
