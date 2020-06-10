@@ -40,68 +40,84 @@ layout: default
 {% endif %}
 
 <!-- General Info Section -->
-<section class="bg-blue-dark soft-ends">
+<section class="bg-blue topo-overlay soft-ends">
   <div class="container push-ends">
     <div class="row push-ends soft-ends mobile-flush-top mobile-hard-top">
       <div class="col-sm-6 soft-sides">
+        <h3 class="text-orange font-family-condensed-extra text-uppercase">About this location</h3>
         <div class="lead">{{ page.description | markdownify }}</div>
         <div class="row push-ends soft-half-top mobile-hard-bottom">
           <div class="col-sm-6" id="service-times">
             <p>
-              <strong>Service Times</strong>
+              <strong class="text-orange">Service Times</strong>
               <br />
               {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
             </p>
+            <crds-button color="orange" text="Watch with us" href="https://www.facebook.com/crds{{ page.slug }}" icon="facebook" icon-color="blue-dark" icon-align="left" icon-size="16"></crds-button>
           </div>
           <div class="col-sm-6">
             <p>
-              <strong>Address</strong>
+              <strong class="text-orange">Address</strong>
               <br />
               {{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}
               <br />
-              <a href="{{ page.map_url }}" target="_blank" target="_blank">Get directions</a>
+              <a href="{{ page.map_url }}" class="text-orange" target="_blank">Get directions</a>
             </p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-12">
-            {% assign current_series = site.series | reverse | first %}
-            <a class="btn btn-primary" data-automation-id="series-slug" data-role="recent-series" href="/series/{{ current_series.slug }}">Check
-              out our latest series</a>
-          </div>
-          <div class="col-sm-12 push-top">
+        <div>
+          <div class="col-sm-12 push-top soft-top hard-sides border-top">
             {{ page.additional_info | markdownify }}
           </div>
         </div>
       </div>
-      {% if page.hubspot_form_id %}
-      <div class="col-sm-offset-1 col-sm-5 mobile-push-top soft bg-gray">
-        <p class="list-header">Stay in the know. Get the latest Crossroads updates.</p>
-        <div class="form" data-role="hsform">
-          <!--
-          [if lte IE 8]>
-          <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
-          <![endif] -->
-          <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
-          <script>
+      <div class="col-sm-offset-1 col-sm-5">
+        <div class="row border-top soft-ends">
+          <p class="text-orange"><strong>Social Media</strong></p>
+          <div>
+            <crds-button class="push-half-right" color="white" text="Follow us on Instagram" href="https://www.instagram.com/crds{{ page.slug | downcase }}" icon="instagram" icon-color="blue-dark" icon-align="left" icon-size="16"></crds-button>
+            <crds-button color="white" text="Follow us on Facebook" href="https://www.facebook.com/crds{{ page.slug | downcase }}" icon="facebook" icon-color="blue-dark" icon-align="left" icon-size="16"></crds-button>
+          </div>
+        </div>
+        
+        {% if page.hubspot_form_id %}
+        <div class="row mobile-push-top soft bg-gray">
+          <h4 class="font-family-condensed-extra text-uppercase soft-half-bottom">Stay in the know. <br />Get the latest Crossroads updates.</h4>
+          <div class="form" data-role="hsform">
+            <!--
+              [if lte IE 8]>
+              <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+              <![endif] -->
+              <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+              <script>
             hbspt.forms.create({
               portalId: "3993985",
               formId: "{{ page.hubspot_form_id }}",
               css: "",
               target: "[data-role=hsform]",
-              formInstanceId: 1
+              formInstanceId: 1,
+              onFormReady($form, ctx) {
+                $('fieldset[data-reactid=".hbspt-forms-0.1:$0"]').removeClass('form-columns-2');
+                $('input[data-reactid=".hbspt-forms-0.1:$0.1:$firstname.$firstname.0"]').attr('placeholder', 'First name')
+                $('input[data-reactid=".hbspt-forms-0.1:$0.1:$lastname.$lastname.0"]').attr('placeholder', 'Last name')
+                $('input[data-reactid=".hbspt-forms-0.1:$1.1:$email.$email.0"]').attr('placeholder', 'Email')
+                $('label[data-reactid=".hbspt-forms-0.1:$0.1:$firstname.0"]').hide()
+                $('label[data-reactid=".hbspt-forms-0.1:$0.1:$lastname.0"]').hide()
+                $('label[data-reactid=".hbspt-forms-0.1:$1.1:$email.0"]').hide()
+              }
             });
           </script>
         </div>
-      </div>
-      {% else %}
-      <div class="col-sm-offset-1 col-sm-5 mobile-push-top soft">
-        <div style="position: relative; height: 0; padding-top: 56.25%;">
-          <iframe src="https://www.youtube.com/embed/geNzLq664rk?rel=0" frameborder="0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-            allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
+        {% else %}
+        <div class="col-sm-offset-1 col-sm-5 mobile-push-top soft">
+          <div style="position: relative; height: 0; padding-top: 56.25%;">
+            <iframe src="https://www.youtube.com/embed/geNzLq664rk?rel=0" frameborder="0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+        {% endif %}
       </div>
-      {% endif %}
     </div>
   </div>
 </section>
