@@ -169,14 +169,7 @@ layout: default
 <!-- Happenings -->
 {% if location_happenings.size > 0 %}
 <div class="container" id="happenings">
-  <h3 id="happening-filter-label" class="collection-header clearfix"> happening at {{ page.name | downcase }}</h3>
-  <div class="card-deck cards-4x">
-    <div class="row">
-      {% for item in location_happenings %}
-      {% include _promo-card.html %}
-      {% endfor %}
-    </div>
-  </div>
+  <crds-site-happenings location="{{ page.name }}" />
 </div>
 {% endif %}
 
