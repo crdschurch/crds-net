@@ -42,9 +42,16 @@ paginate:
 
 {% include home/_jumbotron.html %}
 
-<div class="container">
+<div class="container"> 
+  <div class="col-md-8">
+{% include home/_latest-message.html %}
+  </div>
+</div>
 
+<div class="container">
   {% include home/_you-are-needed.html %}
+</div>
+
 
   <div class="col-sm-4">
     {% include home/_current-series.html %}
