@@ -67,13 +67,37 @@
 }
 
 .jumbotron-kids-club-cta-box {
-  display: block;
-  
+  display: flex;
+  flex-wrap: wrap;
+
+  .jumbotron-kids-club-cta  {
+    &:last-child {
+      div {
+        flex-wrap: wrap;
+      }
+    }
+  }
+
   @media screen and (min-width: $screen-sm) {
-    display: flex;
+    justify-content: center;
 
     .jumbotron-kids-club-cta  {
       border-right: 1px solid $cr-gray;
+
+      &:nth-child(3),
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+
+  @media screen and (min-width: $screen-md) {
+    flex-wrap: unset;
+
+    .jumbotron-kids-club-cta {
+      &:nth-child(3) {
+        border-right: 1px solid $cr-gray;
+      }
 
       &:last-child {
         border-right: none;

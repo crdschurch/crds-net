@@ -2,9 +2,9 @@
 body .hs-button.primary,
 body input[type="submit"],
 body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
-  color: #fff;
-  background-color: #3b6e8f;
-  border-color: #3b6e8f;
+  color: $cr-white;
+  background-color: $cr-blue;
+  border-color: $cr-blue;
   font-size: 14px;
   padding: 13px 16px;
   border-radius: 4px;
