@@ -42,18 +42,35 @@ paginate:
 
 {% include home/_jumbotron.html %}
 
-<div class="container">
+<div class="container"> 
+  <div class="col-md-8">
+{% include home/_latest-message.html %}
+  </div>
+</div>
 
+<div class="container">
   {% include home/_you-are-needed.html %}
+</div>
+
 
   <div class="col-sm-4">
     {% include home/_current-series.html %}
   </div>
 
+
   <div class="col-sm-4">
     {% include home/_latest-news.html %}
   </div>
 
+
+  {% include home/_content-menu.html %}
+
+</div>
+
+<div style="width: 363px;">
+  <crds-sign-up title="Sign Up for the Weekly Digest" content="Get our latest content, delivered straight to your inbox, every week." onClick="$('#subscribeModalForm').modal(); return false;"></crds-sign-up>
+
 </div>
 
 {% include home/_kids-club-jumbotron.html %}
+{% include _subscribe-modal.html %}

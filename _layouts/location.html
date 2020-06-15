@@ -44,7 +44,7 @@ layout: default
   <div class="container push-ends">
     <div class="row push-ends soft-ends mobile-flush-top mobile-hard-top">
       <div class="col-sm-6 soft-sides">
-        <h3 class="text-orange font-family-condensed-extra text-uppercase">About this location</h3>
+        <h3 class="text-orange font-family-condensed-extra text-uppercase flush-top">About this location</h3>
         <div class="lead">{{ page.description | markdownify }}</div>
         <div class="row push-ends soft-half-top mobile-hard-bottom">
           <div class="col-sm-6" id="service-times">
@@ -168,7 +168,7 @@ layout: default
 
 <!-- Happenings -->
 {% if location_happenings.size > 0 %}
-<div class="container" id="happenings">
+<div class="container soft-ends" id="happenings">
   <crds-site-happenings location="{{ page.name }}" />
 </div>
 {% endif %}
@@ -176,8 +176,8 @@ layout: default
 
 <!-- Community Care -->
 {% if page.care_link %}
-<section id="community-care">
-  <div class="container push-ends">
+<section class="push-ends soft-ends" id="community-care">
+  <div class="container">
     <div class="row well text-center soft-ends">
       <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
         <h3 class="section-header push-half-ends">Community Care Requests</h3>
