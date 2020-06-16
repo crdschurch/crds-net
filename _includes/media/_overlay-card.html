@@ -28,7 +28,7 @@
 
 <a href="{{ item | media_url }}" class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
   {% if item.bitmovin_url == null %}
-    <div class="bg-overlay"></div>
+    <div class="bg-overlay-black"></div>
   {% endif %}
   {% include media/_video-player-card.html %}
   <div class="overlay-card-image">
