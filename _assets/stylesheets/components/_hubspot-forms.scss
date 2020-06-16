@@ -148,13 +148,9 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
 
   .hs-input {
   @extend .form-control;
-
-  .form-control { 
-    background-color: $cr-white!important; 
-    }
   }
-}
 
-.form-control, #subscribeModalForm .hs-input {
-  background-color: $cr-white!important; 
+  .form-control, .hs-input { 
+    background-color: $cr-white; 
+  }
 }
