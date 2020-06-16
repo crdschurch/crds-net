@@ -1,6 +1,7 @@
 ---
 layout: container-fluid
 permalink: /rebrand-logged-out-home
+snail_trail: 'disabled'
 paginate:
   articles:
     per: 15
@@ -38,39 +39,192 @@ paginate:
     per: 6
     offset: 1
     limit: 1
+notification:
+  message: "Your adventure starts here. <a href='#'>Start your 30 day trial!</a>"
+  displayTo: 'unauthenticated'
 ---
+{% comment %}{% include home/_jumbotron.html %}{% endcomment %}
 
-{% include home/_jumbotron.html %}
+{% comment %}<div style="background:#202E3C">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col-sm-6">
+            <crds-portrait-card-default
+              href="#about-crossroads"
+              lead="About Crossroads"
+              title="The Church for Doing"
+              image-src="http://placehold.it/375x475"
+            />
+          </div>
+          <div class="col-sm-6">
+            <crds-portrait-card-default
+              href="#senior-pastor-brian-tome"
+              lead="Senior Pastor Brian Tome"
+              title="Your Guides to the Adventurous Life"
+              image-src="http://placehold.it/375x475"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="wrapper">
+          <hr class="push-half-bottom" />
+          <div class="push-half-bottom">
+            <h4 class="object-title text-uppercase">
+              Articles, Podcasts, and More
+            </h4>
+            <h3 class="object-subtitle text-uppercase">Our Latest Content</h3>
+          </div>
+          <div class="card-deck" data-crds-carousel="mobile-scroll">
+            <div
+              class="section-header"
+              data-crds-carousel="mobile-scroll"
+            >
+              <div class="card">
+                <crds-media-object
+                  url="/media/podcasts/the-aggressive-life-with-brian-tome/mark-burnett-producer-of-survivor-and-shark-tank"
+                  imageSrc="https://crds-media.imgix.net/23MkUegs3aTxmKBzzUzDfF/c84f63a4c022c2963c803801a53e4d92/AggressiveLife_podcast_artwork.jpg?auto=format,compress&w=80&h=80&fit=crop&ixlib=imgixjs-3.3.2"
+                  type="podcast"
+                  title="Mark Burnett - Producer of Survivor & Shark Tank"
+                  duration="28 min"
+                />
 
-<div class="container"> 
-  <div class="col-md-8">
-{% include home/_latest-message.html %}
+                <crds-media-object
+                  url="/media/articles/your-painful-past-doesn't-have-to-haunt-you"
+                  imageSrc="https://crds-media.imgix.net/6d8DPphRCgSiKKkoSUUkQa/68b3fd217241551f47e17a58a57dbd46/eleni-afiontzi-506015-unsplash.jpg?auto=format,compress&w=80&h=80"
+                  type="article"
+                  title="Your painful past doesn't have to harm you."
+                  duration="3 min"
+                />
+
+                <crds-media-object
+                  url="/media/articles/drop-comparison-just-raise-your-kid"
+                  imageSrc="https://crds-media.imgix.net/4cPJYU7vu4O5NUJFHgHiuN/d8840969bda375d373c7b8d6bb1e1a16/Drop_comparison._Just_raise_your_kid.jpg?auto=format,compress&w=80&h=80"
+                  type="video"
+                  title="Drop comparison. Just raise your kid."
+                  duration="20 min"
+                />
+              </div>
+              <a class="viewmore btn btn-outline btn-white" href="/media">View all</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</div>{% endcomment %}
 
-<div class="container">
-  {% include home/_you-are-needed.html %}
-</div>
+{% comment %}Your Impact Will be Massive{% endcomment %}
+{% comment %}<div class="container">
+  <div class="text-center push-bottom">
+    <h2 class="component-header-box">Your Impact Will be Massive</h2>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      Sending Love (Monetate)
+    </div>
+    <div class="col-sm-4">
+      {% include home/_latest-news.html %}
+    </div>
+  </div>
+</div>{% endcomment %}
 
-
+{% comment %}Get Equipped: Watch the Latest Teaching{% endcomment %}
+{% comment %}<div class="container">
+  <div class="text-center push-bottom">
+    <h2 class="component-header-box text-orange">Get Equipped: Watch the Latest Teaching</h2>
+  </div>
+  <div class="col-md-8">
+    {% include home/_latest-message.html %}
+  </div>
   <div class="col-sm-4">
     {% include home/_current-series.html %}
+    <div>
+      Many Ways to watch (Monetate)
+    </div>
   </div>
+</div>{% endcomment %}
 
+{% comment %}Kids Club Jumbotron{% endcomment %}
+{% comment %}{% include home/_kids-club-jumbotron.html %}{% endcomment %}
+
+{% comment %}Gear Up for Your Adventure{% endcomment %}
+{% comment %}<div class="container">
+  <div class="text-center push-bottom">
+    <div class="push-bottom text-blue">
+      <h2 class="component-header-box">Gear Up for Your Adventure</h2>
+    </div>
+    <p class="text-blue">Daily practices to help you grow.</p>
+  </div>
 
   <div class="col-sm-4">
-    {% include home/_latest-news.html %}
+    <crds-portrait-card-default
+      href="#crossroads-app"
+      lead="Crossroads App"
+      title="Connect With God. Pray With Others."
+      image-src="http://placehold.it/375x475"
+    />
   </div>
+  <div class="col-sm-4">
+    <crds-portrait-card-default
+      href="#crossroads-music"
+      lead="Crossroads Music"
+      title="Every Good Adventure Needs a Playlist"
+      image-src="http://placehold.it/375x475"
+    />
+  </div>
+  <div class="col-sm-4">
+    <crds-portrait-card-default
+      href="#facebook-live-worship"
+      lead="Facebook Live Worship"
+      title="Kick-start Your Morning at 8:30 am"
+      image-src="http://placehold.it/375x475"
+    />
+  </div>
+</div>{% endcomment %}
 
+{% comment %}Articles, Podcasts & More{% endcomment %}
+{% comment %}<div class="container">
+  <div class="text-center push-bottom">
+    <div class="push-bottom text-blue">
+      <h2 class="component-header-box">Articles, Podcasts & More</h2>
+    </div>
+    <p class="text-blue">Unfiltered & authentic takes on life</p>
+  </div>
+  <div class="col-sm-8">
+    Articles
+  </div>
+  <div class="col-sm-4">
+    <crds-sign-up title="Sign Up for the Weekly Digest" content="Get our latest content, delivered straight to your inbox, every week." onClick="$('#subscribeModalForm').modal(); return false;"></crds-sign-up>
+    {% include _subscribe-modal.html %}
+    {% include home/_content-menu.html %}
+  </div>
+</div>{% endcomment %}
 
-  {% include home/_content-menu.html %}
+{% comment %}You are needed{% endcomment %}
+{% comment %}{% include home/_you-are-needed.html %}{% endcomment %}
+asewadsf
+{% include footer.html %}
 
-</div>
+<script>
+  window.env = {
+    gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}',
+    streamScheduleEndpoint: '{{ site.stream_schedule_endpoint }}'
+  };
 
-<div style="width: 363px;">
-  <crds-sign-up title="Sign Up for the Weekly Digest" content="Get our latest content, delivered straight to your inbox, every week." onClick="$('#subscribeModalForm').modal(); return false;"></crds-sign-up>
+  document.addEventListener("deferred-js-ready", countdownInit);
 
-</div>
+  if (window.deferredJSReady) {
+    countdownInit();
+  }
 
-{% include home/_kids-club-jumbotron.html %}
-{% include _subscribe-modal.html %}
+  function countdownInit() {
+    var c = new CRDS.Countdown();
+    c.getEventStatus();
+  }
+</script>
+
+{% javascript_link_tag autoplay async %}
+{% javascript_link_tag skeleton async %}
