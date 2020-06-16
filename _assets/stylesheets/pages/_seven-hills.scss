@@ -1,0 +1,58 @@
+/* .portrait-card-content {
+    margin-top: 115px;
+    padding: 0 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 100%;
+    z-index: 2;
+
+    .portrait-card-lead {
+      color: $cr-orange;
+      font-size: $font-size-small;
+      font-weight: bold;
+      margin: 0;
+      padding: 10px 0;
+    }
+
+    .portrait-card-title {
+
+      font-size: 46px;
+      line-height: 40px;
+      margin: 0;
+
+      @media (min-width: $screen-md) {
+        font-size: 52px;
+        line-height: 45px;
+      }
+    }
+
+    .portrait-card-description {
+      display: flex;
+      flex-direction: column;
+      padding-top: 10px;
+      text-transform: none;
+    }
+
+    &.text-white {
+      .portrait-card-title {
+        color: $cr-white;
+      }
+
+      .portrait-card-description {
+        color: $cr-white;
+      }
+    }
+  } */ 
+
+  .content-left {
+      
+    padding-left: 4rem;
+      }
+
+.content-right {
+    padding-right: 4rem;
+}
+
+.content-center {
+    margin-top: 13%;
+} 
