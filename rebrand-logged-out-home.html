@@ -40,18 +40,18 @@ paginate:
     offset: 1
     limit: 1
 notification:
-  message: "Your adventure starts here. <a href='#'>Start your 30 day trial!</a>"
+  message: "Your adventure starts here. <a href='/30daytrial'>Start your 30 day trial!</a>"
   displayTo: 'unauthenticated'
 ---
 
 {% include home/_jumbotron.html %}
 
-<div class="soft-top bg-blue soft-bottom bg-topo push-bottom">
+<section class="soft-top bg-blue soft-bottom bg-topo push-bottom">
   <div class="container">
     <div class="row">
-      <div class="col-sm-8">
+      <div class="col-sm-8 soft-ends">
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-6 push-bottom">
             <crds-portrait-card-default
               href="#about-crossroads"
               lead="About Crossroads"
@@ -64,78 +64,82 @@ notification:
               href="#senior-pastor-brian-tome"
               lead="Senior Pastor Brian Tome"
               title="Your Guides to the Adventurous Life"
-              image-src="http://placehold.it/375x475"
+              image-src="//crds-media.imgix.net/45IKoYE2JOihsKevVFgKoq/14827f5fbeb091b98db94570249857d4/brian-tome-headshot1.jpg?format=auto"
             />
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
-        <div class="wrapper">
-          <hr class="push-half-bottom" />
+      <div class="col-sm-4 soft-ends">
+        <div>
           <div class="push-half-bottom">
-            <h4 class="object-title text-uppercase">
-              Articles, Podcasts, and More
-            </h4>
-            <h3 class="object-subtitle text-uppercase">Our Latest Content</h3>
+            <p class="font-family-base-bold font-size-smaller text-orange text-uppercase">
+              Our Best Content
+            </p>
+            <h3 class="font-family-serif font-size-small text-uppercase text-white flush">Articles, Podcasts, and More</h3>
           </div>
-          <div class="card-deck" data-crds-carousel="mobile-scroll">
-            <div
-              class="section-header"
-              data-crds-carousel="mobile-scroll"
-            >
-              <div class="card">
+          <div>
+            <div>
+              <div class="border-top border-dashed push-half-bottom"></div>
                 <crds-media-object
                   url="/media/podcasts/the-aggressive-life-with-brian-tome/mark-burnett-producer-of-survivor-and-shark-tank"
-                  imageSrc="https://crds-media.imgix.net/23MkUegs3aTxmKBzzUzDfF/c84f63a4c022c2963c803801a53e4d92/AggressiveLife_podcast_artwork.jpg?auto=format,compress&w=80&h=80&fit=crop&ixlib=imgixjs-3.3.2"
+                  image-src="//crds-media.imgix.net/23MkUegs3aTxmKBzzUzDfF/c84f63a4c022c2963c803801a53e4d92/AggressiveLife_podcast_artwork.jpg?auto=format"
                   type="podcast"
                   title="Mark Burnett - Producer of Survivor & Shark Tank"
                   duration="28 min"
-                />
-
-                <crds-media-object
-                  url="/media/articles/your-painful-past-doesn't-have-to-haunt-you"
-                  imageSrc="https://crds-media.imgix.net/6d8DPphRCgSiKKkoSUUkQa/68b3fd217241551f47e17a58a57dbd46/eleni-afiontzi-506015-unsplash.jpg?auto=format,compress&w=80&h=80"
-                  type="article"
-                  title="Your painful past doesn't have to harm you."
-                  duration="3 min"
-                />
-
-                <crds-media-object
-                  url="/media/articles/drop-comparison-just-raise-your-kid"
-                  imageSrc="https://crds-media.imgix.net/4cPJYU7vu4O5NUJFHgHiuN/d8840969bda375d373c7b8d6bb1e1a16/Drop_comparison._Just_raise_your_kid.jpg?auto=format,compress&w=80&h=80"
-                  type="video"
-                  title="Drop comparison. Just raise your kid."
-                  duration="20 min"
-                />
+                ></crds-media-object>
               </div>
-              <a class="viewmore btn btn-outline btn-white" href="/media">View all</a>
+              <div>
+                <div class="border-top border-dashed push-half-bottom"></div>
+                <crds-media-object
+                url="/media/articles/your-painful-past-doesn't-have-to-haunt-you"
+                image-src="//crds-media.imgix.net/6d8DPphRCgSiKKkoSUUkQa/68b3fd217241551f47e17a58a57dbd46/eleni-afiontzi-506015-unsplash.jpg?auto=format"
+                type="article"
+                title="Your painful past doesn't have to harm you."
+                duration="3 min"
+                ></crds-media-object>
+              </div>
+              <div>
+                <div class="border-top border-dashed push-half-bottom"></div>
+                <crds-media-object
+                url="/media/articles/drop-comparison-just-raise-your-kid"
+                image-src="//crds-media.imgix.net/4cPJYU7vu4O5NUJFHgHiuN/d8840969bda375d373c7b8d6bb1e1a16/Drop_comparison._Just_raise_your_kid.jpg?auto=format"
+                type="video"
+                title="Drop comparison. Just raise your kid."
+                duration="20 min"
+                ></crds-media-object>
+              </div>
+              <div class="push-right">
+                <crds-button block="true" display="outline" color="white" href="/media" text="View all"></crds-button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
 {% comment %}Your Impact Will be Massive{% endcomment %}
-<div class="container">
-  <div class="text-center push-bottom">
-    <h2 class="component-header-box">Your Impact Will be Massive</h2>
-  </div>
-  <div class="row">
-    <div class="col-sm-8">
-      Sending Love (Monetate)
-    </div>
-    <div class="col-sm-4">
-      {% include home/_latest-news.html %}
-    </div>
-  </div>
-</div>
-
-{% comment %}Get Equipped: Watch the Latest Teaching{% endcomment %}
-<div class="bg-tan-light soft-bottom">
+<section class="row soft-ends">
   <div class="container">
     <div class="text-center push-bottom">
+      <h2 class="component-header-box text-blue">Your Impact Will be Massive</h2>
+    </div>
+    <div class="row push-bottom">
+      <div class="col-sm-8">
+        Sending Love (Monetate)
+      </div>
+      <div class="col-sm-4">
+        {% include home/_latest-news.html %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %}Get Equipped: Watch the Latest Teaching{% endcomment %}
+<section class="bg-tan-light soft-bottom row">
+  <div class="container soft-ends hard-sides">
+    <div class="text-center push-bottom soft-ends">
       <h2 class="component-header-box text-orange">Get Equipped: Watch the Latest Teaching</h2>
     </div>
     <div class="col-md-8">
@@ -148,63 +152,138 @@ notification:
       </div>
     </div>
   </div>
-</div>
+</section>
 
 {% comment %}Kids Club Jumbotron{% endcomment %}
 {% include home/_kids-club-jumbotron.html %}
 
 {% comment %}Gear Up for Your Adventure{% endcomment %}
-<div class="container">
-  <div class="text-center push-bottom">
-    <div class="push-bottom text-blue">
-      <h2 class="component-header-box">Gear Up for Your Adventure</h2>
+<section class="bg-orange row">
+  <div class="bg-topo">
+    <div class="container soft-ends">
+      <div class="text-center push-bottom">
+        <div class="push-bottom text-blue">
+          <h2 class="component-header-box text-blue">Gear Up for Your Adventure</h2>
+        </div>
+        <p class="text-blue font-family-serif font-size-large">Daily practices to help you grow.</p>
+      </div>
+      <div class="row soft-bottom">
+        <div class="col-sm-4 push-bottom">
+          <crds-portrait-card-default
+          href="/app"
+          lead="Crossroads App"
+          title="Connect With God. Pray With Others."
+          image-src="//crds-media.imgix.net/7zATdaIpUvdx43aQalg4YY/72ca61d36b14a5abe6ded357ab83e925/resources-crossroads-app.jpg?auto=format,compress&w=1920&h=1246&fit=crop&ixlib=imgixjs-3.3.2"
+          />
+        </div>
+        <div class="col-sm-4 push-bottom">
+          <crds-portrait-card-default
+          href="/music"
+          lead="Crossroads Music"
+          title="Every Good Adventure Needs a Playlist"
+          image-src="http://placehold.it/375x475"
+          />
+        </div>
+        <div class="col-sm-4 push-bottom">
+          <crds-portrait-card-default
+          href="#facebook-live-worship"
+          lead="Facebook Live Worship"
+          title="Kick-start Your Morning at 8:30 am"
+          image-src="http://placehold.it/375x475"
+          />
+        </div>
+      </div>
     </div>
-    <p class="text-blue">Daily practices to help you grow.</p>
   </div>
-
-  <div class="col-sm-4">
-    <crds-portrait-card-default
-      href="#crossroads-app"
-      lead="Crossroads App"
-      title="Connect With God. Pray With Others."
-      image-src="http://placehold.it/375x475"
-    />
-  </div>
-  <div class="col-sm-4">
-    <crds-portrait-card-default
-      href="#crossroads-music"
-      lead="Crossroads Music"
-      title="Every Good Adventure Needs a Playlist"
-      image-src="http://placehold.it/375x475"
-    />
-  </div>
-  <div class="col-sm-4">
-    <crds-portrait-card-default
-      href="#facebook-live-worship"
-      lead="Facebook Live Worship"
-      title="Kick-start Your Morning at 8:30 am"
-      image-src="http://placehold.it/375x475"
-    />
-  </div>
-</div>
+</section>
 
 {% comment %}Articles, Podcasts & More{% endcomment %}
-<div class="container">
-  <div class="text-center push-bottom">
-    <div class="push-bottom text-blue">
-      <h2 class="component-header-box">Articles, Podcasts & More</h2>
+<section class="bg-tan-light row">
+  <div class="container">
+    <div class="text-center push-bottom">
+      <div class="push-bottom text-blue">
+        <h2 class="component-header-box text-orange">Articles, Podcasts & More</h2>
+      </div>
+      <p class="text-blue font-family-serif font-size-large">Unfiltered & authentic takes on life</p>
     </div>
-    <p class="text-blue">Unfiltered & authentic takes on life</p>
+    <div class="col-sm-8">
+      {% assign below_the_fold = page.home_collection.docs | slice: 4 %}
+      {% for article in below_the_fold %}
+      <a href="{{ article.url }}" class="overlay-card">
+        <div class="bg-overlay"></div>
+        <div class="overlay-card-image">
+          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+            sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
+        </div>
+        <div class="overlay-card-content">
+          <p class="overlay-card-category">{{ article.category.title }}</p>
+          <h2 class="overlay-card-title">{{ article.title }}</h2>
+          <p class="overlay-card-author">{{ article.author.full_name }}</p>
+          {% include media/_media-label.html source=article %}
+        </div>
+      </a>
+      {% endfor %}
+
+      <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
+        <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
+
+          {% assign above_the_fold = page.home_collection.docs | slice: 3, 2 %}
+          {% for article in above_the_fold %}
+
+          {% assign author = article.author | get_doc %}
+          {% assign category = article.category | get_doc %}
+          <div class="card carousel-cell card-2x">
+            <a class="relative" href="{{ article.url }}">
+              {% include media/_media-label.html source=article %}
+              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+            </a>
+
+            <div class="card-block hard soft-quarter-top">
+              <a class="text-orange font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{
+                category.title }}</a>
+              <h3 class="component-header flush">
+                <a href="{{ article.url }}">{{ article.title }}</a>
+              </h3>
+              <p class="card-text soft-quarter-top">
+                <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>
+              </p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <crds-sign-up title="Sign Up for the Weekly Digest" content="Get our latest content, delivered straight to your inbox, every week." onClick="$('#subscribeModalForm').modal(); return false;"></crds-sign-up>
+      <div class="soft-ends">
+        {% include home/_content-menu.html %}
+      </div>
+    </div>
   </div>
-  <div class="col-sm-8">
-    Articles (Media Cards?)
-  </div>
-  <div class="col-sm-4">
-    <crds-sign-up title="Sign Up for the Weekly Digest" content="Get our latest content, delivered straight to your inbox, every week." onClick="$('#subscribeModalForm').modal(); return false;"></crds-sign-up>
-    {% include _subscribe-modal.html %}
-    {% include home/_content-menu.html %}
-  </div>
-</div>
+</section>
+
+{% include _subscribe-modal.html %}
 
 {% comment %}You are needed{% endcomment %}
 {% include home/_you-are-needed.html %}
+
+{% comment %}Ready to start your adventure?{% endcomment %}
+<section class="bg-orange row">
+  <div class="container soft-ends text-center">
+    <div class="push-top soft-top row">
+      <crds-arrow arrow-color="blue" text-color="orange">It's go time</crds-arrow>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-push-2">
+        <h1 class="component-header-box component-header-box-border-lg font-size-h1 text-white">Ready to start your adventure?</h1>
+      </div>
+    </div>
+    <div class="row">
+      <p class="font-family-serif text-blue push font-size-base">Take the 30 day challenge</p>
+    </div>
+    <div class="push-bottom soft-bottom row">
+      <crds-button href="/30daytrial/sign-up" color="blue" size="lg" text="Sign up now"></crds-button>
+    </div>
+  </div>
+</section>
