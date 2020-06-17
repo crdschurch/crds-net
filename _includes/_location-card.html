@@ -1,25 +1,35 @@
 <div class="card">
   <a href="{{ location.url }}" class="block" data-automation-id="location-image">
-    <img
-      src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}"
-      sizes="{{ site.image_sizes.cards_4x }}"
-      alt="{{ location.title }}"
-      data-optimize-img
-    />
+    <img src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}"
+      sizes="{{ site.image_sizes.cards_4x }}" alt="{{ location.title }}" data-optimize-img />
   </a>
   <div class="card-block">
     <h4 class="card-title card-title--overlap text-uppercase">
       <a href="{{ location.url }}" data-automation-id="location-name">{{ location.name }}</a>
     </h4>
+    <div data-automation-id="location-address">
+      {{ location.address | markdownify | remove: '<p>'| remove: '</p>' }} <br>
+      (<a target="_blank" href="{{ location.map_url }}" data-automation-id="location-map-url">Map</a>)
+    </div>
     <div class="card-text">
-      <div data-automation-id="location-address">
-        {{ location.address | markdownify }} (<a target="_blank" href="{{ location.map_url }}" data-automation-id="location-map-url">Map</a
-        >)
+      
+      <div class="location-leader soft-half-sides soft-quarter-ends bg-gray push-ends">
+        <div class="d-flex push-quarter-sides align-items-center" style="flex-wrap: wrap;">
+          <div class="push-quarter-ends push-half-right" style="flex: 1 0;">
+            <strong>{{location.community_pastor_name}}</strong><br>
+            <span>Community Pastor</span>
+          </div>
+          <img class="img-circle img-size-4 push-quarter-ends" style="width: 64px;" src="{{ location.community_pastor_image.url }}"
+            sizes="64px 64px" />
+        </div>
       </div>
       <div data-automation-id="location-service-times">
         <strong>Service Times:</strong>
         <br />
         {{ location.service_times | markdownify }}
+      </div>
+      <div class="push-half-ends">
+        FB IG
       </div>
     </div>
     <crds-button type="primary" color="blue" text="Learn more" href="{{ location.url }}"></crds-button>
