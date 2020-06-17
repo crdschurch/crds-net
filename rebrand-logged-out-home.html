@@ -43,9 +43,10 @@ notification:
   message: "Your adventure starts here. <a href='#'>Start your 30 day trial!</a>"
   displayTo: 'unauthenticated'
 ---
-{% comment %}{% include home/_jumbotron.html %}{% endcomment %}
 
-{% comment %}<div style="background:#202E3C">
+{% include home/_jumbotron.html %}
+
+<div class="soft-top bg-blue soft-bottom bg-topo push-bottom">
   <div class="container">
     <div class="row">
       <div class="col-sm-8">
@@ -114,10 +115,10 @@ notification:
       </div>
     </div>
   </div>
-</div>{% endcomment %}
+</div>
 
 {% comment %}Your Impact Will be Massive{% endcomment %}
-{% comment %}<div class="container">
+<div class="container">
   <div class="text-center push-bottom">
     <h2 class="component-header-box">Your Impact Will be Massive</h2>
   </div>
@@ -129,29 +130,31 @@ notification:
       {% include home/_latest-news.html %}
     </div>
   </div>
-</div>{% endcomment %}
+</div>
 
 {% comment %}Get Equipped: Watch the Latest Teaching{% endcomment %}
-{% comment %}<div class="container">
-  <div class="text-center push-bottom">
-    <h2 class="component-header-box text-orange">Get Equipped: Watch the Latest Teaching</h2>
-  </div>
-  <div class="col-md-8">
-    {% include home/_latest-message.html %}
-  </div>
-  <div class="col-sm-4">
-    {% include home/_current-series.html %}
-    <div>
-      Many Ways to watch (Monetate)
+<div class="bg-tan-light soft-bottom">
+  <div class="container">
+    <div class="text-center push-bottom">
+      <h2 class="component-header-box text-orange">Get Equipped: Watch the Latest Teaching</h2>
+    </div>
+    <div class="col-md-8">
+      {% include home/_latest-message.html %}
+    </div>
+    <div class="col-sm-4">
+      {% include home/_current-series.html %}
+      <div>
+        Many Ways to watch (Monetate)
+      </div>
     </div>
   </div>
-</div>{% endcomment %}
+</div>
 
 {% comment %}Kids Club Jumbotron{% endcomment %}
-{% comment %}{% include home/_kids-club-jumbotron.html %}{% endcomment %}
+{% include home/_kids-club-jumbotron.html %}
 
 {% comment %}Gear Up for Your Adventure{% endcomment %}
-{% comment %}<div class="container">
+<div class="container">
   <div class="text-center push-bottom">
     <div class="push-bottom text-blue">
       <h2 class="component-header-box">Gear Up for Your Adventure</h2>
@@ -183,10 +186,10 @@ notification:
       image-src="http://placehold.it/375x475"
     />
   </div>
-</div>{% endcomment %}
+</div>
 
 {% comment %}Articles, Podcasts & More{% endcomment %}
-{% comment %}<div class="container">
+<div class="container">
   <div class="text-center push-bottom">
     <div class="push-bottom text-blue">
       <h2 class="component-header-box">Articles, Podcasts & More</h2>
@@ -194,37 +197,14 @@ notification:
     <p class="text-blue">Unfiltered & authentic takes on life</p>
   </div>
   <div class="col-sm-8">
-    Articles
+    Articles (Media Cards?)
   </div>
   <div class="col-sm-4">
     <crds-sign-up title="Sign Up for the Weekly Digest" content="Get our latest content, delivered straight to your inbox, every week." onClick="$('#subscribeModalForm').modal(); return false;"></crds-sign-up>
     {% include _subscribe-modal.html %}
     {% include home/_content-menu.html %}
   </div>
-</div>{% endcomment %}
+</div>
 
 {% comment %}You are needed{% endcomment %}
-{% comment %}{% include home/_you-are-needed.html %}{% endcomment %}
-asewadsf
-{% include footer.html %}
-
-<script>
-  window.env = {
-    gatewayServerEndpoint: '{{ site.gateway_server_endpoint }}',
-    streamScheduleEndpoint: '{{ site.stream_schedule_endpoint }}'
-  };
-
-  document.addEventListener("deferred-js-ready", countdownInit);
-
-  if (window.deferredJSReady) {
-    countdownInit();
-  }
-
-  function countdownInit() {
-    var c = new CRDS.Countdown();
-    c.getEventStatus();
-  }
-</script>
-
-{% javascript_link_tag autoplay async %}
-{% javascript_link_tag skeleton async %}
+{% include home/_you-are-needed.html %}
