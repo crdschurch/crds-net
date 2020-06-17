@@ -27,10 +27,16 @@
         <strong>Service Times:</strong>
         <br />
         {{ location.service_times | markdownify }}
+        <a href="">Other ways to watch</a>
       </div>
-      <div class="push-half-ends">
-        FB IG
-      </div>
+      <p class="push-half-ends">
+        {% if location.facebook_page_url %}
+          <a href="{{ location.facebook_page_url }}" target="_blank" class="btn btn-blue btn-outline btn-small">Facebook</a>
+        {% endif %}
+        {% if location.instagram_page_url %}
+          <a href="{{ location.instagram_page_url }}" target="_blank" class="btn btn-blue btn-outline btn-small">Instagram</a>
+        {% endif %}
+      </p>
     </div>
     <crds-button type="primary" color="blue" text="Learn more" href="{{ location.url }}"></crds-button>
     <crds-site-select card-site-id="{{ location.site_id }}"></crds-site-select>
