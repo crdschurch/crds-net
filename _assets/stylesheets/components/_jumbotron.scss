@@ -45,6 +45,66 @@
     }
   }
 
+  &.jumbotron-home {
+    .jumbotron-home-header {
+      margin: 0 auto;
+      max-width: 760px;
+      width: 100%;
+
+      h1 {
+        border-bottom: 6px solid currentColor;
+        display: inline-block;
+        font-size: 90px;
+        line-height: 100px;
+        padding-bottom: 20px;
+
+        @media screen and (min-width: $screen-sm) {
+          font-size: 130px;
+          line-height: 110px;
+        }
+      }
+    }
+  }
+}
+
+.jumbotron-kids-club-cta-box {
+  display: flex;
+  flex-wrap: wrap;
+
+  .jumbotron-kids-club-cta  {
+    &:last-child {
+      div {
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  @media screen and (min-width: $screen-sm) {
+    justify-content: center;
+
+    .jumbotron-kids-club-cta  {
+      border-right: 1px solid $cr-gray;
+
+      &:nth-child(3),
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+
+  @media screen and (min-width: $screen-md) {
+    flex-wrap: unset;
+
+    .jumbotron-kids-club-cta {
+      &:nth-child(3) {
+        border-right: 1px solid $cr-gray;
+      }
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
 }
 
 .jumbotron[style*='background-image'] list-unstyled a, .jumbotron[data-optimize-bg-img] list-unstyled a {

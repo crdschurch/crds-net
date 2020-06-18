@@ -12,6 +12,22 @@ VAULT_ROLE_ID
 VAULT_SECRET_ID
 ```
 
+### Running locally
+
+There are three pre-defined scripts in the package.json file for running tests in headless mode each environment. Run them with 
+
+```bash
+$npm run int_crossroads
+$npm run demo_crossroads
+$npm run prod_crossroads
+```
+
+To run using the Cypress test runner, copy the package.json file script for the environment and replace the "run" with "open".
+
+```bash
+npx cypress open --config-file ./cypress/config/int_crossroads.json
+```
+
 ### Running on Docker
 
 Once environment variables are set, the suite can be run on Docker with:

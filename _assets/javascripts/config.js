@@ -9,7 +9,7 @@ module.exports = [
     deps: [
       "vendor/webcomponents-lite.min",
       "vendor/imgix.min",
-      "vendor/imgix-optimizer",
+      "vendor/imgix-optimizer-0.0.10.min",
       "vendor/bootstrap.min",
       "vendor/flickity.pkgd.min",
       "vendor/crds-card-carousel-v0.2.2.min",
@@ -71,7 +71,7 @@ module.exports = [
   },
   {
     name: "live-stream",
-    deps: ["vendor/crds-rollcall-v0.1.0.min"],
+    deps: ["vendor/crds-rollcall-v1.0.0.min"],
     files: ["views/live-stream"]
   },
   {

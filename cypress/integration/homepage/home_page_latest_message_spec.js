@@ -3,39 +3,44 @@ import { RequestFilter } from '../../Analytics/RequestFilter';
 import { amplitude } from '../../fixtures/event_filters';
 import { MessageQueryManager } from 'crds-cypress-contentful';
 
+const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/];
+
 describe('Tests the Current Message on the Homepage', function () {
   let currentMessage;
   let requestFilter;
 
   before(() => {
     //Fetch Current Message
+    
     const mqm = new MessageQueryManager();
     mqm.getSingleEntry(mqm.query.latestMessage).then(message => {
+    
       currentMessage = message;
-    });
-
+      });
     //Setup capture for events
     cy.server();
+
     requestFilter = new RequestFilter(amplitude.isVideoStarted);
-    cy.route({
+      cy.route({
       method: 'POST',
       url: 'api.amplitude.com',
       onResponse: (xhr) => {
         requestFilter.keepMatch(xhr.request);
-      }
+       }
     });
 
     //Navigate
-      cy.ignorePropertyUndefinedTypeError();
-      cy.on('uncaught:exception', (err, runnable) => {
-          return false
-      })
-
+    cy.ignoreMatchingErrors(errorsToIgnore); 
     cy.visit('/');
+    });
+
+    beforeEach(() =>{
+    cy.ignoreMatchingErrors(errorsToIgnore);
   });
 
+
   it('Checks title, image, and "View latest now" button have correct link', () => {
-    currentMessage.getURL().then(url => {
+     currentMessage.getURL().then(url => {
       const relativeAutoplayURL = url.autoplay.relative;
 
       cy.get('[data-automation-id="message-title"]').as('title');
@@ -60,7 +65,6 @@ describe('Tests the Current Message on the Homepage', function () {
 
     if (currentMessage.bitmovinURL.hasValue) {
       cy.get('div[data-video-player]').as('videoPlayer').should('have.prop', 'id').and('contain', 'bitmovinPlayer');
-
       cy.wrap(requestFilter).as('autoplayEvent').its('matches').should('have.length', 1);
     }
   });

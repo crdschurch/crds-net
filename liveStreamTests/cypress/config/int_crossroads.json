@@ -1,5 +1,8 @@
 {
   "baseUrl": "https://int.crossroads.net",
+  "testFiles": "**/*spec.js",
+  "numTestsKeptInMemory": 0,
+  "video": false,
   "env": {
     "slack_channel": "#bearsharktopus-qa",
     "email_recipients": "",

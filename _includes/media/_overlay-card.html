@@ -6,7 +6,13 @@
   {% when 'message' %}
     {% assign image = item.background_image.url %}
   {% when 'episode' %}
-    {% assign image = item.podcast.bg_image.url %}
+    {% if item.image != nil %}
+      {% assign image = item.image.url %}
+    {% elsif item.podcast.featured_image != nil %}
+      {% assign image = item.podcast.featured_image.url %}
+    {% else %}
+      {% assign image = item.podcast.bg_image.url %}
+    {% endif %}
   {% else %}
     {% assign image = item.image.url %}
 {% endcase %}

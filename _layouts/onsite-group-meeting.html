@@ -1,0 +1,78 @@
+---
+layout: container-fluid
+---
+
+<section class="container">
+  <div class="row push-ends">
+    <div class="col-md-12">
+      <a href="/groups/onsite">&lt; Back to All Onsite Groups</a>
+    </div>
+  </div>
+
+  <div class="row push-bottom">
+    <div class="col-md-4 soft-right">
+      <h3 class="font-family-condensed-extra flush-ends text-uppercase">
+        {{ page.title }}
+      </h3>
+      <p class="flush-ends"><strong>Perfect for:</strong> {{ page.detail }}</p>
+      <p class="push-bottom"><strong>How Long:</strong> {{ page.length }}</p>
+      <hr />
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-12">
+          {{ page.description | markdownify }}
+          <hr />
+        </div>
+      </div>
+
+      {% assign meetings = page.meetings | in_groups: 2 %}
+      {% for row in meetings %}
+      <div class="row onsite-group-negative-margin-bottom">
+        {% for obj in row %}
+        {% assign meeting = site.onsite_group_meetings | where: 'contentful_id', obj.id | first %}
+        <div class="col-md-5 push-top push-left soft-right">
+
+          {% if meeting.meeting_time %}
+            <h4 class="flush-ends font-family-condensed-extra text-uppercase">
+              {{ meeting.meeting_time }}
+            </h4>
+          {% endif %}
+
+          {% if meeting.room %}
+            <p class="text-gray flush-bottom push-quarter-top small">
+              Room: {{ meeting.room }}
+            </p>
+          {% endif %}
+
+          {% if meeting.registration_link %}
+            <a class="btn btn-cyan push-top" type="button" href="{{ meeting.registration_link }}">Register</a>
+          {% endif %}
+
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+
+      <div class="text-gray row push-top soft-ends small">
+        <div class="col-md-5">{{ page.footnote | markdownify }}</div>
+      </div>
+
+      <hr />
+
+      <div class="row soft-half-bottom soft-top">
+        <div class="col-md-6">
+          <p>
+            Questions? Email us at
+            <a href="mailto:hello@crossroads.net">hello@crossroads.net</a>
+          </p>
+          <p>
+            If you need immediate care, please contact our team for a Listening
+            Appointment at
+            <a href="mailto:hello@crossroads.net">hello@crossroads.net</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -88,6 +88,7 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
     eventmachine (1.2.7-x64-mingw32)
+    ffi (1.12.2)
     ffi (1.12.2-x64-mingw32)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
