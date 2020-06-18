@@ -29,8 +29,12 @@ layout: default
       {% if location_happenings.size > 0 %}
       <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="happenings">See what's
         happening at {{ page.name | downcase }}</a>
-        {% endif %}
+      {% endif %}
+      
+      {% if page.kids_club_hours or page.student_ministry_hours %}
       <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="kids-and-students">Kids &amp; Students</a>
+      {% endif %}
+
       <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="community-care">Community Care</a>
     </div>
   </div>
