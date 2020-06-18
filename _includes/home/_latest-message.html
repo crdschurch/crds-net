@@ -4,7 +4,8 @@
 {% assign latest_teaching_series = page.series.docs | slice: 0 | first %}
 
 <div class="latest-message">
-  <div class="latest-message-background soft-half push-bottom">
+	<hr class="flush-top push-half-bottom" />
+  <div class="latest-message-background soft-half-ends push-bottom">
     <p class="latest-message-title font-family-serif text-uppercase">
 			Latest Weekly Teaching
 	  </p>
@@ -18,13 +19,13 @@
 					</div>
 				</a>
 	    </div>
-		    <h2 class="latest-message-headline font-family-condensed-extra text-uppercase flush-top">
+		    <h2 class="latest-message-headline font-family-condensed-extra text-uppercase flush-top text-gray-dark">
 			    {{ item.title }}
 		    </h2>
 		    <h3 class="latest-message-subtitle font-size-smaller font-family-base-bold text-uppercase">
 			    Series: <a href="{{ latest_teaching_series.url }}">{{ latest_teaching_series.title }}</a>
 		    </h3>
-		    <p class="latest-message-body">
+		    <p class="latest-message-body text-gray-dark">
 			    {{ item.description }}
 		    </p>
 		  <div class="row soft-half-left">
