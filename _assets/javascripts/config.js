@@ -30,6 +30,7 @@ module.exports = [
       "components/legacy-imgix",
       "components/images",
       "components/carousels",
+      "components/chat",
       "components/countdown",
       "components/jumbotron-video",
       "components/filters",
