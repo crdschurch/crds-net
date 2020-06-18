@@ -16,7 +16,7 @@
       <div class="location-leader soft-half-sides soft-quarter-ends bg-gray push-ends">
         <div class="d-flex push-quarter-sides align-items-center" style="flex-wrap: wrap;">
           <div class="push-quarter-ends push-half-right" style="flex: 1 0;">
-            <strong>{{location.community_pastor_name}}</strong><br>
+            <strong style="color: #4d4d4d;">{{location.community_pastor_name}}</strong><br>
             <span>Community Pastor</span>
           </div>
           <img class="img-circle img-size-4 push-quarter-ends" style="width: 64px;"
@@ -32,14 +32,14 @@
       </div>
       <p class="push-half-ends">
         {% if location.facebook_page_url %}
-        <a href="{{ location.facebook_page_url }}" target="_blank" class="btn btn-blue btn-outline btn-small">
+        <a href="{{ location.facebook_page_url }}" target="_blank" class="btn btn-blue btn-outline btn-small" style="border-radius: 50%; width: 26px; height: 26px; padding: 0; text-align: center; line-height: 28px">
           <svg class="icon icon-1" viewBox="0 0 256 256">
             <use xlink:href="/assets/svgs/icons.svg#facebook"></use>
           </svg>
         </a>
         {% endif %}
         {% if location.instagram_page_url %}
-        <a href="{{ location.instagram_page_url }}" target="_blank" class="btn btn-blue btn-outline btn-small">
+        <a href="{{ location.instagram_page_url }}" target="_blank" class="btn btn-blue btn-outline btn-small"  style="border-radius: 50%; width: 26px; height: 26px; padding: 0; text-align: center; line-height: 28px">
           <svg class="icon icon-1" viewBox="0 0 256 256">
             <use xlink:href="/assets/svgs/icons.svg#instagram"></use>
           </svg>
