@@ -6,14 +6,10 @@ layout: default
     .hr-primary {
         border-top-color: #253746;
     }
-.footer-box {
-    height: 35px;
-    width: 172px;
-}
-    
-    .ma-sides {
-        margin-left: auto;
-        margin-right: auto;
+
+    .footer-box {
+        height: 35px;
+        width: 172px;
     }
 
     .footer-letter-space {
@@ -23,7 +19,21 @@ layout: default
     .footer-line-height {
         line-height: 1.4rem;
     }
-/*
+
+    .mt-100 {
+        margin-top: 100px;
+    }
+
+    .mb-100 {
+        margin-bottom: 100px;
+    }
+
+    /*
+    .ma-sides {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
      .ma-left {
         margin-left: auto;
     }
@@ -41,21 +51,39 @@ layout: default
 */
 </style>
 
-<section style="height:500px;" class="bg-primary"></section>
+<section class="bg-primary">
+    <div class="bg-video-player">
+        <div class="embed-responsive embed-responsive-16by9">
+            <video width="1787" height="1005.1875" class="bg-jumbotron-video" autoplay="autoplay" loop="loop" muted=""
+                playsinline=""
+                src="https://videos.ctfassets.net/y3a9myzsdjan/4300VvIlLpOlBaS7uhSfgT/23a0dbd566de021dc924cb2912582f01/go-video-2019-loop.mp4">
 
-<section class="bg-orange">
+                <!-- https://videos.ctfassets.net/y3a9myzsdjan/63BuO6LHW7hpVpx3mzEvp1/dde983bb80b2efabea608f8526d14f86/spiritual-outfitters-animation1.mp4 -->
+
+                <object width="360" height="240"
+                    data="https://content.crossroads.net/framework/thirdparty/tinymce/plugins/media/moxieplayer.swf"
+                    type="application/x-shockwave-flash">
+                    <param name="src"
+                        value="https://content.crossroads.net/framework/thirdparty/tinymce/plugins/media/moxieplayer.swf">
+                    <param name="flashvars"
+                        value="url=https%3A//s3.amazonaws.com/crds-cms-uploads/media/video/GoSomewhere-loop-crf30.mp4&amp;poster=/">
+                    <param name="allowfullscreen" value="true">
+                    <param name="allowscriptaccess" value="true">
+                </object>
+            </video>
+        </div>
+    </div>
+</section>
+
+<section style="background-color: #f47d20;">
     <div class="container">
         <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
-                <h1 class="text-primary text-uppercase text-center flush-bottom soft-top font-family-base-black">
+            <div class="col-sm-8 col-sm-offset-2">
+                <h1 class="text-primary text-uppercase text-center push-bottom soft-top font-family-base-black">
                     Crossroads has a brand new look
                 </h1>
-                <div class="push-top embed-responsive embed-responsive-16by9">
-                    <iframe width="400" height="320" frameborder="0" allowfullscreen=""
-                        src="https://www.youtube.com/embed/7zgXmV88s6A"></iframe>
-                </div>
-                <!-- <img class="block ma-sides soft push-ends"
-                    src="https://images.ctfassets.net/y3a9myzsdjan/4TqaCt6FzaHTYPOfd86q7g/33e746dc1d75583a91aa5009f5529f31/new-look-crsrds-badge.png" /> -->
+                <img class="push-top"
+                    src="https://images.ctfassets.net/y3a9myzsdjan/3NW7fmZgahMUgGzzpEJFp/413e6ae220f47487b13fc88f160311ac/spiritual-outfitters-animation2__1_.gif" />
                 <p class="text-primary text-center font-family-serif push-ends soft-ends">
                     Crossroads has been a force for positive world change since the late
                     ’90s. Aggressively running after those in need. Well, it’s the ‘20s
@@ -65,25 +93,23 @@ layout: default
                     following Jesus.
                 </p>
             </div>
-            <div class="col-sm-12"></div>
         </div>
     </div>
     <div class="container-fluid">
         <div class="row push-sides">
             <hr class="hr-primary push-top" />
-
-            <div class="col-sm-4 hard">
-                <p class="text-primary text-uppercase font-family-condensed-extra font-size-h6 footer-letter-space footer-line-height">
+            <div class="col-xs-12 hard d-flex justify-content-between">
+                <p
+                    class="text-primary text-uppercase font-family-condensed-extra font-size-h6 footer-letter-space footer-line-height">
                     crossroads<br />church
                 </p>
-            </div>
-            <div class="col-sm-4 hard">
-            <div class="bg-blue footer-box text-center ma-sides">
-                <p class="text-orange text-center text-uppercase font-family-condensed-extra font-size-h6 footer-letter-space">adventure awaits</p>
+                <div class="bg-blue footer-box text-center">
+                    <p
+                        class="text-orange text-center text-uppercase font-family-condensed-extra font-size-h6 footer-letter-space">
+                        adventure awaits</p>
                 </div>
-            </div>
-            <div class="col-sm-4 hard">
-                <p class="text-primary text-uppercase text-right font-family-condensed-extra font-size-h6 footer-letter-space footer-line-height">
+                <p
+                    class="text-primary text-uppercase text-right font-family-condensed-extra font-size-h6 footer-letter-space footer-line-height">
                     spiritual<br />outfitters
                 </p>
             </div>
@@ -91,47 +117,57 @@ layout: default
     </div>
 </section>
 
-<section class="bg-tan">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-                <h1 class="text-primary text-uppercase text-center flush-bottom soft-top font-family-base-black">
+<section style="background-color: #dbd1bf;">
+    <div class="container soft-bottom">
+        <div class="row push-bottom soft-bottom">
+            <img
+                src="https://images.ctfassets.net/y3a9myzsdjan/LLdQEdYHTAicf5p8VnlSa/6104e42203d6aad3dcd54da823df0c91/spiritual-outfitters-animation3__2_.gif" />
+            <div class="col-sm-8 col-sm-offset-2 text-center push-bottom soft-bottom">
+                <h1 class="text-primary text-uppercase text-center flush-bottom font-family-base-black">
                     a short history
                 </h1>
-                <p class="text-primary text-center font-family-serif soft-ends">
+                <p class="text-primary font-family-serif soft-ends">
                     We’ll keep this short because we know you don’t care that much. The reality is, the Crossroads brand
                     has evolved a bunch of times over the years. We’ve gone from stonewashed to skinny jeans. Sure, this
                     new look is the boldest evolution yet, but what else would you expect from a place hell-bent on
                     world change?
                 </p>
+                <p class="font-family-base-bold">Go deeper into our history</p>
+                <crds-button class="push-bottom soft-bottom"
+        color="orange"
+        text="Watch the video"
+        href="">
+      </crds-button>
             </div>
         </div>
     </div>
 </section>
-<section>
+<section class="bg-orange parallax" style="background-image:url(https://images.ctfassets.net/y3a9myzsdjan/3O2BjsXNZXbqUMKvnOKA92/8813b233127074a3b029fc3aa8b83781/spiritual-outfitter-overlay.png);">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-7 bg-orange"
-                style="background-image:url(https://images.ctfassets.net/y3a9myzsdjan/3O2BjsXNZXbqUMKvnOKA92/8813b233127074a3b029fc3aa8b83781/spiritual-outfitter-overlay.png)">
-            </div>
-            <div class="col-sm-5 block bg-primary">
-                <h1 class="text-white text-uppercase soft-top font-family-base-black">
-                    born for adventure
-                </h1>
-                <p class="font-family-serif soft-ends">
+        <div class="row soft">   
+            <div class="col-md-7 text-center push-ends soft-bottom">
+                <img src="https://images.ctfassets.net/y3a9myzsdjan/5vNrrMcWsJGwWtxCfengjr/cbb5b329644926a113a65754c8bd2505/crossroads-logo-badge2.png">
+            </div>         
+                <div class="col-md-5 block bg-primary soft">
+                    <div class="soft-ends">
+                <h2 class="text-orange text-uppercase soft-top font-family-base-black mt-100">
+                    born<br>for<br>adventure
+                </h2>
+                <p class="font-family-serif soft-ends mb-100">
                     “Faith” by its very nature is an exercise in adventure. The Bible is chock full of stories of people
                     stepping into crazy adventures of faith. If this new look reminds you of Bear Grylls repelling off
                     the Northface in Patagonia shorts that’s no accident. We’re not a “camping church”, but we are
                     dedicated to risk, action, and movement. That doesn’t happen in a La-Z-Boy.
-                </p>
-            </div>
+                </p>   
+                </div>         
+            </div>           
         </div>
     </div>
 </section>
-<section class="bg-tan">
+<section style="background-color: #dbd1bf;">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6 soft-ends push-ends">
+        <div class="row soft-ends push-ends">
+            <div class="col-md-6 soft-ends push-ends text-center">
                 <h1 class="text-primary text-uppercase soft-top font-family-base-black">
                     the trail marker
                 </h1>
@@ -145,54 +181,94 @@ layout: default
                     and forward moving, just like us.
                 </p>
             </div>
+            <div class="col-md-6 text-center">
+            <img src="https://images.ctfassets.net/y3a9myzsdjan/gtgZUfgeUaKHymVo0jext/61f114b00112dead24df4d0619745408/spiritual-outfitters-animation4.gif">
+        </div>
         </div>
     </div>
 </section>
 
-<section class="bg-orange">
+<section style="background-color: #f58822;">
     <div class="container">
         <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
-                <h1 class="text-primary text-uppercase text-center flush-bottom soft-top font-family-base-black">
-                    Crossroads has a brand new look
-                </h1>
-                <div class="push-top embed-responsive embed-responsive-16by9">
-                    <iframe width="400" height="320" frameborder="0" allowfullscreen=""
-                        src="https://www.youtube.com/embed/7zgXmV88s6A"></iframe>
-                </div>
-                <!-- <img class="block ma-sides soft push-ends"
-                    src="https://images.ctfassets.net/y3a9myzsdjan/4TqaCt6FzaHTYPOfd86q7g/33e746dc1d75583a91aa5009f5529f31/new-look-crsrds-badge.png" /> -->
-                <p class="text-primary text-center font-family-serif push-ends soft-ends">
-                    Crossroads has been a force for positive world change since the late
-                    ’90s. Aggressively running after those in need. Well, it’s the ‘20s
-                    and it’s time our outsides looked more like our insides. Our new brand
-                    identity is a reflection of what we’ve always stood for, bold
-                    aggressive action, and the adventure that comes when you go all-in on
-                    following Jesus.
-                </p>
-            </div>
-            <div class="col-sm-12"></div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row push-sides">
-            <hr class="hr-primary push-top" />
-
-            <div class="col-sm-4 hard">
-                <p class="text-primary text-uppercase font-family-condensed-extra font-size-h6 footer-letter-space footer-line-height">
-                    crossroads<br />church
-                </p>
-            </div>
-            <div class="col-sm-4 hard">
-            <div class="bg-blue footer-box text-center ma-sides">
-                <p class="text-orange text-center text-uppercase font-family-condensed-extra font-size-h6 footer-letter-space">adventure awaits</p>
+            <div class="bg-video-player push-bottom">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video width="1787" height="1005.1875" class="bg-jumbotron-video" autoplay="autoplay" loop="loop" muted=""
+                        playsinline=""
+                        src="https://videos.ctfassets.net/y3a9myzsdjan/3sohrrCHGmAfuNh8QqNedd/27e6fdc6696044d9aaa2d0582d6c9dd5/spiritual-outfitters-animation6.mp4">
+        
+                        <object width="360" height="240"
+                            data="https://content.crossroads.net/framework/thirdparty/tinymce/plugins/media/moxieplayer.swf"
+                            type="application/x-shockwave-flash">
+                            <param name="src"
+                                value="https://content.crossroads.net/framework/thirdparty/tinymce/plugins/media/moxieplayer.swf">
+                            <param name="flashvars"
+                                value="url=https%3A//s3.amazonaws.com/crds-cms-uploads/media/video/GoSomewhere-loop-crf30.mp4&amp;poster=/">
+                            <param name="allowfullscreen" value="true">
+                            <param name="allowscriptaccess" value="true">
+                        </object>
+                    </video>
                 </div>
             </div>
-            <div class="col-sm-4 hard">
-                <p class="text-primary text-uppercase text-right font-family-condensed-extra font-size-h6 footer-letter-space footer-line-height">
-                    spiritual<br />outfitters
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <img class="push-top" src="https://images.ctfassets.net/y3a9myzsdjan/1diMucwFYgSS6VijCOORpT/14ec6801614bcaff084ad6d95b6ca2f4/crsrds-badge-2020.png">
+                <p class="text-primary font-family-serif push-ends soft-ends">
+                    Since the dawn of social media, the shorthand for Crossroads has been “CRDS”. That’s pronounced
+                    “curds”, like cheese curds. Which is gross. A brand refresh meant we could take another swing at the
+                    shorthand game. We landed on “CRSRDS”, which is pronounced “Crossroads”. Turns out the guy who came
+                    up with CRDS was from Wisconsin, his resume is trending on ZipRecruiter.
                 </p>
             </div>
         </div>
     </div>
 </section>
+
+<section style="background-color: #dbd1bf;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center mt-100 mb-100">
+                <h1 class="text-orange text-uppercase flush-bottom font-family-base-black mt-100">
+                    let's do<br>this thing
+                </h1>
+                <p class="text-primary text-center font-family-serif soft-ends">
+                    Crossroads isn’t going anywhere. We’re doubling down on our mission to partner with God in his
+                    effort to make earth look more like heaven. Whether that’s in our backyard, our neighborhood, our
+                    nation, or our world. We’re committed, now more than ever, to be a training ground for those who
+                    want to take a swing at making a difference. You might say that Crossroads exists to equip people
+                    for the fight. We call it being a spiritual outfitter for those on the adventure of faith.<br>
+                    <span class="font-family-base-bold">It’s going to be a wild ride.</span>
+                </p>
+                <img src="https://images.ctfassets.net/y3a9myzsdjan/66x1B6FptzkzErSolzYXgn/313eec4a1f21b80551c150ff0d2353f7/x-badge-2020.png">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+    (function(q,g){"function"===typeof define&&define.amd?define([],g):"object"===typeof module&&module.exports?module.exports=g():q.Rellax=g()})("undefined"!==typeof window?window:global,function(){var q=function(g,t){var b=Object.create(q.prototype),l=0,u=0,n=0,v=0,c=[],w=!0,A=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.msRequestAnimationFrame||window.oRequestAnimationFrame||function(b){return setTimeout(b,1E3/60)},p=null,x=!1;try{var k=
+        Object.defineProperty({},"passive",{get:function(){x=!0}});window.addEventListener("testPassive",null,k);window.removeEventListener("testPassive",null,k)}catch(f){}var J=window.cancelAnimationFrame||window.mozCancelAnimationFrame||clearTimeout,K=window.transformProp||function(){var b=document.createElement("div");if(null===b.style.transform){var a=["Webkit","Moz","ms"],d;for(d in a)if(void 0!==b.style[a[d]+"Transform"])return a[d]+"Transform"}return"transform"}();b.options={speed:-2,verticalSpeed:null,
+        horizontalSpeed:null,center:!1,wrapper:null,relativeToWrapper:!1,round:!0,vertical:!0,horizontal:!1,verticalScrollAxis:"y",horizontalScrollAxis:"x",callback:function(){}};t&&Object.keys(t).forEach(function(c){b.options[c]=t[c]});g||(g=".rellax");k="string"===typeof g?document.querySelectorAll(g):[g];if(0<k.length){b.elems=k;if(b.options.wrapper&&!b.options.wrapper.nodeType)if(k=document.querySelector(b.options.wrapper))b.options.wrapper=k;else{console.warn("Rellax: The wrapper you're trying to use doesn't exist.");
+        return}var B=function(){for(var f=0;f<c.length;f++)b.elems[f].style.cssText=c[f].style;c=[];u=window.innerHeight;v=window.innerWidth;D();for(f=0;f<b.elems.length;f++){var a=b.elems[f],d=a.getAttribute("data-rellax-percentage"),e=a.getAttribute("data-rellax-speed"),y=a.getAttribute("data-rellax-vertical-speed"),g=a.getAttribute("data-rellax-horizontal-speed"),h=a.getAttribute("data-rellax-vertical-scroll-axis"),k=a.getAttribute("data-rellax-horizontal-scroll-axis"),l=a.getAttribute("data-rellax-zindex")||
+        0,n=a.getAttribute("data-rellax-min"),p=a.getAttribute("data-rellax-max"),q=a.getAttribute("data-rellax-min-x"),t=a.getAttribute("data-rellax-max-x"),x=a.getAttribute("data-rellax-min-y"),A=a.getAttribute("data-rellax-max-y"),z=b.options.wrapper?b.options.wrapper.scrollTop:window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop;b.options.relativeToWrapper&&(z=(window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop)-b.options.wrapper.offsetTop);var m=
+        b.options.vertical?d||b.options.center?z:0:0,r=b.options.horizontal?d||b.options.center?b.options.wrapper?b.options.wrapper.scrollLeft:window.pageXOffset||document.documentElement.scrollLeft||document.body.scrollLeft:0:0;z=m+a.getBoundingClientRect().top;var E=a.clientHeight||a.offsetHeight||a.scrollHeight,F=r+a.getBoundingClientRect().left,G=a.clientWidth||a.offsetWidth||a.scrollWidth;m=d?d:(m-z+u)/(E+u);d=d?d:(r-F+v)/(G+v);b.options.center&&(m=d=.5);e=e?e:b.options.speed;y=y?y:b.options.verticalSpeed;
+        g=g?g:b.options.horizontalSpeed;h=h?h:b.options.verticalScrollAxis;k=k?k:b.options.horizontalScrollAxis;m=H(d,m,e,y,g);a=a.style.cssText;d="";if(r=/transform\s*:/i.exec(a))d=a.slice(r.index),d=(r=d.indexOf(";"))?" "+d.slice(11,r).replace(/\s/g,""):" "+d.slice(11).replace(/\s/g,"");c.push({baseX:m.x,baseY:m.y,top:z,left:F,height:E,width:G,speed:e,verticalSpeed:y,horizontalSpeed:g,verticalScrollAxis:h,horizontalScrollAxis:k,style:a,transform:d,zindex:l,min:n,max:p,minX:q,maxX:t,minY:x,maxY:A})}I();
+        w&&(window.addEventListener("resize",B),w=!1,C())},D=function(){var c=l,a=n;l=b.options.wrapper?b.options.wrapper.scrollTop:(document.documentElement||document.body.parentNode||document.body).scrollTop||window.pageYOffset;n=b.options.wrapper?b.options.wrapper.scrollLeft:(document.documentElement||document.body.parentNode||document.body).scrollLeft||window.pageXOffset;b.options.relativeToWrapper&&(l=((document.documentElement||document.body.parentNode||document.body).scrollTop||window.pageYOffset)-
+        b.options.wrapper.offsetTop);return c!=l&&b.options.vertical||a!=n&&b.options.horizontal?!0:!1},H=function(c,a,d,e,g){var f={};c=100*(g?g:d)*(1-c);a=100*(e?e:d)*(1-a);f.x=b.options.round?Math.round(c):Math.round(100*c)/100;f.y=b.options.round?Math.round(a):Math.round(100*a)/100;return f},h=function(){window.removeEventListener("resize",h);window.removeEventListener("orientationchange",h);(b.options.wrapper?b.options.wrapper:window).removeEventListener("scroll",h);(b.options.wrapper?b.options.wrapper:
+        document).removeEventListener("touchmove",h);p=A(C)},C=function(){D()&&!1===w?(I(),p=A(C)):(p=null,window.addEventListener("resize",h),window.addEventListener("orientationchange",h),(b.options.wrapper?b.options.wrapper:window).addEventListener("scroll",h,x?{passive:!0}:!1),(b.options.wrapper?b.options.wrapper:document).addEventListener("touchmove",h,x?{passive:!0}:!1))},I=function(){for(var f,a=0;a<b.elems.length;a++){var d=c[a].verticalScrollAxis.toLowerCase(),e=c[a].horizontalScrollAxis.toLowerCase();
+        f=-1!=d.indexOf("x")?l:0;d=-1!=d.indexOf("y")?l:0;var g=-1!=e.indexOf("x")?n:0;e=-1!=e.indexOf("y")?n:0;f=H((f+g-c[a].left+v)/(c[a].width+v),(d+e-c[a].top+u)/(c[a].height+u),c[a].speed,c[a].verticalSpeed,c[a].horizontalSpeed);e=f.y-c[a].baseY;d=f.x-c[a].baseX;null!==c[a].min&&(b.options.vertical&&!b.options.horizontal&&(e=e<=c[a].min?c[a].min:e),b.options.horizontal&&!b.options.vertical&&(d=d<=c[a].min?c[a].min:d));null!=c[a].minY&&(e=e<=c[a].minY?c[a].minY:e);null!=c[a].minX&&(d=d<=c[a].minX?c[a].minX:
+        d);null!==c[a].max&&(b.options.vertical&&!b.options.horizontal&&(e=e>=c[a].max?c[a].max:e),b.options.horizontal&&!b.options.vertical&&(d=d>=c[a].max?c[a].max:d));null!=c[a].maxY&&(e=e>=c[a].maxY?c[a].maxY:e);null!=c[a].maxX&&(d=d>=c[a].maxX?c[a].maxX:d);b.elems[a].style[K]="translate3d("+(b.options.horizontal?d:"0")+"px,"+(b.options.vertical?e:"0")+"px,"+c[a].zindex+"px) "+c[a].transform}b.options.callback(f)};b.destroy=function(){for(var f=0;f<b.elems.length;f++)b.elems[f].style.cssText=c[f].style;
+        w||(window.removeEventListener("resize",B),w=!0);J(p);p=null};B();b.refresh=B;return b}console.warn("Rellax: The elements you're trying to select don't exist.")};return q});
+    </script>
+    <script>
+      // Set wrapper to .custom-element instead of the body
+      var rellax = new Rellax('.parallax', {
+        speed: 1,
+        center: false,
+        wrapper: null,
+        round: true,
+        vertical: true,
+        horizontal: false
+      });
+    </script>
