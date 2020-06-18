@@ -12,10 +12,18 @@
     line-height: 1.4rem;
 }
 
-.mt-100 {
-    margin-top: 100px;
+.embed-responsive-custom {
+    padding-bottom: 62.5%;
 }
 
-.mb-100 {
-    margin-bottom: 100px;
+.df-992 {
+    @media screen and (min-width: 992px) {
+        display: flex;
+    }
+}
+
+.ma-ends {
+    @media screen and (min-width: 992px) {
+        margin: auto 0;
+    }
 }
