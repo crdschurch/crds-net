@@ -218,6 +218,7 @@ notification:
       <a href="{{ article.url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
+          <div class="beige-overlay"></div>
           <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
             sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
         </div>
@@ -240,6 +241,7 @@ notification:
           {% assign category = article.category | get_doc %}
           <div class="card carousel-cell card-2x">
             <a class="relative" href="{{ article.url }}">
+              <div class="beige-overlay"></div>
               {% include media/_media-label.html source=article %}
               <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
                 sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
