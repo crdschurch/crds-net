@@ -1,17 +1,17 @@
 .content-left {
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: $screen-md) {
     padding-left: 4rem;
   }
 }
 
 .content-right {
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: $screen-md) {
   padding-right: 4rem;
   }
 }
 
 .content-center {
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: $screen-md) {
     margin-top: 13%;
   }
 }
