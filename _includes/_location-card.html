@@ -7,13 +7,13 @@
     <h4 class="card-title card-title--overlap text-uppercase">
       <a href="{{ location.url }}" data-automation-id="location-name">{{ location.name }}</a>
     </h4>
-    <div data-automation-id="location-address">
+    <div data-automation-id="location-address" class="push-bottom">
       {{ location.address | markdownify | remove: '<p>'| remove: '</p>' }} <br>
       (<a target="_blank" href="{{ location.map_url }}" data-automation-id="location-map-url">Map</a>)
     </div>
     <div class="card-text">
       {% if location.community_pastor_name %}
-      <div class="location-leader soft-half-sides soft-quarter-ends bg-gray push-ends">
+      <div class="location-leader soft-half-sides soft-quarter-ends bg-gray push-bottom">
         <div class="d-flex push-quarter-sides align-items-center" style="flex-wrap: wrap;">
           <div class="push-quarter-ends push-half-right" style="flex: 1 0;">
             <strong style="color: #4d4d4d;">{{location.community_pastor_name}}</strong><br>
@@ -24,13 +24,13 @@
         </div>
       </div>
       {% endif %}
-      <div data-automation-id="location-service-times">
+      <div data-automation-id="location-service-times" class="push-half-bottom">
         <strong>Service Times:</strong>
         <br />
         {{ location.service_times | markdownify | remove: '<p>'| remove: '</p>' }}<br>
         <a href="https://www.crossroads.net/watch/#ways-to-watch">Other ways to watch</a>
       </div>
-      <p class="push-half-ends">
+      <p class="push-half-bottom soft-quarter-bottom">
         {% if location.facebook_page_url %}
         <a href="{{ location.facebook_page_url }}" target="_blank" class="btn btn-blue btn-outline btn-small" style="border-radius: 50%; width: 26px; height: 26px; padding: 0; text-align: center; line-height: 28px">
           <svg class="icon icon-1" viewBox="0 0 256 256">
