@@ -66,3 +66,7 @@ crds-site-select {
 .card-deck--expanded-layout .card{
   margin-bottom: 3.5em;
 }
+
+.form-control, #subscribeModalForm .hs-input {
+  background-color: $cr-white!important;  
+}

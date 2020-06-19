@@ -20,15 +20,11 @@ snail_trail: connect
 
 <section class="container">
   {% for category in site['onsite_group_categories'] %}
-  {% assign groups = category | onsite_groups_for_category %}
+  {% assign groups = category | onsite_groups_for_category: 3 %}
   {% if groups.size > 0 %}
   <a class="anchor" id="{{ category.title | slugify }}"></a>
-  <div class="row soft-ends push-bottom push-quarter-top">
-    <div class="col-sm-3">
-      <img src="{{ category.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-        sizes="{{ site.image_sizes.one_fourth }}" class="width-100" data-optimize-img />
-    </div>
-    <div class="col-sm-9 push-bottom">
+  <div class="soft-ends push-bottom push-quarter-top">
+    <div class="push-bottom">
       <div class="row">
         <div class="col-md-12">
           <h2 class="font-family-condensed-extra flush-top mobile-soft-top text-uppercase">
@@ -40,12 +36,21 @@ snail_trail: connect
       <hr />
       {% for row in groups %}
       <div class="row onsite-group-negative-margin-bottom">
-        {% for col in row %}
-        <div class="col-md-6">
+        {% for group in row %}
+        <div class="col-md-4">
           <h3 class="font-family-condensed-extra text-uppercase">
-            <a href="{{ col.url }}">{{ col.title }}</a>
+            {{ group.title }}
           </h3>
-          <div class="text-gray small">{{ col.description | markdownify }}</div>
+
+          <div class="text-gray small">{{ group.description | markdownify | strip_html | truncate: 275 }}</div>
+
+          {% assign locations = group | locations_for_meeting %}
+          <ul class="text-gray small list-inline push-quarter-top">
+          {% for location in locations %}
+            <li>
+              <a href="/groups/onsite/{{ group.slug }}/{{ location.slug }}">{{ location.name }}</a></li>
+          {% endfor %}
+          </ul>
         </div>
         {% endfor %}
       </div>
@@ -65,32 +70,17 @@ snail_trail: connect
   </div>
 
   <div class="card-deck carousel push-top" data-crds-carousel="mobile-scroll">
-      <div class="feature-cards card-deck--expanded-layout">
-
-          {% assign locations = site['locations'] | locations_with_onsite_groups %}
-          {% for location in locations %}
-
-              <a class="card carousel-cell" href="/groups/{{ location.slug }}">
-                  <img class="card-img-top img-responsive " src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ location.title }}" sizes="{{ site.image_sizes.one_fourth }}" class="width-100" data-optimize-img/>
-                  <div class="card-block">
-                      <h4 class="card-title card-title--overlap text-uppercase transparent-after">{{ location.title }}</h4>
-                  </div>
-              </a>
-          {% endfor %}
-      </div>
-  </div>
-
-  <hr>
-  <div class="row soft-half-bottom soft-top">
-    <div class="col-md-6">
-      <p><strong>Don't see the healing group you need?</strong><br>
-        Email us at <a href="mailto:hello@crossroads.net">hello@crossroads.net</a></p>
-    </div>
-    <div class="col-md-6">
-      <p><strong>Can't find what you are looking for?</strong><br>
-        Visit the <a href="/groups">Group Tool</a> to connect with others looking for the same thing.</p>
+    <div class="feature-cards card-deck--expanded-layout">
+      {% assign locations = site['locations'] | locations_with_onsite_groups %}
+      {% for location in locations %}
+        <a class="card carousel-cell" href="/groups/onsite/{{ location.slug }}">
+          <img class="card-img-top img-responsive " src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ location.title }}" sizes="{{ site.image_sizes.one_fourth }}" class="width-100" data-optimize-img/>
+          <div class="card-block">
+            <h4 class="card-title card-title--overlap text-uppercase transparent-after">{{ location.title }}</h4>
+          </div>
+        </a>
+      {% endfor %}
     </div>
   </div>
-
-
+  {% include groups/_footer.html %}
 </section>
