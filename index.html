@@ -203,13 +203,6 @@ notification:
   </div>
 </section>
 
-<section>
-  {% assign hello_world = page.home_collection.docs | slice: 1, 2 %} 
-  {% for item in hello_world %}
-    {{ item.title }}
-  {% endfor %}
-</section>
-
 {% comment %}Articles, Podcasts, & More{% endcomment %}
 <section class="bg-tan-light">
   <div class="container">
