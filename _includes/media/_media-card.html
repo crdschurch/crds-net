@@ -14,6 +14,10 @@
       error
     {% endif %}
 
+    {% if item.content_type == "article" or "video" %}
+    <div class="beige-overlay"></div>
+    {% endif %} 
+
     {% assign image = item.image.url %}
 
     {% if item.content_type == 'episode' %}

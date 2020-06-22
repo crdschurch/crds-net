@@ -1,14 +1,5 @@
-// .label {
-//   .current-series & {
-//     @media screen and (max-width: $screen-md) {
-//       position: absolute;
-//       top: -1rem;
-//       right: calc(50% - 50px);
-//     }
-//   }
-// }
-
 .media-label {
+  background-color: $cr-black; 
   position: absolute;
   right: 0;
   bottom: 0;
