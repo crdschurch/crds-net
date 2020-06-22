@@ -1,0 +1,15 @@
+{% assign location_footnote = site.content_blocks | where: 'slug', 'onsite-group-location-footnote' | first %}
+<hr />
+<div class="row soft-half-bottom soft-top">
+  <div class="col-md-6">
+    <p>
+      <strong>Can't find what you are looking for?</strong><br />
+      Visit the
+      <a href="https://www.crossroads.net/connect/?filters=Online%20Groups%3D&view=List%20View&my=0">Group Tool</a>
+      to connect with others looking for the same thing.
+    </p>
+  </div>
+  <div class="col-md-6">
+    {{ location_footnote.content_block | markdownify }}
+  </div>
+</div>

@@ -35,21 +35,19 @@ describe('Tests the /live/stream page video player', function () {
   });
 
   it('Checks player is Bitmovin player or fallback Youtube player', function () {
-    cy.route('manifest.m3u8').as('bitmovinManifest');
-      cy.on('uncaught:exception', (err, runnable) => {
-          return false
-      })
-
-    cy.visit('/live/stream/');
+  //  cy.route('manifest.m3u8').as('bitmovinManifest');
+    const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus or undefined.*/];
+    cy.ignoreMatchingErrors(errorsToIgnore);
+       cy.visit('/live/stream/');
     hideRollCall();
 
     if (latestMessage.bitmovinURL.hasValue) {
       cy.get('#VideoManager').as('bitmovinPlayer').should('be.visible');
       cy.get('#js-media-video').as('youtubePlayer').should('not.exist');
 
-      cy.wait('@bitmovinManifest', { timeout: 60000 }).then((manifest) => {
-        expect(manifest.url).to.eq(latestMessage.bitmovinURL.text);
-      });
+  //    cy.wait('@bitmovinManifest', { timeout: 60000 }).then((manifest) => {
+ //       expect(manifest.url).to.eq(latestMessage.bitmovinURL.text);
+   //   });
     } else {
       cy.get('#js-media-video').as('youtubePlayer').should('be.visible');
       cy.get('#VideoManager').as('bitmovinPlayer').should('not.exist');
@@ -60,8 +58,9 @@ describe('Tests the /live/stream page video player', function () {
       }
     }
   });
-
-  it('Check Bitmovin player Autoplays muted with subtitles', function () {
+  
+ // Skip test until live stream is returned back to original functionality 
+  it.skip('Check Bitmovin player Autoplays muted with subtitles', function () {
     const requestFilter = new RequestFilter(amplitude.isVideoStarted);
 
     cy.route({
@@ -72,10 +71,8 @@ describe('Tests the /live/stream page video player', function () {
       }
     });
 
-    cy.on('uncaught:exception', (err, runnable) => {
-        return false
-    })
-
+    const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus or undefined.*/];
+    cy.ignoreMatchingErrors(errorsToIgnore);  
     cy.visit('/live/stream/');
     hideRollCall();
 
