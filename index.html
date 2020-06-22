@@ -1,5 +1,6 @@
 ---
 layout: default
+snail_trail: disabled
 monetate_page_type: index-main
 meta:
   title: Crossroads
@@ -107,7 +108,7 @@ notification:
               <div>
                 <div class="border-top border-dashed push-half-bottom"></div>
                 <crds-media-object
-                url="https://www.youtube.com/watch?v=tZHqrFpVwEc"
+                url="/media/videos/what-matters-to-you"
                 image-src="//crds-media.imgix.net/1OuvQhRP2fQHaV7n77YjQP/fb4bee7dc72f20f2bd13a06054384bc4/Screen_Shot_2020-06-18_at_11.39.17_AM__1_.png?h=250"
                 type="video"
                 title="What Matters To You?"
@@ -133,7 +134,6 @@ notification:
     </div>
     <div class=" push-bottom">
       <div class="col-sm-8">
-        Sending Love (Monetate)
       </div>
       <div class="col-sm-4">
         {% include home/_latest-news.html %}
@@ -153,8 +153,8 @@ notification:
     </div>
     <div class="col-sm-4">
       {% include home/_current-series.html %}
-      <div class="text-gray-dark">
-        Many Ways to watch (Monetate)
+      <div>
+
       </div>
     </div>
   </div>
@@ -165,7 +165,7 @@ notification:
 
 {% comment %}Gear Up for Your Adventure{% endcomment %}
 <section class="bg-orange">
-  <div class="bg-topo">
+  <div class="bg-topo-50">
     <div class="container soft-ends">
       <div class="text-center push-bottom">
         <div class="push-bottom text-blue mobile-push-half-sides">
@@ -218,6 +218,7 @@ notification:
       <a href="{{ article.url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
+          <div class="beige-overlay"></div>
           <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
             sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
         </div>
@@ -240,6 +241,7 @@ notification:
           {% assign category = article.category | get_doc %}
           <div class="card carousel-cell card-2x">
             <a class="relative" href="{{ article.url }}">
+              <div class="beige-overlay"></div>
               {% include media/_media-label.html source=article %}
               <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
                 sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
