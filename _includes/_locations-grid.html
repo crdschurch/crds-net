@@ -4,13 +4,8 @@
   data-automation-id="locations-carousel"
 >
   <div id="section-locations" class="feature-cards card-deck--expanded-layout">
-    {% assign locations_sorted_names = site.locations | sort: 'name' | group_by:
-    'name' %} {% for name_group in locations_sorted_names %} {% assign
-    locations_sorted_slugs = name_group.items | sort: 'slug' %} {% for location
-    in locations_sorted_slugs %} {% include _location-card.html %} {% endfor %}
-    {% endfor %}
-    <!-- Anywhere card -->
-    <div class="card" data-location="Anywhere">
+     <!-- Anywhere card -->
+     <div class="card" data-location="Anywhere">
       <a href="/live" class="block">
         <img
           alt="Crossroads Anywhere"
@@ -25,6 +20,16 @@
         </h4>
         <div class="card-text">
           <p>Experience Crossroads anywhere in the world.</p>
+          <div class="location-leader soft-half-sides soft-quarter-ends bg-tan-light text-gray-dark push-bottom">
+            <div class="d-flex push-quarter-sides align-items-center" style="flex-wrap: wrap;">
+              <div class="push-quarter-ends push-half-right" style="flex: 1 0;">
+                <strong>Nameless Joe</strong><br>
+                <span>Community Pastor</span>
+              </div>
+              <img class="img-circle img-size-4 push-quarter-ends" style="width: 64px;"
+                src="{{ location.community_pastor_image.url }}" sizes="64px 64px" />
+            </div>
+          </div>
         </div>
         <crds-button
           type="primary"
@@ -35,6 +40,11 @@
         <crds-site-select card-site-id="15"></crds-site-select>
       </div>
     </div>
+    {% assign locations_sorted_names = site.locations | sort: 'name' | group_by:
+    'name' %} {% for name_group in locations_sorted_names %} {% assign
+    locations_sorted_slugs = name_group.items | sort: 'slug' %} {% for location
+    in locations_sorted_slugs %} {% include _location-card.html %} {% endfor %}
+    {% endfor %}
   </div>
 </div>
 
