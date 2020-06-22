@@ -42,7 +42,7 @@ collections:
   locations:
     output: true
     permalink: /:slug
-  trips: 
+  trips:
     output: true
     permalink: /reachout/go/:country_slug/:slug
   series:
@@ -170,5 +170,5 @@ image_sizes:
   one_fourth: "(min-width: 992px) 25vw, (min-width: 0px) 100vw"
   three_fourths: "(min-width: 992px) 75vw, (min-width: 0px) 100vw"
 
-typekit_url: https://use.typekit.net/ccb3vpa.css
+typekit_url: https://use.typekit.net/gir0nnu.css
 typekit_scss: _assets/stylesheets/_fonts.scss

@@ -7,7 +7,7 @@ $(document).ready(function(event) {
       var scrollTo = $(target).offset().top;
       var offset = parseInt($(this).data('smooth-scroll-offset'));
       if (!isNaN(offset) && offset > 0) { scrollTo -= offset; }
-      $('html, body').animate({ scrollTop: scrollTo }, scrollTo / 2);
+      $('html, body').animate({ scrollTop: scrollTo }, scrollTo / 4);
     }
     return true;
   });
