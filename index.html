@@ -26,12 +26,15 @@ paginate:
     limit: 1
     sort: starts_at desc
   messages:
-    per: 1
+    per: 3
     limit: 1
     sort: published_at desc
   home_collection:
     collections:
       - articles
+      - videos
+      - messages
+      - episodes
     per: 10
     limit: 1
     sort: published_at desc
@@ -211,7 +214,7 @@ notification:
     </div>
     <div class="col-sm-8">
       {% assign most_recent = page.home_collection.docs | sort: "published_at" | reverse | first %} 
-      <a href="{{ article.url }}" class="overlay-card">
+      <a href="{{ most_recent.url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
           <div class="beige-overlay"></div>
@@ -230,23 +233,38 @@ notification:
         <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
 
           {% assign recent = page.home_collection.docs | slice: 1, 2 %}
-          {% for article in recent %}
+          {% for item in recent %}
 
-          {% assign author = article.author | get_doc %}
-          {% assign category = article.category | get_doc %}
+          {% assign author = item.author | get_doc %}
+          {% assign category = item.category | get_doc %}
           <div class="card carousel-cell card-2x">
-            <a class="relative" href="{{ article.url }}">
+            <a class="relative" href="{{ item.url }}">
+              {% if item.content_type == "article" or "video" %}
               <div class="beige-overlay"></div>
-              {% include media/_media-label.html source=article %}
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+              {% endif %}
+          
+              {% assign image = item.image.url %}
+          
+              {% if item.content_type == 'episode' %}
+                {% assign image =item.podcast.image.url %}
+              {% endif %}
+              {% if image == blank %}
+                {% assign image = item.bg_image.url %}
+              {% endif %}
+              {% assign recommended_collection=site.messages %}
+              {% include _video-player-card.html %}
+              {% if image %}
+                <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
+              {% else %}
+                <img src="{{ site.default_image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
+              {% endif %}
             </a>
 
             <div class="card-block hard soft-quarter-top">
               <a class="text-orange font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{
                 category.title }}</a>
               <h3 class="component-header flush">
-                <a href="{{ article.url }}">{{ article.title }}</a>
+                <a href="{{ item.url }}">{{ item.title }}</a>
               </h3>
               <p class="card-text soft-quarter-top">
                 <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>
