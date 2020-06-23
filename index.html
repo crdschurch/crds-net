@@ -26,15 +26,17 @@ paginate:
     limit: 1
     sort: starts_at desc
   messages:
-    per: 1
+    per: 3
     limit: 1
     sort: published_at desc
   home_collection:
     collections:
       - articles
+      - videos
+      - messages
+      - episodes
     per: 10
     limit: 1
-    offset: 2
     sort: published_at desc
   episodes:
     per: 3
@@ -45,7 +47,7 @@ paginate:
     offset: 1
     limit: 1
 notification:
-  message: "Your adventure starts here. <a href='/30daytrial'>Start your 30 day trial!</a>"
+  message: "Your adventure starts here. <a href='/30-day-trial'>Start your 30 day trial!</a>"
   displayTo: 'unauthenticated'
 ---
 
@@ -79,10 +81,7 @@ notification:
       <div class="col-sm-4 soft-ends">
         <div>
           <div class="push-half-bottom">
-            <p class="font-family-base-bold font-size-smaller text-orange text-uppercase">
-              Our Best Content
-            </p>
-            <h3 class="font-family-serif font-size-small text-uppercase text-white flush">Articles, Podcasts, and More</h3>
+            <h3 class="font-family-serif font-size-small text-uppercase text-white flush">Our Best Content</h3>
           </div>
           <div>
             <div>
@@ -142,6 +141,7 @@ notification:
   </div>
 </section>
 
+
 {% comment %}Get Equipped: Watch the Latest Teaching{% endcomment %}
 <section class="bg-tan-light soft-bottom">
   <div class="container soft-ends hard-sides">
@@ -184,18 +184,18 @@ notification:
         </div>
         <div class="col-sm-4 push-bottom">
           <crds-portrait-card-default
-          href="/music"
-          lead="Crossroads Music"
-          title="Every Good Adventure Needs a Playlist"
-          image-src="//crds-media.imgix.net/7suAPpGUjibqsKbvuXyvzz/bbe27b99193f6184cef69bdb01daa83d/crossroads-music-zoom.jpg?format=auto"
-          />
-        </div>
-        <div class="col-sm-4 push-bottom">
-          <crds-portrait-card-default
           href="https://www.facebook.com/crdschurch/"
           lead="Facebook Live Worship"
           title="Kick-start Your Morning at 8:30 am"
           image-src="//crds-media.imgix.net/1zuWtKTzfHUfugdYyoi2ZQ/ff03e2dc6215d565dd6fc678194a8bb4/daily-facebook-worship.jpg?format=auto"
+          />
+        </div>
+        <div class="col-sm-4 push-bottom">
+          <crds-portrait-card-default
+          href="/music"
+          lead="Crossroads Music"
+          title="Every Good Adventure Needs a Playlist"
+          image-src="//crds-media.imgix.net/7suAPpGUjibqsKbvuXyvzz/bbe27b99193f6184cef69bdb01daa83d/crossroads-music-zoom.jpg?format=auto"
           />
         </div>
       </div>
@@ -213,43 +213,58 @@ notification:
       <p class="text-blue font-family-serif font-size-large">Unfiltered & authentic takes on life</p>
     </div>
     <div class="col-sm-8">
-      {% assign below_the_fold = page.home_collection.docs | slice: 4 %}
-      {% for article in below_the_fold %}
-      <a href="{{ article.url }}" class="overlay-card">
+      {% assign most_recent = page.home_collection.docs | sort: "published_at" | reverse | first %} 
+      <a href="{{ most_recent.url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
-          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+          <div class="beige-overlay"></div>
+          <img src="{{ most_recent.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
             sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
         </div>
         <div class="overlay-card-content">
-          <p class="overlay-card-category">{{ article.category.title }}</p>
-          <h2 class="overlay-card-title">{{ article.title }}</h2>
-          <p class="overlay-card-author">{{ article.author.full_name }}</p>
-          {% include media/_media-label.html source=article %}
+          <p class="overlay-card-category">{{ most_recent.category.title }}</p>
+          <h2 class="overlay-card-title">{{ most_recent.title }}</h2>
+          <p class="overlay-card-author">{{ most_recent.author.full_name }}</p>
+          {% include media/_media-label.html source=most_recent %}
         </div>
       </a>
-      {% endfor %}
 
       <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
         <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
 
-          {% assign above_the_fold = page.home_collection.docs | slice: 3, 2 %}
-          {% for article in above_the_fold %}
+          {% assign recent = page.home_collection.docs | slice: 1, 2 %}
+          {% for item in recent %}
 
-          {% assign author = article.author | get_doc %}
-          {% assign category = article.category | get_doc %}
+          {% assign author = item.author | get_doc %}
+          {% assign category = item.category | get_doc %}
           <div class="card carousel-cell card-2x">
-            <a class="relative" href="{{ article.url }}">
-              {% include media/_media-label.html source=article %}
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+            <a class="relative" href="{{ item.url }}">
+              {% if item.content_type == "article" or "video" %}
+              <div class="beige-overlay"></div>
+              {% endif %}
+          
+              {% assign image = item.image.url %}
+          
+              {% if item.content_type == 'episode' %}
+                {% assign image =item.podcast.image.url %}
+              {% endif %}
+              {% if image == blank %}
+                {% assign image = item.bg_image.url %}
+              {% endif %}
+              {% assign recommended_collection=site.messages %}
+              {% include _video-player-card.html %}
+              {% if image %}
+                <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
+              {% else %}
+                <img src="{{ site.default_image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
+              {% endif %}
             </a>
 
             <div class="card-block hard soft-quarter-top">
               <a class="text-orange font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{
                 category.title }}</a>
               <h3 class="component-header flush">
-                <a href="{{ article.url }}">{{ article.title }}</a>
+                <a href="{{ item.url }}">{{ item.title }}</a>
               </h3>
               <p class="card-text soft-quarter-top">
                 <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>
@@ -289,7 +304,7 @@ notification:
       <p class="font-family-serif text-blue push font-size-base">Take the 30 day challenge</p>
     </div>
     <div class="push-bottom soft-bottom row">
-      <crds-button href="/30daytrial" color="blue" size="lg" text="Sign up now"></crds-button>
+      <crds-button href="/30-day-trial" color="blue" size="lg" text="Sign up now"></crds-button>
     </div>
   </div>
 </section>
