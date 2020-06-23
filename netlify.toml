@@ -65,7 +65,7 @@
 [context.release.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
   CRDS_MAP_DOMAIN = "connect-int.crossroads.net"
-  CRDS_ANGULAR_ENDPOINT = "release--crds-angular.netlify.app"
+  CRDS_ANGULAR_ENDPOINT = "crds-angular-demo.netlify.app"
   CRDS_OKTA_SIGNIN_ENDPOINT = "release.signin.crossroads.net"
   CRDS_SERVE_ENDPOINT = "release.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "profile-int.crossroads.net"

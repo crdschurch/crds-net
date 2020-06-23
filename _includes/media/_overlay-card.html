@@ -32,6 +32,9 @@
   {% endif %}
   {% include media/_video-player-card.html %}
   <div class="overlay-card-image">
+    {% if item.content_type == "article" or "video" %}
+    <div class="beige-overlay"></div>
+    {% endif %} 
     <img src="{% if image %}{{ image | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
       sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}"
       alt="{{ image.title }}" data-optimize-img>
