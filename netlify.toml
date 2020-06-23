@@ -19,6 +19,9 @@
   CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
   CRDS_COMPONENTS_ROOT_URL="https://int.crossroads.net"
+  CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
+  CRDS_GROUP_LEADER_DOMAIN = "group-leader-int.crossroads.net"
+  CRDS_GROUPS_ENDPOINT = "groups-int.crossroads.net"
 
 [context.deploy-preview.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
@@ -33,6 +36,9 @@
   CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
   CRDS_COMPONENTS_ROOT_URL="https://int.crossroads.net"
+  CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
+  CRDS_GROUP_LEADER_DOMAIN = "group-leader-int.crossroads.net"
+  CRDS_GROUPS_ENDPOINT = "groups-int.crossroads.net"
 
 [context.development.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
@@ -47,6 +53,9 @@
   CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
   CRDS_COMPONENTS_ROOT_URL="https://int.crossroads.net"
+  CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
+  CRDS_GROUP_LEADER_DOMAIN = "group-leader-int.crossroads.net"  
+  CRDS_GROUPS_ENDPOINT = "groups-int.crossroads.net"
 
 [context.runway.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
@@ -61,11 +70,15 @@
   CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
   CRDS_COMPONENTS_ROOT_URL="https://runway.crossroads.net"
+  CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
+  CRDS_GROUP_LEADER_DOMAIN = "group-leader-int.crossroads.net"
+  CRDS_GROUPS_ENDPOINT = "groups-int.crossroads.net"
+
 
 [context.release.environment]
-  CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
-  CRDS_MAP_DOMAIN = "connect-int.crossroads.net"
-  CRDS_ANGULAR_ENDPOINT = "release--crds-angular.netlify.app"
+  CRDS_PEOPLE_DOMAIN = "people-demo.crossroads.net"
+  CRDS_MAP_DOMAIN = "connect-demo.crossroads.net"
+  CRDS_ANGULAR_ENDPOINT = "crds-angular-demo.netlify.app"
   CRDS_OKTA_SIGNIN_ENDPOINT = "release.signin.crossroads.net"
   CRDS_SERVE_ENDPOINT = "release.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "profile-int.crossroads.net"
@@ -75,6 +88,9 @@
   CRDS_MEDIA_ENDPOINT = "crds-media-demo.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-demo.crossroads.net'
   CRDS_COMPONENTS_ROOT_URL="https://demo.crossroads.net"
+  CRDS_SEARCH_ENDPOINT = "crds-search-demo.crossroads.net"
+  CRDS_GROUP_LEADER_DOMAIN = "group-leader-demo.crossroads.net"
+  CRDS_GROUPS_ENDPOINT = "groups-demo.crossroads.net"
 
 [context.master.environment]
   CRDS_PEOPLE_DOMAIN = "people.crossroads.net"
@@ -89,6 +105,9 @@
   CRDS_MEDIA_ENDPOINT = "crds-media.crossroads.net"
   CRDS_GIVING_HISTORY = 'https://giving-history.crossroads.net'
   CRDS_COMPONENTS_ROOT_URL="https://www.crossroads.net"
+  CRDS_SEARCH_ENDPOINT = "crds-search.crossroads.net"
+  CRDS_GROUP_LEADER_DOMAIN = "group-leader.crossroads.net"
+  CRDS_GROUPS_ENDPOINT = "groups.crossroads.net"
 
 [context.rebrand.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
@@ -104,3 +123,6 @@
   CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
   CRDS_DATA_ENDPOINT = "crds-data.crossroads.net"
+  CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
+  CRDS_GROUP_LEADER_DOMAIN = "group-leader-int.crossroads.net"
+  CRDS_GROUPS_ENDPOINT = "groups-int.crossroads.net"
