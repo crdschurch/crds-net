@@ -1,6 +1,6 @@
 <div class="push-bottom">
   <hr class="flush-top push-half-bottom" />
-  <h2 class="text-uppercase font-family-serif font-size-base font-size-small text-gray-light">
+  <h2 class="text-uppercase font-family-serif font-size-base font-size-small text-gray-light flush-top">
     Current Teaching Series
   </h2>
   {% assign home_series = page.series.docs | slice: 0 %} {% for series in
@@ -10,7 +10,7 @@
       <h5 class="component-header flush-ends">
         <a href="{{ series.url }}" data-automation-id="series-title">{{ series.title }}</a>
       </h5>
-      <div class="soft-quarter-ends font-size-smaller flush-bottom" data-automation-id="series-description">
+      <div class="soft-quarter-ends font-size-smaller flush-bottom text-gray-dark" data-automation-id="series-description">
         {{ series.description | markdownify | strip_html | truncatewords: 15 }}
       </div>
       <crds-button href="{{ series.url }}" color="orange" text="Watch the current teaching series" />
