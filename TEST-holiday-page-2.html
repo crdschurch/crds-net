@@ -1,0 +1,328 @@
+---
+id: 4b2EU3qIUVg4iyl23E5GSx
+contentful_id: 4b2EU3qIUVg4iyl23E5GSx
+content_type: page
+title: Test Builder Page
+permalink: /test/holiday-page-2/
+layout: container-fluid
+---
+
+<script src="//d1tmclqz61gqwd.cloudfront.net/javascripts/crds-jumbotron-video-v0.2.1.min.js" type="text/javascript">
+</script>
+<!-- Easter Video Player -->
+<div id="easter-video" class="container hide push-ends">
+  <div class="row">
+    {% assign video = site.messages | sort: "published_at" | reverse | first %}
+    {% if video.bitmovin_url %}
+    {% include media/_bitmovin-player.html %}
+    {% else %}
+    {% assign video_id = video.source_url | youtube_id %}
+    {% include media/_youtube-embed.html %}
+    {% endif %}
+  </div>
+</div>
+<!-- jumbotron -->
+<section>
+  <div class="inline-video jumbotron jumbotron-xl flush-bottom"
+    style="background-image: url('//crds-media.imgix.net/1PVWmTeTZysr76qP9m1z5k/f66bc012e6efa17e504e12360e21f565/easter-2020-series-lg.jpg?{{ site.imgix_params.placeholder }}');"
+    data-optimize-bg-img>
+    <div class="bg-overlay"></div>
+    <div class="container-fluid">
+      <div class="row soft-ends">
+        <div class="inline-video-player"></div>
+        <div class="jumbotron-content">
+          <div class="col-xs-12 col-sm-offset-2 col-sm-8 text-center">
+            <div class="row soft-top">
+              <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 text-center">
+                <img
+                  src="//crds-media.imgix.net/5tofSAnHMIsP6ZrxB9RKQE/7025ac199b4b841e4c815b48cea10c45/easter-2020-series-logo.png?w=800"
+                  data-optimize-img />
+              </div>
+              <div class="col-xs-12 col-sm-12 text-center push-ends soft-top">
+                <p class="flush-top font-family-base lead text-white">
+                  Experience the Easter story from the place it all happened, Jerusalem.<br>
+                  A story filled with adventure, hope, and vibrant life for all.<br>
+                  <strong>Watch here Saturday, April 11 & Sunday, April 12</strong>
+                </p>
+              </div>
+              <div class="col-xs-12 col-sm-12 text-center">
+                <a href="#" data-role="easterService" id="easter-button"
+                  class="remove hide btn btn-lg btn-white btn-outline">Watch the service</a>
+                <a href="#" data-role="easterTrailer" class="inline-video-trigger btn btn-lg btn-white btn-outline"
+                  data-video-id="T2jUpmnzk38">Watch the trailer</a>
+                <br><br>
+                <a href="https://www.facebook.com/events/215801642969197/" class="btn btn-white btn-outline"
+                  target="_blank">Get reminded on Facebook</a>
+                <a target="_blank" class="btn btn-white btn-outline"
+                  href="https://calendar.google.com/event?action=TEMPLATE&amp;tmeid=NTlsZzJubWIwZzlqdW84Z202cmN2bzAyc2wganVzdGluLnBpY2hpY2hlcm9AY3Jvc3Nyb2Fkcy5uZXQ&amp;tmsrc=justin.pichichero%40crossroads.net">
+                  Add to Calendar: Google
+                </a>
+                <a target="_blank" class="btn btn-white btn-outline"
+                  href="https://assets.ctfassets.net/y3a9myzsdjan/1dW3R4mRgf08FCGki2938V/c32640a9e868e7b886e1247207e1df3a/Easter_with_Crossroads.ics">
+                  Add to Calendar: Apple
+                </a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- who we are -->
+<section class="bg-gray">
+  <div class="container">
+    <div class="row soft-ends push-ends" id="">
+      <div class="col-sm-6 col-sm-push-6">
+        <img class=""
+          src="//crds-media.imgix.net/31ntzfMxYtjJK38SXwUDLc/75e41773f2b8b49417112e2f69836746/crossroads-who-are-we1.jpg?auto=format,compress&w=1200"
+          alt="" data-optimize-img />
+      </div>
+      <div class="col-sm-6 col-sm-pull-6 soft-top push-top">
+        <h2 class="section-header flush-ends soft-half-ends">WHO ARE YOU GUYS?</h2>
+        <p class="font-size-base">
+          Back in ‘95, eleven people got together to start a church for their friends who didn’t like church. Today,
+          Crossroads is a movement of people meeting all over the country in person or digitally —and it’s just getting
+          started. No memberships or awkward hand-holding, just unfiltered talk and biblical truth that’s a kick in the
+          assumptions.
+        </p>
+        <p class="font-size-base">
+          <strong>How do I learn more?</strong><br>
+          Great question.<br>
+          <a href="/new-around-here/">This will get you started</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- get involved -->
+<section>
+  <div class="container">
+    <div class="row soft-ends push-ends" id="">
+
+
+      <div class="col-sm-12 text-center">
+        <h2 class="flush-top section-header soft-top text-center">
+          CONNECT
+        </h2>
+      </div>
+
+
+      <div class="col-sm-4 col-xs-12 push-bottom">
+        <a href="/live/">
+          <img class=""
+            src="//crds-media.imgix.net/zyE162O1ZwltjaNc98ko2/3c8cd92a4238994a85f6a7a598cc4ecb/brian-tome-img.jpg?auto=format,compress&w=1200"
+            data-optimize-img>
+        </a>
+        <div>
+          <h4 class="card-title font-family-condensed-extra font-size-h4 flush-bottom text-uppercase"
+            style="line-height: .9em;">
+            <a href="/live/">
+              WATCH SERVICE NEXT WEEK
+            </a>
+          </h4>
+          <div class="card-text push-half-top">
+            <p class="font-size-small">
+              It’s the final week of our Jerusalem travels—the epilogue of the Easter story and what that means for us
+              in 2020. <a href="/live">Watch at crossroads.net/live</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4 col-xs-12 push-bottom">
+        <a href="/app/">
+          <img class=""
+            src="//crds-media.imgix.net/7zATdaIpUvdx43aQalg4YY/72ca61d36b14a5abe6ded357ab83e925/resources-crossroads-app.jpg?auto=format,compress&w=1200"
+            data-optimize-img>
+        </a>
+        <div>
+          <h4 class="card-title font-family-condensed-extra font-size-h4 flush-bottom text-uppercase"
+            style="line-height: .9em;">
+            <a href="/app/">
+              Get the App
+            </a>
+          </h4>
+          <div class="card-text push-half-top">
+            <p class="font-size-small">
+              Think screen time with a purpose. <a href="/app">The Crossroads App</a> is a tool to help you explore or
+              deepen your understanding and relationship with God.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4 col-xs-12 push-bottom">
+        <a href="https://www.crdsmusic.com">
+          <img class=""
+            src="//crds-media.imgix.net/tTKLkZM4tfKy4daqJ6ZKy/c81e303ef637e8449ef117d1cba2628b/resources-music-worship.jpg?auto=format,compress&w=1200"
+            data-optimize-img>
+        </a>
+        <div>
+          <h4 class="card-title font-family-condensed-extra font-size-h4 flush-bottom text-uppercase"
+            style="line-height: .9em;">
+            <a href="https://www.crdsmusic.com">
+              Crossroads Music
+            </a>
+          </h4>
+          <div class="card-text push-half-top">
+            <p class="font-size-small">
+              <a href="https://www.crdsmusic.com">Listen to the songs you heard</a> (and more) anywhere you can find
+              music. Jam out the other 167 hours a week that you’re not watching service.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4 col-xs-12 push-bottom">
+        <a href="http://crossroads.net/studentministry" class="block">
+          <img alt="Student Ministry"
+            src="//crds-media.imgix.net/7u9xTfrcIo5VvleMnU681C/e70decc935639bfdf448159bde388f02/S_M_Easter_Experience_Visual_.png?auto=format,compress&w=1200"
+            data-optimize-img />
+        </a>
+        <div>
+          <h4 class="card-title font-family-condensed-extra font-size-h4 flush-bottom text-uppercase"
+            style="line-height: .9em;">
+            <a href="http://crossroads.net/studentministry">
+              Seriously. It happened so long ago.
+            </a>
+          </h4>
+          <div class="card-text push-half-top">
+            <p class="font-size-small">Good question. We’ve got answers. Students in 6-12th grade can check out the <a
+                href="http://crossroads.net/studentministry">Student Ministry Easter experience here</a>.</p>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-sm-4 col-xs-12 push-bottom">
+        <a href="http://crossroads.net/kidsclub" class="block">
+          <img alt="Kids Club Easter"
+            src="//crds-media.imgix.net/2QulzfM9D5MRtthPHakiKL/712b45bf37500fc5a79e97ed331bbf13/Website_Easter2020_649x365.jpg?auto=format,compress&w=1200"
+            data-optimize-img />
+        </a>
+        <div>
+          <h4 class="card-title font-family-condensed-extra font-size-h4 flush-bottom text-uppercase"
+            style="line-height: .9em;">
+            <a href="http://crossroads.net/kidsclub">
+              Have Kids?
+            </a>
+          </h4>
+          <div class="card-text push-half-top">
+            <p class="font-size-small">Find an Easter experience designed for families over at <a
+                href="http://crossroads.net/kidsclub">Kids' Club</a>.</p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- social media -->
+<section class="bg-gray flush-bottom">
+  <div class="container soft-ends">
+    <div class="row soft" id="national">
+      <div class="col-sm-12 text-center soft">
+        <h2 class="section-header flush-ends soft-half-bottom">Follow Crossroads Church</h2>
+        <a class="btn btn-outline btn-secondary btn-sm" title="Crossroads Church on Facebook"
+          href="https://www.facebook.com/crdschurch">
+          <svg class="icon icon-1" viewBox="0 0 256 256">
+            <use xlink:href="/assets/svgs/icons.svg#facebook"></use>
+          </svg>
+          Facebook
+        </a>
+        <a class="btn btn-outline btn-secondary btn-sm" title="Crossroads Church on Instagram"
+          href="https://www.instagram.com/crdschurch/">
+          <svg class="icon icon-1" viewBox="0 0 256 256">
+            <use xlink:href="/assets/svgs/icons.svg#instagram"></use>
+          </svg>
+          Instagram
+        </a>
+        <a class="btn btn-outline btn-secondary btn-sm" title="Crossroads Church on Twitter"
+          href="https://twitter.com/crdschurch">
+          <svg class="icon icon-1" viewBox="0 0 256 256">
+            <use xlink:href="/assets/svgs/icons.svg#twitter"></use>
+          </svg>
+          Twitter
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- modal -->
+<div aria-labelledby="Subscribe email form" class="modal fade" id="subscribeModalFormColumbus" role="dialog"
+  tabindex="-1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-label="Close" class="close pull-right" data-dismiss="modal" type="button"><span
+            aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body text-left hard-bottom">
+        <h3 class="font-family-condensed-extra font-size-h2 text-uppercase flush-top">Get reminded about Easter at
+          Crossroads</h3>
+        <div class="form" data-role="hsform">
+          <!--[if lte IE 8]>
+          <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+          <![endif]-->
+          <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <em>Crossroads needs the contact information you provide to contact you. We will not use your email for any
+          other communication and you can unsubscribe at any time.</em>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  var easterStart = new Date("2020-04-11T00:01-04:00");
+  var easterEnd = new Date("2020-04-18T23:59-04:00");
+  var evalTime = setInterval(isEasterLive, 4000);
+
+  isEasterLive();
+
+  function isEasterLive() {
+    var currentTime = new Date();
+    console.log('checking for Easter time');
+    if (easterEnd < new Date()) {
+      console.log('Easter has ended!');
+      clearInterval(evalTime);
+    } else if (currentTime >= easterStart && currentTime <= easterEnd) {
+      console.log('showing Easter video');
+      document.getElementById('easter-button').classList.remove('hide');
+      clearInterval(evalTime);
+    }
+  }
+
+</script>
+<script>
+  $(".remove").click(function () {
+    $("#easter-video").removeClass("hide");
+  });
+
+</script>
+
+<script>
+  $('[data-role="easterService"]').click(function (e) {
+    console.log(e);
+    analytics.track("Watch Easter Service");
+  });
+
+</script>
+<script>
+  $('[data-role="easterTrailer"]').click(function (e) {
+    console.log(e);
+    analytics.track("Watch Easter Trailer");
+  });
+
+</script>

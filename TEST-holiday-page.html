@@ -1,0 +1,392 @@
+---
+id: 4b2EU3qIUVg4iyl23E5GSx
+contentful_id: 4b2EU3qIUVg4iyl23E5GSx
+content_type: page
+title: Test Builder Page
+permalink: /test/holiday-page/
+layout: container-fluid
+---
+
+<script src="//d1tmclqz61gqwd.cloudfront.net/javascripts/crds-jumbotron-video-v0.2.1.min.js" type="text/javascript">
+</script>
+
+<!-- Easter Video Player -->
+<div id="easter-video" class="container hide push-ends">
+  <div class="row">
+    {% assign video = site.messages | sort: "published_at" | reverse | first %}
+    {% if video.bitmovin_url %}
+    {% include media/_bitmovin-player.html %}
+    {% else %}
+    {% assign video_id = video.source_url | youtube_id %}
+    {% include media/_youtube-embed.html %}
+    {% endif %}
+  </div>
+</div>
+
+<div class="jumbotron jumbotron-xl"
+  style="margin-bottom: 0; position: relative; background-color: rgba(0, 0, 0, 0); background-image: url('https://crds-media.imgix.net/y3a9myzsdjan/1PVWmTeTZysr76qP9m1z5k/f66bc012e6efa17e504e12360e21f565/easter-2020-series-lg.jpg?w=16&h=9');"
+  data-optimize-bg-img>
+  <div class="bg-overlay"></div>
+  <div class="container-fluid">
+    <div class="jumbotron-content">
+      <div class="row">
+        <div class="col soft-ends">&nbsp;</div>
+        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 text-center soft-top">
+          <img
+            src="https://crds-media.imgix.net/y3a9myzsdjan/5tofSAnHMIsP6ZrxB9RKQE/7025ac199b4b841e4c815b48cea10c45/easter-2020-series-logo.png?w=800"
+            data-optimize-img>
+        </div>
+        <div class="col-xs-12 col-sm-12 text-center">
+          <h3 class="flush-bottom section-header text-white">April 11-12</h3>
+        </div>
+        <div class="col-xs-12 col-sm-12 text-center">
+          <br>
+          <p class="text-center">
+            Watch on this page
+            <br>
+            or
+            <br>
+            <a class="btn btn-white btn-outline" href="javascript:scroll('easter-locations');">Stream with your site</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="push-top soft-ends">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-7">
+        <h3 class="font-family-condensed-extra text-uppercase">Death died. Find life.</h3>
+        <p class="lead">
+          Easter means you NEVER have to fear death. Ever. Jesus has done what nobody else has—he’s beaten death itself,
+          so that you and I can have life. A vibrant life, filled with adventure.
+          <br>
+          Shot on location, experience the Easter story from the place it all happened: Jerusalem.
+        </p>
+      </div>
+      <div class="col-sm-5">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe width="320" height="240" src="https://www.youtube.com/embed/53_-4PI1skM" frameborder="0"
+            allowfullscreen=""></iframe>
+        </div>
+      </div>
+    </div>
+    <hr>
+  </div>
+</div>
+
+<section class="container">
+  <div class="text-center push-bottom">
+    <h3 class="section-header flush-ends soft-half-ends">CONNECT</h3>
+  </div>
+  <div class="row">
+    <div class="col col-sm-6 col-xs-12">
+      <div class="card">
+        <a href="http://crossroads.net/studentministry" class="block">
+          <img alt="Student Ministry"
+            src="https://images.ctfassets.net/y3a9myzsdjan/7u9xTfrcIo5VvleMnU681C/e70decc935639bfdf448159bde388f02/S_M_Easter_Experience_Visual_.png"
+            data-optimize-img />
+        </a>
+        <div>
+          <h4 class="card-title font-family-condensed-extra font-size-h4 flush-bottom text-uppercase">Why should
+            something that happened so long ago matter to students now?</h4>
+          <!-- <h5 class="card-subtitle">Card subtitle</h5> -->
+          <p class="">Good question. We’ve got answers. Students in 6-12th grade can check out the Student
+            Ministry Easter experience on crossroads.net/studentministry.</p>
+          <a class="btn btn-primary" href="http://crossroads.net/studentministry" target="_blank">Checkout Student
+            Ministry</a>
+        </div>
+      </div>
+    </div>
+    <div class="col col-sm-6 col-xs-12">
+      <div class="card">
+        <a href="http://crossroads.net/kidsclub" class="block">
+          <img alt="Kids Club Easter"
+            src="https://images.ctfassets.net/y3a9myzsdjan/2QulzfM9D5MRtthPHakiKL/aa9dfff52c0d15fec24cf661504195a0/Website_Easter2020_980x365.jpg?h=250"
+            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+        <div>
+          <h4 class="card-title font-family-condensed-extra font-size-h4 flush-bottom text-uppercase">Have Kids?</h4>
+          <!-- <h5 class="card-subtitle">Card subtitle</h5> -->
+          <p class="">Find an Easter experience designed for families at crossroads.net/kidsclub.</p>
+          <a class="btn btn-primary" href="http://crossroads.net/kidsclub" target="_blank">Checkout Kids' Club</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+</section>
+
+<section class="container push-top" ng-non-bindable="" id="easter-locations">
+  <div class="text-center push-bottom">
+    <h3 class="section-header flush-ends soft-half-ends">Locations</h3>
+    <span class="text-center"></span>
+    <p id="locations-easter" class="inline-block"></p>
+  </div>
+  <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-filterable=""
+    data-filter-label="All Locations" data-filter-parent="#locations-easter" data-filter-reset-label="All Locations"
+    data-carousel-id="carousel-ogvpll">
+    <div id="section-groups" class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
+      <div class="card" data-filter="">
+        <a href="/live/" class="block">
+          <img alt="Anywhere"
+            src="//crds-cms-uploads.imgix.net/Uploads/anywhere-thumbnail.jpg?{{ site.imgix_params.placeholder_card }}"
+            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase"><a href="/live/">Anywhere</a></h4>
+          <div class="card-text">
+            <p>Experience Crossroads anywhere in the world.</p>
+            <p><a class="btn btn-primary" href="/live">Stream live now</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="card" data-filter="Central Ohio">
+        <a href="/columbus/" class="block">
+          <img alt="Columbus"
+            src="//crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-columbus2.jpg?{{ site.imgix_params.placeholder_card }}"
+            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase"><a href="/columbus/">Columbus</a></h4>
+          <div class="card-text">
+            Stream with the Columbus community on <a
+              href="https://www.facebook.com/crdscolumbus"><strong>Facebook</strong></a>.
+            <br>
+            SUN: 10am
+          </div>
+        </div>
+      </div>
+      <div class="card" data-filter="Southwest Ohio">
+        <a href="/dayton/" class="block">
+          <img alt="Dayton"
+            src="//crds-cms-uploads.imgix.net/Uploads/locations-dayton2.jpg?{{ site.imgix_params.placeholder_card }}"
+            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase"><a href="/dayton/">Dayton</a></h4>
+          <div class="card-text">
+            Stream with the Dayton community on <a
+              href="https://www.facebook.com/crdsdayton"><strong>Facebook</strong></a>.
+            <br>
+            SUN: 10am
+          </div>
+        </div>
+      </div>
+      <div class="card" data-filter="Southwest Ohio">
+        <a href="/eastside/" class="block">
+          <img alt="East Side"
+            src="//crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-eastgate.jpg?{{ site.imgix_params.placeholder_card }}"
+            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase"><a href="/eastside/">East Side</a></h4>
+          <div class="card-text">
+            Stream with the East Side community on <a
+              href="https://www.facebook.com/crdseastside"><strong>Facebook</strong></a>.
+            <br>
+            SAT: 5pm
+            <br>
+            SUN: 10am
+          </div>
+        </div>
+      </div>
+      <div class="card" data-filter="Northern Kentucky">
+        <a href="/florence/" class="block">
+          <img alt="Florence"
+            src="//crds-cms-uploads.imgix.net/content/images/locations-florence.jpg?{{ site.imgix_params.placeholder_card }}"
+            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase"><a href="/florence/">Florence</a></h4>
+          <div class="card-text">
+            Stream with the Florence community on <a
+              href="https://www.facebook.com/crdschurchflorence"><strong>Facebook</strong></a>.
+            <br>
+            SAT: 5pm
+            <br>
+            SUN: 10am
+          </div>
+        </div>
+      </div>
+      <div class="card" data-filter="Central Kentucky">
+        <a href="/georgetown/" class="block">
+          <img alt="Georgetown"
+            src="//crds-cms-uploads.imgix.net/Uploads/locations-georgetown.jpg?{{ site.imgix_params.placeholder_card }}"
+            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase"><a href="/georgetown/">Georgetown</a></h4>
+          <div class="card-text">
+            Stream with the Georgetown community on <a
+              href="https://www.facebook.com/crdsgeorgetown"><strong>Facebook</strong></a>.
+            <br>
+            SUN: 10am
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-filter="Central Kentucky">
+        <a href="/lexington/" class="block">
+          <img alt="Andover"
+            src="//crds-cms-uploads.imgix.net/content/images/crossroads-andover.jpg?{{ site.imgix_params.placeholder_card }}"
+            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase"><a href="/lexington/">Lexington</a></h4>
+          <div class="card-text">
+            Stream with the Lexington community on <a
+              href="https://www.facebook.com/crdslexington"><strong>Facebook</strong></a>.
+            <br>
+            SAT: 6pm
+            <br>
+            SUN: 10am
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-filter="Southwest Ohio">
+        <a href="/mason/" class="block">
+          <img alt="Mason"
+            src="//crds-cms-uploads.imgix.net/content/images/locations-mason.jpg?{{ site.imgix_params.placeholder_card }}"
+            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase"><a href="/mason/">Mason</a></h4>
+          <div class="card-text">
+            Stream with the Mason community on <a
+              href="https://www.facebook.com/crdsmason"><strong>Facebook</strong></a>.
+            <br>
+            SAT: 5pm
+            <br>
+            SUN: 10am
+          </div>
+        </div>
+      </div>
+      <div class="card" data-filter="Southwest Ohio">
+        <a href="/oakley/" class="block">
+          <img alt="Oakley"
+            src="//crds-cms-uploads.imgix.net/content/images/locations-oakley.jpg?{{ site.imgix_params.placeholder_card }}"
+            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase"><a href="/oakley/">Oakley</a></h4>
+          <div class="card-text">
+            Stream with the Oakley community on <a
+              href="https://www.facebook.com/crdsoakley"><strong>Facebook</strong></a>.
+            <br>
+            SAT: 5pm
+            <br>
+            SUN: 10am
+          </div>
+        </div>
+      </div>
+      <div class="card" data-filter="Southwest Ohio">
+        <a href="/oxford/" class="block">
+          <img alt="Oxford"
+            src="//crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-oxford2.jpg?{{ site.imgix_params.placeholder_card }}"
+            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase"><a href="/oxford/">Oxford</a></h4>
+          <div class="card-text">
+            Stream with the Oxford community on <a
+              href="https://www.facebook.com/crossroadsoxford"><strong>Facebook</strong></a>.
+            <br>
+            SUN: 10am
+          </div>
+        </div>
+      </div>
+      <div class="card" data-filter="Central Kentucky">
+        <a href="/richmond/" class="block">
+          <img alt="Richmond"
+            src="//crds-cms-uploads.imgix.net/content/images/crossroads-church-richmond-ky-camp.jpg?{{ site.imgix_params.placeholder_card }}"
+            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase"><a href="/richmond/">Richmond</a></h4>
+          <div class="card-text">
+            Stream with the Richmond community on <a
+              href="https://www.facebook.com/crdsrichmond"><strong>Facebook</strong></a>.
+            <br>
+            SAT: 6pm
+            <br>
+            SUN: 10am
+          </div>
+        </div>
+      </div>
+      <div class="card" data-filter="Southwest Ohio">
+        <a href="/uptown/" class="block">
+          <img alt="Uptown"
+            src="//crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-uptown2.jpg?{{ site.imgix_params.placeholder_card }}"
+            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase"><a href="/uptown/">Uptown</a></h4>
+          <div class="card-text">
+            Stream with the Uptown community on <a
+              href="https://www.facebook.com/crdsuptown"><strong>Facebook</strong></a>.
+            <br>
+            SUN: 10am
+          </div>
+        </div>
+      </div>
+      <div class="card" data-filter="Southwest Ohio">
+        <a href="/westside/" class="block">
+          <img alt="West Side"
+            src="//crds-cms-uploads.imgix.net/content/images/locations-westside.jpg?{{ site.imgix_params.placeholder_card }}"
+            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+        <div class="card-block">
+          <h4 class="card-title card-title--overlap text-uppercase"><a href="/westside/">West Side</a></h4>
+          <div class="card-text">
+            Stream with the West Side community on <a
+              href="https://www.facebook.com/crdschurchwestside"><strong>Facebook</strong></a>.
+            <br>
+            SAT: 5pm
+            <br>
+            SUN: 10am
+          </div>
+        </div>
+      </div>
+    </div>
+    <p></p>
+  </div>
+</section>
+
+<section></section>
+<script type="text/javascript">
+  function scroll(myID) {
+    var offset = jQuery("#" + myID).offset()
+    window.scrollTo(0, offset.top);
+  }
+  // ]]>
+
+</script>
+<!-- migrated from crds-net-shared -->
+
+
+<script>
+  var easterStart = new Date("2020-04-11T17:00-04:00");
+  var easterEnd = new Date("2020-04-18T23:59-04:00");
+  var evalTime = setInterval(isEasterLive, 4000);
+
+  isEasterLive();
+
+  function isEasterLive() {
+    var currentTime = new Date();
+    console.log('checking for Easter time');
+    if (easterEnd < new Date()) {
+      console.log('Easter has ended!');
+      clearInterval(evalTime);
+    } else if (currentTime >= easterStart && currentTime <= easterEnd) {
+      console.log('showing Easter video');
+      document.getElementById('easter-video').classList.remove('hide');
+      clearInterval(evalTime);
+    }
+  }
+
+</script>
