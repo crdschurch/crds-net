@@ -112,5 +112,10 @@ module.exports = [
   {
     name: "skeleton",
     files: ["components/skeleton"]
+  },
+  {
+    name:"video-modal-close",
+    files: ["lib/video-modal-close"]
   }
 ];
+
