@@ -8,8 +8,13 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /components/*,https://${env:CRDS_COMPONENTS_ENDPOINT}/dist/:splat,200!
 /undivided-training,https://undivided.netlify.app,301!
 /people/*,https://${env:CRDS_PEOPLE_DOMAIN}/:splat,200!
- /30daytrial,/30-day-trial,301!
- /30daytrial/sign-up,/30-day-trial/sign-up,301!
+/sevenhills,/seven-hills,301!
+/whatwebelieve,/what-we-believe,301!
+/statementoffaith,/statement-of-faith,301!
+/ourhistory,/our-history,301!
+/spiritualoutfitters,/spiritual-outfitters,301!
+/30daytrial,/30-day-trial,301!
+/30daytrial/sign-up,/30-day-trial/sign-up,301!
 /connect/?my=1,/mygroups,301!
 /connect/* my=:1,/mygroups,301!
 /connect/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
