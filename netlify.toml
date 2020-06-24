@@ -9,7 +9,7 @@
 [context.branch-deploy.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
   CRDS_MAP_DOMAIN = "connect-int.crossroads.net"
-  CRDS_OKTA_SIGNIN_ENDPOINT = "development.signin.crossroads.net"
+  CRDS_OKTA_SIGNIN_ENDPOINT = "crds-signin-int.netlify.app"
   CRDS_ANGULAR_ENDPOINT = "crds-angular-int.netlify.app"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "profile-int.crossroads.net"
@@ -26,7 +26,7 @@
 [context.deploy-preview.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
   CRDS_MAP_DOMAIN = "connect-int.crossroads.net"
-  CRDS_OKTA_SIGNIN_ENDPOINT = "development.signin.crossroads.net"
+  CRDS_OKTA_SIGNIN_ENDPOINT = "crds-signin-int.netlify.app"
   CRDS_ANGULAR_ENDPOINT = "crds-angular-int.netlify.app"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "profile-int.crossroads.net"
@@ -43,7 +43,7 @@
 [context.development.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
   CRDS_MAP_DOMAIN = "connect-int.crossroads.net"
-  CRDS_OKTA_SIGNIN_ENDPOINT = "development.signin.crossroads.net"
+  CRDS_OKTA_SIGNIN_ENDPOINT = "crds-signin-int.netlify.app"
   CRDS_ANGULAR_ENDPOINT = "crds-angular-int.netlify.app"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "profile-int.crossroads.net"
@@ -60,7 +60,7 @@
 [context.runway.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
   CRDS_MAP_DOMAIN = "connect-int.crossroads.net"
-  CRDS_OKTA_SIGNIN_ENDPOINT = "development.signin.crossroads.net"
+  CRDS_OKTA_SIGNIN_ENDPOINT = "crds-signin-int.netlify.app"
   CRDS_ANGULAR_ENDPOINT = "deploy-preview-33--crds-angular.netlify.app"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "profile-int.crossroads.net"
@@ -79,7 +79,7 @@
   CRDS_PEOPLE_DOMAIN = "people-demo.crossroads.net"
   CRDS_MAP_DOMAIN = "connect-demo.crossroads.net"
   CRDS_ANGULAR_ENDPOINT = "crds-angular-demo.netlify.app"
-  CRDS_OKTA_SIGNIN_ENDPOINT = "release.signin.crossroads.net"
+  CRDS_OKTA_SIGNIN_ENDPOINT = "crds-signin-demo.netlify.app"
   CRDS_SERVE_ENDPOINT = "release.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "profile-demo.crossroads.net"
   CRDS_EVENT_CHECKIN_ENDPOINT = "release.event-checkin.crossroads.net"
@@ -112,7 +112,7 @@
 [context.rebrand.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
   CRDS_MAP_DOMAIN = "connect-int.crossroads.net"
-  CRDS_OKTA_SIGNIN_ENDPOINT = "development--crds-signin.netlify.app"
+  CRDS_OKTA_SIGNIN_ENDPOINT = "crds-signin-int.netlify.app"
   CRDS_ANGULAR_ENDPOINT = "crds-angular-int.netlify.app"
   CRDS_SERVE_ENDPOINT = "development.serve.crossroads.net"
   CRDS_PROFILE_ENDPOINT = "development.profile.crossroads.net"
