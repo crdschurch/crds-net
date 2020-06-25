@@ -1,0 +1,40 @@
+<!-- Current Message -->
+{% assign latest_messages = page.messages.docs %}
+{% assign item = latest_messages[0] %}
+{% assign latest_teaching_series = page.series.docs | slice: 0 | first %}
+
+<div class="latest-message">
+	<hr class="flush-top push-half-bottom" />
+  <div class="latest-message-background soft-half-bottom push-bottom">
+    <h2 class="text-uppercase font-family-serif font-size-base font-size-small text-gray-light flush-top">
+			Latest Crossroads Weekend
+	  </h2>
+	    <div class="embed-container">
+				<a href="{{ item | media_url }}" data-automation-id="message-video">
+					<div class="media-video">
+						<img class="media-img full-width"
+							src="{{ item.image.url | imgix: site.imgix }}?auto=format,compress&w=750&h=422&fit=crop""
+							sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+						{% include media/_video-player-card.html autoplay=true thumbnail=true %}
+					</div>
+				</a>
+	    </div>
+		    <h2 class="latest-message-headline font-family-condensed-extra text-uppercase flush-top text-gray-dark">
+			    {{ item.title }}
+		    </h2>
+		    <h3 class="latest-message-subtitle font-size-smaller font-family-base-bold text-uppercase">
+			    Series: <a href="{{ latest_teaching_series.url }}">{{ latest_teaching_series.title }}</a>
+		    </h3>
+		    <p class="latest-message-body text-gray-dark">
+			    {{ item.description }}
+		    </p>
+		  <div class="row soft-half-left">
+			  <a href="{{ item | media_url }}" class="btn latest-message-btn btn-orange btn-block-mobile" type="button">
+			    Watch now
+			  </a>
+			  <a href="/media/series" class="second-btn latest-message-btn btn btn-blue btn-outline btn-block-mobile"type="button">
+			    View all teachings
+			  </a>
+    	</div>
+  </div>
+</div>

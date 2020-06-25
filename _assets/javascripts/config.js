@@ -30,6 +30,7 @@ module.exports = [
       "components/legacy-imgix",
       "components/images",
       "components/carousels",
+      "components/chat",
       "components/countdown",
       "components/jumbotron-video",
       "components/filters",
@@ -71,7 +72,7 @@ module.exports = [
   },
   {
     name: "live-stream",
-    deps: ["vendor/crds-rollcall-v0.1.0.min"],
+    deps: ["vendor/crds-rollcall-v1.0.1.min"],
     files: ["views/live-stream"]
   },
   {
@@ -111,5 +112,10 @@ module.exports = [
   {
     name: "skeleton",
     files: ["components/skeleton"]
+  },
+  {
+    name:"video-modal-close",
+    files: ["lib/video-modal-close"]
   }
 ];
+

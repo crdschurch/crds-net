@@ -18,8 +18,8 @@ describe('Testing the Current Series on the a locations page:', function () {
             return false
         }) 
       cy.visit(slug);
-
       cy.get('[data-automation-id="series-slug"]').as('currentSeriesButton');
+
       cy.get('@currentSeriesButton').should('be.visible').and('have.attr', 'href', currentSeries.URL.relative);
     });
   });

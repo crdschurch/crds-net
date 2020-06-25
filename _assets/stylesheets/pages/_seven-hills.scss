@@ -1,0 +1,11 @@
+.content-left {
+  @media screen and (min-width: $screen-md) {
+    padding-left: 4rem;
+  }
+}
+
+.content-right {
+  @media screen and (min-width: $screen-md) {
+  padding-right: 4rem;
+  }
+}

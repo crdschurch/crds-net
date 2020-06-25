@@ -5,21 +5,14 @@
   {% include _monetate-head.html %}
   {% include _meta-tags.html %}
 
-  <link rel="apple-touch-icon" sizes="57x57" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="//dz6ito7tas43n.cloudfront.net/images/favicon/apple-touch-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="//dz6ito7tas43n.cloudfront.net/images/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="194x194" href="//dz6ito7tas43n.cloudfront.net/images/favicon/favicon-194x194.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="//dz6ito7tas43n.cloudfront.net/images/favicon/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="//dz6ito7tas43n.cloudfront.net/images/favicon/favicon-16x16.png">
-  <link rel="manifest" href="//dz6ito7tas43n.cloudfront.net/images/favicon/manifest.json">
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#a37304">
+  <link rel="preload" href="{{site.components_endpoint}}/crds-components/crds-components.esm.js" as="script">
+  <link rel="preload" href="{{site.components_endpoint}}/crds-components.js" as="script">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="//d1tmclqz61gqwd.cloudfront.net/favicons/apple-touch-icon.png?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="//d1tmclqz61gqwd.cloudfront.net/favicons/favicon-32x32.png?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="//d1tmclqz61gqwd.cloudfront.net/favicons/favicon-16x16.png?v=2">
+  <link rel="manifest" href="//d1tmclqz61gqwd.cloudfront.net/favicons/manifest.json">
+  <link rel="mask-icon" href="//d1tmclqz61gqwd.cloudfront.net/favicons/safari-pinned-tab.svg?v=2">
 
   {% if page.distribution_channels %}
     <link rel="canonical" href="{{ page | get_canonical_host }}">
@@ -49,15 +42,8 @@
   <!-- after -->
   <script> window.prerenderReady = true; </script>
 
-  {% if site.jekyll_env == 'int' %}
-    {% assign subdomain = 'components-int' %}
-  {% elsif site.jekyll_env == 'demo' %}
-    {% assign subdomain = 'components-demo' %}
-  {% else %}
-    {% assign subdomain = 'components' %}
-  {% endif %}
-  <script type="module" onload="componentsLoaded()" src="https://{{subdomain}}.crossroads.net/dist/crds-components/crds-components.esm.js"></script>
-  <script nomodule="" onload="componentsLoaded()" src="https://{{subdomain}}.crossroads.net/dist/crds-components.js"></script>
+  <script type="module" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components/crds-components.esm.js"></script>
+  <script nomodule="" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components.js"></script>
   <script>
     function componentsLoaded() {
       var componentsReady = new Event('components-ready');

@@ -1,0 +1,16 @@
+.jumbotron-basics {
+    background-color: $cr-orange !important;
+    padding-bottom: 6rem;
+    @media screen and (min-width: $screen-md) {
+      padding-bottom: 4rem;
+    }
+    &:before {
+      background-image: url('https://crds-media.imgix.net/1KLwsN6ilL7RO0xk6JzOsX/840e8b99340ff36bff67036909c4f856/texture-topo-dark-100_2x.png');
+      background-size: cover;
+      content: " ";
+      display: block;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+    }  
+  }

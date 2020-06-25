@@ -5,11 +5,21 @@ http://crossroads.net/*,https://www.crossroads.net/:splat,301!,master
 https://crossroads.net/*,https://www.crossroads.net/:splat,301!,master
 http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,master
+/components/*,https://${env:CRDS_COMPONENTS_ENDPOINT}/dist/:splat,200!
 /undivided-training,https://undivided.netlify.app,301!
 /people/*,https://${env:CRDS_PEOPLE_DOMAIN}/:splat,200!
+/sevenhills,/seven-hills,301!
+/whatwebelieve,/what-we-believe,301!
+/statementoffaith,/statement-of-faith,301!
+/ourhistory,/our-history,301!
+/spiritualoutfitters,/spiritual-outfitters,301!
+/30daytrial,/30-day-trial,301!
+/30daytrial/sign-up,/30-day-trial/sign-up,301!
+/connect/?my=1,/mygroups,301!
+/connect/* my=:1,/mygroups,301!
 /connect/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
 /group-leader/*,https://${env:CRDS_GROUP_LEADER_DOMAIN}/:splat,200!
-/groups/search/*,https://${env:CRDS_FINDER_ENDPOINT}/:splat,200!
+/groups/search/*,https://${env:CRDS_GROUPS_ENDPOINT}/:splat,200!
 /map/*,/connect/:splat,302!
 /search/*,https://${env:CRDS_SEARCH_ENDPOINT}/:splat,200!
 /search-component/*,https://${env:CRDS_SEARCH_COMPONENT_ENDPOINT}/:splat,200!
@@ -28,7 +38,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /profile/*,https://${env:CRDS_PROFILE_ENDPOINT}/:splat,200! Role=user
 /profile/*,/signin?redirectUrl=/profile/:splat,302!
 /signin,https://${env:CRDS_ANGULAR_ENDPOINT}/signin,200!
-/signin redirectUrl=:redirectUrl,https://${env:CRDS_ANGULAR_ENDPOINT}/signin?redirectUrl:redirectUrl,200!
 /signout,https://${env:CRDS_ANGULAR_ENDPOINT}/signout,200!
 /register,https://${env:CRDS_ANGULAR_ENDPOINT}/register,200!
 /forgot-password,https://${env:CRDS_ANGULAR_ENDPOINT}/forgot-password,200!
@@ -58,8 +67,8 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /topics/*,/media/topics/:splat,302!
 /authors/*,/media/authors/:splat,302!
 /songs/*,/media/songs/:splat,302!
-/oktasignin*,https://${env:CRDS_SIGNIN_ENDPOINT}:splat,200!
-/signin/*,https://${env:CRDS_SIGNIN_ENDPOINT}/signin/:splat,200!
+/oktasignin*,https://${env:CRDS_OKTA_SIGNIN_ENDPOINT}:splat,200!
+/signin/*,https://${env:CRDS_OKTA_SIGNIN_ENDPOINT}/signin/:splat,200!
 /event-checkin/*,https://${env:CRDS_EVENT_CHECKIN_ENDPOINT},302!
 /media/music/,${env:CRDS_MUSIC_ENDPOINT},301!
 /music/,${env:CRDS_MUSIC_ENDPOINT},301!
@@ -97,7 +106,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /media/songs/be-thou-my-vision,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/be-thou-my-vision,301!
 /media/songs/listen,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/listen,301!
 /media/songs/*,${env:CRDS_MUSIC_ENDPOINT}/:splat,302!
-/media/*,${env:CRDS_MEDIA_ENDPOINT}/:splat,200!
+/media/*,https://${env:CRDS_MEDIA_ENDPOINT}/:splat,200!
 /onsitegroups,/groups/onsite,301!
 /groups/online,/connect/?refinementList%5BgroupType%5D%5B0%5D=Online,301!
 /groups/home,/connect/?refinementList%5BgroupType%5D%5B0%5D=At%20Home,301!

@@ -2,12 +2,12 @@
 body .hs-button.primary,
 body input[type="submit"],
 body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
-  color: #fff;
-  background-color: #3b6e8f;
-  border-color: #3b6e8f;
+  color: $cr-white;
+  background-color: $cr-blue;
+  border-color: $cr-blue;
   font-size: 14px;
   padding: 13px 16px;
-  border-radius: 4px;
+  border-radius: 0;
   line-height: 1;
   margin-top: 15px;
   margin-bottom: 5px;
@@ -119,4 +119,38 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
 
 [data-role="hsform"] input.hs-input {
   width: 100% !important;
+}
+
+#subscribeModalForm {
+  .hs-form-required {
+    display: none;
+  }
+
+  .hs-richtext {
+    @extend .tagline;
+    font-size: 14px;
+  }
+
+// Hubspot Success Message
+  .submitted-message p {
+    font-size: 1rem;
+  }
+
+  .btn-hs {
+    margin-top: 0.625rem;
+    margin-left: 0;
+
+    @media screen and (min-width: $screen-xs) {
+      margin-top: 0;
+      margin-left: 0.625rem;
+    }
+  }
+
+  .hs-input {
+  @extend .form-control;
+  }
+
+  .form-control, .hs-input { 
+    background-color: $cr-white; 
+  }
 }

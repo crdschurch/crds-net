@@ -1,5 +1,6 @@
 ---
 layout: default
+snail_trail: disabled
 monetate_page_type: index-main
 meta:
   title: Crossroads
@@ -25,15 +26,16 @@ paginate:
     limit: 1
     sort: starts_at desc
   messages:
-    per: 1
+    per: 3
     limit: 1
     sort: published_at desc
   home_collection:
     collections:
       - articles
+      - videos
+      - episodes
     per: 10
     limit: 1
-    offset: 2
     sort: published_at desc
   episodes:
     per: 3
@@ -46,145 +48,220 @@ paginate:
 ---
 
 {% include header.html %}
-{% assign homePageBanner = site.content_blocks | where: 'slug', 'home-page-promo-banner' | first %}
 
-{{ homePageBanner.content_block }}
+{% include home/_jumbotron.html %}
 
-<section class="container">
-  <div class="row">
-    <div class="col-md-push-8 col-md-4 push-bottom">
-      <!-- Current Message -->
-      <div class="push-bottom">
-        <hr class="flush-top push-half-bottom">
-        <h2 class="flush-top font-size-base text-gray-light">current message</h2>
-
-        {% assign home_messages = page.messages.docs %}
-        {% for message in home_messages %}
-        {% assign item = message %}
-        <div class="media featured">
-          <div class="media-body">
-            <h5 class="component-header flush-ends">
-              <a href="{{ message | media_url }}" data-automation-id="message-title">{{ message.title }}</a>
-            </h5>
-            <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="message-description">
-              {{ message.description | markdownify | strip_html | truncatewords: 15 }}
-            </div>
-            <a href="{{ message | media_url }}" class="btn btn-primary btn-sm push-half-top"
-              data-automation-id="watch-message-button">Watch
-              now</a>
+<section class="soft-top bg-blue soft-bottom bg-topo push-bottom">
+  <div class="container">
+    <div>
+      <div class="col-sm-8 soft-ends">
+        <div>
+          <div class="col-sm-6 push-bottom">
+            <crds-portrait-card-default
+              href="/about"
+              lead="About Crossroads"
+              title="The Church for Doing"
+              image-src="//crds-media.imgix.net/6NKDNv9LnxZ14cGKoIN3rW/46464e141a1c789b859a37a27bbb18fa/about-crossroads-img.png?format=auto"
+            />
           </div>
-          <a href="{{ message | media_url }}" class="push-half-bottom" data-automation-id="message-video">
-            <div class="media-video">
-              <img class="media-img"
-                src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
-              {% include media/_video-player-card.html autoplay=true thumbnail=true %}
-              <!-- <svg class="media-play-btn icon icon-5 text-white" viewBox="0 0 256 256">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#play-thin"></use>
-              </svg> -->
-            </div>
-          </a>
-        </div>
-        {% endfor %}
-      </div>
-
-      <!-- Current Series -->
-      <hr class="flush-top push-half-bottom">
-      <h2 class="flush-bottom flush-top font-size-base text-gray-light">current series</h2>
-
-      {% assign home_series = page.series.docs | slice: 0 %}
-      {% for series in home_series %}
-      <div class="media featured">
-        <div class="media-body">
-          <h5 class="component-header flush-ends">
-            <a href="{{ series.url }}" data-automation-id="series-title">{{ series.title }}</a>
-          </h5>
-          <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="series-description">
-            {{ series.description | markdownify | strip_html | truncatewords: 15 }}
+          <div class="col-sm-6">
+            <crds-portrait-card-default
+              href="/brian-tome"
+              lead="Senior Pastor Brian Tome"
+              title="Your Guides to the Adventurous Life"
+              image-src="//crds-media.imgix.net/45IKoYE2JOihsKevVFgKoq/14827f5fbeb091b98db94570249857d4/brian-tome-headshot1.jpg?format=auto"
+            />
           </div>
         </div>
-        <a href="{{ series.url }}" class="push-half-bottom" data-automation-id="series-image">
-          {% if series.image.url %}
-          <img class="media-img"
-            src="{{ series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-            sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
-          {% else %}
-          <img class="media-img" src="{{ site.default_image }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-            sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
-          {% endif %}
-        </a>
       </div>
-      {% endfor %}
-
+      <div class="col-sm-4 soft-ends">
+        <div>
+          <div class="push-half-bottom">
+            <h3 class="font-family-serif font-size-small text-uppercase text-white flush">Our Best Content</h3>
+          </div>
+          <div>
+            <div>
+              <div class="border-top border-dashed push-half-bottom"></div>
+                <crds-media-object
+                  url="/media/podcasts/you-can-do-this/theres-stuff-everywhere"
+                  image-src="//crds-media.imgix.net/4V0Di4hScIAmM8ZL3ouch1/0bac1be7afc8fb13c27550a01f03c8a7/you-can-do-this-podcast.jpg?auto=format,compress&w=200&h=200&fit=crop&ixlib=imgixjs-3.3.2"
+                  type="podcast"
+                  title="There's stuff everywhere!"
+                  duration="11 min"
+                ></crds-media-object>
+              </div>
+              <div>
+                <div class="border-top border-dashed push-half-bottom"></div>
+                <crds-media-object
+                url="/media/articles/what-does-jesus-died-for-you-really-mean"
+                image-src="//crds-media.imgix.net/3RfsT8nDW4hq9AEj9ukhHG/35377c9b6829bbf55a04b76eb8167a7c/JESUS_DiED_FOG_Me77?auto=format,compress&w=1920"
+                type="article"
+                title="What Does Jesus Died For You Really Mean? "
+                duration="5 min"
+                ></crds-media-object>
+              </div>
+              <div>
+                <div class="border-top border-dashed push-half-bottom"></div>
+                <crds-media-object
+                url="/media/videos/what-matters-to-you"
+                image-src="//crds-media.imgix.net/1OuvQhRP2fQHaV7n77YjQP/fb4bee7dc72f20f2bd13a06054384bc4/Screen_Shot_2020-06-18_at_11.39.17_AM__1_.png?h=250"
+                type="video"
+                title="What Matters To You?"
+                duration="7 min"
+                ></crds-media-object>
+              </div>
+              <div class="push-right">
+                <crds-button block="true" display="outline" color="white" href="/media" text="View all"></crds-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <!-- Big Content Feature -->
-    <div class="col-md-8 col-md-pull-4">
+{% comment %}Your Impact Will be Massive{% endcomment %}
+<section class=" soft-ends">
+  <div class="container">
+    <div class="text-center push-bottom mobile-push-half-sides">
+      <h2 class="component-header-box text-blue">Your Impact Will be Massive</h2>
+    </div>
+    <div class=" push-bottom">
+      <div class="col-sm-8">
+      </div>
+      <div class="col-sm-4">
+        {% include home/_latest-news.html %}
+      </div>
+    </div>
+  </div>
+</section>
 
-      {% assign feature_obj = site.featured_media | where: 'page_path', page.url | first %}
-      {% assign managed_features = feature_obj.docs %}
 
-      <hr class="push-half-bottom flush-top">
-      <h2 class="flush-top font-size-base text-gray-light">
-        {% if managed_features.size > 0 %}
-        featured
-        {% else %}
-        latest
-        {% endif %}
-      </h2>
+{% comment %}Get Equipped: Watch the Weekend{% endcomment %}
+<section class="bg-tan-light soft-bottom">
+  <div class="container soft-ends hard-sides">
+    <div class="text-center push-bottom soft-ends mobile-push-half-sides">
+      <h2 class="component-header-box text-orange">Get Equipped: Watch the Weekend</h2>
+    </div>
+    <div class="col-md-8">
+      {% include home/_latest-message.html %}
+    </div>
+    <div class="col-sm-4">
+      {% include home/_current-series.html %}
+      <div>
 
-      {% if managed_features.size > 0 %}
-      {% assign features = managed_features | slice: 0, 100 %}
-      {% if features.size > 0 %}
-      {% for item in features %}
-      <div>{% include media/_overlay-card.html autoplay=true %}</div>
-      {% endfor %}
-      {% endif %}
-      {% else %}
-      {% for article in page.home_collection.offset %}
-      <a href="{{ article.url }}" class="overlay-card">
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %}Kids Club Jumbotron{% endcomment %}
+{% include home/_kids-club-jumbotron.html %}
+
+{% comment %}Gear Up for Your Adventure{% endcomment %}
+<section class="bg-orange">
+  <div class="bg-topo-50">
+    <div class="container soft-ends">
+      <div class="text-center push-bottom">
+        <div class="push-bottom text-blue mobile-push-half-sides">
+          <h2 class="component-header-box text-blue">Gear Up for Your Adventure</h2>
+        </div>
+        <p class="text-blue font-family-serif font-size-large">Daily practices to help you grow.</p>
+      </div>
+      <div class="row soft-bottom">
+        <div class="col-sm-4 push-bottom">
+          <crds-portrait-card-default
+          href="/app"
+          lead="Crossroads App"
+          title="Connect With God. Pray With Others."
+          image-src="//crds-media.imgix.net/3tHfRrQ1ZwyNBLvnoDS37s/f67819758e1efc2faabd7405b2a4680b/crossroads-app-home.jpg?format=auto"
+          />
+        </div>
+        <div class="col-sm-4 push-bottom">
+          <crds-portrait-card-default
+          href="https://www.facebook.com/crsrdschurch/"
+          lead="Facebook Live Worship"
+          title="Kick-start Your Morning at 8:30 am"
+          image-src="//crds-media.imgix.net/1zuWtKTzfHUfugdYyoi2ZQ/ff03e2dc6215d565dd6fc678194a8bb4/daily-facebook-worship.jpg?format=auto"
+          />
+        </div>
+        <div class="col-sm-4 push-bottom">
+          <crds-portrait-card-default
+          href="/music"
+          lead="Crossroads Music"
+          title="Every Good Adventure Needs a Playlist"
+          image-src="//crds-media.imgix.net/7suAPpGUjibqsKbvuXyvzz/bbe27b99193f6184cef69bdb01daa83d/crossroads-music-zoom.jpg?format=auto"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %}Articles, Podcasts, & More{% endcomment %}
+<section class="bg-tan-light">
+  <div class="container">
+    <div class="text-center push-bottom">
+      <div class="push-bottom text-blue mobile-push-half-sides">
+        <h2 class="component-header-box text-orange">Articles, Podcasts, & More</h2>
+      </div>
+      <p class="text-blue font-family-serif font-size-large">Unfiltered & authentic takes on life</p>
+    </div>
+    <div class="col-sm-8">
+      {% assign most_recent = page.home_collection.docs | sort: "published_at" | reverse | first %} 
+      <a href="{{ most_recent.url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
-          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+          <div class="beige-overlay"></div>
+          <img src="{{ most_recent.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
             sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
         </div>
         <div class="overlay-card-content">
-          <p class="overlay-card-category">{{ article.category.title }}</p>
-          <h2 class="overlay-card-title">{{ article.title }}</h2>
-          <p class="overlay-card-author">{{ article.author.full_name }}</p>
-          {% include media/_media-label.html source=article %}
+          <p class="overlay-card-category">{{ most_recent.category.title }}</p>
+          <h2 class="overlay-card-title">{{ most_recent.title }}</h2>
+          <p class="overlay-card-author">{{ most_recent.author.full_name }}</p>
+          {% include media/_media-label.html source=most_recent %}
         </div>
       </a>
-      {% endfor %}
-      {% endif %}
-    </div>
-  </div>
-  
-  <div id="phantom-lake" class="row push-top">
-    <div class="col-md-8">
-      <!-- More Content Cards -->
+
       <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
         <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
-          {% assign above_the_fold = page.home_collection.docs | slice: 0, 4 %}
 
-          {% for article in above_the_fold %}
-          {% assign author = article.author | get_doc %}
-          {% assign category = article.category | get_doc %}
+          {% assign recent = page.home_collection.docs | slice: 1, 2 %}
+          {% for item in recent %}
+
+          {% assign author = item.author | get_doc %}
+          {% assign category = item.category | get_doc %}
           <div class="card carousel-cell card-2x">
-            <a class="relative" href="{{ article.url }}">
-              {% include media/_media-label.html source=article %}
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+            <a class="relative" href="{{ item.url }}">
+              {% if item.content_type == "article" or "video" %}
+              <div class="beige-overlay"></div>
+              {% endif %}
+          
+              {% assign image = item.image.url %}
+          
+              {% if item.content_type == 'episode' %}
+                {% assign image =item.podcast.image.url %}
+              {% endif %}
+              {% if image == blank %}
+                {% assign image = item.bg_image.url %}
+              {% endif %}
+              {% assign recommended_collection=site.messages %}
+              {% include _video-player-card.html %}
+              {% if image %}
+                <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
+              {% else %}
+                <img src="{{ site.default_image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
+              {% endif %}
             </a>
 
             <div class="card-block hard soft-quarter-top">
-              <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{
+              <a class="text-orange font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{
                 category.title }}</a>
-
               <h3 class="component-header flush">
-                <a href="{{ article.url }}">{{ article.title }}</a>
+                <a href="{{ item.url }}">{{ item.title }}</a>
               </h3>
-
               <p class="card-text soft-quarter-top">
                 <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>
               </p>
@@ -194,292 +271,40 @@ paginate:
         </div>
       </div>
     </div>
-
-    <!--<div class="col-md-4">
-      {% if page.perspectives.docs.size > 0 %}d
-      <section class="perspectives-landing flush-top">
-        <a href="{{ '/perspectives/' }}">
-          <header style="background-image: url('//crds-cms-uploads.imgix.net/content/images/another-perspective-bg.png?blend64=MTUxNTE1&balph=60&bm=normal&w=10')" data-optimize-bg-img>
-            <img class="branding" src="//crds-cms-uploads.imgix.net/content/images/logo-another-perspective.svg" alt="another perspective">
-          </header>
-        </a>
-        <div class="perspectives-list">
-          {% for perspective in page.perspectives.docs %}
-            {% include media/_perspective.html perspective=perspective exclude_footer=true %}
-          {% endfor %}
-        </div>
-      </section>
-      {% endif %}
-    </div>-->
-
-    <!-- Podcast Episodes -->
-    <div class="col-sm-12 col-md-4">
-      <div class="row">
-        <div class="col-sm-12">
-          <hr class="push-half-bottom flush-top">
-          <h2 class="flush-top font-size-base text-gray-light">latest podcast episodes</h2>
-        </div>
+    <div class="col-sm-4">
+      <crds-sign-up title="Sign Up for the Weekly Digest" content="Get our latest content, delivered straight to your inbox, every week." onClick="$('#subscribeModalForm').modal(); return false;"></crds-sign-up>
+      <div class="soft-ends">
+        {% include home/_content-menu.html %}
       </div>
-      <div class="push-bottom soft-bottom mobile-flush-bottom mobile-hard-bottom">
-        {% assign home_episodes = page.episodes.docs %}
-        {% for episodes in home_episodes %}
-        <div class="media">
-          <div class="media-body">
-            <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ episodes.url }}">
-                Episode {{ episodes.episode_number }}: {{ episodes.title }}</a>
-            </h5>
-            <div class="soft-quarter-top font-size-smaller flush-bottom">
-              <p class="episode-description">{{ episodes.description | markdownify | strip_html | truncatewords: 15 }}
-              </p>
-            </div>
-          </div>
-          <a href="{{ episodes.url }}" class="soft-quarter-left">
-            <img class="media-img"
-              src="{{ episodes.podcast.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
-              sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
-          </a>
-        </div>
-        {% if forloop.last != true %}
-        <hr>
-        {% endif %}
-        {% endfor %}
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- Music -->
-<section class="container soft-half push-bottom">
-  <hr class="push-half-bottom">
-  <h2 class="flush-top font-size-base text-gray-light">latest music releases</h2>
-  <div class="card-deck carousel text-center" data-crds-carousel="mobile-scroll">
-    <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
-      {% assign album_card = site.albums | sort: "published_at" | reverse %}
-      {% for album in album_card limit: 5 %}
-        <div class="album-container card carousel-cell flush hard">
-          {% include media/_album-card.html %}
-        </div>
-      {% endfor %}
     </div>
   </div>
 </section>
 
-<!-- Topics -->
-<section class="container soft-half push-bottom">
-  <hr class="push-half-bottom">
-  <h2 class="flush-top font-size-base text-gray-light">explore our topics</h2>
+{% include _subscribe-modal.html %}
 
-  <div class="card-deck carousel text-center" data-crds-carousel="mobile-scroll">
-    <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
+{% comment %}You are needed{% endcomment %}
+{% include home/_you-are-needed.html %}
 
-      {% for topic in site.categories %}
-      <div class="card carousel-cell topic-card-simple">
-        <div class="bg-overlay">
-        </div>
-        <a href="{{ topic.url }}" class="topic-card-content">
-          <h2 class="font-family-condensed-extra text-uppercase font-size-h4 topic-card-simple-title">
-            <span>{{ topic.title }}</span>
-          </h2>
-          <img class="topic-card-img"
-            src="{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}?auto=compress&w=500{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}">
-        </a>
-      </div>
-      {% endfor %}
+{% comment %}Ready to start your adventure?{% endcomment %}
+<section class="bg-orange">
+  <div class="container soft-ends text-center">
+    <div class="push-top soft-top row">
+      <crds-arrow arrow-color="blue" text-color="orange">It's go time</crds-arrow>
     </div>
-  </div>
-</section>
-
-<!-- About Crossroads -->
-<section class="jumbotron inline-video jumbotron-xl" data-optimize-bg-img
-  style="background-image: url('https://crds-media.imgix.net/3AYEwLNjxlD4Jl5FB7PvVg/a775c50942fcc13dd715106ecfffff02/crossroads-church-home.jpg');">
-  <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-10 col-sm-offset-1">
-        <div class="jumbotron-content">
-          <a href="#" class="inline-video-trigger" data-toggle="modal" data-target="#videoModal"></a>
-          <h1 class="font-family-condensed-extra text-uppercase">What is Crossroads</h1>
-          <p>An authentic community of Christ-followers who believe that your life is made for more.</p>
-
-          <div class="row push-top soft-top">
-            {% assign recent_series = home_series | first %}
-            <div class="col-sm-4 col-sm-offset-2 text-right hidden-xs soft-sides">
-              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a
-                  service</span><br><span class="text-white">online</span></h4>
-              <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              <a class="btn btn-secondary btn-lg" href="{{ recent_series.url }}"
-                data-automation-id="watch-series-button">Watch
-                the latest service</a>
-            </div>
-
-            <div class="col-sm-4 col-sm-offset-2 text-center visible-xs soft-sides push-bottom">
-              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a
-                  service</span><br><span class="text-white">online</span></h4>
-              <span class="font-size-small">Pants optional. Coffee encouraged.</span><br>
-              <a class="btn btn-secondary btn-lg" href="{{ recent_series.url }}"
-                data-automation-id="mobile-watch-series-button">Watch
-                the latest service</a>
-            </div>
-
-            <div class="col-sm-4 text-left soft-sides hidden-xs border-left">
-              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a
-                  service</span><br><span class="text-white">with your community</span></h4>
-              <span class="font-size-small">Gather on Facebook and watch with others from your community.</span><br>
-              <a href="/locations" class="btn btn-secondary btn-lg">Find your location</a>
-            </div>
-
-            <div class="col-sm-4 text-center soft-sides visible-xs push-top">
-              <h4 class="component-header" style="line-height:.9em;"><span class="text-gray-lighter">Watch a
-                  service</span><br><span class="text-white">with your community</span></h4>
-              <span class="font-size-small">Gather on Facebook and watch with others from your community.</span><br>
-              <a href="/locations" class="btn btn-secondary btn-lg">Find your location</a>
-            </div>
-          </div>
-        </div>
+      <div class="col-md-8 col-md-push-2 mobile-push-half-sides">
+        <h1 class="component-header-box component-header-box-border-lg font-size-h1 text-white">Ready to start your adventure?</h1>
       </div>
     </div>
-  </div>
-  <!-- Video Modal -->
-  <div class="modal modal-video fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <iframe allowfullscreen="" src="https://www.youtube.com/embed/geNzLq664rk" frameborder="0"></iframe>
-        </div>
-      </div>
+    <div class="row">
+      <p class="font-family-serif text-blue push font-size-base">Take the 30 day challenge</p>
+    </div>
+    <div class="push-bottom soft-bottom row">
+      <crds-button href="/30-day-trial" color="blue" size="lg" text="Sign up now"></crds-button>
     </div>
   </div>
 </section>
 
-<!-- More Content -->
-<section class="container">
-  <div id="monetate-cta" class="row">
-    <!-- Big Content Feature -->
-    <div class="col-md-8">
-      <hr class="push-half-bottom">
-      <h2 class="flush-top font-size-base text-gray-light">recent</h2>
-
-      {% assign below_the_fold = page.home_collection.docs | slice: 4 %}
-      {% for article in below_the_fold %}
-      <a href="{{ article.url }}" class="overlay-card">
-        <div class="bg-overlay"></div>
-        <div class="overlay-card-image">
-          <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-            sizes="{{ site.image_sizes.three_fourths }}" data-optimize-img />
-        </div>
-        <div class="overlay-card-content">
-          <p class="overlay-card-category">{{ article.category.title }}</p>
-          <h2 class="overlay-card-title">{{ article.title }}</h2>
-          <p class="overlay-card-author">{{ article.author.full_name }}</p>
-          {% include media/_media-label.html source=article %}
-        </div>
-      </a>
-      {% endfor %}
-
-      <!-- Content Cards -->
-      <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
-        <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
-
-          {% assign above_the_fold = page.home_collection.docs | slice: 5, 4 %}
-          {% for article in above_the_fold %}
-
-          {% assign author = article.author | get_doc %}
-          {% assign category = article.category | get_doc %}
-          <div class="card carousel-cell card-2x">
-            <a class="relative" href="{{ article.url }}">
-              {% include media/_media-label.html source=article %}
-              <img src="{{ article.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
-            </a>
-
-            <div class="card-block hard soft-quarter-top">
-              <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{
-                category.title }}</a>
-              <h3 class="component-header flush">
-                <a href="{{ article.url }}">{{ article.title }}</a>
-              </h3>
-              <p class="card-text soft-quarter-top">
-                <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>
-              </p>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <hr class="push-half-bottom">
-      <h2 class="flush-top font-size-base text-gray-light">our podcasts</h2>
-
-      <div class="push-bottom soft-bottom">
-        {% for podcasts in page.podcasts.offset %}
-        <div class="media featured">
-          <div class="media-body">
-            <h5 class="component-header flush-ends">
-              <a href="{{ podcasts.url }}">{{ podcasts.title }}</a>
-            </h5>
-
-            <div class="soft-quarter-top font-size-smaller flush-bottom">
-              {{ podcasts.description | markdownify | strip_html | truncatewords: 15 }}
-            </div>
-
-            <p class="font-size-smaller text-gray-light">
-              {% include media/_count.html key="podcast.title" subject=featured.title collection=site.episodes
-              label="episode" %}
-            </p>
-          </div>
-
-          <a href="{{ podcasts.url }}" class="push-half-bottom">
-            <img class="media-img"
-              src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
-              sizes="{{ site.image_sizes.one_hundred }}" data-optimize-img />
-          </a>
-        </div>
-
-        {% if forloop.last != true %}
-        <hr>
-        {% endif %}
-        {% endfor %}
-
-        {% assign home_podcasts = page.podcasts.docs | slice: 2, 6 %}
-        {% for podcasts in home_podcasts %}
-        <div class="media">
-          <div class="media-body">
-            <h5 class="font-family-condensed-extra text-uppercase flush-ends"><a href="{{ podcasts.url }}">
-                {{ podcasts.title }}</a>
-            </h5>
-            <div class="soft-quarter-top font-size-smaller flush-bottom">
-              {{ podcasts.description | markdownify | strip_html | truncatewords: 15 }}
-            </div>
-          </div>
-          <a href="{{ podcasts.url }}" class="soft-quarter-left">
-            <img class="media-img"
-              src="{{ podcasts.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
-              sizes="{{ site.image_sizes.media_object }}" data-optimize-img />
-          </a>
-        </div>
-
-        {% if forloop.last != true %}
-        <hr>
-        {% endif %}
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Happenings -->
-<section class="container">
-  <div class="site-happenings-skeleton">
-    <crds-site-happenings auth-token></crds-site-happenings>
-  </div>
-</section>
 
 {% include footer.html %}
 

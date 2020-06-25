@@ -32,11 +32,11 @@
   }
 
   .well {
-    background-color: $cr-gray-darker;
+    background-color: $cr-gray-darkest;
     border: none;
 
     * {
-      color: $cr-gray;
+      color: $cr-gray-lighter;
     }
 
     iframe {
@@ -54,7 +54,7 @@
   }
 
   .card-title--overlap {
-    background-color: $cr-gray-darker;
+    background-color: $cr-gray-darkest;
   }
 
   [aria-label='carousel-controls'] {
