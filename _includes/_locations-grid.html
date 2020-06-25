@@ -1,23 +1,11 @@
-<div
-  class="card-deck carousel locations"
-  data-crds-carousel="mobile-scroll"
-  data-automation-id="locations-carousel"
->
+<div class="card-deck carousel locations" data-crds-carousel="mobile-scroll" data-automation-id="locations-carousel">
   <div id="section-locations" class="feature-cards card-deck--expanded-layout">
-    {% assign locations_sorted_names = site.locations | sort: 'name' | group_by:
-    'name' %} {% for name_group in locations_sorted_names %} {% assign
-    locations_sorted_slugs = name_group.items | sort: 'slug' %} {% for location
-    in locations_sorted_slugs %} {% include _location-card.html %} {% endfor %}
-    {% endfor %}
     <!-- Anywhere card -->
     <div class="card" data-location="Anywhere">
       <a href="/live" class="block">
-        <img
-          alt="Crossroads Anywhere"
+        <img alt="Crossroads Anywhere"
           src="https://crds-cms-uploads.imgix.net/Uploads/anywhere-thumbnail.jpg?{{ site.imgix_params.placeholder_card }}"
-          sizes="{{ site.image_sizes.cards_4x }}"
-          data-optimize-img
-        />
+          sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
       </a>
       <div class="card-block">
         <h4 class="card-title card-title--overlap text-uppercase">
@@ -25,16 +13,27 @@
         </h4>
         <div class="card-text">
           <p>Experience Crossroads anywhere in the world.</p>
+          <div class="location-leader soft-half-sides soft-quarter-ends bg-tan-light text-gray-dark push-bottom">
+            <div class="d-flex push-quarter-sides align-items-center" style="flex-wrap: wrap;">
+              <div class="push-quarter-ends push-half-right" style="flex: 1 0;">
+                <strong>Lena Schuler</strong><br>
+                <span>Community Pastor</span>
+              </div>
+              <img class="img-circle img-size-4 push-quarter-ends" style="width: 64px;" alt="lena schuler img"
+                src="//crds-media.imgix.net/5GQoYCuH9p8gWb9UdbBSBB/d7f57285b45ade905403ca255ef92a4d/crossroads-lena-tome.jpg?auto=format,compress&w=1200"
+                sizes="64px 64px" />
+            </div>
+          </div>
         </div>
-        <crds-button
-          type="primary"
-          color="orange"
-          text="Learn more"
-          href="/live"
-        ></crds-button>
+        <crds-button type="primary" color="orange" text="Learn more" href="/live"></crds-button>
         <crds-site-select card-site-id="15"></crds-site-select>
       </div>
     </div>
+    {% assign locations_sorted_names = site.locations | sort: 'name' | group_by:
+    'name' %} {% for name_group in locations_sorted_names %} {% assign
+    locations_sorted_slugs = name_group.items | sort: 'slug' %} {% for location
+    in locations_sorted_slugs %} {% include _location-card.html %} {% endfor %}
+    {% endfor %}
   </div>
 </div>
 
@@ -45,44 +44,23 @@
     <h2 class="push-half-ends section-header">Prison Ministry</h2>
     <p class="font-size-base">
       We are committed to changing lives of the incarcerated, as well as men and
-      women released from prison. <br /><a
-        href="/reachout/local/prison-ministry/"
-        class="font-size-base"
-        >Learn more about Prison Ministry</a
-      >
+      women released from prison. <br /><a href="/reachout/local/prison-ministry/" class="font-size-base">Learn more
+        about Prison Ministry</a>
     </p>
   </div>
 </div>
-<div
-  class="card-deck carousel"
-  data-crds-carousel="mobile-scroll"
-  data-carousel-id="carousel-ogvpll"
->
-  <div
-    id=""
-    class="feature-cards card-deck--expanded-layout"
-    data-crds-carousel="mobile-scroll"
-  >
+<div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-ogvpll">
+  <div id="" class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
     <!-- Prison Cards -->
     <div class="card" data-filter="Central Kentucky">
-      <a
-        href="https://www.crossroads.net/reachout/local/prison-ministry"
-        class="block"
-      >
-        <img
-          alt="Blackburn Correctional Complex"
-          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-BCC2.jpg?{{
+      <a href="https://www.crossroads.net/reachout/local/prison-ministry" class="block">
+        <img alt="Blackburn Correctional Complex" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-BCC2.jpg?{{
             site.imgix_params.placeholder_card
-          }}"
-          sizes="{{ site.image_sizes.cards_4x }}"
-          data-optimize-img
-        />
+          }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
       </a>
       <div class="card-block">
         <h4 class="card-title card-title--overlap text-uppercase">
-          <a href="https://www.crossroads.net/reachout/local/prison-ministry"
-            >Blackburn Correctional Complex</a
-          >
+          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Blackburn Correctional Complex</a>
         </h4>
         <div class="card-text">
           <p>
@@ -90,33 +68,21 @@
             Lexington, Kentucky 40511 (
             <a class="text-orange-dark"
               href="https://www.google.com/maps/place/Blackburn+Correctional+Complex/@38.111259,-84.5369852,15z/data=!4m5!3m4!1s0x0:0xde3117a58f1815e6!8m2!3d38.111259!4d-84.5369852"
-              target="_blank"
-              >Map</a
-            >)
+              target="_blank">Map</a>)
           </p>
         </div>
       </div>
     </div>
 
     <div class="card" data-filter="Southwest Ohio">
-      <a
-        href="https://www.crossroads.net/reachout/local/prison-ministry"
-        class="block"
-      >
-        <img
-          alt="Dayton Correctional Institution"
-          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-DCI.jpg?{{
+      <a href="https://www.crossroads.net/reachout/local/prison-ministry" class="block">
+        <img alt="Dayton Correctional Institution" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-DCI.jpg?{{
             site.imgix_params.placeholder_card
-          }}"
-          sizes="{{ site.image_sizes.cards_4x }}"
-          data-optimize-img
-        />
+          }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
       </a>
       <div class="card-block">
         <h4 class="card-title card-title--overlap text-uppercase">
-          <a href="https://www.crossroads.net/reachout/local/prison-ministry"
-            >Dayton Correctional Institution</a
-          >
+          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Dayton Correctional Institution</a>
         </h4>
         <div class="card-text">
           <p>
@@ -124,9 +90,7 @@
             Dayton, OH 45417 (
             <a class="text-orange-dark"
               href="https://www.google.com/maps/place/Dayton+Correctional+Institution/@39.7299331,-84.2635569,16z/data=!4m13!1m7!3m6!1s0x8840876a3570fa89:0x9ea6ae7e3ae52c25!2s4104+Germantown+St,+Dayton,+OH+45417!3b1!8m2!3d39.7340797!4d-84.2527946!3m4!1s0x88408153fcd772bb:0x88d3ef6b37226fb1!8m2!3d39.7298358!4d-84.2604885"
-              target="_blank"
-              >Map</a
-            >)
+              target="_blank">Map</a>)
           </p>
           <p>
             <a class="text-orange-dark" href="http://thefourseven.org/training/">Sign up to volunteer</a>
@@ -136,24 +100,14 @@
     </div>
 
     <div class="card" data-filter="Southwest Ohio">
-      <a
-        href="https://www.crossroads.net/reachout/local/prison-ministry"
-        class="block"
-      >
-        <img
-          alt="Lebanon Correctional Institution"
-          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-LECI.jpg?{{
+      <a href="https://www.crossroads.net/reachout/local/prison-ministry" class="block">
+        <img alt="Lebanon Correctional Institution" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-LECI.jpg?{{
             site.imgix_params.placeholder_card
-          }}"
-          sizes="{{ site.image_sizes.cards_4x }}"
-          data-optimize-img
-        />
+          }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
       </a>
       <div class="card-block">
         <h4 class="card-title card-title--overlap text-uppercase">
-          <a href="https://www.crossroads.net/reachout/local/prison-ministry"
-            >Lebanon Correctional Institution</a
-          >
+          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Lebanon Correctional Institution</a>
         </h4>
         <div class="card-text">
           <p>
@@ -161,9 +115,7 @@
             Lebanon, OH 45036 (
             <a class="text-orange-dark"
               href="https://www.google.com/maps/place/Lebanon+Correctional+Institution/@39.4361526,-84.3032275,17z/data=!4m13!1m7!3m6!1s0x88405f31d7000efd:0x218bc0d3257fdbd1!2s3791+OH-63,+Lebanon,+OH+45036!3b1!8m2!3d39.4371221!4d-84.3014358!3m4!1s0x88405f501509302d:0x8489015a675e486e!8m2!3d39.4338915!4d-84.2990278"
-              target="_blank"
-              >Map</a
-            >)
+              target="_blank">Map</a>)
           </p>
           <p>
             <a class="text-orange-dark" href="http://thefourseven.org/training/">Sign up to volunteer</a>
@@ -173,24 +125,14 @@
     </div>
 
     <div class="card" data-filter="Southwest Ohio">
-      <a
-        href="https://www.crossroads.net/reachout/local/prison-ministry"
-        class="block"
-      >
-        <img
-          alt="London Correctional Institution"
-          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-LOCI.jpg?{{
+      <a href="https://www.crossroads.net/reachout/local/prison-ministry" class="block">
+        <img alt="London Correctional Institution" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-LOCI.jpg?{{
             site.imgix_params.placeholder_card
-          }}"
-          sizes="{{ site.image_sizes.cards_4x }}"
-          data-optimize-img
-        />
+          }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
       </a>
       <div class="card-block">
         <h4 class="card-title card-title--overlap text-uppercase">
-          <a href="https://www.crossroads.net/reachout/local/prison-ministry"
-            >London Correctional Institution</a
-          >
+          <a href="https://www.crossroads.net/reachout/local/prison-ministry">London Correctional Institution</a>
         </h4>
         <div class="card-text">
           <p>
@@ -198,9 +140,7 @@
             London, OH 43140 (
             <a class="text-orange-dark"
               href="https://www.google.com/maps/place/Ohio+Department+of+Rehabilitation+and+Correction+-+London+Correctional+Institution/@39.9042141,-83.4859388,17z/data=!3m1!4b1!4m5!3m4!1s0x8838ae079c4445b9:0xd171765297ab0e2c!8m2!3d39.9042141!4d-83.4837501"
-              target="_blank"
-              >Map</a
-            >)
+              target="_blank">Map</a>)
           </p>
           <p>
             <a class="text-orange-dark" href="http://thefourseven.org/training/">Sign up to volunteer</a>
@@ -210,22 +150,14 @@
     </div>
 
     <div class="card" data-filter="">
-      <a
-        href="https://www.crossroads.net/reachout/local/prison-ministry"
-        class="block"
-      >
-        <img
-          alt="Marion Correctional Institution"
+      <a href="https://www.crossroads.net/reachout/local/prison-ministry" class="block">
+        <img alt="Marion Correctional Institution"
           src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-locations-MCI.jpg?{{ site.imgix_params.placeholder_card }}"
-          sizes="{{ site.image_sizes.cards_4x }}"
-          data-optimize-img
-        />
+          sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
       </a>
       <div class="card-block">
         <h4 class="card-title card-title--overlap text-uppercase">
-          <a href="https://www.crossroads.net/reachout/local/prison-ministry"
-            >Marion Correctional Institution</a
-          >
+          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Marion Correctional Institution</a>
         </h4>
         <div class="card-text">
           <p>
@@ -233,9 +165,7 @@
             Marion, OH 43302 (
             <a class="text-orange-dark"
               href="https://maps.google.com/?q=940+Marion-Williamsport+Road+Marion,+OH+43302&amp;entry=gmail&amp;source=g"
-              target="_blank"
-              >Map</a
-            >)
+              target="_blank">Map</a>)
           </p>
           <p>
             <a class="text-orange-dark" href="http://thefourseven.org/training/">Sign up to volunteer</a>
@@ -245,24 +175,14 @@
     </div>
 
     <div class="card" data-filter="Central Ohio">
-      <a
-        href="https://www.crossroads.net/reachout/local/prison-ministry"
-        class="block"
-      >
-        <img
-          alt="Ohio Reformatory for Women"
-          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-ORW.jpg?{{
+      <a href="https://www.crossroads.net/reachout/local/prison-ministry" class="block">
+        <img alt="Ohio Reformatory for Women" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-ORW.jpg?{{
             site.imgix_params.placeholder_card
-          }}"
-          sizes="{{ site.image_sizes.cards_4x }}"
-          data-optimize-img
-        />
+          }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
       </a>
       <div class="card-block">
         <h4 class="card-title card-title--overlap text-uppercase">
-          <a href="https://www.crossroads.net/reachout/local/prison-ministry"
-            >Ohio Reformatory for Women</a
-          >
+          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Ohio Reformatory for Women</a>
         </h4>
         <div class="card-text">
           <p>
@@ -270,9 +190,7 @@
             Marysville, OH 43040 (
             <a class="text-orange-dark"
               href="https://www.google.com/maps/place/Ohio+Reformatory+for+Women/@40.2242328,-83.3932216,15z/data=!4m5!3m4!1s0x0:0x2161dc1eea876928!8m2!3d40.2242328!4d-83.3932216"
-              target="_blank"
-              >Map</a
-            >)
+              target="_blank">Map</a>)
           </p>
           <p>
             <a class="text-orange-dark" href="http://thefourseven.org/training/">Sign up to volunteer</a>
@@ -282,24 +200,14 @@
     </div>
 
     <div class="card" data-filter="Southwest Ohio">
-      <a
-        href="https://www.crossroads.net/reachout/local/prison-ministry"
-        class="block"
-      >
-        <img
-          alt="Warren Correctional Institution"
-          src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-WCI.jpg?{{
+      <a href="https://www.crossroads.net/reachout/local/prison-ministry" class="block">
+        <img alt="Warren Correctional Institution" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-locations-WCI.jpg?{{
             site.imgix_params.placeholder_card
-          }}"
-          sizes="{{ site.image_sizes.cards_4x }}"
-          data-optimize-img
-        />
+          }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
       </a>
       <div class="card-block">
         <h4 class="card-title card-title--overlap text-uppercase">
-          <a href="https://www.crossroads.net/reachout/local/prison-ministry"
-            >Warren Correctional Institution</a
-          >
+          <a href="https://www.crossroads.net/reachout/local/prison-ministry">Warren Correctional Institution</a>
         </h4>
         <div class="card-text">
           <p>
@@ -307,9 +215,7 @@
             Lebanon, OH 45036 (
             <a class="text-orange-dark"
               href="https://www.google.com/maps/place/Warren+Correctional+Institution/@39.4342293,-84.3078695,15z/data=!4m5!3m4!1s0x0:0x3afe109724ea9eda!8m2!3d39.4342293!4d-84.3078695"
-              target="_blank"
-              >Map</a
-            >)
+              target="_blank">Map</a>)
           </p>
           <p>
             <a class="text-orange-dark" href="http://thefourseven.org/training/">Sign up to volunteer</a>
