@@ -46,6 +46,21 @@
   }
 
   &.jumbotron-home {
+    .bg-video-player {
+      z-index: 0;
+    }
+
+    &.inline-video.playing {
+      .close-video,
+      .jumbotron-background-cover {
+        z-index: 2;
+      }
+    }
+
+    &.grid-overlay:before {
+      z-index: 1;
+    }
+
     .jumbotron-home-header {
       margin: 0 auto;
       max-width: 760px;
