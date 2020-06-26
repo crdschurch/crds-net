@@ -20,7 +20,7 @@
             <span>Community Pastor</span>
           </div>
           <img class="img-circle img-size-4 push-quarter-ends" style="width: 64px;"
-            src="{{ location.community_pastor_image.url }}" sizes="64px 64px" />
+            src="{{ location.community_pastor_image.url | imgix: site.imgix }}?ar=1:1&fit=crop" sizes="64px 64px" />
         </div>
       </div>
       {% endif %}
