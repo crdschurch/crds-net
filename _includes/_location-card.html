@@ -20,15 +20,14 @@
             <span>Community Pastor</span>
           </div>
           <img class="img-circle img-size-4 push-quarter-ends" style="width: 64px;"
-            src="{{ location.community_pastor_image.url }}" sizes="64px 64px" />
+            src="{{ location.community_pastor_image.url | imgix: site.imgix }}?ar=1:1&fit=crop" sizes="64px 64px" />
         </div>
       </div>
       {% endif %}
       <div data-automation-id="location-service-times" class="push-half-bottom">
         <strong>Service Times:</strong>
         <br />
-        {{ location.service_times | markdownify | remove: '<p>'| remove: '</p>' }}<br>
-        <a href="https://www.crossroads.net/watch/#ways-to-watch">Other ways to watch</a>
+        {{ location.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
       </div>
       <p class="push-half-bottom soft-quarter-bottom">
         {% if location.facebook_page_url %}
