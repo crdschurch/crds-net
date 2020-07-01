@@ -4,9 +4,9 @@ snail_trail: disabled
 monetate_page_type: index-main
 meta:
   title: Crossroads
-  description: No matter what your beliefs, you are welcome here.
-image:
-  url: "//crds-cms-uploads.imgix.net/content/images/cr-social-sharing-still-bg.jpg?w=1200&h=630&fit=crop"
+  description: You were born to make a difference. Designed to partner with God to change the world for good. If that sounds like your type of adventure, Crossroads is your spiritual outfitter.
+  image:
+    url: "//crds-media.imgix.net/7EFusaW9y0WFSxO9KCdumH/2edc127ce50430b3894692f7075122fb/spiritual-outfitters.jpg"
 paginate:
   articles:
     per: 15
@@ -59,8 +59,8 @@ paginate:
           <div class="col-sm-6 push-bottom">
             <crds-portrait-card-default
               href="/about"
-              lead="About Crossroads"
-              title="The Church for Doing"
+              lead="Who are you guys?"
+              title="About Crossroads"
               image-src="//crds-media.imgix.net/6NKDNv9LnxZ14cGKoIN3rW/46464e141a1c789b859a37a27bbb18fa/about-crossroads-img.png?format=auto"
             />
           </div>
@@ -68,7 +68,7 @@ paginate:
             <crds-portrait-card-default
               href="/brian-tome"
               lead="Senior Pastor Brian Tome"
-              title="Your Guides to the Adventurous Life"
+              title="Your Guide to the Adventurous Life"
               image-src="//crds-media.imgix.net/45IKoYE2JOihsKevVFgKoq/14827f5fbeb091b98db94570249857d4/brian-tome-headshot1.jpg?format=auto"
             />
           </div>
@@ -83,11 +83,21 @@ paginate:
             <div>
               <div class="border-top border-dashed push-half-bottom"></div>
                 <crds-media-object
-                  url="/media/podcasts/you-can-do-this/theres-stuff-everywhere"
-                  image-src="//crds-media.imgix.net/4V0Di4hScIAmM8ZL3ouch1/0bac1be7afc8fb13c27550a01f03c8a7/you-can-do-this-podcast.jpg?auto=format,compress&w=200&h=200&fit=crop&ixlib=imgixjs-3.3.2"
-                  type="podcast"
-                  title="There's stuff everywhere!"
-                  duration="11 min"
+                  url="/media/articles/anything-short-of-sin-a-letter-from-the-editor"
+                  image-src="//crds-media.imgix.net/7iUV0Le6Hod8YXU4OfWikX/1282916327ac0cc0f5b946be88eae685/anything-short-of-sin.jpg?auto=format,compress&w=200&h=200&fit=crop&ixlib=imgixjs-3.3.2"
+                  type="article"
+                  title="Anything Short Of Sin: A Letter From The Editor"
+                  duration="8 min"
+                ></crds-media-object>
+              </div>
+              <div>
+                <div class="border-top border-dashed push-half-bottom"></div>
+                <crds-media-object
+                url="/media/articles/handling-depression-how-to-keep-getting-up"
+                image-src="//crds-media.imgix.net/xm2l3QmWUzEst2GcYK9FW/3cbbd07dc79dcc886d634ea2c5f56ec1/handling-depression.jpg?auto=format,compress&w=1920"
+                type="article"
+                title="Handling Depression: How To Keep Getting Up"
+                duration="8 min"
                 ></crds-media-object>
               </div>
               <div>
@@ -96,18 +106,8 @@ paginate:
                 url="/media/articles/what-does-jesus-died-for-you-really-mean"
                 image-src="//crds-media.imgix.net/3RfsT8nDW4hq9AEj9ukhHG/35377c9b6829bbf55a04b76eb8167a7c/JESUS_DiED_FOG_Me77?auto=format,compress&w=1920"
                 type="article"
-                title="What Does Jesus Died For You Really Mean? "
+                title="What Does Jesus Died For You Really Mean?"
                 duration="5 min"
-                ></crds-media-object>
-              </div>
-              <div>
-                <div class="border-top border-dashed push-half-bottom"></div>
-                <crds-media-object
-                url="/media/videos/what-matters-to-you"
-                image-src="//crds-media.imgix.net/1OuvQhRP2fQHaV7n77YjQP/fb4bee7dc72f20f2bd13a06054384bc4/Screen_Shot_2020-06-18_at_11.39.17_AM__1_.png?h=250"
-                type="video"
-                title="What Matters To You?"
-                duration="7 min"
                 ></crds-media-object>
               </div>
               <div class="push-right">
@@ -210,7 +210,7 @@ paginate:
       <p class="text-blue font-family-serif font-size-large">Unfiltered & authentic takes on life</p>
     </div>
     <div class="col-sm-8">
-      {% assign most_recent = page.home_collection.docs | sort: "published_at" | reverse | first %} 
+      {% assign most_recent = page.home_collection.docs | sort: "published_at" | reverse | first %}
       <a href="{{ most_recent.url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
@@ -239,9 +239,9 @@ paginate:
               {% if item.content_type == "article" or "video" %}
               <div class="beige-overlay"></div>
               {% endif %}
-          
+
               {% assign image = item.image.url %}
-          
+
               {% if item.content_type == 'episode' %}
                 {% assign image =item.podcast.image.url %}
               {% endif %}
@@ -283,7 +283,7 @@ paginate:
 
 {% include _subscribe-modal.html %}
 
-{% comment %}You are needed{% endcomment %}
+{% comment %}Make a difference{% endcomment %}
 {% include home/_you-are-needed.html %}
 
 {% comment %}Ready to start your adventure?{% endcomment %}
@@ -297,11 +297,11 @@ paginate:
         <h1 class="component-header-box component-header-box-border-lg font-size-h1 text-white">Ready to start your adventure?</h1>
       </div>
     </div>
-    <div class="row">
+    <!--<div class="row">
       <p class="font-family-serif text-blue push font-size-base">Take the 30 day challenge</p>
-    </div>
+    </div>-->
     <div class="push-bottom soft-bottom row">
-      <crds-button href="/30-day-trial" color="blue" size="lg" text="Sign up now"></crds-button>
+      <crds-button href="/30-day-trial" color="blue" size="lg" text="Start your 30 day trial"></crds-button>
     </div>
   </div>
 </section>
