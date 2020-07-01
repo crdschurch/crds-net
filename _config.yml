@@ -3,7 +3,7 @@ email: info@crossroads.net
 description: No matter what your beliefs, you are welcome here.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.crossroads.net" # the base hostname & protocol for your site, e.g. http://example.com
-image: "https://crds-cms-uploads.imgix.net/content/images/cr-social-sharing-still-bg.jpg"
+image: "//crds-media.imgix.net/7EFusaW9y0WFSxO9KCdumH/2edc127ce50430b3894692f7075122fb/spiritual-outfitters.jpg"
 
 # Build settings
 permalink: pretty
