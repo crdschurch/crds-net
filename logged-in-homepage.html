@@ -304,7 +304,7 @@ paginate:
 <script>
   var triggerTimer = setInterval(hotJarTrigger, 1000);
   function hotJarTrigger() {
-    if (window.hj.scriptLoaded == true) {
+    if (window.hj && window.hj.scriptLoaded == true) {
       hj("trigger", "track_authenticated_homepage_users");
       triggerFired();
     }
