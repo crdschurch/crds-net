@@ -164,40 +164,8 @@ paginate:
 {% comment %}Gear Up for Your Adventure{% endcomment %}
 <section class="bg-orange">
   <div class="bg-topo-50">
-    <div class="container soft-ends">
-      <div class="text-center push-bottom">
-        <div class="push-bottom text-blue mobile-push-half-sides">
-          <h2 class="component-header-box text-blue">Gear Up for Your Adventure</h2>
-        </div>
-        <p class="text-blue font-family-serif font-size-large">Daily practices to help you grow.</p>
-      </div>
-      <div class="row soft-bottom">
-        <div class="col-sm-4 push-bottom">
-          <crds-portrait-card-default
-          href="/app"
-          lead="Crossroads App"
-          title="Connect With God. Pray With Others."
-          image-src="//crds-media.imgix.net/3tHfRrQ1ZwyNBLvnoDS37s/f67819758e1efc2faabd7405b2a4680b/crossroads-app-home.jpg?format=auto"
-          />
-        </div>
-        <div class="col-sm-4 push-bottom">
-          <crds-portrait-card-default
-          href="https://www.facebook.com/crsrdschurch/"
-          lead="Facebook Live Worship"
-          title="Kick-start Your Morning at 8:30 am"
-          image-src="//crds-media.imgix.net/1zuWtKTzfHUfugdYyoi2ZQ/ff03e2dc6215d565dd6fc678194a8bb4/daily-facebook-worship.jpg?format=auto"
-          />
-        </div>
-        <div class="col-sm-4 push-bottom">
-          <crds-portrait-card-default
-          href="/music"
-          lead="Crossroads Music"
-          title="Every Good Adventure Needs a Playlist"
-          image-src="//crds-media.imgix.net/7suAPpGUjibqsKbvuXyvzz/bbe27b99193f6184cef69bdb01daa83d/crossroads-music-zoom.jpg?format=auto"
-          />
-        </div>
-      </div>
-    </div>
+    {% assign gear_up = site.content_blocks | where: 'slug', 'gear-up-home' | first %}
+    {{ gear_up.content_block }}
   </div>
 </section>
 
