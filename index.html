@@ -132,7 +132,8 @@ paginate:
         <a href="https://share.hsforms.com/1_UzcT1lIRrmQPQ9fBVxt4A2dls1"><img class="push-ends soft-sides" src="//crds-media.imgix.net/1YXgKAhw35Oj1bSjoP3mjl/e81993ffa50d62787c9d26090683fd4d/undivided-home-page-callout2.jpg" alt="Undivided: A Journey on Race, Relationship and Reconciliation" /></a>
       </div>
       <div class="col-sm-4">
-        {% include home/_latest-news.html %}
+        {% assign the_good_news = site.content_blocks | where: 'slug', 'good-news-home' | first %}
+        {{ the_good_news.content_block }}
       </div>
     </div>
   </div>
