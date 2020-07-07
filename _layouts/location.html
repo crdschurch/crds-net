@@ -16,26 +16,33 @@ layout: default
 <!-- Jumbotron section -->
 <div class="jumbotron jumbotron-xl flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
   data-optimize-bg-img>
-  <div class="push-ends mobile-soft-sides">
-    <span class="font-family-base text-uppercase text-white">
-      <strong>welcome to</strong>
-    </span>
-    <h1 class="font-family-condensed-extra text-uppercase">Crossroads <br />{{ page.name }}</h1>
+  <div class="bg-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 push-ends mobile-soft-sides">
+        <div class="">
+          <span class="font-family-base text-uppercase text-white">
+            <strong>welcome to</strong>
+          </span>
+          <h1 class="font-family-condensed-extra text-uppercase">Crossroads <br />{{ page.name }}</h1>
 
-    <div class="push-bottom">
-      <a href="javascript:void(0)" class="btn btn-orange" data-smooth-scroll-to="service-times" data-smooth-scroll-offset="95">View service times</a>
-    </div>
-    <div>
-      {% if location_happenings.size > 0 %}
-      <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="happenings"  data-smooth-scroll-offset="50">See what's
-        happening at {{ page.name }}</a>
-      {% endif %}
+          <div class="push-bottom">
+            <a href="javascript:void(0)" class="btn btn-orange" data-smooth-scroll-to="service-times" data-smooth-scroll-offset="95">View service times</a>
+          </div>
+          <div>
+            {% if location_happenings.size > 0 %}
+            <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="happenings"  data-smooth-scroll-offset="50">See what's
+              happening at {{ page.name }}</a>
+            {% endif %}
 
-      {% if page.kids_club_hours or page.student_ministry_hours %}
-      <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="kids-and-students" data-smooth-scroll-offset="50">Kids &amp; Students</a>
-      {% endif %}
+            {% if page.kids_club_hours or page.student_ministry_hours %}
+            <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="kids-and-students" data-smooth-scroll-offset="50">Kids &amp; Students</a>
+            {% endif %}
 
-      <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="community-care" data-smooth-scroll-offset="50">Community Care</a>
+            <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="community-care" data-smooth-scroll-offset="50">Community Care</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -59,7 +66,7 @@ layout: default
               <br />
               {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
             </p>
-            <crds-button color="orange" text="Watch with us" href="https://www.facebook.com/crds{{ page.slug }}" icon="facebook" icon-color="blue-dark" icon-align="left" icon-size="16"></crds-button>
+            <crds-button color="orange" text="Watch with us" href="https://www.facebook.com/crsrds{{ page.slug }}" icon="facebook" icon-color="blue-dark" icon-align="left" icon-size="16"></crds-button>
           </div>
           <div class="col-sm-6">
             <p>
