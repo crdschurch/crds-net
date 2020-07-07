@@ -56,22 +56,8 @@ paginate:
     <div>
       <div class="col-sm-8 soft-ends">
         <div>
-          <div class="col-sm-6 push-bottom">
-            <crds-portrait-card-default
-              href="/about"
-              lead="Want to know more?"
-              title="About Crossroads"
-              image-src="//crds-media.imgix.net/6NKDNv9LnxZ14cGKoIN3rW/46464e141a1c789b859a37a27bbb18fa/about-crossroads-img.png?format=auto"
-            />
-          </div>
-          <div class="col-sm-6">
-            <crds-portrait-card-default
-              href="/brian-tome"
-              lead="Senior Pastor Brian Tome"
-              title="Your Guide to the Adventurous Life"
-              image-src="//crds-media.imgix.net/45IKoYE2JOihsKevVFgKoq/14827f5fbeb091b98db94570249857d4/brian-tome-headshot1.jpg?format=auto"
-            />
-          </div>
+          {% assign homepage_cards = site.content_blocks | where: 'slug', 'homepage-cards' | first %}
+          {{ homepage_cards.content_block }}
         </div>
       </div>
       <div class="col-sm-4 soft-ends">
