@@ -258,20 +258,8 @@ paginate:
 {% comment %}Ready to start your adventure?{% endcomment %}
 <section class="bg-orange">
   <div class="container soft-ends text-center">
-    <div class="push-top soft-top row">
-      <crds-arrow arrow-color="blue" text-color="orange">It's go time</crds-arrow>
-    </div>
-    <div class="row">
-      <div class="col-md-8 col-md-push-2 mobile-push-half-sides">
-        <h1 class="component-header-box component-header-box-border-lg font-size-h1 text-white">Ready to start your adventure?</h1>
-      </div>
-    </div>
-    <!--<div class="row">
-      <p class="font-family-serif text-blue push font-size-base">Take the 30 day challenge</p>
-    </div>-->
-    <div class="push-bottom soft-bottom row">
-      <crds-button href="/30-day-trial" color="blue" size="lg" text="Start your 30 day trial"></crds-button>
-    </div>
+    {% assign homepage_sign_up_cta = site.content_blocks | where: 'slug', 'homepage-sign-up-cta' | first %}
+    {{ homepage_sign_up_cta.content_block }}
   </div>
 </section>
 
