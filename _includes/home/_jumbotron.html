@@ -15,23 +15,8 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
-        <div class="jumbotron-content">
-          <a href="#" class="inline-video-trigger" data-video-id="jTtFrLl17aM">
-            <svg class="media-play-btn icon icon-5 text-white" viewBox="0 0 256 256">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#play-thin"></use>
-            </svg>
-          </a>
-          <div class="jumbotron-home-header">
-            <h2 class="font-family-condensed-extra text-uppercase flush-bottom text-tan">You were</h2>
-            <h1 class="font-family-condensed-extra text-uppercase flush-top text-tan">Born For Adventure</h1>
-          </div>
-          <p class="font-family-serif soft-half-top">
-            You were born to make a difference. Designed to partner with God to change the world for good. If that sounds like your type of adventure, Crossroads is your <a class="text-orange" href="/spiritual-outfitters">spiritual outfitter.</a>
-          </p>
-          <div class="row">
-            <a href="/30-day-trial" class="btn btn-orange"><strong>Start your adventure - 30 Day Trial</strong></a>
-          </div>
-        </div>
+        {% assign jumbotron_content = site.content_blocks | where: 'slug', 'home-jumbotron-content' | first %}
+        {{ jumbotron_content.content_block }}
       </div>
     </div>
   </div>
