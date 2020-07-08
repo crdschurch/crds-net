@@ -1,21 +1,19 @@
-import { stubLocationSearch, visitLocationsAndSearch } from './helpers/location_search';
+import { stubLocationSearchResponse } from './helpers/location_search';
+import { searchErrorResponse } from '../../../fixtures/location_search_results';
 
-//Warning! - The locations page sometimes loads with missing functionality. Issue captured DE6665
 describe('Tests invalid search', () => {
-  before(function () {
-    const response = {
-      'message': 'LocationController: GET locations proximities -- ',
-      'errors': [
-        'Exception of type \'crds_angular.Exceptions.InvalidAddressException\' was thrown.'
-      ]
-    };
-    stubLocationSearch(response, 400);
+  it('Checks error is displayed', () => {
+    // Setup search response error
+    const errorResponse = searchErrorResponse();
+    stubLocationSearchResponse(errorResponse, 400);
+    
+    cy.visit('/locations');
 
     const keyword = 'ljs;oifjoeia';
-    visitLocationsAndSearch(keyword);
-  });
+    cy.get('#search-input').clear().type(keyword);
+    cy.get('#input-search').click();
 
-  it('Checks error is displayed', () => {
-    cy.get('[data-automation-id="locations-carousel"] > .error-text').as('searchError').should('be.visible');
+    cy.get('[data-automation-id="locations-carousel"] > .error-text').as('searchError')
+      .should('be.visible');
   });
 });

@@ -7,6 +7,13 @@
     {
       "secret": "Crossroads.Automation",
       "keys": ["TEST_USER_PW"]
+    },
+    {
+      "secret": "Crossroads.SigninPage",
+      "keys": [
+        "OKTA_API_SUBDOMAIN",
+        "OKTA_API_TESTING_TOKEN"
+      ]
     }
   ]
 }

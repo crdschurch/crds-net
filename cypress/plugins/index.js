@@ -12,9 +12,15 @@
 // the project's config changing)
 
 const loadConfig = require('crds-cypress-config');
+const { manageBlacklist } = require('./blacklistHosts');
 
 //Config files live in /config. To specify which one to use, open or run with command line argument:
 //"--env configFile=demo_crossroads"
 module.exports = (on, config) => {
+  // Configure blacklisted hosts
+  manageBlacklist(config);
+
   return loadConfig.loadConfigFromFile(config).then(newConfig => loadConfig.loadConfigFromVault(newConfig));
+  // return loadConfig.loadConfigFromVault(config);
+  // return loadConfig.loadConfigFromFile(config);
 };

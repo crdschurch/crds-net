@@ -1,17 +1,20 @@
-import { oakleyResult } from '../../../fixtures/location_search_results';
-import { stubLocationSearch, visitLocationsAndSearch, checkDistanceOverlayDisplayed } from './helpers/location_search';
+import { oakleyLocationResponse } from '../../../fixtures/location_search_results';
+import { stubLocationSearchResponse, checkDistanceOverlayDisplayed } from './helpers/location_search';
 
 //Warning! - The locations page sometimes loads with missing functionality. Issue captured DE6665
 describe('Tests out of range location result cards', () => {
   let outOfRangeLocation;
 
-  before(function () {
-    outOfRangeLocation = oakleyResult();
+  before(() => {
+    outOfRangeLocation = oakleyLocationResponse();
     outOfRangeLocation.distance = 30.1;
-    stubLocationSearch([outOfRangeLocation]);
+    stubLocationSearchResponse([outOfRangeLocation]);
+    
+    cy.visit('/locations');
 
-    const keyword = '45209';
-    visitLocationsAndSearch(keyword);
+    const farAwayZip = '45209';
+    cy.get('#search-input').clear().type(farAwayZip);
+    cy.get('#input-search').click();
   });
 
   it('Checks Anywhere card displayed first without distance overlay', () => {

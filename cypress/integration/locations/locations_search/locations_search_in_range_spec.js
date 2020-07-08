@@ -1,20 +1,22 @@
-import { oakleyResult, florenceResult } from '../../../fixtures/location_search_results';
-import { stubLocationSearch, visitLocationsAndSearch, checkDistanceOverlayDisplayed } from './helpers/location_search';
+import { oakleyLocationResponse, florenceLocationResponse } from '../../../fixtures/location_search_results';
+import { checkDistanceOverlayDisplayed, stubLocationSearchResponse } from './helpers/location_search';
 
-//Warning! - The locations page sometimes loads with missing functionality. Issue captured DE6665
 describe('Tests in range location result cards', () => {
   let nearestLocation;
   let nextNearestLoc;
 
-  before(function () {
-    nearestLocation = oakleyResult();
+  before(() => {
+    nearestLocation = oakleyLocationResponse();
     nearestLocation.distance = 15;
-    nextNearestLoc = florenceResult();
+    nextNearestLoc = florenceLocationResponse();
     nextNearestLoc.distance = 20;
-    stubLocationSearch([nextNearestLoc, nearestLocation]);
+    stubLocationSearchResponse([nextNearestLoc, nearestLocation]);
+    
+    cy.visit('/locations');
 
-    const keyword = '45209';
-    visitLocationsAndSearch(keyword);
+    const oakleyZip = '45209';
+    cy.get('#search-input').clear().type(oakleyZip);
+    cy.get('#input-search').click();
   });
 
   it('Checks nearest location card displayed first with distance overlay', () => {

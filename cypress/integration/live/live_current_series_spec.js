@@ -1,20 +1,18 @@
 import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
 import { SeriesQueryManager } from 'crds-cypress-contentful';
 
-describe('Testing the Current Series on the Live page:', function () {
+describe('Testing the Current Series on the Live page:', () => {
   let currentSeries;
-  before(function () {
+  before(() => {
     const sqm = new SeriesQueryManager();
     sqm.getSingleEntry(sqm.query.latestSeries).then(series => {
       currentSeries = series;
     });
-    cy.on('uncaught:exception', (err, runnable) => {
-        return false
-    })
+
     cy.visit('/live');
   });
 
-  it('Current Series title, date, and description should match Contentful', function () {
+  it('Current Series title, date, and description should match Contentful', () => {
     cy.get('.current-series').as('currentSeriesBlock');
 
     cy.get('@currentSeriesBlock').find('[data-automation-id="series-title"]').as('currentSeriesTitle');
@@ -32,14 +30,14 @@ describe('Testing the Current Series on the Live page:', function () {
     cy.get('@currentSeriesDescription').normalizedText().should('contain', currentSeries.description.unformattedText);
   });
 
-  it('Current Series image should match Contentful', function () {
+  it('Current Series image should match Contentful', () => {
     cy.get('[data-automation-id="series-image"]').as('currentSeriesImage');
     currentSeries.imageLink.getResource(image => {
       new ImageDisplayValidator('currentSeriesImage').shouldHaveImgixImage(image);
     });
   });
 
-  it('"Watch Trailer" button should open a youtube modal, iff series has trailer', function () {
+  it('"Watch Trailer" button should open a youtube modal, iff series has trailer', () => {
     //Test trailer button attributes
     if (!currentSeries.youtubeURL.hasValue) {
       cy.get('[data-automation-id="series-youtube"]').should('not.exist');

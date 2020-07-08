@@ -6,6 +6,9 @@
     "CRDS_ENV": "demo",
     "CRDS_MEDIA_ENDPOINT": "https://demo.crossroads.net/media",
     "gateway_endpoint": "https://gatewaydemo.crossroads.net",
+    "OKTA_SIGNIN_URL": "https://demo.crossroads.net/oktasignin",
+    "OKTA_ENDPOINT": "https://authpreview.crossroads.net",
+    "CLIENT_ID": "0oahgpg7elMxVJedi0h7",
     "vaultEnv": "demo"
   }
 }

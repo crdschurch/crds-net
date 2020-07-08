@@ -17,10 +17,10 @@ function getYoutubeId(youtubeURL) {
   return match;
 }
 
-describe('Tests the /live/stream page video player', function () {
+describe('Tests the /live/stream page video player', () => {
   let latestMessage;
   let fakeSchedule;
-  before(function () {
+  before(() => {
     const mqm = new MessageQueryManager();
     mqm.getSingleEntry(mqm.query.latestMessage).then(message => {
       latestMessage = message;
@@ -34,20 +34,20 @@ describe('Tests the /live/stream page video player', function () {
     cy.route(`${Cypress.env('schedule_env')}/streamSchedule`, fakeSchedule);
   });
 
-  it('Checks player is Bitmovin player or fallback Youtube player', function () {
-  //  cy.route('manifest.m3u8').as('bitmovinManifest');
-    const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus or undefined.*/];
-    cy.ignoreMatchingErrors(errorsToIgnore);
-       cy.visit('/live/stream/');
+  it('Checks player is Bitmovin player or fallback Youtube player', () => {
+    cy.route('manifest.m3u8').as('bitmovinManifest');
+
+    cy.visit('/live/stream/');
     hideRollCall();
 
     if (latestMessage.bitmovinURL.hasValue) {
       cy.get('#VideoManager').as('bitmovinPlayer').should('be.visible');
       cy.get('#js-media-video').as('youtubePlayer').should('not.exist');
 
-  //    cy.wait('@bitmovinManifest', { timeout: 60000 }).then((manifest) => {
- //       expect(manifest.url).to.eq(latestMessage.bitmovinURL.text);
-   //   });
+      // Autoplay is turned off. Uncomment when it's turned back on
+      // cy.wait('@bitmovinManifest', { timeout: 60000 }).then((manifest) => {
+      //   expect(manifest.url).to.eq(latestMessage.bitmovinURL.text);
+      // });
     } else {
       cy.get('#js-media-video').as('youtubePlayer').should('be.visible');
       cy.get('#VideoManager').as('bitmovinPlayer').should('not.exist');
@@ -58,9 +58,9 @@ describe('Tests the /live/stream page video player', function () {
       }
     }
   });
-  
- // Skip test until live stream is returned back to original functionality 
-  it.skip('Check Bitmovin player Autoplays muted with subtitles', function () {
+
+  // Skip test until live stream autoplay is turned back on
+  it.skip('Check Bitmovin player Autoplays muted with subtitles', () => {
     const requestFilter = new RequestFilter(amplitude.isVideoStarted);
 
     cy.route({
@@ -71,8 +71,6 @@ describe('Tests the /live/stream page video player', function () {
       }
     });
 
-    const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/, /.*Cannot set property staus or undefined.*/];
-    cy.ignoreMatchingErrors(errorsToIgnore);  
     cy.visit('/live/stream/');
     hideRollCall();
 
