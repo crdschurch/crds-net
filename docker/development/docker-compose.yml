@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  crds-net:
+    build: 
+      context: ../../
+      dockerfile: ./docker/development/Dockerfile
+    container_name: crds-net-development
+    env_file: ../../.env
+    volumes:
+      - type: volume
+        source: crds-net_node_modules
+        target: /crds-net/node_modules
+      - type: bind
+        source: ../../
+        target: /crds-net
+    ports:
+      - 4000:4000
+    # entrypoint: [ "bundle", "exec", "jekyll", "serve", "--force_polling", "--host", "0.0.0.0"] # Uncomment to serve without updating contentful on "docker-compose up"
+
+
+volumes: 
+  crds-net_node_modules:
