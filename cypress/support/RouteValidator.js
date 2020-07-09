@@ -1,3 +1,4 @@
+//TODO depricate this
 export class RouteValidator{
   static pageShouldNotBe404() {
     cy.get('[data-automation-id="404-search-field"]').as('404SearchField').should('not.exist');

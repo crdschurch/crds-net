@@ -1,7 +1,6 @@
 import { oakleyLocationResponse } from '../../../fixtures/location_search_results';
 import { stubLocationSearchResponse, checkDistanceOverlayDisplayed } from './helpers/location_search';
 
-//Warning! - The locations page sometimes loads with missing functionality. Issue captured DE6665
 describe('Tests out of range location result cards', () => {
   let outOfRangeLocation;
 

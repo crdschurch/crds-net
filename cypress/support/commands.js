@@ -25,9 +25,9 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-import { Formatter } from './Formatter';
 import { MinistryPlatformLoginPlugin, OktaLoginPlugin } from 'crds-cypress-login';
 import { endUserSessions } from '../APIs/OktaUserAPI';
+import { normalizeText } from 'crds-cypress-contentful';
 
 /*** Test Setup ***/
 // This will be applied to all tests automatically
@@ -83,7 +83,7 @@ Cypress.Commands.add('signOutOktaUser', (oktaId) => {
 });
 
 Cypress.Commands.add('normalizedText', { prevSubject: 'element' }, (subject) => {
-  return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => Formatter.normalizeText(elementText));
+  return cy.wrap(subject).should('have.prop', 'textContent').then(normalizeText); 
 });
 
 Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
@@ -116,7 +116,12 @@ Cypress.Commands.add('ignoreMatchingErrors', (errorList) => {
 
 
 /*TODO:
-- update cypress contentful - and convert formatter use to the one provided here
-- update cypress to 4.8.0
 - update cypress config to use include file (and npm script) (looks like some conflicts with 1.0.1? try after upgrade)
+- update cypress to 4.8.0
+- make image validator class into commands (they currently run outside the test stack so don't fail test)
+- make RouteValidator commands?
+- make autoplay event listener a spy - but remove the api.amplitude? it may have been inadvertently blacklisted
+- Make sure function () and aliases are used everywhere!
+- can remove-markdown be removed?
+
 */

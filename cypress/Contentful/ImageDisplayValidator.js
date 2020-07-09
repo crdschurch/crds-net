@@ -1,3 +1,4 @@
+//TODO make these commands? can have separate command file???
 export class ImageDisplayValidator {
   constructor (alias, usesPlaceholderIfUndefined = true) {
     this._alias = alias;
@@ -10,7 +11,7 @@ export class ImageDisplayValidator {
       return; //Asset doesn't exist
 
     if (imageAsset.isPublished) {
-      cy.get(`@${this._alias}`).should('have.attr', 'src').and('contain', imageAsset.id);
+      cy.get(`@${this._alias}`).should('have.attr', 'src').and('contain', imageAsset.sys_id);
     }
     else if (this._if_unpublished_display_placeholder_image) {
       //TODO - No way to test this scenario yet.
@@ -24,7 +25,7 @@ export class ImageDisplayValidator {
 
     if (imageAsset.isPublished) {
       cy.get(`@${this._alias}`).should('have.attr', 'srcset');
-      cy.get(`@${this._alias}`).should('have.attr', 'src').and('contain', imageAsset.id);
+      cy.get(`@${this._alias}`).should('have.attr', 'src').and('contain', imageAsset.sys_id);
     }
     else if (this._if_unpublished_display_placeholder_image) {
       cy.get(`@${this._alias}`).should('have.attr', 'srcset');
@@ -34,9 +35,9 @@ export class ImageDisplayValidator {
     cy.get(`@${this._alias}`).first().scrollIntoView();
 
     if (backgroundImageAsset !== undefined && backgroundImageAsset.isPublished) {
-      cy.get(`@${this._alias}`).should('have.attr', 'style').and('contain', backgroundImageAsset.id);
+      cy.get(`@${this._alias}`).should('have.attr', 'style').and('contain', backgroundImageAsset.sys_id);
     } else if (foregroundImageAsset !== undefined && foregroundImageAsset.isPublished) {
-      cy.get(`@${this._alias}`).find('div').should('have.attr', 'style').and('contain', foregroundImageAsset.id);
+      cy.get(`@${this._alias}`).find('div').should('have.attr', 'style').and('contain', foregroundImageAsset.sys_id);
     }
   }
 }
