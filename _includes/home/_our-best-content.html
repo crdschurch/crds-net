@@ -5,13 +5,14 @@
   <div>
     <div>
       {% assign feature_obj = site.featured_media | where: 'page_path', 'our-best-content' | first %}
-      {% assign best_content = feature_obj.entries | get_docs %}
-      {% for item in best_content %}
+      {% assign best_content = feature_obj.entries %}
+      {% for content in best_content %}
+      {% assign item = content | get_doc %}
       {% assign image = item.image.url %}
       {% if item.content_type == 'episode' %}
       {% assign image =item.podcast.image.url %}
       {% endif %}
-      {% if item.duration %} 
+      {% if item.duration %}
       {% assign format = 'short' %}
       {% endif %}
         <div>
