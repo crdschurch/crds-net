@@ -1,5 +1,8 @@
 {
+  "projectId": "dnbm5t",
   "baseUrl": "https://int.crossroads.net",
+  "testFiles": "**/*spec.js",
+  "blacklistHosts": "*.monetate.net",
   "env": {
     "schedule_env": "/int",
     "CONTENTFUL_ENV": "int",

@@ -1,4 +1,3 @@
-import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
 import { SeriesQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
 describe('Testing the Current Series on the Live page:', () => {
@@ -35,8 +34,7 @@ describe('Testing the Current Series on the Live page:', () => {
   });
 
   it('Current Series image should match Contentful', () => {
-    cy.get('[data-automation-id="series-image"]').as('currentSeriesImage');
-    new ImageDisplayValidator('currentSeriesImage').shouldHaveImgixImage(currentSeries.image);
+    cy.imgixShouldRunOnElement('[data-automation-id="series-image"]', currentSeries.image);
   });
 
   it('"Watch Trailer" button should open a youtube modal, iff series has trailer', () => {
@@ -53,6 +51,6 @@ describe('Testing the Current Series on the Live page:', () => {
     //Test modal attributes
     cy.get('#trailer-video-modal').find('#modal-video-src').as('youtubeModal');
     cy.get('@youtubeModal').should('exist');
-    cy.get('@youtubeModal').should('have.attr', 'data-src', currentSeries.youtube_url && currentSeries.youtube_url.text || ''); //TODO when cypress updated, can use ?
+    cy.get('@youtubeModal').should('have.attr', 'data-src', currentSeries.youtube_url && currentSeries.youtube_url.text || '');
   });
 });

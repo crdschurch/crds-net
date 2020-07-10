@@ -1,4 +1,3 @@
-import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
 import { RequestFilter } from '../../Analytics/RequestFilter';
 import { amplitude } from '../../fixtures/event_filters';
 import { MessageQueryBuilder, normalizeText } from 'crds-cypress-contentful';
@@ -15,7 +14,7 @@ describe('Tests the Current Message on the Homepage', () => {
     qb.select = 'fields.title,fields.slug,fields.description,fields.image,fields.bitmovin_url';
     qb.limit = 1;
     cy.task('getCNFLResource', qb.queryParams)
-      .then((message) =>{
+      .then((message) => {
         currentMessage = message;
       });
 
@@ -38,7 +37,7 @@ describe('Tests the Current Message on the Homepage', () => {
       .scrollIntoView()
       .text()
       .should('contain', currentMessage.title.text);
-      
+
     cy.get('.latest-message-btn').contains('View all teachings')
       .should('be.visible')
       .and('have.attr', 'href', '/media/series');
@@ -55,17 +54,19 @@ describe('Tests the Current Message on the Homepage', () => {
         cy.get('.latest-message-btn').contains('Watch now')
           .should('be.visible')
           .and('have.attr', 'href', relativeAutoplayURL);
-      });    
+      });
   });
 
   it('Checks card image and, if Bitmovin video, player exists and video autoplays', () => {
-    cy.get('[data-automation-id="message-video"]').as('videoImagelink');
-    cy.get('@videoImagelink').find('img').as('videoImage');
-    new ImageDisplayValidator('videoImage', false).shouldHaveImgixImage(currentMessage.image);
+    cy.get('[data-automation-id="message-video"]').as('videoImagelink')
+      .first()
+      .scrollIntoView();
+    cy.imgixShouldRunOnElement('[data-automation-id="message-video"] img', currentMessage.image);
 
     if (currentMessage.bitmovin_url.hasValue) {
-      cy.get('div[data-video-player]').as('videoPlayer').should('have.prop', 'id').and('contain', 'bitmovinPlayer');
-      
+      cy.get('div[data-video-player]').as('videoPlayer')
+        .should('have.prop', 'id').and('contain', 'bitmovinPlayer');
+
       //TODO uncomment if autoplay is turned back on for this video - fix this
       // cy.wrap(requestFilter).as('autoplayEvent').its('matches').should('have.length', 1);
     }

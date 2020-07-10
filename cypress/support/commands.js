@@ -90,6 +90,28 @@ Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
   return cy.wrap(subject).should('have.prop', 'textContent');
 });
 
+/**
+ * Given selector must be an element selector, not an alias
+ */
+Cypress.Commands.add('imgixShouldRunOnElement', { prevSubject: false}, (selector, imageAsset) => {
+  if (imageAsset && imageAsset.isPublished) {
+    cy.get(selector)
+      .should('have.attr', 'src')
+      .and('contain', imageAsset.sys_id);
+  }
+
+  // Imigx should run when in view
+  cy.get(selector)
+    .scrollIntoView()
+    .then(() => {
+      // Imgix detaches the element from the DOM when processing, 
+      //  so we must re-find it before testing
+      cy.get(selector)
+        .should('be.visible')
+        .and('have.attr', 'srcset');
+    });
+});
+
 /*
 * Ignore exceptions that match the regexes in the given array.
 * This call must be added to every test, or in a beforeEach clause, before the
@@ -116,12 +138,11 @@ Cypress.Commands.add('ignoreMatchingErrors', (errorList) => {
 
 
 /*TODO:
-- update cypress config to use include file (and npm script) (looks like some conflicts with 1.0.1? try after upgrade)
-- update cypress to 4.8.0
 - make image validator class into commands (they currently run outside the test stack so don't fail test)
 - make RouteValidator commands?
 - make autoplay event listener a spy - but remove the api.amplitude? it may have been inadvertently blacklisted
 - Make sure function () and aliases are used everywhere!
 - can remove-markdown be removed?
-
+- can we remove retry tests?
+- do we always need to blacklist monetate?
 */

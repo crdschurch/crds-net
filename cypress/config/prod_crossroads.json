@@ -1,6 +1,9 @@
 {
+  "projectId": "dnbm5t",
   "baseUrl": "https://www.crossroads.net",
+  "testFiles": "**/*spec.js",
   "ignoreTestFiles": "*_noprod*spec.js",
+  "blacklistHosts": "*.monetate.net",
   "env": {
     "schedule_env": "/prod",
     "CONTENTFUL_ENV": "master",

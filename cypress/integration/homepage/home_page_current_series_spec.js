@@ -1,4 +1,3 @@
-import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
 import { SeriesQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
 describe('Testing the Current Series on the Homepage:', () => {
@@ -17,23 +16,22 @@ describe('Testing the Current Series on the Homepage:', () => {
   });
 
   it('Current series title, description, and image should match Contentful', () => {
-    cy.get('[data-automation-id="series-title"]').as('seriesTitle');
-    cy.get('@seriesTitle').should('be.visible').and('have.text', currentSeries.title.text);
-    cy.get('@seriesTitle').should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
+    cy.get('[data-automation-id="series-title"]').as('seriesTitle')
+      .should('be.visible')
+      .and('have.text', currentSeries.title.text);
+    cy.get('@seriesTitle')
+      .should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
 
-    cy.get('[data-automation-id="series-description"]').as('seriesDescription');
-    
-    cy.get('@seriesDescription')
+    cy.get('[data-automation-id="series-description"]').as('seriesDescription')
       .normalizedText()
       .then((elementText) => {
         expect(normalizeText(currentSeries.description.text)).to.contain(elementText);
       });
 
-    cy.get('[data-automation-id="series-image"]').as('seriesImageLink');
-    cy.get('@seriesImageLink').should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
-    cy.get('@seriesImageLink').find('img').as('seriesImage');
-
-    new ImageDisplayValidator('seriesImage').shouldHaveImgixImage(currentSeries.image);
+    cy.get('[data-automation-id="series-image"]').as('seriesImageLink')
+      .scrollIntoView()
+      .should('have.attr', 'href', `/series/${currentSeries.slug.text}`);  
+    cy.imgixShouldRunOnElement('[data-automation-id="series-image"] > img', currentSeries.image);
   });
 
   //TODO fix this - may need later versions with shadow dom support

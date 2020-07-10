@@ -36,8 +36,8 @@ describe('Tests Happening section is displayed', () => {
         cy.url().should('not.contain', Cypress.env('OKTA_SIGNIN_URL'));
         cy.reload(); //Workaround - when using Okta auth the logged out homepage loads first. Remove once this is fixed
       });
-    
+
     cy.get('crds-site-happenings')
-      .scrollIntoView({ top: 100 }).should('have.prop', 'shadowRoot').and('not.be.null');   
+      .scrollIntoView({ top: 100 }).should('have.prop', 'shadowRoot').and('not.be.null');
   });
 });
