@@ -73,7 +73,7 @@ describe('Tests latest message is current and ready for live stream', () => {
   it('Verify the new message is streamed using the Bitmovin player', () => {
     //Trick /live to think the live stream is playing
     cy.server();
-    cy.route(`${Cypress.env('schedule_env')}/streamSchedule`, fakeSchedule);
+    cy.route(`${Cypress.env('stream_schedule_env')}/streamSchedule`, fakeSchedule);
     cy.route('manifest.m3u8').as('bitmovinManifest');
 
     //Listen for video started event

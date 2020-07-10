@@ -3,16 +3,14 @@ import { amplitude } from '../../fixtures/event_filters';
 import { MessageQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 import { getRelativeMessageUrl } from '../../support/GetUrl';
 
-describe('Tests the Current Message on the Homepage', () => {
-  let currentMessage;
-  let requestFilter;
+describe('Tests the Current Message on the Homepage', function() {
+  const requestFilter = new RequestFilter(amplitude.isVideoStarted);
+  let currentMessage;  
 
-  before(() => {
-    //Fetch Current Message
+  before(function() {
     const qb = new MessageQueryBuilder();
     qb.orderBy = '-fields.published_at';
     qb.select = 'fields.title,fields.slug,fields.description,fields.image,fields.bitmovin_url';
-    qb.limit = 1;
     cy.task('getCNFLResource', qb.queryParams)
       .then((message) => {
         currentMessage = message;
@@ -20,7 +18,6 @@ describe('Tests the Current Message on the Homepage', () => {
 
     //Setup capture for events
     cy.server();
-    requestFilter = new RequestFilter(amplitude.isVideoStarted);
     cy.route({
       method: 'POST',
       url: 'api.amplitude.com',
@@ -32,7 +29,7 @@ describe('Tests the Current Message on the Homepage', () => {
     cy.visit('/');
   });
 
-  it('Checks title, image, and button have correct link', () => {
+  it('Checks title, image, and button have correct link', function() {
     cy.get('.latest-message-headline').as('title')
       .scrollIntoView()
       .text()
@@ -57,10 +54,7 @@ describe('Tests the Current Message on the Homepage', () => {
       });
   });
 
-  it('Checks card image and, if Bitmovin video, player exists and video autoplays', () => {
-    cy.get('[data-automation-id="message-video"]').as('videoImagelink')
-      .first()
-      .scrollIntoView();
+  it('Checks card image and, if Bitmovin video, player exists and video autoplays', function() {
     cy.imgixShouldRunOnElement('[data-automation-id="message-video"] img', currentMessage.image);
 
     if (currentMessage.bitmovin_url.hasValue) {
@@ -72,7 +66,7 @@ describe('Tests the Current Message on the Homepage', () => {
     }
   });
 
-  it('Checks description', () => {
+  it('Checks description', function() {
     cy.get('.latest-message-body')
       .as('description')
       .normalizedText()

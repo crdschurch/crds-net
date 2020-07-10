@@ -1,38 +1,57 @@
-import { ContentfulQueryBuilder } from 'crds-cypress-contentful';
-//TODO fixup aliases once cypress updated
-describe('Given I navigate to /Onsite Group Page:', () => {
+import { ContentfulQueryBuilder, normalizeText } from 'crds-cypress-contentful';
+
+function sortByCategoryThenSlug(group1, group2){
+  if(group1.category.title.text < group2.category.title.text){
+    return -1;
+  }
+  if(group1.category.title.text > group2.category.title.text){
+    return 1;
+  }
+  if(group1.slug.text < group2.slug.text){
+    return -1;
+  }
+  if(group1.slug.text > group2.slug.text){
+    return 1;
+  }
+  return 0;
+}
+
+
+describe('Given I navigate to /Onsite Group Page:', function() {
   let onsiteGroupList;
-  before(() => {
+  before(function() {
     // Get Onsite Groups
     const qb = new ContentfulQueryBuilder('onsite_group');
-    qb.select = 'fields.title';
+    qb.select = 'fields.title,fields.category,fields.slug';
     qb.limit = 1000;
     cy.task('getCNFLResource', qb.queryParams)
-      .then((gl) => {
-        onsiteGroupList = gl;
+      .then((groups) => {
+        onsiteGroupList = groups.sort(sortByCategoryThenSlug);
       });
 
     cy.visit('/groups/onsite');
   });
+  
+  it('All Onsite group cards should be displayed', function() {
+    cy.get('.col-md-4').as('onsiteGroupCards')
+      .should('have.length', onsiteGroupList.length);
+  });
 
   it('Onsite Group card for Financial Peace should be last', function() {
-    cy.get('ul').as('onsiteGroupCards');
-    cy.get('@onsiteGroupCards').should('have.length', onsiteGroupList.length);
-    const financialPeaceIndex = onsiteGroupList.length;
-    cy.get('@onsiteGroupCards').eq(financialPeaceIndex - 1).find('a').should('have.attr', 'href', '/groups/onsite/financial-peace/uptown');
+    cy.get('.col-md-4').as('onsiteGroupCards')
+      .last()
+      .find('a')
+      .should('have.attr', 'href', '/groups/onsite/financial-peace/uptown');
   });
 
-  it('Test Onsite Group', function() {
-    cy.get('h3').as('onsiteGroupCards');
-    cy.get('@onsiteGroupCards').should('have.length', onsiteGroupList.length);
-  });
 
-  [0, 1, 2].forEach((index) => {
+  [0, 1, 2].forEach((index) => {    
     it(`Onsite card #${index} should have a Title`, function() {
-      let onsite = onsiteGroupList[index];
-      let title = onsite.title.text;
+      let title = onsiteGroupList[index].title.text;
 
-      cy.get('h3').eq(index).as(`${title}Card`);
+      cy.get('.col-md-4 h3').eq(index).as(`${title}Card`)
+        .normalizedText()
+        .should('eq', normalizeText(title));
     });
   });
 });

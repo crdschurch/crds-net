@@ -12,6 +12,7 @@ function manageBlacklist(config){
 
   // Block other scripts that occasionally cause problems
   uniqueBlacklist.add('*hotjar.com');
+  uniqueBlacklist.add('*.monetate.net');
 
   config.blacklistHosts = [...uniqueBlacklist];
 }

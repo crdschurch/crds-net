@@ -1,17 +1,15 @@
 import { oakleyLocationResponse, florenceLocationResponse } from '../../../fixtures/location_search_results';
-import { checkDistanceOverlayDisplayed, stubLocationSearchResponse } from './helpers/location_search';
+import { stubLocationSearchResponse } from './helpers/location_search';
 
-describe('Tests in range location result cards', function() {
-  let nearestLocation;
-  let nextNearestLoc;
+describe('Tests in range location result cards', function () {
+  const nearestLocation = oakleyLocationResponse();
+  nearestLocation.distance = 15;
+  const nextNearestLoc = florenceLocationResponse();
+  nextNearestLoc.distance = 20;
 
-  before(function() {
-    nearestLocation = oakleyLocationResponse();
-    nearestLocation.distance = 15;
-    nextNearestLoc = florenceLocationResponse();
-    nextNearestLoc.distance = 20;
+  before(function () {
     stubLocationSearchResponse([nextNearestLoc, nearestLocation]);
-    
+
     cy.visit('/locations');
 
     const oakleyZip = '45209';
@@ -19,17 +17,27 @@ describe('Tests in range location result cards', function() {
     cy.get('#input-search').click();
   });
 
-  it('Checks nearest location card displayed first with distance overlay', function() {
-    cy.get('#section-locations > .card').first().as('firstCard');
-    cy.get('@firstCard').find('[data-automation-id="location-name"]').text().should('eq', nearestLocation.location.location);
+  it('Checks nearest location card displayed first with distance overlay', function () {
+    cy.get('#section-locations .card').first().as('firstCard')
+      .should('have.attr', 'data-distance', nearestLocation.distance.toString());
 
-    checkDistanceOverlayDisplayed('@firstCard', nearestLocation.distance.toString());
+    cy.get('@firstCard').within(() => {
+      cy.get('[data-automation-id="location-name"]')
+        .text().should('eq', nearestLocation.location.location);
+
+      cy.get('.distance').should('contain', 'miles');
+    });
   });
 
-  it('Checks second-nearest location card displayed second with distance overlay', function() {
-    cy.get('#section-locations > .card').first().next().as('secondCard');
-    cy.get('@secondCard').find('[data-automation-id="location-name"]').text().should('eq', nextNearestLoc.location.location);
+  it('Checks second-nearest location card displayed second with distance overlay', function () {
+    cy.get('#section-locations .card').first().next().as('secondCard')
+      .should('have.attr', 'data-distance', nextNearestLoc.distance.toString());
 
-    checkDistanceOverlayDisplayed('@secondCard', nextNearestLoc.distance.toString());
+    cy.get('@secondCard').within(() => {
+      cy.get('[data-automation-id="location-name"]')
+        .text().should('eq', nextNearestLoc.location.location);
+
+      cy.get('.distance').should('contain', 'miles');
+    });
   });
 });

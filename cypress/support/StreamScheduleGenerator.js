@@ -1,3 +1,4 @@
+//TODO make this a function an maybe move to fixtures?
 export class StreamScheduleGenerator {
   //Does not support streams starting in the past
   getStreamStartingAfterHours(hours) {

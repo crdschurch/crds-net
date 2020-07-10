@@ -1,6 +1,8 @@
 import { ContentfulQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
 describe('Given I navigate to /locations and do not search:', function() {
+  let locationList; 
+
   before(function() {
     // Get Locations
     const qb = new ContentfulQueryBuilder('location');
@@ -8,7 +10,9 @@ describe('Given I navigate to /locations and do not search:', function() {
     qb.select = 'fields.name,fields.slug,fields.image,fields.address,fields.service_times,fields.map_url';
     qb.limit = 1000;
     cy.task('getCNFLResource', qb.queryParams)
-      .as('locationList');
+      .then((locations) => {
+        locationList = locations;
+      });
 
     cy.visit('/locations');
   });
@@ -21,11 +25,11 @@ describe('Given I navigate to /locations and do not search:', function() {
       .should('have.attr', 'href', '/live');
   });
 
-  [1, 2, 3].forEach(index => {
+  [1, 2, 3].forEach((index) => {
     let location;
     let name;
     before(function() {
-      location = this.locationList[index - 1];
+      location = locationList[index - 1];
       name = location.name.text;
     });
 

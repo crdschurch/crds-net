@@ -1,11 +1,7 @@
-describe('Tests the location search API call', function () {
-  before(function () {
-    cy.server();
-  });
-
-  it('Checks searching for Oakley by zip returns Oakley location first', function () {
+describe('Tests the location search API call', function() {
+  it('Checks searching for Oakley by zip returns Oakley location first', function() {
     const oakleyZip = '45209';
-    cy.request(`${Cypress.env('gateway_endpoint')}/gateway/api/v1.0.0/locations/proximities?origin=${oakleyZip}`)
+    cy.request(`${Cypress.env('CRDS_GATEWAY_ENDPOINT')}/api/v1.0.0/locations/proximities?origin=${oakleyZip}`)
       .its('body')
       .then((locations) => locations[0])
       .then((nearestLocation) => {
@@ -14,10 +10,10 @@ describe('Tests the location search API call', function () {
       });
   });
 
-  it('Checks searching for Florence by address returns Florence location first', function () {
+  it('Checks searching for Florence by address returns Florence location first', function() {
     const florenceAddress = '828 Heights Blvd Florence KY';
 
-    cy.request(`${Cypress.env('gateway_endpoint')}/gateway/api/v1.0.0/locations/proximities?origin=${encodeURI(florenceAddress)}`)
+    cy.request(`${Cypress.env('CRDS_GATEWAY_ENDPOINT')}/api/v1.0.0/locations/proximities?origin=${encodeURI(florenceAddress)}`)
       .its('body')
       .then((locations) => locations[0])
       .then((nearestLocation) => {
@@ -28,11 +24,11 @@ describe('Tests the location search API call', function () {
       });
   });
 
-  it('Checks searching for out of range address still returns locations with distance', function () {
+  it('Checks searching for out of range address still returns locations with distance', function() {
     const outOfRangeLoc = 'Peru';
     const outOfRangeDistance = 30;
 
-    cy.request(`${Cypress.env('gateway_endpoint')}/gateway/api/v1.0.0/locations/proximities?origin=${outOfRangeLoc}`)
+    cy.request(`${Cypress.env('CRDS_GATEWAY_ENDPOINT')}/api/v1.0.0/locations/proximities?origin=${outOfRangeLoc}`)
       .its('body')
       .then((locations) => locations[0])
       .then((nearestLocation) => {
@@ -40,11 +36,11 @@ describe('Tests the location search API call', function () {
       });
   });
 
-  it('Checks searching for garbage returns error response', function () {
+  it('Checks searching for garbage returns error response', function() {
     const garbageLoc = 'iqupwetoup;djnoipw';
 
     cy.request({
-      url: `${Cypress.env('gateway_endpoint')}/gateway/api/v1.0.0/locations/proximities?origin=${garbageLoc}`,
+      url: `${Cypress.env('CRDS_GATEWAY_ENDPOINT')}/api/v1.0.0/locations/proximities?origin=${garbageLoc}`,
       failOnStatusCode: false
     }).its('status').should('eq', 400);
   });

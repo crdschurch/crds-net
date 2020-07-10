@@ -1,5 +1,6 @@
 /**
  * Stores a matching request given a callback to filter
+ * TODO cy.spy() may work better than this
  */
 export class RequestFilter {
   constructor (cb) {

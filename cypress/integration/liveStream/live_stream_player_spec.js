@@ -18,22 +18,23 @@ function getYoutubeId(youtubeURL) {
 }
 
 describe('Tests the /live/stream page video player', function() {
-  // let latestMessage;
-  let fakeSchedule;
+  const fakeSchedule = new StreamScheduleGenerator().getStreamStartingAfterHours(0);
+  let latestMessage;
+
   before(function() {
     // Get current message
     const qb = new MessageQueryBuilder();
     qb.orderBy = '-fields.published_at';
     qb.select = 'fields.slug,fields.bitmovin_url,fields.source_url,fields.transcription';
     cy.task('getCNFLResource', qb.queryParams)
-      .as('latestMessage');
-
-    fakeSchedule = new StreamScheduleGenerator().getStreamStartingAfterHours(0);
+      .then((message) => {
+        latestMessage = message;
+      });
   });
 
   beforeEach(function() {
     cy.server();
-    cy.route(`${Cypress.env('schedule_env')}/streamSchedule`, fakeSchedule);
+    cy.route(`${Cypress.env('stream_schedule_env')}/streamSchedule`, fakeSchedule);
   });
 
   it('Checks player is Bitmovin player or fallback Youtube player', function() {
@@ -42,21 +43,26 @@ describe('Tests the /live/stream page video player', function() {
     cy.visit('/live/stream/');
     hideRollCall();
 
-    if (this.latestMessage.bitmovin_url) {
-      cy.get('#VideoManager').as('bitmovinPlayer').should('be.visible');
-      cy.get('#js-media-video').as('youtubePlayer').should('not.exist');
+    if (latestMessage.bitmovin_url) {
+      cy.get('#VideoManager').as('bitmovinPlayer')
+        .should('be.visible');
+      cy.get('#js-media-video').as('youtubePlayer')
+        .should('not.exist');
 
       // Autoplay is turned off. Uncomment when it's turned back on
       // cy.wait('@bitmovinManifest', { timeout: 60000 }).then((manifest) => {
       //   expect(manifest.url).to.eq(this.latestMessage.bitmovin_url.text);
       // });
     } else {
-      cy.get('#js-media-video').as('youtubePlayer').should('be.visible');
-      cy.get('#VideoManager').as('bitmovinPlayer').should('not.exist');
+      cy.get('#js-media-video').as('youtubePlayer')
+        .should('be.visible');
+      cy.get('#VideoManager').as('bitmovinPlayer')
+        .should('not.exist');
 
-      if (this.latestMessage.source_url) {
-        const youtubeId = getYoutubeId(this.latestMessage.source_url.text);
-        cy.get('@youtubePlayer').should('have.attr', 'video-id', youtubeId);
+      if (latestMessage.source_url) {
+        const youtubeId = getYoutubeId(latestMessage.source_url.text);
+        cy.get('@youtubePlayer')
+          .should('have.attr', 'video-id', youtubeId);
       }
     }
   });
@@ -76,18 +82,20 @@ describe('Tests the /live/stream page video player', function() {
     cy.visit('/live/stream/');
     hideRollCall();
 
-    if (this.latestMessage.bitmovin_url) {
+    if (latestMessage.bitmovin_url) {
       const player = new BitmovinPlayer();
       player.waitUntilBuffered().then(function() {
         player.verifyPlayerMuted();
-        if (this.latestMessage.transcription) {
+        if (latestMessage.transcription) {
           player.verifySubtitlesDisplayed();
         }
       });
 
-      cy.wrap(requestFilter).as('autoplayEvent').its('matches').should('have.length', 1);
+      cy.wrap(requestFilter).as('autoplayEvent')
+        .its('matches').should('have.length', 1);
     } else {
-      cy.wrap(requestFilter).as('autoplayEvent').its('matches').should('have.length', 0);
+      cy.wrap(requestFilter).as('autoplayEvent')
+        .its('matches').should('have.length', 0);
     }
   });
 });

@@ -4,7 +4,9 @@
       "secret": "crds-net",
       "keys": [
         "CONTENTFUL_SPACE_ID", 
-        "CONTENTFUL_ACCESS_TOKEN"
+        "CONTENTFUL_ACCESS_TOKEN",
+        "CONTENTFUL_ENV",
+        "CRDS_GATEWAY_ENDPOINT"
       ]
     },
     {

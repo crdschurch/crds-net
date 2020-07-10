@@ -25,93 +25,6 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-import { MinistryPlatformLoginPlugin, OktaLoginPlugin } from 'crds-cypress-login';
-import { endUserSessions } from '../APIs/OktaUserAPI';
-import { normalizeText } from 'crds-cypress-contentful';
-
-/*** Test Setup ***/
-// This will be applied to all tests automatically
-Cypress.on('window:before:load', (win) => {
-  // We've blacklisted the Google Tag Manager host, so we need to stub some of
-  //  the methods it provided.
-  win.analytics = {
-    track: cy.stub().as('track')
-  };
-
-  // We've blacklisted HotJar, so stub some of its methods
-  win.hj = cy.stub().as('hotjar');
-});
-
-
-
-/*** Custom Commands ***/
-const mpPlugin = MinistryPlatformLoginPlugin(Cypress.env('CRDS_ENV'));
-Cypress.Commands.add('mpLogin', (email, password) => {
-  return cy.wrap(mpPlugin.GetLoginCookies(email, password), {timeout: cy.responseTimeout})
-    .then((cookies) => {
-      cookies.forEach((c) => {
-        cy.setCookie(c.name, c.value);
-      });
-      return cy.reload();
-    });
-});
-
-const oktaPlugin = OktaLoginPlugin(Cypress.env('OKTA_ENDPOINT'), Cypress.env('CLIENT_ID'), Cypress.env('OKTA_SIGNIN_URL'));
-Cypress.Commands.add('oktaLogin', (email, password) => {
-  const cookie = oktaPlugin.GetRedirectCookie();
-  cy.setCookie(cookie.name, cookie.value);
-
-  return cy.wrap(oktaPlugin.GetAuthenticatedUrl(email, password), {timeout: cy.responseTimeout})
-    .then(cy.visit);
-});
-
-/**
- * Signs the given user out.
- *   If tests are run on a live environment (int, demo, prod) command log user out by clearing local storage of tokens.
- *   If tests are run on a locally hosted environment, user's session will be ended through Okta API.
- * Why the difference? This suite allows cross-origin in order to test redirects after sign in when run in a
- *   CI/locally hosted environment. Once a user is logged in and on the homepage, Cypress loses access to the
- *   localStorage for the localhost domain, making it impossible to log a user out by clearing their stored
- *   Okta token.
- */
-Cypress.Commands.add('signOutOktaUser', (oktaId) => {
-  if (Cypress.config().baseUrl.includes('crossroads.net')) {
-    cy.clearLocalStorage();
-  } else {
-    endUserSessions(oktaId);
-  }
-});
-
-Cypress.Commands.add('normalizedText', { prevSubject: 'element' }, (subject) => {
-  return cy.wrap(subject).should('have.prop', 'textContent').then(normalizeText); 
-});
-
-Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
-  return cy.wrap(subject).should('have.prop', 'textContent');
-});
-
-/**
- * Given selector must be an element selector, not an alias
- */
-Cypress.Commands.add('imgixShouldRunOnElement', { prevSubject: false}, (selector, imageAsset) => {
-  if (imageAsset && imageAsset.isPublished) {
-    cy.get(selector)
-      .should('have.attr', 'src')
-      .and('contain', imageAsset.sys_id);
-  }
-
-  // Imigx should run when in view
-  cy.get(selector)
-    .scrollIntoView()
-    .then(() => {
-      // Imgix detaches the element from the DOM when processing, 
-      //  so we must re-find it before testing
-      cy.get(selector)
-        .should('be.visible')
-        .and('have.attr', 'srcset');
-    });
-});
-
 /*
 * Ignore exceptions that match the regexes in the given array.
 * This call must be added to every test, or in a beforeEach clause, before the
@@ -135,14 +48,3 @@ Cypress.Commands.add('ignoreMatchingErrors', (errorList) => {
     return matchingError === undefined;
   });
 });
-
-
-/*TODO:
-- make image validator class into commands (they currently run outside the test stack so don't fail test)
-- make RouteValidator commands?
-- make autoplay event listener a spy - but remove the api.amplitude? it may have been inadvertently blacklisted
-- Make sure function () and aliases are used everywhere!
-- can remove-markdown be removed?
-- can we remove retry tests?
-- do we always need to blacklist monetate?
-*/

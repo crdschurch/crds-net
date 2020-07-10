@@ -8,7 +8,7 @@
     "email_recipients": "",
     "CONTENTFUL_ENV": "int",
     "CROSSROADS_API_ENDPOINT": "https://api-int.crossroads.net",
-    "schedule_env": "/int",
+    "stream_schedule_env": "/int",
     "vaultEnv": "int"
   }
 }
