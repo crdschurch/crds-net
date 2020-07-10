@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       {% assign kids_club_jumbotron = site.content_blocks | where: 'slug', 'kids-club-jumbotron' | first %}
-      {{ kids_club_jumbotron.content_block }}
+      {{ kids_club_jumbotron.content_block | liquify }}
     </div>
   </div>
 </section>
