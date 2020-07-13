@@ -64,14 +64,15 @@ layout: default
             </div>
             <div class="col-md-8">
                 <hr class="flush-top push-half-bottom" />
-                {% include home/_latest-message.html %}
+            {% assign sm_articles = site.articles | reverse %}
+            {% for item in sm_articles %}
+                  {% include media/_media-card.html %}
+        
+            {% endfor %}
             </div>
             <div class="col-sm-4">
                 {% include home/_current-series.html %}
-                <div>
-                    <a href="/watch/#ways-to-watch"><img
-                            src="//crds-media.imgix.net/3LPLJHKUCLZlopVvoZzA7y/2a46905a0985bcad5254f93a661ca3c4/many-ways-to-watch-monetate.jpg?auto=format,compress&w=1800" /></a>
-                </div>
+
             </div>
         </div>
     </div>
@@ -87,3 +88,51 @@ layout: default
         </div>
     </div>
 </section>
+
+
+<!-- Articles & Events
+<div class="container-fluid soft-top push-half-top">
+  <div class="row">
+    <div class="col-sm-6 push-bottom">
+      <div class="push-bottom">
+        <hr class="flush-top push-half-bottom">
+
+        <h2 class="flush-top font-size-base text-gray-light">articles & more <span class="font-size-small text-cyan" style="float: right;"><a href="https://www.crossroads.net/media/collections/student-ministry">view all</a></span></h2>
+        <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
+          <div class="feature-cards card-deck--expanded-layout">
+            {% assign sm_articles = site.articles | reverse %}
+            {% for item in sm_articles %}
+              {% for collection in item.collections %}
+                {% if collection.title == "Student Ministry" %}
+                  {% include media/_media-card.html carousel=true %}
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 push-bottom">
+      <div class="push-bottom">
+        <hr class="flush-top push-half-bottom">
+
+        <h2 class="flush-top font-size-base text-gray-light">events<span class="font-size-small text-cyan" style="float: right;"><a href="">view all</a></span></h2>
+        <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
+          <div class="feature-cards card-deck--expanded-layout">
+            {% assign sm_articles = site.articles | reverse %}
+            {% for item in sm_articles %}
+              {% for collection in item.collections %}
+                {% if collection.title == "Student Ministry" %}
+                  {% include media/_media-card.html carousel=true %}
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+-->
