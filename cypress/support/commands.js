@@ -38,7 +38,7 @@
 //  cy.ignoreMatchingErrors(errorsToIgnore);
 // });
 Cypress.Commands.add('ignoreMatchingErrors', (errorList) => {
-  cy.on('uncaught:exception', (err) => {
+  Cypress.on('uncaught:exception', (err) => {
     const matchingError = errorList.find(errorRegex => err.message.match(errorRegex) !== null);
 
     if(matchingError){

@@ -1,17 +1,14 @@
-import { StreamScheduleGenerator } from '../../support/StreamScheduleGenerator';
 import { MessageQueryBuilder } from 'crds-cypress-contentful';
 import { getRelativeMessageUrl } from '../../support/GetUrl';
-
-Cypress.on('window:before:load', (win) => {
-  // CRDS.Countdown is not always loaded in time, so stub these out until they're available
-  win.CRDS = cy.stub().as('CRDS');
-  win.CRDS.Countdown = cy.stub().as('countdown');
-});
+import { getStreamSchedule } from '../../fixtures/stream_schedule_response';
 
 describe('Tests the /live jumbotron content with different stream times:', function () {
-  const scheduleGenerator = new StreamScheduleGenerator();
-
   before(function () {
+    //Ignore this error - unsure what to stub to avoid it
+    const countdownConstructorError = /.*CRDS.Countdown is ot a constructor.*/;
+    cy.ignoreMatchingErrors([countdownConstructorError]);
+
+    //Get current message
     const qb = new MessageQueryBuilder();
     qb.orderBy = '-fields.published_at';
     qb.select = 'fields.slug';
@@ -26,7 +23,7 @@ describe('Tests the /live jumbotron content with different stream times:', funct
     });
 
     it('Live Stream State: Checks clicking "Watch Now" navs to the live stream', function () {
-      const fakeCurrentSchedule = scheduleGenerator.getStreamStartingAfterHours(0);
+      const fakeCurrentSchedule = getStreamSchedule(0);
       cy.route(`${Cypress.env('stream_schedule_env')}/streamSchedule`, fakeCurrentSchedule);
       cy.visit('/live');
 
@@ -37,7 +34,7 @@ describe('Tests the /live jumbotron content with different stream times:', funct
     });
 
     it('Offstream State: Checks clicking "Watch This Weeks Service" navs to the latest message', function () {
-      const fakeFutureSchedule = scheduleGenerator.getStreamStartingAfterHours(24);
+      const fakeFutureSchedule = getStreamSchedule(24);
       cy.route(`${Cypress.env('stream_schedule_env')}/streamSchedule`, fakeFutureSchedule);
       cy.visit('/live');
 
@@ -49,7 +46,7 @@ describe('Tests the /live jumbotron content with different stream times:', funct
 
   describe('Tests state when stream is running', function () {
     before(function () {
-      const fakeCurrentSchedule = scheduleGenerator.getStreamStartingAfterHours(0);
+      const fakeCurrentSchedule = getStreamSchedule(0);
       cy.server();
       cy.route(`${Cypress.env('stream_schedule_env')}/streamSchedule`, fakeCurrentSchedule);
       cy.visit('/live');
@@ -72,7 +69,7 @@ describe('Tests the /live jumbotron content with different stream times:', funct
   //Note that future streaming time can't be accurately spoofed when running on Travis, so don't check exact time
   describe('Tests display when the stream is upcoming', function () {
     before(function () {
-      const fakeFutureSchedule = scheduleGenerator.getStreamStartingAfterHours(10);
+      const fakeFutureSchedule = getStreamSchedule(10);
       cy.server();
       cy.route(`${Cypress.env('stream_schedule_env')}/streamSchedule`, fakeFutureSchedule);
       cy.visit('/live');
@@ -95,7 +92,7 @@ describe('Tests the /live jumbotron content with different stream times:', funct
   //Note that future streaming time can't be accurately spoofed when running on Travis, so don't check exact time
   describe('Tests display when the stream is in the "offstream" state', function () {
     before(function () {
-      const fakeFutureSchedule = scheduleGenerator.getStreamStartingAfterHours(36);
+      const fakeFutureSchedule = getStreamSchedule(36);
       cy.server();
       cy.route(`${Cypress.env('stream_schedule_env')}/streamSchedule`, fakeFutureSchedule);
       cy.visit('/live');

@@ -1,9 +1,9 @@
 
 import { BitmovinPlayer } from './helpers/BitmovinPlayer';
-import { StreamScheduleGenerator } from '../../support/StreamScheduleGenerator';
 import { MessageQueryBuilder } from 'crds-cypress-contentful';
 import { RequestFilter } from '../../Analytics/RequestFilter';
 import { amplitude } from '../../fixtures/event_filters';
+import { getStreamSchedule } from '../../fixtures/stream_schedule_response';
 
 function hideRollCall() {
   localStorage.setItem('crds-roll-call-state', 'dismissed');
@@ -18,7 +18,7 @@ function getYoutubeId(youtubeURL) {
 }
 
 describe('Tests the /live/stream page video player', function() {
-  const fakeSchedule = new StreamScheduleGenerator().getStreamStartingAfterHours(0);
+  const fakeSchedule = getStreamSchedule(0);
   let latestMessage;
 
   before(function() {

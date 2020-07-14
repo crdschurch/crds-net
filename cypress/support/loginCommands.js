@@ -5,7 +5,7 @@ import { endUserSessions } from '../APIs/OktaUserAPI';
 
 const mpPlugin = MinistryPlatformLoginPlugin(Cypress.env('CRDS_ENV'));
 Cypress.Commands.add('mpLogin', (email, password) => {
-  return cy.wrap(mpPlugin.GetLoginCookies(email, password), {timeout: cy.responseTimeout})
+  return cy.wrap(mpPlugin.GetLoginCookies(email, password), { timeout: 30000 })
     .then((cookies) => {
       cookies.forEach((c) => {
         cy.setCookie(c.name, c.value);
@@ -19,7 +19,7 @@ Cypress.Commands.add('oktaLogin', (email, password) => {
   const cookie = oktaPlugin.GetRedirectCookie();
   cy.setCookie(cookie.name, cookie.value);
 
-  return cy.wrap(oktaPlugin.GetAuthenticatedUrl(email, password), {timeout: cy.responseTimeout})
+  return cy.wrap(oktaPlugin.GetAuthenticatedUrl(email, password), { timeout: 30000 })
     .then(cy.visit);
 });
 
