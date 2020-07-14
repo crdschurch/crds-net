@@ -47,6 +47,9 @@
     .jumbo-viewport {
       min-height: 74vh;
     }
+    .jumbotron h1, .jumbotron .h1 {
+        font-size: 92px;
+    }
     .hero-transform {
       margin-top: -34vh;
     }
@@ -76,7 +79,15 @@
     .privacy-format {
       margin-right: 30px;
     }
-  }  
+  }
+
+  /* iPad, iPad Pro, Laptop & Desktop */
+  @media (max-width: 768px ) {
+    #crds-shared-header-logo {
+      width: 90%;
+    }
+  }
+
 
   /* Landscape for mobile */
   @media (max-height: 414px) and (max-width: 823px) {
@@ -99,6 +110,7 @@
     margin-right: auto;
     margin-left: auto;
   }
+
 
   .left {
     display: block;
@@ -129,7 +141,7 @@
   /* App Icon */
   .rounded-border {
     border-radius: 22.5%;
-    height: 50px; 
+    height: 50px;
     width: 50px;
   }
 
@@ -166,7 +178,7 @@
   }
 
   .copyright-text {
-    color: white !important; 
+    color: white !important;
     opacity: 0.6;
   }
 

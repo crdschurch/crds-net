@@ -1,0 +1,34 @@
+<div>
+  <div class="push-half-bottom">
+    <h3 class="font-family-serif font-size-small text-uppercase text-white flush">Our Best Content</h3>
+  </div>
+  <div>
+    <div>
+      {% assign feature_obj = site.featured_media | where: 'page_path', 'our-best-content' | first %}
+      {% assign best_content = feature_obj.entries %}
+      {% for content in best_content limit: 3 %}
+      {% assign item = content | get_doc %}
+      {% assign image = item.image.url %}
+      {% if item.content_type == 'episode' %}
+      {% assign image =item.podcast.image.url %}
+      {% endif %}
+      {% if item.duration %}
+      {% assign format = 'short' %}
+      {% endif %}
+        <div>
+          <div class="border-top border-dashed push-half-bottom"></div>
+          <crds-media-object
+          url="{{ item | media_url }}"
+          image-src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}"
+          type="{{ item.content_type }}"
+          title="{{ item.title }}"
+          duration="{{ item.duration | duration: format }}"
+          ></crds-media-object>
+      </div>
+      {% endfor %}
+      <div class="push-right">
+        <crds-button block="true" display="outline" color="white" href="/media" text="View all"></crds-button>
+      </div>
+    </div>
+  </div>
+</div>
