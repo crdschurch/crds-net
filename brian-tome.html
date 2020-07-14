@@ -56,7 +56,7 @@ layout: default
 
 <section class="bg-tan-light">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row push-bottom">
             <div class="col-sm-12 text-center push-bottom soft-ends mobile-push-half-sides">
                 <h2
                     class="component-header-box component-header-box-border-lg text-blue text-uppercase text-center flush-bottom">
@@ -64,30 +64,82 @@ layout: default
             </div>
             <div class="col-md-8">
                 <hr class="flush-top push-half-bottom" />
-            {% assign sm_articles = site.articles | reverse %}
-            {% for item in sm_articles %}
-                  {% include media/_media-card.html %}
-        
-            {% endfor %}
+                <h2 class="text-uppercase font-family-serif font-size-base font-size-small text-gray-light flush-top">
+                    articles by brian
+                  </h2>
+                {% assign bt_articles = site.articles | where: 'author.full_name' , "Brian Tome" | reverse | slice: 0 %}
+                {% for item in bt_articles %}
+                      {% include media/_media-card.html %}
+                {% endfor %}
+
+                <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
+                    <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
+                    {% assign bt_articles_carousel = site.articles | where: 'author.full_name' , "Brian Tome" | reverse | slice: 1, 2 %}
+                      {% for item in bt_articles_carousel %}
+                        {% include media/_media-card.html carousel = true %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="push-ends">
+                  <crds-button color="orange" text="View all articles"
+                    href="/media/authors/brian-tome"></crds-button>
+                  </div>
             </div>
             <div class="col-sm-4">
-                {% include home/_current-series.html %}
-
+                <hr class="flush-top push-half-bottom" />
+                <h2 class="text-uppercase font-family-serif font-size-base font-size-small text-gray-light flush-top"> 
+                    podcast
+                </h2>
+                {% assign featured = site.podcasts | where: 'title', 'The Aggressive Life with Brian Tome' | first %}
+                {% include media/_media-object-featured.html media_type="podcast" %}
+                <hr class="flush-top push-half-bottom" />
+                <h2 class="text-uppercase font-family-serif font-size-base font-size-small text-gray-light flush-top">
+                    latest episodes
+                  </h2>
+                  {% assign bt_episodes = site.episodes | where: 'podcast.title', 'The Aggressive Life with Brian Tome' | reverse | slice: 0, 2 %}
+                  {% for media in bt_episodes %}
+                  <hr class="flush-top push-half-bottom" />
+                    {% include media/_media-object.html media_type="episode" %}
+                  {% endfor %}
+                  <div class="push-ends">
+                  <crds-button color="orange" text="View all episodes"
+                    href="/media/authors/brian-tome/#podcasts"></crds-button>
+                    </div>
             </div>
         </div>
     </div>
 </section>
         
+
+
+
+
+
 
 <section class="bg-orange">
     <div class="container">
         <div class="row d-flex">
             <div class="col-xs-12 soft-ends text-center ma-ends">
-                <h2 class="component-header-box component-header-box-border-lg text-blue text-uppercase text-center flush-bottom">follow brian</h2>
+                <h2 class="component-header-box text-blue text-uppercase text-center flush-bottom">follow brian</h2>
+                <div class="social-icons push-top">
+                    <a target="_blank" href="https://twitter.com/briantome/" data-automation-id="ftr-twitter-account">
+                      <img src="//crds-media.imgix.net/2WkVvloiHvAvz2sCkfrG35/f20953d4e346cc54615b5ab4068395ab/twitter.svg" alt="twitter account" title="twitter account" />
+                    </a>
+                    <a target="_blank" href="https://facebook.com/briantomebooks/" data-automation-id="ftr-facebook-account">
+                      <img src="//crds-media.imgix.net/1vd3qhDNApNmjLdx3TxVTM/751569522ec0d52787d492107bc4b5ff/facebook.svg" alt="facebook account" title="facebook account" />
+                    </a>
+                    <a target="_blank" href="https://instagram.com/briantome/" data-automation-id="ftr-instagram-account">
+                      <img src="//crds-media.imgix.net/8ltiQdOygp5WA0EqCscc6/1b70c1b37c722b25937b07bc0d6b48fe/instagram.svg" alt="instagram account" title="instagram account" />
+                    </a>
+                  </div>
             </div>
         </div>
     </div>
 </section>
+
+
+
+
 
 
 <!-- Articles & Events
@@ -136,3 +188,7 @@ layout: default
   </div>
 </div>
 -->
+
+
+
+
