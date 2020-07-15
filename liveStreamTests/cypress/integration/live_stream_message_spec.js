@@ -20,10 +20,10 @@ function hideRollCall() {
 }
 
 /** Tests */
-describe('Tests latest message is current and ready for live stream', () => {
+describe('Tests latest message is current and ready for live stream', function () {
   let contentfulLatestMessage;
   let fakeSchedule;
-  before(() => {
+  before(function () {
     const qb = new MessageQueryBuilder();
     qb.orderBy = '-fields.published_at';
     qb.select = 'fields.published_at,fields.video_file,fields.bitmovin_url';
@@ -37,7 +37,7 @@ describe('Tests latest message is current and ready for live stream', () => {
     fakeSchedule = new StreamScheduleGenerator().getStreamStartingAfterHours(0);
   });
 
-  beforeEach(() => {
+  beforeEach(function () {
     cy.on('uncaught:exception', (err) => {
       const errorRegex = RegExp(/.*Cannot [gs]et property\W+\w+\W+of undefined.*/);
       const matchingError = errorRegex.test(err.message);
@@ -45,7 +45,7 @@ describe('Tests latest message is current and ready for live stream', () => {
     });
   });
 
-  it('Verify encoding is ready for the latest message in Bitmovin', () => {
+  it('Verify encoding is ready for the latest message in Bitmovin', function () {
     cy.request(`${Cypress.env('CROSSROADS_API_ENDPOINT')}/video-service/encode/latestMessageStatus`).then(response => {
       const latestMessageStatus = response.body;
 
@@ -60,7 +60,7 @@ describe('Tests latest message is current and ready for live stream', () => {
     });
   });
 
-  it('Verify the message for this week\'s live stream has been published', () => {
+  it('Verify the message for this week\'s live stream has been published', function () {
     //Message should be published after the latests Saturday service
     const publishedDate = moment(contentfulLatestMessage.published_at.toString);
     const earliestPublishableDate = getLatestDate('Saturday', '12:00AM');
@@ -70,7 +70,7 @@ describe('Tests latest message is current and ready for live stream', () => {
     assert.isTrue(contentfulLatestMessage.bitmovin_url.hasValue, `Expect latest message to have a Bitmovin URL, and it is ${contentfulLatestMessage.bitmovin_url.toString}`);
   });
 
-  it('Verify the new message is streamed using the Bitmovin player', () => {
+  it('Verify the new message is streamed using the Bitmovin player', function () {
     //Trick /live to think the live stream is playing
     cy.server();
     cy.route(`${Cypress.env('stream_schedule_env')}/streamSchedule`, fakeSchedule);
@@ -110,8 +110,8 @@ describe('Tests latest message is current and ready for live stream', () => {
 /** Using the "after" hook or listening for events sometimes doesn't send messages due to bugs in Cypress (issue #2831)
  * This is a hacky but reliable way to get around the issue.
 */
-describe('Sends out results', () => {
-  it('Sends out Slack and Email alerts', () => {
+describe('Sends out results', function () {
+  it('Sends out Slack and Email alerts', function () {
     cy.reportResultsToSlack();
     cy.reportResultsByEmail();
   });

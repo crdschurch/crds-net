@@ -19,6 +19,6 @@ import './loginCommands';
 import './elementCommands';
 import './globalTestSetup';
 
-// require('cypress-plugin-retries');
+require('cypress-plugin-retries');
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

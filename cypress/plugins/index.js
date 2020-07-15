@@ -21,7 +21,7 @@ module.exports = (on, config) => {
   return loadConfig.loadConfigFromVault(config)
     .then((newConfig) => {
       // Configure blacklisted hosts
-      manageBlacklist(config);
+      manageBlacklist(newConfig);
 
       // Add Contentful query tasks
       addContentfulTasks(on, newConfig);

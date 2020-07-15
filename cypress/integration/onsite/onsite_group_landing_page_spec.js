@@ -16,8 +16,7 @@ function sortByCategoryThenSlug(group1, group2){
   return 0;
 }
 
-
-describe('Given I navigate to /Onsite Group Page:', function() {
+describe('Given I navigate to /onsite/group Page:', function() {
   let onsiteGroupList;
   before(function() {
     // Get Onsite Groups
@@ -43,7 +42,6 @@ describe('Given I navigate to /Onsite Group Page:', function() {
       .find('a')
       .should('have.attr', 'href', '/groups/onsite/financial-peace/uptown');
   });
-
 
   [0, 1, 2].forEach((index) => {    
     it(`Onsite card #${index} should have a Title`, function() {
