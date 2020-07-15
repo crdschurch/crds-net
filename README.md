@@ -19,6 +19,8 @@
 6. Make sure you have [Contentful environment variables set](#working-with-content) and then run `bundle exec jekyll contentful` to get the site's content
 7. Now you are ready to start a local dev server: `bundle exec jekyll serve`. If you are using Windows, you may need to refer to the [advanced instructions](#windows)
 
+Alternatively, you can serve crds-net locally with Docker. Setup instructions [here](/docker/development/README.md).
+
 ## Working With Content
 First, you need to export the following environment variables (you can get these values directly from Contentful or from Netlify)...
 ```bash
