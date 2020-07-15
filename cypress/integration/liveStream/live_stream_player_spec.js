@@ -51,7 +51,7 @@ describe('Tests the /live/stream page video player', function() {
 
       // Autoplay is turned off. Uncomment when it's turned back on
       // cy.wait('@bitmovinManifest', { timeout: 60000 }).then((manifest) => {
-      //   expect(manifest.url).to.eq(this.latestMessage.bitmovin_url.text);
+      //   expect(manifest.url).to.eq(latestMessage.bitmovin_url.text);
       // });
     } else {
       cy.get('#js-media-video').as('youtubePlayer')

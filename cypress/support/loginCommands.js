@@ -10,8 +10,8 @@ Cypress.Commands.add('mpLogin', (email, password) => {
       cookies.forEach((c) => {
         cy.setCookie(c.name, c.value);
       });
-      return cy.reload();
-    });
+    })
+    .then(cy.reload);
 });
 
 const oktaPlugin = OktaLoginPlugin(Cypress.env('OKTA_ENDPOINT'), Cypress.env('CLIENT_ID'), Cypress.env('OKTA_SIGNIN_URL'));
