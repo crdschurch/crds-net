@@ -116,6 +116,10 @@ module.exports = [
   {
     name:"video-modal-close",
     files: ["lib/video-modal-close"]
-  }
+  },
+   {
+    name: "iFrameResizer",
+    deps: ["vendor/iframeResizer.min"]
+  },
 ];
 
