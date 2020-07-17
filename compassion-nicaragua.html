@@ -1,0 +1,20 @@
+---
+layout: default
+permalink: /compassion/nicaragua/
+---
+
+{% include header.html %}
+<div class="container push-ends">
+    <div class="row push-ends">
+      <div class="col-sm-12">
+        <iframe frameborder="0" id="compassionCinci" class="compassion-height" src="https://ga.compassion.com/widgets/church/embed-sac/v1/iframe/index.php?sac_name=Adventure-Church-Cincinnati-OH">
+        </iframe>
+      </div>
+    </div>    
+  </div>
+  {% include footer.html %}
+  
+  {% javascript_link_tag iFrameResizer %}
+  <script>
+    iFrameResize({ log: true, checkOrigin: false }, "#compassionCinci");
+  </script>
