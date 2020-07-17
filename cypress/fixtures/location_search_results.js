@@ -1,4 +1,4 @@
-export function oakleyResult() {
+export function oakleyLocationResponse() {
   return {
     'origin': '45209',
     'location': {
@@ -22,7 +22,7 @@ export function oakleyResult() {
   };
 }
 
-export function florenceResult() {
+export function florenceLocationResponse() {
   return {
     'origin': '45209',
     'location': {
@@ -43,5 +43,14 @@ export function florenceResult() {
       }
     },
     'distance': 1
+  };
+}
+
+export function searchErrorResponse() {
+  return {
+    'message': 'LocationController: GET locations proximities -- ',
+    'errors': [
+      'Exception of type \'crds_angular.Exceptions.InvalidAddressException\' was thrown.'
+    ]
   };
 }

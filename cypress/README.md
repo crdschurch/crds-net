@@ -7,14 +7,13 @@ VAULT_ROLE_ID
 VAULT_SECRET_ID
 ```
 
-
 Cypress has a couple different ways to handle environment variable setup found [here](https://docs.cypress.io/guides/guides/environment-variables.html#Setting).
 The above variables assume you're using [Option #3](https://docs.cypress.io/guides/guides/environment-variables.html#Option-3-CYPRESS).
 If you decide to use another method, please be sure these variables are *not* checked into github.
 
 Environment variables set in Netlify to run Cypress through Travis.ci:
 ```bash
-CYPRESS_CONFIG_FILE #int_crossroads, demo_crossroads
+CYPRESS_configFile #ex. int_crossroads, demo_crossroads
 VAULT_ROLE_ID
 VAULT_SECRET_ID
 RUN_CYPRESS #true/false
@@ -29,22 +28,18 @@ cypressDashboard #Cypress's dashboard record key for this repo
 
 ## Run Locally
 
-After defining local environment variables, run the Cypress UI with:
+Define the local environment variables listed above, then run Cypress tests against the int environment with:
 
 ```bash
-npx cypress open
+npx cypress open --config-file ./cypress/config/int_crossroads.json
 ```
 
-or headless with:
+or in headless mode with:
 
 ```bash
-npx cypress run --browser chrome
+npx cypress run --config-file ./cypress/config/int_crossroads.json
 ```
 
-To run or open in an environment other than int, specifiy the /config file to use.
-ex. to run headless in demo:
-```
-npx cypress open --env configFile=demo_crossroads
-```
+To run the tests against a different environment, replace the `int_crossroad.json` config-file with another Cypress config file in the `./cypress/config/` folder. Note that running tests against a locally hosted environment is not yet fully supported, and tests with non-crds-net links or redirects will likely fail.
 
 To customize a Cypress run beyond what's defined, check out their documentation [here](https://docs.cypress.io/guides/guides/command-line.html).

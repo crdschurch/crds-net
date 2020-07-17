@@ -8,7 +8,7 @@
     "email_recipients": "",
     "CONTENTFUL_ENV": "demo",
     "CROSSROADS_API_ENDPOINT": "https://api-demo.crossroads.net",
-    "schedule_env": "/demo",
+    "stream_schedule_env": "/demo",
     "vaultEnv": "demo"
   }
 }

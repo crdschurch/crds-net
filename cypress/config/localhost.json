@@ -1,14 +1,15 @@
 {
-  "projectId": "dnbm5t",
-  "baseUrl": "https://int.crossroads.net",
+  "baseUrl": "http://localhost:4000",
   "testFiles": "**/*spec.js",
+  "ignoreTestFiles": "*_nolocal*spec.js",
+  "chromeWebSecurity": false,
+  "video": false,
   "env": {
-    "RETRIES": 2,
     "stream_schedule_env": "/int",
     "CRDS_ENV": "int",
     "OKTA_SIGNIN_URL": "https://int.crossroads.net/oktasignin",
     "OKTA_ENDPOINT": "https://authpreview.crossroads.net",
-    "CLIENT_ID": "0oahgpg7elMxVJedi0h7",
+    "CLIENT_ID": "0oak76gr9miJIFICJ0h7",
     "vaultEnv": "int"
   }
 }

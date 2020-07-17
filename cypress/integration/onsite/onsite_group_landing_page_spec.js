@@ -1,38 +1,55 @@
-import { OnsiteGroupQueryManager } from '../../Contentful/OnsiteGroupQueryManager';
-const errorsToIgnore = [ /.*Cannot read property text of undefined.*/ , /.*Cannot set property\W+\w+\W+of undefined.*/,];
+import { ContentfulQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
-describe('Given I navigate to /Onsite Group Page:', function () {
-    let onsiteGroupList;
-    before(function () {
-      const osgqm = new OnsiteGroupQueryManager();
-      osgqm.getListOfEntries('').then(OnsiteGroup => {
-         onsiteGroupList = OnsiteGroup;
-      });
-        
-      cy.ignoreMatchingErrors(errorsToIgnore);
-      cy.visit('/groups/onsite');
-      });
- 
-    it ('Onsite Group card for Financial Peace should be last', function(){
-      cy.get('ul').as('onsiteGroupCards');
-      cy.get('@onsiteGroupCards').should('have.length', onsiteGroupList.length);
-      const financialPeaceIndex = onsiteGroupList.length;
-      cy.get('@onsiteGroupCards').eq(financialPeaceIndex-1).find('a').should('have.attr', 'href', '/groups/onsite/financial-peace/uptown'); 
-    });
+function sortByCategoryThenSlug(group1, group2){
+  if(group1.category.title.text < group2.category.title.text){
+    return -1;
+  }
+  if(group1.category.title.text > group2.category.title.text){
+    return 1;
+  }
+  if(group1.slug.text < group2.slug.text){
+    return -1;
+  }
+  if(group1.slug.text > group2.slug.text){
+    return 1;
+  }
+  return 0;
+}
 
-    it ('Test Onsite Group', function(){
-      cy.get('h3').as('onsiteGroupCards');
-      cy.get('@onsiteGroupCards').should('have.length', onsiteGroupList.length);
-    });
-
-    [0,1,2].forEach(index => {
-        
-      it(`Onsite card #${index} should have a Title`, function () {
-        let onsite = onsiteGroupList[index];;
-        let title  = onsite.title.text;
-       
-        cy.get('h3').eq(index).as(`${title}Card`);
+describe('Given I navigate to /onsite/group Page:', function() {
+  let onsiteGroupList;
+  before(function() {
+    // Get Onsite Groups
+    const qb = new ContentfulQueryBuilder('onsite_group');
+    qb.select = 'fields.title,fields.category,fields.slug';
+    qb.limit = 1000;
+    cy.task('getCNFLResource', qb.queryParams)
+      .then((groups) => {
+        onsiteGroupList = groups.sort(sortByCategoryThenSlug);
       });
 
+    cy.visit('/groups/onsite');
+  });
+  
+  it('All Onsite group cards should be displayed', function() {
+    cy.get('.col-md-4').as('onsiteGroupCards')
+      .should('have.length', onsiteGroupList.length);
+  });
+
+  it('Onsite Group card for Financial Peace should be last', function() {
+    cy.get('.col-md-4').as('onsiteGroupCards')
+      .last()
+      .find('a')
+      .should('have.attr', 'href', '/groups/onsite/financial-peace/uptown');
+  });
+
+  [0, 1, 2].forEach((index) => {    
+    it(`Onsite card #${index} should have a Title`, function() {
+      let title = onsiteGroupList[index].title.text;
+
+      cy.get('.col-md-4 h3').eq(index).as(`${title}Card`)
+        .normalizedText()
+        .should('eq', normalizeText(title));
     });
+  });
 });

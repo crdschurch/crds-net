@@ -25,40 +25,20 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-import { Formatter } from './Formatter';
-import { addCommandLogin } from 'crds-cypress-login';
-
-addCommandLogin();
-
-Cypress.Commands.add('normalizedText', { prevSubject: 'element' }, (subject) => {
-  return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => Formatter.normalizeText(elementText));
-});
-
-Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
-  return cy.wrap(subject).should('have.prop', 'textContent');
-});
-
-//Here for convenience but use sparingly - we usually want these to be thrown
-Cypress.Commands.add('ignoreUncaughtException', (expectedMessage) => {
-  cy.on('uncaught:exception', (err) => {
-    expect(err.message).to.include(expectedMessage);
-    return !err.message.includes(expectedMessage);
-  });
-});
-
-//Here for convenience but use sparingly - we usually want these to be thrown
-Cypress.Commands.add('ignorePropertyUndefinedTypeError', () => {
-  cy.on('uncaught:exception', (err) => {
-    //Sees error, posts assertion to console, fails if not matching
-    const propertyUndefinedRegex = /.*Cannot read property\W+\w+\W+of undefined.*/;
-    expect(err.message).to.match(propertyUndefinedRegex);
-    return err.message.match(propertyUndefinedRegex) == null;
-  });
-});
-
-//Given list of regex, will ignore if error matches any
+/*
+* Ignore exceptions that match the regexes in the given array.
+* This call must be added to every test, or in a beforeEach clause, before the
+* error may be thrown.
+* https://docs.cypress.io/api/events/catalog-of-events.html#To-catch-a-single-uncaught-exception
+* Note that errors are only ignored during the test's run, not during before or after hooks
+*/
+// For example:
+// beforeEach(() => {
+//  const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/];
+//  cy.ignoreMatchingErrors(errorsToIgnore);
+// });
 Cypress.Commands.add('ignoreMatchingErrors', (errorList) => {
-  cy.on('uncaught:exception', (err) => {
+  Cypress.on('uncaught:exception', (err) => {
     const matchingError = errorList.find(errorRegex => err.message.match(errorRegex) !== null);
 
     if(matchingError){

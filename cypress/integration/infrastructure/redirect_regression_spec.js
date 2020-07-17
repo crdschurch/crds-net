@@ -1,21 +1,23 @@
-import { RouteValidator } from '../../support/RouteValidator';
-import { RedirectQueryManager } from 'crds-cypress-contentful';
+import { ContentfulQueryBuilder } from 'crds-cypress-contentful';
 
-describe('Testing navigation between pages:', function () {
-  it('(DE6321) Navigating to a location with a known redirect should land on the redirected page served by Netlify', function () {
+describe('Testing navigation between pages:', function() {
+  it('(DE6321) Navigating to a location with a known redirect should land on the redirected page served by Netlify', function() {
     const andoverSlug = '/andover';
     const lexingtonSlug = '/lexington';
 
-    const rqm = new RedirectQueryManager();
-    rqm.getSingleEntry(rqm.query.fromSlug(andoverSlug)).then(redirect =>{
-      expect(redirect).to.not.be.undefined;
-      expect(redirect.to.text).to.equal(lexingtonSlug);
-    });
-    cy.on('uncaught:exception', (err, runnable) => {
-        return false
-    }) 
-
+    const qb = new ContentfulQueryBuilder('redirect');
+    qb.select = 'fields.from,fields.to';
+    qb.searchFor = `fields.from=${andoverSlug}`;
+    cy.task('getCNFLResource', qb.queryParams).as('lexington')
+      .its('to.text')
+      .should('exist')
+      .and('eq', lexingtonSlug);
+    
     cy.visit(andoverSlug);
-    RouteValidator.pageFoundAndURLMatches(`${Cypress.config().baseUrl}${lexingtonSlug}`);
+
+    const lexingtonRegex = new RegExp(`${Cypress.config().baseUrl}${lexingtonSlug}/?`);
+    cy.url().should('match', lexingtonRegex);
+    cy.get('[data-automation-id="404-search-field"]').as('404SearchField')
+      .should('not.exist'); // Not on 404 page
   });
 });

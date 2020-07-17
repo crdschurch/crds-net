@@ -2,7 +2,7 @@
 shopt -s nocasematch; #ignore case
 
 #Skip all testing against preview branches
-if [ "$CONTEXT" != "production" ];
+if [ "$CONTEXT" != "development" ];
 then
     exit 0
 fi

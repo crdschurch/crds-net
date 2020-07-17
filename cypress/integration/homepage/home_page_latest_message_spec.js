@@ -1,78 +1,77 @@
-import { ImageDisplayValidator } from '../../Contentful/ImageDisplayValidator';
 import { RequestFilter } from '../../Analytics/RequestFilter';
 import { amplitude } from '../../fixtures/event_filters';
-import { MessageQueryManager } from 'crds-cypress-contentful';
+import { MessageQueryBuilder, normalizeText } from 'crds-cypress-contentful';
+import { getRelativeMessageUrl } from '../../support/GetUrl';
 
-const errorsToIgnore = [/.*Cannot set property\W+\w+\W+of undefined.*/];
+describe('Tests the Current Message on the Homepage', function() {
+  const requestFilter = new RequestFilter(amplitude.isVideoStarted);
+  let currentMessage;  
 
-describe('Tests the Current Message on the Homepage', function () {
-  let currentMessage;
-  let requestFilter;
-
-  before(() => {
-    //Fetch Current Message
-    
-    const mqm = new MessageQueryManager();
-    mqm.getSingleEntry(mqm.query.latestMessage).then(message => {
-    
-      currentMessage = message;
+  before(function() {
+    const qb = new MessageQueryBuilder();
+    qb.orderBy = '-fields.published_at';
+    qb.select = 'fields.title,fields.slug,fields.description,fields.image,fields.bitmovin_url';
+    cy.task('getCNFLResource', qb.queryParams)
+      .then((message) => {
+        currentMessage = message;
       });
+
     //Setup capture for events
     cy.server();
-
-    requestFilter = new RequestFilter(amplitude.isVideoStarted);
-      cy.route({
+    cy.route({
       method: 'POST',
       url: 'api.amplitude.com',
       onResponse: (xhr) => {
         requestFilter.keepMatch(xhr.request);
-       }
+      }
     });
 
-    //Navigate
-    cy.ignoreMatchingErrors(errorsToIgnore); 
     cy.visit('/');
-    });
-
-    beforeEach(() =>{
-    cy.ignoreMatchingErrors(errorsToIgnore);
   });
 
+  it('Checks title, image, and button have correct link', function() {
+    cy.get('.latest-message-headline').as('title')
+      .scrollIntoView()
+      .text()
+      .should('contain', currentMessage.title.text);
 
-  it('Checks title, image, and "View latest now" button have correct link', () => {
-     currentMessage.getURL().then(url => {
-      const relativeAutoplayURL = url.autoplay.relative;
+    cy.get('.latest-message-btn').contains('View all teachings')
+      .should('be.visible')
+      .and('have.attr', 'href', '/media/series');
 
-      cy.get('[data-automation-id="message-title"]').as('title');
-      cy.get('@title').text().should('contain', currentMessage.title.text);
-      cy.get('@title').should('have.attr', 'href', relativeAutoplayURL);
+    getRelativeMessageUrl(currentMessage)
+      .then((url) => {
+        const autoplay = currentMessage.bitmovin_url ? 'true' : 'false';
+        const relativeAutoplayURL = `${url}?autoPlay=${autoplay}&sound=11`;
 
-      cy.get('[data-automation-id="message-video"]').as('videoImagelink');
-      cy.get('@videoImagelink').should('have.attr', 'href', relativeAutoplayURL);
+        cy.get('[data-automation-id="message-video"]').as('videoImagelink')
+          .should('exist')
+          .and('have.attr', 'href', relativeAutoplayURL);
 
-      cy.get('[data-automation-id="watch-message-button"]').as('watchMessageButton');
-      cy.get('@watchMessageButton').should('be.visible');
-      cy.get('@watchMessageButton').should('have.attr', 'href', relativeAutoplayURL);
-    });
+        cy.get('.latest-message-btn').contains('Watch now')
+          .should('be.visible')
+          .and('have.attr', 'href', relativeAutoplayURL);
+      });
   });
 
-  it('Checks card image and, if Bitmovin video, player exists and video autoplays', () => {
-    cy.get('[data-automation-id="message-video"]').as('videoImagelink');
-    cy.get('@videoImagelink').find('img').as('videoImage');
-    currentMessage.imageLink.getResource(image => {
-      new ImageDisplayValidator('videoImage', false).shouldHaveImgixImage(image);
-    });
+  it('Checks card image and, if Bitmovin video, player exists and video autoplays', function() {
+    cy.imgixShouldRunOnElement('[data-automation-id="message-video"] img', currentMessage.image);
 
-    if (currentMessage.bitmovinURL.hasValue) {
-      cy.get('div[data-video-player]').as('videoPlayer').should('have.prop', 'id').and('contain', 'bitmovinPlayer');
-      cy.wrap(requestFilter).as('autoplayEvent').its('matches').should('have.length', 1);
+    if (currentMessage.bitmovin_url.hasValue) {
+      cy.get('div[data-video-player]').as('videoPlayer')
+        .should('have.prop', 'id').and('contain', 'bitmovinPlayer');
+
+      //TODO uncomment if autoplay is turned back on for this video - fix this
+      // cy.wrap(requestFilter).as('autoplayEvent').its('matches').should('have.length', 1);
     }
   });
 
-  it('Checks description', function () {
-    cy.get('[data-automation-id="message-description"]').as('description');
-    cy.get('@description').normalizedText().then(elementText => {
-      expect(currentMessage.description.unformattedText).to.include(elementText);
-    });
+  it('Checks description', function() {
+    cy.get('.latest-message-body')
+      .as('description')
+      .normalizedText()
+      .then((elementText) => {
+        expect(normalizeText(currentMessage.description.text)).to.have.string(elementText);
+      });
   });
 });
