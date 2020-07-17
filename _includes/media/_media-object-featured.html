@@ -3,7 +3,7 @@
     <h5 class="component-header flush-ends">
       <a href="{{ featured.url }}" data-automation-id="featured-title">{{ featured.title }}</a>
     </h5>
-    <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="featured-description">
+    <div class="soft-quarter-top font-size-smaller flush-bottom text-gray-dark" data-automation-id="featured-description">
       {{ featured.description | markdownify | strip_html | truncatewords: 15 }}
     </div>
     {% if include.media_type == "podcast" %}
