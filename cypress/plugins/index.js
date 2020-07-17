@@ -12,9 +12,19 @@
 // the project's config changing)
 
 const loadConfig = require('crds-cypress-config');
+const { manageBlacklist } = require('./blacklistHosts');
+const { addContentfulTasks } = require('./contentfulTasks');
 
 //Config files live in /config. To specify which one to use, open or run with command line argument:
-//"--env configFile=demo_crossroads"
+//"--config-file ./cypress/config/int_crossroads.json"
 module.exports = (on, config) => {
-  return loadConfig.loadConfigFromFile(config).then(newConfig => loadConfig.loadConfigFromVault(newConfig));
+  return loadConfig.loadConfigFromVault(config)
+    .then((newConfig) => {
+      // Configure blacklisted hosts
+      manageBlacklist(newConfig);
+
+      // Add Contentful query tasks
+      addContentfulTasks(on, newConfig);
+      return newConfig;
+    });
 };

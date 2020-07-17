@@ -1,10 +1,5 @@
 {
   "projectId": "dnbm5t",
   "testFiles": "**/*spec.js",
-  "numTestsKeptInMemory": 0,
-  "video": false,
-  "blacklistHosts": "*.monetate.net",
-  "env": {
-    "RETRIES": 2
-  }
+  "video": false
 }

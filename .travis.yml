@@ -17,7 +17,7 @@ install:
 # Integration Test stage
 integrationTests: &integrationTest
   if: env(RUN_CYPRESS) = true
-  script: "npx cypress run --record --key $cypressDashboard --parallel --group crds-net-parallel"
+  script: "npx cypress run --config-file ./cypress/config/${CYPRESS_configFile} --record --key $cypressDashboard --parallel --group crds-net-parallel"
 
 jobs:
   include:

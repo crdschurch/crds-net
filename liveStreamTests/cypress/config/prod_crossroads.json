@@ -8,7 +8,7 @@
     "email_recipients": "webteam@crossroads.net,dalbanese@crossroads.net",
     "CONTENTFUL_ENV": "master",
     "CROSSROADS_API_ENDPOINT": "https://api.crossroads.net",
-    "schedule_env": "/prod",
+    "stream_schedule_env": "/prod",
     "vaultEnv": "prod"
   }
 }

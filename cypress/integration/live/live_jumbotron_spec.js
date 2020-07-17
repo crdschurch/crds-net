@@ -1,56 +1,55 @@
-import { StreamScheduleGenerator } from '../../support/StreamScheduleGenerator';
-import { RouteValidator } from '../../support/RouteValidator';
-import { MessageQueryManager } from 'crds-cypress-contentful';
-
-function visitLiveWithSchedule(fakeSchedule) {
-  cy.server();
-  cy.route(`${Cypress.env('schedule_env')}/streamSchedule`, fakeSchedule);
-  cy.on('uncaught:exception', (err, runnable) => {
-     return false
-  })
-
-  cy.visit('/live');
-}
+import { MessageQueryBuilder } from 'crds-cypress-contentful';
+import { getRelativeMessageUrl } from '../../support/GetUrl';
+import { getStreamSchedule } from '../../fixtures/stream_schedule_response';
 
 describe('Tests the /live jumbotron content with different stream times:', function () {
-  let scheduleGenerator;
-  let currentMessage;
-  let autoplayURL;
   before(function () {
-    scheduleGenerator = new StreamScheduleGenerator();
+    //Ignore this error - unsure what to stub to avoid it
+    const countdownConstructorError = /.*CRDS.Countdown is not a constructor.*/;
+    cy.ignoreMatchingErrors([countdownConstructorError]);
 
-    const mqm = new MessageQueryManager();
-    mqm.getSingleEntry(mqm.query.latestMessage).then(message => {
-      currentMessage = message;
-      currentMessage.getURL().then(url => {
-        autoplayURL = url.autoplay;
-      });
-    });
+    //Get current message
+    const qb = new MessageQueryBuilder();
+    qb.orderBy = '-fields.published_at';
+    qb.select = 'fields.slug';
+    cy.task('getCNFLResource', qb.queryParams)
+      .then(getRelativeMessageUrl)
+      .as('messageUrl');
   });
 
   describe('Tests button navigation:', function () {
-    it('Live Stream State: Checks clicking "Watch Now" navs to the live stream', function () {
-      const fakeCurrentSchedule = scheduleGenerator.getStreamStartingAfterHours(0);
-      visitLiveWithSchedule(fakeCurrentSchedule);
-
-      //Spoof schedule route again before navigating
+    beforeEach(function () {
       cy.server();
-      cy.route(`${Cypress.env('schedule_env')}/streamSchedule`, fakeCurrentSchedule);
+    });
+
+    it('Live Stream State: Checks clicking "Watch Now" navs to the live stream', function () {
+      const fakeCurrentSchedule = getStreamSchedule(0);
+      cy.route(`${Cypress.env('stream_schedule_env')}/streamSchedule`, fakeCurrentSchedule);
+      cy.visit('/live');
 
       cy.get('[data-automation-id="jumbotron-watch-now-button"]').click();
-      RouteValidator.pageFoundAndURLMatches(`${Cypress.config().baseUrl}/live/stream/?autoplay=true&sound=11`);
+
+      cy.url().should('eq', `${Cypress.config().baseUrl}/live/stream/?autoplay=true&sound=11`);
+      cy.get('[data-automation-id="404-search-field"]').as('404SearchField').should('not.exist');
     });
 
     it('Offstream State: Checks clicking "Watch This Weeks Service" navs to the latest message', function () {
-      visitLiveWithSchedule(scheduleGenerator.getStreamStartingAfterHours(24));
+      const fakeFutureSchedule = getStreamSchedule(24);
+      cy.route(`${Cypress.env('stream_schedule_env')}/streamSchedule`, fakeFutureSchedule);
+      cy.visit('/live');
+
       cy.get('[data-automation-id="watch-service-button"]').click();
-      RouteValidator.pageFoundAndURLMatches(autoplayURL.absolute);
+
+      cy.url().should('eq', `${Cypress.config().baseUrl}/media${this.messageUrl}?autoPlay=true&sound=11`);
     });
   });
 
   describe('Tests state when stream is running', function () {
     before(function () {
-      visitLiveWithSchedule(scheduleGenerator.getStreamStartingAfterHours(0));
+      const fakeCurrentSchedule = getStreamSchedule(0);
+      cy.server();
+      cy.route(`${Cypress.env('stream_schedule_env')}/streamSchedule`, fakeCurrentSchedule);
+      cy.visit('/live');
     });
 
     it('Checks live content is displayed', function () {
@@ -70,7 +69,10 @@ describe('Tests the /live jumbotron content with different stream times:', funct
   //Note that future streaming time can't be accurately spoofed when running on Travis, so don't check exact time
   describe('Tests display when the stream is upcoming', function () {
     before(function () {
-      visitLiveWithSchedule(scheduleGenerator.getStreamStartingAfterHours(10));
+      const fakeFutureSchedule = getStreamSchedule(10);
+      cy.server();
+      cy.route(`${Cypress.env('stream_schedule_env')}/streamSchedule`, fakeFutureSchedule);
+      cy.visit('/live');
     });
 
     it('Checks upcoming content is displayed', function () {
@@ -90,7 +92,10 @@ describe('Tests the /live jumbotron content with different stream times:', funct
   //Note that future streaming time can't be accurately spoofed when running on Travis, so don't check exact time
   describe('Tests display when the stream is in the "offstream" state', function () {
     before(function () {
-      visitLiveWithSchedule(scheduleGenerator.getStreamStartingAfterHours(36));
+      const fakeFutureSchedule = getStreamSchedule(36);
+      cy.server();
+      cy.route(`${Cypress.env('stream_schedule_env')}/streamSchedule`, fakeFutureSchedule);
+      cy.visit('/live');
     });
 
     it('Checks offstream content is displayed', function () {
@@ -102,7 +107,7 @@ describe('Tests the /live jumbotron content with different stream times:', funct
     it('Check "Watch This Weeks Service" is displayed and has correct link', function () {
       cy.get('[data-automation-id="watch-service-button"]')
         .should('be.visible')
-        .and('have.attr', 'href', autoplayURL.relative);
+        .and('have.attr', 'href', `${this.messageUrl}?autoPlay=true&sound=11`);
     });
   });
 });
