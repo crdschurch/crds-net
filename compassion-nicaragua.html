@@ -3,6 +3,7 @@ layout: default
 permalink: /compassion/nicaragua/
 ---
 
+{% include header.html %}
 <div class="container push-ends">
     <div class="row push-ends">
       <div class="col-sm-12">
@@ -11,10 +12,9 @@ permalink: /compassion/nicaragua/
       </div>
     </div>    
   </div>
-  
+  {% include footer.html %}
   
   {% javascript_link_tag iFrameResizer %}
   <script>
     iFrameResize({ log: true, checkOrigin: false }, "#compassionCinci");
   </script>
-  
