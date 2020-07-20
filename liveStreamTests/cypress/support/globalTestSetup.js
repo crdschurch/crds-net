@@ -9,7 +9,4 @@ Cypress.on('window:before:load', (win) => {
   win.analytics = {
     track: cy.stub().as('analytics.track')
   };
-
-  // We've blacklisted HotJar, so stub some of its methods
-  // win.hj = cy.stub().as('hotjar');
 });

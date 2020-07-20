@@ -84,9 +84,9 @@ describe('Tests latest message is current and ready for live stream', function (
 /** Using the "after" hook or listening for events sometimes doesn't send messages due to bugs in Cypress (issue #2831)
  * This is a hacky but reliable way to get around the issue.
 */
-// describe('Sends out results', function () {
-//   it('Sends out Slack and Email alerts', function () {
-//     cy.reportResultsToSlack();
-//     cy.reportResultsByEmail();
-//   });
-// });
+describe('Sends out results', function () {
+  it('Sends out Slack and Email alerts', function () {
+    cy.reportResultsToSlack();
+    cy.reportResultsByEmail();
+  });
+});
