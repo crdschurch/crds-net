@@ -1,10 +1,10 @@
-import { RequestFilter } from '../../Analytics/RequestFilter';
-import { amplitude } from '../../fixtures/event_filters';
+// import { RequestFilter } from '../../Analytics/RequestFilter';
+// import { amplitude } from '../../fixtures/event_filters';
 import { MessageQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 import { getRelativeMessageUrl } from '../../support/GetUrl';
 
 describe('Tests the Current Message on the Homepage', function() {
-  const requestFilter = new RequestFilter(amplitude.isVideoStarted);
+  // const requestFilter = new RequestFilter(amplitude.isVideoStarted);
   let currentMessage;  
 
   before(function() {
@@ -17,14 +17,14 @@ describe('Tests the Current Message on the Homepage', function() {
       });
 
     //Setup capture for events
-    cy.server();
-    cy.route({
-      method: 'POST',
-      url: 'api.amplitude.com',
-      onResponse: (xhr) => {
-        requestFilter.keepMatch(xhr.request);
-      }
-    });
+    // cy.server();
+    // cy.route({
+    //   method: 'POST',
+    //   url: 'api.amplitude.com',
+    //   onResponse: (xhr) => {
+    //     requestFilter.keepMatch(xhr.request);
+    //   }
+    // });
 
     cy.visit('/');
   });
@@ -54,18 +54,6 @@ describe('Tests the Current Message on the Homepage', function() {
       });
   });
 
-  it('Checks card image and, if Bitmovin video, player exists and video autoplays', function() {
-    cy.imgixShouldRunOnElement('[data-automation-id="message-video"] img', currentMessage.image);
-
-    if (currentMessage.bitmovin_url.hasValue) {
-      cy.get('div[data-video-player]').as('videoPlayer')
-        .should('have.prop', 'id').and('contain', 'bitmovinPlayer');
-
-      //TODO uncomment if autoplay is turned back on for this video - fix this
-      // cy.wrap(requestFilter).as('autoplayEvent').its('matches').should('have.length', 1);
-    }
-  });
-
   it('Checks description', function() {
     cy.get('.latest-message-body')
       .as('description')
@@ -73,5 +61,23 @@ describe('Tests the Current Message on the Homepage', function() {
       .then((elementText) => {
         expect(normalizeText(currentMessage.description.text)).to.have.string(elementText);
       });
+  });
+
+  it('Checks card image and, if Bitmovin video, player exists and video autoplays', function() {
+    cy.visit('/'); //Revisit to confirm analytics event
+    cy.get('[data-automation-id="message-video"]').as('currentMessageVideo')
+      .scrollIntoView()
+      .within(() => {
+        cy.imgixShouldRunOnElement('img', currentMessage.image);
+      });
+
+    if (currentMessage.bitmovin_url.hasValue) {
+      cy.get('div[data-video-player]').as('videoPlayer')
+        .should('have.prop', 'id').and('contain', 'bitmovinPlayer');
+
+      // Confirm autoplay has started by listening for the event
+      cy.get('@analytics.track')
+        .should('have.been.calledWith', 'VideoStarted');
+    }
   });
 });

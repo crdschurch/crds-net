@@ -45,9 +45,12 @@ describe('Given I navigate to /locations and do not search:', function() {
     });
 
     it(`Location card #${index} should have an Image`, function() {
-      cy.get('#section-locations > .card').eq(index).as(`${name}Card`)
+      cy.get('#section-locations .card').eq(index).as(`${name}CardImage`)
+        .scrollIntoView()
         .within(() => {
-          cy.imgixShouldRunOnElement('[data-automation-id="location-image"] img', location.image);
+          cy.get('[data-automation-id="location-image"]').within(() => {
+            cy.imgixShouldRunOnElement('img', location.image);
+          });          
         });
     });
 

@@ -18,6 +18,7 @@ import './commands';
 import './loginCommands';
 import './elementCommands';
 import './globalTestSetup';
+import './bitmovinPlayerCommands';
 
 require('cypress-plugin-retries');
 // Alternatively you can use CommonJS syntax:
