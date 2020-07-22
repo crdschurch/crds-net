@@ -1,16 +1,24 @@
+/* Store errors on failed tests */
 const errors = [];
 Cypress.on('fail', (err) => {
   errors.push(err.message);
   throw err;
 });
 
-Cypress.Commands.add('reportResultsToSlack', () => {
-  reportResultsToSlack();
-});
-
-Cypress.Commands.add('reportResultsByEmail', () => {
-  reportResultsByEmail();
-});
+/* Report errors to Slack */
+function _addSlackTextAndAttachments(body) {
+  if (errors.length > 0) {
+    body['text'] = 'Warning! The latest message isn\'t ready for the live stream';
+    body['attachments'] = errors.map(m => {
+      return {
+        'color': '#FF0000',
+        'text': m
+      };
+    });
+  } else {
+    body['text'] = 'Hooray! The latest message is ready for the live stream';
+  }
+}
 
 function reportResultsToSlack() {
   const slack = require('slack-notify')(Cypress.env('SLACK_WEBHOOK_URL'));
@@ -34,17 +42,20 @@ function reportResultsToSlack() {
   });
 }
 
-function _addSlackTextAndAttachments(body) {
+
+Cypress.Commands.add('reportResultsToSlack', () => {
+  reportResultsToSlack();
+});
+
+
+/* Report errors to email */
+function _addEmailSubjectAndBody(body) {
   if (errors.length > 0) {
-    body['text'] = 'Warning! The latest message isn\'t ready for the live stream';
-    body['attachments'] = errors.map(m => {
-      return {
-        'color': '#FF0000',
-        'text': m
-      };
-    });
+    body['subject'] = 'Warning! The latest message isn\'t ready for the live stream';
+    body['html'] = `Something went wrong preparing the latest message for the live stream:<ul>${errors.map(e => `<li>${e}</li>`)}</ul>`;
   } else {
-    body['text'] = 'Hooray! The latest message is ready for the live stream';
+    body['subject'] = 'The lates message is ready for the live stream';
+    body['text'] = 'Hooray!';
   }
 }
 
@@ -78,12 +89,6 @@ function reportResultsByEmail() {
   });
 }
 
-function _addEmailSubjectAndBody(body) {
-  if (errors.length > 0) {
-    body['subject'] = 'Warning! The latest message isn\'t ready for the live stream';
-    body['html'] = `Something went wrong preparing the latest message for the live stream:<ul>${errors.map(e => `<li>${e}</li>`)}</ul>`;
-  } else {
-    body['subject'] = 'The lates message is ready for the live stream';
-    body['text'] = 'Hooray!';
-  }
-}
+Cypress.Commands.add('reportResultsByEmail', () => {
+  reportResultsByEmail();
+});

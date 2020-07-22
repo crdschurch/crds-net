@@ -29,8 +29,10 @@ describe('Testing the Current Series on the Homepage:', function() {
 
     cy.get('[data-automation-id="series-image"]').as('seriesImageLink')
       .scrollIntoView()
-      .should('have.attr', 'href', `/series/${currentSeries.slug.text}`);
-    cy.imgixShouldRunOnElement('[data-automation-id="series-image"] > img', currentSeries.image);
+      .should('have.attr', 'href', `/series/${currentSeries.slug.text}`)
+      .within(() => {
+        cy.imgixShouldRunOnElement('img', currentSeries.image);
+      });
   });
 
   it('"Watch current teaching series" button should link to the current series', function() {
