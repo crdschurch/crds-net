@@ -2,4 +2,4 @@
 require 'bundler/setup'
 Bundler.require(:default)
 require './lib/crds/redirects.rb'
-Redirects.new().to_csv!
+Redirects.new().to_csv!(ARGV[0])

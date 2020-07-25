@@ -126,3 +126,16 @@
   CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
   CRDS_GROUP_LEADER_DOMAIN = "group-leader-int.crossroads.net"
   CRDS_GROUPS_ENDPOINT = "groups-int.crossroads.net"
+
+[[plugins]]
+package = "./_plugins/netlify-plugin-contentful-redirects"
+  [plugins.inputs]
+    destination = "./tmp/.redirects_cache"
+
+[[plugins]]
+package = "@helloample/netlify-plugin-redirects"
+  [plugins.inputs]
+    source = "./tmp/.redirects_cache"
+    destination = "./_redirects"
+    defaultBranch = "development"
+
