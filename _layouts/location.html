@@ -25,10 +25,15 @@ layout: default
             <strong>welcome to</strong>
           </span>
           <h1 class="font-family-condensed-extra text-uppercase">Crossroads <br />{{ page.name }}</h1>
-
+          {% if page.name == "Dayton" %} 
+          <div class="push-bottom">
+            <a href="https://www.crossroads.net/dayton/volunteer-sign-up/" class="btn btn-orange" >Ways to get involved</a>
+          </div>
+          {% else %}
           <div class="push-bottom">
             <a href="javascript:void(0)" class="btn btn-orange" data-smooth-scroll-to="service-times" data-smooth-scroll-offset="95">View service times</a>
           </div>
+          {% endif %}
           <div>
             {% if location_happenings.size > 0 %}
             <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="happenings"  data-smooth-scroll-offset="50">See what's
