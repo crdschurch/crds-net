@@ -33,7 +33,11 @@ describe('Testing the Current Series on the Live page:', function() {
   });
 
   it('Current Series image should match Contentful', function() {
-    cy.imgixShouldRunOnElement('[data-automation-id="series-image"]', currentSeries.image);
+    cy.get('[data-automation-id="series-image"]')
+      .scrollIntoView()
+      .then(() => {
+        cy.imgixShouldRunOnElement('[data-automation-id="series-image"]', currentSeries.image);
+      });
   });
 
   it('"Watch Trailer" button should open a youtube modal, iff series has trailer', function() {
