@@ -1,8 +1,5 @@
 
-import { BitmovinPlayer } from './helpers/BitmovinPlayer';
 import { MessageQueryBuilder } from 'crds-cypress-contentful';
-import { RequestFilter } from '../../Analytics/RequestFilter';
-import { amplitude } from '../../fixtures/event_filters';
 import { getStreamSchedule } from '../../fixtures/stream_schedule_response';
 
 function hideRollCall() {
@@ -69,33 +66,28 @@ describe('Tests the /live/stream page video player', function() {
 
   // Skip test until live stream autoplay is turned back on
   it.skip('Check Bitmovin player Autoplays muted with subtitles', function() {
-    const requestFilter = new RequestFilter(amplitude.isVideoStarted);
-
-    cy.route({
-      method: 'POST',
-      url: 'api.amplitude.com',
-      onResponse: (xhr) => {
-        requestFilter.keepMatch(xhr.request);
-      }
-    });
-
     cy.visit('/live/stream/');
     hideRollCall();
 
     if (latestMessage.bitmovin_url) {
-      const player = new BitmovinPlayer();
-      player.waitUntilBuffered().then(function() {
-        player.verifyPlayerMuted();
-        if (latestMessage.transcription) {
-          player.verifySubtitlesDisplayed();
-        }
-      });
-
-      cy.wrap(requestFilter).as('autoplayEvent')
-        .its('matches').should('have.length', 1);
+      cy.bufferingOverlay().should('be.hidden')
+        .then(() => {
+          cy.mutedIndicator().should('exist');
+          if (latestMessage.transcription) {
+            cy.subtitleSelect().find('option').should('have.length.gte', 2);
+            cy.subtitleSelect().find('option[selected="selected"]').should('not.contain', 'off');
+            cy.subtitleOverlay().should('exist').and('be.visible');
+          }
+          
+        });
+      
+      // Confirm autoplay has started by listening for the event
+      cy.get('@analytics.track')
+        .should('have.been.calledWith', 'VideoStarted');
     } else {
-      cy.wrap(requestFilter).as('autoplayEvent')
-        .its('matches').should('have.length', 0);
+      // Confirm autoplay has not started by listening for the event
+      cy.get('@analytics.track')
+        .should('not.have.been.calledWith', 'VideoStarted');
     }
   });
 });
