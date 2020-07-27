@@ -1,0 +1,20 @@
+---
+layout: default
+permalink: /compassion/bolivia/
+---
+
+{% include header.html %}
+<div class="container push-ends">
+    <div class="row push-ends">
+      <div class="col-sm-12">
+        <iframe frameborder="0" id="compassionKY" class="compassion-height" src="https://ga.compassion.com/widgets/church/embed-sac/v1/iframe/index.php?sac_name=Adventure-Church-Lexington-KY">
+        </iframe>
+      </div>
+    </div>    
+  </div>
+  {% include footer.html %}
+
+  {% javascript_link_tag iFrameResizer %}
+  <script>
+    iFrameResize({ log: true, checkOrigin: false }, "#compassionKY");
+  </script>
