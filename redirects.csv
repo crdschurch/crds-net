@@ -149,5 +149,5 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /healing/divorcecare,/groups/onsite-healing-groups/divorce-care,301!
 /healing/postpartum-healing,/groups/onsite-healing-groups/postpartum,301!
 /groups/onsite-groups/*,/groups/onsite,301!
-/sitemap-media.xml,/media/sitemap,200!
+/sitemap-media.xml,/media/sitemap.xml,200!
 /*,/404.html,404
