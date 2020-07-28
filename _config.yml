@@ -8,6 +8,7 @@ image: "//crds-media.imgix.net/7EFusaW9y0WFSxO9KCdumH/2edc127ce50430b3894692f707
 # Build settings
 permalink: pretty
 markdown: kramdown
+sitemap: sitemap-net.xml
 
 exclude:
   - bin
@@ -102,8 +103,8 @@ collections:
 contentful:
   page:
   podcast:
-  query: 
-  video: 
+  query:
+  video:
   category:
   config:
     sites: distribution_channels
