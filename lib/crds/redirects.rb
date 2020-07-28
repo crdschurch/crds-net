@@ -43,7 +43,7 @@ class Redirects
     rows.insert(3, *auth_required)
     File.write(path, rows.map(&:to_csv).join)
     if debug
-      puts "\n + #{redirects.size + auth_required.size} redirects from Contentful".colorize(:cyan)
+      puts "\nWrote #{redirects.size + auth_required.size} redirects from Contentful to #{path}"
     end
   end
 
