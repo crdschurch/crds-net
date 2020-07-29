@@ -23,7 +23,7 @@
   "devDependencies": {
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
-    "@helloample/netlify-plugin-redirects": "^1.1.1",
+    "@helloample/netlify-plugin-redirects": "^1.1.4",
     "bootstrap-sass": "^3.4.0",
     "contentful-cli": "^0.28.0",
     "crds-cypress-config": "^1.0.1",
