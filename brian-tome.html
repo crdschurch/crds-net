@@ -8,7 +8,9 @@ layout: default
     <div class="row df-screen-md">
       <div class="col-md-6 hard">
         <a href="https://www.briantome.com/" data-author-link>
-          <img class="" src="//crds-media.imgix.net/2yqAMxC6kBgRCw0pcvFQ7X/d63ec4a9ee477cca691ef40eb2093556/brian-tome-photo.jpg?auto=format,compress&w=2800" alt="brian tome pic" title="brian tome pic" data-optimize-img />
+          <img class=""
+            src="//crds-media.imgix.net/2yqAMxC6kBgRCw0pcvFQ7X/d63ec4a9ee477cca691ef40eb2093556/brian-tome-photo.jpg?auto=format,compress&w=2800"
+            alt="brian tome pic" title="brian tome pic" data-optimize-img />
         </a>
       </div>
       <div class="col-md-6 soft ma-ends">
@@ -18,125 +20,164 @@ layout: default
             Brian Tome
           </h1>
           <p class="bio-spacing">Brian is the founding and senior pastor of Crossroads Church. Crossroads
-              started
-              in 1995 when a group of 11 friends wanted a place for their friends who had given up on church
-              but
-              not on God.
-              Under Brian’s leadership, Crossroads has since expanded to become one of the largest churches in
-              America with locations in multiple states and a digital footprint that spans across the country.
-              Brian has started a number of other non-profits.
-              He is passionate about eradicating poverty in Cincinnati’s urban core, empowering entrepreneurs,
-              supporting women rescued from sex slavery in India, and feeding and educating children in
-              Nicaragua.
-              He has authored four books, hosts The Aggressive Life, a nationally recognized podcast, and
-              leads a
-              movement called Man Camp. He and his wife Libby have three children and live in Cincinnati, OH.
-            </p>
-          </div>
+            started
+            in 1995 when a group of 11 friends wanted a place for their friends who had given up on church
+            but
+            not on God.
+            Under Brian’s leadership, Crossroads has since expanded to become one of the largest churches in
+            America with locations in multiple states and a digital footprint that spans across the country.
+            Brian has started a number of other non-profits.
+            He is passionate about eradicating poverty in Cincinnati’s urban core, empowering entrepreneurs,
+            supporting women rescued from sex slavery in India, and feeding and educating children in
+            Nicaragua.
+            He has authored four books, hosts The Aggressive Life, a nationally recognized podcast, and
+            leads a
+            movement called Man Camp. He and his wife Libby have three children and live in Cincinnati, OH.
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="bg-orange">
-    <div class="container">
-      <div class="row d-flex">
-        <div class="col-xs-12 soft-ends text-center ma-ends">
-          <h3 class="text-blue component-header flush-top push-half-bottom">
-            get words from brian straight to your inbox
-          </h3>
-          <crds-button color="blue" display="outline" text="Subscribe now"
-          href="https://www.facebook.com/crds.sm/"></crds-button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="container">
-    <crds-instagram-feed instagram-handles="briantome"></crds-instagram-feed>
-  </section>
-
-  <section class="bg-tan-light">
-    <div class="container">
-      <div class="row push-bottom">
-        <div class="col-sm-12 text-center push-bottom soft-ends mobile-push-half-sides">
-          <h2
-          class="component-header-box component-header-box-border-lg text-blue text-uppercase text-center flush-bottom">
-          more from brian</h2>
-        </div>
-        <div class="col-md-8">
-          <hr class="flush-top push-half-bottom" />
-          <h2 class="text-uppercase font-family-serif font-size-base font-size-small text-gray-light flush-top">
-            articles by brian
-          </h2>
-          {% assign bt_articles = site.articles | where: 'author.full_name' , "Brian Tome" | reverse | slice: 0 %}
-          {% for item in bt_articles %}
-          {% include media/_media-card.html %}
-          {% endfor %}
-
-          <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
-            <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
-              {% assign bt_articles_carousel = site.articles | where: 'author.full_name' , "Brian Tome" | reverse | slice: 1, 2 %}
-              {% for item in bt_articles_carousel %}
-              {% include media/_media-card.html carousel = true %}
-              {% endfor %}
+<section class="bg-orange">
+  <div class="container">
+    <div class="row d-flex">
+      <div class="col-xs-12 soft-ends text-center ma-ends">
+        <h3 class="text-blue component-header flush-top push-half-bottom">
+          get words from brian straight to your inbox
+        </h3>
+        <crds-button color="blue" display="outline" text="Subscribe now" href="" data-target="#subscribeModalForm"
+          data-toggle="modal"></crds-button>
+        <div aria-labelledby="Subscribe email form" class="modal fade" id="subscribeModalForm" role="dialog"
+          tabindex="-1">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header hard-bottom"><button aria-label="Close" class="close pull-right"
+                  data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body text-left hard-bottom">
+                <p class="component-header text-center text-gray-dark push-ends soft-bottom" style="line-height:.9em;">Get
+                  Words from Brian straight to your inbox.</p>
+                <div class="form" data-role="hsform">
+                  <!--[if lte IE 8]>
+                          <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                          <![endif]-->
+                  <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                </div>
+              </div>
+              <div class="modal-footer">&nbsp;</div>
             </div>
           </div>
-          <div class="push-ends">
-            <crds-button color="orange" text="View all articles"
-            href="/media/authors/brian-tome"></crds-button>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <hr class="flush-top push-half-bottom" />
-          <h2 class="text-uppercase font-family-serif font-size-base font-size-small text-gray-light flush-top">
-            podcast
-          </h2>
-          {% assign featured = site.podcasts | where: 'title', 'The Aggressive Life with Brian Tome' | first %}
-          {% include media/_media-object-featured.html media_type="podcast" %}
-          <hr class="flush-top push-half-bottom" />
-          <h2 class="text-uppercase font-family-serif font-size-base font-size-small text-gray-light flush-top">
-            latest episodes
-          </h2>
-          {% assign bt_episodes = site.episodes | where: 'podcast.title', 'The Aggressive Life with Brian Tome' | reverse | slice: 0, 2 %}
-          {% for media in bt_episodes %}
-          <hr class="flush-top push-half-bottom" />
-          {% include media/_media-object.html media_type="episode" %}
-          {% endfor %}
-          <div class="push-ends">
-            <crds-button color="orange" text="View all episodes"
-            href="/media/authors/brian-tome/#podcasts"></crds-button>
-          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="bg-orange">
-    <div class="container">
-      <div class="row d-flex">
-        <div class="col-xs-12 soft-ends text-center ma-ends">
-          <h2 class="component-header-box text-blue text-uppercase text-center flush-bottom">follow brian</h2>
-          <div class="social-icons push-ends">
-            <a href="https://facebook.com/briantomebooks/" target="_blank" class="btn btn-blue btn-outline" style="border-radius: 50%; width: 56px; height: 56px; padding: 11px; text-align: center; line-height: 27px;">
-              <svg class="icon icon-2" viewBox="0 0 256 256">
-                <use xlink:href="/assets/svgs/icons.svg#facebook"></use>
-              </svg>
-            </a>
-            <a href="https://instagram.com/briantome/" target="_blank" class="btn btn-blue btn-outline"  style="border-radius: 50%; width: 56px; height: 56px; padding: 11px; text-align: center; line-height: 27px;">
-              <svg class="icon icon-2" viewBox="0 0 256 256">
-                <use xlink:href="/assets/svgs/icons.svg#instagram"></use>
-              </svg>
-            </a>
-            <a href="https://twitter.com/briantome/" target="_blank" class="btn btn-blue btn-outline"  style="border-radius: 50%; width: 56px; height: 56px; padding: 11px; text-align: center; line-height: 27px;">
-              <svg class="icon icon-2" viewBox="0 0 256 256">
-                <use xlink:href="/assets/svgs/icons.svg#twitter"></use>
-              </svg>
-            </a>
+<section class="container">
+  <crds-instagram-feed instagram-handles="briantome"></crds-instagram-feed>
+</section>
+
+<section class="bg-tan-light">
+  <div class="container">
+    <div class="row push-bottom">
+      <div class="col-sm-12 text-center push-bottom soft-ends mobile-push-half-sides">
+        <h2
+          class="component-header-box component-header-box-border-lg text-blue text-uppercase text-center flush-bottom">
+          more from brian</h2>
+      </div>
+      <div class="col-md-8">
+        <hr class="flush-top push-half-bottom" />
+        <h2 class="text-uppercase font-family-serif font-size-base font-size-small text-gray-light flush-top">
+          articles by brian
+        </h2>
+        {% assign bt_articles = site.articles | where: 'author.full_name' , "Brian Tome" | reverse | slice: 0 %}
+        {% for item in bt_articles %}
+        {% include media/_media-card.html %}
+        {% endfor %}
+
+        <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
+          <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
+            {% assign bt_articles_carousel = site.articles | where: 'author.full_name' , "Brian Tome" | reverse | slice: 1, 2 %}
+            {% for item in bt_articles_carousel %}
+            {% include media/_media-card.html carousel = true %}
+            {% endfor %}
           </div>
+        </div>
+        <div class="push-ends">
+          <crds-button color="orange" text="View all articles" href="/media/authors/brian-tome"></crds-button>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <hr class="flush-top push-half-bottom" />
+        <h2 class="text-uppercase font-family-serif font-size-base font-size-small text-gray-light flush-top">
+          podcast
+        </h2>
+        {% assign featured = site.podcasts | where: 'title', 'The Aggressive Life with Brian Tome' | first %}
+        {% include media/_media-object-featured.html media_type="podcast" %}
+        <hr class="flush-top push-half-bottom" />
+        <h2 class="text-uppercase font-family-serif font-size-base font-size-small text-gray-light flush-top">
+          latest episodes
+        </h2>
+        {% assign bt_episodes = site.episodes | where: 'podcast.title', 'The Aggressive Life with Brian Tome' | reverse | slice: 0, 2 %}
+        {% for media in bt_episodes %}
+        <hr class="flush-top push-half-bottom" />
+        {% include media/_media-object.html media_type="episode" %}
+        {% endfor %}
+        <div class="push-ends">
+          <crds-button color="orange" text="View all episodes"
+            href="{{ jekyll_env }}/media/podcasts/the-aggressive-life-with-brian-tome/"></crds-button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<section class="bg-orange">
+  <div class="container">
+    <div class="row d-flex">
+      <div class="col-xs-12 soft-ends text-center ma-ends">
+        <h2 class="component-header-box text-blue text-uppercase text-center flush-bottom">follow brian</h2>
+        <div class="social-icons push-ends">
+          <a href="https://facebook.com/briantomebooks/" target="_blank" class="btn btn-blue btn-outline"
+            style="border-radius: 50%; width: 56px; height: 56px; padding: 11px; text-align: center; line-height: 27px;">
+            <svg class="icon icon-2" viewBox="0 0 256 256">
+              <use xlink:href="/assets/svgs/icons.svg#facebook"></use>
+            </svg>
+          </a>
+          <a href="https://instagram.com/briantome/" target="_blank" class="btn btn-blue btn-outline"
+            style="border-radius: 50%; width: 56px; height: 56px; padding: 11px; text-align: center; line-height: 27px;">
+            <svg class="icon icon-2" viewBox="0 0 256 256">
+              <use xlink:href="/assets/svgs/icons.svg#instagram"></use>
+            </svg>
+          </a>
+          <a href="https://twitter.com/briantome/" target="_blank" class="btn btn-blue btn-outline"
+            style="border-radius: 50%; width: 56px; height: 56px; padding: 11px; text-align: center; line-height: 27px;">
+            <svg class="icon icon-2" viewBox="0 0 256 256">
+              <use xlink:href="/assets/svgs/icons.svg#twitter"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   {% include footer.html %}
+
+<!--[if lte IE 8]>
+  <script
+    charset="utf-8"
+    type="text/javascript"
+    src="//js.hsforms.net/forms/v2-legacy.js"
+  ></script>
+<![endif]-->
+<script>
+  hbspt.forms.create({
+    portalId: "3993985",
+    formId: "1f2cca6a-c0eb-4fcc-9b55-d6f256d607f8",
+    target: ".form",
+    css: ""
+  });
+</script>
