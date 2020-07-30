@@ -4,12 +4,26 @@ layout: container
 
 <div class="row push-ends">
   <div class="col-sm-4">
-    {% include _test.html title="hello world" lead="Testing" theme="default" img_src="//crds-media.imgix.net/3JkzXblF0KxdBpXp4CbPRl/227dc944ff29c3881480fe84187b6515/crossroads-brian.jpg?h=250" %}
+   <div class="portrait-card-skeleton">
+    <crds-portrait-card theme="default" href="#" lead="Derp" title="Derpity Derp" bg-overlay="true" image-src="//crds-media.imgix.net/3JkzXblF0KxdBpXp4CbPRl/227dc944ff29c3881480fe84187b6515/crossroads-brian.jpg?h=250"></crds-portrait-card>
+   </div>
   </div>
   <div class="col-sm-4">
-    {% include _test.html title="Derpity Derp" lead="Derp" theme="default" img_src="//crds-media.imgix.net/3JkzXblF0KxdBpXp4CbPRl/227dc944ff29c3881480fe84187b6515/crossroads-brian.jpg?h=250" %}
+    <div class="portrait-card-skeleton-expanded">
+      <crds-portrait-card theme="expanded" href="#" lead="Derp" title="Derpity Derp" bg-overlay="true" image-src="//crds-media.imgix.net/3JkzXblF0KxdBpXp4CbPRl/227dc944ff29c3881480fe84187b6515/crossroads-brian.jpg?h=250">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        </p>
+        <crds-button type="primary" color="blue" href='#' text='Click me!'></crds-button>
+        <crds-button type="primary" color="orange" href='#' text='Click me too!'></crds-button>
+      </crds-portrait-card>
+     </div>
   </div>
   <div class="col-sm-4">
-    {% include _test.html title="Lorem Ipsum" lead="Lorem" theme="default" img_src="//crds-media.imgix.net/3JkzXblF0KxdBpXp4CbPRl/227dc944ff29c3881480fe84187b6515/crossroads-brian.jpg?h=250" %}
+    <div class="portrait-card-skeleton-condensed">
+      <crds-portrait-card theme="condensed" href="#" lead="Derp" title="Derpity Derp" bg-overlay="true" image-src="//crds-media.imgix.net/3JkzXblF0KxdBpXp4CbPRl/227dc944ff29c3881480fe84187b6515/crossroads-brian.jpg?h=250"></crds-portrait-card>
+     </div>
   </div>
 </div>
