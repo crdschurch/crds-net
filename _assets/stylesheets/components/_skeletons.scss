@@ -26,8 +26,8 @@
 }
 
 .portrait-card-skeleton-svg {
-  width: 100%;
   display: none;
+  width: 100%;
 }
 
 .shimmer {
@@ -42,7 +42,6 @@
 
 .portrait-card-skeleton {
   width: 100%;
-  height: 475px;
 
   .portrait-card-skeleton-svg {
     display: block;
@@ -52,7 +51,6 @@
 .portrait-card-skeleton-expanded,
 .portrait-card-skeleton-condensed {
   width: 100%;
-  height: 350px;
 
   .portrait-card-skeleton-svg {
     display: block;
