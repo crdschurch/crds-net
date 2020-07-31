@@ -25,15 +25,38 @@
   }
 }
 
+.portrait-card-skeleton-svg {
+  width: 100%;
+  display: none;
+}
+
+.shimmer {
+  animation: mask 2s ease infinite;
+  transform: rotateY(45deg);
+}
+
+@keyframes mask {
+  from {transform: translateX(-100%)}
+  to {transform: translateX(100%)}
+}
+
 .portrait-card-skeleton {
-  background-color: gray;
   width: 100%;
   height: 475px;
+
+  .portrait-card-skeleton-svg {
+    display: block;
+  }
 }
 
 .portrait-card-skeleton-expanded,
 .portrait-card-skeleton-condensed {
-  background-color: gray;
   width: 100%;
   height: 350px;
+
+  .portrait-card-skeleton-svg {
+    display: block;
+  }
 }
+
+

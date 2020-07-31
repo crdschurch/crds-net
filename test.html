@@ -5,11 +5,13 @@ layout: container
 <div class="row push-ends">
   <div class="col-sm-4">
    <div class="portrait-card-skeleton">
+    {% include skeletons/portrait-card/_portrait-card-skeleton-default.html %}
     <crds-portrait-card theme="default" href="#" lead="Derp" title="Derpity Derp" bg-overlay="true" image-src="//crds-media.imgix.net/3JkzXblF0KxdBpXp4CbPRl/227dc944ff29c3881480fe84187b6515/crossroads-brian.jpg?h=250"></crds-portrait-card>
    </div>
   </div>
   <div class="col-sm-4">
     <div class="portrait-card-skeleton-expanded">
+      {% include skeletons/portrait-card/_portrait-card-skeleton-expanded.html %}
       <crds-portrait-card theme="expanded" href="#" lead="Derp" title="Derpity Derp" bg-overlay="true" image-src="//crds-media.imgix.net/3JkzXblF0KxdBpXp4CbPRl/227dc944ff29c3881480fe84187b6515/crossroads-brian.jpg?h=250">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -23,6 +25,7 @@ layout: container
   </div>
   <div class="col-sm-4">
     <div class="portrait-card-skeleton-condensed">
+      {% include skeletons/portrait-card/_portrait-card-skeleton-condensed.html %}
       <crds-portrait-card theme="condensed" href="#" lead="Derp" title="Derpity Derp" bg-overlay="true" image-src="//crds-media.imgix.net/3JkzXblF0KxdBpXp4CbPRl/227dc944ff29c3881480fe84187b6515/crossroads-brian.jpg?h=250"></crds-portrait-card>
      </div>
   </div>
