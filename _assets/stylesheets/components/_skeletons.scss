@@ -24,3 +24,59 @@
     min-height: 600px;
   }
 }
+
+.portrait-card-skeleton {
+  background-image: url("//crds-media.imgix.net/NtEw63mc0zMg1KgHR54mU/26d1fdb3b231adea5c05fdab6f50e6a5/crds-default-portrait_2x.png");
+  background-size: cover;
+  height: 475px;
+  width: 100%;
+}
+
+.portrait-card-skeleton-expanded {
+  background-image: url("//crds-media.imgix.net//1kVyOSybVmWHahTVBVGC8C/ec04181023ba67c69b19a8e5147dd575/crds-default-portrait-expanded_2x.png");
+  background-size: cover;
+  height: 525px;
+  width: 100%;
+}
+
+.portrait-card-skeleton-condensed {
+  background-image: url("//crds-media.imgix.net/3rI53Z36hF1Ij5vEMYqYEP/55d4f5ec9833746bbdc49e7bf42890df/crds-default-portrait-condensed_2x.png");
+  background-size: cover;
+  height: 345px;
+  width: 100%;
+}
+
+.jumbotron-skeleton-sm {
+  background-image: url("http://crds-media.imgix.net/6qe48AYpAzG5pzLngf1adG/194c229a6464fed299cb62dcc8a6956f/crds-jumbotron_2x.png");
+  background-size: cover;
+  height: 300px;
+  width: 100%;
+}
+
+.jumbotron-skeleton-md {
+  background-image: url("http://crds-media.imgix.net/6qe48AYpAzG5pzLngf1adG/194c229a6464fed299cb62dcc8a6956f/crds-jumbotron_2x.png");
+  background-size: cover;
+  height: 400px;
+  width: 100%;
+}
+
+.jumbotron-skeleton-lg {
+  background-image: url("http://crds-media.imgix.net/6qe48AYpAzG5pzLngf1adG/194c229a6464fed299cb62dcc8a6956f/crds-jumbotron_2x.png");
+  background-size: cover;
+  height: 500px;
+  width: 100%;
+}
+
+.jumbotron-skeleton-xl {
+  background-image: url("http://crds-media.imgix.net/6qe48AYpAzG5pzLngf1adG/194c229a6464fed299cb62dcc8a6956f/crds-jumbotron_2x.png");
+  background-size: cover;
+  height: 600px;
+  width: 100%;
+}
+
+.media-object-skeleton {
+  background-image: url("//crds-media.imgix.net/6XakpZ9C0Yrt3660Lgfj3O/81cf020e8800de68026be898d4109984/crds-media-object_2x.png");
+  background-size: cover;
+  height: 100px;
+  width: 100%;
+}
