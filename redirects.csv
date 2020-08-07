@@ -4,8 +4,6 @@
 /spouse-invite-landing inviteId=:inviteId response=decline,/spouse-invite-landing/?inviteId=:inviteId&response=decline,200!
 /spouse-invite-landing inviteId=:inviteId,/spouse-invite-landing/?inviteId=:inviteId,200! Role=user
 /spouse-invite-landing inviteId=:inviteId,/spouse-invite-login/?inviteId=:inviteId&redirectUrl=/spouse-invite-landing?inviteId=:inviteId,302!
-http://crossroads.net/*,https://www.crossroads.net/:splat,301!,master
-https://crossroads.net/*,https://www.crossroads.net/:splat,301!,master
 http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,master
 /components/*,https://${env:CRDS_COMPONENTS_ENDPOINT}/dist/:splat,200!
