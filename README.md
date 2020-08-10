@@ -10,9 +10,10 @@
 6. [Contributing To The Repo](#contributing-to-the-repo)
 7. [License](#license)
 
+
 ## Quick Start
 1. Clone the repo: `git clone https://github.com/crdschurch/crds-net.git` then `cd ./crds-net`
-2. Make sure you have Ruby installed - check the [OS specific install instructions](#os-specific-instructions) 
+2. Make sure you have Ruby installed - check the [OS specific install instructions](#os-specific-instructions)
 3. If you don't have Bundler/Jekyll, install it: `gem install bundler jekyll`
 4. Run `bundle install && npm i` to add dependencies
 5. Make sure submodules are initialized and updated: `git submodule init && git submodule update`
@@ -80,7 +81,7 @@ meta:
 <strong>Protip:</strong> indentation matters in `yaml`.  Watchout for code formatting that may remove spaces and jack up your frontmatter.
 
 ## Submodules
-We’re using submodules to share code across multiple repos. You can think of a submodule as a repository within a repository. 
+We’re using submodules to share code across multiple repos. You can think of a submodule as a repository within a repository.
 
 ### Setup
 When you first clone a repository with submodules, you’ll need to initialize and the pull in the latest changes. Like so:
