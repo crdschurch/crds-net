@@ -1,25 +1,22 @@
-<section>
-  <div class="jumbotron jumbotron-xl inline-video bg-video grid-overlay flush jumbotron-home" style="top: -1.5rem; background-image: url('//crds-media.imgix.net/47HugzxZ1gGwfdZg2JSFNC/e047f199c71a18f3d9b2ef8af06cc6c0/crossroads-collage-new2.jpg?{{ site.imgix_params.placeholder_sixteen_nine }}');" data-optimize-bg-img>
-    <div class="inline-video-player"></div>
-    <div class="bg-video-player">
-      <video
-        width="1800"
-        height="1013"
-        class="bg-jumbotron-video hide"
-        autoplay="autoplay"
-        loop="loop"
-        muted
-        playsinline
-        src="https://videos.ctfassets.net/y3a9myzsdjan/61UX4j16LJ4i6Hul1obi2Z/02c4498b9d0c1ef87fb7767fbfcaed54/spiritual-outfitters-loop.mp4"
-      ></video>
-    </div>
+<section class="jumbotron-skeleton-xl">
+  <crds-jumbotron bg-overlay="grid" inline-video-src="https://www.youtube.com/embed/jTtFrLl17aM" video-src="https://videos.ctfassets.net/y3a9myzsdjan/61UX4j16LJ4i6Hul1obi2Z/02c4498b9d0c1ef87fb7767fbfcaed54/spiritual-outfitters-loop.mp4" size="xl" >
     <div class="container">
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
-          {% assign jumbotron_content = site.content_blocks | where: 'slug', 'home-jumbotron-content' | first %}
-          {{ jumbotron_content.content_block }}
+          <div class="jumbotron-content">
+            <div class="jumbotron-home-header">
+              <h2 class="font-family-condensed-extra text-uppercase flush-bottom text-tan">You were</h2>
+              <h1 class="font-family-condensed-extra text-uppercase flush-top text-tan">Born For Adventure</h1>
+            </div>
+            <p class="font-family-serif lead soft-half-top">
+              You were born to make a difference. Designed to partner with God to change the world for good. If that sounds like your type of adventure, Crossroads is your <a class="text-orange" href="/spiritual-outfitters">spiritual outfitter.</a>
+            </p>
+            <div class="row">
+              <a href="/30-day-trial" class="btn btn-orange"><strong>Start your adventure - 30 Day Trial</strong></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </divclass="jumbotron jumbotron-xl inline-video bg-video grid-overlay flush jumbotron-home" style="background-image: url('//crds-media.imgix.net/47HugzxZ1gGwfdZg2JSFNC/e047f199c71a18f3d9b2ef8af06cc6c0/crossroads-collage-new2.jpg?{{ site.imgix_params.placeholder_sixteen_nine }}');" data-optimize-bg-img>
+  </crds-jumbotron>
 </section>

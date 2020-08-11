@@ -60,24 +60,24 @@
     &.grid-overlay:before {
       z-index: 1;
     }
+  }
+}
 
-    .jumbotron-home-header {
-      margin: 0 auto;
-      max-width: 760px;
-      width: 100%;
+.jumbotron-home-header {
+  margin: 0 auto;
+  max-width: 760px;
+  width: 100%;
 
-      h1 {
-        border-bottom: 6px solid currentColor;
-        display: inline-block;
-        font-size: 90px;
-        line-height: 100px;
-        padding-bottom: 20px;
+  h1 {
+    border-bottom: 6px solid currentColor;
+    display: inline-block;
+    font-size: 90px;
+    line-height: 100px;
+    padding-bottom: 20px;
 
-        @media screen and (min-width: $screen-sm) {
-          font-size: 130px;
-          line-height: 110px;
-        }
-      }
+    @media screen and (min-width: $screen-sm) {
+      font-size: 130px;
+      line-height: 110px;
     }
   }
 }
