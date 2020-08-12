@@ -3,9 +3,6 @@
 
 {
   bundle exec rspec &&
-  ./bin/contentful-redirects &&
-  ./bin/netlify-redirector &&
-  bundle exec jekyll crds &&
   bundle exec jekyll contentful --sites www.crossroads.net -f &&
   bundle exec jekyll build -- --update-search-index &&
   ./bin/prerenderio-bust.sh &&
