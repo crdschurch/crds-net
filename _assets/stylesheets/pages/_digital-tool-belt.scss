@@ -1,12 +1,18 @@
 .digital-tool-belt-tpl {
-.nav-tabs > li {
+  .nav-tabs > li {
     float: none;
     display: inline-block;
   }
 
-  @media screen and (max-width: $screen-md) {
-  .nav.nav-tabs {
-    display: none;
+  @media screen and (max-width: 991px) {
+    .nav.nav-tabs {
+      display: none;
+    }
   }
-}
+
+  @media screen and (min-width: $screen-md) {
+    .dropdown {
+      display: none;
+    }
+  }
 }
