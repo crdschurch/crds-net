@@ -34,7 +34,6 @@ module.exports = [
       "components/countdown",
       "components/jumbotron-video",
       "components/filters",
-      "components/simple-fred",
       "components/smart-banner",
       "components/status-message",
       "components/global",
