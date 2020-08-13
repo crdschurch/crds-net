@@ -6,6 +6,18 @@
 [build.processing.html]
   pretty_urls = true
 
+[[plugins]]
+package = "./_plugins/netlify-plugin-contentful-redirects"
+  [plugins.inputs]
+    destination = "./tmp/.redirects_cache"
+
+[[plugins]]
+package = "@helloample/netlify-plugin-redirects"
+  [plugins.inputs]
+    source = "./tmp/.redirects_cache"
+    destination = "./_site/_redirects"
+    defaultBranch = "development"
+
 [context.branch-deploy.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
   CRDS_MAP_DOMAIN = "connect-int.crossroads.net"
@@ -126,3 +138,4 @@
   CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
   CRDS_GROUP_LEADER_DOMAIN = "group-leader-int.crossroads.net"
   CRDS_GROUPS_ENDPOINT = "groups-int.crossroads.net"
+
