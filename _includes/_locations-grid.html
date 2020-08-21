@@ -1,53 +1,11 @@
 <div class="card-deck carousel locations" data-crds-carousel="mobile-scroll" data-automation-id="locations-carousel">
   <div id="section-locations" class="feature-cards card-deck--expanded-layout">
-    <!-- Anywhere card -->
-    <div class="card" data-location="Anywhere">
-      <a href="/live" class="block">
-        <img alt="Crossroads Anywhere"
-          src="https://crds-cms-uploads.imgix.net/Uploads/anywhere-thumbnail.jpg?{{ site.imgix_params.placeholder_card }}"
-          sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
-      </a>
-      <div class="card-block">
-        <h4 class="card-title card-title--overlap text-uppercase">
-          <a href="/live" data-automation-id="anywhere-name">Anywhere</a>
-        </h4>
-        <div class="card-text">
-          <p>Experience Crossroads anywhere in the world.</p>
-          <div class="location-leader soft-half-sides soft-quarter-ends bg-tan-light text-gray-dark push-bottom">
-            <div class="d-flex push-quarter-sides align-items-center" style="flex-wrap: wrap;">
-              <div class="push-quarter-ends push-half-right" style="flex: 1 0;">
-                <strong>Lena Schuler</strong><br>
-                <span>Community Pastor</span>
-              </div>
-              <img class="img-circle img-size-4 push-quarter-ends" style="width: 64px;" alt="lena schuler img"
-                src="//crds-media.imgix.net/5GQoYCuH9p8gWb9UdbBSBB/d7f57285b45ade905403ca255ef92a4d/crossroads-lena-tome.jpg?auto=format,compress&w=1200"
-                sizes="64px 64px" />
-            </div>
-          </div>
-          <div data-automation-id="location-service-times" class="push-half-bottom">
-            Premiering every Saturday at 5pm and available on demand all week, not just Sunday anymore
-          </div>
-          <p class="push-half-bottom soft-quarter-bottom">
-            <a href="https://www.facebook.com/crsrdsanywhere" target="_blank" class="btn btn-blue btn-outline btn-small" style="border-radius: 50%; width: 26px; height: 26px; padding: 0; text-align: center; line-height: 28px">
-              <svg class="icon icon-1" viewBox="0 0 256 256">
-                <use xlink:href="/assets/svgs/icons.svg#facebook"></use>
-              </svg>
-            </a>
-            <a href="https://www.instagram.com/crsrdsanywhere/" target="_blank" class="btn btn-blue btn-outline btn-small"  style="border-radius: 50%; width: 26px; height: 26px; padding: 0; text-align: center; line-height: 28px">
-              <svg class="icon icon-1" viewBox="0 0 256 256">
-                <use xlink:href="/assets/svgs/icons.svg#instagram"></use>
-              </svg>
-            </a>
-          </p>
-        </div>
-        <crds-button type="primary" color="orange" text="Learn more" href="/live"></crds-button>
-        <crds-site-select card-site-id="15"></crds-site-select>
-      </div>
-    </div>
-    {% assign locations_sorted_names = site.locations | sort: 'name' | group_by:
-    'name' %} {% for name_group in locations_sorted_names %} {% assign
-    locations_sorted_slugs = name_group.items | sort: 'slug' %} {% for location
-    in locations_sorted_slugs %} {% include _location-card.html %} {% endfor %}
+    {% assign locations_sorted_names = site.locations | sort: 'name' | group_by: 'name' %}
+    {% for name_group in locations_sorted_names %}
+      {% assign locations_sorted_slugs = name_group.items | sort: 'slug' %}
+      {% for location in locations_sorted_slugs %}
+        {% include _location-card.html %}
+      {% endfor %}
     {% endfor %}
   </div>
 </div>
