@@ -6,7 +6,6 @@
   bundle exec jekyll contentful --sites www.crossroads.net -f &&
   bundle exec jekyll build -- --update-search-index &&
   ./bin/prerenderio-bust.sh &&
-  ./bin/health-check.sh "we are crossroads" &&
   ./bin/kickOffCypress.sh
 } 2>buildlog.txt
 ./bin/logzio.sh
