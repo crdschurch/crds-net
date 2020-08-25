@@ -4,6 +4,15 @@ module CRDS
 
     def initialize(site)
       @site = site
+      site.collections['locations'].docs.each do |location|
+        if location.data['slug'] != 'anywhere'
+          location.data['onsite_group_display_name'] = location.data['name']
+          location.data['onsite_group_slug'] = location.data['slug']
+        else
+          location.data['onsite_group_display_name'] = "Online"
+          location.data['onsite_group_slug'] = "online"
+        end
+      end
       @collections = site.collections.select{|k,v| k.include?('onsite_group') }
       @collections['locations'] = site.collections['locations']
       @collections['onsite_group_meetings'].docs.reject!{|m| !known_meeting_ids.include?(m['id']) }
@@ -29,7 +38,7 @@ module CRDS
     end
 
     def location_by_slug(slug)
-      @collections['locations'].docs.detect{|l| l.data['slug'] === slug }
+      @collections['locations'].docs.detect{|l| l.data['onsite_group_slug'] === slug }
     end
 
     def category_by_slug(slug)
@@ -72,7 +81,6 @@ module CRDS
         @known_meeting_ids ||= begin
           @collections['onsite_groups'].docs.flat_map do |g|
             meetings = g.data.dig('meetings').nil? ? [] : g.data.dig('meetings')
-
             meetings.collect{|m| m['id'] }
           end.flatten.compact
         end

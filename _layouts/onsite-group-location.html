@@ -17,11 +17,11 @@ snail_trail: connect
     </div>
     <div class="col-md-9">
       <h3 class="font-family-condensed-extra flush-ends mobile-soft-half-top text-uppercase">
-        {{ page.location.name }}
-        Onsite Groups
+        {{ page.location.onsite_group_display_name }}
+        {% if page.location.slug != 'anywhere' %} Onsite{% endif %} Groups
       </h3>
       <a href="https://www.crossroads.net/{{ page.location.slug }}">See what else is happening at Crossroads
-        {{ page.location.name }}</a>
+        {{ page.location.onsite_group_display_name }}</a>
       <div class="font-size-base push-bottom push-half-top">
         {{ page.location.onsite_group_description | markdownify }}
       </div>
