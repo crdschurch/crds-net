@@ -19,7 +19,8 @@ snail_trail: connect
 </div>
 
 <section class="container">
-  {% for category in site['onsite_group_categories'] %}
+  {% assign sorted_categories = site['onsite_group_categories'] | sort_natural: "title" %}
+  {% for category in sorted_categories %}
   {% assign groups = category | onsite_groups_for_category: 3 %}
   {% if groups.size > 0 %}
   <a class="anchor" id="{{ category.title | slugify }}"></a>
