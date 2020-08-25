@@ -19,7 +19,8 @@ snail_trail: connect
 </div>
 
 <section class="container">
-  {% for category in site['onsite_group_categories'] %}
+  {% assign sorted_categories = site['onsite_group_categories'] | sort_natural: "title" %}
+  {% for category in sorted_categories %}
   {% assign groups = category | onsite_groups_for_category: 3 %}
   {% if groups.size > 0 %}
   <a class="anchor" id="{{ category.title | slugify }}"></a>
@@ -48,7 +49,7 @@ snail_trail: connect
           <ul class="text-gray small list-inline push-quarter-top">
           {% for location in locations %}
             <li>
-              <a href="/groups/onsite/{{ group.slug }}/{{ location.slug }}">{{ location.name }}</a></li>
+              <a href="/groups/onsite/{{ group.slug }}/{{ location.onsite_group_slug }}">{{ location.onsite_group_display_name }}</a></li>
           {% endfor %}
           </ul>
         </div>
@@ -73,10 +74,10 @@ snail_trail: connect
     <div class="feature-cards card-deck--expanded-layout">
       {% assign locations = site['locations'] | locations_with_onsite_groups %}
       {% for location in locations %}
-        <a class="card carousel-cell" href="/groups/onsite/{{ location.slug }}">
-          <img class="card-img-top img-responsive " src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ location.title }}" sizes="{{ site.image_sizes.one_fourth }}" class="width-100" data-optimize-img/>
+        <a class="card carousel-cell" href="/groups/onsite/{{ location.onsite_group_slug }}">
+          <img class="card-img-top img-responsive " src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ location.onsite_group_display_name }}" sizes="{{ site.image_sizes.one_fourth }}" class="width-100" data-optimize-img/>
           <div class="card-block">
-            <h4 class="card-title card-title--overlap text-uppercase transparent-after">{{ location.title }}</h4>
+            <h4 class="card-title card-title--overlap text-uppercase transparent-after">{{ location.onsite_group_display_name }}</h4>
           </div>
         </a>
       {% endfor %}
