@@ -9,7 +9,7 @@ module CRDS
           location.data['onsite_group_display_name'] = location.data['name']
           location.data['onsite_group_slug'] = location.data['slug']
         else
-          location.data['onsite_group_display_name'] = "Online"
+          location.data['onsite_group_display_name'] = "Online | Crossroads Anywhere"
           location.data['onsite_group_slug'] = "online"
         end
       end
