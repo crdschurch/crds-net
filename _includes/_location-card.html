@@ -9,7 +9,9 @@
     </h4>
     <div data-automation-id="location-address" class="push-bottom">
       {{ location.address | markdownify | remove: '<p>'| remove: '</p>' }} <br>
-      (<a target="_blank" href="{{ location.map_url }}" data-automation-id="location-map-url">Map</a>)
+      {% if location.slug != 'anywhere' %}
+        (<a target="_blank" href="{{ location.map_url }}" data-automation-id="location-map-url">Map</a>)
+      {% endif %}
     </div>
     <div class="card-text">
       {% if location.community_pastor_name %}
@@ -25,8 +27,10 @@
       </div>
       {% endif %}
       <div data-automation-id="location-service-times" class="push-half-bottom">
-        <strong>Service Times:</strong>
-        <br />
+        {% if location.slug != 'anywhere' %}
+          <strong>Service Times:</strong>
+          <br />
+        {% endif %}
         {{ location.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
       </div>
       <p class="push-half-bottom soft-quarter-bottom">

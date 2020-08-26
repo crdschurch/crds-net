@@ -74,6 +74,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /event-checkin/*,https://${env:CRDS_EVENT_CHECKIN_ENDPOINT},302!
 /media/music/,${env:CRDS_MUSIC_ENDPOINT},301!
 /music/,${env:CRDS_MUSIC_ENDPOINT},301!
+/anywhere,/live,301!
 /media/songs/god-of-the-breakthrough,${env:CRDS_MUSIC_ENDPOINT}/music/god-of-the-breakthrough/god-of-the-breakthrough,301!
 /media/songs/oh-the-power,${env:CRDS_MUSIC_ENDPOINT}/music/oh-the-power/oh-the-power,301!
 /media/songs/little-drummer-boy,${env:CRDS_MUSIC_ENDPOINT}/music/christmas/little-drummer-boy,301!

@@ -17,7 +17,6 @@ layout: container-fluid
     </div>
   </div>
 
-
   <div class="row push-bottom">
     <div class="col-md-4">
       <div style="float: right; width: 155px; border-left: solid #FFF 1em; ">
@@ -25,13 +24,13 @@ layout: container-fluid
           src="{{ page.location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
           sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
       </div>
-      <p class="subtitle">{{ page.location.title }}</p>
+      <p class="subtitle">{{ page.location.onsite_group_display_name }}</p>
       <hr>
       {% for meeting in page.meetings %}
         {% include groups/_meeting-details.html meeting=meeting %}
         <hr>
       {% endfor %}
-      <a href="/groups/onsite/{{ page.location.slug }}" class="small">See more onsite groups at this location</a>
+      <a href="/groups/onsite/{{ page.location.onsite_group_slug }}" class="small">See more{% if page.location.slug != 'anywhere' %} onsite{% endif %} groups at this location</a>
     </div>
     <div class="col-md-8">
       {% if page.group.detail %}
