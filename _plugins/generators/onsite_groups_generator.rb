@@ -10,6 +10,7 @@ module Jekyll
 
       # Location landings
       groups.by_location.each do |slug, meetings|
+        slug = slug == 'anywhere' ? 'online' : slug
         pages.create!("/groups/onsite/#{slug}", 'onsite-group-location.html', {
           'location': groups.location_by_slug(slug),
           'meetings': meetings
@@ -27,11 +28,10 @@ module Jekyll
         location_slugs = group_meetings.collect{|m| m.data.dig('location','slug') }.compact
 
         location_slugs.collect do |location_slug|
+          slug = location_slug == 'anywhere' ? 'online' : location_slug
           meetings = group_meetings.select{|m| m.data.dig('location','slug') == location_slug }
-          location = groups.location_by_slug(location_slug)
-          # binding.pry
-
-          pages.create!("/groups/onsite/#{group_slug}/#{location_slug}", 'onsite-group-detail.html', {
+          location = groups.location_by_slug(slug)
+          pages.create!("/groups/onsite/#{group_slug}/#{slug}", 'onsite-group-detail.html', {
             'group': group,
             'location': location,
             'meetings': meetings
