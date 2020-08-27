@@ -19,7 +19,7 @@ snail_trail: connect
 </div>
 
 <section class="container">
-  {% assign sorted_categories = site['onsite_group_categories'] | sort_natural: "title" %}
+  {% assign sorted_categories = site['onsite_group_categories'] | sort_natural: "title" | reverse %}
   {% for category in sorted_categories %}
   {% assign groups = category | onsite_groups_for_category: 3 %}
   {% if groups.size > 0 %}
