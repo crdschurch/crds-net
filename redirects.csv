@@ -6,8 +6,8 @@
 /spouse-invite-landing inviteId=:inviteId,/spouse-invite-login/?inviteId=:inviteId&redirectUrl=/spouse-invite-landing?inviteId=:inviteId,302!
 http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,master
-https://forms-int.crossroads.net/*,https://int.crossroads.net/forms/:splat,301
-http://forms-int.crossroads.net/*,https://int.crossroads.net/forms/:splat,301
+https://forms-int.crossroads.net,https://int.crossroads.net/forms,301!
+http://forms-int.crossroads.net,https://int.crossroads.net/forms,301!
 https://forms-demo.crossroads.net,/forms,301
 https://forms.crossroads.net,/forms,301
 /forms/*,${env:CRDS_FORM_MAKER}:splat,200!
