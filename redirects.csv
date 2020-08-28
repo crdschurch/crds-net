@@ -9,7 +9,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 https://forms-int.crossroads.net,/forms,301
 https://forms-demo.crossroads.net,/forms,301
 https://forms.crossroads.net,/forms,301
-/forms/*,${env:CRDS_FORM_MAKER}:splat,200!
+/forms/*,${env:CRDS_FORM_MAKER}/forms:splat,200!
 /components/*,https://${env:CRDS_COMPONENTS_ENDPOINT}/dist/:splat,200!
 /undivided-training,https://undivided.netlify.app,301!
 /people/*,https://${env:CRDS_PEOPLE_DOMAIN}/:splat,200!
