@@ -6,6 +6,10 @@
 /spouse-invite-landing inviteId=:inviteId,/spouse-invite-login/?inviteId=:inviteId&redirectUrl=/spouse-invite-landing?inviteId=:inviteId,302!
 http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,master
+https://forms-int.crossroads.net /forms 301
+https://forms-demo.crossroads.net /forms 301
+https://forms.crossroads.net /forms 301
+/forms/*,https://${env:CRDS_FORM_MAKER}/dist/:splat,200!
 /components/*,https://${env:CRDS_COMPONENTS_ENDPOINT}/dist/:splat,200!
 /undivided-training,https://undivided.netlify.app,301!
 /people/*,https://${env:CRDS_PEOPLE_DOMAIN}/:splat,200!
