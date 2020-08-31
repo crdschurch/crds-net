@@ -37,7 +37,7 @@ https://forms.crossroads.net,/forms,301
 /childcare,https://${env:CRDS_ANGULAR_ENDPOINT}/childcare,200!
 /childcare/*,https://${env:CRDS_ANGULAR_ENDPOINT}/childcare/:splat,200!
 /corkboard*,https://${env:CRDS_ANGULAR_ENDPOINT}/corkboard:splat,200!
-/invoices/*,https://${env:CRDS_INVOICES}:splat,200!
+/invoices/*,https://${env:CRDS_INVOICES}/:splat,200!
 /undivided/participant/*,https://${env:CRDS_ANGULAR_ENDPOINT}/undivided/participant/:splat,200!
 /undivided/facilitator/*,https://${env:CRDS_ANGULAR_ENDPOINT}/undivided/facilitator/:splat,200!
 /mptools/*,https://${env:CRDS_ANGULAR_ENDPOINT}/mptools/:splat,200!
