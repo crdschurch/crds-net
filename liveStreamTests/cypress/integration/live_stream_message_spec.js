@@ -18,7 +18,7 @@ function hideRollCall() {
 }
 
 /** Tests */
-describe('Tests latest message is current and ready for live stream', function () {
+describe.skip('Tests latest message is current and ready for live stream', function () {
   let latestMessage;
   before(function () {
     const qb = new MessageQueryBuilder();
