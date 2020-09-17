@@ -13,6 +13,7 @@ https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 /forms/*,${env:CRDS_FORM_MAKER}:splat,200!
 /components/*,https://${env:CRDS_COMPONENTS_ENDPOINT}/dist/:splat,200!
 /undivided-training,https://undivided.netlify.app,301!
+/undivided,https://www.undivided.com,301!
 /people/*,https://${env:CRDS_PEOPLE_DOMAIN}/:splat,200!
 /hubspot-subscribe-form-embed,/media/hubspot-subscribe-form-embed,301!
 /sevenhills,/seven-hills,301!
