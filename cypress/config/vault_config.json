@@ -3,21 +3,13 @@
     {
       "secret": "crds-net",
       "keys": [
-        "CONTENTFUL_SPACE_ID", 
+        "CONTENTFUL_SPACE_ID",
         "CONTENTFUL_ACCESS_TOKEN",
         "CONTENTFUL_ENV",
-        "CRDS_GATEWAY_ENDPOINT"
-      ]
-    },
-    {
-      "secret": "Crossroads.Automation",
-      "keys": ["TEST_USER_PW"]
-    },
-    {
-      "secret": "Crossroads.SigninPage",
-      "keys": [
+        "CRDS_GATEWAY_ENDPOINT",
         "OKTA_API_SUBDOMAIN",
-        "OKTA_API_TESTING_TOKEN"
+        "OKTA_API_TESTING_TOKEN",
+        "TEST_USER_PW"
       ]
     }
   ]
