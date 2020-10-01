@@ -5,7 +5,19 @@
 
   &.jumbotron-overlay {
     padding-bottom: 6.1rem;
-      
+  }
+
+  &.grid-overlay-light {
+    &:before {
+      background-image: url('//crds-media.imgix.net/3aXYPUA7EZkfeu8DPB3FIE/6ce4dbf255a4f7396bd5683acaa7c5d3/Lighten_Texture_Grid_1.png');
+      background-size: cover;
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
   }
 
   &:not(.bg-blue) {
