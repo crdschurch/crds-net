@@ -1,7 +1,7 @@
 https://development.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
 http://deveopment.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
-https://release.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
-http://release.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
+https://release.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,301!
+http://release.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,301!
 https://serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
 /,/h,200! Role=user
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
