@@ -4,7 +4,7 @@
 
 .btn-streaming-img {
   align-items: center;
-  display: flex !important;
+  display: inline-flex !important;
   height: 60px;
   justify-content: center;
   max-width: 185px;
@@ -14,9 +14,17 @@
 .btn-streaming-group {
   display: flex;
   justify-content: center;
+
+  .btn-streaming-img {
+    &:first-child{
+      margin-right: 15px;
+    }
+  }
 }
 
-.flex-row-align-center {
-  align-items: center;
-  display: flex;
+.flex-md-row-align-center {
+  @media (min-width: $screen-md) {
+    align-items: center;
+    display: flex;
+  }
 }
