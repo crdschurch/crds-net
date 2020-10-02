@@ -15,8 +15,28 @@ permalink: watch
         </div>
         <div class="row push-top">
           <div class="col-md-6">
-            <crds-button class="push-quarter-right" color="blue" href="javascript:void(0)" data-smooth-scroll-to="stream-weekly" data-smooth-scroll-offset="95" text="Stream Weekly" icon="clock-o" icon-color="white" icon-size="14" icon-align="left"></crds-button>
-            <crds-button display="outline" color="blue" href="/locations" text="Find a Crossroads Near Me"></crds-button>
+            <crds-button 
+              class="push-quarter-right"
+              color="blue"
+              href="javascript:void(0)"
+              onClick=“ga(‘gtm2.send’, ‘event’, ‘Watch-StreamWeeklyCTA-Btn’, ‘clicked’)“
+              data-role=“Watch-StreamWeeklyCTA-Btn”
+              data-smooth-scroll-to="stream-weekly"
+              data-smooth-scroll-offset="95"
+              text="Stream Weekly"
+              icon="clock-o"
+              icon-color="white"
+              icon-size="14" 
+              icon-align="left">
+            </crds-button>
+            <crds-button 
+              display="outline"
+              color="blue"
+              href="/locations"
+              onClick=“ga(‘gtm2.send’, ‘event’, ‘Watch-LocationsCTA-Btn’, ‘clicked’)“
+              data-role=“Watch-LocationsCTA-Btn”
+              text="Find a Crossroads Near Me">
+            </crds-button>
           </div>
           <div class="col-md-6 text-blue">
             <p class="font-family-base-bold flush-bottom">Sign up for text alerts</p>
@@ -42,7 +62,14 @@ permalink: watch
             <p class="text-white">
               Create a profile to become part of the community and get updates on when Crossroads events happen near you.
             </p>
-            <crds-button href="/register" color="white" text="Sign up" size="sm" ></crds-button>
+            <crds-button 
+              href="/register" 
+              color="white" 
+              text="Sign up" 
+              size="sm" 
+              onClick=“ga(‘gtm2.send’, ‘event’, ‘Watch-SignUpCTA-Btn’, ‘clicked’)“
+              data-role=“Watch-SignUpCTA-Btn”>
+            </crds-button>
           </div>
         </div>
       </div>
@@ -62,6 +89,8 @@ permalink: watch
         <div class="portrait-card-skeleton">
           <crds-portrait-card
           href="/journey"
+          onClick=“ga(‘gtm2.send’, ‘event’, ‘Watch-JourneyCTA-Btn’, ‘clicked’)“
+          data-role=“Watch-JourneyCTA-Btn”
           lead="New or checking us out?"
           title="Be a part of the good God! Journey"
           image-src="//crds-media.imgix.net/5a5Jw5jhgnTeSjdyHejpWO/791786a39157f100723274cadc0bc73a/journey2020-good-god.jpg?auto=format,compress&w=1800"
@@ -72,6 +101,8 @@ permalink: watch
         <div class="portrait-card-skeleton">
           <crds-portrait-card
           href="/30-day-trial/"
+          onClick=“ga(‘gtm2.send’, ‘event’, ‘Watch-30DayTrialCTA-Btn’, ‘clicked’)“
+          data-role=“Watch-30DayTrialCTA-Btn”
           lead="Try us out"
           title="Give us 30 days.<br /> See the change."
           image-src="//crds-media.imgix.net/4TIkEELigABMA4Le08bU3r/28769c5d8b643b0420ca0ac662cd8b89/jake-melara-Yh6K2eTr_FY-unsplash__1_.jpg"
@@ -82,8 +113,8 @@ permalink: watch
         <div class="portrait-card-skeleton">
           <crds-portrait-card
           href="/app"
-          onClick=“ga(‘gtm2.send’, ‘event’, ‘Watch-JourneyCTA-Btn’, ‘clicked’)“
-          data-role=“Watch-JourneyCTA-Btn”
+          onClick=“ga(‘gtm2.send’, ‘event’, ‘Watch-AppCTA-Btn’, ‘clicked’)“
+          data-role=“Watch-AppCTA-Btn”
           lead="Download the App"
           title="Connect With God. Pray With Others."
           image-src="//crds-media.imgix.net/3tHfRrQ1ZwyNBLvnoDS37s/f67819758e1efc2faabd7405b2a4680b/crossroads-app-home.jpg?format=auto"
@@ -102,9 +133,27 @@ permalink: watch
         <h2 class="text-white text-uppercase font-family-condensed-extra">Get Connected. Make Real Friends.</h2>
         <p class="font-size-large">Whether it’s an online group or in person, you’ll discover what it’s like to find people who’ll bring you food when life gets rough, help you change a tire in the rain, or make you laugh until you pee your pants a little.</p>
         <div class="row">
-          <crds-button href="/groups/online" color="white" text="View online groups"></crds-button>
-          <crds-button href="/groups/onsite" color="white" text="View onsite groups"></crds-button>
-          <crds-button href="/groups/" color="white" text="View groups near you"></crds-button>
+          <crds-button 
+            href="/groups/online"
+            onClick=“ga(‘gtm2.send’, ‘event’, ‘Watch-OnlineGroupsCTA-Btn’, ‘clicked’)“
+            data-role=“Watch-OnlineGroupsCTA-Btn”
+            color="white" 
+            text="View online groups">
+          </crds-button>
+          <crds-button 
+            href="/groups/onsite"
+            onClick=“ga(‘gtm2.send’, ‘event’, ‘Watch-OnsiteGroupsCTA-Btn’, ‘clicked’)“
+            data-role=“Watch-OnsiteGroupsCTA-Btn”
+            color="white" 
+            text="View onsite groups">
+          </crds-button>
+          <crds-button 
+            href="/groups/"
+            onClick=“ga(‘gtm2.send’, ‘event’, ‘Watch-GroupsNearYouCTA-Btn’, ‘clicked’)“
+            data-role=“Watch-GroupsNearYouCTA-Btn”
+            color="white" 
+            text="View groups near you">
+          </crds-button>
         </div>
       </div>
     </div>
@@ -117,7 +166,13 @@ permalink: watch
     <div class="container text-center soft push-ends jumbotron-content">
       <h2 class="text-white text-uppercase font-family-condensed-extra">We'd love to chat with you</h2>
       <p class="text-white">People are available now to talk, listen, and pray with you.</p>
-      <crds-button color="blue" text="Chat now" data-trigger="chat" class="hydrated"></crds-button>
+      <crds-button 
+        color="blue" 
+        text="Chat now" 
+        data-trigger="chat"
+        onClick=“ga(‘gtm2.send’, ‘event’, ‘Watch-ChatCTA-Btn’, ‘clicked’)“
+        data-role=“Watch-ChatCTA-Btn”>
+      </crds-button>
     </div>
   </div>
 </section>
@@ -133,18 +188,42 @@ permalink: watch
         </div>
         <div class="col-md-6">
           <div class="row btn-streaming-group">
-            <a class="btn btn-outline btn-white btn-streaming-img" href="https://www.amazon.com/dp/B07HRPW8L2?keywords=crossroads+anywhere&qid=1538139831&s=STRING%28skills-store-name%29&sr=1-2-catcorr&ref=sr_1_2" target="_blank">
+            <a
+              class="btn btn-outline btn-white btn-streaming-img"
+              href="https://www.amazon.com/dp/B07HRPW8L2?keywords=crossroads+anywhere&qid=1538139831&s=STRING%28skills-store-name%29&sr=1-2-catcorr&ref=sr_1_2"
+              onClick=“ga(‘gtm2.send’, ‘event’, ‘Watch-AmazonAlexaCTA-Btn’, ‘clicked’)“
+              data-role=“Watch-AmazonAlexaCTA-Btn”
+              target="_blank"
+            >
               <img src="//crds-media.imgix.net/5ycPzO1Eh58OthUk2QkbBM/6faccab46bdb166844297f0d21380487/Logo_Amazon_Alexa.png">
             </a>
-            <a class="btn btn-outline btn-white btn-streaming-img" href="https://www.amazon.com/Crossroads-Church/dp/B07D83Z1JB" target="_blank">
+            <a 
+              class="btn btn-outline btn-white btn-streaming-img"
+              href="https://www.amazon.com/Crossroads-Church/dp/B07D83Z1JB"
+              onClick=“ga(‘gtm2.send’, ‘event’, ‘Watch-AmazonFireTvCTA-Btn’, ‘clicked’)“
+              data-role=“Watch-AmazonFireTvCTA-Btn”
+              target="_blank"
+            >
               <img src="//crds-media.imgix.net/75ULrftCuomwcVHvZDwcK3/384270b2e01e74cee093719bd4e0ae18/Logo_Amazongfire.png">
             </a>
           </div>
           <div class="row btn-streaming-group push-bottom">
-            <a class="btn btn-outline btn-white btn-streaming-img" href="https://channelstore.roku.com/details/76455/crossroads" target="_blank">
+            <a 
+              class="btn btn-outline btn-white btn-streaming-img"
+              href="https://channelstore.roku.com/details/76455/crossroads"
+              onClick=“ga(‘gtm2.send’, ‘event’, ‘Watch-RokuTvCTA-Btn’, ‘clicked’)“
+              data-role=“Watch-RokuTvCTA-Btn”
+              target="_blank"
+            >
               <img src="//crds-media.imgix.net/77yQBDadk6AGz1WldY5KE3/7be90e5cce172386448004075e79f4dc/Logo_Roku.png">
             </a>
-            <a class="btn btn-outline btn-white btn-streaming-img" href="https://appadvice.com/tv/app/crossroads-anywhere/1029478803" target="_blank">
+            <a
+              class="btn btn-outline btn-white btn-streaming-img"
+              href="https://appadvice.com/tv/app/crossroads-anywhere/1029478803"
+              onClick=“ga(‘gtm2.send’, ‘event’, ‘Watch-AppleTvCTA-Btn’, ‘clicked’)“
+              data-role=“Watch-AppleTvCTA-Btn”
+              target="_blank"
+            >
               <img src="//crds-media.imgix.net/6wRDkHPRFR70XqfkxKFrgO/e9d2fca6ca51e59e45630f535a379bdb/Logo_Apple.png">
               <p class="push-quarter-left flush-bottom">Apple TV</p>
             </a>
@@ -157,4 +236,5 @@ permalink: watch
         </div>
       </div>
     </div>
+  </div>
 </section>
