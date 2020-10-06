@@ -1,3 +1,7 @@
+https://development.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
+http://deveopment.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
+https://release.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
+https://serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
 https://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 http://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 https://forms-demo.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
@@ -54,7 +58,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /volunteer-sign-up,/404.html,404!
 /volunteer-sign-up/*,https://${env:CRDS_ANGULAR_ENDPOINT}/volunteer-sign-up/:splat,200!
 /volunteer-application/*,https://${env:CRDS_ANGULAR_ENDPOINT}/volunteer-application/:splat,200!
-/serve-signup,https://${env:CRDS_SERVE_ENDPOINT},301!
+/serve-signup/*,https://${env:CRDS_SERVE_ENDPOINT}/:splat,200!
 /sign-up,/404.html,404!
 /sign-up/*,https://${env:CRDS_ANGULAR_ENDPOINT}/sign-up/:splat,200!
 /trips/*,https://${env:CRDS_ANGULAR_ENDPOINT}/trips/:splat,200!
