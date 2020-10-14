@@ -36,16 +36,16 @@ describe('Given I navigate to /onsite/group Page:', function() {
       .should('have.length', onsiteGroupList.length);
   });
 
-  it('Onsite Group card for Financial Peace should be last', function() {
+  it('Onsite Group card for Financial Peace should be first', function() {
     cy.get('.col-md-4').as('onsiteGroupCards')
-      .last()
+      .first()
       .find('a')
       .should('have.attr', 'href', '/groups/onsite/financial-peace/uptown');
   });
 
-  [0, 1, 2].forEach((index) => {    
+  [1,2,3,].forEach((index) => {    
     it(`Onsite card #${index} should have a Title`, function() {
-      let title = onsiteGroupList[index].title.text;
+      let title = onsiteGroupList[index + 8].title.text;
 
       cy.get('.col-md-4 h3').eq(index).as(`${title}Card`)
         .normalizedText()
