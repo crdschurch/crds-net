@@ -24,7 +24,7 @@ if (!isSafari && window.innerWidth <= 768) {
         windows: 'FREE'
     }, 
     theme: 'ios', // put platform type ('ios', 'android', etc.) here to force single theme on all device
-    icon: 'https://crossroads-assets.s3.amazonaws.com/images/cricon.jpg', // full path to icon image if not using website icon image
+    icon: 'https://crds-media.imgix.net/y3a9myzsdjan/2Gck3kyv1z0R9JrrvWSSyk/4d0f1212e0c27bc8fbff48d07786137c/cricon.jpg?w=30&h=30&fit=thumb', // full path to icon image if not using website icon image
     // force: 'ios' // Uncomment for platform emulation
   });
 
