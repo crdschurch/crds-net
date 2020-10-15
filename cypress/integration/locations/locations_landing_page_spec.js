@@ -29,7 +29,7 @@ describe('Given I navigate to /locations and do not search:', function() {
     let location;
     let name;
     before(function() {
-      location = locationList[index - 0];
+      location = locationList[index];
       name = location.name.text;
     });
 

@@ -43,8 +43,8 @@ describe('Given I navigate to /onsite/group Page:', function() {
       .should('have.attr', 'href', '/groups/onsite/financial-peace/uptown');
   });
 
-  [1,2,3,].forEach((index) => {    
-    it(`Onsite card #${index} should have a Title`, function() {
+  [1,2,3].forEach((index) => {    
+    it(`Onsite card #${index + 8} should have a Title`, function() {
       let title = onsiteGroupList[index + 8].title.text;
 
       cy.get('.col-md-4 h3').eq(index).as(`${title}Card`)
