@@ -44,7 +44,7 @@ describe('Given I navigate to /onsite/group Page:', function() {
   });
 
   [1,2,3].forEach((index) => {    
-    it(`Onsite card #${index + 8} should have a Title`, function() {
+    it(`Verify Onsite card Healing section is visible #${index + 8} `, function() {
       let title = onsiteGroupList[index + 8].title.text;
 
       cy.get('.col-md-4 h3').eq(index).as(`${title}Card`)
