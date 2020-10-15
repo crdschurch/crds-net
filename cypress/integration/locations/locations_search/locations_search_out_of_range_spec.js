@@ -19,10 +19,10 @@ describe('Tests out of range location result cards', function() {
       .should('not.have.attr', 'data-distance'); 
     
     cy.get('@firstCard').within(() => {
-      cy.get('[data-automation-id="anywhere-name"]')
+      cy.get('[data-automation-id="location-name"]')
         .text().should('eq', 'Anywhere');
-      cy.get('[data-automation-id="anywhere-name"]')
-        .should('have.attr', 'href', '/live');
+      cy.get('[data-automation-id="location-name"]')
+        .should('have.attr', 'href', '/anywhere');
     });
   });
 
