@@ -24,7 +24,7 @@ if (!isSafari && window.innerWidth <= 768) {
         windows: 'FREE'
     }, 
     theme: 'ios', // put platform type ('ios', 'android', etc.) here to force single theme on all device
-    icon: 'https://images.ctfassets.net/y3a9myzsdjan/6zDHcr0pDzFT3kMGr8uwRJ/fb09a09ceb8f9f78a412b48ceaee9221/logo-230x230.jpg?w=30&h=30&fit=thumb', // full path to icon image if not using website icon image
+    icon: 'https://images.ctfassets.net/y3a9myzsdjan/6zDHcr0pDzFT3kMGr8uwRJ/fb09a09ceb8f9f78a412b48ceaee9221/logo-230x230.jpg', // full path to icon image if not using website icon image
     // force: 'ios' // Uncomment for platform emulation
   });
 
