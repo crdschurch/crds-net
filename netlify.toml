@@ -21,11 +21,6 @@ package = "@helloample/netlify-plugin-redirects"
 [[plugins]]
 package = "./_plugins/netlify-plugin-health-check"
 
-[[plugins]]
-package = "@algolia/netlify-plugin-crawler"
-  [plugins.inputs]
-  branches = ['development', 'feat/add-algolia']
-
 [context.branch-deploy.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
   CRDS_MAP_DOMAIN = "connect-int.crossroads.net"
