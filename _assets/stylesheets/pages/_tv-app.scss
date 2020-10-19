@@ -1,0 +1,70 @@
+.tv-app-styles {
+  .jumbotron-content {
+    @media (min-width: $screen-md) {
+      margin-bottom: 140px;
+    }
+  }
+
+  .tv-app-header {
+    position: absolute;
+    z-index: 100;
+
+    a {
+      display: inline-block;
+      padding: 19px 15px;
+    }
+  }
+
+  .overlay-image {
+    position: relative;
+    margin-top: -80px;
+    z-index: 100;
+
+    @media (min-width: $screen-md) {
+      margin-top: -200px;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .flex-row-center-md {
+    @media (min-width: $screen-md) {
+      align-items: center;
+      display: flex;
+    }
+  }
+
+  .flex-justify-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  .logo-block {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    max-width: 540px;
+    width: 100%;
+    
+    img {
+      max-width: 100px;
+      width: 100%;
+    }
+  }
+
+  .d-md-none {
+    @media (min-width: $screen-sm) {
+      display: none;
+    }
+  }
+
+  .d-md-block {
+    display: none;
+
+    @media (min-width: $screen-sm) {
+      display: block;
+    }
+  }
+}

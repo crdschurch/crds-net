@@ -1,5 +1,3 @@
-// import { RequestFilter } from '../../Analytics/RequestFilter';
-// import { amplitude } from '../../fixtures/event_filters';
 import { MessageQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 import { getRelativeMessageUrl } from '../../support/GetUrl';
 
