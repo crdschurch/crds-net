@@ -3,7 +3,7 @@ http://development.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}
 https://release.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/event-checkin/:splat,302!
 https://event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/event-checkin/:splat,302!
 https://development.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
-http://deveopment.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
+http://development.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
 https://release.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
 https://serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
 https://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
