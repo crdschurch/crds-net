@@ -21,15 +21,15 @@ describe('Given I navigate to /locations and do not search:', function() {
     cy.get('#section-locations .card').as('locationCards');
     const anywhereIndex = 0;
     cy.get('@locationCards').eq(anywhereIndex)
-      .find('[data-automation-id="anywhere-name"]')
-      .should('have.attr', 'href', '/live');
+      .find('[data-automation-id="location-name"]')
+      .should('have.attr', 'href', '/anywhere');
   });
 
   [1, 2, 3].forEach((index) => {
     let location;
     let name;
     before(function() {
-      location = locationList[index - 1];
+      location = locationList[index];
       name = location.name.text;
     });
 
