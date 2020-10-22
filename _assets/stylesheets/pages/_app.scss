@@ -1,232 +1,71 @@
+.tv-app-styles,
 .app-page-styles {
-
-  /* iPhone X & Pixel 2 XL */
-  @media (max-height: 896px) and (max-width: 414px) {
-    .jumbo-viewport {
-      min-height: 44vh;
-    }
-
-    .hero-transform {
-      margin-top: -140px;
-    }
-    .jumbotron .font-family-base-light {
-      font-size: 1.95rem !important;
-    }
-
-    .font-family-condensed {
-      font-size: .7rem !important;
-    }
-
-    .privacy-format {
-      margin-right: auto;
+  .jumbotron-content {
+    @media (min-width: $screen-md) {
+      margin-bottom: 140px;
     }
   }
 
-  /* Galaxy S5 & iPhone 6/7/8/Plus & Pixel 2 */
-  @media (max-height: 736px) {
-  .jumbo-viewport {
-    min-height: 57vh;
-  }
-  .hero-transform {
-    margin-top: -155px;
+  .app-header {
+    position: absolute;
+    z-index: 100;
+
+    a {
+      display: inline-block;
+      padding: 19px 15px;
     }
   }
 
-  /* iPhone 4 & 5 */
-  @media (max-height: 568px) {
-  .jumbo-viewport {
-    min-height: 71vh;
-  }
-  .hero-transform {
-    margin-top: -110px;
+  .overlay-image {
+    position: relative;
+    margin-top: -80px;
+    z-index: 100;
+
+    @media (min-width: $screen-md) {
+      margin-top: -200px;
+    }
+
+    img {
+      width: 100%;
     }
   }
 
-  /* iPad, iPad Pro, Laptop & Desktop */
-  @media (min-width: 768px ) {
-    .jumbo-viewport {
-      min-height: 74vh;
-    }
-    .jumbotron h1, .jumbotron .h1 {
-        font-size: 92px;
-    }
-    .hero-transform {
-      margin-top: -34vh;
-    }
-    .jumbotron .font-family-base-light {
-      font-size: 4rem !important;
-    }
-
-    .font-family-condensed {
-      font-size: 1rem !important;
-    }
-    .logo-margin{
-      margin-left: 30px;
-    }
-
-    .parent {
-      display: flex !important;
-    }
-
-    .logo-format {
-      left: auto !important;
-        position: static !important;
-        transform: none !important;
-        margin-top: 4px !important;
-        padding-top: 0;
-    }
-
-    .privacy-format {
-      margin-right: 30px;
+  .flex-row-center-md {
+    @media (min-width: $screen-md) {
+      align-items: center;
+      display: flex;
     }
   }
 
-  /* iPad, iPad Pro, Laptop & Desktop */
-  @media (max-width: 768px ) {
-    #crds-shared-header-logo {
-      width: 90%;
-    }
-  }
-
-
-  /* Landscape for mobile */
-  @media (max-height: 414px) and (max-width: 823px) {
-    .jumbo-viewport {
-      min-height: 85vh;
-    }
-    .hero-transform {
-      margin-top: -80px;
-      }
-    }
-
-    @media (max-width: 767px) {
-      .hide-buttons {
-        visibility: hidden;
-      }
-    }
-  /* Jumbotron Styling */
-  .jumbotron {
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-  }
-
-
-  .left {
-    display: block;
-    margin-right: auto;
-  }
-
-  .right {
-    display: block;
-    margin-left: auto;
-  }
-
-  .jumbotron {
-    padding-top: 0px;
-  }
-
-  .flex-header {
-    display: flex;
-  }
-
-  .title-top {
-    padding-top: 65px;
-  }
-
-  .font-family-condensed {
-    font-size: 1rem;
-  }
-
-  /* App Icon */
-  .rounded-border {
-    border-radius: 22.5%;
-    height: 50px;
-    width: 50px;
-  }
-
-  /* App Store & Google Play Buttons */
-  .app-button {
-    height: 40px;
-    width: 135px;
-    margin-top: 8.5px;
-  }
-
-  .app-store-buttons {
-    margin-left: auto;
-  }
-
-  .center-app {
+  .flex-justify-center {
     display: flex;
     justify-content: center;
   }
 
-  .content-middle {
-    margin-top: auto;
-    margin-bottom: auto;
+  .logo-block {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    max-width: 540px;
+    width: 100%;
+
+    img {
+      max-width: 100px;
+      width: 100%;
+    }
   }
 
-  /* Footer Classes */
-  .footer-padding {
-    padding: 50px 0px 150px 0px;
+  .d-md-none {
+    @media (min-width: $screen-sm) {
+      display: none;
+    }
   }
 
-  .footer-bg {
-    background-image: url('https://crds-media.imgix.net/54CyLHouK1UsYqdcoVgrxa/d6efa29a446e388f18786ecb33a70758/footer-img.jpg');
-    background-size: cover;
-    background-position: center;
-  }
+  .d-md-block {
+    display: none;
 
-  .copyright-text {
-    color: white !important;
-    opacity: 0.6;
-  }
-
-  .footer-display {
-    display: inline-flex;
-    flex-direction: column;
-  }
-
-  .footer-buttons {
-    margin-top: 50px;
-  }
-
-  .footer-margin {
-    margin-bottom: 30px;
-  }
-
-  p a:hover {
-    color: white;
-    text-decoration: none !important;
-    opacity: 0.6;
-  }
-
-
-  .copyright-format {
-    margin-left: auto;
-    margin-right: 50px;
-  }
-
-  /* Text & Page Formatting */
-  .font-family-base-light {
-    color: white;
-  }
-
-  .text-opaque {
-    opacity: 0.5;
-    color: white;
-  }
-
-  .phone-img-pad {
-    padding-top: 35px;
-    padding-bottom: 11px;
-  }
-
-  .footer-text {
-    color: white !important;
-    text-decoration: none;
-    opacity: 0.6;
+    @media (min-width: $screen-sm) {
+      display: block;
+    }
   }
 }
-
-/* !important is used explicitly for the purpose of overriding styling of existing Crossroads classes */
