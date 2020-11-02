@@ -64,24 +64,54 @@ layout: default
       <div class="col-sm-6 soft-sides">
         <h3 class="text-orange font-family-condensed-extra text-uppercase flush-top">About this location</h3>
         <div class="lead">{{ page.description | markdownify }}</div>
-        <div class="row push-ends soft-half-top mobile-hard-bottom">
-          <div class="col-sm-6" id="service-times">
-            <p>
-              <strong class="text-orange">Service Times</strong>
-              <br />
-              {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
-            </p>
+        {% if page.name == 'Georgetown' %}
+          <div class="row push-ends soft-half-top mobile-hard-bottom">
+            <div class="col-sm-12 push-bottom" id="service-times">
+              <p>
+                <strong class="text-orange">Service Times</strong>
+                <br />
+                {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
+              </p>
+            </div>
+            <div class="col-sm-6">
+              <p>
+                <strong class="text-orange">Office Address:</strong>
+                <br />
+                1242 Paris Pike, Georgetown, KY 40324
+                <br />
+                <a href="https://goo.gl/maps/27isLrMevToZXtrh8" class="text-orange" target="_blank">Get directions</a>
+              </p>
+            </div>
+            <div class="col-sm-6">
+              <p>
+                <strong class="text-orange">Worship & Prayer meeting place:</strong>
+                <br />
+                Great Crossing High School, 120 Betsy Way, Georgetown, KY. 40324
+                <br />
+                <a href="https://goo.gl/maps/gnPQrsUawKfdTKDW7" class="text-orange" target="_blank">Get directions</a>
+              </p>
+            </div>
           </div>
-          <div class="col-sm-6">
-            <p>
-              <strong class="text-orange">Address</strong>
-              <br />
-              {{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}
-              <br />
-              <a href="{{ page.map_url }}" class="text-orange" target="_blank">Get directions</a>
-            </p>
+        {% else %}
+          <div class="row push-ends soft-half-top mobile-hard-bottom">
+            <div class="col-sm-6" id="service-times">
+              <p>
+                <strong class="text-orange">Service Times</strong>
+                <br />
+                {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
+              </p>
+            </div>
+            <div class="col-sm-6">
+              <p>
+                <strong class="text-orange">Address</strong>
+                <br />
+                {{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}
+                <br />
+                <a href="{{ page.map_url }}" class="text-orange" target="_blank">Get directions</a>
+              </p>
+            </div>
           </div>
-        </div>
+        {% endif %}
         <div>
           <div class="col-sm-12 push-top soft-top hard-sides border-top">
             {{ page.additional_info | markdownify }}
