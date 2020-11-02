@@ -42,15 +42,14 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /proxy/content/*,${env:CRDS_CMS_ENDPOINT}/:splat,200!
 /proxy/gateway/*,${env:CRDS_GATEWAY_ENDPOINT}/:splat,200!
 /mycamps*,https://${env:CRDS_ANGULAR_ENDPOINT}/mycamps:splat,200!
-/camps/:campId/*,https://${env:CRDS_ANGULAR_ENDPOINT}/camps/:campId/,200!
+/camps/*,/camps,301!
 /childcare,https://${env:CRDS_ANGULAR_ENDPOINT}/childcare,200!
 /childcare/*,https://${env:CRDS_ANGULAR_ENDPOINT}/childcare/:splat,200!
 /corkboard*,https://${env:CRDS_ANGULAR_ENDPOINT}/corkboard:splat,200!
 /invoices/*,https://${env:CRDS_INVOICES}/:splat,200!
-/undivided/participant/*,https://${env:CRDS_ANGULAR_ENDPOINT}/undivided/participant/:splat,200!
-/undivided/facilitator/*,https://${env:CRDS_ANGULAR_ENDPOINT}/undivided/facilitator/:splat,200!
+/undivided/*,https://undivided.com,301!
 /mptools/*,https://${env:CRDS_ANGULAR_ENDPOINT}/mptools/:splat,200!
-/profile/personal,profile/personal-info,302!
+/profile/personal,/profile/personal-info,302!
 /profile/*,https://${env:CRDS_PROFILE_ENDPOINT}/:splat,200! Role=user
 /profile/*,/signin?redirectUrl=/profile/:splat,302!
 /signin,https://${env:CRDS_ANGULAR_ENDPOINT}/signin,200!
@@ -60,12 +59,12 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /reset-password*,https://${env:CRDS_ANGULAR_ENDPOINT}/reset-password:splat,200!
 /impersonate,https://${env:CRDS_ANGULAR_ENDPOINT}/impersonate,200!
 /volunteer-sign-up,/404.html,404!
-/volunteer-sign-up/*,https://${env:CRDS_ANGULAR_ENDPOINT}/volunteer-sign-up/:splat,200!
-/volunteer-application/*,https://${env:CRDS_ANGULAR_ENDPOINT}/volunteer-application/:splat,200!
+/volunteer-sign-up/*,/volunteer,301!
+/volunteer-application/*,/volunteer,301!
 /serve-signup/*,https://${env:CRDS_SERVE_ENDPOINT}/:splat,200!
 /sign-up,/404.html,404!
 /sign-up/*,https://${env:CRDS_ANGULAR_ENDPOINT}/sign-up/:splat,200!
-/trips/*,https://${env:CRDS_ANGULAR_ENDPOINT}/trips/:splat,200!
+/trips/*,/go,301!
 /waivers/*,https://${env:CRDS_ANGULAR_ENDPOINT}/waivers/:splat,200!
 /give,${env:PUSHPAY_GIVE_ENDPOINT},301!
 /me/giving/*,${env:CRDS_GIVING_HISTORY}/:splat,200!
