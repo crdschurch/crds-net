@@ -2,7 +2,7 @@ module.exports = [
   {
     name: "application",
     deps: ["vendor/jquery-3.3.1.min"],
-    files: ["lib/set-redirect-url"]
+    files: []
   },
   {
     name: "application_deferred",
@@ -48,10 +48,6 @@ module.exports = [
   {
     name: "masonry_deferred",
     files: ["components/masonry"]
-  },
-  {
-    name: "set-redirect-url",
-    files: ["lib/set-redirect-url"]
   },
   {
     name: "reachout-trip",
