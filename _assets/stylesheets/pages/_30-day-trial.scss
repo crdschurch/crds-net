@@ -19,15 +19,15 @@
   .overlay-bottom {
     position: absolute;
     width: 300%;
-    height: 500px;
-    top: 21%;
+    height: 474px;
+    top: 16%;
     left: 50%;
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 2;
     cursor: pointer;
-    transform: translateX(-50%) rotate(154deg);
+    transform: translateX(-50%) rotate(157deg);
   }
 
   .align-items-center {
@@ -89,6 +89,12 @@
   .dashed-border {
     border-bottom: 2px dashed #ff8200;
     display: inline-flex;
+  }
+
+  .mobile-padding {
+    @media screen and (max-width: $screen-sm) {
+      padding-top: 65px;
+    }
   }
 
   @media screen and (max-width: $screen-sm) {
