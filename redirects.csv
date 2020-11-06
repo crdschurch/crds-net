@@ -31,7 +31,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /spiritualoutfitters,/spiritual-outfitters,301!
 /30daytrial,/30-day-trial,301!
 /30daytrial/sign-up,/30-day-trial/sign-up,301!
-/30-day-trial/, 30-day-challenge/, 301!
+/30-day-trial/, 30-day-challenge/,301!
 /connect/?my=1,/mygroups,301!
 /connect/* my=:1,/mygroups,301!
 /connect/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
