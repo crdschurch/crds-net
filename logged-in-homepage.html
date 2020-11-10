@@ -264,6 +264,7 @@ paginate:
       data-crds-carousel="mobile-scroll"
     >
       {% for topic in site.categories %}
+      {% if topic.title != "Student Ministry" %}
       <div class="card carousel-cell topic-card-simple">
         <div class="bg-overlay"></div>
         <a href="{{ topic.url }}" class="topic-card-content">
@@ -280,6 +281,7 @@ paginate:
           />
         </a>
       </div>
+      {% endif %}
       {% endfor %}
     </div>
   </div>
