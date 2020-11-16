@@ -3,28 +3,27 @@ layout: container-fluid
 permalink: /h
 snail_trail: logged-in
 paginate:
-home_collection:
-collections:
-- messages
-- articles
-- videos
-- episodes
-per: 11
-limit: 1
-sort: published_at desc
-messages:
-per: 1
-limit: 1
-sort: published_at desc
-podcasts:
-per: 4
-limit: 1
-series:
-per: 4
-limit: 1
-sort: starts_at desc
+  home_collection:
+    collections:
+      - messages
+      - articles
+      - videos
+      - episodes
+    per: 11
+    limit: 1
+    sort: published_at desc
+  messages:
+    per: 1
+    limit: 1
+    sort: published_at desc
+  podcasts:
+    per: 4
+    limit: 1
+  series:
+    per: 4
+    limit: 1
+    sort: starts_at desc
 ---
-
 <!-- Homepage Banner -->
 {% assign homePageBanner = site.content_blocks | where: 'slug',
 'home-page-promo-banner' | first %} {{ homePageBanner.content_block }}
