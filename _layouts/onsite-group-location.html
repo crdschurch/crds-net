@@ -37,7 +37,7 @@ snail_trail: connect
       <h4 class="font-family-condensed-extra text-uppercase">
         {% assign group = meeting | group_for_meeting %}
         {% if group %}
-        <a href="/groups/onsite/{{ group.slug }}/{{ meeting.location.slug }}">
+        <a href="/groups/onsite/{{ group.slug }}/{% if meeting.location.slug == 'anywhere' %}online{% else %}{{ meeting.location.slug }}{% endif %}">
           {{ meeting.title }}
         </a>
         {% else %}
