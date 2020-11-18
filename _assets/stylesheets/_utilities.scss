@@ -141,8 +141,12 @@ a.anchor {
   }
 }
 
-.ma-ends {
-  @media screen and (min-width: $screen-md) {
-    margin: auto 0;
+.df-screen-sm {
+  @media screen and (min-width: $screen-sm) {
+    display: flex;
   }
+}
+
+.ma-ends {
+    margin: auto 0;
 }
