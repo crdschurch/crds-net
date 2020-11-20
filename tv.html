@@ -145,28 +145,49 @@ layout: container-fluid
   </div>
 </section>
 
-<section class="jumbotron overflow-hidden flush-bottom stream-bg" data-optimize-bg-img>
-  <div class="bg-overlay"></div>
-  <div class="container soft-ends push-ends">
-    <div class="row df-screen-sm  soft-ends push-ends">
-      <div class="col-sm-6 text-left soft-ends push-ends">
-        <h2 class="text-white">Streaming Platforms</h2>
-        <p class="text-white">The Crossroads TV App brings church into your living room. It’s the best way to watch the
-          Crossroads Weekly. Plus it’s full of content your entire family will love like Crossroads Music, Kids’ Club
-          weekly teaching, and Spark Talks.</p>
-      </div>
-      <div class="col-sm-6 tv-btns-container">
-        <a class="btn btn-white btn-outline tv-btns"
-          href="//www.amazon.com/dp/B07HRPW8L2?keywords=crossroads+anywhere&qid=1538139831&s=STRING%28skills-store-name%29&sr=1-2-catcorr&ref=sr_1_2"><img
-            src="//crds-media.imgix.net/34aaswWuopAwfiXFtmqjQv/6900cd357aaf39a65981d08d61d0f8b8/Logo_Amazon_Alexa.png"></a>
-        <a class="btn btn-white btn-outline tv-btns"
-          href="//channelstore.roku.com/details/9f32b1953ae573adaf019839a8c99093/crossroads"><img
-            src="//crds-media.imgix.net/31iHeiDmBD3KrDxMHVw4Mo/7d24ef2b66f5d62515905e7266b97708/Logo_Roku.png"></a>
-        <a class="btn btn-white btn-outline tv-btns" href="//www.amazon.com/Crossroads-Church/dp/B07D83Z1JB"><img
-            src="//crds-media.imgix.net/3gazTXowti629q6Ai9WW3/a6311faf7f8851b6356e8f598b135443/Logo_Amazongfire.png"></a>
-        <a class="btn btn-white btn-outline tv-btns"
-          href="//appadvice.com/tv/app/crossroads-anywhere/1029478803"><img class="full-height"
-            src="//crds-media.imgix.net/5TNLQmLrg05eBQVCEPM8o4/3315e8ce68ac1f9ef75523cb6966a450/Apple_TV_logo.png"></a>
+<section id="stream-weekly">
+  <div class="jumbotron jumbotron-xl flush-bottom stream-bg" data-optimize-bg-img>
+    <div class="container push-ends">
+      <div class="row flex-row-align-center df-screen-md">
+        <div class="col-md-6 text-white text-left">
+          <h1 class="font-family-condensed-extra text-uppercase">Streaming Platforms</h1>
+          <p class="font-family-base">The Crossroads TV App brings church into your living room. It’s the best way to
+            watch the Crossroads Weekly. Plus it’s full of content your entire family will love like Crossroads Music,
+            Kids’ Club weekly teaching, and Spark Talks.</p>
+        </div>
+        <div class="col-md-6 tv-btns-container">
+          <div class="row btn-streaming-group">
+            <a class="btn btn-outline btn-white btn-streaming-img"
+              href="https://www.amazon.com/dp/B07HRPW8L2?keywords=crossroads+anywhere&qid=1538139831&s=STRING%28skills-store-name%29&sr=1-2-catcorr&ref=sr_1_2"
+              onClick="ga('gtm2.send', 'event', 'Watch-AmazonAlexaCTA-Btn-TV', 'clicked')"
+              data-role="Watch-AmazonAlexaCTA-Btn-TV" target="_blank">
+              <img
+                src="//crds-media.imgix.net/5ycPzO1Eh58OthUk2QkbBM/6faccab46bdb166844297f0d21380487/Logo_Amazon_Alexa.png">
+            </a>
+            <a class="btn btn-outline btn-white btn-streaming-img"
+              href="https://www.amazon.com/Crossroads-Church/dp/B07D83Z1JB"
+              onClick="ga('gtm2.send', 'event', 'Watch-AmazonFireTvCTA-Btn-TV', 'clicked')"
+              data-role="Watch-AmazonFireTvCTA-Btn-TV" target="_blank">
+              <img
+                src="//crds-media.imgix.net/75ULrftCuomwcVHvZDwcK3/384270b2e01e74cee093719bd4e0ae18/Logo_Amazongfire.png">
+            </a>
+          </div>
+          <div class="row btn-streaming-group push-bottom">
+            <a class="btn btn-outline btn-white btn-streaming-img"
+              href="https://channelstore.roku.com/details/76455/crossroads"
+              onClick="ga('gtm2.send', 'event', 'Watch-RokuTvCTA-Btn-TV', 'clicked')" data-role="Watch-RokuTvCTA-Btn-TV"
+              target="_blank">
+              <img src="//crds-media.imgix.net/77yQBDadk6AGz1WldY5KE3/7be90e5cce172386448004075e79f4dc/Logo_Roku.png">
+            </a>
+            <a class="btn btn-outline btn-white btn-streaming-img"
+              href="https://appadvice.com/tv/app/crossroads-anywhere/1029478803"
+              onClick="ga('gtm2.send', 'event', 'Watch-AppleTvCTA-Btn-TV', 'clicked')"
+              data-role="Watch-AppleTvCTA-Btn-TV" target="_blank">
+              <img src="//crds-media.imgix.net/6wRDkHPRFR70XqfkxKFrgO/e9d2fca6ca51e59e45630f535a379bdb/Logo_Apple.png">
+              <p class="push-quarter-left flush-bottom">Apple TV</p>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
