@@ -1,0 +1,37 @@
+.tv-btns-container {
+  width: 500px;
+  margin: auto;
+}
+
+.bt-guide-container {
+  min-height: 516px;
+  background-repeat: no-repeat;
+}
+
+.guide-content {
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  flex-direction: column;
+}
+
+.fit-content {
+  width: fit-content;
+}
+
+.stream-bg {
+  background-image: url('//crds-media.imgix.net/3zmyEyDJOipJIOv3JNQzFp/dd2f8e9d5e981c79593ce0f2a950f176/streaming-platforms-bg.png?{{ site.imgix_params.placeholder_sixteen_nine }}');
+}
+
+.bt-guide-bg {
+  background-image: url('//crds-media.imgix.net/TB73SSM1V7gnlY8J9PkEC/75c0303bfede033c1508d4cef22e1a2a/bt-map.png'); 
+  background-size: cover;
+}
+
+#btSubscribeModalForm fieldset {
+  text-align: left;
+}
+
+#btSubscribeModalForm .submitted-message {
+  text-align: center;
+}
