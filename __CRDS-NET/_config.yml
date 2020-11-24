@@ -1,0 +1,174 @@
+title: Crossroads
+email: info@crossroads.net
+description: No matter what your beliefs, you are welcome here.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://www.crossroads.net" # the base hostname & protocol for your site, e.g. http://example.com
+image: "//crds-media.imgix.net/7EFusaW9y0WFSxO9KCdumH/2edc127ce50430b3894692f7075122fb/spiritual-outfitters.jpg"
+
+# Build settings
+permalink: pretty
+markdown: kramdown
+
+exclude:
+  - bin
+  - cypress.json
+  - Guardfile
+  - Gemfile
+  - Gemfile.lock
+  - gulpfile.js
+  - lib
+  - package.json
+  - _migrations
+  - netlify.toml
+  - node_modules
+  - Rakefile
+  - README.md
+  - vendor
+  - buildlog.txt
+  - collections
+
+include:
+  - .aws
+  - _redirects
+  - _pages
+
+collections_dir: collections
+
+collections:
+  pages:
+    filename: "{{ permalink }} index"
+    output: true
+    permalink: /:permalink/index.html
+  locations:
+    output: true
+    permalink: /:slug
+  trips:
+    output: true
+    permalink: /reachout/go/:country_slug/:slug
+  series:
+    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
+    output: false
+    has_many:
+      - videos
+    permalink: /:collection/:title
+  messages:
+    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
+    output: false
+    permalink: /series/(:series/:slug)/:title
+  promos:
+    filename: "{{ published_at | date: '%Y-%m-%d-%H-%M-%S' }}-{{ title | slugify }}-{{ slug }}"
+    output: false
+  articles:
+    output: false
+  topics:
+    output: false
+  authors:
+    output: false
+  podcasts:
+    output: true
+  episodes:
+    output: false
+    permalink: /podcasts/(:podcast/:slug)/:title
+  tags:
+    output: false
+  features:
+    output: false
+  perspectives:
+    output: false
+    permalink: /:collection/:title
+  categories:
+    output: false
+    permalink: /topics/:title
+  featured_media:
+    output: false
+  songs:
+    output: false
+  videos:
+    output: false
+  system_pages:
+    output: false
+  content_blocks:
+    output: false
+  onsite_groups:
+    output: true
+    permalink: /groups/(:category/:slug)/:slug
+  onsite_group_categories:
+    output: false
+  onsite_group_meetings:
+    output: false
+  albums:
+    output: false
+
+contentful:
+  page:
+  podcast:
+  query: 
+  video: 
+  category:
+  config:
+    sites: distribution_channels
+  article:
+    map:
+      date: published_at
+  series:
+    limit: 10
+    order: "published_at desc"
+    map:
+      date: published_at
+  message:
+    limit: 6
+    order: "published_at desc"
+    map:
+      date: published_at
+  featured_media:
+    query: fields.site=net
+    map:
+      page_path: path
+  content_block:
+    map:
+      content_block: content
+  episode:
+    map:
+      date: published_at
+  exclude:
+    - migration
+    - sign_off
+    - collections
+
+defaults:
+  - scope:
+      path: ""
+      type: "locations"
+    values:
+      layout: location
+  - scope:
+      path: ""
+      type: "onsite_groups"
+    values:
+      layout: onsite-group-detail
+      snail_trail: connect
+  - scope:
+      path: ""
+      type: "trips"
+    values:
+      layout: trip
+
+imgix_params:
+  placeholder: "auto=format,compress&w=10"
+  placeholder_card: "auto=format,compress&w=12&h=9&fit=crop"
+  placeholder_square: "auto=format,compress&w=10&h=10&fit=crop"
+  placeholder_sixteen_nine: "auto=format,compress&w=16&h=9&fit=crop"
+  meta_image: "w=1200&h=630&fit=crop"
+  thin_hero: "auto=format,compress&fit=crop&crop=faces&w=3.125h=1"
+
+image_sizes:
+  cards_4x: "(min-width: 992px) 212.5px, (min-width: 768px) 345px, (min-width: 0px) 100vw"
+  media_object: "(min-width: 768px) 140px, (min-width: 0px) 100px"
+  full_width: "100vw"
+  half_width: "50vw"
+  one_hundred: "100%"
+  one_fourth: "(min-width: 992px) 25vw, (min-width: 0px) 100vw"
+  three_fourths: "(min-width: 992px) 75vw, (min-width: 0px) 100vw"
+
+typekit_url: https://use.typekit.net/gir0nnu.css
+typekit_scss: _assets/stylesheets/_fonts.scss

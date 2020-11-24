@@ -1,30 +1,25 @@
-$icon-font-path: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/";
-@function twbs-font-path($path) {
-  @return $path;
-}
-
-@import "crds-styles/assets/stylesheets/variables";
-@import "crds-styles/assets/stylesheets/overrides";
-@import "~bootstrap-sass/assets/stylesheets/bootstrap.scss";
-
-@import "crds-styles/assets/stylesheets/functions";
-@import "crds-styles/assets/stylesheets/mixins";
-@import "crds-styles/assets/stylesheets/vendors/datepicker";
-@import "crds-styles/assets/stylesheets/vendors/timepicker";
-@import "crds-styles/assets/stylesheets/vendors/toast";
-@import "crds-styles/assets/stylesheets/vendors/wtf-forms";
-@import "crds-styles/assets/stylesheets/base/modules";
-@import "crds-styles/assets/stylesheets/components/modules";
-@import "crds-styles/assets/stylesheets/layouts/modules";
-@import "crds-styles/assets/stylesheets/themes/modules";
-@import "crds-styles/assets/stylesheets/utilities/modules";
-
-@import "fonts";
-@import "utilities";
-
-@import "components/modules";
-
-@import "pages/modules";
-
-@import "vendor/flickity";
-@import "vendor/smart-banner";
+@import 'crds-styles/assets/stylesheets/crds-styles';
+@import 'fonts';
+@import 'global';
+@import 'utilities';
+@import 'breadcrumbs';
+@import 'buttons';
+@import 'cards';
+@import 'flickity';
+@import 'header';
+@import 'jumbotron';
+@import 'labels';
+@import 'media-objects';
+@import 'modals';
+@import 'newsletter';
+@import 'pages/modules';
+@import 'pagination';
+@import 'preloader';
+@import 'social-share';
+@import 'tabs';
+@import 'timestamps-tab';
+@import 'transcript-tab';
+@import 'discussion-questions';
+@import 'topic-cards';
+@import 'rollcall';
+@import 'signoff';

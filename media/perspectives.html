@@ -1,0 +1,32 @@
+---
+layout: default_footer_flush
+title: Perspectives
+image:
+  url: "//crossroads-media.s3.amazonaws.com/images/another-perspective-social.jpg"
+excerpt: "Our thoughts on culture."
+paginate:
+  perspective_sets:
+    per: 4
+    sort: date desc
+---
+
+<div class="perspective-tpl">
+  {% include _perspective_header.html %}
+
+  <div data-page="perspective_sets">
+    <div data-page-number="{{ page.perspective_sets.page }}">
+      {% for set in page.perspective_sets.docs %}
+        {% include _perspective_set.html set=set %}
+      {% endfor %}
+    </div>
+    <div class="loading hide">
+      {% include _preloader.html %}
+    </div>
+  </div>
+
+  <footer class="footer-btn">
+    {% include _pagination.html collection="perspective_sets" remote=true link_root="perspectives" label="" %}
+  </footer>
+</div>
+
+

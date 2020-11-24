@@ -1,14 +1,9 @@
 {
-  "projectId": "dnbm5t",
-  "baseUrl": "https://int.crossroads.net",
+  "projectId": "k8zvaf",
+  "baseUrl": "https://int.crossroads.net/media",
   "testFiles": "**/*spec.js",
   "env": {
-    "RETRIES": 2,
-    "stream_schedule_env": "/int",
-    "CRDS_ENV": "int",
-    "OKTA_SIGNIN_URL": "https://int.crossroads.net/oktasignin",
-    "OKTA_ENDPOINT": "https://authpreview.crossroads.net",
-    "CLIENT_ID": "0oahgpg7elMxVJedi0h7",
+    "CONTENTFUL_ENV": "int",
     "vaultEnv": "int"
   }
 }

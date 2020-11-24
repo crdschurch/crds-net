@@ -1,0 +1,6 @@
+{% if video.bitmovin_url %}
+    {% include _bitmovin-player.html %}
+{% elsif video.source_url or video.youtube_id %}
+    {% assign video_id = video.source_url | youtube_id %}
+    {% include _youtube-embed.html %}
+{% endif %}

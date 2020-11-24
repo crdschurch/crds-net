@@ -1,0 +1,70 @@
+---
+layout: default
+title: The Weekend Follow-Up
+permalink: /weekendfollowup/
+---
+
+{% assign discussion = site.chaser %}
+<section class="bg-blue bg-topo">
+  <div class="jumbotron jumbotron-lg flush-bottom">
+    <div class="container soft-ends">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 text-center">
+          <img
+            src="//crds-media.imgix.net/360H9sX3kNMLfUTYrdscxq/1d9a9265d834226cfab671a619c73bf1/the-weekend-follow-up-logo-new.png?auto=format,compress&w=1200"
+            alt="The Weekend Follow-Up" data-optimize-img>
+        </div>
+        <div class="col-sm-12 soft-top">
+          <h1 class="hidden title">The Weekend Follow-Up</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="row soft-top">
+    <div class="col-sm-offset-2 col-sm-8">
+      <p class="lead">The Weekend Follow-Up is a set of discussion prompts to help your group unpack the weekend. Add
+        Crossroads to your group chat in the Crossroads App to get a couple messages each week, all designed to help you
+        move further and faster toward the full life you were made for.
+        <br />
+        <a href="#app" data-smooth-scroll-to="app" data-smooth-scroll-offset="92">Opt-in to get these questions and
+          challenges sent right to your group.</a>
+
+        {% if site.chaser_message %}
+      <p class="bg-gray soft metadata push-ends">
+        For the Weekend of {{ site.chaser_message.date | date: '%B %-d, %Y' }}
+      </p>
+      {% endif %}
+      <div class="push-bottom" data-track-viewport='{ "duration": 60000, "event": "ChaserView" }'>
+
+        {% include _discussion-questions.html type='chaser' discussion=discussion %}
+
+        <hr>
+        <div class="row" id="app">
+          <div class="col-sm-12 bg-tan-light soft">
+            <h3 class="section-header flush-ends soft-half-bottom font-size-h3">Get The Weekend Follow-Up sent right to
+              your group</h3>
+            <p class="text-gray">Step 1: <a href="/app">Download the Crossroads App</a></p>
+            <p class="text-gray">Step 2: Create a group chat with your group</p>
+            <p class="text-gray">Step 3: Turn on the Weekend Follow-Up</p>
+            <br />
+            <p class="text-gray"><strong>Still not sure?</strong> Check out this video tutorial</p>
+            <div class="embed-responsive embed-responsive-16by9 push-ends">
+              <iframe width="320" height="240" src="https://www.youtube.com/embed/xKIynCaK_BA" frameborder="0"
+                allowfullscreen=""></iframe>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <section>
+          <p class="metadata"><strong>Missed the message? Want to watch it?</strong></p>
+          <a class="btn btn-primary" data-media-snippet="get_current_message_url:attr[href]">
+            Click here to watch
+          </a>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>

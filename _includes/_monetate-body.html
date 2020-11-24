@@ -1,5 +1,12 @@
 <!-- send data to Monetate -->
-{% if page.monetate_page_type %}
+{% if page.content_type contains 'article'
+or page.content_type contains 'episode'
+or page.content_type contains 'message'
+or page.content_type contains 'perspectives'
+or page.content_type contains 'podcast'
+or page.content_type contains 'series'
+or page.content_type contains 'video'
+or page.content_type == 'category' %}
 <script>
   window.monetateQ.push(["trackData"]);
 </script>

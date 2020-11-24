@@ -1,0 +1,151 @@
+---
+layout: default_footer_flush
+---
+
+{% assign feature_obj = site.featured_media | where: 'page_path', page.url | first %}
+{% assign managed_features = feature_obj.entries | get_docs %}
+
+<div class="topics-detail-tpl">
+
+  <header style="background-image: url('{% if page.image.url %}{{ page.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <ol class="breadcrumb text-white hard-sides push-top">
+            <li><a href="/">Media</a></li>
+            <li><a href="/topics">Topics</a></li>
+          </ol>
+
+            <h1 class="media-title flush-top">{{ page.title}}</h1>
+
+          <div class="description font-size-base white-faded">
+            {{ page.description | markdownify }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="featured-media">
+    <div class="container">
+      <div class="featured-media-grid">
+        {% if managed_features.size > 0 %}
+        {% assign features = managed_features %}
+        {% else %}
+        {% assign features = page.featured_media %}
+        {% endif %}
+
+        {% for item in features limit: 3 %}
+          <div>
+            <a href="{{ item | media_url }}">
+              <div class="image">
+                {% if item.content_type == "article" or "video" %}
+                <div class="beige-overlay"></div>
+                {% endif %}            
+                {% assign image = item | card_image %}
+                <img src="{% if image %}{{ image | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ image.title }}" sizes="{{ site.image_sizes.cards_3x }}" data-optimize-img>
+                {% include _media-label.html source=item %}
+              </div>
+              <div class="topic soft-quarter-top">{{ page.title }}</div>
+              <h3 class="title flush-ends">{{ item.title }}</h3>
+              <div class="credit">
+                {% if item.author %}
+                  {% assign author = item.author | get_doc %}
+                  {{ author.full_name }}
+                {% elsif item.authors %}
+                  {% assign authors = item.author | get_docs %}
+                  {{ authors | map: 'full_name' | join: ', ' }}
+                {% endif %}
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {% for data in page.featured_tag_data %}
+    {% assign subtopic = data.tag %}
+    {% assign media_items = data.media %}
+    <section class="subtopic-layout container">
+      <header>
+        <h5>{{ subtopic.title }}</h5>
+        {% if media_items.size > 7 %}
+          <a href="{{ subtopic.url }}">View all</a>
+        {% endif %}
+      </header>
+
+      <div class="row">
+        <main class="col-md-8">
+          <div class="feature-main">
+            {% assign item = media_items | first %}
+            {% include _overlay-card.html autoplay=true %}
+          </div>
+
+          {% assign feature_subs = media_items | slice: 1, 2 %}
+          {% for item in feature_subs %}
+            <div class="feature-sub">
+              <a href="{{ item | media_url }}" class="list-card">
+                <div class="image">
+                  {% if item.content_type == "article" or "video" %}
+                  <div class="beige-overlay"></div>
+                  {% endif %}
+              
+                  {% assign image = item | card_image %}
+                  <img src="{% if image %}{{ image | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.topic_feature_sub }}" alt="" data-optimize-img>
+                  {% include _media-label.html source=item %}
+                </div>
+                {% if item.category %}
+                  <p class="topic">{{ item.category.title }}</p>
+                {% endif %}
+                <h3 class="title">{{ item.title }}</h3>
+
+                <div class="content">
+                  {{ item | content | markdownify | strip_html | truncate: 125 }}
+                </div>
+                <p class="credit">
+                  {% if item.author %}
+                    {% assign author = item.author | get_doc %}
+                    {{ author.full_name }}
+                  {% elsif item.authors %}
+                    {% assign authors = item.author | get_docs %}
+                    {{ authors | map: 'full_name' | join: ', ' }}
+                  {% endif %}
+                </p>
+              </a>
+            </div>
+          {% endfor %}
+        </main>
+
+        <aside class="col-md-4">
+          {% assign list_cards = media_items | slice: 3, 4 %}
+          {% for item in list_cards %}
+            <a class="list-card" href="{{ item | media_url }}">
+              <div class="image">
+                  {% assign image = item | card_image %}
+                  <img src="{% if image %}{{ image | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.topic_feature_sub }}" alt="" data-optimize-img>
+                  {% include _media-label.html source=item %}
+              </div>
+
+              <h4 class="title flush-top">{{ item.title }}</h4>
+              <div class="content">
+                {{ item | content | markdownify | strip_html | truncate: 125 }}
+              </div>
+              <div class="credit">
+                {% if item.author %}
+                  {% assign author = item.author | get_doc %}
+                  {{ author.full_name }}
+                {% elsif item.authors %}
+                  {% assign authors = item.author | get_docs %}
+                  {{ authors | map: 'full_name' | join: ', ' }}
+                {% endif %}
+              </div>
+            </a>
+          {% endfor %}
+        </aside>
+      </div>
+    </section>
+  {% endfor %}
+</div>
+
+{% javascript_link_tag autoplay %}

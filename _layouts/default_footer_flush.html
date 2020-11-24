@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  {% include _head.html %}
+  <body>
+    {% include _gtm.html %}
+
+    {% include header.html %}
+    {{ content }}
+    {% include footer.html %}
+    {% include _subscribe-modal.html %}
+    {% if page.preloader %}{% include _preloader.html %}{% endif %}
+
+    {% include _footer-script.html %}
+  </body>
+</html>

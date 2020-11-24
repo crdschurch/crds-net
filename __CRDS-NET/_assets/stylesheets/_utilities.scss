@@ -1,0 +1,152 @@
+.aspect-16x9 {
+  position: relative;
+  height: 0;
+  padding-top: 56.25%;
+}
+
+.text-gray {
+  color: $cr-gray !important;
+}
+
+.text-gray-light {
+  color: $cr-gray-light !important;
+}
+
+.text-gray-lighter {
+  color: $cr-gray-lighter !important;
+}
+
+.text-uppercase {
+  &.font-size-smaller {
+    font-size: 13px !important;
+    letter-spacing: 0.5px;
+  }
+}
+
+.font-size-smallest {
+  font-size: 10px;
+}
+
+.font-family-base-mid {
+  font-family: "acumin-pro", helvetica, arial, sans-serif;
+  font-weight: 500;
+}
+
+.relative {
+  position: relative !important;
+}
+
+// Bootstrap 4
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-start {
+  align-items: start;
+}
+
+.flex-column-reverse {
+  flex-direction: column-reverse;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.flex-md-row {
+  @media (min-width: $screen-md) {
+    flex-direction: row;
+  }
+}
+
+.flex-sm-row {
+  @media (min-width: $screen-sm) {
+    flex-direction: row;
+  }
+}
+
+.flex-xs-row {
+  @media (min-width: $screen-xs) {
+    flex-direction: row;
+  }
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.visually-hidden {
+  visibility: hidden;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.transparent-after {
+  &::after {
+    color: transparent;
+  }
+}
+
+.border-light-gray {
+  border: 1px solid rgba($cr-gray-light, 0.3)
+}
+
+.overlap-header {
+  top: -8.25rem;
+  margin-bottom: -5.25rem;
+
+  @media screen and (min-width: $screen-md) {
+    top: -8.8rem;
+    margin-bottom: -8.8rem;
+  }
+}
+
+a.anchor {
+  display: block;
+  position: relative;
+  top: -60px;
+  visibility: hidden;
+}
+
+.mt-100 {
+  margin-top: 100px;
+}
+
+.mb-100 {
+  margin-bottom: 100px;
+}
+
+.df-screen-md {
+  @media screen and (min-width: $screen-md) {
+    display: flex;
+  }
+}
+
+.df-screen-sm {
+  @media screen and (min-width: $screen-sm) {
+    display: flex;
+  }
+}
+
+.ma-ends {
+    margin: auto 0;
+}

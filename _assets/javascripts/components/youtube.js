@@ -44,9 +44,8 @@ class YoutubeManager {
     let urlParams = new URLSearchParams(window.location.search);
     let min = urlParams.has('min') ? parseInt(urlParams.get('min')) : 0;
     let sec = urlParams.has('sec') ? parseInt(urlParams.get('sec')) : 0;
-    let autoplay = urlParams.has('autoPlay');
 
-    if (min || sec || autoplay) {
+    if (min || sec) {
       this.player.playVideo();
       this.player.seekTo(min * 60 + sec, true);
     }

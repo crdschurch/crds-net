@@ -1,0 +1,43 @@
+{% for item in include.collection %}
+  {% if include.collection == site.articles %}
+    {%- assign path_one = 'articles' -%}
+  {% elsif include.collection == site.series or include.collection == site.messages %}
+    {%- assign path_one = 'series' -%}
+  {% elsif include.collection == site.podcasts or include.collection == site.episodes %}
+    {%- assign path_one = 'podcasts' -%}
+  {% elsif include.collection == site.perspectives %}
+    {%- assign path_one = 'perspectives' -%}
+  {% elsif include.collection == site.videos %}
+    {%- assign path_one = 'videos' -%}
+  {% endif %}
+
+  {% if include.collection == site.messages %}
+    {%- assign path_two = item.series.slug -%}
+  {% elsif include.collection == site.episodes %}
+    {%- assign path_two = item.podcasts.slug -%}
+  {% endif %}
+
+  <product>
+    <product_id>{{ item.contentful_id }}</product_id>
+    <product_name>{{ item.title | truncate: 128 | asciify }}</product_name>
+    <brand_name>{{ path_one }}</brand_name>
+    <categories>
+      {% if item.category.size > 0 %}
+      <category>
+        <category_name>{{ item.category.title | truncate: 128 | asciify }}</category_name>
+      </category>
+      {% endif %}
+      {% if item.tags.size > 0 %}
+        {% for tag in item.tags %}
+      <category>
+        <category_name>{{ tag.title | truncate: 128 | asciify }}</category_name>
+      </category>
+        {% endfor %}
+      {% endif %}
+    </categories>
+    <price>1.00</price>
+    <url>{{ site.url }}/{{ path_one }}/{% if path_two %}{{ path_two }}/{% endif %}{{ item.slug }}</url>
+    <product_image_url>{% if item.image.url %}https:{{ item.image.url | imgix: site.imgix }}?auto=format,compress
+      {% else %}{{ site.default_image | imgix: site.imgix }}?auto=format,compress{% endif %}</product_image_url>
+  </product>
+{% endfor %}

@@ -1,19 +1,19 @@
-const { series, parallel, src, dest } = require("gulp");
+const { series, parallel, src, dest } = require('gulp');
 
-const babel = require("gulp-babel");
-const concat = require("gulp-concat");
-const del = require("del");
-const exec = require("child_process").exec;
-const fs = require("fs");
-const plumber = require("gulp-plumber");
-const rename = require("gulp-rename");
-const sass = require("gulp-sass");
-const tildeImporter = require("node-sass-tilde-importer");
-const uglify = require("gulp-uglify");
+const babel = require('gulp-babel');
+const concat = require('gulp-concat');
+const del = require('del');
+const exec = require('child_process').exec;
+const fs = require('fs');
+const plumber = require('gulp-plumber');
+const rename = require('gulp-rename');
+const sass = require('gulp-sass');
+const tildeImporter = require('node-sass-tilde-importer');
+const uglify = require('gulp-uglify');
+const replace = require('gulp-replace');
+const jsConfig = require('./_assets/javascripts/config');
 
-const jsConfig = require("./_assets/javascripts/config");
-
-const assetDir = "./_site/assets";
+const assetDir = './_site/assets';
 const hash = process.env.ASSET_HASH;
 const tokenFile = `tmp/_token`;
 
@@ -28,15 +28,15 @@ function filename(basename, ext) {
  * Compiles application.scss into build directory.
  */
 function compileSass(done) {
-  return src("_assets/stylesheets/application.scss")
+  return src('_assets/stylesheets/application.scss')
     .pipe(plumber())
     .pipe(
       sass({
         importer: tildeImporter,
-        outputStyle: "compressed"
+        outputStyle: 'compressed'
       })
     )
-    .pipe(rename(filename("application", "css")))
+    .pipe(rename(filename('application', 'css')))
     .pipe(dest(assetDir));
 }
 
@@ -83,9 +83,7 @@ function jsDeps(done) {
 function jsBuild(done) {
   const tasks = jsConfig.map(config => {
     return done => {
-      const files = (config.files || []).map(
-        f => `_assets/javascripts/${f}.js`
-      );
+      const files = (config.files || []).map(f => `_assets/javascripts/${f}.js`);
       if (files.length == 0) {
         done();
         return;
@@ -97,7 +95,7 @@ function jsBuild(done) {
           babel({
             presets: [
               [
-                "@babel/env",
+                '@babel/env',
                 {
                   modules: false
                 }
@@ -126,13 +124,10 @@ function jsBuild(done) {
 function jsConcat(done) {
   const tasks = jsConfig.map(config => {
     return done => {
-      const files = [
-        `${assetDir}/${config.name}.deps.js`,
-        `${assetDir}/${config.name}.files.js`
-      ];
+      const files = [`${assetDir}/${config.name}.deps.js`, `${assetDir}/${config.name}.files.js`];
       return src(files, { allowEmpty: true })
         .pipe(plumber())
-        .pipe(concat(filename(config.name, "js")))
+        .pipe(concat(filename(config.name, 'js')))
         .pipe(dest(assetDir));
     };
   });
@@ -151,10 +146,7 @@ function jsConcat(done) {
 function jsClean(done) {
   const tasks = jsConfig.map(config => {
     return done => {
-      const files = [
-        `${assetDir}/${config.name}.deps.js`,
-        `${assetDir}/${config.name}.files.js`
-      ];
+      const files = [`${assetDir}/${config.name}.deps.js`, `${assetDir}/${config.name}.files.js`];
       return del(files);
     };
   });
@@ -164,7 +156,14 @@ function jsClean(done) {
   })();
 }
 
-exports.default = parallel(
-  compileSass,
-  series(parallel(jsDeps, jsBuild), jsConcat, jsClean)
-);
+function replaceRelativeLinks() {
+  if(!process.env.BASEURL || process.env.BASEURL == '/') return Promise.resolve();
+  return src("./_site/**/*.html")
+    .pipe(replace(new RegExp('(?<=(href|src)=")(\/)(?!\/)(.*?)[^"]*', 'g'), (match) => {
+      return `${process.env.BASEURL || ""}${match}`;
+    }))
+    .pipe(dest('./_site'))
+};
+
+
+exports.default = parallel(series(compileSass), series(jsDeps, jsBuild, jsConcat, jsClean, replaceRelativeLinks));

@@ -1,0 +1,181 @@
+---
+layout: default
+---
+
+<div class="video-tpl">
+  <div class="bg-blue">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+          {% if page.source_url or page.audio_source_url %}
+            <div class="push-top soft-top embed-responsive embed-responsive-16by9">
+              <div class="mobile-flush">
+                {% comment %} audio_video_toggler.js handles switching between video and audio. {% endcomment %}
+                <div class="hide" data-audio-video-control>
+                    {% assign video = page %}
+                    {% assign image = page.image.url %}
+                    <!-- This is what content will show after a video plays -->
+                    {% assign recommended_collection=site.messages %}
+                    <!--<iframe id="js-media-video" width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen data-video-player></iframe>-->
+                    {% include _video-player.html %}
+                    <script>
+                      // This function will be called by audio_video_toggler.js when the audio trigger is clicked
+                      function onAudioActivate() {
+                        CRDS.VideoManager.pauseVideo();
+                        $('#message-tabs a[href="#description"]').tab('show');
+                        $('#message-tabs a[href="#timestamps"]').addClass('hide');
+                      }
+
+                      // This function will be called by audio_video_toggler.js when the video trigger is clicked
+                      function onVideoActivate() {
+                        $('#message-tabs a[href="#timestamps"]').removeClass('hide');
+                      }
+                    </script>
+                  {% if page.audio_source_url %}
+                    <div data-audio-player class="embed-responsive embed-responsive-16by9">
+                      <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url={{ page.audio_source_url }}&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+
+          <header>
+            {% if page.audio_file.url or page.video_file.url or page.program.url or page.audio_source_url %}
+            <div class="sources push-quarter-top">
+              {% if page.source_url %}
+              <a class="secondary hide" href="javascript:void(0)" data-video-trigger>Watch video</a>
+              {% endif %}
+              {% if page.audio_source_url %}
+              <a class="secondary hide" href="javascript:void(0)" data-audio-trigger>Listen to audio</a>
+              {% endif %}
+              {% if page.audio_file.url %}
+              <a class="secondary" data-automation-id="download-audio-link" href="{{ page.audio_file.url }}">Download audio</a>
+              {% endif %}
+
+              {% if page.bitmovin_url %}
+                <a class="secondary" data-automation-id="download-video-link-HD" href="{{ page.bitmovin_url | replace: "manifest.m3u8", page.video_file.id | append: '_1080p.mp4'}}">Download HD video</a>
+                <a class="secondary" data-automation-id="download-video-link-SD" href="{{ page.bitmovin_url | replace: "manifest.m3u8", page.video_file.id | append: '_360p.mp4'}}">Download SD video</a>
+              {% elsif page.video_file.url %}
+                <a class="secondary" data-automation-id="download-video-link" href="{{ page.video_file.url }}">Download video</a>
+              {% endif %}
+
+              {% if page.program.url %}
+              <a class="secondary" href="{{ page.program.url }}" target="_blank">View program</a>
+              {% endif %}
+            </div>
+            {% endif %}
+
+            <div>
+              <!-- Start breadcrumbs -->
+              {% assign url_array = page.url | split: '/' | shift | pop %}
+              {% capture url_string %} {{ page.url | replace: '/', " " }}{% endcapture %}
+              {% assign url="" %}
+              <ol class="breadcrumb text-orange hard-sides">
+                <li><a href="/">Media</a></li>
+
+                {% for breadcrumb in url_array %}
+                {% capture first_word %}{{ url_string | truncatewords: 1, "" }}{% endcapture %}
+                {% capture url %}{{ url }}/{{ first_word }}{% endcapture %}
+
+                <li><a href="{{ url }}">{{ breadcrumb | replace: '-', ' ' | capitalize }}</a></li>
+
+                {% capture url_string %}{{ url_string | remove_first: first_word }}{% endcapture %}
+                {% endfor %}
+              </ol>
+              <!-- End breadcrumbs -->
+
+              <h1 class="font-family-condensed-extra text-uppercase flush-top push-bottom text-white">{{ page.title }}</h1>
+            </div>
+          </header>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row push-ends">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="row">
+          <div class="col-md-8 col-lg-9">
+            {% assign tabs = 'description timestamps transcription' | split: ' ' %}
+            {% assign tabNames = 'Description Contents Transcription' | split: ' ' %}
+            {% assign templates = 'none _timestamps_tab.html _transcript_tab.html' | split: ' ' %}
+            {% if page.description or page.timestamps or page.transcription.body %}
+              <div id="message-tabs">
+                {% include _tabs.html tabs=tabs names=tabNames templates=templates %}
+              </div>
+            {% endif %}
+
+            {% if page.discussion %}
+              {% assign discussion = page.discussion | get_doc %}
+              {% include _collapsible-discussion-questions.html type='chaser' discussion=discussion %}
+            {% endif %}
+
+            <!-- List of contributors -->
+            {% if page.authors %}
+            {% for author_name in page.authors %}
+            {% assign author = site.authors | where: "name", author_name | first %}
+            {% if forloop.first %}<p class="flush-bottom">Featuring{% elsif forloop.last %}and{% else %}&comma;{% endif %} <a href="{{ author.url }}">{{author_name | titleize}}</a>{% if forloop.last %}</p>{% endif %}
+            {% endfor %}
+            {% endif %}
+
+            <p>{{ page.published_at | format_date }}{% if page.duration != nil %} <span class="divider push-quarter-sides">•</span> {% include _read-time.html duration=page.duration content_type='message' %} {% endif %}</p>
+
+            <div class="soft-half-top push-top">
+              {% include _social-share.html %}
+            </div>
+
+            <!-- Only 1 topic per page -->
+            {% assign topic = site.categories | where: 'slug', page.category.slug | first %}
+            {% include _topic.html %}
+
+            <!-- Page can have many tags -->
+            {% include _tags_list.html tags=page.tags %}
+          </div>
+          <div class="col-md-4 col-lg-3 sm-text-left md-text-right soft-half-top">
+            {% include _subscribe-buttons.html content_type=page youtube=true row=false subscribe=false %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% assign series = site.series | where: 'slug', page.series_slug %}
+    {% for messages in series %}
+    {% assign videos = messages.associations['videos'] | exclude: page.title %}
+    {% endfor %}
+
+    <div class="push-top soft-top row">
+      <!-- Show if series has additional messages -->
+      {% if videos %}
+      <section class="col-md-10 col-md-offset-1">
+        <h2 class="component-header flush-top">In this Series</h2>
+
+        <div class="cards-4x cards-2x-xs">
+          <div class="row">
+            {% for item in videos %}
+            {% include _message-card.html series=false autoplay=true %}
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+      {% endif %}
+
+      {% assign limited = site.series | sort: "start_date" | reverse | exclude: page.series | slice: 0, 6 %}
+      <section class="col-md-10 col-md-offset-1">
+        <h2 class="component-header flush-top">Recent Series</h2>
+        <div class="cards-3x">
+          <div class="row">
+            {% for item in limited %}
+            <div class="card">
+              {% include _series-card.html %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

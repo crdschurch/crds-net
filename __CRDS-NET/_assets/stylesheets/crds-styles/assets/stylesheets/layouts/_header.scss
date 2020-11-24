@@ -1,0 +1,354 @@
+/* stylelint-disable */
+
+.header {
+  height: 3.375rem;
+
+  @media only screen and (min-width: $screen-md) {
+    height: auto;
+    padding-top: 0.625rem;
+  }
+
+  // Don't show mobile menu items on the main menu.
+  [data-main-menu] {
+    [data-exclude-main] {
+      display: none;
+    }
+  }
+
+  // Get the mobile icons in the correct location with correct color.
+  a {
+    &.hidden-md {
+      display: inline-block;
+      margin-top: 1.125rem;
+
+      svg {
+        color: $cr-gray-light;
+      }
+    }
+
+    &.hidden-md:hover {
+      cursor: pointer;
+    }
+  }
+
+  // Dropdown menu container
+  .dropdown-menu {
+    border-radius: $border-radius-small;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 1.25rem 0;
+    right: 0;
+    top: 2.5rem;
+  }
+
+  // Dropdown menu lists
+  .dropdown-menu ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      a {
+        color: $cr-gray-dark;
+        display: block;
+        padding: 0.1875rem 1.25rem;
+      }
+
+      a:hover {
+        background-color: lighten($cr-gray-lighter, 4);
+        color: $cr-gray-dark;
+        text-decoration: none;
+      }
+    }
+
+    .dropdown-header {
+      color: $cr-gray-dark;
+      font-weight: 700;
+    }
+  }
+
+  // Adds a background color to the featured section.
+  .featured-row:before {
+    @include position(absolute, 0 0 0 0);
+    background: $cr-gray-lighter;
+    content: "";
+    display: block;
+    width: 25%;
+    z-index: -1;
+  }
+
+  // User profile menu
+  .profile-menu {
+    ul {
+      padding: 0.3125rem 0;
+    }
+
+    .img-size-2_25 {
+      @include size(2.25rem, 2.25rem);
+
+      color: $cr-gray-lighter;
+      margin: 0.25rem;
+    }
+  }
+
+  .profile-picture {
+    position: relative;
+
+    .img-circle {
+      @include size(100%, 100%);
+      border-style: solid;
+      border-width: 2px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  .profile-picture-default {
+    background-image: url("//crossroads-media.imgix.net/images/avatar.svg");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .profile-picture-overlay {
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+// Brand / Logo
+.navbar-brand {
+  &.logo {
+    left: 50%;
+    margin-top: 0.25rem;
+    position: absolute;
+    padding-left: 0;
+    transform: translateX(-50%);
+    max-width: 125px;
+
+    @media only screen and (min-width: $screen-md) {
+      left: auto;
+      position: static;
+      transform: none;
+    }
+
+    svg {
+      @include size(10.625rem, 1.5rem);
+      color: $cr-gray-light;
+    }
+  }
+}
+
+// Main nav menu
+.header {
+  .btn.btn-gray {
+    font-size: 16px;
+    @include crds-button-variant(black, $cr-gray-lighter, $cr-gray-lighter);
+  }
+  ul.nav-pills > li {
+    > a > svg {
+      margin-top: 7px;
+      margin-bottom: -4px;
+    }
+
+    &:not(.open) {
+      // When the menu is closed, hovering behavior should take precedence
+      > a:hover:focus:not(.cta) {
+        background-color: $nav-link-hover-bg;
+      }
+
+      // Unopened, focused links have grey bg
+      > a:focus:not(.cta) {
+        background-color: lighten($cr-gray-lighter, 4%);
+      }
+    }
+  }
+  li {
+    position: static;
+
+    &.push-half-right {
+      margin-right: $line-height-computed / 2;
+    }
+
+    > a {
+      // Remove margins from all links in main nav.
+      margin: 0;
+
+      // Links are dark by default, with no bg
+      &:not(.cta) {
+        color: $cr-gray-dark;
+      }
+    }
+
+    > a:hover {
+      // Hover should alway show primary/light combo
+      &:not(.cta) {
+        background-color: $nav-link-hover-bg;
+        color: $cr-white;
+      }
+    }
+
+    &.open {
+      > a,
+      > a:hover,
+      > a:focus {
+        background-color: $nav-link-hover-bg;
+      }
+      // Open links have primary bg and white text
+      > a:not(.cta) {
+        color: $cr-white;
+      }
+    }
+  }
+  .mobile-menu li > a:not(.cta) {
+    color: $cr-gray-light;
+  }
+}
+
+.navbar .mobile-nav-trigger {
+  background: transparent;
+}
+
+.navbar .mobile-nav-trigger.ddk-navbar,
+.navbar .mobile-contrast-trigger {
+  display: block;
+
+  @media (min-width: 1034px) {
+    display: none;
+  }
+}
+
+.navbar .ddk-navbar .desktop-contrast-trigger {
+  display: none;
+
+  @media (min-width: 1034px) {
+    display: block;
+  }
+}
+
+// Mobile menu
+.mobile-menu {
+  position: fixed;
+  top: 0;
+
+  &.modal {
+    overflow: hidden;
+  }
+
+  &:not(.in) {
+    .modal-dialog {
+      -webkit-transform: translate3d(-25vw, 0, 0);
+      transform: translate3d(-25vw, 0, 0);
+    }
+  }
+
+  .modal-dialog {
+    margin: 0;
+    max-width: 80vw;
+  }
+
+  .modal-content {
+    background-color: lighten($cr-gray-darker, 5);
+    border: none;
+    border-radius: 0;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    li {
+      > a {
+        border-bottom: 1px solid lighten($cr-gray-darker, 20);
+        color: $cr-gray-light;
+        display: block;
+        padding: 1rem;
+        position: relative;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: lighten($cr-gray-darker, 10);
+          color: $cr-gray-lighter;
+        }
+
+        &:hover,
+        &:focus {
+          text-decoration: none;
+        }
+
+        svg {
+          @include position(absolute, 50% 1rem null null);
+          transform: translateY(-50%);
+          transition: transform 0.3s ease;
+        }
+      }
+
+      [aria-expanded="true"] {
+        box-shadow: inset -7px 0 9px -7px $cr-gray-alpha;
+
+        svg {
+          transform: rotate(90deg) translateX(-50%);
+        }
+      }
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+
+    &.collapse,
+    &.collapsing {
+      background-color: lighten($cr-gray-darker, 15);
+
+      a:hover {
+        background-color: lighten($cr-gray-darker, 20);
+      }
+    }
+
+    &:not(.collapse) {
+      li {
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+@media (max-width: 1034px) {
+  .navbar-header {
+    float: none;
+  }
+  .navbar-left,
+  .navbar-right {
+    float: none !important;
+  }
+  .navbar-toggle {
+    display: block;
+  }
+  .navbar-collapse {
+    border-top: 1px solid transparent;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  .navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+  }
+  .navbar-collapse.collapse {
+    display: none !important;
+  }
+  .navbar-nav {
+    float: none !important;
+    margin-top: 7.5px;
+  }
+  .navbar-nav > li {
+    float: none;
+  }
+  .navbar-nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .collapse.in {
+    display: block !important;
+  }
+}

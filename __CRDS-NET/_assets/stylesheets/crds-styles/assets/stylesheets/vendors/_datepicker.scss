@@ -1,0 +1,355 @@
+.form-control[readonly] {
+  background: $input-bg;
+
+  .dark-theme & {
+    background: lighten($cr-gray, 40);
+  }
+}
+
+datepicker {
+  $calendar-bg: $cr-white;
+  $calendar-text: $cr-gray;
+  $calendar-border: $cr-gray-lighter;
+  $calendar-active-bg: $cr-teal;
+  $calendar-active-text: $cr-white;
+  $calendar-active-border: $cr-teal;
+  $calendar-disabled-bg: transparent;
+  $calendar-disabled-text: lighten($cr-gray-light, 20);
+  $calendar-hover-bg: $cr-gray-lighter;
+  $calendar-hover-text: $cr-gray;
+  $calendar-hover-border: $cr-gray;
+
+  display: none;
+
+  &.visible {
+    display: block;
+  }
+
+  thead {
+    tr:last-child > th {
+      padding-top: .5em;
+    }
+    th > .btn.btn-sm {
+      font-size: .9rem;
+    }
+    .btn {
+      &.btn-default {
+        background: $calendar-bg;
+        border-color: $calendar-bg;
+        border-radius: 0;
+        color: $calendar-text;
+        width: 100%;
+
+        &.pull-left {
+          border-top-left-radius: $border-radius-base;
+          border-bottom-left-radius: $border-radius-base;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        &.pull-right {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          border-top-right-radius: $border-radius-base;
+          border-bottom-right-radius: $border-radius-base;
+        }
+
+        &:active,
+        &:focus {
+          background: $cr-gray-light;
+          border-color: $cr-gray-light;
+          box-shadow: none;
+          color: $calendar-text;
+
+          &:focus {
+            background: $cr-gray-light;
+            border-color: $cr-gray-light;
+            color: $calendar-text;
+          }
+        }
+
+        &:hover {
+          background: $calendar-hover-bg;
+          border-color: $calendar-hover-bg;
+          color: $calendar-text;
+        }
+      }
+    }
+  }
+
+  .glyphicon {
+    &.glyphicon-chevron-left:before {
+      content: url('//crossroads-media.s3.amazonaws.com/images/chevron-left-black.png');
+    }
+    &.glyphicon-chevron-right:before {
+      content: url('//crossroads-media.s3.amazonaws.com/images/chevron-right-black.png');
+    }
+  }
+
+  tbody {
+    .btn {
+      &.btn-default {
+        background: transparent;
+        border: none;
+        color: $calendar-text;
+        font-size: .9rem;
+
+        &.disabled {
+          background: $calendar-disabled-bg;
+
+          &:active,
+          &:focus {
+            color: $calendar-text;
+
+            &:hover {
+              background: $calendar-hover-bg;
+            }
+          }
+
+          &:hover {
+            background: $calendar-hover-bg;
+          }
+
+          span {
+            &,
+            &:hover {
+              color: $calendar-disabled-text;
+            }
+          }
+        }
+
+        &.active,
+        &:active,
+        &:focus {
+          background: $calendar-active-bg;
+          border-color: $calendar-active-border;
+          box-shadow: none;
+          color: $calendar-active-text;
+
+          &:hover {
+            background: $calendar-active-bg;
+            border-color: $calendar-active-border;
+            color: $calendar-active-text;
+          }
+
+          .text-muted {
+            color: $calendar-active-text;
+          }
+
+          .text-info {
+            &, &.text-muted {
+              color: $calendar-active-text;
+              font-weight: inherit;
+            }
+          }
+        }
+
+        &:hover {
+          background: $calendar-hover-bg;
+          border-color: $calendar-hover-border;
+          color: $calendar-hover-text;
+
+          .text-muted {
+            color: $calendar-hover-text;
+          }
+        }
+
+        .text-muted {
+          color: darken($cr-gray-lighter, 10);
+
+          &:hover {
+            color: $calendar-hover-text;
+          }
+        }
+
+        .text-info {
+          &, &.text-muted {
+            color: $cr-black;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+
+  .well {
+    margin-bottom: 0;
+  }
+
+  .btn {
+    &.btn-sm {
+      font-size: .75rem;
+      padding: 5px 10px;
+    }
+
+    &-info {
+      &.active {
+        background-color: $calendar-active-bg;
+        border-color: $calendar-active-border;
+
+        &:focus {
+          background-color: $calendar-active-bg;
+          border-color: $calendar-active-border;
+        }
+
+        .text-info {
+          color: $calendar-active-text;
+        }
+      }
+    }
+  }
+
+  .btn-default {
+    border-color: $calendar-border;
+
+    &.active {
+      span {
+        color: $calendar-active-text;
+      }
+    }
+  }
+
+  .dark-theme & {
+    $calendar-bg: $cr-black;
+    $calendar-text: $cr-gray;
+    $calendar-border: $cr-gray-darker;
+    $calendar-active-bg: $cr-teal;
+    $calendar-active-text: $cr-white;
+    $calendar-active-border: $cr-teal;
+    $calendar-disabled-text: $cr-gray-dark;
+    $calendar-hover-bg: $calendar-bg;
+    $calendar-hover-text: $cr-gray-dark;
+    $calendar-hover-border: $calendar-border;
+
+    thead {
+      .btn {
+        &.btn-default {
+          background: $calendar-border;
+          border-color: $calendar-border;
+          color: $cr-gray;
+
+          &:active,
+          &:focus,
+          &:hover {
+            background: $calendar-border;
+            border-color: $calendar-border;
+            color: $cr-gray;
+          }
+        }
+      }
+    }
+
+    tbody {
+      .btn {
+        &.btn-default {
+          background: $calendar-bg;
+          border-color: $calendar-border;
+          color: $calendar-text;
+
+          &.disabled {
+            &:active,
+            &:focus {
+              color: $calendar-text;
+
+              &:hover {
+                background: $calendar-hover-bg;
+              }
+            }
+
+            &:hover {
+              background: $calendar-hover-bg;
+            }
+
+            span {
+              &,
+              &:hover {
+                color: $calendar-disabled-text;
+              }
+            }
+          }
+
+          &.active,
+          &:active,
+          &:focus {
+            background: $calendar-active-bg;
+            border-color: $calendar-active-border;
+            box-shadow: none;
+            color: $calendar-active-text;
+
+            &:hover {
+              background: $calendar-active-bg;
+              border-color: $calendar-active-border;
+              color: $calendar-active-text;
+            }
+
+            .text-muted {
+              color: $calendar-active-text;
+            }
+          }
+
+          &:hover {
+            background: $calendar-hover-bg;
+            border-color: $calendar-hover-border;
+            color: $calendar-hover-text;
+          }
+
+          .text-muted {
+            color: darken($cr-gray, 5);
+          }
+
+          .text-info {
+            &, &.text-muted {
+              color: $calendar-active-text;
+              font-weight: inherit;
+            }
+          }
+        }
+      }
+    }
+
+    .well {
+      background: $calendar-bg;
+      border-color: $calendar-bg;
+      box-shadow: none;
+    }
+
+    .btn {
+      &-info {
+        &.active {
+          background-color: $calendar-active-bg;
+          border-color: $calendar-active-border;
+
+          &:focus {
+            background-color: $calendar-active-bg;
+            border-color: $calendar-active-border;
+          }
+
+          .text-info {
+            color: $calendar-active-text;
+          }
+        }
+      }
+    }
+
+    .btn-default {
+      border-color: $calendar-border;
+
+      &.active {
+        span {
+          color: $calendar-active-text;
+        }
+      }
+    }
+
+    .glyphicon {
+      &.glyphicon-chevron-left:before {
+        content: url('//crossroads-media.s3.amazonaws.com/images/chevron-left-white.png');
+        opacity: .25;
+      }
+      &.glyphicon-chevron-right:before {
+        content: url('//crossroads-media.s3.amazonaws.com/images/chevron-right-white.png');
+        opacity: .25;
+      }
+    }
+  }
+}

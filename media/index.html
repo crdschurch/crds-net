@@ -1,0 +1,175 @@
+---
+layout: default
+paginate:
+  recent_media:
+    collections:
+      - articles
+      - messages
+      - episodes
+      - videos
+      - albums
+    per: 12
+    limit: 1
+    sort: published_at desc
+  podcasts:
+    per: 4
+    limit: 1
+  series:
+    per: 4
+    limit: 1
+    sort: starts_at desc
+---
+
+{% assign feature_obj = site.featured_media | where: 'page_path', page.url | first %}
+{% assign managed_features = feature_obj.docs %}
+
+{% assign data = site.data.navigation %}
+{% assign page_url = page.url | split: '/' %}
+
+{% assign jumbotron = site.content_blocks | where: 'slug', 'media-homepage-jumbotron' | first %}
+
+{% assign featured_collections = site.collections | where: 'featured_on_home', true %}
+
+
+<div
+  class="jumbotron jumbotron-media hard-top"
+  data-optimize-bg-img
+  data-hero-image >
+  <div class="header-content container">
+    <div class="row">
+      <div class="col-md-8 col-lg-9 text-left">
+        <div class="description">{{ jumbotron.description | markdownify }}</div>
+        {% include _hubspot-newsletter-form.html %}
+      </div>
+      <div class="col-md-4 col-lg-3 push-top soft-quarter-top text-left">
+        <div class="visible-xs visible-sm border-top border-light-gray"></div>
+        <div class="col-xs-6 col-md-12 hard-left">
+          <h3 class="font-size-small font-family-base-bold text-orange">Explore by topic</h3>
+          <ul class="list-unstyled font-size-small font-family-base">
+            {% for topic in data.topics %} {% assign topic_url = topic.url | split: '/' %}
+            <li>
+              <a href="{{ topic.url }}" class="{% if topic_url == page_url %}active{% endif %}">{{ topic.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="col-xs-6 col-md-12 hard-left">
+          <h3 class="font-size-small font-family-base-bold text-orange">Explore by type</h3>
+          <ul class="list-unstyled font-size-small font-family-base">
+            {% for media in data.media_types %} {% assign media_url = media.url | split: '/' %}
+            <li>
+              <a href="{{ media.url | replace:'(MUSIC_URL)', site.music_url}}" class="{% if media_url == page_url %}active{% endif %}">
+                <svg class="icon icon-small push-quarter-right" viewBox="0 0 256 256">
+                  {% if media.title == "Articles" %}
+                  <use xlink:href="/assets/svgs/icons.svg#media-article"></use>
+                  {% elsif media.title == "Music" or media.title == "Songs" %}
+                  <use xlink:href="/assets/svgs/icons.svg#media-music"></use>
+                  {% elsif media.title == "Videos" or media.title == "Messages" or media.title == "Series" %}
+                  <use xlink:href="/assets/svgs/icons.svg#media-video"></use>
+                  {% elsif media.title == "Podcasts" or media.title == "Episodes" %}
+                  <use xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
+                  {% endif %}</svg>{{ media.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container push-top">
+  <div class="row">
+    <div class="col-md-8 overlap-header">
+      {% if managed_features.size > 0 %}
+        {% assign features = managed_features | slice: 0, 100 %}
+      {% else %}
+        {% assign features = page.recent_media.docs | slice: 0, 4 %}
+      {% endif %}
+
+      {% if features.size > 0 %}
+      <div class="push-bottom">
+        {% for item in features %}
+        <div class="soft-bottom">{% include _overlay-card.html autoplay=true %}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if managed_features.size > 0 %}
+        {% assign recent_media = page.recent_media.docs | slice: 0, 8 %}
+      {% else %}
+        {% assign recent_media = page.recent_media.docs | slice: 4, 8 %}
+      {% endif %}
+
+      {% if recent_media.size > 0 %}
+      <div>
+        <h2 class="collection-header text-gray-light push-bottom">most recent</h2>
+        <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
+          <div class="feature-cards card-deck--expanded-layout">
+            {% for item in recent_media %}
+              {% include _media-card.html autoplay=true carousel=true %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    <div class="col-md-4">
+      {% if featured_collections.size != 0 %}
+      <div class="push-bottom soft-bottom" data-automation-id="featured-collection-section">
+        <h2 class="collection-header push-bottom text-gray-light">collections</h2>
+        {% for featured in featured_collections %}
+        {% include _media-object-featured.html %}
+        {% unless forloop.last %}
+        <hr />
+        {% endunless %}
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if page.series.docs.size != 0 %}
+      <div class="push-bottom soft-bottom" data-automation-id="series-section">
+        <h2 class="collection-header push-bottom text-gray-light">series</h2>
+        {% assign featured = page.series.docs | first %} {% assign unfeatured_series = page.series.docs | slice: 1, 3 %}
+        {% include _media-object-featured.html %}
+        <hr />
+        {% for media in unfeatured_series %}
+        {% include _media-object.html count="6 episodes" media_type="series" %}
+        {% unless forloop.last %}
+        <hr />
+        {% endunless %}
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if site.podcasts.size > 0 %}
+      <div class="push-bottom soft-bottom">
+        <h2 class="collection-header push-bottom text-gray-light">podcasts</h2>
+        {% assign featured = site.ordered_podcasts | first %}
+        {% assign unfeatured_podcasts = site.ordered_podcasts |slice: 1, 3 %}
+        {% include _media-object-featured.html media_type="podcast" %}
+        <hr />
+        {% for media in unfeatured_podcasts %}
+          {% include _media-object.html media_type="podcast" %}
+          {% unless forloop.last %}
+          <hr />
+          {% endunless %}
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div>
+        <h2 class="collection-header push-bottom text-gray-light">by media type</h2>
+        <div class="card-deck">
+          <ul class="list-unstyled font-size-base flush-bottom">
+            <li><a href="/series">Series</a></li>
+            <li><a href="{{ site.music_url }}">Music</a></li>
+            <li><a href="/podcasts">Podcasts</a></li>
+            <li><a href="/articles">Articles</a></li>
+            <li><a href="/videos">Videos</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% javascript_link_tag autoplay %}

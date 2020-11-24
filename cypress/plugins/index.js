@@ -8,9 +8,7 @@
 // https://on.cypress.io/plugins-guide
 // ***********************************************************
 
-// This function is called when a project is opened or re-opened (e.g. due to
-// the project's config changing)
-
+//cypress/plugins/index.js
 const loadConfig = require('crds-cypress-config');
 const { manageBlacklist } = require('./blacklistHosts');
 const { addContentfulTasks } = require('./contentfulTasks');
@@ -20,6 +18,7 @@ const { addContentfulTasks } = require('./contentfulTasks');
 module.exports = (on, config) => {
   return loadConfig.loadConfigFromVault(config)
     .then((newConfig) => {
+
       // Configure blacklisted hosts
       manageBlacklist(newConfig);
 

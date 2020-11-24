@@ -1,23 +1,22 @@
 language: node_js
 node_js:
   - '10'
-dist: trusty #Needed to include Chrome
-addons:
-  chrome: stable
-  apt:
-    packages:
-      - libgconf-2-4
 cache:
   npm: true
   directories:
     - ~/.cache
+addons:
+  chrome: stable
+  apt:
+    packages:
+      - libgconf-2-4 #Needed to run Cypress if not already installed in dist
 install:
     - npm ci
 
 # Integration Test stage
 integrationTests: &integrationTest
   if: env(RUN_CYPRESS) = true
-  script: "npx cypress run --config-file ./cypress/config/${CYPRESS_configFile} --record --key $cypressDashboard --parallel --group crds-net-parallel"
+  script:  "$(npm bin)/cypress run --record --key $cypressDashboard --parallel --group crds-media-parallel --config-file ./cypress/config/int_crossroads.json"
 
 jobs:
   include:
@@ -28,17 +27,13 @@ jobs:
       <<: *integrationTest
     - stage: Integraion Tests
       <<: *integrationTest
-    - stage: Integraion Tests
-      <<: *integrationTest
-    - stage: Integraion Tests
-      <<: *integrationTest
 
 notifications:
   slack:
+    rooms:
+      - crdschurch:iZZLQf36DkUtiv0SqLhlOklj
     template:
       - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{elapsed_time}"
-    rooms:
-      - secure: Rc3E7Qjdhogkd1NUZO1GMDEsSXMvE+ehVexONffQUynB+aXFHLwiBjDAiYYmwbAd3CWNpK1/g5gStvFQPGEvZJJtReHGjPgrNx7kLP1+VkctQsu7AJm1YkrWEdZZgqux57CRYAZfMN6dPfvXs/lFXdE/VKlwpOajjyTKfgXh7GPqQzpavH07exfPib+8Nvvf8FuGlmABjuX5B8t+Z2Qf3PVMDBnNG1WEQcmCzEA5DuCFRDdBH9dc3UNqMLBuxjNpK4tDgyZVYUJmFIkxRVfQwwEqr+I2ma2JnvdCoAn2AxVyoUkaW2OJ8J4Bqcs6mG6xah4HoRNim0U2Qz+HDqgmUjFWWJD+WxWYHJbUDC2EU6vtmtiR6Y294A4RM3l916gMe/rzy9sVWaVjqqSo/RyRQuMuVMFk/ozRnRjPBBHixm4rY+RxUXYMfc63qHzEConxtboc559Loos5dwZ8MFC4eHjbCo7lJag90j9lVpxI+JE8DE5bE4eczU30jsPo/TgRoWWwAiTHGgPxWVfnsbxvC9xASZ0rUSiyzA5Nrc9HRg5H5aoAC9yv3OYxVlcev22f0okGfN504s8QHmKuMfLgrKRXjTO0Ea7MC8pqnR/s6RCwtEY/F8XZgOHwnZHBg4BfMy0BUZhkVsqvaUkltkla0MZBXqXICOTo6KWHLkdmZ6o=
     on_success: always
     on_failure: always
     on_pull_requests: false

@@ -1,13 +1,15 @@
+// import { normalizeText } from 'crds-cypress-contentful';
+
+// /*** Add custom commands that work with elements here ***/
+
+// Cypress.Commands.add('normalizedText', { prevSubject: 'element' }, (subject) => {
+//   return cy.wrap(subject).should('have.prop', 'textContent').then(normalizeText); 
+// });
+
 import { normalizeText } from 'crds-cypress-contentful';
 
-/*** Add custom commands that work with elements here ***/
-
 Cypress.Commands.add('normalizedText', { prevSubject: 'element' }, (subject) => {
-  return cy.wrap(subject).should('have.prop', 'textContent').then(normalizeText);
-});
-
-Cypress.Commands.add('text', { prevSubject: 'element' }, (subject) => {
-  return cy.wrap(subject).should('have.prop', 'textContent');
+  return cy.wrap(subject).should('have.prop', 'textContent').then(elementText => normalizeText(elementText));
 });
 
 /**

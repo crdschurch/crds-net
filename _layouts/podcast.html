@@ -1,0 +1,134 @@
+---
+layout: default
+title: Podcast
+---
+
+{% assign episodes = site.episodes | filter: 'podcast.title', page.title %}
+
+<section class="media-podcast-show">
+  <section class="podcast-hero jumbotron hard-top text-white" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}');" data-optimize-bg-img>
+    <div class="header-content">
+      <div class="container">
+        <div class="mobile-wrapper">
+          <div class="podcast-header-artwork">
+            <img class="feature-img" src="{{ page.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.podcast_thumb }}" data-optimize-img>
+          </div>
+          <div class="podcast-header-text">
+            <ol class="breadcrumb hard-sides hard-top text-white">
+              <li><a href="/">Media</a></li>
+              <li><a href="/podcasts">Podcasts</a></li>
+            </ol>
+
+            <h1 class="font-family-condensed-extra font-size-h1 text-uppercase flush-top push-bottom">{{ page.title }}</h1>
+
+            <hr class="hero">
+            <p class="subtitle white-faded">{{ page.subtitle }}</p>
+
+            {% if page.apple_podcasts_url.size > 1 %}
+            <p class="push-top">
+              <div class="hard-sides">
+                <a href="{{ page.apple_podcasts_url }}" role="button" class="btn btn-white btn-subscribe soft-quarter-ends d-flex justify-content-between">
+                  <div class="d-flex flex-column push-quarter-right align-items-start btn-text">
+                    <span class="text-blue font-size-small push-quarter-bottom">Apple Podcasts</span>
+                    <span class="text-blue font-size-smallest text-uppercase">Subscribe</span>
+                  </div>
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 34">
+                    <defs>
+                      <path id="a" d="M0 0h32v32H0z"/>
+                    </defs>
+                    <g fill="none" fill-rule="evenodd" transform="translate(-3 -2)">
+                      <path fill="#253746" fill-rule="nonzero" d="M18.984 29.673C18.69 30.749 17.58 31 16.5 31s-2.19-.25-2.484-1.327c-.438-1.61-1.177-5.646-1.177-7.523 0-1.991 1.781-2.478 3.661-2.478 1.88 0 3.661.487 3.661 2.478 0 1.866-.736 5.9-1.177 7.523zm-8.89-14.532c0-3.466 2.8-6.28 6.285-6.343 3.544-.065 6.523 2.824 6.528 6.334a6.262 6.262 0 0 1-1.606 4.21.337.337 0 0 0-.028.42c.303.427.514.916.626 1.455a.345.345 0 0 0 .572.182 8.545 8.545 0 0 0 2.724-6.295c-.02-4.765-3.998-8.634-8.81-8.572-4.75.061-8.58 3.892-8.58 8.609a8.545 8.545 0 0 0 2.724 6.257c.196.184.518.08.573-.181a3.84 3.84 0 0 1 .625-1.455.337.337 0 0 0-.027-.42 6.261 6.261 0 0 1-1.607-4.201zM16.528 2C9.087 1.985 3.069 7.873 3 15.241c-.052 5.556 3.32 10.338 8.154 12.404a.342.342 0 0 0 .472-.374 55.317 55.317 0 0 1-.315-1.9.34.34 0 0 0-.177-.25c-3.41-1.845-5.847-5.458-5.847-9.754 0-6.135 5.015-11.101 11.212-11.101 6.196 0 11.212 4.965 11.212 11.101 0 4.227-2.376 7.876-5.847 9.753a.34.34 0 0 0-.177.25c-.094.635-.2 1.27-.315 1.9a.342.342 0 0 0 .472.375C26.642 25.595 30 20.87 30 15.367 30 7.994 23.971 2.015 16.529 2zm-.029 9.062c-2.022 0-3.661 1.623-3.661 3.625 0 2.003 1.64 3.625 3.661 3.625 2.022 0 3.661-1.622 3.661-3.625 0-2.002-1.64-3.625-3.661-3.625z" mask="url(#b)"/>
+                    </g>
+                  </svg>
+                </a>
+              </div>
+            </p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container content">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div>{{ page.description | markdownify }}</div>
+        {% for author_obj in page.author %}
+          {% assign author = site.authors | where: 'full_name', author_obj.full_name | first %}
+          {% if author %}
+            {% if forloop.first %}<p class="push-ends">Hosted by {% endif %}
+              <a href="{{ author.url }}">{{ author.full_name | titleize }}</a> {% if forloop.last == false %} and {% endif %}
+            {% if forloop.last %}</p>{% endif %}
+          {% endif %}
+        {% endfor%}
+      </div>
+    </div>
+    <div class="row push-bottom soft-half-bottom">
+      <div class="col-sm-8 col-sm-offset-2">
+        {% include _social-share.html %}
+      </div>
+    </div>
+    {% if episodes.size > 0 %}
+    <div class="row soft-bottom push-bottom">
+      <div class="col-sm-8 col-sm-offset-2">
+        <h2 class="component-header">Episodes</h2>
+        <!-- Tabs -->
+        <!-- Nav tabs -->
+        <div>
+          <ul class="nav nav-tabs" role="tablist">
+            {% assign season_numbers = episodes | sort: 'season_number' | map: 'season_number' | uniq | reverse %}
+            {% for season_number in season_numbers %}
+              <li role="presentation" {% if forloop.first %}class="active"{% endif %}>
+                <a href="#season-{{ season_number }}" aria-controls="description" role="tab" data-toggle="tab">
+                  Season {{ season_number }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <!-- Tab Panes -->
+        <div class="tab-content">
+          {% assign groups = episodes | sort: 'season_number' | reverse | group_by: 'season_number' %}
+
+          {% for group in groups %}
+            {% assign season_number = group.items | map: 'season_number' | first %}
+            <div role="tabpanel" class="tab-pane {% if forloop.first %}active{% endif %}" id="season-{{ season_number }}">
+
+              {% assign episodes = group.items | sort: 'episode_number' | reverse %}
+              {% for episode in episodes %}
+                <div class="push-top">
+                  <a href="{{ episode.url }}">
+                    <h3 class="list-title text-capitalize push-quarter-bottom">Episode {{ episode.episode_number }}: {{ episode.title }}</h3>
+                  </a>
+
+                  <p class="metadata push-quarter-bottom">{{ episode.date | format_date }}
+                    {% if episode.date != nil and episode.duration != nil %}
+                    <span class="divider">•</span>
+                    {% endif %}
+                    {% if episode.duration %}
+                      {% include _read-time.html duration=episode.duration content_type='episode' %}
+                    {% endif %}
+                  </p>
+
+                  {% if episode.content != blank %}
+                  <p class="episode-description">{{ episode.content | strip_html | truncatewords: 35 }}</p>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+
+          {% else %}
+
+            <p class="font-family-base soft-ends push-bottom">Sorry we don't have any episodes here yet. Please check back soon!</p>
+
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% include _subscribe-buttons.html content_type=page youtube=false %}
+
+  </div>
+</section>

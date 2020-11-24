@@ -1,0 +1,144 @@
+// 1. Default tabs
+// 2. Vertical tabs
+
+// 1. Default tabs (horizontal tabs)
+.nav-tabs {
+  li {
+    margin-right: 0.5rem;
+
+    @media screen and (min-width: $screen-xs) {
+      margin-right: 1.5rem;
+    }
+
+    &.active {
+      border-bottom: 3px solid $cr-orange;
+
+      > a,
+      > a:hover,
+      > a:focus {
+        border: 0;
+      }
+    }
+
+    > a,
+    > a:hover,
+    > a:focus {
+      border: 0;
+      /* stylelint-disable */
+      background-color: transparent !important;
+      /* stylelint-enable */
+      color: $cr-gray;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    > a:hover {
+      color: $cr-gray-dark;
+    }
+  }
+}
+
+// 2. Vertical tabs (sidebar navigation)
+.sidebar-nav,
+.sidebar-subnav {
+  background-color: #F4F4F4;
+  list-style-type: none;
+  margin: 0 0 0.5rem;
+  padding: 0;
+}
+
+.sidebar-nav {
+  @media screen and (min-width: $screen-md) {
+    background-color: transparent;
+    display: block;
+    /* stylelint-disable declaration-no-important */
+    // Forces override of collapse, which we don't want on larger screens.
+    height: auto !important;
+    /* stylelint-enable declaration-no-important */
+  }
+}
+
+.sidebar-nav-item,
+.sidebar-subnav-item {
+  margin-bottom: 0.25rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.sidebar-nav-link,
+.sidebar-nav-trigger,
+.sidebar-subnav-link {
+  border-left: 0.1875rem solid transparent;
+  color: $cr-gray-light;
+  display: inline-block;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  padding: 0.25rem 0.75rem;
+
+  &:active,
+  &:hover {
+    border-left-color: $cr-gray-lighter;
+    color: $cr-gray;
+    text-decoration: none;
+  }
+
+  &:focus {
+    color: $cr-gray-light;
+    text-decoration: none;
+  }
+
+  &.active {
+    border-left-color: $cr-orange;
+    color: $cr-gray;
+  }
+
+  svg.icon {
+    display: inline-block;
+    height: 0.75rem;
+    margin-left: 0.5rem;
+    width: 0.75rem;
+    transition: transform 0.35s ease;
+  }
+
+  &[aria-expanded=true] svg.icon {
+    transform: rotate(180deg);
+  }
+}
+
+.sidebar-subnav {
+  background-color: transparent;
+  margin: 0.5rem 0 0;
+}
+
+.sidebar-subnav-link {
+  padding-left: 1.5rem;
+}
+
+.sidebar-nav-trigger {
+  background-color: $cr-white;
+  border: 1px solid #CACACA;
+  display: block;
+  line-height: 1;
+  padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
+  text-align: left;
+  width: 100%;
+
+  @media screen and (min-width: $screen-md) {
+    display: none;
+  }
+
+  &.active,
+  &:active,
+  &:focus,
+  &:hover {
+    border: 1px solid #CACACA;
+  }
+
+  svg.icon {
+    float: right;
+    margin-top: 0.125rem;
+  }
+}

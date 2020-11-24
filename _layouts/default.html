@@ -1,40 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-{% include _head.html %}
+<html dir="ltr" lang="en-US">
+  {% include _head.html %}
+  <body{% if page.path == 'preview.html' %} class="preview"{% endif %}>
+    {% include _gtm_noscript.html %}
+    {% include _facebook_noscript.html %}
 
-<body class="crds-styles relative">
-  {% include _gtm-body.html %}
-  {% include _monetate-body.html %}
-  <script>
-    var CRDS = {
-      media: {
-        cms: '{{ site.shared_header.cms }}',
-        app: '{{ site.shared_header.app }}',
-        img: '{{ site.shared_header.img }}',
-        prefix: '{{ site.shared_header.prefix }}'
-      },
-      env: {
-        environment: '{{ site.jekyll_env }}',
-        "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}',
-        "streamScheduleEndpoint": '{{ site.stream_schedule_endpoint }}',
-        "bitmovinPlayerLicense": '{{ site.bitmovin_player_license }}',
-        "bitmovinAnalyticsLicense": '{{ site.bitmovin_analytics_license }}',
-        "okta_client_id": '{{ site.okta_client_id }}',
-        "okta_oauth_base_url": '{{ site.okta_oauth_base_url }}'
-      }
-    };
+    {% include header.html %}
+    <div style="margin-bottom: 120px;">
+      {{ content }}
+    </div>
+    {% include footer.html %}
+    {% include _subscribe-modal.html %}
+    {% if page.preloader %}{% include _preloader.html %}{% endif %}
 
-    var envReady = new Event('env-ready');
-    document.dispatchEvent(envReady);
-    window.envReady = true;
-
-  </script>
-  {% javascript_link_tag application %}
-  {% javascript_link_tag application_deferred async %}
-  {{ content }}
-  {% if page.title == "Atrium Events" %}
-  {% javascript_link_tag events async %}
-  {% endif %}
-</body>
-
+    {% include _footer-script.html %}
+  </body>
 </html>

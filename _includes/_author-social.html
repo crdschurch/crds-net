@@ -1,0 +1,32 @@
+{% if author.facebook_link or author.instagram_link or author.twitter_link or author.youtube_link %}
+    <div class="social-container">
+      {% if author.instagram_link %}
+      <a class="social-btn" href="{{ author.instagram_link }}" >
+        <svg class="social-icon" viewBox="0 0 256 256">
+          <use class="icon-color" xlink:href="/assets/svgs/icons.svg#instagram"></use>
+        </svg>
+      </a>
+      {% endif %}
+      {% if author.facebook_link %}
+         <a class="social-btn" href="{{ author.facebook_link }}">
+        <svg class="social-icon" viewBox="0 0 256 256">
+          <use class="icon-color" xlink:href="/assets/svgs/icons.svg#facebook"></use>
+        </svg>
+      </a>
+      {% endif %}
+      {% if author.twitter_link %}
+          <a class="social-btn"  href=" {{ author.twitter_link }}">
+        <svg class="social-icon" viewBox="0 0 256 256">
+          <use class="icon-color" xlink:href="/assets/svgs/icons.svg#twitter"></use>
+        </svg>
+      </a>
+      {% endif %}
+      {% if author.youtube_link %}
+          <a class="social-btn"  href="{{ author.youtube_link }}">
+        <svg class="social-icon" viewBox="0 0 256 256">
+          <use class="icon-color" xlink:href="/assets/svgs/icons.svg#youtube"></use>
+        </svg>
+      </a>
+      {% endif %}
+     </div>
+{% endif %}

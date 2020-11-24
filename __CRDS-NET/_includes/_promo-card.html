@@ -1,0 +1,33 @@
+{% assign targets = item.target_audience | join: ',' %}
+
+<div class="card" data-filter="{{ targets }}">  
+  {% if item.link_url %}
+    <a href="{{ item.link_url }}" class="block">
+      <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" 
+        sizes="{{ site.image_sizes.cards_4x }}"
+        alt="{{ item.title }}"
+        data-optimize-img>
+    </a>
+  {% else %}
+    <div class="block">
+      <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" 
+        sizes="{{ site.image_sizes.cards_4x }}"
+        alt="{{ item.title }}"
+        data-optimize-img>
+    </div>
+  {% endif %}
+  <div class="card-block">
+    <h4 class="card-title card-title--overlap text-uppercase">
+      {% if item.link_url %}
+        <a href="{{ item.link_url }}">
+          {{ item.title }}
+        </a>
+      {% else %}
+        {{ item.title }}
+      {% endif %}
+    </h4>
+    <div class="card-text">
+      {{ item.description | markdownify }}
+    </div>
+  </div>
+</div>

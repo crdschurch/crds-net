@@ -1,0 +1,12 @@
+<script src="https://chat-assets.frontapp.com/v1/chat.bundle.js"></script>
+<script src="{{ site.ENV.MEDIA_SNIPPETS_URL }}"></script>
+<script>
+  FrontChat('init', {
+    chatId: '568c917f86371b8d22261f6c734e0e74',
+    useDefaultLauncher: false,
+  });
+</script>
+{% include _monetate-body.html %}
+
+{% javascript_link_tag page.js_manifest %}
+

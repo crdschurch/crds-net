@@ -1,0 +1,63 @@
+---
+layout: default
+---
+
+{% assign author = site.authors | where: 'full_name', page.title | first %}
+
+<div class="container">
+  {% include _author-bio.html %}
+
+  <!-- Articles -->
+  {% assign articles = site.articles | filter: 'author.full_name', author.full_name | reverse %}
+
+  {% if articles.size > 0 %}
+    <div class="push-ends">
+      <h2 class="page-header font-size-h2 flush-top">Articles</h2>
+    </div>
+    <div data-card-deck class="card-deck">
+      <div class="cards-4x">
+        <div class="row">
+          {% for post in articles %}
+            {% include _article-card.html post=post %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Podcasts -->
+  {% assign podcasts = site.podcasts | filter: 'author.full_name', author.full_name | reverse %}
+
+  {% if podcasts.size > 0 %}
+    <div id="podcasts" class="push-ends">
+      <h2 class="page-header font-size-h2 flush-top">Podcasts</h2>
+    </div>
+    <div data-card-deck class="card-deck">
+      <div class="cards-4x">
+        <div class="row">
+          {% for podcast in podcasts %}
+            {% include _podcast-card.html %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Videos -->
+  {% assign videos = site.videos | filter: 'author.full_name', author.full_name | reverse %}
+
+  {% if videos.size > 0 %}
+    <div class="push-ends">
+      <h2 class="page-header font-size-h2 flush-top">Videos</h2>
+    </div>
+    <div data-card-deck class="card-deck">
+      <div class="cards-4x">
+        <div class="row">
+          {% for video in videos %}
+            {% include _video-card.html %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>

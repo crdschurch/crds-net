@@ -1,0 +1,30 @@
+{% assign page_url = page.url | remove: '/index.html' %}
+
+<div class="push-bottom">
+  <button class="sidebar-nav-trigger" data-toggle="collapse" data-target="#sidebar-nav">
+    {{ include.label }}
+    <svg class="icon icon-1" viewBox="0 0 256 256">
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#chevron-down-thin"></use>
+    </svg>
+  </button>
+
+  <ul class="sidebar-nav collapse" id="sidebar-nav">
+    <li class="sidebar-nav-item">
+      <a class="sidebar-nav-link {% if page_url == '/videos/' %}active{% endif %}" href="/videos">
+        Recent
+      </a>
+    </li>
+    <li class="sidebar-nav-item">
+      <a class="sidebar-nav-link {% if page_url == '/videos/tags/most-watched/' %}active{% endif %}" href="/videos/tags/most-watched">
+        Most Watched
+      </a>
+    </li>
+    {% for tag in site.video_tags %}
+      <li class="sidebar-nav-item">
+        <a class="sidebar-nav-link {% if page_url == tag.url %}active{% endif %}" href="{{ tag.url }}">
+          {{ tag.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

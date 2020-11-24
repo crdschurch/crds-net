@@ -22,28 +22,11 @@
       <path class="logo-mark" d="m99.1 28.6-24.7-24.7-22.9 22.9-22.8-22.9-24.7 24.7 22.9 22.9-22.9 22.8 24.7 24.7 22.9-22.9 22.8 22.9 24.7-24.7-22.9-22.9zm-11.4 45.7-13.3 13.3-17.2-17.1 13.3-13.3zm-30.5-41.9 17.2-17.2 13.3 13.3-17.1 17.2zm-19 19-22.8-22.8 13.3-13.3 36.2 36.2-36.2 36.1-13.3-13.3z"/>
     </svg>
   </div>
-  <crds-shared-header
-    src="{{ site.data_host }}/shared-header/{{ site.data_file }}"{% if site.components_root_url %} root-url="{{ site.components_root_url }}"{% endif %}
-    notification-message="{% if page.notification.message %}
-      {{ page.notification.message }}
-    {% endif %}"
-    notification-starts-at="{% if page.notification.startsAt %}
-      {{ page.notification.startsAt }}
-    {% endif %}"
-    notification-ends-at="{% if page.notification.endsAt %}
-      {{ page.notification.endsAt }}
-    {% endif %}"
-    notification-display-to="{% if page.notification.displayTo %}
-      {{ page.notification.displayTo }}
-    {% endif %}"
-  ></crds-shared-header>
+  <crds-shared-header src="{{ site.data_host }}/shared-header/{{ site.data_file }}"{% if site.components_root_url %} root-url="{{ site.components_root_url }}"{% endif %}></crds-shared-header>
 </div>
-{% if page.snail_trail != "disabled" %}
-  <div class="snail-trail-skeleton">
-    {% if page.snail_trail  %}
-    <crds-snail-trail src="{{ site.data_host }}/snail-trails/{{ page.snail_trail }}/{{ site.data_file }}"></crds-snail-trail>
-    {% else %}
-    <crds-snail-trail src="{{ site.data_host }}/snail-trails/trending/{{ site.data_file }}"></crds-snail-trail>
-    {%endif%}
-  </div>
-{% endif %}
+
+<div class="snail-trail-skeleton">
+  <crds-snail-trail src="{{ site.data_host }}/snail-trails/media/{{ site.data_file }}"></crds-snail-trail>
+</div>
+
+<div class="alert alert-success text-center" data-role="alert" style="z-index: 1; display: none;"><strong>Thanks!</strong> Check your inbox for our newest content.</div>

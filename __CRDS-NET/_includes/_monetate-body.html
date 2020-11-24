@@ -1,0 +1,6 @@
+<!-- send data to Monetate -->
+{% if page.monetate_page_type %}
+<script>
+  window.monetateQ.push(["trackData"]);
+</script>
+{% endif %}

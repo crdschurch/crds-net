@@ -1,0 +1,43 @@
+---
+layout: default_footer_flush
+---
+
+<div class="perspective-tpl">
+  {% include _perspective_header.html %}
+
+  <main class="container">
+    <div class="row">
+      <div class="featured-article">
+        <article>
+          <header>
+            <h1 class="title">{{ page.title }}</h1>
+            <time class="published">{{ page.published_at | date: '%b %-d' }}</time>
+          </header>
+          <div class="content">
+            {{ page.body | markdownify }}
+          </div>
+          <footer>
+            {% include _social-share.html %}
+            {% if page.author %}
+              {% assign author = page.author | get_doc %}
+              <address>Written by <a href="{{ author.url }}">{{ author.full_name }}</a></address>
+            {% endif %}
+          </footer>
+        </article>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="related-articles">
+        {% assign perspectives = site.perspectives | sort: 'published_at' | reverse | exclude: page.title | slice: 0, 4 %}
+        {% for perspective in perspectives %}
+          {% include _perspective.html perspective=perspective %}
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-btn">
+    <a href="/perspectives" role="button">See more perspectives</a>
+  </footer>
+</div>

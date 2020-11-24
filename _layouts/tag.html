@@ -1,0 +1,55 @@
+---
+layout: default
+paginate:
+  tagged_media:
+    collections:
+      - articles
+      - episodes
+      - messages
+      - videos
+    per: 80
+    offset: 4
+    sort: date desc
+    where:
+      tags.slug: :slug
+---
+
+<div class="container">
+  <ol class="breadcrumb text-orange hard-sides hard-bottom push-top">
+    <li><a href="/">Media</a></li>
+  </ol>
+
+  <h1 class="font-family-condensed-extra text-uppercase flush-top push-bottom">
+    {{ page.title }}
+  </h1>
+
+  <div class="row">
+    {% for item in page.tagged_media.offset %}
+      <div class="col-md-6">
+        {% include _overlay-card.html autoplay=true %}
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if page.tagged_media.docs.size > 0 %}
+    <h2 class="collection-header text-gray-light text-lowercase push-bottom">
+      more related to {{ page.title }}
+    </h2>
+
+    <div class="cards-4x" data-page="tagged_media">
+      <div class="row" data-page-number="{{ page.tagged_media.page }}">
+        {% for item in page.tagged_media.docs %}
+          {% include _media-card.html autoplay=true %}
+        {% endfor %}
+      </div>
+      <div class="loading hide">
+        {% include _preloader.html %}
+      </div>
+    </div>
+
+    <div class="push-top">
+      {% assign link_root = "tags/" | append: page.slug %}
+      {% include _pagination.html collection="tagged_media" remote=true label="" %}
+    </div>
+  {% endif %}
+</div>

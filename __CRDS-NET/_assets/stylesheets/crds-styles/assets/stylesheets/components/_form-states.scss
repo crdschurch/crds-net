@@ -1,0 +1,198 @@
+// Focus states
+.form-group {
+  input,
+  textarea {
+    &,
+    &.ng-touched.ng-invalid,
+    .dark-theme & {
+      &:focus {
+        border-color: $input-border-focus;
+        box-shadow: inset 0 0 0 1px rgba($input-border-focus, 0.5);
+      }
+    }
+  }
+}
+
+.form-control {
+  &:focus {
+    border-color: $input-border-focus;
+    box-shadow: inset 0 0 0 1px rgba($input-border-focus, 0.5);
+  }
+  &[disabled] {
+    color: $cr-gray-light;
+    background-color: lighten($input-color-placeholder, 25);
+    border: solid 1px lighten($input-color-placeholder, 25);
+    .dark-theme & {
+      background-color: $cr-gray-dark;
+      border: solid 1px $cr-gray-dark;
+    }
+  }
+  &[readonly] {
+    color: $cr-gray-light;
+    background-color: $cr-white;
+    border: solid 1px $cr-gray-lighter;
+    .dark-theme & {
+      background-color: $cr-black;
+      border: solid 1px $cr-gray;
+    }
+  }
+}
+
+.checkbox {
+  input[type='checkbox'] {
+    &,
+    .dark-theme & {
+      &:focus {
+        background: $input-bg-focus;
+        border-color: $input-border-focus;
+        border-radius: $input-border-radius;
+        box-shadow: inset 0 0 0 2px rgba($input-border-focus, 0.5);
+      }
+    }
+  }
+}
+
+.radio {
+  .check {
+    &,
+    .dark-theme & {
+      &:focus {
+        box-shadow: 0 0 0 2px $input-border-focus;
+      }
+    }
+  }
+
+  &.disabled {
+    .check {
+      &:focus,
+      .dark-theme & {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+select {
+  &.form-control {
+    &,
+    .dark-theme & {
+      &:focus {
+        border-color: $input-border-focus;
+        box-shadow: inset 0 0 0 1px rgba($input-border-focus, 0.5);
+      }
+    }
+  }
+}
+
+// Validation states
+.form-control {
+  &,
+  .dark-theme & {
+    &.ng-touched {
+      &.ng-invalid,
+      &.ng-valid {
+        border-style: solid;
+        border-width: 1px;
+      }
+
+      &.ng-invalid {
+        border-color: $alert-danger;
+      }
+
+      &.ng-invalid:focus {
+        border-color: $alert-danger;
+        box-shadow: inset 0 0 0 1px rgba($alert-danger, 0.5);
+      }
+
+      &.ng-valid {
+        border-color: $alert-success;
+      }
+
+      &.ng-valid:focus {
+        border-color: $alert-success;
+        box-shadow: inset 0 0 0 1px rgba($alert-success, 0.5);
+      }
+    }
+  }
+}
+
+.error {
+  &.help-block {
+    color: $alert-danger;
+    text-align: left;
+
+    > p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      text-align: center;
+    }
+  }
+}
+
+.searchbar {
+  .form-control {
+    &.ng-touched {
+      &.ng-invalid,
+      &.ng-valid {
+        border-style: solid;
+        border-width: 1px;
+      }
+
+      &.ng-invalid {
+        border-color: $input-border;
+      }
+
+      &.ng-invalid:focus {
+        border-color: $input-border-focus;
+        box-shadow: inset 0 0 0 1px rgba($input-border-focus, 0.5);
+      }
+
+      &.ng-valid {
+        border-color: $input-border;
+      }
+
+      &.ng-valid:focus {
+        border-color: $input-border-focus;
+        box-shadow: inset 0 0 0 1px rgba($input-border-focus, 0.5);
+      }
+    }
+  }
+}
+
+// Error states for embedded form.io form inputs
+
+#formio .form-group {
+  &.alert-danger,
+  &.has-error {
+    padding: 0;
+    margin-bottom: 15px;
+    font-style: normal;
+    font-family: $base-font-face;
+    font-size: $base-font-size;
+    border: 0px;
+    line-height: $line-height-base;
+    background: transparent;
+
+    label {
+      color: $cr-gray-dark;
+    }
+
+    .form-control {
+      border-color: $alert-danger;
+      color: $cr-gray-dark;
+
+      &:focus {
+        border-color: $alert-danger;
+        box-shadow: inset 0 0 0 1px rgba($alert-danger, 0.5);
+      }
+    }
+
+    .help-block {
+      color: $alert-danger;
+    }
+  }
+}

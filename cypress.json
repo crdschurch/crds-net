@@ -1,5 +1,6 @@
 {
-  "projectId": "dnbm5t",
+  "projectId": "k8zvaf",
+  "baseUrl": "https://int.crossroads.net/media",
   "testFiles": "**/*spec.js",
   "video": false
 }

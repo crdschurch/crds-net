@@ -14,6 +14,10 @@
       error
     {% endif %}
 
+    {% if item.content_type == "article" or "video" %}
+    <div class="beige-overlay"></div>
+    {% endif %}
+
     {% assign image = item.image.url %}
 
     {% if item.content_type == 'episode' %}
@@ -22,6 +26,7 @@
     {% if image == blank %}
       {% assign image = item.bg_image.url %}
     {% endif %}
+    {% assign recommended_collection=site.messages %}
     {% include _video-player-card.html %}
     {% if image %}
       <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
@@ -31,7 +36,7 @@
   </a>
   <div class="card-block hard soft-quarter-top">
     {% assign topic =item.category | get_doc %}
-    <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ topic.url }}">
+    <a class="text-orange-dark font-size-smaller font-family-base-mid text-uppercase" href="{{ topic.url }}">
       {{ topic.title }}
     </a>
     <h3 class="component-header flush">

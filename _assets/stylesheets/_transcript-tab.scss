@@ -1,0 +1,28 @@
+.transcript-tab {
+  background-color: #e7e7e7;
+  border: none;
+  height: 300px;
+  overflow: scroll;
+  padding: 10px 20px 10px 10px;
+  width: 100%;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: flex;
+      align-content: flex-start;
+      margin-bottom: 0.25em;
+
+      div {
+        &:first-child {
+          width: 20%;
+        }
+        &:last-child {
+          width: 80%;
+        }
+      }
+    }
+  }
+}

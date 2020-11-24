@@ -1,0 +1,463 @@
+/* Table of contents:
+** 1. Font-face utility classes
+** 2. Font-size utility classes
+** 3. Typesetting
+** 4. Body content
+** 5. Links
+** 6. Address
+** 7. Blockquote
+** 8. Lists
+** 9. Misc.
+*/
+
+/* 1. Font-face utility classes */
+.font-family-base {
+  font-family: $base-font-face !important;
+  font-weight: 300 !important;
+}
+
+.font-family-base-light {
+  font-family: $base-font-face !important;
+  font-weight: 100 !important;
+}
+
+.font-family-base-bold {
+  font-family: $base-font-face !important;
+  font-weight: 600 !important;
+}
+
+.font-family-base-black {
+  font-family: $base-font-face !important;
+  font-weight: 800 !important;
+}
+
+.font-family-condensed {
+  font-family: $condensed-font-face !important;
+  font-weight: 600 !important;
+}
+
+.font-family-condensed-extra {
+  font-family: $condensed-extra-font-face !important;
+  font-weight: 500 !important;
+}
+
+.font-family-accent {
+  font-family: $accent-font-face !important;
+  font-style: italic !important;
+  font-weight: 300 !important;
+}
+
+.font-family-serif {
+  font-family: $serif-font-face !important;
+  font-weight: 400 !important;
+}
+
+.font-family-serif-italic {
+  font-family: $serif-italic-font-face !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+}
+
+/* 2. Font-size utility classes */
+.font-size-h1 {
+  font-size: $font-size-h1 !important;
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: $font-size-h1 * 1.45 !important; // 64px
+  }
+}
+
+.font-size-h2 {
+  font-size: $font-size-h2 !important;
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: $font-size-h2 * 1.35 !important; // 54px
+  }
+}
+
+.font-size-h3 {
+  font-size: $font-size-h3 !important;
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: $font-size-h2 !important; // 40px
+  }
+}
+
+.font-size-h4 {
+  font-size: $font-size-h4 !important;
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: $font-size-h4 * 1.15 !important; // 24px
+  }
+}
+
+.font-size-h5 {
+  font-size: $font-size-h5 !important;
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: $font-size-h5 * 1.25 !important; // 34px
+  }
+}
+
+.font-size-h6 {
+  font-size: $font-size-h6 !important;
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: $font-size-h6 * 1.15 !important; // 22px
+  }
+}
+
+.font-size-large {
+  font-size: $font-size-large !important; // 19px
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: ceil($font-size-large * 1.15) !important; // 22px
+  }
+}
+
+.font-size-base {
+  font-size: $font-size-base !important; // 16px
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: $font-size-large !important; // 19px
+  }
+}
+
+.font-size-small {
+  font-size: $font-size-small !important; // 14px
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: $font-size-base !important; // 16px
+  }
+}
+
+.font-size-smaller {
+  font-size: $font-size-small !important; // 14px
+}
+
+.font-size-smallest {
+  font-size: 10px;
+}
+
+/* 3. Typesetting */
+.page-header {
+  font-family: $base-font-face;
+  font-size: $font-size-h1;
+  font-weight: 100;
+  word-wrap: break-word;
+
+  .dark-theme & {
+    border-color: $cr-gray-dark;
+  }
+
+  @media (min-width: $screen-xs) {
+    font-size: $font-size-h1 * 1.45;
+  }
+}
+
+.section-header {
+  color: $cr-gray-dark;
+  font-family: $condensed-extra-font-face;
+  font-size: $font-size-h2; // 40px
+  font-weight: 500;
+  line-height: 1;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: 3.4375rem; // 55px
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.component-header-box {
+  border: 3px solid;
+  border-color: currentColor;
+  display: inline-block;
+  font-family: $condensed-extra-font-face;
+  font-size: $font-size-h1;
+  font-weight: bold;
+  letter-spacing: 4px;
+  padding: 25px 15px 30px;
+  text-align: center;
+  text-transform: uppercase;
+
+  @media screen and (min-width: $screen-xs) {
+    padding: 25px 50px 30px;
+  }
+
+  &.component-header-box-border-lg {
+    border-width: 6px;
+  }
+}
+
+.title {
+  font-family: $base-font-face;
+  font-weight: 100;
+  font-size: $font-size-h3; // 32px
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: $font-size-h2; // 40px
+  }
+}
+
+.control-label {
+  color: $cr-gray;
+  font-size: $font-size-smaller; // 12px
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.collection-header {
+  border-top: 1px solid rgba($cr-gray-light, 0.35);
+  color: $cr-gray;
+  font-family: $base-font-face;
+  font-size: 1.3125rem; // 21px
+  font-weight: 300;
+  padding-top: 0.65em;
+
+  .dark-theme & {
+    border-color: $cr-gray-dark;
+  }
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: 1.5rem; // 24px
+  }
+}
+
+.component-header {
+  font-family: $condensed-extra-font-face;
+  font-size: $font-size-h3; // 32px
+  font-weight: 500;
+  text-transform: uppercase;
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: 2.125rem; // 34px
+  }
+}
+
+.list-header {
+  font-family: $condensed-extra-font-face;
+  font-size: 1.5rem; // 24px
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* 4. Body content */
+main,
+.main {
+  font-size: $font-size-base; // 16px
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: $font-size-large; // 19px
+  }
+}
+
+.lead {
+  font-size: 1.5rem; // 24px
+  line-height: 1.5;
+}
+
+.quiet {
+  font-size: 0.875rem; // 14px
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: 1rem; // 16px
+  }
+}
+
+.metadata {
+  font-size: $font-size-smaller; // 12px
+  text-transform: uppercase;
+  font-weight: 500;
+  color: $text-muted;
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: 0.9375rem; // 15px
+  }
+}
+
+.subtitle {
+  font-family: $base-font-face;
+  font-weight: 500;
+  font-size: $font-size-base; // 16px
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: 1.3125rem; // 21px
+  }
+}
+
+.tagline {
+  font-family: $accent-font-face;
+  font-style: italic;
+  font-size: $font-size-small; // 14px
+  color: $text-muted;
+
+  @media screen and (min-width: $screen-xs) {
+    font-size: $font-size-base; // 16px
+  }
+}
+
+/* 5. Links */
+a {
+  &.secondary {
+    color: $cr-gray;
+
+    &:hover {
+      color: $cr-gray-dark;
+    }
+  }
+
+  &.text-cyan-light {
+    &:hover,
+    &:focus {
+      color: $cr-cyan-lighter;
+    }
+  }
+}
+
+/* 6. Address */
+address {
+  background: $cr-gray-lighter;
+  font-size: $font-size-base; // 16px
+  padding: 1.25rem 1rem;
+
+  strong {
+    font-size: $font-size-large; // 19px
+  }
+}
+
+/* 7. Blockquote */
+blockquote {
+  border-left: 0;
+  color: $cr-gray;
+  font-style: italic;
+  line-height: 1.5;
+  padding: 12px 15px;
+  padding-top: 4rem;
+  position: relative;
+
+  &:before {
+    content: "\201C"; // left double quotation mark
+    color: $cr-gray-lighter;
+    font-family: $accent-font-face;
+    font-size: 100px;
+    font-style: italic;
+    left: 0;
+    line-height: 1;
+    position: absolute;
+    top: 0;
+  }
+
+  @media screen and (min-width: $screen-xs) {
+    padding-left: 6.5rem;
+    padding-top: 12px;
+
+    &:before {
+      font-size: 144px;
+    }
+  }
+
+  footer {
+    font-size: 1rem;
+    font-style: normal;
+    line-height: 1.75;
+
+    &:before {
+      content: "\2013 \00A0"; // ndash and space
+    }
+  }
+}
+
+/* 8. Lists */
+ol,
+ul {
+  &.crds-list {
+    font-size: $font-size-large; // 19px
+
+    li {
+      margin-bottom: 1em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+dl.crds-list {
+  font-size: $font-size-large; // 19px
+
+  dt {
+    font-family: $condensed-extra-font-face;
+    font-size: 1.5rem; // 24px
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin-bottom: 1em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* 9. Misc */
+
+.number-box {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: $font-size-large;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+}
+
+.text-muted {
+  color: $text-muted;
+
+  .dark-theme & {
+    color: $cr-gray-dark;
+  }
+}
+
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+
+.text-capitalize {
+  text-transform: capitalize !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-justify {
+  text-align: justify !important;
+}
+
+.text-nowrap {
+  white-space: nowrap !important;
+}
+
+.text-italic {
+  font-style: italic !important;
+}
