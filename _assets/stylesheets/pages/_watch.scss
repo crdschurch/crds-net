@@ -1,0 +1,30 @@
+.bg-tan-light-35 {
+  background-color: rgba($cr-tan-light, 0.35);
+}
+
+.btn-streaming-img {
+  align-items: center;
+  display: inline-flex !important;
+  height: 60px;
+  justify-content: center;
+  max-width: 185px;
+  width: 100%;
+}
+
+.btn-streaming-group {
+  display: flex;
+  justify-content: center;
+
+  .btn-streaming-img {
+    &:first-child{
+      margin-right: 15px;
+    }
+  }
+}
+
+.flex-md-row-align-center {
+  @media (min-width: $screen-md) {
+    align-items: center;
+    display: flex;
+  }
+}

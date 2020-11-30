@@ -1,25 +1,16 @@
+// start crds-styles
+$icon-font-path: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/";
+@function twbs-font-path($path) {
+  @return $path;
+}
+
 @import 'crds-styles/assets/stylesheets/crds-styles';
+
 @import 'fonts';
 @import 'global';
 @import 'utilities';
-@import 'breadcrumbs';
-@import 'buttons';
-@import 'cards';
-@import 'flickity';
-@import 'header';
-@import 'jumbotron';
-@import 'labels';
-@import 'media-objects';
-@import 'modals';
-@import 'newsletter';
-@import 'pages/modules';
-@import 'pagination';
+@import "components/modules";
+@import "pages/modules";
 @import 'preloader';
-@import 'social-share';
-@import 'tabs';
-@import 'timestamps-tab';
-@import 'transcript-tab';
-@import 'discussion-questions';
-@import 'topic-cards';
-@import 'rollcall';
-@import 'signoff';
+@import "vendor/flickity";
+@import "vendor/smart-banner";

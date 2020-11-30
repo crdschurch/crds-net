@@ -1,0 +1,105 @@
+.thirty-day-trial-tpl {
+  .overlay-top {
+    position: absolute;
+    width: 300%;
+    height: 530px;
+    top: 175%;
+    left: 50%;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(187, 72, 0, 0.5);
+    z-index: 2;
+    cursor: pointer;
+    transform: translateX(-50%) rotate(25deg);
+    @media screen and (min-width: $screen-sm) {
+      top: 105%;
+    }
+  }
+
+  .overlay-bottom {
+    position: absolute;
+    width: 300%;
+    height: 474px;
+    top: 16%;
+    left: 50%;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    cursor: pointer;
+    transform: translateX(-50%) rotate(157deg);
+  }
+
+  .align-items-center {
+    align-items: center;
+  }
+
+  .footer-bg {
+    background-image: url("//crds-media.imgix.net/3ZurGDpb3x1qc8V9eshswQ/cc16603d8d51fb4b29115fc2d190a525/anastasia-petrova-vh47dI3lwzo-unsplash.jpg?{{ site.imgix_params.placeholder_sixteen_nine }}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 135px;
+    padding-bottom: 135px;
+  }
+
+  .z-index-2 {
+    position: relative;
+    z-index: 2;
+  }
+
+  .z-index-3 {
+    z-index: 3;
+  }
+
+  .width-100 {
+    width: 100%;
+  }
+
+  .bg-black {
+    background-color: black;
+  }
+
+  .video-margin {
+    margin-top: -2%;
+    @media screen and (min-width: $screen-sm) {
+      margin-top: -18%;
+    }
+  }
+
+  .jumbo-bg {
+    background-image: url("//crds-media.imgix.net/5rQNHoZc8KbkHhvsbaUuZe/6fb2f92a83dad19ad80a694fe4722583/30-day-trial-bg-2.png?{{ site.imgix_params.placeholder_sixteen_nine }}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-top: 90px;
+  }
+
+  .flex-column-mobile {
+    @media screen and (max-width: $screen-sm) {
+      flex-direction: column;
+    }
+  }
+
+  .push-half-left-desktop {
+    @media screen and (min-width: $screen-sm) {
+      margin-left: 12px;
+    }
+  }
+
+  .dashed-border {
+    border-bottom: 2px dashed #ff8200;
+    display: inline-flex;
+  }
+
+  .mobile-padding {
+    @media screen and (max-width: $screen-sm) {
+      padding-top: 65px;
+    }
+  }
+
+  @media screen and (max-width: $screen-sm) {
+    .text-center-mobile {
+      text-align: center;
+    }
+  }
+}

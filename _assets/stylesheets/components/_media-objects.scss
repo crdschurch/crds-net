@@ -31,8 +31,31 @@
 
   .media-img {
     width: 100%;
-    @media (min-width: $screen-sm) {
+    @media (min-width: $screen-md) {
       max-width: 22.5rem; // 360px
     }
   }
+
+  .media-video {
+    position: relative;
+  }
+
+  .media-play-btn {
+    position: absolute;
+    top:30%;
+    width:100%;
+  }
+}
+/* LIVE dot*/
+.live-dot {
+  height:8px;
+  width: 8px;
+  background-color: #cc2a16;
+  border-radius: 50%;
+  display: inline-block;
+}
+.live-cta {
+  position: absolute;
+  top: 4px;
+  left: 18px;
 }

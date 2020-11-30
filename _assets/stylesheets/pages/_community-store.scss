@@ -1,0 +1,188 @@
+#sub-nav-container {
+  max-width: 100%;
+  margin-left: 0;
+
+  #community-store-sub-nav {
+    width: 100%;
+    height: 44px;
+    background-color: $cr-cyan;
+    color: #ffffff;
+    display: flex;
+
+    .container {
+      padding-left: 30px;
+
+      span {
+        padding-right: 24px;
+        line-height: 44px;
+        vertical-align: middle;
+        flex: 0 0 auto;
+
+        a {
+          font-size: 14px;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
+
+#community-store-intro {
+  min-height: 597px;
+  display: flex;
+  padding-bottom: 87px;
+  margin-bottom: 0;
+
+  .container {
+    align-self: flex-end;
+
+    .row {
+      text-align: left;
+      max-width: 100%;
+
+      .title {
+        font-family: $condensed-extra-font-face;
+        font-weight: 500;
+        font-size: 5.5rem;
+        line-height: 5rem;
+        color: #ffffff;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+      }
+
+      p {
+        opacity: 0.8;
+        font-size: 19px;
+        font-weight: 300;
+        line-height: 1.42;
+        color: #ffffff;
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+
+.card-container {
+  padding: 0;
+
+  .carousel-container {
+    margin: 30px auto 0px auto;
+    .card-text a {
+      color: $cr-cyan;
+    }
+
+    @media (min-width: $screen-md + 1) {
+      .carousel-cell {
+        width: 25%;
+      }
+
+      .card-deck .card-img-top {
+        max-height: none;
+      }
+    }
+
+    .card-deck--expanded-layout .card {
+      padding: 0 1rem;
+    }
+  }
+}
+
+#groups-container {
+  width: 100%;
+  margin-bottom: 0px;
+  padding-top: 114px;
+  background-color: $cr-blue;
+
+  .heading-container {
+    margin-bottom: 45px;
+
+    span {
+      font-family: $accent-font-face;
+      font-style: italic;
+    }
+
+    p {
+      margin-bottom: 0px;
+    }
+  }
+
+  .group-cells {
+    .container {
+      margin-bottom: 44px;
+      .row {
+        margin: 0;
+      }
+      .group-cell {
+        .media {
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+
+          .media-body {
+            margin-left: 0px;
+
+            .group-cell-text {
+              padding-left: 6px;
+              text-align: left;
+
+              p {
+                margin-bottom: 0px;
+              }
+
+              span {
+                font-size: 14px;
+              }
+            }
+          }
+
+          img {
+            width: 108px;
+          }
+        }
+      }
+    }
+  }
+}
+
+#trips-container {
+  width: 100%;
+  margin-bottom: 0px;
+  background-color: $cr-gold-light;
+  padding-top: 77px;
+  padding-bottom: 77px;
+
+  img {
+    width: 91px;
+    margin: 0 auto;
+  }
+}
+
+#contact-container {
+  background-color: $cr-blue-dark;
+  color: white;
+  padding: 0;
+  margin-bottom: -24px;
+  overflow: hidden;
+
+  div {
+    padding-top: 90px;
+    padding-bottom: 80px;
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+@media screen and (max-width: $screen-md - 1) {
+  #community-store-sub-nav {
+    .container {
+      overflow: scroll;
+      white-space: nowrap;
+      padding-left: 15px !important;
+    }
+  }
+
+  .card-container {
+    .carousel {
+      left: 0;
+    }
+  }
+}

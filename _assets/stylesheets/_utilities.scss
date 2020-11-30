@@ -1,9 +1,5 @@
-.text-orange {
-  color: $cr-orange !important;
-}
-
-.text-orange-dark {
-  color: $cr-orange-dark !important;
+.border-light-gray {
+  border: 1px solid rgba($cr-gray-light, 0.3)
 }
 
 .text-gray {
@@ -18,54 +14,10 @@
   color: $cr-gray-lighter !important;
 }
 
-a.hover-text-gray-lighter:hover * {
-  color: $cr-gray-lighter;
-}
-
-.blur {
-  @extend .bg-overlay;
-  top: 0;
-  filter: blur(5px);
-}
-
-.bg-gray-dark {
-  background-color: $cr-gray-dark !important;
-}
-
-.bg-black-50 {
-  background-color: rgba($cr-black, 0.5);
-}
-
-.border-white-15 {
-  border: 1px solid rgba($cr-white, 0.15);
-}
-
-.border-light-gray {
-  border: 1px solid rgba($cr-gray-light, 0.3)
-}
-
-.white-faded {
-  &,
-  a {
-    &,
-    .jumbotron & {
-      color: rgba($cr-white, 0.8);
-    }
-  }
-}
-
 .text-uppercase {
   &.font-size-smaller {
     font-size: 13px !important;
     letter-spacing: 0.5px;
-  }
-}
-
-.font-size-giant {
-  font-size: 48px;
-  @media (min-width: $screen-sm) {
-    font-size: 90px;
-    line-height: 0.89;
   }
 }
 
@@ -74,31 +26,10 @@ a.hover-text-gray-lighter:hover * {
   font-weight: 500;
 }
 
-.height-2 {
-  height: 2rem;
-}
-
-.middle {
-  vertical-align: middle;
-}
-
-.img-size-5 {
-  min-width: 5rem;
-}
-
 .relative {
   position: relative !important;
 }
 
-.absolute {
-  position: absolute !important;
-}
-
-.hard-bottom {
-  padding-bottom: 0 !important;
-}
-
-// Bootstrap 4
 .d-flex {
   display: flex !important;
 }
@@ -131,10 +62,89 @@ a.hover-text-gray-lighter:hover * {
   flex-direction: row-reverse;
 }
 
+.aspect-16x9 {
+  position: relative;
+  height: 0;
+  padding-top: 56.25%;
+}
+
+.font-size-smallest {
+  font-size: 10px;
+}
+
 .flex-md-row {
   @media (min-width: $screen-md) {
     flex-direction: row;
   }
+}
+
+.text-orange {
+  color: $cr-orange !important;
+}
+
+.text-orange-dark {
+  color: $cr-orange-dark !important;
+}
+
+a.hover-text-gray-lighter:hover * {
+  color: $cr-gray-lighter;
+}
+
+.blur {
+  @extend .bg-overlay;
+  top: 0;
+  filter: blur(5px);
+}
+
+.bg-gray-dark {
+  background-color: $cr-gray-dark !important;
+}
+
+.bg-black-50 {
+  background-color: rgba($cr-black, 0.5);
+}
+
+.border-white-15 {
+  border: 1px solid rgba($cr-white, 0.15);
+}
+
+.white-faded {
+  &,
+  a {
+    &,
+    .jumbotron & {
+      color: rgba($cr-white, 0.8);
+    }
+  }
+}
+
+.font-size-giant {
+  font-size: 48px;
+  @media (min-width: $screen-sm) {
+    font-size: 90px;
+    line-height: 0.89;
+  }
+}
+
+.height-2 {
+  height: 2rem;
+}
+
+.middle {
+  vertical-align: middle;
+}
+
+.img-size-5 {
+  min-width: 5rem;
+}
+
+
+.absolute {
+  position: absolute !important;
+}
+
+.hard-bottom {
+  padding-bottom: 0 !important;
 }
 
 svg.icon-small {
@@ -145,4 +155,76 @@ svg.icon-small {
 
 .w-100 {
   width: 100% !important;
+}
+
+.flex-sm-row {
+  @media (min-width: $screen-sm) {
+    flex-direction: row;
+  }
+}
+
+.flex-xs-row {
+  @media (min-width: $screen-xs) {
+    flex-direction: row;
+  }
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.visually-hidden {
+  visibility: hidden;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.transparent-after {
+  &::after {
+    color: transparent;
+  }
+}
+
+.overlap-header {
+  top: -8.25rem;
+  margin-bottom: -5.25rem;
+
+  @media screen and (min-width: $screen-md) {
+    top: -8.8rem;
+    margin-bottom: -8.8rem;
+  }
+}
+
+a.anchor {
+  display: block;
+  position: relative;
+  top: -60px;
+  visibility: hidden;
+}
+
+.mt-100 {
+  margin-top: 100px;
+}
+
+.mb-100 {
+  margin-bottom: 100px;
+}
+
+.df-screen-md {
+  @media screen and (min-width: $screen-md) {
+    display: flex;
+  }
+}
+
+.df-screen-sm {
+  @media screen and (min-width: $screen-sm) {
+    display: flex;
+  }
+}
+
+.ma-ends {
+    margin: auto 0;
 }

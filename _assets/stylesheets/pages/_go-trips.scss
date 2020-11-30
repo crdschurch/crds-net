@@ -1,0 +1,58 @@
+#goTripsNav {
+
+  @media screen and (max-width: $screen-sm-min) {
+    background-color: #fff;
+  }
+
+  .navbar-nav {
+    > li {
+      > a {
+        color: #fff;
+
+        @media screen and (max-width: $screen-sm-min) {
+          color: #4D4D4D;
+          font-size: 1em;
+        }
+      }
+
+      &:not(:last-child) {
+        > a:hover,
+        > a:focus,
+        > a:active {
+          background-color: transparent;
+          border-color: #fff;
+          text-decoration: none;
+
+          @media screen and (max-width: $screen-sm-min) {
+            border-color: transparent;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: $screen-sm-min) {
+      .open {
+        > a,
+        > a:focus,
+        > a:hover {
+          background-color: transparent;
+          border-color: transparent;
+        }
+      }
+    }
+  }
+}
+
+.crds-styles > #trips-map {
+  width: 98%;
+  min-height: 330px;
+  height: 330px;
+  position: absolute;
+  overflow: hidden;
+  color: black;
+}
+@media only screen and (min-width:420px) and (max-width:768) {
+  .crds-styles > #trips-map  {
+    width: 92%;
+  }
+}

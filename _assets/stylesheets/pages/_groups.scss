@@ -1,0 +1,103 @@
+.jumbotron-groups {
+  position: relative;
+  text-align: center;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  padding-right: 15px;
+  padding-left: 15px;
+
+  @media (min-width: $screen-sm) {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+
+  background-size: auto;
+  background-position: initial;
+  background-repeat: repeat-y;
+
+  &.bg-cover-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &.jumbotron-groups-leaders {
+    padding-bottom: 90px;
+  }
+
+  .intro {
+    line-height: 26.5px;
+    padding-bottom: 60px;
+
+    @media (min-width: $screen-sm) {
+      padding-bottom: 100px;
+    }
+  }
+
+  .border-moving {
+    padding-left: 0;
+    border-top: 1px solid rgba($cr-white, 0.15);
+    border-left: none;
+
+    @media (min-width: $screen-sm) {
+      padding-left: 30px;
+      border-top: none;
+      border-left: 1px solid rgba($cr-white, 0.15);
+    }
+  }
+}
+
+.info-card {
+  padding-bottom: 30px;
+
+  @media (min-width: $screen-md) {
+    padding-bottom: 0;
+  }
+}
+
+.info-card-body {
+  background-color: $cr-white;
+  color: $cr-gray-dark;
+  padding: 2rem;
+  // 🛠 Remove min-height when update to use content blocks
+  min-height: 460px;
+}
+
+.info-card-body-content {
+  padding-bottom: 2rem;
+}
+
+.solid-tagline {
+  background-color: $cr-gold;
+  padding-top: 7px;
+  padding-bottom: 8px;
+}
+
+.text-blue-light {
+  color: $cr-blue-light;
+}
+
+// For the following pages: groups-getting-started, groups-in, groups-out, groups-up
+.group-content-active {
+  background-color: #b9b9b9;
+  padding: 4px 0px 5px 10px;
+  border-radius: 50%;
+  display: inline-flex;
+  font-size: 12px;
+  width: 28px;
+  font-weight: bold;
+}
+.group-content-inactive {
+  background-color: #e7e7e7;
+  padding: 4px 0px 5px 10px;
+  border-radius: 50%;
+  display: inline-flex;
+  font-size: 12px;
+  width: 28px;
+  font-weight: bold;
+  color: #8a8a8a;
+}
+
+.allgroupcontent > .grid-item {
+  min-width: 173px;
+}

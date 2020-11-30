@@ -1,0 +1,49 @@
+.bio-spacing {
+  line-height: 1.8rem;
+}
+
+.hero-image {
+  width: 425px;
+  height: 425px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.social-icons {
+  align-items: center;
+  border-bottom: 2px solid $cr-orange;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  order: 1;
+  padding-bottom: 20px;
+  width: 100%;
+
+  @media (min-width: $screen-xs) {
+    border-bottom: none;
+    order: unset;
+    padding-bottom: 0;
+    width: unset;
+  }
+
+  a {
+    background-color: transparent;
+    border: 1px solid $cr-blue;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: inline-flex;
+    height: 36px;
+    justify-content: center;
+    margin-left: 10px;
+    padding: 10px;
+    width: 36px;
+
+    &:hover {
+      background-color: rgba($cr-white, .25);
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+}

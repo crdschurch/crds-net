@@ -9,6 +9,26 @@
 }
 
 .jumbotron {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+
+  &.jumbotron-overlay {
+    padding-bottom: 6.1rem;
+  }
+
+  &.grid-overlay-light {
+    &:before {
+      background-image: url('//crds-media.imgix.net/3aXYPUA7EZkfeu8DPB3FIE/6ce4dbf255a4f7396bd5683acaa7c5d3/Lighten_Texture_Grid_1.png');
+      background-size: cover;
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
   &:not(.bg-blue) {
     background-color: transparent;
   }
@@ -44,6 +64,42 @@
     &.soft-2-bottom {
       padding-bottom: 2rem;
     }
+
+  &.jumbotron-home {
+    .bg-video-player {
+      z-index: 0;
+    }
+
+    &.inline-video.playing {
+      .close-video,
+      .jumbotron-background-cover {
+        z-index: 2;
+      }
+    }
+
+    &.grid-overlay:before {
+      z-index: 1;
+    }
+
+    .jumbotron-home-header {
+      margin: 0 auto;
+      max-width: 760px;
+      width: 100%;
+
+      h1 {
+        border-bottom: 6px solid currentColor;
+        display: inline-block;
+        font-size: 90px;
+        line-height: 100px;
+        padding-bottom: 20px;
+
+        @media screen and (min-width: $screen-sm) {
+          font-size: 130px;
+          line-height: 110px;
+        }
+      }
+    }
+  }
   }
 
   .title-xlg {
@@ -70,6 +126,28 @@
   }
 }
 
+.jumbotron-kids-club-cta-box {
+  display: block;
+
+  @media screen and (min-width: $screen-sm) {
+    display: flex;
+
+    .jumbotron-kids-club-cta  {
+      border-right: 1px solid $cr-gray;
+      justify-content: center;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+
+.jumbotron[style*='background-image'] list-unstyled a, .jumbotron[data-optimize-bg-img] list-unstyled a {
+  padding-bottom: 0.2rem;
+  padding-top: 0.2rem;
+}
+
 .jumbotron-media {
   background-color: $cr-blue !important;
   padding-bottom: 6rem;
@@ -84,7 +162,7 @@
     height: 100%;
     position: absolute;
     width: 100%;
-  }  
+  }
 }
 
 .header-content  {

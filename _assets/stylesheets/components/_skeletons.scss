@@ -1,0 +1,26 @@
+.shared-header-skeleton-logo {
+  color: $cr-tan;
+}
+
+.greeting-skeleton {
+  min-height: 87px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+}
+
+.recommended-content-skeleton {
+  min-height: 520px;
+
+  @media (min-width: 767px) {
+    min-height: 570px;
+  }
+}
+
+.site-happenings-skeleton {
+  min-height: 670px;
+
+  @media (min-width: 767px) {
+    min-height: 600px;
+  }
+}

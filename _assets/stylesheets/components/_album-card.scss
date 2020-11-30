@@ -1,0 +1,32 @@
+.card-deck--expanded-layout .card.album-container {
+    max-width: 20%;
+  }
+  
+.album-card {
+  text-align: left;
+  margin-right: 1rem;
+
+  a {
+    &:hover {
+      text-decoration: none;
+
+      small {
+        color: $cr-gray-darker !important;
+      }
+    }
+  }
+
+  .img-responsive {
+    border: 6px solid $cr-white;
+    box-shadow: 0 4px 7px 0 rgba(0,0,0,0.15),0 4px 7px 0 rgba(0,0,0,0.05) !important;
+  }
+
+  small {
+    color: rgba($cr-gray, .5);
+    font-size: 14px;
+
+    @media (min-width: $screen-xs) {
+      font-size: 16px;
+    }
+  }
+}

@@ -2,6 +2,7 @@
   background-color: transparent !important;
   position: relative;
   margin-bottom: -.5rem;
+  text-transform: capitalize;
 
   &.text-white {
     a {
@@ -15,6 +16,36 @@
 
     >li:after {
       color: rgba($cr-white, .6);
+    }
+  }
+
+  &.text-gray-light {
+    a {
+      color: $cr-gray-light;
+
+      &:hover,
+      &:focus {
+        color: darken($cr-gray-light, 10);
+      }
+    }
+
+    >li:after {
+      color: rgba($cr-gray-light, .6);
+    }
+  }
+
+  &.text-orange {
+    a {
+      color: $cr-orange;
+
+      &:hover,
+      &:focus {
+        color: darken($cr-orange, 10);
+      }
+    }
+
+    >li:after {
+      color: rgba($cr-orange, .6);
     }
   }
 
