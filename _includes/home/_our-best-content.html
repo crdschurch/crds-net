@@ -23,6 +23,7 @@
           type="{{ item.content_type }}"
           title="{{ item.title }}"
           duration="{{ item.duration | duration: format }}"
+          data-optimize-img
           ></crds-media-object>
       </div>
       {% endfor %}

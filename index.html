@@ -55,8 +55,24 @@ paginate:
     <div>
       <div class="col-sm-8 soft-ends">
         <div>
-          {% assign homepage_cards = site.content_blocks | where: 'slug', 'homepage-cards' | first %}
-          {{ homepage_cards.content_block }}
+          <div class="col-sm-6 push-bottom">
+            <crds-portrait-card-default
+              href="/about"
+              lead="Want to know more?"
+              title="About Crossroads"
+              image-src="//crds-media.imgix.net/6NKDNv9LnxZ14cGKoIN3rW/46464e141a1c789b859a37a27bbb18fa/about-crossroads-img.png?{{ site.imgix_params.placeholder_sixteen_nine }}"
+              data-optimize-img
+            ></crds-portrait-card-default>
+          </div>
+          <div class="col-sm-6">
+            <crds-portrait-card-default
+              href="/brian-tome"
+              lead="Senior Pastor Brian Tome"
+              title="Your Guide to The Adventurous Life"
+              image-src="//crds-media.imgix.net/45IKoYE2JOihsKevVFgKoq/14827f5fbeb091b98db94570249857d4/brian-tome-headshot1.jpg?{{ site.imgix_params.placeholder_sixteen_nine }}"
+              data-optimize-img
+            ></crds-portrait-card-default>
+          </div>
         </div>
       </div>
       <div class="col-sm-4 soft-ends">
@@ -77,8 +93,33 @@ paginate:
         <a href="https://share.hsforms.com/1_UzcT1lIRrmQPQ9fBVxt4A2dls1"><img class="push-ends soft-sides" src="//crds-media.imgix.net/1YXgKAhw35Oj1bSjoP3mjl/e81993ffa50d62787c9d26090683fd4d/undivided-home-page-callout2.jpg" alt="Undivided: A Journey on Race, Relationship and Reconciliation" /></a>
       </div>
       <div class="col-sm-4">
-        {% assign the_good_news = site.content_blocks | where: 'slug', 'good-news-home' | first %}
-        {{ the_good_news.content_block }}
+        <div class="row push-bottom">
+          <crds-arrow arrow-color="orange" text-color="white">Oh<br />Yeah</crds-arrow>
+        </div>
+        <div class="row border-top soft-half-top">
+          <p class="font-family-serif text-uppercase">The Good News</p>
+          <div class="border-top border-dashed text-gray-light push-half-bottom"></div>
+            <crds-media-object
+            url="https://www.crossroads.net/crossroads-community-wipes-out-46-5-million-in-medical-debt-for-45000-families/"
+            image-src="//crds-media.imgix.net/1JODEoyM9uEKW4777iFRPN/c62abd60ca0ed1abe9debc0dc3ff4e53/Wearecrds_JimGormley_102614-5826.jpg?{{ site.imgix_params.placeholder }}"
+            title="Crossroads community wipes out $46.5 million in medical debt for 45,000 families"
+            data-optimize-img
+            ></crds-media-object>
+          <div class="border-top border-dashed text-gray-light push-half-bottom"></div>
+            <crds-media-object
+            url="https://www.crossroads.net/crossroads-community-gives-more-than-230000-to-provide-childcare-for-healthcare-professionals/"
+            image-src="//crds-media.imgix.net/2iZpJZrKzHQ8lpNompPOqb/f80cca1e84899dcda0ca3ca8a28152bc/ThisPlace_JimGormley_2020-03-07-3908.jpg?{{ site.imgix_params.placeholder }}"
+            title="Crossroads Community Gives More Than $230,000 To Provide Child Care for Health Care Professionals"
+            data-optimize-img
+            ></crds-media-object>
+          <div class="border-top border-dashed text-gray-light push-half-bottom"></div>
+            <crds-media-object
+            url="https://www.crossroads.net/undivided-participants-champion-ballot-measure-to-promote-equality"
+            image-src="//crds-media.imgix.net/2ntmesQ2zNltMd0VoEKaCE/1c26923aca0ca9dec0ec0ed4a09e60fd/undivided-racial-reconciliation-ohio-megachurch.jpg?{{ site.imgix_params.placeholder }}"
+            title="Undivided participants champion ballot measure to promote equality"
+            data-optimize-img
+            ></crds-media-object>
+        </div>
       </div>
     </div>
   </div>
@@ -108,9 +149,44 @@ paginate:
 
 {% comment %}Gear Up for Your Adventure{% endcomment %}
 <section class="bg-orange">
-  <div class="bg-topo-50">
-    {% assign gear_up = site.content_blocks | where: 'slug', 'gear-up-home' | first %}
-    {{ gear_up.content_block }}
+  <div class="bg-topo-50" data-optimize-bg-img>
+    <div class="container soft-ends">
+      <div class="text-center push-bottom">
+        <div class="push-bottom text-blue mobile-push-half-sides">
+          <h2 class="component-header-box text-blue">Gear Up for Your Adventure</h2>
+        </div>
+        <p class="text-blue font-family-serif font-size-large">Daily practices to help you grow.</p>
+      </div>
+      <div class="row soft-bottom">
+        <div class="col-sm-4 push-bottom">
+          <crds-portrait-card-default
+          href="/app"
+          lead="Crossroads App"
+          title="Connect With God. Pray With Others."
+          image-src="//crds-media.imgix.net/3tHfRrQ1ZwyNBLvnoDS37s/f67819758e1efc2faabd7405b2a4680b/crossroads-app-home.jpg?{{ site.imgix_params.placeholder_sixteen_nine }}"
+          data-optimize-img
+          />
+        </div>
+        <div class="col-sm-4 push-bottom">
+          <crds-portrait-card-default
+          href="https://www.facebook.com/crsrdschurch/"
+          lead="Facebook Live Worship"
+          title="Kick-start Your Morning at 8:30 am"
+          image-src="//crds-media.imgix.net/1zuWtKTzfHUfugdYyoi2ZQ/ff03e2dc6215d565dd6fc678194a8bb4/daily-facebook-worship.jpg?{{ site.imgix_params.placeholder_sixteen_nine }}"
+          data-optimize-img
+          />
+        </div>
+        <div class="col-sm-4 push-bottom">
+          <crds-portrait-card-default
+          href="/music"
+          lead="Crossroads Music"
+          title="Every Good Adventure Needs a Playlist"
+          image-src="//crds-media.imgix.net/7suAPpGUjibqsKbvuXyvzz/bbe27b99193f6184cef69bdb01daa83d/crossroads-music-zoom.jpg?{{ site.imgix_params.placeholder_sixteen_nine }}"
+          data-optimize-img
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
