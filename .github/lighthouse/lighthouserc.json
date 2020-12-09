@@ -1,14 +1,9 @@
 {
   "ci": {
     "collect": {
-      "url": [
-        "<CHANGE URL>http://localhost/",
-        "<CHANGE URL>http://localhost/tag/javascript",
-        "<CHANGE URL>http://localhost/author/akansh",
-        "<CHANGE URL>http://localhost/essential-tools-and-services-for-student-developer/"
-      ],
+      "url": ["http://127.0.0.1:4000/"],
       "numberOfRuns": 2,
-      "staticDistDir": "./public"
+      "staticDistDir": "./_site"
     },
     "assert": {
       "preset": "lighthouse:recommended",

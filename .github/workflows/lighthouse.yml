@@ -1,11 +1,13 @@
 name: Lighthouse
-on: [push]
+on: [pull_request]
 jobs:
   lighthouseci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
+      - uses: actions/setup-ruby@v1
       - run: npm install && npm install -g @lhci/cli@0.6.x
+      - run: bundle install
       - run: npm run build
-      - run: lhci autorun
+      - run: lhci autorun --config=.github/lighthouse/lighthouserc.json
