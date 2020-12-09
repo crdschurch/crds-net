@@ -1,0 +1,15 @@
+name: Page Speed Insights
+on: [pull_request]
+jobs:
+  run_psi:
+    runs-on: ubuntu-latest
+    name: Running Page Speed Insights
+    steps:
+      - uses: actions/checkout@v2
+      - name: Running Page Speed Insights
+        uses: jakepartusch/psi-action@v1
+        id: psi
+        with:
+          url: "https://www.crossroads.net"
+          threshold: 70
+          strategy: desktop
