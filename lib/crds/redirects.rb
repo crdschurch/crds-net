@@ -39,8 +39,8 @@ class Redirects
 
   def to_csv!(path = './redirects.csv', debug=true)
     rows = CSV.read(path)
-    rows.insert(15, *redirects)
-    rows.insert(15, *auth_required)
+    rows.insert(18, *redirects)
+    rows.insert(18, *auth_required)
     File.write(path, rows.map(&:to_csv).join)
     if debug
       puts "\nWrote #{redirects.size + auth_required.size} redirects from Contentful to #{path}"
