@@ -1,3 +1,6 @@
+# Requires production context and non-null commit hash to trigger
+# Integration is stored in Zapier
+
 name: Run Cypress Tests
 on: repository_dispatch
 jobs:
