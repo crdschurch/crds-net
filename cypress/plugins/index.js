@@ -18,7 +18,8 @@ const { addContentfulTasks } = require('./contentfulTasks');
 //Config files live in /config. To specify which one to use, open or run with command line argument:
 //"--config-file ./cypress/config/int_crossroads.json"
 module.exports = (on, config) => {
-  return loadConfig.loadConfigFromVault(config)
+  githubAction = process.env.IN_RUNNER
+  return loadConfig.loadConfigFromVault(config, githubAction)
     .then((newConfig) => {
       // Configure blacklisted hosts
       manageBlacklist(newConfig);
