@@ -1,5 +1,5 @@
 name: Cypress Tests
-on: [pull_request]
+on: repository_dispatch
 jobs:
   test:
     name: Cypress Run
