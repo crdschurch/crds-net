@@ -1,4 +1,4 @@
-name: Cypress Tests
+name: Run Cypress Tests
 on: repository_dispatch
 jobs:
   test:
