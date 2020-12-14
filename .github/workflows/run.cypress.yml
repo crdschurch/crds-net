@@ -31,15 +31,19 @@ jobs:
         if: ${{ success() }}
         uses: rtCamp/action-slack-notify@v2
         env:
+          SLACK_USERNAME: Cypress Test Results
           SLACK_WEBHOOK: ${{ secrets.CYPRESS_SLACK_WEBHOOK }}
           SLACK_COLOR: good
           SLACK_TITLE: "CRDS-NET"
           SLACK_MESSAGE: "cypress tests PASSED"
+          SLACK_ICON: https://www.cypress.io/icons/icon-48x48.png?v=90213ca87017074111a88470199bc242315d18c5
       - name: Tests failed
         if: ${{ failure() }}
         uses: rtCamp/action-slack-notify@v2
         env:
+          SLACK_USERNAME: Cypress Test Results
           SLACK_WEBHOOK: ${{ secrets.CYPRESS_SLACK_WEBHOOK }}
           SLACK_COLOR: "#FF0000"
           SLACK_TITLE: "CRDS-NET"
           SLACK_MESSAGE: "cypress tests FAILED"
+          SLACK_ICON: https://www.cypress.io/icons/icon-48x48.png?v=90213ca87017074111a88470199bc242315d18c5
