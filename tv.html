@@ -27,7 +27,9 @@ layout: container-fluid
       <div class="bg-charcoal media featured soft-sides">
         <div class="media-body soft-bottom">
           <h2 class="text-uppercase font-family-serif font-size-base font-size-small text-white">current series</h2>
-          <a href="/media/series/the-good-god-journey" class="push-half-bottom">
+          <a href="/media/series/the-good-god-journey" class="push-half-bottom"
+            onClick="ga('gtm2.send', 'event', 'current-series-card-tv', 'clicked')" data-role="current-series-card-tv"
+            target="_blank">
             <img class="full-width"
               src="//crds-media.imgix.net/5a5Jw5jhgnTeSjdyHejpWO/791786a39157f100723274cadc0bc73a/journey2020-good-god.jpg" />
           </a>
@@ -37,7 +39,8 @@ layout: container-fluid
             might just be the best thing you do all year.
           </div>
           <crds-button href="/media/series/the-good-god-journey" color="white"
-            display="outline" text="View the series" />
+            display="outline" text="View the series" onClick="ga('gtm2.send', 'event', 'view-series-tv', 'clicked')"
+            data-role="view-series-tv" target="_blank" />
         </div>
       </div>
     </div>
@@ -55,7 +58,8 @@ layout: container-fluid
         </h2>
         <div class="col-sm-4">
           <div class="embed-container">
-            <a href="/media/series/real-encounters-with-god">
+            <a href="/media/series/real-encounters-with-god" onClick="ga('gtm2.send', 'event', 'real-encounters-1', 'clicked')"
+              data-role="real-encounters-1" target="_blank">
               <div class="media-video">
                 <img class="media-img full-width"
                   src="//crds-media.imgix.net/4290QD6wnvVOL98cPnlmwz/0c6e9d0e07f266a32e0bbcc7690c42e2/Screen_Shot_2020-03-06_at_4.05.46_PM.png?auto=format,compress&w=750&h=422&fit=crop"
@@ -68,12 +72,14 @@ layout: container-fluid
             Real Encounters With God
           </h2>
           <h3 class="latest-message-subtitle font-size-smaller font-family-base-bold text-uppercase">
-            <a href="/media/series/real-encounters-with-god">Season 1</a>
+            <a href="/media/series/real-encounters-with-god" onClick="ga('gtm2.send', 'event', 'real-encounters-1', 'clicked')"
+              data-role="real-encounters-1" target="_blank">Season 1</a>
           </h3>
         </div>
         <div class="col-sm-4">
           <div class="embed-container">
-            <a href="/media/series/empires">
+            <a href="/media/series/empires" onClick="ga('gtm2.send', 'event', 'real-encounters-2', 'clicked')"
+              data-role="real-encounters-2" target="_blank">
               <div class="media-video">
                 <img class="media-img full-width"
                   src="//crds-media.imgix.net/1hqplcLoggKkY6AI0ocue6/d11177354213d5d357c29ecbf8a06826/EMPIRES_Series_slide.jpg?auto=format,compress&w=750&h=422&fit=crop"
@@ -86,12 +92,14 @@ layout: container-fluid
             Real Encounters With God: Empires
           </h2>
           <h3 class="latest-message-subtitle font-size-smaller font-family-base-bold text-uppercase">
-            <a href="/media/series/empires">Season 2</a>
+            <a href="/media/series/empires" onClick="ga('gtm2.send', 'event', 'real-encounters-2', 'clicked')"
+              data-role="real-encounters-2" target="_blank">Season 2</a>
           </h3>
         </div>
         <div class="col-sm-4">
           <div class="embed-container">
-            <a href="/media/series/real-encounters-with-god-the-jesus-myth">
+            <a href="/media/series/real-encounters-with-god-the-jesus-myth"
+              onClick="ga('gtm2.send', 'event', 'real-encounters-3', 'clicked')" data-role="real-encounters-3" target="_blank">
               <div class="media-video">
                 <img class="media-img full-width"
                   src="//crds-media.imgix.net/6jBE4tNgbsMjCKBl4UInoU/48b3ad2708be881dd6fc5e797edead52/real-encounters-with-god-jesus-myth.jpg?auto=format,compress&w=750&h=422&fit=crop"
@@ -104,7 +112,9 @@ layout: container-fluid
             Real Encounters With God: The Jesus Myth
           </h2>
           <h3 class="latest-message-subtitle font-size-smaller font-family-base-bold text-uppercase">
-            <a href="/media/series/real-encounters-with-god-the-jesus-myth">Season 3</a>
+            <a href="/media/series/real-encounters-with-god-the-jesus-myth"
+              onClick="ga('gtm2.send', 'event', 'real-encounters-3', 'clicked')" data-role="real-encounters-3"
+              target="_blank">Season 3</a>
           </h3>
         </div>
       </div>
@@ -120,7 +130,8 @@ layout: container-fluid
           Your Guide To The Adventurous Life You Were Made For
         </h2>
         <a class="btn btn-white btn-outline fit-content" data-toggle="modal" data-target="#btSubscribeModalForm"
-          aria-expanded="false" href="#">Subscribe to Brian's Newsletter</a>
+          aria-expanded="false" href="#"  onClick="ga('gtm2.send', 'event', 'bt-subscribe-tv', 'clicked')"
+          data-role="bt-subscribe-tv" target="_blank">Subscribe to Brian's Newsletter</a>
       </div>
     </div>
     <div class="col-sm-8 push-bottom">
@@ -132,13 +143,15 @@ layout: container-fluid
       <div class="col-sm-6 push-bottom">
         <crds-portrait-card href="/media/tags/garage-bible-study/" theme="default"
           lead="Watch Now" title="garage bible study"
-          image-src="//crds-media.imgix.net/36vvUyQjYYKRzs5gghFNKb/fccad33eb2398fef7160b4092b25f06e/bt-garage.png">
+          image-src="//crds-media.imgix.net/36vvUyQjYYKRzs5gghFNKb/fccad33eb2398fef7160b4092b25f06e/bt-garage.png" onClick="ga('gtm2.send', 'event', 'bt-garage-tv', 'clicked')"
+          data-role="bt-garage-tv" target="_blank">
         </crds-portrait-card>
       </div>
       <div class="col-sm-6 push-bottom">
         <crds-portrait-card href="//crossroads.net/media/podcasts/the-aggressive-life-with-brian-tome"
           theme="default" lead="Listen Now" title="Agressive life podcast"
-          image-src="//crds-media.imgix.net/5APtNFVXDhx8uTbHpUc5sD/f2bb379a5b3ad54681f6a3ec37ff7bc5/bt-agressive-life-with-logos.png">
+          image-src="//crds-media.imgix.net/5APtNFVXDhx8uTbHpUc5sD/f2bb379a5b3ad54681f6a3ec37ff7bc5/bt-agressive-life-with-logos.png" onClick="ga('gtm2.send', 'event', 'bt-aggressive-life-tv', 'clicked')"
+          data-role="bt-aggressive-life-tv" target="_blank">
         </crds-portrait-card>
       </div>
     </div>
@@ -198,19 +211,23 @@ layout: container-fluid
     <div class="col-sm-4 push-bottom">
       <crds-portrait-card href="/about/" theme="default" lead="curious about crossroads?"
         title="Learn About Us"
-        image-src="//crds-media.imgix.net/tM2aWSUtcjYXKcaqY5ZQE/86dcae82f57d935535fde7c5a3cbb20a/what-we-believe-img.png">
+        image-src="//crds-media.imgix.net/tM2aWSUtcjYXKcaqY5ZQE/86dcae82f57d935535fde7c5a3cbb20a/what-we-believe-img.png"
+        onClick="ga('gtm2.send', 'event', 'learn-about-us-tv', 'clicked')"
+          data-role="learn-about-us-tv" target="_blank">
       </crds-portrait-card>
     </div>
     <div class="col-sm-4 push-bottom">
       <crds-portrait-card href="/locations/" theme="default" lead="Find Us"
         title="One Church. Many Locations."
-        image-src="//crds-media.imgix.net/A49b0SJWVrG91ooAWaxl0/890de261247941d3057c0ffb6ad97b76/many-locations-img.png">
+        image-src="//crds-media.imgix.net/A49b0SJWVrG91ooAWaxl0/890de261247941d3057c0ffb6ad97b76/many-locations-img.png" onClick="ga('gtm2.send', 'event', 'find-us-tv', 'clicked')"
+        data-role="find-us-tv" target="_blank">
       </crds-portrait-card>
     </div>
     <div class="col-sm-4 push-bottom">
       <crds-portrait-card href="/app/" theme="default" lead="Download the App"
         title="Connect with God & Pray with Others"
-        image-src="//crds-media.imgix.net/2IgH0VWAw8JOXE16OFTZ2n/bfead14597b8b2959e5124194feeba6e/download-app-img.png">
+        image-src="//crds-media.imgix.net/2IgH0VWAw8JOXE16OFTZ2n/bfead14597b8b2959e5124194feeba6e/download-app-img.png" onClick="ga('gtm2.send', 'event', 'app-tv', 'clicked')"
+        data-role="app-tv" target="_blank">
       </crds-portrait-card>
     </div>
   </div>
@@ -220,7 +237,9 @@ layout: container-fluid
   <div class="container text-center soft-ends push-ends">
     <div class="row soft-ends">
       <h1 class="font-family-condensed-extra text-uppercase text-white">We'd Love to Chat With You</h1>
-      <crds-button color="blue" text="Chat with us" data-trigger="chat"></crds-button>
+      <crds-button color="blue" text="Chat with us" data-trigger="chat"
+        onClick="ga('gtm2.send', 'event', 'chat-with-us-tv', 'clicked')" data-role="chat-with-us-tv" target="_blank">
+      </crds-button>
     </div>
   </div>
 </section>
