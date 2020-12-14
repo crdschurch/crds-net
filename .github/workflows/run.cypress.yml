@@ -27,3 +27,21 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           VAULT_ROLE_ID: ${{ secrets.VAULT_ROLE_ID }}
           VAULT_SECRET_ID: ${{ secrets.VAULT_SECRET_ID }}
+      - name: Tests passed
+        if: ${{ success() }}
+        uses: archive/github-actions-slack@v1.0.3
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: bearsharktopus-qa
+          slack-text: CRDS-NET Cypress Tests Passed!
+          slack-optional-icon_emoji: ":greencheck:"
+          slack-optional-as_user: false
+      - name: Tests failed
+        if: ${{ failure() }}
+        uses: archive/github-actions-slack@v1.0.3
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: bearsharktopus-qa
+          slack-text: CRDS-NET Cypress tests FAILED!
+          slack-optional-icon_emoji: ":x:"
+          slack-optional-as_user: false
