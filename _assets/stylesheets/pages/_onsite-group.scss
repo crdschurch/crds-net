@@ -41,3 +41,13 @@
     }
   }
 }
+
+.border-bottom-group {
+  > div {
+    border-bottom: 1px solid $cr-white;
+  
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

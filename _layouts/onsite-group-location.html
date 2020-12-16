@@ -3,51 +3,76 @@ layout: container-fluid
 snail_trail: connect
 ---
 
-<section class="container">
-  <div class="row push-ends">
-    <div class="col-md-12">
-      <a href="/groups/onsite">&lt; Back to All Onsite Groups</a>
-    </div>
-  </div>
-  <div class="row push-bottom">
-    <div class="col-md-3">
-      <img class="width-100"
-        src="{{ page.location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-        sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
-    </div>
-    <div class="col-md-9">
-      <h3 class="font-family-condensed-extra flush-ends mobile-soft-half-top text-uppercase">
-        {{ page.location.onsite_group_display_name }}
-        {% if page.location.slug != 'anywhere' %} Onsite{% endif %} Groups
-      </h3>
-      <a href="https://www.crossroads.net/{{ page.location.slug }}">See what else is happening at Crossroads
-        {{ page.location.onsite_group_display_name }}</a>
-      <div class="font-size-base push-bottom push-half-top">
-        {{ page.location.onsite_group_description | markdownify }}
+<section>
+  <div class="jumbotron jumbotron-xl flush" style="background-image: url('{{ page.location.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+    <div class="bg-dark-overlay"></div>
+    <div class="jumbotron-content">
+      <div class="container">
+        <div>
+          <h1 class="font-family-condensed-extra text-uppercase">{{ page.location.title }} Groups</h1>
+        </div>
+        <div class="push-bottom">
+          {% for group in page.meetings %}
+            <a href="javascript:void(0)" class="btn btn-orange" data-smooth-scroll-to="{% if group[0].slug == 'onsite-groups' %}site-based-groups{% else %}{{ group[0].slug }}{% endif %}" data-smooth-scroll-offset="100">
+              {% if group[0].title == 'Onsite Groups' %}Site-Based Groups{% else %}{{ group[0].title }}{% endif %}
+            </a>
+          {% endfor %}
+        </div>
+        <div>
+          <a class="text-white underline" href="/groups/onsite">See other group locations</a>
+        </div>
       </div>
-
-      <hr />
     </div>
   </div>
+</section>
 
-  <div class="row onsite-group-location-row push-bottom onsite-group-negative-margin-bottom">
-    {% assign sorted_meeting = page.meetings | sort_natural: "title" %}
-    {% for meeting in sorted_meeting %}
-    <div class="col-md-3" data-id="{{ meeting.contentful_id }}">
-      <h4 class="font-family-condensed-extra text-uppercase">
-        {% assign group = meeting | group_for_meeting %}
-        {% if group %}
-        <a href="/groups/onsite/{{ group.slug }}/{% if meeting.location.slug == 'anywhere' %}online{% else %}{{ meeting.location.slug }}{% endif %}">
-          {{ meeting.title }}
-        </a>
-        {% else %}
-          {{ meeting.title }}
-        {% endif %}
-      </h4>
-      <p class="text-gray flush-bottom small">{{ meeting.description | markdownify | strip_tags | truncate: 200 }}</p>
-      {% include groups/_meeting-details.html meeting=meeting %}
+<main class="bg-blue bg-topo soft-ends">
+  <section class="container border-bottom-group" >
+    {% for group in page.meetings %}
+    <div class="row push-bottom" id="{% if group[0].slug == 'onsite-groups' %}site-based-groups{% else %}{{ group[0].slug }}{% endif %}">
+      <div class="col-sm-3 text-white">
+        <p class="text-uppercase font-size-smaller text-white flush-bottom">{{ page.location.title }}</p>
+        <h2 class="flush-top font-family-condensed-extra font-size-h3 text-uppercase text-white">
+          {% if group[0].title == 'Onsite Groups' %}Site-Based Groups{% else %}{{ group[0].title }}{% endif %}
+        </h2>
+        <p class="font-family-base-light font-size-small">{{ group[0].description }}</p>
+      </div>
+      <div class="col-sm-9">
+        {% assign sorted_meeting = group[1] | sort_natural: "title" %}
+        {% for meeting in sorted_meeting %}
+        {{ meeting | json }}
+        <div class="bg-white text-gray-dark soft push-bottom" data-id="{{ meeting.contentful_id }}">
+          <h4 class="font-family-condensed-extra text-uppercase">
+            {% assign group_slug = meeting | group_for_meeting %}
+            {% if group_slug %}
+            <a href="/groups/onsite/{{ group_slug.slug }}/{% if meeting.location.slug == 'anywhere' %}online{% else %}{{ meeting.location.slug }}{% endif %}">
+              {{ meeting.title }}
+            </a>
+            {% else %}
+            {{ meeting.title }}
+            {% endif %}
+          </h4>
+          
+          <p class="text-gray-dark font-size-small">{{ meeting.description | strip_tags | truncate: 200 }}</p>
+          {% include groups/_meeting-details.html meeting=meeting %}
+        </div>
+        {% endfor %}
+      </div>
     </div>
     {% endfor %}
+  </section>
+</main>
+
+<section class="jumbotron jumbotron-lg flush" style="background-image: url('//crds-media.imgix.net/3QtAZAH4q85F8q9FIdG9dH/dd893baff75cd3caaed5d7f42734ae1e/guy-looking-at-computer.png?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+  <div class="bg-dark-overlay"></div>
+  <div class="jumbotron-content">
+    <div class="container">
+      <h3 class="component-header-box text-white">Don't give up</h3>
+      <p class="font-family-serif font-size-base">There are hundreds of groups available. If you can't find what you're looking for, chat with us. We'd love to help you get connected.</p>
+      <div>
+        <crds-button class="push-half-right" text="See other Locations" color="orange" href="/groups/onsite#locations"></crds-button>
+        <crds-button text="See all Groups" color="orange" href="/connect"></crds-button>
+      </div>
+    </div>
   </div>
-  {% include groups/_footer.html %}
 </section>

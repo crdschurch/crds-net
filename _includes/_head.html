@@ -40,6 +40,10 @@
   <!-- after -->
   <script> window.prerenderReady = true; </script>
 
+  {% if page.title == "My Groups MP Widget" %}
+  <script id="MPWidgets" src="https://adminint.crossroads.net/widgets/dist/MPWidgets.js"></script>
+  {% endif %}
+
   <script type="module" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components/crds-components.esm.js"></script>
   <script nomodule="" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components.js"></script>
   <script>

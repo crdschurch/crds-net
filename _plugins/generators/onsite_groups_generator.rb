@@ -13,7 +13,7 @@ module Jekyll
         slug = slug == 'anywhere' ? 'online' : slug
         pages.create!("/groups/onsite/#{slug}", 'onsite-group-location.html', {
           'location': groups.location_by_slug(slug),
-          'meetings': meetings
+          'meetings': meetings.group_by{|m| m.data['group'].data.dig('category') }.sort_by{|k,v| k['title'] }.reverse
         })
       end
 
