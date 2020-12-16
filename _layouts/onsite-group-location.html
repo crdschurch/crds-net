@@ -12,8 +12,11 @@ snail_trail: connect
           <h1 class="font-family-condensed-extra text-uppercase">{{ page.location.title }} Groups</h1>
         </div>
         <div class="push-bottom">
-          <a href="javascript:void(0)" class="btn btn-orange" data-smooth-scroll-to="site-based-groups" data-smooth-scroll-offset="100">Site-Based Groups</a>
-          <a href="javascript:void(0)" class="btn btn-orange" data-smooth-scroll-to="healing-groups" data-smooth-scroll-offset="100">Healing Groups</a>
+          {% for group in page.meetings %}
+            <a href="javascript:void(0)" class="btn btn-orange" data-smooth-scroll-to="{% if group[0].slug == 'onsite-groups' %}site-based-groups{% else %}{{ group[0].slug }}{% endif %}" data-smooth-scroll-offset="100">
+              {% if group[0].title == 'Onsite Groups' %}Site-Based Groups{% else %}{{ group[0].title }}{% endif %}
+            </a>
+          {% endfor %}
         </div>
         <div>
           <a class="text-white underline" href="/groups/onsite">See other group locations</a>
@@ -24,9 +27,9 @@ snail_trail: connect
 </section>
 
 <main class="bg-blue bg-topo soft-ends">
-  <section class="container border-bottom-group" id="{% if group[0].slug == 'onsite-groups' %}site-based-groups{% else %}{{ group[0].slug }}{% endif %}">
+  <section class="container border-bottom-group" >
     {% for group in page.meetings %}
-    <div class="row push-bottom">
+    <div class="row push-bottom" id="{% if group[0].slug == 'onsite-groups' %}site-based-groups{% else %}{{ group[0].slug }}{% endif %}">
       <div class="col-sm-3 text-white">
         <p class="text-uppercase font-size-smaller text-white flush-bottom">{{ page.location.title }}</p>
         <h2 class="flush-top font-family-condensed-extra font-size-h3 text-uppercase text-white">
