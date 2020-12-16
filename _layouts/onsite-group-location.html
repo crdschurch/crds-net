@@ -27,7 +27,7 @@ snail_trail: connect
 </section>
 
 <main class="bg-blue bg-topo soft-ends">
-  <section class="container border-bottom-group" >
+  <section class="container border-bottom-group">
     {% for group in page.meetings %}
     <div class="row push-bottom" id="{% if group[0].slug == 'onsite-groups' %}site-based-groups{% else %}{{ group[0].slug }}{% endif %}">
       <div class="col-sm-3 text-white">
