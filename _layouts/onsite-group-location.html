@@ -4,7 +4,7 @@ snail_trail: connect
 ---
 
 <section>
-  <div class="jumbotron flush" style="background-image: url('{{ page.location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+  <div class="jumbotron jumbotron-xl flush" style="background-image: url('{{ page.location.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
     <div class="bg-dark-overlay"></div>
     <div class="jumbotron-content">
       <div class="container">
@@ -24,40 +24,40 @@ snail_trail: connect
 </section>
 
 <main class="bg-blue bg-topo soft-ends">
-  {% for group in page.meetings %}
-  <section class="container push-bottom" id="{% if group[0].slug == 'onsite-groups' %}site-based-groups{% else %}{{ group[0].slug }}{% endif %}">
-    <div class="row border-bottom">
+  <section class="container border-bottom-group" id="{% if group[0].slug == 'onsite-groups' %}site-based-groups{% else %}{{ group[0].slug }}{% endif %}">
+    {% for group in page.meetings %}
+    <div class="row push-bottom">
       <div class="col-sm-3 text-white">
-        <p class="text-uppercase text-white flush-bottom">{{ page.location.title }}</p>
+        <p class="text-uppercase font-size-smaller text-white flush-bottom">{{ page.location.title }}</p>
         <h2 class="flush-top font-family-condensed-extra font-size-h3 text-uppercase text-white">
           {% if group[0].title == 'Onsite Groups' %}Site-Based Groups{% else %}{{ group[0].title }}{% endif %}
         </h2>
         <p class="font-family-base-light font-size-small">{{ group[0].description }}</p>
       </div>
       <div class="col-sm-9">
-          {% assign sorted_meeting = group[1] | sort_natural: "title" %}
-          {% for meeting in sorted_meeting %}
-          {{ meeting | json }}
-          <div class="bg-white text-gray-dark soft push-bottom" data-id="{{ meeting.contentful_id }}">
-            <h4 class="font-family-condensed-extra text-uppercase">
-              {% assign group_slug = meeting | group_for_meeting %}
-              {% if group_slug %}
-              <a href="/groups/onsite/{{ group_slug.slug }}/{% if meeting.location.slug == 'anywhere' %}online{% else %}{{ meeting.location.slug }}{% endif %}">
-                {{ meeting.title }}
-              </a>
-              {% else %}
+        {% assign sorted_meeting = group[1] | sort_natural: "title" %}
+        {% for meeting in sorted_meeting %}
+        {{ meeting | json }}
+        <div class="bg-white text-gray-dark soft push-bottom" data-id="{{ meeting.contentful_id }}">
+          <h4 class="font-family-condensed-extra text-uppercase">
+            {% assign group_slug = meeting | group_for_meeting %}
+            {% if group_slug %}
+            <a href="/groups/onsite/{{ group_slug.slug }}/{% if meeting.location.slug == 'anywhere' %}online{% else %}{{ meeting.location.slug }}{% endif %}">
               {{ meeting.title }}
-              {% endif %}
-            </h4>
-            
-            <p class="text-gray-dark font-size-small">{{ meeting.description | strip_tags | truncate: 200 }}</p>
-            {% include groups/_meeting-details.html meeting=meeting %}
-          </div>
-          {% endfor %}
+            </a>
+            {% else %}
+            {{ meeting.title }}
+            {% endif %}
+          </h4>
+          
+          <p class="text-gray-dark font-size-small">{{ meeting.description | strip_tags | truncate: 200 }}</p>
+          {% include groups/_meeting-details.html meeting=meeting %}
         </div>
+        {% endfor %}
       </div>
-    </section>
+    </div>
     {% endfor %}
+  </section>
 </main>
 
 <section class="jumbotron jumbotron-lg flush" style="background-image: url('//crds-media.imgix.net/3QtAZAH4q85F8q9FIdG9dH/dd893baff75cd3caaed5d7f42734ae1e/guy-looking-at-computer.png?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
