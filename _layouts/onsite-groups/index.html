@@ -1,0 +1,77 @@
+---
+layout: container-fluid
+snail_trail: connect
+---
+
+<div class="onsite-groups">
+  <section>
+    <div class="jumbotron jumbotron-xl osg-jumbotron flush" style="background-image: url('{{ page.category.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+      <div class="bg-dark-overlay"></div>
+      <div class="jumbotron-content">
+        <div class="container">
+          <div>
+            <h1 class="font-family-condensed-extra text-uppercase">Groups</h1>
+          </div>
+          <div class="body">
+            <p>Meet people, grow, and go to new places in life. These groups are designed for a specific life stage or topic you want to grow in.</p>
+            <p>Filter between Site-Based and Healing groups or <a class="text-white underline" href="#">search by location.</a></p>
+          </div>
+        </div>
+      </div>
+      <ul class="nav nav-tabs osg-tabs">
+      {% for category in page.categories %}
+        {% capture category_path %}/groups/{{ category.slug }}{% endcapture %}
+        <li class="{% if page.path == category_path %}active{% endif %}"><a href="{{ category_path }}">{{ category.title }}</a></li>
+      {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <main class="bg-blue bg-topo soft-ends">
+    <section class="container">
+      <div class="row push-bottom">
+        <div class="col-md-8 col-md-offset-2 text-center push-ends">{{ page.category.description }}</div>
+      </div>
+      {% for groups in page.groups %}
+      <div class="osg-row">
+        {% for group in groups %}
+        <div class="onsite-group bg-white">
+          <div class="text-gray-dark soft push-bottom" data-id="{{ group.contentful_id }}">
+            <h4 class="font-family-condensed-extra text-uppercase">
+              {{ group.title }}
+            </h4>
+            <div class="text-gray small">{{ group.description | markdownify | strip_html | truncate: 275 }}</div>
+            {% assign locations = group | locations_for_meeting %}
+            <ul class="text-gray small list-inline push-quarter-top osg-locations">
+            {% for location in locations %}
+              <li><a href="/groups/onsite/{{ group.slug }}/{{ location.onsite_group_slug }}">{{ location.onsite_group_display_name }}</a></li>
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </section>
+  </main>
+
+  <div class="container push-ends">
+    <header class="row push-bottom">
+      <div class="col-md-8 col-md-offset-2 text-center">
+        <h2 class="font-family-condensed-extra text-uppercase">Groups By Location</h2>
+        <p class="push-ends">We're all about groups here and want you to have great friends. These are some of our groups that are focused on building bonds and meeting like-minded people.</p>
+      </div>
+    </header>
+    <div class="row">
+    {% assign locations = site['locations'] | locations_with_onsite_groups %}
+    {% for location in locations %}
+      <div class="osg-location-card">
+        <a href="/groups/onsite/{{ location.onsite_group_slug }}">
+          <span class="text-center text-white">{{ location.onsite_group_display_name }}</span>
+          <img class="img-responsive " src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ location.onsite_group_display_name }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img/>
+        </a>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
