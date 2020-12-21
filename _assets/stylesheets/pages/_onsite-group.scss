@@ -1,3 +1,117 @@
+.osg-location-card {
+  @include make-xs-column(6);
+  @include make-md-column(3);
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  a {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    span {
+      position: absolute;
+      display: block;
+      z-index: 1;
+      color: $cr-white;
+      font-family: $condensed-extra-font-face;
+      font-weight: 300;
+      font-size: 200%;
+      text-transform: uppercase;
+      border: 2px solid;
+      padding: 0 14px;
+    }
+    img {
+      width: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s;
+      -webkit-transition: opacity 0.3s;
+      opacity: 0.4;
+    }
+    &:hover {
+      img {
+        opacity: 0.75;
+      }
+    }
+  }
+}
+
+.onsite-groups {
+  .osg-jumbotron.jumbotron {
+    padding-bottom: 0;
+    .body {
+      @media only screen and (min-width: $screen-md-min) {
+        width: 60%;
+        margin: 0 auto;
+      }
+      @extend .font-family-serif;
+      p {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .osg-tabs {
+    text-align: center;
+    border: none;
+    margin-top: 50px;
+    > li {
+      display: inline-block;
+      background: $cr-blue;
+      float: none;
+      margin: 0;
+      &.active {
+        border: none;
+        background: none;
+        a {
+          color: $cr-orange;
+        }
+      }
+      a {
+        padding: 0.25rem 1.25rem;
+        display: block;
+        color: $cr-white;
+        font-family: $condensed-extra-font-face;
+        font-weight: 300;
+        font-size: 200%;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .osg-row {
+    .onsite-group {
+      margin-bottom: 30px;
+    }
+    @media only screen and (min-width: $screen-md-min) {
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      overflow: hidden;
+      .onsite-group {
+        flex: 1;
+        margin: 0 30px 30px 0;
+        &:first-child {
+          margin-left: 0;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  .osg-locations {
+    li:after {
+      content: "/";
+      padding-left: 1rem;
+    }
+    li:last-child:after {
+      content: "";
+    }
+  }
+}
+
 .card-title--overlap-remove-divider {
   background-color: $cr-white;
   display: inline-block;
