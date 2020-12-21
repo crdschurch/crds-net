@@ -13,15 +13,14 @@ snail_trail: connect
             <h1 class="font-family-condensed-extra text-uppercase">Groups</h1>
           </div>
           <div class="body">
-            <p>Meet people, grow, and go to new places in life. These groups are designed for a specific life stage or topic you want to grow in.</p>
-            <p>Filter between Site-Based and Healing groups or <a class="text-white underline" href="#">search by location.</a></p>
+            {% content_block osg-header %}
           </div>
         </div>
       </div>
       <ul class="nav nav-tabs osg-tabs">
       {% for category in page.categories %}
         {% capture category_path %}/groups/{{ category.slug }}{% endcapture %}
-        <li class="{% if page.path == category_path %}active{% endif %}"><a href="{{ category_path }}">{{ category.title }}</a></li>
+        <li class="{% if page.path == category_path %}active{% endif %}"><a href="{{ category_path }}">{{ category.title }} Groups</a></li>
       {% endfor %}
       </ul>
     </div>
@@ -55,11 +54,10 @@ snail_trail: connect
     </section>
   </main>
 
-  <div class="container push-ends">
+  <div class="container push-ends" id="groups-by-location">
     <header class="row push-bottom">
       <div class="col-md-8 col-md-offset-2 text-center">
-        <h2 class="font-family-condensed-extra text-uppercase">Groups By Location</h2>
-        <p class="push-ends">We're all about groups here and want you to have great friends. These are some of our groups that are focused on building bonds and meeting like-minded people.</p>
+        {% content_block osg-locations-header %}
       </div>
     </header>
     <div class="row">
