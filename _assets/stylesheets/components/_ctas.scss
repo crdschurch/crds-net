@@ -1,0 +1,46 @@
+.portrait-card-default {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-end;
+  min-height: 475px;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  .portrait-card-content {
+    padding: 25px 15px;
+    text-align: left;
+    text-decoration: none;
+    width: 100%;
+    z-index: 2;
+
+    .portrait-card-lead {
+      color: $cr-orange;
+      font-size: $font-size-small;
+      font-weight: bold;
+      margin: 0;
+      padding: 10px 0;
+    }
+
+    .portrait-card-title {
+      color: $cr-white;
+      font-size: 46px;
+      line-height: 40px;
+      margin: 0;
+
+      @media (min-width: $screen-md) {
+        font-size: 52px;
+        line-height: 45px;
+      }
+    }
+  }
+}
+
