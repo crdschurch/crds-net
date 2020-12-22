@@ -11,13 +11,14 @@ class BitmovinManager {
     this.dateStringFormat = "YYYY/MM/DD HH:mm:ss";
     this.timeouts = [];
     this.container = document.getElementById(`${bitmovinConfig.id}`);
-    this.countdown = new CRDS.Countdown();
-
+    if (bitmovinConfig.countdown !== false)
+      this.countdown = new CRDS.Countdown();
+    
     this.playerConfig = {
       key: `${window.CRDS.env.bitmovinPlayerLicense}`,
       playback: {
-        autoplay: this.getAutoPlay(),
-        muted: this.getIsMuted(),
+        autoplay: bitmovinConfig.autoplay || this.getAutoPlay(),
+        muted: bitmovinConfig.muted || this.getIsMuted(),
         preferredTech: [
           {
             player: 'html5',
