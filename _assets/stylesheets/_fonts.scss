@@ -11,6 +11,7 @@
  *   - http://typekit.com/eulas/00000000000000003b9acaf4
  *   - http://typekit.com/eulas/00000000000000003b9acaf5
  *   - http://typekit.com/eulas/00000000000000003b9acaf6
+ *   - http://typekit.com/eulas/00000000000000003b9acafa
  *   - http://typekit.com/eulas/00000000000000003b9acaf0
  *   - http://typekit.com/eulas/00000000000000003b9acaf1
  * acumin-pro-extra-condensed:
@@ -27,9 +28,9 @@
  *
  * © 2009-2020 Adobe Systems Incorporated. All Rights Reserved.
  */
-/*{"last_published":"2020-09-25 12:24:25 UTC"}*/
+/*{"last_published":"2020-11-19 15:53:32 UTC"}*/
 
-@import url("https://p.typekit.net/p.css?s=1&k=gir0nnu&ht=tk&f=9805.9806.26034.26053.26056.26058.26059.26062.26065.26067.26016.26018.26024.26032.26044.26045&a=6309984&app=typekit&e=css");
+@import url("https://p.typekit.net/p.css?s=1&k=gir0nnu&ht=tk&f=9805.9806.26034.26053.26056.26058.26059.26062.26063.26065.26067.26016.26018.26024.26032.26044.26045&a=6309984&app=typekit&e=css");
 
 @font-face {
 font-family:"lexia";
@@ -77,6 +78,12 @@ font-display:auto;font-style:italic;font-weight:300;
 font-family:"acumin-pro";
 src:url("https://use.typekit.net/af/46da36/00000000000000003b9acaf6/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/46da36/00000000000000003b9acaf6/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/46da36/00000000000000003b9acaf6/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
 font-display:auto;font-style:normal;font-weight:400;
+}
+
+@font-face {
+font-family:"acumin-pro";
+src:url("https://use.typekit.net/af/027dd4/00000000000000003b9acafa/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff2"),url("https://use.typekit.net/af/027dd4/00000000000000003b9acafa/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff"),url("https://use.typekit.net/af/027dd4/00000000000000003b9acafa/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("opentype");
+font-display:auto;font-style:normal;font-weight:600;
 }
 
 @font-face {
