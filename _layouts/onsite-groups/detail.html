@@ -5,7 +5,7 @@ layout: container-fluid
 <section class="container">
   <div class="row push-ends">
     <div class="col-md-12">
-      <a href="/groups/onsite">&lt; Back to All Onsite Groups</a>
+      <a href="/groups/{{ page.group.category.slug }}">&lt; Back to All {{ page.group.category.title }}</a>
     </div>
   </div>
 
@@ -15,6 +15,10 @@ layout: container-fluid
         {{ page.group.title }}
       </h3>
     </div>
+  </div>
+
+  <div>
+    <p> {{ page.group.category.title }}</p>
   </div>
 
   <div class="row push-bottom">

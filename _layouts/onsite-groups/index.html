@@ -18,7 +18,8 @@ snail_trail: connect
         </div>
       </div>
       <ul class="nav nav-tabs osg-tabs">
-      {% for category in page.categories %}
+      {% assign page_categories = page.categories | sort | reverse %}
+      {% for category in page_categories %}
         {% capture category_path %}/groups/{{ category.slug }}{% endcapture %}
         <li class="{% if page.path == category_path %}active{% endif %}"><a href="{{ category_path }}">{{ category.title }}</a></li>
       {% endfor %}
