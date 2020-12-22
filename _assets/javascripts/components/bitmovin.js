@@ -17,8 +17,8 @@ class BitmovinManager {
     this.playerConfig = {
       key: `${window.CRDS.env.bitmovinPlayerLicense}`,
       playback: {
-        autoplay: bitmovinConfig.autoplay || this.getAutoPlay(),
-        muted: bitmovinConfig.muted || this.getIsMuted(),
+        autoplay: this.getAutoPlay(),
+        muted: this.getIsMuted(),
         preferredTech: [
           {
             player: 'html5',
