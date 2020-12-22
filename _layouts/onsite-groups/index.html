@@ -55,12 +55,12 @@ snail_trail: connect
     </section>
   </main>
 
-  <div class="container push-ends" id="groups-by-location">
-    <header class="row push-bottom">
+  <section class="container push-ends" id="groups-by-location" id="locations">
+    <div class="row push-bottom">
       <div class="col-md-8 col-md-offset-2 text-center">
         {% content_block osg-locations-header %}
       </div>
-    </header>
+    </div>
     <div class="row">
     {% assign locations = site['locations'] | locations_with_onsite_groups %}
     {% for location in locations %}
@@ -72,5 +72,5 @@ snail_trail: connect
       </div>
     {% endfor %}
     </div>
-  </div>
+  </section>
 </div>
