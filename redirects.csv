@@ -71,7 +71,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /give,${env:PUSHPAY_GIVE_ENDPOINT},301!
 /me/giving/*,${env:CRDS_GIVING_HISTORY}/:splat,200!
 /givinghistory,/me/giving,301!
-/christmas-special autoPlay=true sound=11,/christmas-special?autoPlay=:autoPlay&sound=:sound,302!
 /series/* autoPlay=:autoPlay sound=:sound,/media/series/:splat?autoPlay=:autoPlay&sound=:sound,302!
 /series/* autoPlay=:autoPlay,/media/series/:splat?autoPlay=:autoPlay,302!
 /series/* sound=:sound,/media/series/:splat?sound=:sound,302!
