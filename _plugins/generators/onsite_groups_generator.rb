@@ -7,11 +7,23 @@ module Jekyll
     def generate(site)
       groups = CRDS::OnSiteGroups.new(site)
       pages = CRDS::JekyllPages.new(site)
+      groups_by_category = groups.by_category
+      categories = site.collections['onsite_group_categories'].docs.select{|c| groups_by_category.keys.include?(c.data.dig('slug')) }
+
+      # Category landings
+      groups_by_category.each do |slug, category_groups|
+        pages.create!("/groups/#{slug}", 'onsite-groups/index.html', {
+          'groups': category_groups.each_slice(2).to_a,
+          'category': groups.category_by_slug(slug),
+          'categories': categories,
+          'path': "/groups/#{slug}"
+        })
+      end
 
       # Location landings
       groups.by_location.each do |slug, meetings|
         slug = slug == 'anywhere' ? 'online' : slug
-        pages.create!("/groups/onsite/#{slug}", 'onsite-group-location.html', {
+        pages.create!("/groups/onsite/#{slug}", 'onsite-groups/location.html', {
           'location': groups.location_by_slug(slug),
           'meetings': meetings.group_by{|m| m.data['group'].data.dig('category') }.sort_by{|k,v| k['title'] }.reverse
         })
@@ -31,7 +43,7 @@ module Jekyll
           slug = location_slug == 'anywhere' ? 'online' : location_slug
           meetings = group_meetings.select{|m| m.data.dig('location','slug') == location_slug }
           location = groups.location_by_slug(slug)
-          pages.create!("/groups/onsite/#{group_slug}/#{slug}", 'onsite-group-detail.html', {
+          pages.create!("/groups/onsite/#{group_slug}/#{slug}", 'onsite-groups/detail.html', {
             'group': group,
             'location': location,
             'meetings': meetings

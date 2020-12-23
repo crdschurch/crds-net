@@ -5,13 +5,8 @@ module CRDS
     def initialize(site)
       @site = site
       site.collections['locations'].docs.each do |location|
-        if location.data['slug'] != 'anywhere'
-          location.data['onsite_group_display_name'] = location.data['name']
-          location.data['onsite_group_slug'] = location.data['slug']
-        else
-          location.data['onsite_group_display_name'] = "Online | Crossroads Anywhere"
-          location.data['onsite_group_slug'] = "online"
-        end
+         location.data['onsite_group_display_name'] = location.data['name']
+         location.data['onsite_group_slug'] = location.data['slug'] != 'anywhere' ? location.data['slug'] : 'online'
       end
       @collections = site.collections.select{|k,v| k.include?('onsite_group') }
       @collections['locations'] = site.collections['locations']
