@@ -145,7 +145,7 @@ defaults:
       path: ""
       type: "onsite_groups"
     values:
-      layout: onsite-group-detail
+      layout: onsite-groups/detail
       snail_trail: connect
   - scope:
       path: ""
