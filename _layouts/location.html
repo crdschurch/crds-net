@@ -64,15 +64,15 @@ layout: default
       <div class="col-sm-6 soft-sides">
         <h3 class="text-orange font-family-condensed-extra text-uppercase flush-top">About this location</h3>
         <div class="lead">{{ page.description | markdownify }}</div>
+        <div class="row push-ends soft-half-top mobile-hard-bottom">
+          <div class="col-sm-6" id="service-times">
+            <p>
+              <strong class="text-orange">Service Times</strong>
+              <br />
+              {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
+            </p>
+          </div>
         {% if page.name == 'Georgetown' %}
-          <div class="row push-ends soft-half-top mobile-hard-bottom">
-            <div class="col-sm-6 push-bottom" id="service-times">
-              <p>
-                <strong class="text-orange">Service Times</strong>
-                <br />
-                {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
-              </p>
-            </div>
             <div class="col-sm-6">
               <p>
                 <strong class="text-orange">Office Address</strong>
@@ -85,14 +85,6 @@ layout: default
           </div>
         {% else %}
         {% if page.name == 'Richmond' %}
-        <div class="row push-ends soft-half-top mobile-hard-bottom">
-          <div class="col-sm-6 push-bottom" id="service-times">
-            <p>
-              <strong class="text-orange">Service Times</strong>
-              <br />
-              {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
-            </p>
-          </div>
           <div class="col-sm-6">
             <p>
               <strong class="text-orange">Office Address</strong>
@@ -104,14 +96,6 @@ layout: default
           </div>
         </div>
         {% else %}
-          <div class="row push-ends soft-half-top mobile-hard-bottom">
-            <div class="col-sm-6" id="service-times">
-              <p>
-                <strong class="text-orange">Service Times</strong>
-                <br />
-                {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
-              </p>
-            </div>
             <div class="col-sm-6">
               <p>
                 <strong class="text-orange">Address</strong>
