@@ -51,52 +51,80 @@ collections:
     output: false
   articles:
     output: true
-    permalink: /:collection/:title
+    permalink: /media/:collection/:title
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
   authors:
     output: true
-    permalink: /:collection/:title
+    permalink: /media/:collection/:title
   categories:
     output: true
-    permalink: /topics/:title
+    permalink: /media/topics/:title
   collections:
     output: true
-    permalink: /collections/:title
+    permalink: /media/collections/:title
   content_blocks:
     output: false
   discussions:
     output: false
   episodes:
     output: true
-    permalink: /podcasts/(:podcast/:slug)/:title
+    permalink: /media/podcasts/(:podcast/:slug)/:title
   featured_media:
     output: false
-  messages:
+  features:
+    output: false
+  locations:
     output: true
+    permalink: /:slug
+  messages:
+    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
+    output: false
     permalink: /series/(:series/:slug)/:title
+  onsite_group_categories:
+    output: false
+  onsite_group_meetings:
+    output: false
+  onsite_groups:
+    output: true
+    permalink: /groups/(:category/:slug)/:slug
+  pages:
+    filename: "{{ permalink }} index"
+    output: true
+    permalink: /:permalink/index.html
   perspective_sets:
     output: true
-    permalink: /perspectives/sets/:title
+    permalink: /media/perspectives/sets/:title
   perspectives:
     output: true
-    permalink: /:collection/:title
+    permalink: /media/:collection/:title
   podcasts:
     output: true
-    permalink: /:collection/:title
+    permalink: /media/:collection/:title
   promos:
+    filename: "{{ published_at | date: '%Y-%m-%d-%H-%M-%S' }}-{{ title | slugify }}-{{ slug }}"
     output: false
   series:
+    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: true
-    permalink: /:collection/:title
+    permalink: /media/:collection/:title
+    has_many:
+      - videos
   sign_offs:
+    output: false
+  songs:
     output: false
   system_pages:
     output: true
   tags:
     output: false
+  topics:
+    output: false
+  trips:
+    output: true
+    permalink: /reachout/go/:country_slug/:slug
   videos:
     output: true
-    permalink: /:collection/:title
+    permalink: /media/:collection/:title
 
 contentful:
   config:
@@ -107,11 +135,12 @@ contentful:
   article:
     map:
       date: published_at
+  category:
   collection:
   content_block:
-    query: fields.category=media
     map:
       description: content
+      content_block: content
   discussion:
     map:
       date: published_at
@@ -119,14 +148,15 @@ contentful:
     map:
       date: published_at
   featured_media:
-    query: fields.site=media
     map:
       page_path: path
   message:
+    order: "published_at desc"
     map:
       date: published_at
     belongs_to:
       series: videos
+  page:
   perspective:
     map:
       date: published_at
@@ -134,7 +164,9 @@ contentful:
     map:
       date: published_at
   podcast:
+  query:
   series:
+    order: "published_at desc"
     map:
       date: published_at
   video:
