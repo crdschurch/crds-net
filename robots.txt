@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /lockerroom/
 Disallow: /tmp
 
-Sitemap: https://www.crossroads.net/media/sitemap.xml
+Sitemap: https://www.crossroads.net/sitemap.xml
