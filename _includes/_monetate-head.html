@@ -1,3 +1,10 @@
+{% if page.monetate_page_type %}
+<script>
+  window.monetateQ = window.monetateQ || [];
+  window.monetateQ.push(["setPageType", "{{ page.monetate_page_type }}"]);
+</script>
+{% endif %}
+
 {% if page.content_type contains 'article'
   or page.content_type contains 'episode'
   or page.content_type contains 'message'

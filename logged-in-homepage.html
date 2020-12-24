@@ -34,7 +34,7 @@ paginate:
   data-optimize-bg-img
   data-hero-image
 >
-  <div class="container">    
+  <div class="container">
     <div class="row">
       <div class="col-md-8 col-lg-8 text-left">
         <!-- Greeting -->
@@ -71,7 +71,7 @@ paginate:
     <!-- Featured -->
     <div class="col-md-8 overlap-header">
       {% assign features = page.home_collection.docs | slice: 0, 3 %} {% for
-      item in features %} {% include media/_overlay-card.html autoplay=true %}
+      item in features %} {% include _overlay-card.html autoplay=true %}
       {% endfor %}
     </div>
 
@@ -101,7 +101,7 @@ paginate:
               <img class="media-img"
                 src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
                 sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
-              {% include media/_video-player-card.html autoplay=true thumbnail=true %}
+              {% include _video-player-card.html autoplay=true thumbnail=true %}
               <!-- <svg class="media-play-btn icon icon-5 text-white" viewBox="0 0 256 256">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/svgs/icons.svg#play-thin"></use>
               </svg> -->
@@ -181,14 +181,14 @@ paginate:
       <h2 class="flush-top font-size-base text-gray-light">latest</h2>
 
       {% assign below_the_fold = page.home_collection.docs | slice: 4 %} {% for
-      item in below_the_fold %} {% include media/_overlay-card.html %} {% endfor
+      item in below_the_fold %} {% include _overlay-card.html %} {% endfor
       %}
 
       <!-- Content Cards -->
       <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
         <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
           {% assign above_the_fold = page.home_collection.docs | slice: 5, 10 %}
-          {% for item in above_the_fold %} {% include media/_media-card.html
+          {% for item in above_the_fold %} {% include _media-card.html
           autoplay=true carousel=true %} {% endfor %}
         </div>
       </div>
@@ -226,7 +226,7 @@ paginate:
       {% assign album_card = site.albums | sort: "published_at" | reverse %} {%
       for album in album_card limit: 5 %}
       <div class="album-container card carousel-cell flush hard">
-        {% include media/_album-card.html %}
+        {% include _album-card.html %}
       </div>
       {% endfor %}
     </div>

@@ -1,4 +1,5 @@
 <div class="card-stamp text-white">
+
   {% if include.source.collection %} {% assign content_type =
   include.source.collection | singularize %} {% else %} {% assign content_type =
   include.source.content_type | singularize %} {% endif %} {% if
@@ -9,15 +10,31 @@
   }}</span>
   {% endif %}
 
+  {% if content_type == "article" %}
+    {% assign words = include.source.content | number_of_words %}
+    {% assign read_time = words | divided_by: 184.0 | ceil %}
+    {% if read_time > 0 %}
+      <span class="font-size-smallest">{{ read_time }} min read</span>
+    {% endif %}
+  {% elsif content_type == "video" or content_type == "message" %}
+    {% if include.source.video_duration %}<span class="font-size-smallest">{{ include.source.video_duration }}</span>{% endif %}
+  {% elsif content_type == "song" %}
+    {% if include.source.audio_duration %}<span class="font-size-smallest">{{ include.source.audio_duration }}</span>{% endif %}
+  {% elsif content_type == "episode" %}
+    {% if include.source.audio_duration %}
+      <span class="font-size-smallest">{{ include.source.audio_duration }} min</span>
+    {% endif %}
+  {% endif %}
+
   <svg class="icon" viewBox="0 0 256 256">
     {% if content_type == "article" %}
-    <use xlink:href="/assets/svgs/icons.svg#media-article"></use>
+      <use xlink:href="/assets/svgs/icons.svg#media-article"></use>
     {% elsif content_type == "video" or content_type == "message" %}
-    <use xlink:href="/assets/svgs/icons.svg#media-video"></use>
-    {% elsif content_type == "album" %}
-    <use xlink:href="/assets/svgs/icons.svg#media-music"></use>
+      <use xlink:href="/assets/svgs/icons.svg#media-video"></use>
+    {% elsif content_type == "album" or content_type == "song" %}
+      <use xlink:href="/assets/svgs/icons.svg#media-music"></use>
     {% elsif content_type == "podcast" or content_type == "episode" %}
-    <use xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
+      <use xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
     {% endif %}
   </svg>
 </div>

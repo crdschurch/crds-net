@@ -1,5 +1,6 @@
 <!-- send data to Monetate -->
-{% if page.content_type contains 'article'
+{% if page.monetate_page_type
+or page.content_type contains 'article'
 or page.content_type contains 'episode'
 or page.content_type contains 'message'
 or page.content_type contains 'perspectives'

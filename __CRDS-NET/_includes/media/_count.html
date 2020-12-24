@@ -1,4 +1,0 @@
-{% assign count = include.collection | where: include.key, include.subject | size %}
-{% if count > 0 %}
-  {{ count | pluralize: include.label }}
-{% endif %}
