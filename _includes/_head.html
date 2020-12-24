@@ -1,9 +1,7 @@
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta name="author" content="crossroads media" />
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% include _gtm-head.html %}
+  {% include _monetate-head.html %}
+  {% include _meta-tags.html %}
 
   {% if page.distribution_channels %}
     {% if page.podcast.distribution_channels %}
@@ -24,26 +22,22 @@
   <link rel="manifest" href="//d1tmclqz61gqwd.cloudfront.net/favicons/manifest.json">
   <link rel="mask-icon" href="//d1tmclqz61gqwd.cloudfront.net/favicons/safari-pinned-tab.svg?v=2">
 
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="theme-color" content="#ffffff">
-  <meta property="cfl:space_id" content="{{ site.ENV.CONTENTFUL_SPACE_ID }}">
-  <meta property="cfl:env" content="{{ site.ENV.CONTENTFUL_ENV }}">
-  <meta property="cfl:token" content="{{ site.ENV.CONTENTFUL_ACCESS_TOKEN }}">
-  <meta property="crds:interactions-endpoint" content="{{ site.ENV.INTERACTIONS_ENDPOINT }}">
+  {% if page.legacy_styles %}
+  <link rel="stylesheet" href="/assets/static/legacy.min.css">
+  {% endif %}
 
+  {% if page.title == "Atrium Events" %}
+  {% include atrium_events/_atrium-events.html %}
+  {% endif %}
+
+  {% if page.title == "Explore" %}
+  {% include explore/_explore-resources.html %}
+  {% endif %}
+
+  <!-- before -->
   {% stylesheet_link_tag application %}
-
-  <title>{{ page | meta_title }}</title>
-  <meta name="description" content="{{ page | meta_description }}">
-  <meta property="og:title" content="{{ page | meta_title }}">
-  <meta property="og:description" content="{{ page | meta_description }}">
-  <meta property="og:image" content="{{ page | meta_image | imgix: site.imgix }}?{{ site.imgix_params.meta_image }}">
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <meta property="og:site_name" content="{{ site.title }}">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@crdschurch">
+  <!-- after -->
+  <script> window.prerenderReady = true; </script>
 
   <script>
   var CRDS = window.CRDS || {};
@@ -71,11 +65,16 @@
   window.envReady = true;
   </script>
 
-  <script type="module" src="{{site.components_endpoint}}/crds-components/crds-components.esm.js"></script>
-  <script nomodule="" src="{{site.components_endpoint}}/crds-components.js"></script>
+  <script type="module" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components/crds-components.esm.js"></script>
+  <script nomodule="" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components.js"></script>
+  <script>
+    function componentsLoaded() {
+      var componentsReady = new Event('components-ready');
+      document.dispatchEvent(componentsReady);
+      window.componentsReady = true;
+    }
+  </script>
 
-{% include _gtm.html %}
-{% include _monetate-head.html %}
 {% include _facebook.html %}
 {% if page.js_vars %}{% include _js_vars.html %}{% endif %}
 {% javascript_link_tag application %}
