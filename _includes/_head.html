@@ -56,15 +56,24 @@
 
   CRDS.env = {
     "bitmovinPlayerLicense": '{{ site.bitmovin_player_license }}',
-    "bitmovinAnalyticsLicense": '{{ site.bitmovin_analytics_license }}'
+    "bitmovinAnalyticsLicense": '{{ site.bitmovin_analytics_license }}',
+    environment: '{{ site.jekyll_env }}',
+    "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}',
+    "streamScheduleEndpoint": '{{ site.stream_schedule_endpoint }}',
+    "okta_client_id": '{{ site.okta_client_id }}',
+    "okta_oauth_base_url": '{{ site.okta_oauth_base_url }}'
   }
 
   var JEKYLL_ENV = '{{ site.jekyll_env }}';
+
+  var envReady = new Event('env-ready');
+  document.dispatchEvent(envReady);
+  window.envReady = true;
   </script>
 
   <script type="module" src="{{site.components_endpoint}}/crds-components/crds-components.esm.js"></script>
   <script nomodule="" src="{{site.components_endpoint}}/crds-components.js"></script>
-  
+
 {% include _gtm.html %}
 {% include _monetate-head.html %}
 {% include _facebook.html %}

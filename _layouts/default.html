@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
   {% include _head.html %}
-  <body{% if page.path == 'preview.html' %} class="preview"{% endif %}>
+  <body class="{% if page.path == 'preview.html' %}preview{% endif %} crds-styles relative">
     {% include _gtm_noscript.html %}
     {% include _facebook_noscript.html %}
+    {% include _monetate-body.html %}
 
-    {% include header.html %}
+    {% javascript_link_tag application_deferred async %}
     <div style="margin-bottom: 120px;">
       {{ content }}
     </div>
-    {% include footer.html %}
+
     {% include _subscribe-modal.html %}
+    {% if page.title == "Atrium Events" %}
+      {% javascript_link_tag events async %}
+    {% endif %}
+
     {% if page.preloader %}{% include _preloader.html %}{% endif %}
 
     {% include _footer-script.html %}
