@@ -1,12 +1,13 @@
-title: Crossroads Media
+title: Crossroads
 email: info@crossroads.net
 description: No matter what your beliefs, you are welcome here.
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "https://www.crossroads.net/media" # the base hostname & protocol for your site, e.g. http://example.com
-image: "//crds-cms-uploads.imgix.net/content/images/cr-social-sharing-still-bg.jpg?auto=format&w=1200&h=630&fit=crop"
+url: "https://www.crossroads.net" # the base hostname & protocol for your site, e.g. http://example.com
+image: "//crds-media.imgix.net/7EFusaW9y0WFSxO9KCdumH/2edc127ce50430b3894692f7075122fb/spiritual-outfitters.jpg"
 
+# Build settings
 # disable_hubspot: true
-permalink: /:title/
+permalink: pretty
 
 markdown: kramdown
 plugins:
@@ -17,23 +18,31 @@ plugins:
 # The following items will not be processed, by default.
 exclude:
   - .github/
+  - bin
+  - cypress.json
+  - Guardfile
   - Gemfile
   - Gemfile.lock
-  - Guardfile
+  - gulpfile.js
   - lib
-  - node_modules
-  - package-lock.json
   - package.json
+  - package-lock.json
+  - _migrations
+  - netlify.toml
+  - node_modules
+  - Rakefile
   - README.md
   - spec
   - tmp
   - vendor
   - buildlog.txt
-  - gulpfile.js
+  - collections
 
 include:
+  - .aws
   - _redirects
   - _headers
+  - _pages
 
 collections_dir: collections
 
@@ -44,62 +53,65 @@ collections:
     output: true
     permalink: /:collection/:title
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
+  authors:
+    output: true
+    permalink: /:collection/:title
   categories:
     output: true
     permalink: /topics/:title
   collections:
     output: true
     permalink: /collections/:title
-  authors:
+  content_blocks:
+    output: false
+  discussions:
+    output: false
+  episodes:
+    output: true
+    permalink: /podcasts/(:podcast/:slug)/:title
+  featured_media:
+    output: false
+  messages:
+    output: true
+    permalink: /series/(:series/:slug)/:title
+  perspective_sets:
+    output: true
+    permalink: /perspectives/sets/:title
+  perspectives:
     output: true
     permalink: /:collection/:title
   podcasts:
     output: true
     permalink: /:collection/:title
-  episodes:
-    output: true
-    permalink: /podcasts/(:podcast/:slug)/:title
-  videos:
-    output: true
-    permalink: /:collection/:title
+  promos:
+    output: false
   series:
     output: true
     permalink: /:collection/:title
-  messages:
-    output: true
-    permalink: /series/(:series/:slug)/:title
-  tags:
-    output: false
-  featured_media:
-    output: false
-  discussions:
-    output: false
   sign_offs:
-    output: false
-  perspectives:
-    output: true
-    permalink: /:collection/:title
-  perspective_sets:
-    output: true
-    permalink: /perspectives/sets/:title
-  promos:
-    output: false
-  content_blocks:
     output: false
   system_pages:
     output: true
+  tags:
+    output: false
+  videos:
+    output: true
+    permalink: /:collection/:title
 
 contentful:
   config:
-    sites: distribution_channels 
-  collection:
-  podcast:
+    sites: distribution_channels
   album:
     map:
       date: published_at
   article:
     map:
       date: published_at
+  collection:
+  content_block:
+    query: fields.category=media
+    map:
+      description: content
   discussion:
     map:
       date: published_at
@@ -115,27 +127,28 @@ contentful:
       date: published_at
     belongs_to:
       series: videos
-  series:
-    map:
-      date: published_at
-  video:
-    map:
-      date: published_at
   perspective:
     map:
       date: published_at
   perspective_set:
     map:
       date: published_at
-  content_block:
-    query: fields.category=media
+  podcast:
+  series:
     map:
-      description: content
+      date: published_at
+  video:
+    map:
+      date: published_at
+
   exclude:
+    - collections
     - location
+    - migration
     - migrations
     - page
     - redirect
+    - sign_off
     - song
 
 defaults:
@@ -150,9 +163,9 @@ defaults:
       layout: article
   - scope:
       path: ""
-      type: collections
+      type: authors
     values:
-      layout: collection
+      layout: author
   - scope:
       path: ""
       type: categories
@@ -165,29 +178,14 @@ defaults:
       layout: collection
   - scope:
       path: ""
-      type: authors
-    values:
-      layout: author
-  - scope:
-      path: ""
-      type: podcasts
-    values:
-      layout: podcast
-  - scope:
-      path: ""
       type: episodes
     values:
       layout: episode
   - scope:
       path: ""
-      type: videos
+      type: "locations"
     values:
-      layout: video
-  - scope:
-      path: ""
-      type: series
-    values:
-      layout: series
+      layout: location
   - scope:
       path: ""
       type: messages
@@ -195,36 +193,65 @@ defaults:
       layout: message
   - scope:
       path: ""
-      type: perspectives
+      type: "onsite_groups"
     values:
-      layout: perspective
+      layout: onsite-group-detail
+      snail_trail: connect
   - scope:
       path: ""
       type: perspective_sets
     values:
       layout: perspective_set
+  - scope:
+      path: ""
+      type: perspectives
+    values:
+      layout: perspective
+  - scope:
+      path: ""
+      type: podcasts
+    values:
+      layout: podcast
+  - scope:
+      path: ""
+      type: series
+    values:
+      layout: series
+  - scope:
+      path: ""
+      type: "trips"
+    values:
+      layout: trip
+  - scope:
+      path: ""
+      type: videos
+    values:
+      layout: video
 
 imgix_params:
+  meta_image: "auto=format,compress&w=1200&h=630&fit=crop"
   overlay_50: "blend64=MTUxNTE1&balph=50&bm=normal"
   placeholder: "auto=format,compress&w=10"
   placeholder_card: "auto=format,compress&w=12&h=9&fit=crop"
-  placeholder_square: "auto=format,compress&w=10&h=10&fit=crop"
   placeholder_sixteen_nine: "auto=format,compress&w=16&h=9&fit=crop"
-  meta_image: "auto=format,compress&w=1200&h=630&fit=crop"
+  placeholder_square: "auto=format,compress&w=10&h=10&fit=crop"
+  thin_hero: "auto=format,compress&fit=crop&crop=faces&w=3.125h=1"
 
 image_sizes:
-  media_object: "(min-width: 768px) 140px, (min-width: 0px) 100px"
-  cards_6x: "(min-width: 992px) 165px, (min-width: 0px) 50vw"
-  cards_4x: "(min-width: 992px) 212.5px, (min-width: 768px) 345px, (min-width: 0px) 100vw"
+  avatar: "80px"
+  cards_2x: "(min-width: 768px) 345px, (min-width: 0px) 100vw"
   cards_3x: "(min-width: 992px) 390px, (min-width: 0px) 100vw"
   cards_3x_centered_carousel: "(min-width: 1200px) 232.5px, (min-width: 992px) 191px, (min-width: 768px) 146px, (min-width: 0px) 270px"
-  cards_2x: "(min-width: 768px) 345px, (min-width: 0px) 100vw"
-  podcast_thumb: "(min-width: 768px) 330px, (min-width: 480px) 200px, (min-width: 0px) 100vw"
+  cards_4x: "(min-width: 992px) 212.5px, (min-width: 768px) 345px, (min-width: 0px) 100vw"
+  cards_6x: "(min-width: 992px) 165px, (min-width: 0px) 50vw"
   episode_thumb: "(min-width: 768px) 120px, (min-width: 0px) 80px"
-  avatar: "80px"
   full_width: "100vw"
   half_width: "50vw"
+  media_object: "(min-width: 768px) 140px, (min-width: 0px) 100px"
+  one_fourth: "(min-width: 992px) 25vw, (min-width: 0px) 100vw"
   one_hundred: "100%"
+  podcast_thumb: "(min-width: 768px) 330px, (min-width: 480px) 200px, (min-width: 0px) 100vw"
+  three_fourths: "(min-width: 992px) 75vw, (min-width: 0px) 100vw"
   topic_feature_sub: "(min-width: 992px) 370px, (min-width: 0px) 100px"
 
 typekit_url: https://use.typekit.net/gir0nnu.css
