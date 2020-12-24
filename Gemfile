@@ -7,6 +7,11 @@ gem 'jekyll', '~> 4.0.0'
 # ---------------------------------------- | Utilities
 
 gem 'activesupport'
+gem 'netlify-redirector', git: 'https://github.com/crdschurch/netlify-redirector.git'
+gem 'httparty'
+gem 'vcr'
+gem 'webmock'
+gem "rack", ">= 2.0.6"
 gem 'hashie'
 gem 'uglifier'
 gem 'webvtt-ruby'
