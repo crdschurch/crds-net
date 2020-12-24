@@ -18,7 +18,7 @@ layout: default
                     <!-- This is what content will show after a video plays -->
                     {% assign recommended_collection=site.messages %}
                     <!--<iframe id="js-media-video" width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen data-video-player></iframe>-->
-                    {% include _video-player.html %}
+                    {% include _video-player.html video="video" %}
                     <script>
                       // This function will be called by audio_video_toggler.js when the audio trigger is clicked
                       function onAudioActivate() {

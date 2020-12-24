@@ -19,6 +19,6 @@
 {% assign video = item %}
 {% if video.bitmovin_url and include.autoplay == true %}
 <div class="card-video-player" style="opacity: 0;">
-    {% include _video-player.html isCard=true %}
+    {% include _video-player.html isCard=true video="video" %}
 </div>
 {% endif %}
