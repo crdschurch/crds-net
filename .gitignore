@@ -1,5 +1,7 @@
 _site
+_redirects
 .DS*
+.aws
 .sass-cache
 .jekyll-metadata
 .jekyll-cache
@@ -8,6 +10,7 @@ _site
 .vscode
 .netlify
 .asset_pipeline
+system-pages.json
 node_modules
 lambda
 .cache
@@ -23,3 +26,13 @@ collections/*
 #ignore Cypress stuff
 cypress/screenshots
 cypress/videos
+cypress/screenshots
+
+liveStreamTests/cypress/videos
+liveStreamTests/cypress/screenshots
+liveStreamTests/node_modules
+/.vs/config/applicationhost.config
+/.vs/crds-net/v15/.suo
+/.vs/slnx.sqlite
+/.vs
+.idea
