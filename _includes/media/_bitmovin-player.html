@@ -1,67 +1,85 @@
-<div id="{% if include.isCard %}bitmovinPlayer{{video.slug | camelcase }}{% else %}VideoManager{% endif %}"
-    data-video-player class="embed-responsive embed-responsive-16by9 relative">
-    {% if recommended_collection.size > 0 %}
-    {% assign sorted_collection = recommended_collection | sort: 'date' | reverse %}
-        {% for item in sorted_collection %}
-            {% if item.date < video.date %}
-                <div id="post-video-message" data-post-video-message>
-                    {% assign image = item | card_image %}
-                    <a href="{{ item | media_url }}" class="overlay-card flush-bottom">
-                        <div class="bg-overlay"></div>
-                        <div class="text-white soft-half absolute" style="position:absolute;top:0;left:0;background:rgba(0,0,0,.6);">
-                            <span>Next {{ item.content_type | singularize | titleize }}</span>
-                        </div>
-                        <div class="overlay-card-image">
-                            <img src="{% if image %}{{ image | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                                sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}"
-                                alt="{{ image.title }}" data-optimize-img>
-                        </div>
-                        <div class="overlay-card-content">
-                            <p class="overlay-card-category">{{ item.category.title }}</p>
-                            <h2 class="overlay-card-title">{{ item.title | truncate: 55 }}</h2>
-                            <p class="overlay-card-author">{{ item.author.full_name }}</p>
-                            {% include _media-label.html source=item %}
-                        </div>
-                    </a>
-                </div>
-                {% break %}
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-    <!-- {% assign standby = site.content_blocks | where: "slug", "Live-Stream-Standby" | first %}
+<div
+  id="{% if include.isCard %}bitmovinPlayer{{video.slug | camelcase }}{% else %}VideoManager{% endif %}"
+  data-video-player
+  class="embed-responsive embed-responsive-16by9 relative"
+>
+  {% if recommended_collection.size > 0 %} {% assign sorted_collection =
+  recommended_collection | sort: 'date' | reverse %} {% for item in
+  sorted_collection %} {% if item.date < video.date %}
+  <div id="post-video-message" data-post-video-message>
+    {% assign image = item | card_image %}
+    <a href="{{ item | media_url }}" class="overlay-card flush-bottom">
+      <div class="bg-overlay"></div>
+      <div
+        class="text-white soft-half absolute"
+        style="position:absolute;top:0;left:0;background:rgba(0,0,0,.6);"
+      >
+        <span>Next {{ item.content_type | singularize | titleize }}</span>
+      </div>
+      <div class="overlay-card-image">
+        <img
+          src="{% if image %}{{ image | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+          sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}"
+          alt="{{ image.title }}"
+          data-optimize-img
+        />
+      </div>
+      <div class="overlay-card-content">
+        <p class="overlay-card-category">{{ item.category.title }}</p>
+        <h2 class="overlay-card-title">{{ item.title | truncate: 55 }}</h2>
+        <p class="overlay-card-author">{{ item.author.full_name }}</p>
+        {% include _media-label.html source=item %}
+      </div>
+    </a>
+  </div>
+  {% break %} {% endif %} {% endfor %} {% endif %}
+  <!-- {% assign standby = site.content_blocks | where: "slug", "Live-Stream-Standby" | first %}
     {% if include.isStream %}
         {{ standby.content_block }}
     {% endif %} -->
 </div>
-<script {% if include.isCard %} async {% endif %} src="https://cdn.bitmovin.com/player/web/8.10.1/bitmovinplayer.js"></script>
+<script
+  {%
+  if
+  include.isCard
+  %}
+  async
+  {%
+  endif
+  %}
+  src="https://cdn.bitmovin.com/player/web/8.10.1/bitmovinplayer.js"
+></script>
 {% javascript_link_tag bitmovin async %}
 <script async type="text/javascript">
-    // if live-stream loads first
-    ready();
-    document.addEventListener("deferred-js-ready", ready);
-    document.addEventListener("deferred-bitmovin-ready", ready);
-    // if app-deferred loads first
-    function ready() {
-        if (window.deferredJSReady && window.defBitmovinLoaded) {
-            bitmovinInit();
-        }
-
-        function bitmovinInit() {
-            var videoManagerID = `{{ include.isCard }}` ? `bitmovinPlayer{{video.slug | camelcase }}` : 'VideoManager';
-            var bitmovinConfig = {
-                title: `{{ video.title }}`,
-                url: `{{ video.bitmovin_url }}`,
-                id: videoManagerID,
-                image: `{{ banner_image | imgix: site.imgix }}`,
-                isCard: `{{ include.isCard }}`,
-                duration: `{{ video.duration }}`,
-                isStream: `{{ include.isStream }}`,
-                subtitles_url: '{{ video.transcription.url }}',
-                spn_subtitles_url: '{{ video.spn_transcription.url }}'
-            }
-            CRDS[videoManagerID] = new BitmovinManager(bitmovinConfig);
-            var videoManagerReadyEvent = new Event(videoManagerID);
-            document.dispatchEvent(videoManagerReadyEvent);
-        }
+  // if live-stream loads first
+  ready();
+  document.addEventListener("deferred-js-ready", ready);
+  document.addEventListener("deferred-bitmovin-ready", ready);
+  // if app-deferred loads first
+  function ready() {
+    if (window.deferredJSReady && window.defBitmovinLoaded) {
+      bitmovinInit();
     }
+
+    function bitmovinInit() {
+      var videoManagerID = `{{ include.isCard }}`
+        ? `bitmovinPlayer{{video.slug | camelcase }}`
+        : "VideoManager";
+      var bitmovinConfig = {
+        title: `{{ video.title }}`,
+        url: `{{ video.bitmovin_url }}`,
+        id: videoManagerID,
+        image: `{{ banner_image | imgix: site.imgix }}`,
+        isCard: `{{ include.isCard }}`,
+        duration: `{{ video.duration }}`,
+        isStream: `{{ include.isStream }}`,
+        subtitles_url: "{{ video.transcription.url }}",
+        spn_subtitles_url: "{{ video.spn_transcription.url }}",
+        autoplay: "{{ video.autoplay }}",
+      };
+      CRDS[videoManagerID] = new BitmovinManager(bitmovinConfig);
+      var videoManagerReadyEvent = new Event(videoManagerID);
+      document.dispatchEvent(videoManagerReadyEvent);
+    }
+  }
 </script>
