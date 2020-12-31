@@ -166,7 +166,6 @@ class BitmovinManager {
   }
 
   getAutoPlay() {
-    console.log(this.autoplay);
     if (this.isStream || this.autoplay || (this.getStartTime() > 0 && !this.currentHasEnded())) return true;
     let urlParams = new URLSearchParams(window.location.search);
     let autoPlay = urlParams.has("autoplay") ? Boolean(urlParams.get("autoplay")) : false;
