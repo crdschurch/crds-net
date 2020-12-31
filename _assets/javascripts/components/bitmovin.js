@@ -6,6 +6,7 @@ class BitmovinManager {
     this.isStream = bitmovinConfig.isStream == 'true';
     this.subtitles_url = bitmovinConfig.subtitles_url;
     this.spn_subtitles_url = bitmovinConfig.spn_subtitles_url;
+    this.autoplay = bitmovinConfig.autoplay;
     this.videoDuration = Number(bitmovinConfig.duration) * 1000;
     this.timezoneStr = "America/New_York";
     this.dateStringFormat = "YYYY/MM/DD HH:mm:ss";
@@ -165,7 +166,7 @@ class BitmovinManager {
   }
 
   getAutoPlay() {
-    if (this.isStream || (this.getStartTime() > 0 && !this.currentHasEnded())) return true;
+    if (this.isStream || this.autoplay || (this.getStartTime() > 0 && !this.currentHasEnded())) return true;
     let urlParams = new URLSearchParams(window.location.search);
     let autoPlay = urlParams.has("autoplay") ? Boolean(urlParams.get("autoplay")) : false;
     return autoPlay;
