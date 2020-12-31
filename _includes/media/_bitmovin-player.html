@@ -75,7 +75,7 @@
         isStream: `{{ include.isStream }}`,
         subtitles_url: "{{ video.transcription.url }}",
         spn_subtitles_url: "{{ video.spn_transcription.url }}",
-        autoplay: "{{ video.autoplay }}",
+        autoplay: "{{ include.autoplay }}",
       };
       CRDS[videoManagerID] = new BitmovinManager(bitmovinConfig);
       var videoManagerReadyEvent = new Event(videoManagerID);
