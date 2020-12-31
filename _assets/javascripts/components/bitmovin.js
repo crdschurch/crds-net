@@ -174,6 +174,7 @@ class BitmovinManager {
 
   getIsMuted() {
     if (this.isCard) return true;
+    if (this.autoplay) return true;
     if (!this.getAutoPlay()) return false;
 
     let urlParams = new URLSearchParams(window.location.search);
