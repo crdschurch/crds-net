@@ -26,11 +26,11 @@ layout: container-fluid
 
   <section class="container bg-white text-gray-dark soft-ends">
     {% if page.group.length %}
-    <div class="push-bottom"><strong>How Long</strong><br> {{ page.group.length }}</div>
+    <div class="push-bottom font-size-small"><strong>How Long</strong><br> {{ page.group.length }}</div>
     {% endif %}
 
     {% if page.group.description %}
-    <div class="push-bottom"><strong>Details:</strong>{{ page.group.description | markdownify }}</div>
+    <div class="push-bottom font-size-small"><strong>Details:</strong>{{ page.group.description | markdownify }}</div>
     {% endif %}
 
     <h2 class="font-family-condensed-extra font-size-h3 text-uppercase">Meeting times</h2>
@@ -47,3 +47,16 @@ layout: container-fluid
   </section>
 </main>
 
+<section class="jumbotron jumbotron-lg flush" style="background-image: url('//crds-media.imgix.net/3QtAZAH4q85F8q9FIdG9dH/dd893baff75cd3caaed5d7f42734ae1e/guy-looking-at-computer.png?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+  <div class="bg-dark-overlay"></div>
+  <div class="jumbotron-content">
+    <div class="container">
+      <h3 class="component-header-box text-white">Don't give up</h3>
+      <p class="font-family-serif font-size-base">Crossroads Anywhere has similar onsite groups that simply meet online.</p>
+      <div>
+        <crds-button class="push-half-right" text="Go Anywhere" color="orange" href="/groups/onsite/online/"></crds-button>
+        <crds-button text="Group Tools" color="orange" href="/connect"></crds-button>
+      </div>
+    </div>
+  </div>
+</section>
