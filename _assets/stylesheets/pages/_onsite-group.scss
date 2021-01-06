@@ -1,6 +1,6 @@
 .osg-location-card {
   @include make-sm-column(6);
-  @include make-md-column(3);
+  @include make-md-column(4);
 
   display: block;
   position: relative;
@@ -62,9 +62,20 @@
   }
 
   .osg-tabs {
-    text-align: center;
+    align-items: center;
     border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    white-space: nowrap;
+    
+    @media (min-width: $screen-sm) {
+      flex-direction: row;
+      padding-bottom: 0;
+    }
 
     > li {
       display: inline-block;
@@ -82,18 +93,17 @@
       }
 
       a {
-        padding: 0.25rem 1.25rem;
-        display: block;
         color: $cr-orange;
+        display: block;
         font-family: $condensed-extra-font-face;
+        font-size: 180%;
         font-weight: 300;
-        font-size: 140%;
+        padding: 0.25rem 1.25rem;
+        text-transform: uppercase;
 
-        @media only screen and (min-width: $screen-sm-min) {
+        @media (min-width: $screen-sm) {
           font-size: 200%;
         }
-
-        text-transform: uppercase;
       }
     }
   }

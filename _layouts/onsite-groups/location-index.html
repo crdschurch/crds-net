@@ -35,8 +35,9 @@ snail_trail: connect
         <div class="col-md-8 col-md-offset-2 text-center push-ends">We’re all about groups here and want you to have great friends. These are some of our groups that foucsed on building bonds and meeting likemind people.</div>
       </div>
     </section>
-    <section class="container bg-white soft-top">
-      <div class="row push-ends">
+
+    <section class="container bg-white soft-top push-bottom">
+      <div class="row row-no-gutters push-ends">
       {% assign locations = site['locations'] | locations_with_onsite_groups %}
       {% for location in locations %}
         <div class="osg-location-card">
@@ -49,23 +50,4 @@ snail_trail: connect
       </div>
     </section>
   </main>
-
-  <section class="container push-ends" id="groups-by-location" id="locations">
-    <div class="row push-bottom">
-      <div class="col-md-8 col-md-offset-2 text-center">
-        {% content_block osg-locations-header %}
-      </div>
-    </div>
-    <div class="row">
-    {% assign locations = site['locations'] | locations_with_onsite_groups %}
-    {% for location in locations %}
-      <div class="osg-location-card">
-        <a href="/groups/onsite/{{ location.onsite_group_slug }}">
-          <span class="text-center text-white">{{ location.onsite_group_display_name }}</span>
-          <img class="img-responsive " src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ location.onsite_group_display_name }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img/>
-        </a>
-      </div>
-    {% endfor %}
-    </div>
-  </section>
 </div>
