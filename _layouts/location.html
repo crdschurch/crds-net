@@ -12,6 +12,14 @@ layout: default
     {{ page.featured_section }}
   </div>
 {% endif %}
+<section>
+  <div class="container">
+    <div class="soft bg-black">
+      <div id="resi-video-player" data-embed-id="25ddacd0-8be8-4b31-9df0-f7064eb48437"></div>
+      <script type="application/javascript" src="https://control.resi.io/webplayer/loader.min.js"></script>
+    </div>
+  </div>
+</section>
 
 <!-- Jumbotron section -->
 <div class="jumbotron jumbotron-xl flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
