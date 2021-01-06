@@ -251,7 +251,7 @@ paginate:
   <div class="card-deck carousel text-center" data-crds-carousel="mobile-scroll">
     <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
       {% for topic in site.categories %}
-      {% if topic.title != "Student Ministry" %}
+      {% if topic.title != "Student Ministry" and topic.title != "Kids' Club" %}
       <div class="card carousel-cell topic-card-simple">
         <div class="bg-overlay"></div>
         <a href="{{ topic.url }}" class="topic-card-content">
