@@ -1,0 +1,35 @@
+<div class="col-sm-4 push-top">
+  <div class="border border-light-gray soft-half">
+    {% if meeting.starts_at %}
+    <p class="font-family-base-bold font-size-small push-quarter-top">
+      Starts {{ meeting.starts_at | date: "%B %-d" }} - {{ meeting.starts_at | date: "%A" }}s
+    </p>
+    {% endif %}
+
+    <p class="font-family-base-bold font-size-small push-quarter-top">
+      {{ meeting.meeting_time }}
+    </p>
+  
+    {% if meeting.room %}
+    <p class="align-items-center d-flex text-gray-light font-size-smaller">
+      <crds-icon name="map-marker" color="gray-light" size="16"></crds-icon>
+      Room {{ meeting.room }}
+    </p>
+    
+    {% else %}
+    <p class="font-size-small">Once you register, the leader will email you a meeting link.</p>
+    <p class="align-items-center d-flex text-gray-light font-size-smaller">
+      <crds-icon name="map-marker" color="gray-light" size="16"></crds-icon>
+      Online via Zoom
+    </p>
+    {% endif %}
+  
+    {% if meeting.childcare %}
+    <p class="font-size-smaller text-gray">* childcare is available with one week advance registration</p>
+    {% endif %}
+    
+    {% if meeting.registration_link %}
+    <a class="btn btn-orange btn-outline" href="{{ meeting.registration_link }}" type="button">Register</a>
+    {% endif %}
+  </div>
+</div>
