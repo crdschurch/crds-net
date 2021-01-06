@@ -20,6 +20,16 @@ module Jekyll
         })
       end
 
+      # Locations index landing
+      groups_by_category.each do |slug, category_groups|
+        pages.create!("/groups/locations", 'onsite-groups/location-index.html', {
+          'groups': category_groups.each_slice(2).to_a,
+          'category': groups.category_by_slug(slug),
+          'categories': categories,
+          'path': "/groups/locations"
+        })
+      end
+
       # Location landings
       groups.by_location.each do |slug, meetings|
         slug = slug == 'anywhere' ? 'online' : slug
