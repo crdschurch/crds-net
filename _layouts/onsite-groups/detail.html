@@ -5,8 +5,8 @@ layout: container-fluid
 <main class="bg-gray-lightest">
   <section class="container">
     <div class="bg-blue bg-cover-image jumbotron row topo-overlay flush-bottom">
-      <div class="jumbotron-content push-sides">
-        <div class="row">
+      <div class="jumbotron-content">
+        <div class="container">
           <div class="col-sm-7 text-left">
             <h1 class="font-family-condensed-extra font-size-h2 text-uppercase">
               {{ page.group.title }}
@@ -25,24 +25,26 @@ layout: container-fluid
   </section>
 
   <section class="container bg-white text-gray-dark soft-ends">
-    {% if page.group.length %}
-    <div class="push-bottom font-size-small"><strong>How Long</strong><br> {{ page.group.length }}</div>
-    {% endif %}
+    <div class="container">
+      {% if page.group.length %}
+      <div class="push-bottom font-size-small"><strong>How Long:</strong><br> {{ page.group.length }}</div>
+      {% endif %}
 
-    {% if page.group.description %}
-    <div class="push-bottom font-size-small"><strong>Details:</strong>{{ page.group.description | markdownify }}</div>
-    {% endif %}
+      {% if page.group.description %}
+      <div class="push-bottom font-size-small"><strong>Details:</strong>{{ page.group.description | markdownify }}</div>
+      {% endif %}
 
-    <h2 class="font-family-condensed-extra font-size-h3 text-uppercase">Meeting times</h2>
+      <h2 class="font-family-condensed-extra font-size-h3 text-uppercase">Meeting times</h2>
 
-    <div class="row">
-      {% for meeting in page.meetings %}
-        {% include groups/_meeting-details-card.html meeting=meeting %}
-      {% endfor %}
-    </div>
+      <div class="row">
+        {% for meeting in page.meetings %}
+          {% include groups/_meeting-details-card.html meeting=meeting %}
+        {% endfor %}
+      </div>
 
-    <div class="push-top">
-      <a href="/groups/onsite/{{ page.location.onsite_group_slug }}" class="small">See more {% if page.location.slug != 'anywhere' %} onsite{% endif %} groups at this location</a>
+      <div class="push-top">
+        <a href="/groups/onsite/{{ page.location.onsite_group_slug }}" class="small">See more {% if page.location.slug != 'anywhere' %} onsite{% endif %} groups at this location</a>
+      </div>
     </div>
   </section>
 </main>
