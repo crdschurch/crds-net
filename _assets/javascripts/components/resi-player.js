@@ -4,27 +4,33 @@ const isDST = (d) => {
   return Math.max(jan, jul) != d.getTimezoneOffset();
 };
 
-let today = new Date();
-let offset = isDST(today) ? -4.0 : -5.0;
-let utc = today.getTime() + (today.getTimezoneOffset() * 60000);
-let et = new Date(utc + (3600000 * offset));
-let hour = et.getHours().toString();
-let min = (et.getMinutes() <10 ? '0' : '') + et.getMinutes().toString();
+const getEstTime = () => {
+  let today = new Date();
+  let offset = isDST(today) ? -4.0 : -5.0;
+  let utc = today.getTime() + (today.getTimezoneOffset() * 60000);
+  let et = new Date(utc + (3600000 * offset));
+  let hour = et.getHours().toString();
+  let min = (et.getMinutes() <10 ? '0' : '') + et.getMinutes().toString();
+  
+  let time = '';
+  time = parseInt(time.concat(hour, min));
 
-let time = '';
-time = parseInt(time.concat(hour, min));
+  return time;
+};
 
-let isThursday = et.getDay() == 4;
-// // let isSunday = et.getDay() == 0;
-
-let serviceTimes = ((time >= 1130 && time <= 1150) || (time >= 1152 && time <= 1623));
+const dayOfTheWeek = () => {
+  return new Date().getDay();
+};
 
 const isServiceTime = () => {
-  if (isThursday && serviceTimes) {
+  let isSunday = dayOfTheWeek() == 0;
+  let serviceTimes = ((getEstTime() >= 855 && getEstTime() <= 1010) || (getEstTime() >= 1055 && getEstTime() <= 1210));
+
+  if (isSunday && serviceTimes) {
     return true;
   }
 };
 
-if (!isServiceTime()) {
+if (!isServiceTime() && document.getElementById('resi-player')) {
   document.getElementById('resi-player').remove();
 }
