@@ -38,7 +38,8 @@ module.exports = [
       "components/status-message",
       "components/global",
       "components/youtube",
-      "components/toggle-tooltip"
+      "components/toggle-tooltip",
+      "components/resi-player"
     ]
   },
   {
