@@ -36,7 +36,7 @@ layout: container-fluid
 
       <h2 class="font-family-condensed-extra font-size-h3 text-uppercase">Meeting times</h2>
 
-      <div class="row">
+      <div class="d-flex flex-column flex-sm-row row">
         {% for meeting in page.meetings %}
           {% include groups/_meeting-details-card.html meeting=meeting %}
         {% endfor %}
