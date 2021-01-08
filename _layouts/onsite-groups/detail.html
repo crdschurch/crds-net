@@ -2,47 +2,63 @@
 layout: container-fluid
 ---
 
-<section class="container">
-  <div class="row push-ends">
-    <div class="col-md-12">
-      <a href="/groups/{{ page.group.category.slug }}">&lt; Back to All {{ page.group.category.title }}</a>
-    </div>
-  </div>
-
-  <div class="row push-bottom push-top">
-    <div class="col-md-12">
-      <h3 class="font-family-condensed-extra flush-ends text-uppercase">
-        {{ page.group.title }}
-      </h3>
-    </div>
-  </div>
-
-  <div class="row push-bottom">
-    <div class="col-md-4">
-      <div style="float: right; width: 155px; border-left: solid #FFF 1em; ">
-        <img class="width-100"
-          src="{{ page.location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-          sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+<main class="bg-gray-lightest">
+  <section class="container">
+    <div class="bg-blue bg-cover-image jumbotron row topo-overlay flush-bottom">
+      <div class="jumbotron-content">
+        <div class="container">
+          <div class="col-sm-7 text-left">
+            <h1 class="font-family-condensed-extra font-size-h2 text-uppercase">
+              {{ page.group.title }}
+            </h1>
+            <p class="font-size-smaller text-uppercase">{{ page.location.onsite_group_display_name }}</p>
+            <p class="font-size-small"><strong>Perfect for:</strong> {{ page.group.detail }}</p>
+          </div>
+          <div class="col-sm-5">
+            <img class="width-100"
+              src="{{ page.location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+              sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+          </div>
+        </div>
       </div>
-      <p class="subtitle">{{ page.location.onsite_group_display_name }}</p>
-      <hr>
-      {% for meeting in page.meetings %}
-        {% include groups/_meeting-details.html meeting=meeting %}
-        <hr>
-      {% endfor %}
-      <a href="/groups/onsite/{{ page.location.onsite_group_slug }}" class="small">See more{% if page.location.slug != 'anywhere' %} onsite{% endif %} groups at this location</a>
     </div>
-    <div class="col-md-8">
-      {% if page.group.detail %}
-        <div class="push-bottom"><strong>Perfect for</strong><br> {{ page.group.detail }}</div>
-      {% endif %}
+  </section>
+
+  <section class="container bg-white text-gray-dark soft-ends">
+    <div class="container">
       {% if page.group.length %}
-        <div class="push-bottom"><strong>How Long</strong><br> {{ page.group.length }}</div>
+      <div class="push-bottom font-size-small"><strong>How Long:</strong><br> {{ page.group.length }}</div>
       {% endif %}
+
       {% if page.group.description %}
-        <div class="push-bottom"><strong>Details</strong><br>{{ page.group.description | markdownify }}</div>
+      <div class="push-bottom font-size-small"><strong>Details:</strong>{{ page.group.description | markdownify }}</div>
       {% endif %}
+
+      <h2 class="font-family-condensed-extra font-size-h3 text-uppercase">Meeting times</h2>
+
+      <div class="d-flex flex-column flex-sm-row row">
+        {% for meeting in page.meetings %}
+          {% include groups/_meeting-details-card.html meeting=meeting %}
+        {% endfor %}
+      </div>
+
+      <div class="push-top">
+        <a href="/groups/onsite/{{ page.location.onsite_group_slug }}" class="small">See more {% if page.location.slug != 'anywhere' %} onsite{% endif %} groups at this location</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="jumbotron jumbotron-lg flush" style="background-image: url('//crds-media.imgix.net/3QtAZAH4q85F8q9FIdG9dH/dd893baff75cd3caaed5d7f42734ae1e/guy-looking-at-computer.png?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+  <div class="bg-dark-overlay"></div>
+  <div class="jumbotron-content">
+    <div class="container">
+      <h3 class="component-header-box text-white">Don't give up</h3>
+      <p class="font-family-serif font-size-base">Crossroads Anywhere has similar onsite groups that simply meet online.</p>
+      <div>
+        <crds-button class="push-half-right" text="Go Anywhere" color="orange" href="/groups/onsite/online/"></crds-button>
+        <crds-button text="Group Tools" color="orange" href="/connect"></crds-button>
+      </div>
     </div>
   </div>
-  {% include groups/_footer.html %}
 </section>
