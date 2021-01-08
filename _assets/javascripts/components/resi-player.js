@@ -31,6 +31,31 @@ const isServiceTime = () => {
   }
 };
 
+const refreshPageForServiceStart = (hours, minutes, seconds) => {
+  let isSunday = dayOfTheWeek() == 0;
+
+  if (!isSunday || !document.getElementById('resi-player')) {
+    return;
+  }
+
+  const startDate = new Date();
+  startDate.setSeconds(seconds);
+  startDate.setMinutes(minutes);
+  startDate.setHours(hours);
+  const timeout = startDate.getTime() - new Date().getTime() + 1000;
+
+  if (timeout <= 0) {
+    return;
+  }
+  
+  setTimeout(() => {
+    window.location.reload(true);
+  }, timeout);
+};
+
 if (!isServiceTime() && document.getElementById('resi-player')) {
   document.getElementById('resi-player').remove();
 }
+
+refreshPageForServiceStart(8,55,1);
+refreshPageForServiceStart(10,55,1);
