@@ -34,7 +34,7 @@ const isServiceTime = () => {
 const refreshPageForServiceStart = (hours, minutes, seconds) => {
   let isSunday = dayOfTheWeek() == 0;
 
-  if (!isSunday || !document.getElementById('resi-player')) {
+  if (!isSunday || !document.getElementById('location-page')) {
     return;
   }
 
