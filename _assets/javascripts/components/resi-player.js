@@ -12,27 +12,25 @@ const getEstTime = () => {
   let hour = et.getHours().toString();
   let min = (et.getMinutes() <10 ? '0' : '') + et.getMinutes().toString();
   
-  let time = '';
-  time = parseInt(time.concat(hour, min));
-
-  return time;
+  let time = ''.concat(hour, min);
+  return parseInt(time);
 };
 
-const dayOfTheWeek = () => {
-  return new Date().getDay();
-};
-
-const isServiceTime = () => {
-  let isSunday = dayOfTheWeek() == 0;
-  let serviceTimes = ((getEstTime() >= 855 && getEstTime() <= 1010) || (getEstTime() >= 1055 && getEstTime() <= 1210));
-
-  if (isSunday && serviceTimes) {
+const isDayOfTheWeek = (day) => {
+  if (new Date().getDay() == day) {
     return true;
   }
 };
 
+const isServiceTime = () => {
+  let isSunday = isDayOfTheWeek(0);
+  let serviceTimes = ((getEstTime() >= 855 && getEstTime() <= 1010) || (getEstTime() >= 1055 && getEstTime() <= 1210));
+
+  return isSunday && serviceTimes;
+};
+
 const refreshPageForServiceStart = (hours, minutes, seconds) => {
-  let isSunday = dayOfTheWeek() == 0;
+  let isSunday = isDayOfTheWeek(0);
 
   if (!isSunday || !document.getElementById('location-page')) {
     return;
