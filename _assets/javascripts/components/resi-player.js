@@ -23,14 +23,14 @@ const isDayOfTheWeek = (day) => {
 };
 
 const isServiceTime = () => {
-  let isSunday = isDayOfTheWeek(3);
-  let serviceTimes = ((getEstTime() >= 1130 && getEstTime() <= 1210) || (getEstTime() >= 1255 && getEstTime() <= 1310));
+  let isSunday = isDayOfTheWeek(4);
+  let serviceTimes = ((getEstTime() >= 1155 && getEstTime() <= 1210) || (getEstTime() >= 1255 && getEstTime() <= 1310));
 
   return isSunday && serviceTimes;
 };
 
 const refreshPageForServiceStart = (hours, minutes, seconds) => {
-  let isSunday = isDayOfTheWeek(3);
+  let isSunday = isDayOfTheWeek(4);
 
   if (!isSunday || !document.getElementById('location-page')) {
     return;
@@ -55,5 +55,5 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
   document.getElementById('resi-player').remove();
 }
 
-refreshPageForServiceStart(11,30,1);
+refreshPageForServiceStart(11,55,1);
 refreshPageForServiceStart(12,55,1);
