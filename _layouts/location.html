@@ -6,6 +6,31 @@ layout: default
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
 {% include header.html %}
 
+<!-- Resi Player -->
+{% assign locations_with_live_stream =  "oakley, florence, mason, eastside, westside, lexington, uptown" | split: ", "%}
+{% for location in locations_with_live_stream %}
+  {% if page.slug == location %}
+    <section class="bg-blue" id="resi-player">
+      <div class="container">
+        <div class="row text-center push-top">
+          <h2 class="flush-top font-family-condensed-extra font-size-h2 text-uppercase text-white">Welcome to Crossroads {{ page.name }}</h2>
+        </div>
+        <div class="row push-ends">
+          <div class="col-sm-10 col-sm-offset-1">
+            <div id="resi-video-player" data-embed-id="d3ebebe0-b605-48ab-a6e8-b9f3ef201b4e"></div>
+            <script type="application/javascript" src="https://control.resi.io/webplayer/loader.min.js"></script>
+          </div>
+        </div>
+        <div class="row text-center text-white push-bottom">
+          <p class="flush-bottom font-size-small text-uppercase">You're watching the</p>
+          <h3 class="flush-top font-family-condensed-extra font-size-h2 text-uppercase text-white">{{ page.name }} Live Stream</h3>
+          <a class="text-orange" href="javascript:void(0)" data-smooth-scroll-to="happenings" data-smooth-scroll-offset="50">View events & happenings at your location</a>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+{% endfor %}
+
 <!-- Featured Section -->
 {% if page.featured_section.size > 0 %}
   <div class="overflow-hidden">
@@ -15,6 +40,7 @@ layout: default
 
 <!-- Jumbotron section -->
 <div class="jumbotron jumbotron-xl flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
+  id="location-page"  
   data-optimize-bg-img>
   <div class="bg-overlay"></div>
   <div class="container">
@@ -406,7 +432,7 @@ layout: default
       </div>
       <div class="card">
         <a href="https://itunes.apple.com/us/app/crossroads-anywhere/id1029478803?mt=8" class="block">
-          <img alt="Download the App" class="card-img-top card-img-constrained" src="https://crds-media.imgix.net/y3a9myzsdjan/6CAprwzhiH5x2lOdYwP5N6/ac996756bc212dc48baede8c37891621/search-widget-crossroads-app.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27" data-optimize-img>
+          <img alt="Download the App" class="card-img-top card-img-constrained" src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-app.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27" data-optimize-img>
         </a>
         <div class="card-block hard">
           <h4 class="card-title font-family-condensed-extra text-uppercase">
