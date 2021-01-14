@@ -7,9 +7,9 @@ layout: default
 {% include header.html %}
 
 <!-- Resi Player -->
-{% assign locations_with_live_stream =  "Oakley, Florence, Mason, East Side, West Side, Lexington, Uptown" | split: ", "%}
+{% assign locations_with_live_stream =  "oakley, florence, mason, eastside, westside, lexington, uptown" | split: ", "%}
 {% for location in locations_with_live_stream %}
-  {% if page.title == location %}
+  {% if page.slug == location %}
     <section class="bg-blue" id="resi-player">
       <div class="container">
         <div class="row text-center push-top">
