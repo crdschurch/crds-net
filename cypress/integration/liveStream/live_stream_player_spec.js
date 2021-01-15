@@ -2,10 +2,10 @@
 import { MessageQueryBuilder } from 'crds-cypress-contentful';
 import { getStreamSchedule } from '../../fixtures/stream_schedule_response';
 
-function hideRollCall() {
-  localStorage.setItem('crds-roll-call-state', 'dismissed');
-  cy.get('.roll-call').invoke('hide');
-}
+//function hideRollCall() {
+  //localStorage.setItem('crds-roll-call-state', 'dismissed');
+//  cy.get('.roll-call').invoke('hide');
+//}
 
 function getYoutubeId(youtubeURL) {
   const regex = /youtu(?:be|.be)?(?:.+)\/(?:.+v=)?(.{11})/;
@@ -38,7 +38,7 @@ describe('Tests the /live/stream page video player', function() {
     cy.route('manifest.m3u8').as('bitmovinManifest');
 
     cy.visit('/live/stream/');
-    hideRollCall();
+ //   hideRollCall();
 
     if (latestMessage.bitmovin_url) {
       cy.get('#VideoManager').as('bitmovinPlayer')
