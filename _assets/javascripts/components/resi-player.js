@@ -11,7 +11,7 @@ const getEstTime = () => {
   let et = new Date(utc + (3600000 * offset));
   let hour = et.getHours().toString();
   let min = (et.getMinutes() <10 ? '0' : '') + et.getMinutes().toString();
-  
+
   let time = ''.concat(hour, min);
   return parseInt(time);
 };
@@ -23,14 +23,14 @@ const isDayOfTheWeek = (day) => {
 };
 
 const isServiceTime = () => {
-  let isSunday = isDayOfTheWeek(4);
-  let serviceTimes = ((getEstTime() >= 1155 && getEstTime() <= 1210) || (getEstTime() >= 1255 && getEstTime() <= 1310));
+  let isSunday = isDayOfTheWeek(0);
+  let serviceTimes = ((getEstTime() >= 855 && getEstTime() <= 1010) || (getEstTime() >= 1055 && getEstTime() <= 1210));
 
   return isSunday && serviceTimes;
 };
 
 const refreshPageForServiceStart = (hours, minutes, seconds) => {
-  let isSunday = isDayOfTheWeek(4);
+  let isSunday = isDayOfTheWeek(0);
 
   if (!isSunday || !document.getElementById('location-page')) {
     return;
@@ -45,7 +45,7 @@ const refreshPageForServiceStart = (hours, minutes, seconds) => {
   if (timeout <= 0) {
     return;
   }
-  
+
   setTimeout(() => {
     window.location.reload(true);
   }, timeout);
@@ -55,5 +55,5 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
   document.getElementById('resi-player').remove();
 }
 
-refreshPageForServiceStart(11,55,1);
-refreshPageForServiceStart(12,55,1);
+refreshPageForServiceStart(8,55,1);
+refreshPageForServiceStart(10,55,1);
