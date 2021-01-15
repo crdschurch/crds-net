@@ -72,9 +72,9 @@ describe('Tests the Current Message on the Homepage', function() {
     if (currentMessage.bitmovin_url.hasValue) {
       cy.get('div[data-video-player]').as('videoPlayer')
         .should('have.prop', 'id').and('contain', 'bitmovinPlayer');
-
+    //  cy.wait(3000);
       // Confirm autoplay has started by listening for the event
-      cy.get('@analytics.track')
+      cy.get('@analytics.track',{ timeout: 50000 })
         .should('have.been.calledWith', 'VideoStarted');
     }
   });

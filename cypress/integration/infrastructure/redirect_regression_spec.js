@@ -4,7 +4,7 @@ describe('Testing navigation between pages:', function() {
   it('(DE6321) Navigating to a location with a known redirect should land on the redirected page served by Netlify', function() {
     const andoverSlug = '/andover';
     const lexingtonSlug = '/lexington';
-
+    cy.wait(5000);
     const qb = new ContentfulQueryBuilder('redirect');
     qb.select = 'fields.from,fields.to';
     qb.searchFor = `fields.from=${andoverSlug}`;
