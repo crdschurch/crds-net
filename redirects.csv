@@ -54,7 +54,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /profile/personal,/profile/personal-info,302!
 /profile/*,https://${env:CRDS_PROFILE_ENDPOINT}/:splat,200! Role=user
 /profile/*,/signin?redirectUrl=/profile/:splat,302!
-/signin,https://${env:CRDS_ANGULAR_ENDPOINT}/signin,200!
 /signout,https://${env:CRDS_ANGULAR_ENDPOINT}/signout,200!
 /register,/,301! Role=user
 /register,https://${env:CRDS_ANGULAR_ENDPOINT}/register,200!
@@ -85,7 +84,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /authors/*,/media/authors/:splat,302!
 /songs/*,/media/songs/:splat,302!
 /oktasignin*,https://${env:CRDS_OKTA_SIGNIN_ENDPOINT}:splat,200!
-/signin/*,https://${env:CRDS_OKTA_SIGNIN_ENDPOINT}/signin/:splat,200!
+/signin/*,https://${env:CRDS_ANGULAR_ENDPOINT}/signin/:splat,200!
 /event-checkin/*,https://${env:CRDS_EVENT_CHECKIN_ENDPOINT}/:splat,200!
 /media/music/,${env:CRDS_MUSIC_ENDPOINT},301!
 /music/,${env:CRDS_MUSIC_ENDPOINT},301!

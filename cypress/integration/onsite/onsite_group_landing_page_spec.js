@@ -21,35 +21,38 @@ describe('Given I navigate to /onsite/group Page:', function() {
   before(function() {
     // Get Onsite Groups
     const qb = new ContentfulQueryBuilder('onsite_group');
+    qb.searchFor = 'fields.category[exists]=true';
     qb.select = 'fields.title,fields.category,fields.slug';
-    qb.limit = 1000;
+    qb.limit = 100;
     cy.task('getCNFLResource', qb.queryParams)
       .then((groups) => {
-        onsiteGroupList = groups.sort(sortByCategoryThenSlug);
+        onsiteGroupList = groups.filter(g => g.category.title.text == "Site-Based Groups");
       });
-
+      const importDeclarationsError = /.*import declarations may only appear at top level of a module.*/;
+      cy.ignoreMatchingErrors([importDeclarationsError]);
     cy.visit('/groups/onsite');
   });
   
   it('All Onsite group cards should be displayed', function() {
-    cy.get('.col-md-4').as('onsiteGroupCards')
+    cy.get('.onsite-group').as('onsiteGroupCards')
       .should('have.length', onsiteGroupList.length);
   });
 
   it('Onsite Group card for Financial Peace should be first', function() {
-    cy.get('.col-md-4').as('onsiteGroupCards')
+    let firstOnsiteGroup =     cy.get('.osg-row').as('onsiteGroupCards').first().find('a');
+    cy.log(firstOnsiteGroup);
+    cy.get('.osg-row').as('onsiteGroupCards')
       .first()
       .find('a')
-      .should('have.attr', 'href', '/groups/onsite/financial-peace/uptown');
+      .should('have.attr', 'href', '/groups/onsite/COME-AS-YOU-ARE-FLORENCE-2019/columbus');
   });
 
-  [1,2,3].forEach((index) => {    
-    it(`Verify Onsite card Healing section is visible #${index + 8} `, function() {
-      let title = onsiteGroupList[index + 8].title.text;
-
-      cy.get('.col-md-4 h3').eq(index).as(`${title}Card`)
+  [1,3].forEach((index) => {    
+    it(`Verify Site-Based groups section is visible #${index} `, function() {
+      let title = onsiteGroupList[index + 4].title.text;
+      cy.get('.osg-row h4').eq(index + 4).as(`${title}Card`)
         .normalizedText()
         .should('eq', normalizeText(title));
     });
-  });
+  })
 });
