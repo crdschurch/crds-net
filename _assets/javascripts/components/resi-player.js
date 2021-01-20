@@ -11,7 +11,7 @@ const getEstTime = () => {
   let et = new Date(utc + (3600000 * offset));
   let hour = et.getHours().toString();
   let min = (et.getMinutes() <10 ? '0' : '') + et.getMinutes().toString();
-  
+
   let time = ''.concat(hour, min);
   return parseInt(time);
 };
@@ -45,7 +45,7 @@ const refreshPageForServiceStart = (hours, minutes, seconds) => {
   if (timeout <= 0) {
     return;
   }
-  
+
   setTimeout(() => {
     window.location.reload(true);
   }, timeout);
