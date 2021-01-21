@@ -1,5 +1,10 @@
 <head>
-  <script src="https://cmp.osano.com/AzqNJBSIcXEcQ40MM/3953df23-00fe-4c20-a7e5-156807dd17c5/osano.js"></script>
+  {% if site.jekyll_env == 'production' %}
+    <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/ee6703e4-e14a-4e11-bf03-f5b7b37c7061/osano.js"></script>
+  {% elsif site.jekyll_env == 'int' %}
+    <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/65a23ab1-e0ce-4ccd-bc3c-2c8b89cb18f5/osano.js"></script>
+  {% endif %}
+
   {% include _gtm-head.html %}
   {% include _monetate-head.html %}
   {% include _meta-tags.html %}
