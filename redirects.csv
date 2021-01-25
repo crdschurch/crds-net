@@ -64,7 +64,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /volunteer-sign-up/*,/volunteer,301!
 /volunteer-application/*,/volunteer,301!
 /serve-signup/*,https://${env:CRDS_SERVE_ENDPOINT}/:splat,200!
-/sign-up/*,/sign-up/:splat,200!
+/sign-up/*,/sign-up/,200!
 /trips/*,/go,301!
 /waivers/*,/go,301!
 /give,${env:PUSHPAY_GIVE_ENDPOINT},301!
