@@ -98,6 +98,9 @@ collections:
     output: false
   albums:
     output: false
+  sign_up_forms:
+    output: true
+    permalink: /sign-up/:slug
 
 contentful:
   page:
@@ -130,6 +133,8 @@ contentful:
   episode:
     map:
       date: published_at
+  sign_up_form:
+    query: fields.pageType=OnsiteGroupSignupPage
   exclude:
     - migration
     - sign_off
@@ -152,6 +157,11 @@ defaults:
       type: "trips"
     values:
       layout: trip
+  - scope:
+      path: ""
+      type: "sign_up_forms"
+    values:
+      layout: sign-ups
 
 imgix_params:
   placeholder: "auto=format,compress&w=10"
