@@ -2,132 +2,45 @@
 layout: default_footer_flush
 ---
 
-<div class="topics-detail-tpl collection">
-  <header style="background-image: url('{% if page.image.url %}{{ page.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8">
-          <ol class="breadcrumb text-white hard-sides flush-top">
-            <li><a href="/">Media</a></li>
-          </ol>
-          <h1 class="media-title flush-top">{{page.title}}</h1>
-          <div class="description font-size-base white-faded">
-            {{ page.description | markdownify }}
-          </div>
-          <div class="soft-top">
-            {% include _social-share.html type='light' %}
+<section class="bg-black">
+  <div class="jumbotron jumbotron-xl flush-bottom" style="background-image: url('{{ page.image.url | imgix: site.imgix }}');" data-optimize-bg-img>
+    <div class="bg-overlay"></div>
+    <div class="jumbotron-content push-ends">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-5 text-left">
+            <div>
+              {% if page.logo %}
+              <img class="full-width" src="{{ page.logo.url | imgix: site.imgix }}" alt="{{page.title}} logo" />
+              {% else %}
+              <h1 class="font-family-condensed-extra">{{page.title}}</h1>
+              {% endif %}
+              
+              <p class="font-family-serif font-size-large">{{ page.description }}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </header>
-
-  <section class="subtopic-layout container">
-    <div class="row">
-      <main class="col-md-8">
-        <div class="feature-main">
-          {% assign item = page.docs | first %}
-          {% include _overlay-card.html autoplay=true %}
-        </div>
-
-        {% assign feature_subs = page.docs | slice: 1, 2 %}
-        {% for item in feature_subs %}
-          <div class="feature-sub">
-            <a href="{{ item | media_url }}" class="list-card">
-              <div class="image">
-                <img src="{% if item.image.url %}{{ item.image.url | imgix: site.imgix }}{% elsif item.podcast.image.url %}{{ item.podcast.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.topic_feature_sub }}" alt="" data-optimize-img>
-                {% include _media-label.html source=item %}
-              </div>
-              {% if item.category %}
-                {% assign category = item.category.title %}
-              {% else %}
-                {% assign category = item.content_type %}
-              {% endif %}
-              <p class="topic">{{ category }}</p>
-              <h3 class="title">{{ item.title }}</h3>
-              <p class="credit">
-                {% if item.author %}
-                  {% assign author = item.author | get_docs %}
-                  {{ author.full_name }}
-                {% elsif item.authors %}
-                  {% assign authors = item.author | get_docs %}
-                  {{ authors | map: 'full_name' | join: ', ' }}
-                {% endif %}
-              </p>
-            </a>
-          </div>
-        {% endfor %}
-      </main>
-
-      <aside class="col-md-4">
-        {% assign list_cards = page.docs | slice: 3, 4 %}
-        {% for item in list_cards %}
-          <a class="list-card" href="{{ item | media_url }}">
-            <div class="image">
-              <img src="{% if item.image.url %}{{ item.image.url | imgix: site.imgix }}{% elsif item.podcast.image.url %}{{ item.podcast.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.media_object }}" alt="" data-optimize-img>
-              {% include _media-label.html source=item %}
-            </div>
-
-            <h4 class="title flush-top">{{ item.title }}</h4>
-            <div class="content">
-              {{ item | content | markdownify | strip_html | truncate: 125 }}
-            </div>
-            <div class="credit">
-              {% if item.author.full_name %}
-                {{ item.author.full_name }}
-              {% else %}
-                {% assign authors = item.author | get_docs %}
-                {% if item.content_type == 'episode' %}
-                  {% assign podcast = item.podcast | get_doc %}
-                  {% assign authors = podcast.author | get_docs %}
-                {% endif %}
-                {{ authors | map: 'full_name' | join: ', ' }}
-              {% endif %}
-            </div>
-          </a>
-        {% endfor %}
-      </aside>
-    </div>
-  </section>
-
-  {% if page.docs.size > 7 %}
-  <div class="featured-media">
-    <div class="container">
-      <h5>more stories</h5>
-      <div class="featured-media-grid">
-        {% assign items = page.docs | slice: 7, page.docs.size %}
-        {% for item in items %}
-          <div>
-            <a href="{{ item | media_url }}">
-              <div class="image">
-                {% assign image = item.image %}
-                {% if item.content_type == 'episode' %}{% assign image = item.podcast.image %}{% endif %}
-                <img src="{% if image.url %}{{ image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ image.title }}" sizes="{{ site.image_sizes.cards_3x }}" data-optimize-img>
-                {% include _media-label.html source=item %}
-              </div>
-              <div class="topic soft-quarter-top">{{ item.category.title }}</div>
-              <h3 class="title flush-ends">{{ item.title }}</h3>
-              <div class="credit">
-                {% if item.author %}
-                  {% assign author = item.author %}
-                  {{ author.full_name }}
-                {% elsif item.authors %}
-                  {% assign authors = item.author | get_docs %}
-                  {{ authors | map: 'full_name' | join: ', ' }}
-                {% endif %}
-              </div>
-            </a>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
   </div>
-  {% endif %}
+</section>
 
-  <div class="jumbotron flush-ends" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/streaming-anywhere-hero-off.jpg?auto=format,compress&w=100&fit=crop');" data-optimize-bg-img>
-    <h3 class="section-header">Subscribe to our newsletter</h3>
-    {% include _hubspot-newsletter-form.html %}
+<section class="bg-black">
+  <div class="container soft-bottom">
+    {% assign items = page.docs %}
+    {% for item in items %}
+    <div class="row soft-bottom">
+     <a href="{{ item | media_url }}">
+       <div class="col-sm-6 push-half-bottom">
+         <img class="full-width" src="{% if item.podcast.image.url %}{{ item.podcast.image.url  | imgix: site.imgix }}{% else %}{{ item.image.url | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ item.title }}" data-optimize-img>
+       </div>
+       <div class="col-sm-6">
+         <p class="text-uppercase text-orange font-size-smaller font-family-base-black flush-bottom">{{ page.title }}</p>
+         <h2 class="text-uppercase text-white font-family-condensed-extra font-size-h2 flush-top">{{ item.title }}</h2>
+         <p class="text-white font-size-smaller">{{ item.description }}</p>
+       </div>
+      </a>
+     </div>
+    {% endfor %}
   </div>
-</div>
-
-{% javascript_link_tag autoplay %}
+</section>
