@@ -47,7 +47,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /childcare,https://${env:CRDS_ANGULAR_ENDPOINT}/childcare,200!
 /childcare/*,https://${env:CRDS_ANGULAR_ENDPOINT}/childcare/:splat,200!
 /childcare2/*,https://${env:CRDS_CHILDCARE_ENDPOINT}/:splat,200!
-/corkboard*,https://${env:CRDS_ANGULAR_ENDPOINT}/corkboard:splat,200!
+/corkboard/*,https://${env:CRDS_CORKBOARD_ENDPOINT}/:splat,200!
 /invoices/*,https://${env:CRDS_INVOICES}/:splat,200!
 /undivided/*,https://undivided.com,301!
 /mptools/*,https://${env:CRDS_ANGULAR_ENDPOINT}/mptools/:splat,200!
@@ -64,8 +64,8 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /volunteer-sign-up/*,/volunteer,301!
 /volunteer-application/*,/volunteer,301!
 /serve-signup/*,https://${env:CRDS_SERVE_ENDPOINT}/:splat,200!
-/sign-up,/404.html,404!
-/sign-up/*,https://${env:CRDS_ANGULAR_ENDPOINT}/sign-up/:splat,200!
+/sign-up/*,/sign-up/:splat,200! Role=user
+/sign-up/*,/signin?redirectUrl=/sign-up/:splat,302!
 /trips/*,/go,301!
 /waivers/*,/go,301!
 /give,${env:PUSHPAY_GIVE_ENDPOINT},301!

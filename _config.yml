@@ -125,6 +125,9 @@ collections:
   videos:
     output: true
     permalink: /media/:collection/:title
+  sign_up_forms:
+    output: true
+    permalink: /sign-up/:slug
 
 contentful:
   config:
@@ -173,6 +176,8 @@ contentful:
     map:
       date: published_at
 
+  sign_up_form:
+    query: fields.pageType=OnsiteGroupSignupPage
   exclude:
     - collections
     - location
@@ -270,6 +275,11 @@ defaults:
     values:
       layout: video
       snail_trail: media
+  - scope:
+      path: ""
+      type: "sign_up_forms"
+    values:
+      layout: sign-ups
 
 imgix_params:
   meta_image: "auto=format,compress&w=1200&h=630&fit=crop"

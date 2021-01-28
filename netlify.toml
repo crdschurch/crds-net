@@ -80,6 +80,7 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUP_LEADER_DOMAIN = "group-leader-int.crossroads.net"  
   CRDS_GROUPS_ENDPOINT = "groups-int.crossroads.net"
   CRDS_INVOICES = "invoices-int.crossroads.net"
+  CRDS_CORKBOARD_ENDPOINT = "corkboard-int.crossroads.net"
 
 [context.runway.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
