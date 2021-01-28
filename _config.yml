@@ -193,26 +193,31 @@ defaults:
       type: articles
     values:
       layout: article
+      snail_trail: media
   - scope:
       path: ""
       type: authors
     values:
       layout: author
+      snail_trail: media
   - scope:
       path: ""
       type: categories
     values:
       layout: topic
+      snail_trail: media
   - scope:
       path: ""
       type: collections
     values:
       layout: collection
+      snail_trail: media
   - scope:
       path: ""
       type: episodes
     values:
       layout: episode
+      snail_trail: media
   - scope:
       path: ""
       type: "locations"
@@ -223,6 +228,7 @@ defaults:
       type: messages
     values:
       layout: message
+      snail_trail: media
   - scope:
       path: ""
       type: "onsite_groups"
@@ -234,21 +240,25 @@ defaults:
       type: perspective_sets
     values:
       layout: perspective_set
+      snail_trail: media
   - scope:
       path: ""
       type: perspectives
     values:
       layout: perspective
+      snail_trail: media
   - scope:
       path: ""
       type: podcasts
     values:
       layout: podcast
+      snail_trail: media
   - scope:
       path: ""
       type: series
     values:
       layout: series
+      snail_trail: media
   - scope:
       path: ""
       type: "trips"
@@ -259,6 +269,7 @@ defaults:
       type: videos
     values:
       layout: video
+      snail_trail: media
 
 imgix_params:
   meta_image: "auto=format,compress&w=1200&h=630&fit=crop"

@@ -4,7 +4,6 @@ layout: default
 
 <!-- Pull only the promos that exist for the specific location if any -->
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
-{% include header.html %}
 
 <!-- Featured Section -->
 {% if page.featured_section.size > 0 %}
@@ -451,5 +450,3 @@ layout: default
 
 <!--Facebook Pixel Script -->
 {% include _fb-pixel.html %}
-
-{% include footer.html %}

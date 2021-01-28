@@ -29,9 +29,9 @@
     {% assign recommended_collection=site.messages %}
     {% include _video-player-card.html %}
     {% if image %}
-      <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
+      <img class="inline" src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
     {% else %}
-      <img src="{{ site.default_image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
+      <img class="inline" src="{{ site.default_image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
     {% endif %}
   </a>
   <div class="card-block hard soft-quarter-top">
