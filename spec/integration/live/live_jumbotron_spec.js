@@ -29,7 +29,7 @@ describe('Tests the /live jumbotron content with different stream times:', funct
 
       cy.get('[data-automation-id="jumbotron-watch-now-button"]').click();
 
-      cy.url().should('eq', `${Cypress.config().baseUrl}/live/stream/?autoplay=true&sound=11`);
+      cy.url().should('eq', `${Cypress.config().baseUrl}/christmas-special/?autoplay=true&sound=11`);
       cy.get('[data-automation-id="404-search-field"]').as('404SearchField').should('not.exist');
     });
 

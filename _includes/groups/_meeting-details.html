@@ -1,18 +1,21 @@
-<p class="flush-bottom push-quarter-top">
+<p class="flush-bottom font-family-base-bold font-size-smaller push-quarter-top">
   {% if meeting.starts_at %}
-    Starts {{ meeting.starts_at | date: "%B %-d" }}<br>
+    Starts {{ meeting.starts_at | date: "%B %-d" }} / 
   {% endif %}
 
-  {% if meeting.starts_at %}{{ meeting.starts_at | date: "%A" }}s {% endif %}{{ meeting.meeting_time }}<br>
+  {% if meeting.starts_at %}{{ meeting.starts_at | date: "%A" }}s {% endif %}{{ meeting.meeting_time }}
 
   {% if meeting.room %}
-    Room {{ meeting.room }}<br>
+    / Room {{ meeting.room }}
   {% endif %}
 
   {% if meeting.childcare %}
     <span class="text-gray flush-bottom push-top small">* childcare is available with one week advance registration</span>
   {% endif %}
 </p>
-{% if meeting.registration_link %}
-  <p class="push-top"><a href="{{ meeting.registration_link }}" class="btn btn-orange" type="button">Register</a></p>
-{% endif %}
+<p class="push-top font-size-smaller">
+  <a href="/groups/onsite/{{ group_slug.slug }}/{% if meeting.location.slug == 'anywhere' %}online{% else %}{{ meeting.location.slug }}{% endif %}">Learn more</a>
+  {% if meeting.registration_link %}
+  <span class="push-half-sides">/</span><a href="{{ meeting.registration_link }}" type="button">Register</a>
+  {% endif %}
+</p>

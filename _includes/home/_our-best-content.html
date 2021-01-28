@@ -19,7 +19,7 @@
           <div class="border-top border-dashed push-half-bottom"></div>
           <crds-media-object
           url="{{ item | media_url }}"
-          image-src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}"
+          image-src="{{ image | imgix: site.imgix }}"
           type="{{ item.content_type }}"
           title="{{ item.title }}"
           duration="{{ item.duration | duration: format }}"

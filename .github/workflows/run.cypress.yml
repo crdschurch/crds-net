@@ -1,0 +1,49 @@
+# Requires production context and non-null commit hash to trigger
+# Integration is stored in Zapier
+
+name: Run Cypress Tests
+on: repository_dispatch
+jobs:
+  test:
+    name: Cypress Run
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1,2]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          record: true
+          parallel: true
+          group: crds-net-parallel
+          browser: chrome
+          headless: true
+          config-file: cypress/config/int_crossroads.json
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          VAULT_ROLE_ID: ${{ secrets.VAULT_ROLE_ID }}
+          VAULT_SECRET_ID: ${{ secrets.VAULT_SECRET_ID }}
+      - name: Tests passed
+        if: ${{ success() }}
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_USERNAME: Cypress Test Results
+          SLACK_WEBHOOK: ${{ secrets.CYPRESS_SLACK_WEBHOOK }}
+          SLACK_COLOR: good
+          SLACK_TITLE: "CRDS-NET"
+          SLACK_MESSAGE: "cypress tests PASSED"
+          SLACK_ICON: https://www.cypress.io/icons/icon-48x48.png?v=90213ca87017074111a88470199bc242315d18c5
+      - name: Tests failed
+        if: ${{ failure() }}
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_USERNAME: Cypress Test Results
+          SLACK_WEBHOOK: ${{ secrets.CYPRESS_SLACK_WEBHOOK }}
+          SLACK_COLOR: "#FF0000"
+          SLACK_TITLE: "CRDS-NET"
+          SLACK_MESSAGE: "cypress tests FAILED"
+          SLACK_ICON: https://www.cypress.io/icons/icon-48x48.png?v=90213ca87017074111a88470199bc242315d18c5

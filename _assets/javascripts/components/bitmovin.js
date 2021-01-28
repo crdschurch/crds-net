@@ -6,13 +6,16 @@ class BitmovinManager {
     this.isStream = bitmovinConfig.isStream == "true";
     this.subtitles_url = bitmovinConfig.subtitles_url;
     this.spn_subtitles_url = bitmovinConfig.spn_subtitles_url;
+    this.autoplay = bitmovinConfig.autoplay == 'true';
     this.videoDuration = Number(bitmovinConfig.duration) * 1000;
     this.timezoneStr = "America/New_York";
     this.dateStringFormat = "YYYY/MM/DD HH:mm:ss";
     this.timeouts = [];
     this.container = document.getElementById(`${bitmovinConfig.id}`);
-    this.countdown = new CRDS.Countdown();
-
+    if (bitmovinConfig.countdown !== false) {
+      this.countdown = new CRDS.Countdown();
+    }
+    
     this.playerConfig = {
       key: `${window.CRDS.env.bitmovinPlayerLicense}`,
       playback: {
@@ -176,7 +179,7 @@ class BitmovinManager {
   }
 
   getAutoPlay() {
-    if (this.isStream || (this.getStartTime() > 0 && !this.currentHasEnded())) return true;
+    if (this.isStream || this.autoplay || (this.getStartTime() > 0 && !this.currentHasEnded())) return true;
     let urlParams = new URLSearchParams(window.location.search);
     let autoplayString = urlParams.has("autoPlay")
       ? urlParams.get("autoPlay")
@@ -187,7 +190,7 @@ class BitmovinManager {
 
   getIsMuted() {
     if (this.isCard) return true;
-    if (!this.getAutoPlay()) return false;
+    if (!this.getAutoPlay() || this.autoplay) return false;
 
     let urlParams = new URLSearchParams(window.location.search);
     let sound = urlParams.has("sound") ? parseInt(urlParams.get("sound")) : 0;

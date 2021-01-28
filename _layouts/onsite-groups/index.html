@@ -1,0 +1,51 @@
+---
+layout: container-fluid
+snail_trail: connect
+---
+
+<div class="onsite-groups">
+  <section>
+    <div class="jumbotron jumbotron-xl osg-jumbotron flush" style="background-image: url('{{ page.category.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+      <div class="bg-dark-overlay"></div>
+      <div class="jumbotron-content">
+        <div class="container">
+          <div>
+            <h1 class="font-family-condensed-extra text-uppercase">Groups</h1>
+          </div>
+          <div class="body">
+            {% content_block osg-header %}
+          </div>
+        </div>
+      </div>
+      {% include groups/_osg-tabs.html %}
+    </div>
+  </section>
+
+  <main class="bg-blue bg-topo soft-ends">
+    <section class="container">
+      <div class="row push-bottom">
+        <div class="col-md-8 col-md-offset-2 text-center push-ends">{{ page.category.description }}</div>
+      </div>
+      {% for groups in page.groups %}
+      <div class="osg-row">
+        {% for group in groups %}
+        <div class="onsite-group bg-white">
+          <div class="text-gray-dark soft push-bottom" data-id="{{ group.contentful_id }}">
+            <h4 class="font-family-condensed-extra text-uppercase">
+              {{ group.title }}
+            </h4>
+            <div class="text-gray small">{{ group.description | markdownify | strip_html | truncate: 275 }}</div>
+            {% assign locations = group | locations_for_meeting %}
+            <ul class="text-gray small list-inline push-quarter-top osg-locations">
+            {% for location in locations %}
+              <li><a href="/groups/onsite/{{ group.slug }}/{{ location.onsite_group_slug }}">{{ location.onsite_group_display_name }}</a></li>
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </section>
+  </main>
+</div>

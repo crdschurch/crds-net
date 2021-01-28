@@ -5,17 +5,17 @@ module CRDS
     def initialize(site)
       @site = site
       site.collections['locations'].docs.each do |location|
-        if location.data['slug'] != 'anywhere'
-          location.data['onsite_group_display_name'] = location.data['name']
-          location.data['onsite_group_slug'] = location.data['slug']
-        else
-          location.data['onsite_group_display_name'] = "Online | Crossroads Anywhere"
-          location.data['onsite_group_slug'] = "online"
-        end
+         location.data['onsite_group_display_name'] = location.data['name']
+         location.data['onsite_group_slug'] = location.data['slug'] != 'anywhere' ? location.data['slug'] : 'online'
       end
       @collections = site.collections.select{|k,v| k.include?('onsite_group') }
       @collections['locations'] = site.collections['locations']
-      @collections['onsite_group_meetings'].docs.reject!{|m| !known_meeting_ids.include?(m['id']) }
+      (@collections['onsite_group_meetings'].docs.reject!{|m| !known_meeting_ids.include?(m['id']) } || [])
+        .each do |meeting|
+          group = group_by_meeting(meeting)
+          meeting.data['group_type'] = group.data.dig('category', 'slug')
+          meeting.data['group'] = group_by_meeting(meeting)
+      end
     end
 
     def all
@@ -33,7 +33,7 @@ module CRDS
     def by_category
       @by_category ||= begin
         @collections['onsite_groups'].docs.
-          group_by{|g| g.data.dig('category', 'slug') }
+        group_by{|g| g.data.dig('category', 'slug') }
       end
     end
 

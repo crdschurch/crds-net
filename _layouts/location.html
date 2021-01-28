@@ -5,6 +5,31 @@ layout: default
 <!-- Pull only the promos that exist for the specific location if any -->
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
 
+<!-- Resi Player -->
+{% assign locations_with_live_stream =  "oakley, florence, mason, eastside, westside, lexington, uptown" | split: ", "%}
+{% for location in locations_with_live_stream %}
+  {% if page.slug == location %}
+    <section class="bg-blue" id="resi-player">
+      <div class="container">
+        <div class="row text-center push-top">
+          <h2 class="flush-top font-family-condensed-extra font-size-h2 text-uppercase text-white">Welcome to Crossroads {{ page.name }}</h2>
+        </div>
+        <div class="row push-ends">
+          <div class="col-sm-10 col-sm-offset-1">
+            <div id="resi-video-player" data-embed-id="d3ebebe0-b605-48ab-a6e8-b9f3ef201b4e"></div>
+            <script type="application/javascript" src="https://control.resi.io/webplayer/loader.min.js"></script>
+          </div>
+        </div>
+        <div class="row text-center text-white push-bottom">
+          <p class="flush-bottom font-size-small text-uppercase">You're watching the</p>
+          <h3 class="flush-top font-family-condensed-extra font-size-h2 text-uppercase text-white">Crossroads Live Weekend</h3>
+          <a class="text-orange" href="javascript:void(0)" data-smooth-scroll-to="happenings" data-smooth-scroll-offset="50">View events & happenings at your location</a>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+{% endfor %}
+
 <!-- Featured Section -->
 {% if page.featured_section.size > 0 %}
   <div class="overflow-hidden">
@@ -14,6 +39,7 @@ layout: default
 
 <!-- Jumbotron section -->
 <div class="jumbotron jumbotron-xl flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
+  id="location-page"  
   data-optimize-bg-img>
   <div class="bg-overlay"></div>
   <div class="container">
@@ -63,43 +89,38 @@ layout: default
       <div class="col-sm-6 soft-sides">
         <h3 class="text-orange font-family-condensed-extra text-uppercase flush-top">About this location</h3>
         <div class="lead">{{ page.description | markdownify }}</div>
+        <div class="row push-ends soft-half-top mobile-hard-bottom">
+          <div class="col-sm-6" id="service-times">
+            <p>
+              <strong class="text-orange">Service Times</strong>
+              <br />
+              {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
+            </p>
+          </div>
         {% if page.name == 'Georgetown' %}
-          <div class="row push-ends soft-half-top mobile-hard-bottom">
-            <div class="col-sm-12 push-bottom" id="service-times">
-              <p>
-                <strong class="text-orange">Service Times</strong>
-                <br />
-                {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
-              </p>
-            </div>
             <div class="col-sm-6">
               <p>
                 <strong class="text-orange">Office Address</strong>
                 <br />
-                1242 Paris Pike, Georgetown, KY 40324
+                1242 Paris Pike<br>Georgetown, KY 40324
                 <br />
                 <a href="https://goo.gl/maps/27isLrMevToZXtrh8" class="text-orange" target="_blank">Get directions</a>
               </p>
             </div>
-            <div class="col-sm-6">
-              <p>
-                <strong class="text-orange">Worship & Prayer meeting place</strong>
-                <br />
-                Great Crossing High School, 120 Betsy Way, Georgetown, KY. 40324
-                <br />
-                <a href="https://goo.gl/maps/gnPQrsUawKfdTKDW7" class="text-orange" target="_blank">Get directions</a>
-              </p>
-            </div>
           </div>
         {% else %}
-          <div class="row push-ends soft-half-top mobile-hard-bottom">
-            <div class="col-sm-6" id="service-times">
-              <p>
-                <strong class="text-orange">Service Times</strong>
-                <br />
-                {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
-              </p>
-            </div>
+        {% if page.name == 'Richmond' %}
+          <div class="col-sm-6">
+            <p>
+              <strong class="text-orange">Office Address</strong>
+              <br />
+              105 S Third Street<br>Richmond, KY 40475
+              <br />
+              <a href="https://goo.gl/maps/uhwFUqkwe86k5N4W7" class="text-orange" target="_blank">Get directions</a>
+            </p>
+          </div>
+        </div>
+        {% else %}
             <div class="col-sm-6">
               <p>
                 <strong class="text-orange">Address</strong>
@@ -110,7 +131,7 @@ layout: default
               </p>
             </div>
           </div>
-        {% endif %}
+        {% endif %} {% endif %}
         <div>
           <div class="col-sm-12 push-top soft-top hard-sides border-top">
             {{ page.additional_info | markdownify }}
@@ -229,31 +250,15 @@ layout: default
 <div class="container push-bottom">
   <div class="row">
     <div class="col-md-12 text-center">
-      <h3 class="section-header text-center push-half-bottom">College Students</h3>
-      <p class="lead">Hear stories from some of the UC students who call this place home.</p>
+      <h3 class="section-header text-center push-half-bottom">This place was made for you</h3>
     </div>
   </div>
   <div class="row push-ends soft-bottom">
-    <div class="col-md-4">
+    <div class="col-md-12">
       <div class="embed-responsive embed-responsive-16by9">
-        <iframe width="320" height="240" src="https://www.youtube.com/embed/rP8iKiNDIIk" frameborder="0"
+        <iframe width="320" height="240" src="https://www.youtube.com/embed/WhHT89JErOM" frameborder="0"
           allowfullscreen=""></iframe>
       </div>
-      <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Chandler</h4>
-    </div>
-    <div class="col-md-4">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe width="320" height="240" src="https://www.youtube.com/embed/RSty1EoOJIk" frameborder="0"
-          allowfullscreen=""></iframe>
-      </div>
-      <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Laveta</h4>
-    </div>
-    <div class="col-md-4">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe width="320" height="240" src="https://www.youtube.com/embed/faFhJlRdH98" frameborder="0"
-          allowfullscreen=""></iframe>
-      </div>
-      <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Barry</h4>
     </div>
   </div>
 </div>
@@ -426,7 +431,7 @@ layout: default
       </div>
       <div class="card">
         <a href="https://itunes.apple.com/us/app/crossroads-anywhere/id1029478803?mt=8" class="block">
-          <img alt="Download the App" class="card-img-top card-img-constrained" src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-app.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27" data-optimize-img>
+          <img alt="Download the App" class="card-img-top card-img-constrained" src="https://crds-media.imgix.net/y3a9myzsdjan/6CAprwzhiH5x2lOdYwP5N6/ac996756bc212dc48baede8c37891621/search-widget-crossroads-app.jpg?auto=format&crop=top&fit=clamp&ixjsv=2.2.3&w=27" data-optimize-img>
         </a>
         <div class="card-block hard">
           <h4 class="card-title font-family-condensed-extra text-uppercase">

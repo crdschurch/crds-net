@@ -1,5 +1,5 @@
 .border-light-gray {
-  border: 1px solid rgba($cr-gray-light, 0.3)
+  border: 1px solid rgba($cr-gray-light, 0.3);
 }
 
 .text-gray {
@@ -138,7 +138,6 @@ a.hover-text-gray-lighter:hover * {
   min-width: 5rem;
 }
 
-
 .absolute {
   position: absolute !important;
 }
@@ -226,5 +225,9 @@ a.anchor {
 }
 
 .ma-ends {
-    margin: auto 0;
+  margin: auto 0;
+}
+
+.bg-black {
+  background-color: black;
 }
