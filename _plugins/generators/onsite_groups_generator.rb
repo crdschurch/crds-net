@@ -52,7 +52,8 @@ module Jekyll
           slug = location_slug == 'anywhere' ? 'online' : location_slug
           meetings = group_meetings.select{|m| m.data.dig('location','slug') == location_slug }
           location = groups.location_by_slug(slug)
-          pages.create!("/groups/onsite/#{group_slug}/#{slug}", 'onsite-groups/detail.html', {
+          category_slug = group.data["category"]["slug"] ? group.data["category"]["slug"] : "onsite";
+          pages.create!("/groups/#{category_slug}/#{group_slug}/#{slug}", 'onsite-groups/detail.html', {
             'group': group,
             'location': location,
             'meetings': meetings
