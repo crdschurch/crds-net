@@ -16,6 +16,7 @@ module Jekyll
           'groups': category_groups.each_slice(2).to_a,
           'category': groups.category_by_slug(slug),
           'categories': categories,
+          'slug': slug,
           'path': "/groups/#{slug}"
         })
       end
@@ -32,7 +33,7 @@ module Jekyll
       # Location landings
       groups.by_location.each do |slug, meetings|
         slug = slug == 'anywhere' ? 'online' : slug
-        pages.create!("/groups/onsite/#{slug}", 'onsite-groups/location.html', {
+        pages.create!("/groups/#{slug}", 'onsite-groups/location.html', {
           'location': groups.location_by_slug(slug),
           'meetings': meetings.group_by{|m| m.data['group'].data.dig('category') }.sort_by{|k,v| k['title'] }.reverse
         })
