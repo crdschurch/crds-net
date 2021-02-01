@@ -33,7 +33,7 @@ snail_trail: connect
       {% assign locations = site['locations'] | locations_with_onsite_groups %}
       {% for location in locations %}
         <div class="osg-location-card">
-          <a href="/groups/onsite/{{ location.onsite_group_slug }}">
+          <a href="/groups/{{ location.onsite_group_slug }}">
             <span class="text-center text-white">{{ location.onsite_group_display_name }}</span>
             <img class="img-responsive " src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ location.onsite_group_display_name }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img/>
           </a>
