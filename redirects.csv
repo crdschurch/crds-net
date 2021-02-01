@@ -163,10 +163,17 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /healing/divorcecare,/groups/onsite-healing-groups/divorce-care,301!
 /healing/postpartum-healing,/groups/onsite-healing-groups/postpartum,301!
 /groups/onsite/columbus,/groups/columbus,301
+/groups/onsite/dayton,/groups/dayton,301
+/groups/onsite/florence,/groups/florence,301
+/groups/onsite/georgetown,/groups/georgetown,301
 /groups/onsite/lexington,/groups/lexington,301
 /groups/onsite/mason,/groups/mason,301
+/groups/onsite/oakley,/groups/oakley,301
 /groups/onsite/online,/groups/online,301
+/groups/onsite/uptown,/groups/richmond,301
 /groups/onsite/uptown,/groups/uptown,301
+/groups/onsite/eastside,/groups/eastside,301
+/groups/onsite/westside,/groups/westside,301
 /groups/onsite-groups/*,/groups/onsite,301!
 /groups/onsite,/groups/site-based,301!
 /*,/404.html,404
