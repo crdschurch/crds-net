@@ -38,7 +38,7 @@ snail_trail: connect
             {% assign locations = group | locations_for_meeting %}
             <ul class="text-gray small list-inline push-quarter-top osg-locations">
             {% for location in locations %}
-              <li><a href="/groups/onsite/{{ group.slug }}/{{ location.onsite_group_slug }}">{{ location.onsite_group_display_name }}</a></li>
+              <li><a href="/groups/{{ page.slug }}/{{ group.slug }}/{{ location.onsite_group_slug }}">{{ location.onsite_group_display_name }}</a></li>
             {% endfor %}
             </ul>
           </div>
