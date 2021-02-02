@@ -176,4 +176,5 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /groups/onsite/westside,/groups/uptown,301
 /groups/onsite-groups/*,/groups/onsite,301!
 /groups/onsite,/groups/site-based,301!
+/groups/onsite/*,/groups/site-based/:splat,301!
 /*,/404.html,404
