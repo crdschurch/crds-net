@@ -17,7 +17,7 @@ module Jekyll
           # Create a new page with the tag layout.
           page = Jekyll::Page.new(site, site.source, '_layouts', 'tag.html')
           # Customize the URL for the page.
-          page.instance_variable_set('@url', "/tags/#{tag.data['slug']}/index.html")
+          page.instance_variable_set('@url', "/media/tags/#{tag.data['slug']}/index.html")
           # Add default frontmatter to the page.
           (page.data ||= {}).merge!(
             'slug' => tag.data['slug'],

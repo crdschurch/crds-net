@@ -117,8 +117,10 @@ collections:
     output: true
   tags:
     output: false
+    permalink: /media/:collection/:title
   topics:
     output: false
+    permalink: /media/:collection/:title
   trips:
     output: true
     permalink: /reachout/go/:country_slug/:slug
