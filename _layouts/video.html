@@ -21,7 +21,7 @@ layout: default
               {% capture url_string %} {{ page.url | replace: '/', " " }}{% endcapture %}
               {% assign url="" %}
               <ol class="breadcrumb text-orange hard-sides">
-                <li><a href="/">Media</a></li>
+                <li><a href="/media">Media</a></li>
 
                 {% for breadcrumb in url_array %}
                 {% capture first_word %}{{ url_string | truncatewords: 1, "" }}{% endcapture %}

@@ -35,13 +35,13 @@ module Jekyll
               map[:tags].each do |tag|
                 site.config['article_filters'] << {
                   'title' => tag['title'],
-                  'slug' => "#{category['slug']}+#{tag['slug']}",
+                  'slug' => "/media/#{category['slug']}+#{tag['slug']}",
                   'tag_title' => tag['title'],
                   'tag_slug' => tag['slug'],
                   'category_title' => category['title'],
                   'category_slug' => category['slug'],
-                  'category_url' => "/articles/filters/#{category['slug']}",
-                  'url' => "/articles/filters/#{category['slug']}+#{tag['slug']}"
+                  'category_url' => "/media/articles/filters/#{category['slug']}",
+                  'url' => "/media/articles/filters/#{category['slug']}+#{tag['slug']}"
                 }
               end
             end

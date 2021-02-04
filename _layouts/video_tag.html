@@ -10,8 +10,8 @@ paginate:
 <div class="container">
 
   <ol class="breadcrumb hard-sides hard-bottom push-top flush-bottom">
-    <li><a href="/">Media</a></li>
-    <li><a href="/videos">Videos</a></li>
+    <li><a href="/media">Media</a></li>
+    <li><a href="/media/videos">Videos</a></li>
   </ol>
 
   <h1 class="font-family-condensed-extra text-uppercase flush-top push-bottom">{{ page.title }}</h1>
@@ -30,7 +30,7 @@ paginate:
           {% include _preloader.html %}
         </div>
       </div>
-      {% assign link_root = "videos/tags/" | append: page.slug %}
+      {% assign link_root = "/media/videos/tags/" | append: page.slug %}
       {% include _pagination.html collection="videos" remote=true %}
     </div>
   </div>

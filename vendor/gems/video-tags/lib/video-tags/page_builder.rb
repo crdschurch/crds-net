@@ -34,7 +34,7 @@ module Jekyll
               site.config['video_tags'] << {
                 'title' => tag.data['title'],
                 'slug' => tag.data['slug'],
-                'url' => "/videos/tags/#{tag.data['slug']}"
+                'url' => "/media/videos/tags/#{tag.data['slug']}"
               }
             end
           rescue NoMethodError
@@ -49,7 +49,7 @@ module Jekyll
           featureable_tags.each do |tag|
             page = Jekyll::Page.new(site, site.source, '_layouts', 'video_tag.html')
             # Customize the URL for the new page.
-            page.instance_variable_set('@url', "/videos/tags/#{tag.data['slug']}/index.html")
+            page.instance_variable_set('@url', "/media/videos/tags/#{tag.data['slug']}/index.html")
             # Add default frontmatter to the new page.
             (page.data ||= {}).merge!(
               'layout' => 'default',
