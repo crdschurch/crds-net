@@ -77,8 +77,7 @@ collections:
     output: true
     permalink: /:slug
   messages:
-    filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
-    output: false
+    output: true
     permalink: /media/series/(:series/:slug)/:title
   onsite_group_categories:
     output: false
@@ -156,7 +155,6 @@ contentful:
     map:
       page_path: path
   message:
-    order: "published_at desc"
     map:
       date: published_at
     belongs_to:
