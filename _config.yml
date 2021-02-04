@@ -79,7 +79,7 @@ collections:
   messages:
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: false
-    permalink: /series/(:series/:slug)/:title
+    permalink: /media/series/(:series/:slug)/:title
   onsite_group_categories:
     output: false
   onsite_group_meetings:
@@ -189,10 +189,6 @@ contentful:
     - song
 
 defaults:
-  - scope:
-      path: ""
-    values:
-      js_manifest: application_deferred
   - scope:
       path: ""
       type: articles
