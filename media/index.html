@@ -53,14 +53,14 @@ paginate:
     <div class="row push-ends">
       {% assign media_top_feature = site.featured_media | where: 'page_path', 'media-top-featured' | first %}
       {% assign featured_item = media_top_feature.entries %}
-      <div class="col-sm-8">
+      <div class="col-sm-8 col-md-9">
         {% for content in featured_item %}
         {% assign item = content | get_doc %}
         {% include _overlay-card.html autoplay=true %}
         {% endfor %}
       </div>
 
-      <div class="col-sm-4">
+      <div class="col-sm-4 col-md-3">
         <div class="push-half-bottom border-ends">
           <h3 class="font-family-serif font-size-small text-uppercase text-gray-dark flush soft-half-ends">Popular</h3>
         </div>
@@ -166,7 +166,7 @@ paginate:
       <h3 class="font-family-serif font-size-small text-uppercase text-gray-dark flush soft-half-ends">Recent</h3>
     </div>
     <div class="row">
-      <div class="col-sm-8 hard-sides">
+      <div class="col-sm-8 col-md-9 hard-sides">
         {% assign recent = page.recent_media.docs | slice: 2, 2 %}
         {% for item in recent %}
           {% assign image = item.image.url %}
@@ -186,13 +186,13 @@ paginate:
           {% endif %}
           <div class="col-md-6 media-card-skeleton push-bottom">
             <crds-media-card heading='{{ item.title }}' icon-label='{{ item.duration | duration: format }}' image-src='{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}' url='{{ item | media_url }}' content-type='{{ item.content_type }}' truncate-length="25" data-optimize-img>
-              {{ description | markdownify }}
+              {{ description | markdownify | truncatewords: 25 }}
             </crds-media-card>
           </div>
         {% endfor %}
       </div>
 
-      <div class="col-sm-4 border-bottom-dashed-group ">
+      <div class="col-sm-4 col-md-3 border-bottom-dashed-group">
         {% assign more_recent = page.recent_media.docs | slice: 4, 3 %}
         {% for item in more_recent %}
           {% assign image = item.image.url %}
@@ -236,7 +236,7 @@ paginate:
             <h3 class="font-family-serif font-size-small text-uppercase text-gray-dark flush soft-half-ends">Podcasts</h3>
             <a class="font-size-smaller font-family-base-bold" href="/media/podcasts">view all</a>
           </div>
-          <div>
+          <div class="row">
             <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
               <div class="feature-cards card-deck--expanded-layout media-homepage-podcast-music" data-crds-carousel="mobile-scroll">
                 {% assign media_podcasts = site.featured_media | where: 'page_path', '/media-homepage-podcasts' | first %}
@@ -261,7 +261,7 @@ paginate:
             <h3 class="font-family-serif font-size-small text-uppercase text-gray-dark flush soft-half-ends">Music</h3>
             <a class="font-size-smaller font-family-base-bold" href="/music">view all</a>
           </div>
-          <div>
+          <div class="row">
             <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
               <div class="feature-cards card-deck--expanded-layout media-homepage-podcast-music" data-crds-carousel="mobile-scroll">
               {% assign featured_music = site.albums | sort: 'published_at' | reverse %}

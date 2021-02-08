@@ -13,6 +13,12 @@
     flex-direction: row;
   }
 
+  .component-header-box {
+    @media (min-width: $screen-xs) {
+      padding: 15px 50px 22px;
+    }
+  }
+
   .d-sm-block {
     display: none;
 
@@ -28,6 +34,11 @@
       display: none;
     }
   }
+}
+
+.media-homepage-card-player>div {
+  min-width: unset ;
+  min-height: unset;
 }
 
 .flex-space-between {
@@ -91,7 +102,7 @@
   }
 
   .card {
-    padding: 0 8px;
+    padding: 0 15px;
   }
 }
 
@@ -127,6 +138,10 @@
         border: none;
       }
     }
+  }
+
+  .media-author-card-title {
+    line-height: 1.2em;
   }
 
   &.flickity-enabled {

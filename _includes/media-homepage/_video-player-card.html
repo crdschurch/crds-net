@@ -1,0 +1,6 @@
+{% assign video = item %}
+{% if video.bitmovin_url and include.autoplay == true %}
+<div class="card-video-player media-homepage-card-player" style="opacity: 0;">
+    {% include _video-player.html isCard=true %}
+</div>
+{% endif %}
