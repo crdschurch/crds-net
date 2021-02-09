@@ -20,6 +20,7 @@ require_relative './support/jekyll_helper'
 VCR.configure do |config|
   config.cassette_library_dir = "spec/vcr"
   config.hook_into :webmock
+  config.ignore_request {|request| request.uri == 'https://use.typekit.net/gir0nnu.css' }
 end
 
 

@@ -15,10 +15,10 @@ describe 'Jekyll::MediaTagsGenerator' do
   # associated with it.
   it 'should generate pages for each tag' do
     urls = %w(
-      /tags/empty/index.html
-      /tags/fear/index.html
-      /tags/fun/index.html
-      /tags/pop-culture/index.html
+      /media/tags/empty/index.html
+      /media/tags/fear/index.html
+      /media/tags/fun/index.html
+      /media/tags/pop-culture/index.html
     )
     expect(@site.pages.collect(&:url)).to match_array(urls)
   end
