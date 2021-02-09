@@ -19,7 +19,7 @@ describe Jekyll::ArticleTags::PageBuilder do
         "tag_title" => "Tag A1",
         "tag_slug" => "tag-a1",
         "title" => "Tag A1",
-        "slug" => "cat-a+tag-a1",
+        "slug" => "/media/cat-a+tag-a1",
         "url" => "/media/articles/filters/cat-a+tag-a1"
       },
       {
@@ -29,7 +29,7 @@ describe Jekyll::ArticleTags::PageBuilder do
         "tag_title" => "Tag B2",
         "tag_slug" => "tag-b2",
         "title" => "Tag B2",
-        "slug" => "cat-b+tag-b2",
+        "slug" => "/media/cat-b+tag-b2",
         "url" => "/media/articles/filters/cat-b+tag-b2"
       }
     ]
