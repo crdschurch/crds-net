@@ -15,22 +15,22 @@ describe Jekyll::ArticleTags::PageBuilder do
       {
         "category_title" => "Category A",
         "category_slug" => "cat-a",
-        "category_url" => "/articles/filters/cat-a",
+        "category_url" => "/media/articles/filters/cat-a",
         "tag_title" => "Tag A1",
         "tag_slug" => "tag-a1",
         "title" => "Tag A1",
         "slug" => "cat-a+tag-a1",
-        "url" => "/articles/filters/cat-a+tag-a1"
+        "url" => "/media/articles/filters/cat-a+tag-a1"
       },
       {
         "category_title" => "Category B",
         "category_slug" => "cat-b",
-        "category_url" => "/articles/filters/cat-b",
+        "category_url" => "/media/articles/filters/cat-b",
         "tag_title" => "Tag B2",
         "tag_slug" => "tag-b2",
         "title" => "Tag B2",
         "slug" => "cat-b+tag-b2",
-        "url" => "/articles/filters/cat-b+tag-b2"
+        "url" => "/media/articles/filters/cat-b+tag-b2"
       }
     ]
     expect(@site.config['article_filters']).to match_array(exp_article_filters)

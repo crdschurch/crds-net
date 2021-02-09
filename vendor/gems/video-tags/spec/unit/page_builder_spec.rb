@@ -12,7 +12,7 @@ describe Jekyll::VideoTags::PageBuilder do
 
   it 'should build out an array of video tags accessible to site config' do
     exp_video_tags = [
-      {"title"=>"Collection #1", "slug"=>"collection-01", "url"=>"/videos/tags/collection-01"}
+      {"title"=>"Collection #1", "slug"=>"collection-01", "url"=>"/media/videos/tags/collection-01"}
     ]
     expect(@site.config['video_tags']).to match_array(exp_video_tags)
   end

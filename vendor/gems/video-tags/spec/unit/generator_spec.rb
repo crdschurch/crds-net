@@ -13,7 +13,7 @@ describe Jekyll::VideoTags::Generator do
 
   it 'should generate pages for video tags' do
     urls = %w(
-      /videos/tags/collection-01/index.html
+      /media/videos/tags/collection-01/index.html
     )
     expect(@site.pages.collect(&:url)).to match_array(urls)
   end
