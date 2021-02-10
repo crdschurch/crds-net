@@ -10,7 +10,7 @@
 			Latest Crossroads Weekend
 	  </h2>
 	    <div class="embed-container">
-				<a href="{{ item | media_url }}" data-automation-id="message-video">
+				<a href="{{ item  }}" data-automation-id="message-video">
 					<div class="media-video">
 						<img class="media-img full-width"
 							src="{{ item.image.url | imgix: site.imgix }}?auto=format,compress&w=750&h=422&fit=crop""
@@ -29,7 +29,7 @@
 			    {{ item.description }}
 		    </p>
 		  <div class="row soft-half-left">
-			  <a href="{{ item | media_url }}" class="btn latest-message-btn btn-orange btn-block-mobile" type="button">
+			  <a href="{{ item  }}" class="btn latest-message-btn btn-orange btn-block-mobile" type="button">
 			    Watch now
 			  </a>
 			  <a href="/media/series" class="second-btn latest-message-btn btn btn-blue btn-outline btn-block-mobile"type="button">

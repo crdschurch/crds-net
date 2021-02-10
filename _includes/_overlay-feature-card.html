@@ -3,7 +3,7 @@
 {% endcomment %}
 {% assign image_source = item | card_image %}
 
-<a href="{{ item | media_url }}" class="overlay-feature-card-link">
+<a href="{{ item  }}" class="overlay-feature-card-link">
   {% assign recommended_collection=site.messages %}
   {% include _video-player-card.html %}
   <div class="overlay-feature-card"
