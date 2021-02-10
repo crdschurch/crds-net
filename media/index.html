@@ -22,8 +22,8 @@ paginate:
 ---
 
 <main class="media-hp-bg">
-  <!-- Media Header -->
-  <!-- <section class="container soft-top">
+  <section class="container soft-top">
+    <!-- Media Header -->
     <div class="media-header row soft-top">
       <div class="col-sm-3 d-sm-block">
         <p class="text-blue font-family-serif text-right">
@@ -47,10 +47,10 @@ paginate:
           Life, faith, and God. Real and vulnerable.
         </p>
       </div>
-    </div> -->
+    </div>
 
     <!-- Media Sometimes Above the fold -->
-    <!-- <div class="row push-ends">
+    <div class="row push-ends">
       {% assign media_top_feature = site.featured_media | where: 'page_path', 'media-top-featured' | first %}
       {% assign featured_item = media_top_feature.entries %}
       <div class="col-sm-8 col-md-9">
@@ -100,10 +100,10 @@ paginate:
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
 
   <!-- Authors, Latest, Latest Weekly Message -->
-  <!-- <section class="container">
+  <section class="container">
     <div class="row media-home-latest-grid">
       <div class="col-md-3 col-sm-6 media-home-latest-grid-item-1">
         <div class="border-ends flex-space-between flex-align-center">
@@ -153,15 +153,14 @@ paginate:
         </div>
 
         <div>
-          {% include media-homepage/_hubspot-newsletter-form.html %}
         </div>
 
       </div>
     </div>
-  </section> -->
+  </section>
 
   <!-- Recent -->
-  <!-- <section class="container push-ends">
+  <section class="container push-ends">
     <div class="border-top flex-space-between flex-align-center">
       <h3 class="font-family-serif font-size-small text-uppercase text-gray-dark flush soft-half-ends">Recent</h3>
     </div>
@@ -225,10 +224,10 @@ paginate:
       </div>
 
     </div>
-  </section> -->
+  </section>
 
   <!-- Podcasts and Music -->
-  <!-- <section class="bg-tan">
+  <section class="bg-tan">
     <div class="container soft-ends">
       <div class="row soft-ends">
         <div class="col-sm-7">
@@ -276,10 +275,10 @@ paginate:
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
 
   <!-- Portrait Cards -->
-  <!-- <section class="container">
+  <section class="container">
     <div class="row soft-top push-top">
       <div class="col-sm-6 portrait-card-skeleton-condensed push-bottom">
         <crds-portrait-card theme="condensed" href="/media/collections/garage-bible-study" image-src="//crds-media.imgix.net/25h9Ua8CJLWHGLIRHrj7mS/99074c28861ddb3e28216f6ed195ee35/Header_Background_Garage.jpg" title="Garage Bible Study" lead="Watch Now"></crds-portrait-card>
@@ -288,10 +287,10 @@ paginate:
         <crds-portrait-card theme="condensed" href="{{ site.site_url }}/app" image-src="//crds-media.imgix.net/6CAprwzhiH5x2lOdYwP5N6/ac996756bc212dc48baede8c37891621/search-widget-crossroads-app.jpg" title="Connect with God & Pray with others" lead="Download the App"></crds-portrait-card>
       </div>
     </div>
-  </section> -->
+  </section>
 
   <!-- Searching for Answers  -->
-  <!-- <section class="container">
+  <section class="container">
     <div class="row soft-ends push-bottom media-homepage-answers">
       <div class="col-sm-6 ">
         <div class="media-portrait-card push-bottom" style="background-image: url('//crds-media.imgix.net/6trbVEyS78IUvw1D7tfWHm/0b7a40b467f04d16fd144e7561005722/groups-home-groups.jpg?{{ site.imgix_params.placeholder_sixteen_nine}}');" data-optimize-bg-img>
@@ -345,10 +344,10 @@ paginate:
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
 
   <!-- Popular Topics -->
-  <!-- <section class="container push-bottom">
+  <section class="container push-bottom">
     <div class="row row-no-gutters bg-tan soft">
       <div>
         <h3 class="font-family-serif font-size-small text-uppercase text-gray-dark flush soft-half-ends">Popular Topics</h3>
@@ -362,38 +361,9 @@ paginate:
         {% endfor %}
       </div>
     </div>
-  </section> -->
+  </section>
 
   <!-- Newsletter Jumbotron -->
-  <!-- <section class="soft-top">
-    <div class="jumbotron jumbotron-xl grid-overlay-light flush-bottom" style="background-image: url('//crds-media.imgix.net/5rsJKDy5Vk8JDvuHeSq9j1/c493fb23ab79ea8ac433a58bfe111e46/crossroads-media-subscribe-bg-min.png?{{ site.imgix_params.placeholder_sixteen_nine}}');" data-optimize-bg-img>
-      <div class="jumbotron-content">
-        <div class="container">
-          <h1 class="component-header-box text-tan">
-            Now Keep<br /> it coming
-          </h1>
-          <p class="font-family-serif soft-top">Subscribe to get our best content delivered straight to your inbox.</p>
-          <div class="media-homepage-footer-form col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
-            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
-            <script>
-              hbspt.forms.create({
-                portalId: '3993985',
-                formId: '52b50268-5d9c-4369-8359-e96ff69094f9',
-                formInstanceId: '2',
-                submitButtonClass: 'btn btn-blue flush',
-                errorMessageClass: 'hs-error-msgs inputs-list list-unstyled soft-half-top',
-                inlineMessage: '<p>Thanks for signing up! Our top picks will hit your inbox every week.</p>',
-                onFormReady($form, ctx) {
-                  $('div[data-reactid=".hbspt-forms-1.5"]').appendTo($('div[data-reactid=".hbspt-forms-1.1:$0.$email.$email"]')).change();
-                  $('div[data-reactid=".hbspt-forms-1.1:$0.$email.$email"]').addClass('d-flex').change();
-                  $('div[data-reactid=".hbspt-forms-1.1:$0.0"]').addClass('hidden').change();
-                }
-              });
-            </script>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
+
 </main>
 {% javascript_link_tag autoplay %}
