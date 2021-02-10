@@ -5,7 +5,7 @@
 {% endif %}
 
 <div class="card">
-  <a class="relative block" href="{{ item  }}" title="{{ item.title }}">
+  <a class="relative block" href="{{ item | media_url }}" title="{{ item.title }}">
     {% if item.duration > 0 %}
     <div class="card-stamp text-white">
       <span class="font-size-smallest soft-quarter-right">{{ item.duration | duration: "long" }}</span>

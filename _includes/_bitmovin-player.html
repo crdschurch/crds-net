@@ -6,7 +6,7 @@
             {% if item.date < video.date %}
                 <div id="post-video-message" data-post-video-message>
                     {% assign image = item | card_image %}
-                    <a href="{{ item  }}" class="overlay-card flush-bottom">
+                    <a href="{{ item | media_url }}" class="overlay-card flush-bottom">
                         <div class="bg-overlay"></div>
                         <div class="text-white soft-half absolute" style="position:absolute;top:0;left:0;background:rgba(0,0,0,.6);">
                             <span>Next {{ item.content_type | singularize | titleize }}</span>

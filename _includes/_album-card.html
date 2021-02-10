@@ -1,11 +1,11 @@
 <div>
-  <a href="{{ album  }}">
+  <a href="{{ album | media_url }}">
     <img src="{% if album.image.url %}{{ album.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img>
   </a>
 
    {% if include.title != false %}
     <div class="card-block hard">
-      <a href="{{ album  }}">
+      <a href="{{ album | media_url }}">
         <h5 class="card-title flush-bottom font-size-small">{{ album.title }}</h5>
       </a>
     </div>

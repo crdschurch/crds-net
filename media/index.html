@@ -50,57 +50,7 @@ paginate:
     </div>
 
     <!-- Media Sometimes Above the fold -->
-    <div class="row push-ends">
-      {% assign media_top_feature = site.featured_media | where: 'page_path', 'media-top-featured' | first %}
-      {% assign featured_item = media_top_feature.entries %}
-      <div class="col-sm-8 col-md-9">
-        {% for content in featured_item %}
-        {% assign item = content | get_doc %}
-        {% include _overlay-card.html autoplay=true %}
-        {% endfor %}
-      </div>
-
-      <div class="col-sm-4 col-md-3">
-        <div class="push-half-bottom border-ends">
-          <h3 class="font-family-serif font-size-small text-uppercase text-gray-dark flush soft-half-ends">Popular</h3>
-        </div>
-        <div class="border-bottom-dashed-group">
-          {% assign popular_this_week =  site.featured_media | where: 'page_path', 'media-homepage-popular' | first %}
-          {% assign featured_popular_items = popular_this_week.entries %}
-
-          {% for content in featured_popular_items limit: 3 %}
-            {% assign item = content | get_doc %}
-            {% assign image = item.image.url %}
-
-            {% if item.content_type == 'episode' %}
-              {% assign image = item.podcast_img %}
-            {% endif %}
-
-            {% if item.duration %}
-              {% assign format = 'short' %}
-            {% endif %}
-
-            {% if item.content_type == 'message' %}
-              {% assign content_type = 'video' %}
-            {% else %}
-              {% assign content_type = item.content_type %}
-            {% endif %}
-
-            <div class="push-bottom">
-              <crds-media-object
-                url="{{ item  }}"
-                image-src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}?auto=format"
-                type="{{ content_type }}"
-                title="{{ item.title }}"
-                duration="{{ item.duration | duration: format }}"
-                data-optimize-img
-              ></crds-media-object>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </section>
+   
 
   <!-- Authors, Latest, Latest Weekly Message -->
   <section class="container">
@@ -185,7 +135,7 @@ paginate:
             {% assign description = item.content | truncate: 150 %}
           {% endif %}
           <div class="col-md-6 media-card-skeleton push-bottom">
-            <crds-media-card heading='{{ item.title }}' icon-label='{{ item.duration | duration: format }}' image-src='{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}' url='{{ item  }}' content-type='{{ item.content_type }}' truncate-length="25" data-optimize-img>
+            <crds-media-card heading='{{ item.title }}' icon-label='{{ item.duration | duration: format }}' image-src='{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}' url='{{ item | media_url }}' content-type='{{ item.content_type }}' truncate-length="25" data-optimize-img>
               {{ description | markdownify | truncatewords: 25 }}
             </crds-media-card>
           </div>
@@ -213,7 +163,7 @@ paginate:
 
           <div class="push-bottom ">
             <crds-media-object
-            url="{{ item  }}"
+            url="{{ item | media_url }}"
             image-src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}?auto=format"
             type="{{ content_type }}"
             title="{{ item.title }}"
@@ -244,7 +194,7 @@ paginate:
                 {% for content in featured_podcasts limit: 3 %}
                 {% assign item = content | get_doc %}
                   <div class="album-container card carousel-cell flush">
-                    <a href="{{ item  }}">
+                    <a href="{{ item | media_url }}">
                       <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}" data-optimize-img>
                       <p class="flush font-family-base-bold font-size-base soft-half-top text-gray-dark">{{ item.title }}</p>
                       <p class="font-size-smaller text-gray-dark">{{ item.description | truncatewords: 15 }}</p>
@@ -358,7 +308,7 @@ paginate:
         {% assign popular_topics = media_popular_topics.entries %}
         {% for content in popular_topics %}
         {% assign item = content | get_doc %}
-          <crds-button class="push-half-right" text="{{ item.title }}" href="{{ item  }}" display="outline" color="blue"></crds-button>
+          <crds-button class="push-half-right" text="{{ item.title }}" href="{{ item | media_url }}" display="outline" color="blue"></crds-button>
         {% endfor %}
       </div>
     </div>

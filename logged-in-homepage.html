@@ -87,16 +87,16 @@ paginate:
         <div class="media featured">
           <div class="media-body">
             <h5 class="component-header flush-ends">
-              <a href="{{ message  }}" data-automation-id="message-title">{{ message.title }}</a>
+              <a href="{{ message | media_url }}" data-automation-id="message-title">{{ message.title }}</a>
             </h5>
             <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="message-description">
               {{ message.description | markdownify | strip_html | truncatewords: 15 }}
             </div>
-            <a href="{{ message  }}" class="btn btn-primary btn-sm push-half-top"
+            <a href="{{ message | media_url }}" class="btn btn-primary btn-sm push-half-top"
               data-automation-id="watch-message-button">Watch
               now</a>
           </div>
-          <a href="{{ message  }}" class="push-half-bottom" data-automation-id="message-video">
+          <a href="{{ message | media_url }}" class="push-half-bottom" data-automation-id="message-video">
             <div class="media-video">
               <img class="media-img"
                 src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"

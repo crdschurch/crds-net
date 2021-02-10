@@ -1,3 +1,3 @@
-<a href="{{ item  }}" title="{{ item.title }}">
+<a href="{{ item | media_url }}" title="{{ item.title }}">
   <img class="push-bottom img-full-width" src="{% if item.image.url %}{{ item.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ item.title }}" data-optimize-img>
 </a>

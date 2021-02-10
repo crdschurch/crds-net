@@ -30,7 +30,7 @@ layout: default
     {% assign items = page.docs %}
     {% for item in items %}
     <div class="row soft-bottom">
-     <a href="{{ item  }}">
+     <a href="{{ item | media_url }}">
        <div class="col-sm-6 push-half-bottom">
          <img class="full-width" src="{% if item.podcast.image.url %}{{ item.podcast.image.url  | imgix: site.imgix }}{% else %}{{ item.image.url | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ item.title }}" data-optimize-img>
        </div>
