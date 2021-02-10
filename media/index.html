@@ -50,57 +50,7 @@ paginate:
     </div>
 
     <!-- Media Sometimes Above the fold -->
-    <div class="row push-ends">
-      {% assign media_top_feature = site.featured_media | where: 'page_path', 'media-top-featured' | first %}
-      {% assign featured_item = media_top_feature.entries %}
-      <div class="col-sm-8 col-md-9">
-        {% for content in featured_item %}
-        {% assign item = content | get_doc %}
-        {% include _overlay-card.html autoplay=true %}
-        {% endfor %}
-      </div>
-
-      <div class="col-sm-4 col-md-3">
-        <div class="push-half-bottom border-ends">
-          <h3 class="font-family-serif font-size-small text-uppercase text-gray-dark flush soft-half-ends">Popular</h3>
-        </div>
-        <div class="border-bottom-dashed-group">
-          {% assign popular_this_week =  site.featured_media | where: 'page_path', 'media-homepage-popular' | first %}
-          {% assign featured_popular_items = popular_this_week.entries %}
-
-          {% for content in featured_popular_items limit: 3 %}
-            {% assign item = content | get_doc %}
-            {% assign image = item.image.url %}
-
-            {% if item.content_type == 'episode' %}
-              {% assign image = item.podcast_img %}
-            {% endif %}
-
-            {% if item.duration %}
-              {% assign format = 'short' %}
-            {% endif %}
-
-            {% if item.content_type == 'message' %}
-              {% assign content_type = 'video' %}
-            {% else %}
-              {% assign content_type = item.content_type %}
-            {% endif %}
-
-            <div class="push-bottom">
-              <crds-media-object
-                url="{{ item | media_url }}"
-                image-src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}?auto=format"
-                type="{{ content_type }}"
-                title="{{ item.title }}"
-                duration="{{ item.duration | duration: format }}"
-                data-optimize-img
-              ></crds-media-object>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </section>
+   
 
   <!-- Authors, Latest, Latest Weekly Message -->
   <section class="container">
@@ -153,6 +103,7 @@ paginate:
         </div>
 
         <div>
+          {% include media-homepage/_hubspot-newsletter-form.html %}
         </div>
 
       </div>
@@ -364,6 +315,35 @@ paginate:
   </section>
 
   <!-- Newsletter Jumbotron -->
-
+  <section class="soft-top">
+    <div class="jumbotron jumbotron-xl grid-overlay-light flush-bottom" style="background-image: url('//crds-media.imgix.net/5rsJKDy5Vk8JDvuHeSq9j1/c493fb23ab79ea8ac433a58bfe111e46/crossroads-media-subscribe-bg-min.png?{{ site.imgix_params.placeholder_sixteen_nine}}');" data-optimize-bg-img>
+      <div class="jumbotron-content">
+        <div class="container">
+          <h1 class="component-header-box text-tan">
+            Now Keep<br /> it coming
+          </h1>
+          <p class="font-family-serif soft-top">Subscribe to get our best content delivered straight to your inbox.</p>
+          <div class="media-homepage-footer-form col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+            <script>
+              hbspt.forms.create({
+                portalId: '3993985',
+                formId: '52b50268-5d9c-4369-8359-e96ff69094f9',
+                formInstanceId: '2',
+                submitButtonClass: 'btn btn-blue flush',
+                errorMessageClass: 'hs-error-msgs inputs-list list-unstyled soft-half-top',
+                inlineMessage: '<p>Thanks for signing up! Our top picks will hit your inbox every week.</p>',
+                onFormReady($form, ctx) {
+                  $('div[data-reactid=".hbspt-forms-1.5"]').appendTo($('div[data-reactid=".hbspt-forms-1.1:$0.$email.$email"]')).change();
+                  $('div[data-reactid=".hbspt-forms-1.1:$0.$email.$email"]').addClass('d-flex').change();
+                  $('div[data-reactid=".hbspt-forms-1.1:$0.0"]').addClass('hidden').change();
+                }
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 {% javascript_link_tag autoplay %}
