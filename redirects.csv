@@ -10,6 +10,7 @@ https://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,3
 http://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 https://forms-demo.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
+http://crossroads.net/signin/*,https://wwww.crossroads.net/signin/:splat,302!
 /,/h,200! Role=user
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
