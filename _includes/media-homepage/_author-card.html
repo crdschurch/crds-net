@@ -7,7 +7,7 @@
     </div>
     <div class="push-left">
       <p class="flush-bottom font-family-base-mid media-author-card-title">{{ author_full_name | join: "<br />" }}</p>
-      <a href="{{ item }}" class="font-family-base-mid font-size-smaller font-family-base-bold text-orange-dark">View articles</a>
+      <a href="{{ item | media_url }}" class="font-family-base-mid font-size-smaller font-family-base-bold text-orange-dark">View articles</a>
     </div>
   </div>
   <div class="push-half-top">
