@@ -7,7 +7,7 @@
 {% endif %}
 
 <div class="card">
-  <a class="relative block" href="{{ video | media_url}}">
+  <a class="relative block" href="{{ video }}">
     <div class="beige-overlay"></div>
     {% assign recommended_collection=site.videos %}
     {% include _video-player-card.html %}
@@ -25,10 +25,10 @@
   </a>
   <div class="card-block hard">
     {% if include.theme == "dark" %}
-    <a class="hover-text-gray-lighter" href="{{ video | media_url}}">
+    <a class="hover-text-gray-lighter" href="{{ video }}">
       <h5 class="card-title font-size-smaller text-white push-quarter-bottom">{{ video.title }}</h5>
       {% else %}
-      <a href="{{ video | media_url}}">
+      <a href="{{ video }}">
         <h5 class="card-title font-size-smaller push-quarter-bottom">{{ video.title }}</h5>
         {% endif %}
         <div class="font-size-smaller push-quarter-top push-half-bottom">

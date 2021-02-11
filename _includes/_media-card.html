@@ -6,7 +6,7 @@
 {% else %}
 <div class="card">
 {% endif %}
-  <a class="relative" href="{{item | media_url }}">
+  <a class="relative" href="{{item  }}">
     {% if item.content_type != nil %}
       {% include _media-label.html source= item %}
     {% else %}
@@ -40,7 +40,7 @@
       {{ topic.title }}
     </a>
     <h3 class="component-header flush">
-      <a href="{{item | media_url }}">{{item.title }}</a>
+      <a href="{{item  }}">{{item.title }}</a>
     </h3>
     <p class="card-text soft-quarter-top">
       {% if item.author.id %}

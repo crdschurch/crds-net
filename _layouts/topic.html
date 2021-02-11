@@ -37,7 +37,7 @@ layout: default
 
         {% for item in features limit: 3 %}
           <div>
-            <a href="{{ item | media_url }}">
+            <a href="{{ item  }}">
               <div class="image">
                 {% if item.content_type == "article" or "video" %}
                 <div class="beige-overlay"></div>
@@ -85,7 +85,7 @@ layout: default
           {% assign feature_subs = media_items | slice: 1, 2 %}
           {% for item in feature_subs %}
             <div class="feature-sub">
-              <a href="{{ item | media_url }}" class="list-card">
+              <a href="{{ item  }}" class="list-card">
                 <div class="image">
                   {% if item.content_type == "article" or "video" %}
                   <div class="beige-overlay"></div>
@@ -120,7 +120,7 @@ layout: default
         <aside class="col-md-4">
           {% assign list_cards = media_items | slice: 3, 4 %}
           {% for item in list_cards %}
-            <a class="list-card" href="{{ item | media_url }}">
+            <a class="list-card" href="{{ item  }}">
               <div class="image">
                   {% assign image = item | card_image %}
                   <img src="{% if image %}{{ image | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.topic_feature_sub }}" alt="" data-optimize-img>

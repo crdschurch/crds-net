@@ -20,13 +20,13 @@
 {% assign url = item.url %}
 
 {% if url %}
-  {% assign url = item | media_url %}
+  {% assign url = item  %}
 {% else %}
   {% assign doc = item | get_doc %}
   {% assign url = doc.url %}
 {% endif %}
 
-<a href="{{ item | media_url }}" class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
+<a href="{{ item  }}" class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
   {% if item.bitmovin_url == null %}
     <div class="bg-overlay"></div>
   {% endif %}
