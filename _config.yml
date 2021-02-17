@@ -140,12 +140,17 @@ contentful:
     - sign_off
     - collections
 
+paginate_path: media/articles/page/:num
 defaults:
   - scope:
       path: ""
       type: "locations"
     values:
       layout: location
+  - scope:
+      path: "media/articles/page"
+    values:
+      sitemap: false
   - scope:
       path: ""
       type: "onsite_groups"
