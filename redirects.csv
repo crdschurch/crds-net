@@ -56,8 +56,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /profile/*,https://${env:CRDS_PROFILE_ENDPOINT}/:splat,200! Role=user
 /profile/*,/signin?redirectUrl=/profile/:splat,302!
 /signout,https://${env:CRDS_ANGULAR_ENDPOINT}/signout,200!
-/register,/,301! Role=user
-/register,https://${env:CRDS_ANGULAR_ENDPOINT}/register,200!
 /forgot-password,https://${env:CRDS_ANGULAR_ENDPOINT}/forgot-password,200!
 /reset-password*,https://${env:CRDS_ANGULAR_ENDPOINT}/reset-password:splat,200!
 /impersonate,https://${env:CRDS_ANGULAR_ENDPOINT}/impersonate,200!
