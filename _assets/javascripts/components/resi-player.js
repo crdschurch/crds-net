@@ -24,7 +24,11 @@ const isDayOfTheWeek = (day) => {
 
 const isServiceTime = () => {
   let isSunday = isDayOfTheWeek(0);
-  let serviceTimes = ((getEstTime() >= 855 && getEstTime() <= 1010) || (getEstTime() >= 1055 && getEstTime() <= 1210));
+  let serviceTimes = (
+    (getEstTime() >= 825 && getEstTime() <= 940) || 
+    (getEstTime() >= 955 && getEstTime() <= 1110) ||
+    (getEstTime() >= 1140 && getEstTime() <= 1255)
+  );
 
   return isSunday && serviceTimes;
 };
@@ -55,5 +59,6 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
   document.getElementById('resi-player').remove();
 }
 
-refreshPageForServiceStart(8,55,1);
-refreshPageForServiceStart(10,55,1);
+refreshPageForServiceStart(8,25,1);
+refreshPageForServiceStart(9,55,1);
+refreshPageForServiceStart(11,40,1);
