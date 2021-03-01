@@ -26,7 +26,7 @@ describe('Given I navigate to /onsite/group Page:', function() {
     qb.limit = 100;
     cy.task('getCNFLResource', qb.queryParams)
       .then((groups) => {
-        onsiteGroupList = groups.filter(g => g.category.title.text == "Site-Based Groups");
+         onsiteGroupList = groups.filter(g => g.category.title.text == "Site-based");
       });
       const importDeclarationsError = /.*import declarations may only appear at top level of a module.*/;
       cy.ignoreMatchingErrors([importDeclarationsError]);
@@ -36,6 +36,7 @@ describe('Given I navigate to /onsite/group Page:', function() {
   it('All Onsite group cards should be displayed', function() {
     cy.get('.onsite-group').as('onsiteGroupCards')
       .should('have.length', onsiteGroupList.length);
+      
   });
 
   it('Onsite Group card for Financial Peace should be first', function() {
@@ -44,13 +45,13 @@ describe('Given I navigate to /onsite/group Page:', function() {
     cy.get('.osg-row').as('onsiteGroupCards')
       .first()
       .find('a')
-      .should('have.attr', 'href', '/groups/onsite/COME-AS-YOU-ARE-FLORENCE-2019/columbus');
+      .should('have.attr', 'href', '/groups/site-based/COME-AS-YOU-ARE-FLORENCE-2019/columbus');
   });
 
-  [1,3].forEach((index) => {    
+  [6].forEach((index) => {    
     it(`Verify Site-Based groups section is visible #${index} `, function() {
-      let title = onsiteGroupList[index + 4].title.text;
-      cy.get('.osg-row h4').eq(index + 4).as(`${title}Card`)
+      let title = onsiteGroupList[index + 1 ].title.text;
+      cy.get('.osg-row h4').eq(index  + 1).as(`${title}Card`)
         .normalizedText()
         .should('eq', normalizeText(title));
     });
