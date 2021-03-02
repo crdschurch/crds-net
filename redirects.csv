@@ -174,4 +174,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /groups/onsite-groups/*,/groups/onsite,301!
 /groups/onsite,/groups/site-based,301!
 /groups/onsite/*,/groups/site-based/:splat,301!
+/training/listening/*,https://listening-training.netlify.app/:splat,200!
+/training/lib/*,https://listening-training.netlify.app/lib/:splat,200!
+/training/assets/*,https://listening-training.netlify.app/assets/:splat,200!
 /*,/404.html,404
