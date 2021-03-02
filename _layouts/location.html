@@ -4,6 +4,7 @@ layout: default
 
 <!-- Pull only the promos that exist for the specific location if any -->
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
+{% assign series = site.series | last %}
 {% include header.html %}
 
 <!-- Resi Player -->
@@ -189,6 +190,33 @@ layout: default
           </div>
         </div>
         {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-tan-light">
+  <div class="container push-bottom soft-ends">
+    <div class="row soft-ends push-bottom">
+      <div class="col-xs-12 col-sm-6 soft">
+        <a href="{{ series.url }}" title="{{ series.title }}">
+          <img class="img-full-width"
+            src="{% if series.image.url %}{{ series.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine}}"
+            alt="{{ series.title }}" sizes="{{ site.image_sizes.full_width }}" data-optimize-img>
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 soft">
+        <label
+          class="label label-default bg-gray-lightest text-capitalize no-border-radius font-family-accent text-capitalize soft-half-sides soft-quarter-ends">Current
+          Series</label>
+        <h2 class="font-family-condensed-extra text-uppercase flush-bottom">{{ series.title }}</h2>
+        <!-- <date class="metadata">{{ series.starts_at | date: "%m.%d.%Y" }} &mdash; {{ series.ends_at | date: "%m.%d.%Y"
+          }}</date> -->
+        <div class="push-half-top push-bottom font-size-small text-gray-dark">
+          {{ series.description | markdownify }}
+        </div>
+        <a href="{{ series.url }}" title="{{ series.title }}" class="btn btn-outline btn-blue" role="button">View the
+          series</a>
       </div>
     </div>
   </div>
