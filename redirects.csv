@@ -1,4 +1,5 @@
 http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
+http://crossroads.net/*,https://www.crossroads.net/:splat,301!
 https://crossroads.net/*,https://www.crossroads.net/:splat,301!
 https://development.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/event-checkin/:splat,302!
 http://development.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/event-checkin/:splat,302!
@@ -44,7 +45,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /proxy/content/*,${env:CRDS_CMS_ENDPOINT}/:splat,200!
 /proxy/gateway/*,${env:CRDS_GATEWAY_ENDPOINT}/:splat,200!
 /mycamps*,https://${env:CRDS_ANGULAR_ENDPOINT}/mycamps:splat,200!
-/camps/*,/camps,301!
+/camps/:campId/*,https://${env:CRDS_ANGULAR_ENDPOINT}/camps/:campId/,200!
 /childcare,https://${env:CRDS_ANGULAR_ENDPOINT}/childcare,200!
 /childcare/*,https://${env:CRDS_ANGULAR_ENDPOINT}/childcare/:splat,200!
 /childcare2/*,https://${env:CRDS_CHILDCARE_ENDPOINT}/:splat,200!
@@ -56,8 +57,8 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /profile/*,https://${env:CRDS_PROFILE_ENDPOINT}/:splat,200! Role=user
 /profile/*,/signin?redirectUrl=/profile/:splat,302!
 /signout,https://${env:CRDS_ANGULAR_ENDPOINT}/signout,200!
-/forgot-password,https://${env:CRDS_ANGULAR_ENDPOINT}/forgot-password,200!
-/reset-password*,https://${env:CRDS_ANGULAR_ENDPOINT}/reset-password:splat,200!
+/register,/,301! Role=user
+/signin/reset-password/*,/reset-password-okta?token=:splat,200!
 /impersonate,https://${env:CRDS_ANGULAR_ENDPOINT}/impersonate,200!
 /volunteer-sign-up,/404.html,404!
 /volunteer-sign-up/*,/volunteer,301!
