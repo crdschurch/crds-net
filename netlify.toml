@@ -21,6 +21,11 @@ package = "@helloample/netlify-plugin-redirects"
 [[plugins]]
 package = "./_plugins/netlify-plugin-health-check"
 
+[dev]
+  BASEURL="/"
+  CRDS_COMPONENTS_ENDPOINT="components-int.crossroads.net"
+  CRDS_COMPONENTS_ROOT_URL="https://int.crossroads.net"
+
 [context.branch-deploy.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
   CRDS_MAP_DOMAIN = "connect-int.crossroads.net"
