@@ -43,6 +43,14 @@ module CRDS
     end
 
     ##
+    # Return slugs for all locations hosting meetings
+    # @return Array
+    #
+    def location_slugs
+      @location_slugs ||= by_location.keys
+    end
+
+    ##
     # Returns meetings organized by location slug
     #   { "oakley" => [...], ... }
     # @return Array
