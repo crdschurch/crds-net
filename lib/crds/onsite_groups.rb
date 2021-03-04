@@ -49,10 +49,19 @@ module CRDS
     #
     def by_location
       @by_location ||= begin
-        @collections['onsite_group_meetings'].docs.
-          # TODO
-          select{|m| m.data.keys.include?('location') && m.data['location'].present? }.
-          group_by{|m| m.data.dig('location','slug') }
+        # For each location...
+        Hash[site.collections['locations'].docs.collect{|l|
+          # Select meetings whose location or locations[] matches current iteration
+          meetings = @collections['onsite_group_meetings'].docs.select do |doc|
+            slugs = (doc.data.dig('locations') || []).collect{|l| l.dig('slug') }
+            slugs << doc.data.dig('location', 'slug')
+            slugs.compact.uniq.include?(l.data['slug'])
+          end
+          # This syntax returns an object literal...
+          #   Hash[ ['key',[...]] ] # => { key: [...] }
+          [l.data['slug'], meetings]
+        }]
+        .reject{|k,v|v.empty?} # Do not return locations with 0 meetings
       end
     end
 
@@ -118,18 +127,22 @@ module CRDS
       # Reference for all location objects
       locations = @site.collections['locations'].docs
 
-      # For every meeting
-      meetings.collect do |m|
-          # ...return it's location
-          # TODO
-          slug = m.data.dig('location','slug')
-          locations.detect{|l| l.data.dig('slug') == slug }
-        end.
-        compact.
-        # No dupes
-        uniq{|m| m.data['id'] }.
-        # Sort the return value alphabetically
-        sort{|a,b| a.data['name'] <=> b.data['name'] }
+      # For every meeting return it's locations
+      group_locations = meetings.collect do |m|
+          slugs = (m.data.dig('locations') || []).collect{|l| l['slug'] } || []
+          slugs << m.data.dig('location','slug')
+          slugs = slugs.compact.uniq
+
+          locations.select{|l| slugs.include?(l.data.dig('slug')) }
+        end
+
+      # binding.pry if group.data['id'] == '6d1GWqGbUix35uYdELO2gP'
+      group_locations.
+        collect do |ls|
+          ls.compact.uniq
+        end
+        .flatten
+        .sort{|a,b| a.data['name'] <=> b.data['name'] } # Sort alphabetically
     end
 
     ##
