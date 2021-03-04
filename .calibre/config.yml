@@ -4,3 +4,4 @@ pullRequestReviews:
     - lighthousePerformanceScore
     - lighthouseAccessibilityScore
     - lighthouseSEOScore
+    - timeToFirstByte
