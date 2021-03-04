@@ -51,6 +51,17 @@ module CRDS
     end
 
     ##
+    # Returns all location slugs for a meeting document
+    # @param Jekyll::Document
+    # @return Array
+    #
+    def location_slugs_for_meeting(meeting)
+      slugs = (meeting.data.dig('locations') || []).collect{|l| l['slug']}
+      slugs << meeting.data.dig('location','slug')
+      slugs.compact.uniq
+    end
+
+    ##
     # Returns meetings organized by location slug
     #   { "oakley" => [...], ... }
     # @return Array
