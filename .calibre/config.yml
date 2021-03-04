@@ -2,6 +2,6 @@ version: 1
 pullRequestReviews:
   measurements:
     - lighthousePerformanceScore
-    - lighthouseAccessibilityScore
-    - lighthouseSEOScore
-    - timeToFirstByte
+    - cumulativeLayoutShift
+    - largestContentfulPaint
+    - totalBlockingTime
