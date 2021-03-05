@@ -17,7 +17,7 @@ module Jekyll
 
     def locations_for_meeting(obj)
       group = obj.instance_variable_get("@obj")
-      utils.locations_by_group(group)
+      utils.locations_by_group(group).uniq{|l| l.data.dig('slug')}
     end
 
     def group_for_meeting(obj)
