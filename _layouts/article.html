@@ -132,7 +132,7 @@ title: Articles
                 {% if sign_off and sign_off.background_image %}
                 {% assign background_image = sign_off.background_image.url | imgix: site.imgix %}
                 {% else %}
-                {% assign background_image = 'https://images.ctfassets.net/y3a9myzsdjan/431kdnusOmv7yMibq7VdGs/15709ee9a84d2a3b4113e55cabc77c1a/sign-off-default-background.jpg' | imgix: site.imgix %}
+                {% assign background_image = 'https://crds-media.imgix.net/431kdnusOmv7yMibq7VdGs/15709ee9a84d2a3b4113e55cabc77c1a/sign-off-default-background.jpg' | imgix: site.imgix %}
                 {% endif %}
 
                 <div class="content" style="background-image: url('{{ background_image }}?w=600&auto=format,compress')"
