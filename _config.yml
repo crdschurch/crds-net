@@ -175,18 +175,11 @@ contentful:
   video:
     map:
       date: published_at
-
   sign_up_form:
     query: fields.pageType=OnsiteGroupSignupPage
   exclude:
-    - collections
-    - location
     - migration
     - migrations
-    - page
-    - redirect
-    - sign_off
-    - song
 
 defaults:
   - scope:
