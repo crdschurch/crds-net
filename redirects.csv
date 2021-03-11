@@ -123,7 +123,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /media/*,https://${env:CRDS_MEDIA_ENDPOINT}/:splat,200!
 /onsitegroups,/groups/onsite,301!
 /groups/onsite/:group/anywhere,/groups/onsite/:group/online,301!
-/groups/online,/connect/?refinementList%5BgroupType%5D%5B0%5D=Online,301!
 /groups/home,/connect/?refinementList%5BgroupType%5D%5B0%5D=At%20Home,301!
 /groups/at-home,/connect/?refinementList%5BgroupType%5D%5B0%5D=At%20Home,301!
 /groups/chaser,/connect,301!
