@@ -16,6 +16,7 @@ module Jekyll
           'groups': category_groups.each_slice(2).to_a,
           'category': groups.category_by_slug(slug),
           'categories': categories,
+          'slug': slug,
           'path': "/groups/#{slug}"
         })
       end
@@ -32,7 +33,7 @@ module Jekyll
       # Location landings
       groups.by_location.each do |slug, meetings|
         slug = slug == 'anywhere' ? 'online' : slug
-        pages.create!("/groups/onsite/#{slug}", 'onsite-groups/location.html', {
+        pages.create!("/groups/#{slug}", 'onsite-groups/location.html', {
           'location': groups.location_by_slug(slug),
           'meetings': meetings.group_by{|m| m.data['group'].data.dig('category') }.sort_by{|k,v| k['title'] }.reverse
         })
@@ -46,13 +47,18 @@ module Jekyll
         meetings = group.data['meetings'].nil? ? [] : group.data['meetings']
         meeting_ids = meetings.collect{|m| m['id'] }.compact
         group_meetings = groups.meetings_by_id(meeting_ids)
-        location_slugs = group_meetings.collect{|m| m.data.dig('location','slug') }.compact
+        location_slugs = group_meetings.collect{|m|
+          groups.location_slugs_for_meeting(m)
+        }.flatten
 
         location_slugs.collect do |location_slug|
           slug = location_slug == 'anywhere' ? 'online' : location_slug
-          meetings = group_meetings.select{|m| m.data.dig('location','slug') == location_slug }
+          meetings = group_meetings.select{|m|
+            groups.location_slugs_for_meeting(m).include? location_slug
+          }
           location = groups.location_by_slug(slug)
-          pages.create!("/groups/onsite/#{group_slug}/#{slug}", 'onsite-groups/detail.html', {
+          category_slug = group.data["category"]["slug"] ? group.data["category"]["slug"] : "onsite";
+          pages.create!("/groups/#{category_slug}/#{group_slug}/#{slug}", 'onsite-groups/detail.html', {
             'group': group,
             'location': location,
             'meetings': meetings
