@@ -28,7 +28,11 @@
     min-height: 1200px;
   }
 
-  @media screen and (min-width: $screen-md) and (max-width: $screen-lg) {
+  @media screen and (min-width: $screen-md) {
     min-height: 750px;
+  }
+
+  @media screen and (min-width: $screen-lg) {
+    min-height: 1000px;
   }
 }
