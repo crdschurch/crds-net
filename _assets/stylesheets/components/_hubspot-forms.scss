@@ -15,10 +15,9 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
 }
 
 [data-role="hsform"] input {
-  display: block;
-  width: 100%;
-  height: 42px;
+  display: inline-block;
   padding: 8px 10px;
+  height: 42px;
   font-size: 16px;
   line-height: 1.5;
   color: #4d4d4d;
@@ -26,6 +25,9 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
   background-image: none;
   border: 1px solid #f4f4f4;
   border-radius: 0;
+  &[type="checkbox"] {
+    height: 13px;
+  }
 }
 
 [data-role="hsform"] .field {
@@ -58,6 +60,15 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
   list-style: none;
   margin-bottom: 5px;
   padding-left: 0px;
+}
+[data-role="hsform"] .hs-form-booleancheckbox {
+  list-style: none;
+}
+[data-role="hsform"] .inputs-list {
+  padding: 0px;
+  span {
+    padding-left: 10px;
+  }
 }
 [data-role="hsform"] .hs-error-msgs li {
   padding-left: 0px;
@@ -115,10 +126,6 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
   padding-left: 10px;
   font-family: "acumin-pro",helvetica,arial,sans-serif;
   font-weight: 300;
-}
-
-[data-role="hsform"] input.hs-input {
-  width: 100% !important;
 }
 
 #subscribeModalForm {

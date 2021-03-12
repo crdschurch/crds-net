@@ -29,7 +29,8 @@ snail_trail: connect
 <main class="bg-blue bg-topo soft-ends">
   <section class="container border-bottom-group">
     {% for group in page.meetings %}
-    <div class="row push-bottom" id="{% if group[0].slug == 'onsite-groups' %}site-based-groups{% else %}{{ group[0].slug }}{% endif %}">
+    {% assign category_slug = group[0].slug %}
+    <div class="row push-bottom" id="{% if category_slug == 'onsite-groups' %}site-based-groups{% else %}{{ category_slug }}{% endif %}">
       <div class="col-sm-3 text-white">
         <p class="text-uppercase font-size-smaller text-white flush-bottom">{{ page.location.title }}</p>
         <h2 class="flush-top font-family-condensed-extra font-size-h3 text-uppercase text-white">
@@ -45,7 +46,7 @@ snail_trail: connect
           <h4 class="font-family-condensed-extra text-uppercase">
             {% assign group_slug = meeting | group_for_meeting %}
             {% if group_slug %}
-            <a href="/groups/onsite/{{ group_slug.slug }}/{% if meeting.location.slug == 'anywhere' %}online{% else %}{{ meeting.location.slug }}{% endif %}">
+            <a href="/groups/{{ category_slug }}/{{ group_slug.slug }}/{% if meeting.location.slug == 'anywhere' %}online{% else %}{{ meeting.location.slug }}{% endif %}">
               {{ meeting.title }}
             </a>
             {% else %}
@@ -54,7 +55,7 @@ snail_trail: connect
           </h4>
           
           <p class="text-gray-dark font-size-small">{{ meeting.description | strip_tags | truncate: 200 }}</p>
-          {% include groups/_meeting-details.html meeting=meeting %}
+          {% include groups/_meeting-details.html meeting=meeting category_slug=category_slug %}
         </div>
         {% endfor %}
       </div>
@@ -70,7 +71,7 @@ snail_trail: connect
       <h3 class="component-header-box text-white">Don't give up</h3>
       <p class="font-family-serif font-size-base">There are hundreds of groups available. If you can't find what you're looking for, chat with us. We'd love to help you get connected.</p>
       <div>
-        <crds-button class="push-half-right" text="See other Locations" color="orange" href="/groups/onsite#locations"></crds-button>
+        <crds-button class="push-half-right" text="See other Locations" color="orange" href="/groups/locations"></crds-button>
         <crds-button text="See all Groups" color="orange" href="/connect"></crds-button>
       </div>
     </div>
