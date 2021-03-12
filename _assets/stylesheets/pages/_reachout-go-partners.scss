@@ -24,7 +24,7 @@
   background-size: cover;
   min-height: 1000px;
 
-  @media screen and (min-width: $screen-sm) {
+  @media screen and (min-width: $screen-xs) {
     min-height: 1200px;
   }
 
