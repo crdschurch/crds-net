@@ -22,10 +22,13 @@
 
 .tan-topo-map-bg {
   background-size: cover;
-  @media screen and (min-width: $screen-md) {
-    min-height: 750px;
+  min-height: 1000px;
+
+  @media screen and (min-width: $screen-sm) {
+    min-height: 1200px;
   }
-  @media screen and (min-width: $screen-lg) {
-    min-height: 900px;
+
+  @media screen and (min-width: $screen-md) and (max-width: $screen-lg) {
+    min-height: 750px;
   }
 }
