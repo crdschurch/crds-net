@@ -1,6 +1,129 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-  {% include _head.html %}
+  <head>
+    {% if site.jekyll_env == 'production' %}
+      <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/ee6703e4-e14a-4e11-bf03-f5b7b37c7061/osano.js"></script>
+    {% elsif site.jekyll_env == 'int' %}
+      <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/65a23ab1-e0ce-4ccd-bc3c-2c8b89cb18f5/osano.js"></script>
+    {% endif %}
+  
+    {% include _gtm-head.html %}
+    {% include _monetate-head.html %}
+    <meta name="Netlify" content="This page was rendered with Netlify">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="title" content="{{ page | meta_title }}">
+    <meta name="description" content="{{ page | meta_description | markdownify | strip_liquid | strip_html | strip_newlines | strip | truncate: 155 }}">
+    <meta name="image" content="{{ page | meta_image | imgix: site.imgix }}?{{ site.imgix_params.meta_image }}">
+    <meta property="og:description" content="{{ page | meta_description | markdownify | strip_liquid | strip_html | strip_newlines | strip | truncate: 155 }}">
+    <meta property="og:title" content="{{ page | meta_title }}">
+    <meta property="og:image" content="{{ page | meta_image | imgix: site.imgix }}?{{ site.imgix_params.meta_image }}">
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <meta property="og:site_name" content="{{ site.title | escape }}">
+    <meta name="apple-itunes-app" content="app-id=1029478803">
+    <meta name="google-play-app" content="app-id=net.crossroads.crossroads">
+    <title>{{ page | meta_title }}</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Crossroads" />
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="cfl:space_id" content="{{ site.ENV.CONTENTFUL_SPACE_ID }}">
+    <meta property="cfl:env" content="{{ site.ENV.CONTENTFUL_ENV }}">
+    <meta property="cfl:token" content="{{ site.ENV.CONTENTFUL_ACCESS_TOKEN }}">
+    <meta property="crds:interactions-endpoint" content="{{ site.ENV.INTERACTIONS_ENDPOINT }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@crsrdschurch">
+    
+    
+    {% if page.search_excluded or jekyll.environment != "production" %}
+      <meta name="robots" content="noindex" />
+      <meta name="AdsBot-Google" content="noindex" />
+    {% endif %}
+    
+  
+    {% if page.distribution_channels %}
+      {% if page.podcast.distribution_channels %}
+        <link rel="canonical" href="{{ page.podcast | get_canonical_host }}">
+      {% else %}
+        <link rel="canonical" href="{{ page | get_canonical_host }}">
+      {% endif %}
+    {% endif %}
+  
+    <link rel="preload" href="{{site.components_endpoint}}/crds-components/crds-components.esm.js" as="script">
+    <link rel="preload" href="{{site.components_endpoint}}/crds-components.js" as="script">
+  
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="//d1tmclqz61gqwd.cloudfront.net/favicons/apple-touch-icon.png?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="//d1tmclqz61gqwd.cloudfront.net/favicons/favicon-32x32.png?v=2">
+    <link rel="icon" type="image/png" sizes="16x16" href="//d1tmclqz61gqwd.cloudfront.net/favicons/favicon-16x16.png?v=2">
+    <link rel="manifest" href="//d1tmclqz61gqwd.cloudfront.net/favicons/manifest.json">
+    <link rel="mask-icon" href="//d1tmclqz61gqwd.cloudfront.net/favicons/safari-pinned-tab.svg?v=2">
+  
+    {% if page.legacy_styles %}
+    <link rel="stylesheet" href="/assets/static/legacy.min.css">
+    {% endif %}
+  
+    {% if page.title == "Atrium Events" %}
+    {% include atrium_events/_atrium-events.html %}
+    {% endif %}
+  
+    {% if page.title == "Explore" %}
+    {% include explore/_explore-resources.html %}
+    {% endif %}
+  
+    <!-- before -->
+    {% stylesheet_link_tag application %}
+    <!-- after -->
+    <script> window.prerenderReady = true; </script>
+  
+    <script>
+    var CRDS = window.CRDS || {};
+  
+    CRDS.rollCall = {
+      formUrl: '{{ site.ENV.ROLL_CALL_FORM_URL }}',
+      totalFieldId: '{{ site.ENV.ROLL_CALL_TOTAL_FIELD_ID }}',
+      urlFieldId: '{{ site.ENV.ROLL_CALL_URL_FIELD_ID }}'
+    }
+  
+    CRDS.env = {
+      "bitmovinPlayerLicense": '{{ site.bitmovin_player_license }}',
+      "bitmovinAnalyticsLicense": '{{ site.bitmovin_analytics_license }}',
+      environment: '{{ site.jekyll_env }}',
+      "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}',
+      "streamScheduleEndpoint": '{{ site.stream_schedule_endpoint }}',
+      "okta_client_id": '{{ site.okta_client_id }}',
+      "okta_oauth_base_url": '{{ site.okta_oauth_base_url }}'
+    }
+  
+    var JEKYLL_ENV = '{{ site.jekyll_env }}';
+  
+    var envReady = new Event('env-ready');
+    document.dispatchEvent(envReady);
+    window.envReady = true;
+    </script>
+    {% if page.title == "My Groups MP Widget" %}
+    <script id="MPWidgets" src="https://adminint.crossroads.net/widgets/dist/MPWidgets.js"></script>
+    {% endif %}
+  
+    <script type="module" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components/crds-components.esm.js"></script>
+    <script nomodule="" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components.js"></script>
+    <script>
+      function componentsLoaded() {
+        var componentsReady = new Event('components-ready');
+        document.dispatchEvent(componentsReady);
+        window.componentsReady = true;
+      }
+    </script>
+  
+  {% include _facebook.html %}
+  {% if page.js_vars %}{% include _js_vars.html %}{% endif %}
+  {% javascript_link_tag application %}
+  </head>
+  
   <body class="{% if page.path == 'preview.html' %}preview{% endif %} crds-styles relative">
     {% include _gtm_noscript.html %}
     {% include _facebook_noscript.html %}
