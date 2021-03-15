@@ -57,10 +57,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /profile/*,https://${env:CRDS_PROFILE_ENDPOINT}/:splat,200! Role=user
 /profile/*,/signin?redirectUrl=/profile/:splat,302!
 /signout,https://${env:CRDS_ANGULAR_ENDPOINT}/signout,200!
-/register,/,301! Role=user
-/register,https://${env:CRDS_ANGULAR_ENDPOINT}/register,200!
-/forgot-password,https://${env:CRDS_ANGULAR_ENDPOINT}/forgot-password,200!
-/reset-password*,https://${env:CRDS_ANGULAR_ENDPOINT}/reset-password:splat,200!
+/signin/reset-password/*,/reset-password-okta?token=:splat,302!
 /impersonate,https://${env:CRDS_ANGULAR_ENDPOINT}/impersonate,200!
 /volunteer-sign-up,/404.html,404!
 /volunteer-sign-up/*,/volunteer,301!
@@ -85,8 +82,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /topics/*,/media/topics/:splat,302!
 /authors/*,/media/authors/:splat,302!
 /songs/*,/media/songs/:splat,302!
-/oktasignin*,https://${env:CRDS_OKTA_SIGNIN_ENDPOINT}:splat,200!
-/signin/*,https://${env:CRDS_ANGULAR_ENDPOINT}/signin/:splat,200!
 /event-checkin/*,https://${env:CRDS_EVENT_CHECKIN_ENDPOINT}/:splat,200!
 /media/music/,${env:CRDS_MUSIC_ENDPOINT},301!
 /music/,${env:CRDS_MUSIC_ENDPOINT},301!
@@ -128,7 +123,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /media/*,https://${env:CRDS_MEDIA_ENDPOINT}/:splat,200!
 /onsitegroups,/groups/onsite,301!
 /groups/onsite/:group/anywhere,/groups/onsite/:group/online,301!
-/groups/online,/connect/?refinementList%5BgroupType%5D%5B0%5D=Online,301!
 /groups/home,/connect/?refinementList%5BgroupType%5D%5B0%5D=At%20Home,301!
 /groups/at-home,/connect/?refinementList%5BgroupType%5D%5B0%5D=At%20Home,301!
 /groups/chaser,/connect,301!
@@ -142,10 +136,10 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /richmondonsitegroups,/groups/onsite/richmond,301!
 /lexingtononsitegroups,/groups/onsite/lexington,301!
 /georgetownonsitegroups,/groups/onsite/georgetown,301!
-/healing/alladdictionsbigbookmeeting,/groups/onsite-healing-groups/all-addictions-big-book-meeting,301!
-/griefsupport,/groups/onsite-healing-groups/grief-support,301!
-/healing/real-marriage,/groups/onsite-healing-groups/real-marriage,301!
-/healing/undefeated,/groups/onsite-healing-groups/undefeated,301!
+/healing/alladdictionsbigbookmeeting,/groups/healing,301!
+/griefsupport,/groups/healing,301!
+/healing/real-marriage,/groups/healing,301!
+/healing/undefeated,/groups/healing,301!
 /momsgroup,/groups/onsite-groups/moms,301!
 /fathers,/groups/onsite-groups/fathers,301!
 /youngadults,/groups/onsite-groups/young-adults,301!
@@ -154,16 +148,16 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /onsitegroups/financial-peace-university,/groups/onsite-groups/financial-peace-university,301!
 /onsitegroups/bible-groups,/groups/onsite-groups/bible-groups,301!
 /onsitegroups/going-deeper,/groups/onsite-groups/going-deeper,301!
-/healing/aa-groups,/groups/onsite-healing-groups/aa,301!
-/healing/severepersistentmentalillness,/groups/onsite-healing-groups/severe-and-persistent-mental-illness-support-group,301!
-/healing/transformingbetrayal,/groups/onsite-healing-groups/transforming-betrayal,301!
-/healing/mens-healthy-choices,/groups/onsite-healing-groups/mens-healthy-choices,301!
-/healing/recovery-and-redemption,/groups/onsite-healing-groups/recovery-and-redemption,301!
-/healing/beautyforashes,/groups/onsite-healing-groups/beauty-for-ashes,301!
-/cst,/groups/onsite-healing-groups/cst,301!
-/healing/eyeswideopen,/groups/onsite-healing-groups/eyes-wide-open,301!
-/healing/divorcecare,/groups/onsite-healing-groups/divorce-care,301!
-/healing/postpartum-healing,/groups/onsite-healing-groups/postpartum,301!
+/healing/aa-groups,/groups/healing,301!
+/healing/severepersistentmentalillness,/groups/healing,301!
+/healing/transformingbetrayal,/groups/healing,301!
+/healing/mens-healthy-choices,/groups/healing,301!
+/healing/recovery-and-redemption,/groups/healing,301!
+/healing/beautyforashes,/groups/healing,301!
+/cst,/groups/healing,301!
+/healing/eyeswideopen,/groups/healing,301!
+/healing/divorcecare,/groups/healing,301!
+/healing/postpartum-healing,/groups/healing,301!
 /groups/onsite/columbus,/groups/columbus,301
 /groups/onsite/dayton,/groups/dayton,301
 /groups/onsite/florence,/groups/florence,301

@@ -9,15 +9,25 @@ layout: container-fluid
         <div class="container">
           <div class="col-sm-7 text-left">
             <h1 class="font-family-condensed-extra font-size-h2 text-uppercase">
+              {% if page.group.title %}
               {{ page.group.title }}
+              {% else %}
+              {{ page.title }}
+              {% endif %}
             </h1>
             <p class="font-size-smaller text-uppercase">{{ page.location.onsite_group_display_name }}</p>
+            {% if page.group.detail %}
             <p class="font-size-small"><strong>Perfect for:</strong> {{ page.group.detail }}</p>
+            {% else %}
+            <p class="font-size-small"><strong>Perfect for:</strong> {{ page.detail }}</p>
+            {% endif %}
           </div>
           <div class="col-sm-5">
+            {% if page.location.image.url %}
             <img class="width-100"
               src="{{ page.location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
               sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+            {% endif %}
           </div>
         </div>
       </div>
@@ -25,18 +35,22 @@ layout: container-fluid
   </section>
 
   <section class="container bg-white text-gray-dark soft-ends">
-    <div class="container">
+    <div class="soft-half-sides">
       {% if page.group.length %}
       <div class="push-bottom font-size-small"><strong>How Long:</strong><br> {{ page.group.length }}</div>
+      {% else %}
+      <div class="push-bottom font-size-small"><strong>How Long:</strong><br> {{ page.length }}</div>
       {% endif %}
 
       {% if page.group.description %}
       <div class="push-bottom font-size-small"><strong>Details:</strong>{{ page.group.description | markdownify }}</div>
+      {% else %}
+      <div class="push-bottom font-size-small"><strong>Details:</strong>{{ page.description | markdownify }}</div>
       {% endif %}
 
       <h2 class="font-family-condensed-extra font-size-h3 text-uppercase">Meeting times</h2>
 
-      <div class="d-flex flex-column flex-sm-row row">
+      <div class="row">
         {% for meeting in page.meetings %}
           {% include groups/_meeting-details-card.html meeting=meeting %}
         {% endfor %}

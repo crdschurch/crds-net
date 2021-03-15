@@ -1,5 +1,11 @@
 <div class="col-sm-4 push-top">
   <div class="border border-light-gray soft-half full-height">
+
+    <p class="font-family-base-bold font-size-small push-quarter-top">
+      {{ meeting.title }}
+    </p>
+
+
     {% if meeting.starts_at %}
     <p class="font-family-base-bold font-size-small push-quarter-top">
       Starts {{ meeting.starts_at | date: "%B %-d" }} - {{ meeting.starts_at | date: "%A" }}s
@@ -14,13 +20,6 @@
     <p class="align-items-center d-flex text-gray-light font-size-smaller">
       <crds-icon name="map-marker" color="gray-light" size="16"></crds-icon>
       Room {{ meeting.room }}
-    </p>
-    
-    {% else %}
-    <p class="font-size-small">Once you register, the leader will email you a meeting link.</p>
-    <p class="align-items-center d-flex text-gray-light font-size-smaller">
-      <crds-icon name="map-marker" color="gray-light" size="16"></crds-icon>
-      Online via Zoom
     </p>
     {% endif %}
   
