@@ -47,11 +47,15 @@ module Jekyll
         meetings = group.data['meetings'].nil? ? [] : group.data['meetings']
         meeting_ids = meetings.collect{|m| m['id'] }.compact
         group_meetings = groups.meetings_by_id(meeting_ids)
-        location_slugs = group_meetings.collect{|m| m.data.dig('location','slug') }.compact
+        location_slugs = group_meetings.collect{|m|
+          groups.location_slugs_for_meeting(m)
+        }.flatten
 
         location_slugs.collect do |location_slug|
           slug = location_slug == 'anywhere' ? 'online' : location_slug
-          meetings = group_meetings.select{|m| m.data.dig('location','slug') == location_slug }
+          meetings = group_meetings.select{|m|
+            groups.location_slugs_for_meeting(m).include? location_slug
+          }
           location = groups.location_by_slug(slug)
           category_slug = group.data["category"]["slug"] ? group.data["category"]["slug"] : "onsite";
           pages.create!("/groups/#{category_slug}/#{group_slug}/#{slug}", 'onsite-groups/detail.html', {
