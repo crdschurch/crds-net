@@ -120,6 +120,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /media/songs/be-thou-my-vision,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/be-thou-my-vision,301!
 /media/songs/listen,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/listen,301!
 /media/songs/*,${env:CRDS_MUSIC_ENDPOINT}/:splat,302!
+/media/shows,https://crds-media.netlify.app/shows,200!
 /media/*,https://${env:CRDS_MEDIA_ENDPOINT}/:splat,200!
 /onsitegroups,/groups/onsite,301!
 /groups/onsite/:group/anywhere,/groups/onsite/:group/online,301!
