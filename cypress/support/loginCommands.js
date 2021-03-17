@@ -1,5 +1,5 @@
 import { MinistryPlatformLoginPlugin, OktaLoginPlugin } from 'crds-cypress-login';
-import { endUserSessions } from '../APIs/OktaUserAPI';
+const oktaPlugin = OktaLoginPlugin(`https://authpreview.crossroads.net`, '0oahgpg7elMxVJedi0h7');
 
 /*** Add custom commands related to logging in/out or authentication here ***/
 
@@ -14,14 +14,20 @@ Cypress.Commands.add('mpLogin', (email, password) => {
     .then(cy.reload);
 });
 
-const oktaPlugin = OktaLoginPlugin(Cypress.env('OKTA_ENDPOINT'), Cypress.env('CLIENT_ID'), Cypress.env('OKTA_SIGNIN_URL'));
+// Create custom command
 Cypress.Commands.add('oktaLogin', (email, password) => {
-  const cookie = oktaPlugin.GetRedirectCookie();
-  cy.setCookie(cookie.name, cookie.value);
-
-  return cy.wrap(oktaPlugin.GetAuthenticatedUrl(email, password), { timeout: 30000 })
-    .then(cy.visit);
+  return cy.wrap(oktaPlugin.login(email, password), {timeout: 30000});
 });
+
+
+// const oktaPlugin = OktaLoginPlugin(Cypress.env('OKTA_ENDPOINT'), Cypress.env('CLIENT_ID'), Cypress.env('OKTA_SIGNIN_URL'));
+// Cypress.Commands.add('oktaLogin', (email, password) => {
+//   const cookie = oktaPlugin.GetRedirectCookie();
+//   cy.setCookie(cookie.name, cookie.value);
+
+//   return cy.wrap(oktaPlugin.GetAuthenticatedUrl(email, password), { timeout: 30000 })
+//     .then(cy.visit);
+// });
 
 /**
  * Signs the given user out.

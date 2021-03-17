@@ -48,10 +48,10 @@ describe('Given I navigate to /onsite/group Page:', function() {
       .should('have.attr', 'href', '/groups/site-based/COME-AS-YOU-ARE-FLORENCE-2019/columbus');
   });
 
-  [6].forEach((index) => {    
-    it(`Verify Site-Based groups section is visible #${index} `, function() {
+  [8].forEach((index) => {    
+    it(`Verify Site-Based groups section is visible #${index + 1} `, function() {
       let title = onsiteGroupList[index + 1 ].title.text;
-      cy.get('.osg-row h4').eq(index  + 1).as(`${title}Card`)
+      cy.get('.osg-row h4').eq(index + 1).as(`${title}Card`)
         .normalizedText()
         .should('eq', normalizeText(title));
     });
