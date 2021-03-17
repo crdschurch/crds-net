@@ -28,7 +28,7 @@
     "contentful-cli": "^0.28.0",
     "crds-cypress-config": "^1.0.1",
     "crds-cypress-contentful": "^2.0.0",
-    "crds-cypress-login": "^2.0.0",
+    "crds-cypress-login": "^3.0.0",
     "crds-styles": "^3.2.3",
     "cypress": "^4.8.0",
     "cypress-plugin-retries": "^1.3.0",
