@@ -49,7 +49,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /childcare,https://${env:CRDS_ANGULAR_ENDPOINT}/childcare,200!
 /childcare/*,https://${env:CRDS_ANGULAR_ENDPOINT}/childcare/:splat,200!
 /childcare2/*,https://${env:CRDS_CHILDCARE_ENDPOINT}/:splat,200!
-/corkboard*,https://${env:CRDS_ANGULAR_ENDPOINT}/corkboard:splat,200!
+/corkboard*,https://${env:CRDS_CORKBOARD_ENDPOINT}/:splat,200!
 /invoices/*,https://${env:CRDS_INVOICES}/:splat,200!
 /undivided/*,https://undivided.com,301!
 /mptools/*,https://${env:CRDS_ANGULAR_ENDPOINT}/mptools/:splat,200!
@@ -57,10 +57,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /profile/*,https://${env:CRDS_PROFILE_ENDPOINT}/:splat,200! Role=user
 /profile/*,/signin?redirectUrl=/profile/:splat,302!
 /signout,https://${env:CRDS_ANGULAR_ENDPOINT}/signout,200!
-/register,/,301! Role=user
-/register,https://${env:CRDS_ANGULAR_ENDPOINT}/register,200!
-/forgot-password,https://${env:CRDS_ANGULAR_ENDPOINT}/forgot-password,200!
-/reset-password*,https://${env:CRDS_ANGULAR_ENDPOINT}/reset-password:splat,200!
+/signin/reset-password/*,/reset-password-okta?token=:splat,302!
 /impersonate,https://${env:CRDS_ANGULAR_ENDPOINT}/impersonate,200!
 /volunteer-sign-up,/404.html,404!
 /volunteer-sign-up/*,/volunteer,301!
@@ -85,8 +82,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /topics/*,/media/topics/:splat,302!
 /authors/*,/media/authors/:splat,302!
 /songs/*,/media/songs/:splat,302!
-/oktasignin*,https://${env:CRDS_OKTA_SIGNIN_ENDPOINT}:splat,200!
-/signin/*,https://${env:CRDS_ANGULAR_ENDPOINT}/signin/:splat,200!
 /event-checkin/*,https://${env:CRDS_EVENT_CHECKIN_ENDPOINT}/:splat,200!
 /media/music/,${env:CRDS_MUSIC_ENDPOINT},301!
 /music/,${env:CRDS_MUSIC_ENDPOINT},301!
