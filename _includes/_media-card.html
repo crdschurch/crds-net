@@ -16,7 +16,7 @@
 
     {% if item.content_type == "article" or "video" %}
     <div class="beige-overlay"></div>
-    {% endif %}
+    {% endif %} 
 
     {% assign image = item.image.url %}
 
@@ -29,14 +29,14 @@
     {% assign recommended_collection=site.messages %}
     {% include _video-player-card.html %}
     {% if image %}
-      <img class="inline" src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
+      <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
     {% else %}
-      <img class="inline" src="{{ site.default_image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
+      <img src="{{ site.default_image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
     {% endif %}
   </a>
   <div class="card-block hard soft-quarter-top">
     {% assign topic =item.category | get_doc %}
-    <a class="text-orange-dark font-size-smaller font-family-base-mid text-uppercase" href="{{ topic.url }}">
+    <a class="text-gray font-size-smaller font-family-base-mid text-uppercase" href="{{ topic.url }}">
       {{ topic.title }}
     </a>
     <h3 class="component-header flush">
