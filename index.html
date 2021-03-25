@@ -209,16 +209,18 @@ paginate:
 
 <!-- Trigger for Hotjar to start tracking visitors to home page who are unauthenticated -->
 <script>
-  var triggerTimer = setInterval(hotJarTrigger, 1000);
-  function hotJarTrigger() {
-    if (window.hj.scriptLoaded == true) {
-      hj("trigger", "track_unauthenticated_homepage_users");
-      triggerFired();
+  if (window.hj) {
+    var triggerTimer = setInterval(hotJarTrigger, 1000);
+    function hotJarTrigger() {
+      if (window.hj.scriptLoaded == true) {
+        hj("trigger", "track_unauthenticated_homepage_users");
+        triggerFired();
+      }
     }
-  }
-  function triggerFired() {
-    clearInterval(triggerTimer);
-    console.log("unauthenticated user - hotjar trigger");
+    function triggerFired() {
+      clearInterval(triggerTimer);
+      console.log("unauthenticated user - hotjar trigger");
+    }
   }
 </script>
 
