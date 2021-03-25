@@ -1,5 +1,6 @@
 import { MessageQueryBuilder } from 'crds-cypress-contentful';
 import { getRelativeMessageUrl } from '../../support/GetUrl';
+const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/];
 
 describe('Tests download links on message page', function () {
   describe('Tests Bitmovin messages with audio file', () => {
@@ -16,6 +17,7 @@ describe('Tests download links on message page', function () {
 
           getRelativeMessageUrl(bitmovinMessage)
             .then((url) => {
+              cy.ignoreMatchingErrors(errorsToIgnore);
               cy.visit(`${Cypress.config().baseUrl}${url}`);
             });
         });

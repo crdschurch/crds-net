@@ -27,10 +27,10 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-contentful.git
-  revision: da26ed9fa370723eb5529e841387cbc53e575ddd
-  tag: 3.0.0
+  revision: f27d820d5292dc12d7b82572cd32c50f89f80ead
+  tag: 3.2.0
   specs:
-    jekyll-contentful (3.0.0)
+    jekyll-contentful (3.2.0)
       activesupport
       contentful (>= 2.6.0)
       contentful-management (~> 2.6)
@@ -87,10 +87,10 @@ GEM
     colorator (1.1.0)
     colorize (0.8.1)
     concurrent-ruby (1.1.8)
-    contentful (2.15.2)
+    contentful (2.15.4)
       http (> 0.8, < 5.0)
       multi_json (~> 1)
-    contentful-management (2.11.0)
+    contentful-management (2.13.1)
       http (> 1.0, < 5.0)
       json (>= 1.8, < 3.0)
       multi_json (~> 1)
@@ -129,15 +129,15 @@ GEM
       rspec (>= 2.99.0, < 4.0)
     hashdiff (1.0.0)
     hashie (4.1.0)
-    http (4.3.0)
+    http (4.4.1)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
       http-form_data (~> 2.2)
       http-parser (~> 1.2.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    http-form_data (2.2.0)
-    http-parser (1.2.1)
+    http-form_data (2.3.0)
+    http-parser (1.2.3)
       ffi-compiler (>= 1.0, < 2.0)
     http_parser.rb (0.6.0)
     httparty (0.17.3)
@@ -173,7 +173,7 @@ GEM
       jekyll (>= 3.7, < 5.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
-    json (2.3.0)
+    json (2.5.1)
     kramdown (2.3.0)
       rexml
     kramdown-parser-gfm (1.1.0)
@@ -191,7 +191,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.1009)
     minitest (5.14.0)
-    multi_json (1.14.1)
+    multi_json (1.15.0)
     multi_xml (0.6.0)
     nenv (0.3.0)
     net-sftp (3.0.0)
@@ -250,7 +250,8 @@ GEM
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.6)
+    unf_ext (0.0.7.7)
+    unf_ext (0.0.7.7-x64-mingw32)
     unicode-display_width (1.7.0)
     vcr (5.1.0)
     wdm (0.1.1)

@@ -1,4 +1,5 @@
 import { SeriesQueryBuilder } from 'crds-cypress-contentful';
+const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/];
 
 describe('Tesing the Media/Series/[Current Series] page:', function () {
   let currentSeries;
@@ -9,6 +10,7 @@ describe('Tesing the Media/Series/[Current Series] page:', function () {
     cy.task('getCNFLResource', qb.queryParams)
       .then((series) => {
         currentSeries = series;
+        cy.ignoreMatchingErrors(errorsToIgnore);
         cy.visit(`/series/${currentSeries.slug.text}`);
       });
   });

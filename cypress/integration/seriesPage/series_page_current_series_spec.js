@@ -1,5 +1,7 @@
 import { SeriesQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
+const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/];
+
 describe('Testing the Current Series on the Media/Series page:', function () {
   let currentSeries;
   before(function () {
@@ -10,7 +12,7 @@ describe('Testing the Current Series on the Media/Series page:', function () {
       .then(series => {
         currentSeries = series;
       });
-
+      cy.ignoreMatchingErrors(errorsToIgnore);  
     cy.visit('/series');
   });
 

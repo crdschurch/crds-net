@@ -3,6 +3,7 @@ import { getRelativeMessageUrl } from '../../support/GetUrl';
 
 const soundOn = 'sound=11';
 const soundOff = 'sound=1';
+const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/];
 
 describe('Tests message with Bitmovin player and transcription', function () {
   let relativeMessageURL;
@@ -21,6 +22,7 @@ describe('Tests message with Bitmovin player and transcription', function () {
 
   describe('Tests message autoplays and query params applied', () => {
     it('Checks sound is on and subtitles off', function () {
+      cy.ignoreMatchingErrors(errorsToIgnore);
       cy.visit(`${relativeMessageURL}?autoPlay=true&${soundOn}`);
 
       cy.bufferingOverlay().should('be.hidden')
@@ -53,6 +55,7 @@ describe('Tests message with Bitmovin player and transcription', function () {
 
   describe('Tests message does not autoplay if autoplay=false and query params ignored', () => {
     it('Checks when query param sets sound on', function () {
+      cy.ignoreMatchingErrors(errorsToIgnore);
       cy.visit(`${relativeMessageURL}?autoPlay=false&${soundOn}`);
 
       cy.bufferingOverlay().should('be.hidden')
@@ -81,6 +84,7 @@ describe('Tests message with Bitmovin player and transcription', function () {
   });
 
   it('Checks message does not autoplay when there are no query params', function () {
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit(relativeMessageURL);
 
     cy.bufferingOverlay().should('be.hidden')
