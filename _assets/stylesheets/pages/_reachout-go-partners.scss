@@ -1,0 +1,31 @@
+.jumbotron .reachout-header {
+  font-size: 90px;
+}
+
+.nav-tabs.reachout-nav {
+  border: none;
+  text-align: center;
+  li.active {
+    border-bottom: 1px solid $cr-white;
+  }
+  > li {
+    float: none;
+    display: inline-block;
+  }
+}
+
+.reachout-jumbotron {
+  @media screen and (min-width: $screen-lg) {
+    min-height: 1000px;
+  }
+}
+
+.tan-topo-map-bg {
+  background-size: cover;
+  @media screen and (min-width: $screen-md) {
+    min-height: 750px;
+  }
+  @media screen and (min-width: $screen-lg) {
+    min-height: 900px;
+  }
+}
