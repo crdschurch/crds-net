@@ -2,7 +2,7 @@ import { MessageQueryBuilder } from 'crds-cypress-contentful';
 import { getRelativeMessageUrl } from '../../support/GetUrl';
 import { getStreamSchedule } from '../../fixtures/stream_schedule_response';
 
-describe.only('Tests the /live jumbotron content with different stream times:', function () {
+describe('Tests the /live jumbotron content with different stream times:', function () {
   before(function () {
     //Ignore this error - unsure what to stub to avoid it
     const countdownConstructorError = /.*CRDS.Countdown is not a constructor.*/;
