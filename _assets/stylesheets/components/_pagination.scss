@@ -9,3 +9,11 @@
 .load-more {
   clear: both;
 }
+
+.pager li>a, .pager li>span {
+  border: none;
+
+  &:hover {
+    background-color: $cr-white;
+  }
+}

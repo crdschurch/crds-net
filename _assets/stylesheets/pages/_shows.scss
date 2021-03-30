@@ -1,0 +1,205 @@
+.carousel-shows {
+  position: relative;
+  right: 14px;
+}
+
+.feature-logo {
+  max-width: 245px;
+
+  @media(min-width: $screen-md) {
+    padding-top: 90px;
+  }
+}
+
+.hidden-icon {
+  display: none;
+}
+
+.icon-video {
+  display: block;
+}
+
+.jumbotron-content {
+  text-align: left !important;
+  //important flags needed to override jumbotron default styles 
+}
+
+.jumbotron p {
+  font-weight: 300 !important;
+}
+
+.most-recent {
+  padding-bottom: 100px;
+}
+
+.mobile-bg {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  display: block;
+  z-index: 1;
+
+  @media(min-width: $screen-md) {
+    background-image: none!important;
+  }
+}
+
+.more-videos {
+  font-size: 15px;
+  margin-right: 30px !important;
+  width: 155px;
+}
+
+#mute-btn { 
+  display: none;
+
+  @media (min-width: $screen-md) {
+    display: block;
+    left: 0px;
+    position: relative;
+    top: 10px;
+  }
+}
+
+.most-recent-wrapper {
+  column-gap: 60px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  row-gap: 60px;
+
+  @media(min-width: $screen-md) {
+  grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.recently-added-image-container {
+  @media(min-width: $screen-md) {
+    float: left;
+    height: 100px;
+    margin: 0px 15px 15px 0px;
+    width: 175px;
+  }
+}
+
+.recently-added-image {
+  float: left;
+  padding-bottom: 15px;
+  width: 100%;
+
+  @media(min-width: $screen-sm) {
+    height: 100px;
+    margin-right: 10px;
+    object-fit: cover;
+    width: 175px;
+  }
+}
+
+.shows-carousel {
+  min-height: 250px;
+}
+
+.shows-jumbotron-subtitle {
+  font-size: 32px;
+  font-weight: 100 !important;
+}
+
+.shows-landing-jumbotron {
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+
+  @media(min-width: $screen-md) {
+    align-items: flex-end;
+    display: flex;
+    justify-content: center;
+    min-height: 600px;
+  }
+}
+
+.shows-landing-page-title {
+  font-weight: 100 !important;
+}
+
+.shows-landing-page-subtitle {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.shows-recently-added-subtitle {
+  font-size: 27px;
+  font-weight: 100 !important;
+}
+
+.shows-related-description {
+  display: flex;
+}
+
+svg {
+  fill: $cr-white;
+}
+
+.video-control-container {
+  display: flex;
+  flex-direction: column; 
+
+  @media (min-width: $screen-md) {
+    flex-direction: row;
+  }
+}
+
+.video-control-button {
+  background: transparent;
+  border: none;
+  position: relative;
+  top: 22px;
+}
+
+// Background Video 
+#yt-wrap {
+  display: none;
+
+  @media (min-width: $screen-md) {
+    background-color: $cr-black;
+    display: block;
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: -90;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    padding-top: 56.25%;
+  }
+}
+
+#yt-wrap iframe {
+  background-color: $cr-black;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0px;
+  width: 100%; 
+}
+
+.shows-pastors-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .shows-pastors-card-img {
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    height: 228px;
+    width: 228px
+  }
+}

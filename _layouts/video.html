@@ -21,6 +21,7 @@ layout: default
               {% capture url_string %} {{ page.url | replace: '/', " " }}{% endcapture %}
               {% assign url="" %}
               <ol class="breadcrumb text-orange hard-sides">
+                <li><a href="/media/">Media</a></li>
 
                 {% for breadcrumb in url_array %}
                 {% capture first_word %}{{ url_string | truncatewords: 1, "" }}{% endcapture %}
@@ -78,8 +79,23 @@ layout: default
             <!-- Page can have many tags -->
             {% include _tags_list.html tags=page.tags %}
           </div>
-          <div class="col-md-4 col-lg-3 sm-text-left md-text-right soft-half-top">
+          <div class="col-md-4 col-lg-3 sm-text-left soft-half-top">
             {% include _subscribe-buttons.html content_type=page youtube=true row=false subscribe=false %}
+            <!-- 30 Day Challenge CTA -->
+            <a href="//www.crossroads.net/tvapp/" class="portrait-card-default small-cta-default"
+              style="background-image: url('//crds-media.imgix.net/1ZOn0vFpOE5Zqd8PqMxKvC/3a48bf03c46eb64a4c7427714d0444e6/ad--tv-app--portrait-card--bg_2x.png?auto=format,compress&w=1600')"
+              data-optimize-bg-img>
+              <div class="portrait-card-content hard-bottom">
+                <h3 class="font-family-condensed-extra font-size-h3 text-white text-uppercase flush">Crossroads TV</h3>
+                <div class="d-flex">
+                  <p class="font-family-base-light font-size-base text-white">Get the app</p>
+                  <svg class="icon icon-1 text-white" viewBox="0 0 256 256" style="margin-top: 7px; margin-left: 4px;">
+                    <use xlink:href="/assets/svgs/icons.svg#chevron-right-thin"></use>
+                  </svg>
+              </div>
+              </div>
+            </a>
+            <!-- End CTA-->
           </div>
         </div>
       </div>

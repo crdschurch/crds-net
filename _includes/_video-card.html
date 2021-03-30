@@ -12,13 +12,13 @@
     {% assign recommended_collection=site.videos %}
     {% include _video-player-card.html %}
     {% if include.imgix_size == "1x" %}
-    <img class="inline" src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.card_1x }}"
+    <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.card_1x }}"
       alt="{{ video.title }}" data-optimize-img>
     {% elsif include.imgix_size == "2x" %}
-    <img class="inline" src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}"
+    <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}"
       alt="{{ video.title }}" data-optimize-img>
     {% else %}
-    <img class="inline" src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_4x }}"
+    <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_4x }}"
       alt="{{ video.title }}" data-optimize-img>
     {% endif %}
     {% include _media-label.html source=video %}

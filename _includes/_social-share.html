@@ -1,20 +1,36 @@
-<div class="alert alert-success hide" data-role="copy-success">{{site.url}}{{ page.url }} copied to clipboard!</div>
-<div class="addthis_toolbox addthis_default_style">
-  <div class="custom_images">
-    <a class="addthis_button_facebook">
-      <svg class="icon" viewBox="0 0 256 256">
-        <use xlink:href="/assets/svgs/icons.svg#facebook"></use>
-      </svg>
-    </a>
-    <a class="addthis_button_twitter">
-      <svg class="icon" viewBox="0 0 256 256">
-        <use xlink:href="/assets/svgs/icons.svg#twitter"></use>
-      </svg>
-    </a>
-    <a href="javascript:void(0);" class="clipboard" data-clipboard-text="{{site.url}}{{ page.url }}">
-      <svg class="icon" viewBox="0 0 256 256">
-        <use xlink:href="/assets/svgs/icons.svg#link"></use>
-      </svg>
-    </a>
+{% assign item = include.item %}
+{% unless item %}{% assign item = page %}{% endunless %}
+
+{% if include.heart != false %}
+<!-- // -->
+<div class="clearfix">
+  <div class="pull-left">
+    <crds-heart-button contentful-id="{{ item.contentful_id }}"></crds-heart-button>
+  </div>
+  <div class="pull-right">
+{% endif %}
+
+<div class="social-share sidebar {% if include.type == 'light' %}text-gray-light{% else %}text-orange{% endif %}">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.crossroads.net/media{{ page.url }}" target="_blank">
+    <svg class="icon" viewBox="0 0 256 256">
+      <use xlink:href="/assets/svgs/icons.svg#facebook"></use>
+    </svg>
+  </a>
+  <a href="https://twitter.com/home?status={{ page.title | escape | titleize }}%20{{ site.url }}{{ page.url }}" target="_blank">
+    <svg class="icon" viewBox="0 0 256 256">
+      <use xlink:href="/assets/svgs/icons.svg#twitter"></use>
+    </svg>
+  </a>
+  <a href="javascript:void(0);" class="clipboard"
+    data-clipboard-text="{{ site.url }}{{ item.url }}"
+    data-clipboard-success="{{ site.url }}{{ item.url }} copied to clipboard!">
+    <svg class="icon" viewBox="0 0 256 256">
+      <use xlink:href="/assets/svgs/icons.svg#link"></use>
+    </svg>
+  </a>
+</div>
+
+{% if include.heart != false %}
   </div>
 </div>
+{% endif %}

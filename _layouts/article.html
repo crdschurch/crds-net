@@ -7,14 +7,15 @@ title: Articles
 {% assign topic = page.category | get_doc %}
 {% assign tags = page.tags | get_doc %}
 
-<article class="article-tpl" data-grouping-media-type="article"  style="margin-bottom: 120px;">
-  <header class="flush-bottom"
-    style="background-image: url('{% if page.image.url %}{{ page.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}')"
-    data-optimize-bg-img data-hero-image>
+<article class="article-tpl" data-grouping-media-type="article">
+  <header class="flush-bottom">
+    <img class="article-bg-img" alt="{{ page.image | alt }}"
+      src="{% if page.image.url %}{{ page.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}"
+      data-optimize-img>
     <div class="beige-overlay"></div>
     <div class="bg-overlay"></div>
-    <div class="container mobile-soft-half-bottom soft-bottom">
-      <div class="row mobile-soft-half-bottom soft-half-bottom">
+    <div class="container mobile-soft-half-bottom content-position">
+      <div class="row mobile-soft-half-bottom">
         <div class="col-md-8 col-md-offset-2">
           <ol class="breadcrumb text-white hard-left">
             <li><a href="/media">Media</a></li>
@@ -50,7 +51,18 @@ title: Articles
         <div class="lead">{{ page.lead_text | markdownify }}</div>
         {% endif %}
         <div class="col-xs-6 col-sm-4 col-md-3 pull-right">
-          {% include _subscribe-call-to-action.html %}
+          <!-- 30 Day Challenge CTA -->
+          <a href="//www.crossroads.net/30-day-challenge/" class="portrait-card-default small-cta-default article-cta bg-blue">
+            <div class="portrait-card-content">
+              <h2 class="portrait-card-title font-family-condensed-extra text-uppercase">30 days can change your life</h2>
+              <div class="push-top">
+                <crds-button href="//www.crossroads.net/30-day-challenge/" color="orange" text="Start today">
+                </crds-button>
+              </div>
+            </div>
+          </a>
+          <!-- End CTA-->
+          <!-- {% include _subscribe-call-to-action.html %} -->
           <div class="push-top soft-top border-top border-bottom">
             <div class="text-center">
               {% include _media-social-share.html heart=false %}
@@ -59,6 +71,12 @@ title: Articles
               Share with others
             </p>
           </div>
+          <!-- Subscrive Button w/ 30 Day CTA-->
+          <div class="text-center push-half-top">
+            <a href="#" role="button" class="btn btn-orange" data-toggle="modal" data-target="#subscribeModalForm"
+              style="width: 135px;">Subscribe</a>
+        </div>
+          <!-- End Subscribe Button-->
         </div>
 
         {{ page.content }}
@@ -137,7 +155,7 @@ title: Articles
 
                 <div class="content" style="background-image: url('{{ background_image }}?w=600&auto=format,compress')"
                   data-optimize-bg-img>
-                  <h1>{{ sign_off.title }}</h1>
+                  <h3>{{ sign_off.title }}</h3>
 
                   {% if sign_off.body %}
                   {{ sign_off.body | markdownify }}

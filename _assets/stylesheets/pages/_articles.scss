@@ -4,7 +4,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     margin-bottom: 30px;
-    padding: 138px 0 30px;
     position: relative;
 
     p {
@@ -17,7 +16,27 @@
         &:hover {
           color: darken($cr-gray-light, 10);
           text-decoration: none;
+      }
         }
+    }
+
+    .article-bg-img {
+      height: 505px;
+      width: 100vw;
+      object-fit: cover;
+
+      @media screen and (min-width: $screen-sm) {
+        height: 775px;
+      }
+    }
+
+    .content-position {
+      position: absolute;
+      bottom: 22%;
+      left: 50%;
+      transform: translate(-50%, 30%);
+        @media screen and (max-width: $screen-sm) {
+           width: 100vw;
       }
     }
   }
@@ -47,6 +66,13 @@
       + h3 {
         margin-top: 60px;
       }
+      + ul {
+        margin: -2rem 0 2rem 0;
+     }
+    }
+
+    ol > li {
+      margin-top: 24px;
     }
 
     h2 {
@@ -104,12 +130,6 @@
     }
   }
 
-  @media screen and (min-width: $screen-sm) {
-    > header {
-      margin-bottom: 44px;
-      padding: 390px 0 44px;
-    }
-  }
   .topic-and-tags {
     font-size: 14px;
     text-align: center;
