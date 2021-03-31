@@ -165,6 +165,8 @@ GEM
       coffee-script-source (~> 1.12)
     jekyll-feed (0.15.1)
       jekyll (>= 3.7, < 5.0)
+    jekyll-include-cache (0.2.1)
+      jekyll (>= 3.7, < 5.0)
     jekyll-redirect-from (0.16.0)
       jekyll (>= 3.3, < 5.0)
     jekyll-sass-converter (2.1.0)
@@ -279,6 +281,7 @@ DEPENDENCIES
   jekyll-contentful!
   jekyll-crds!
   jekyll-feed (~> 0.6)
+  jekyll-include-cache
   jekyll-placeholders!
   jekyll-redirect-from
   jekyll-sitemap
