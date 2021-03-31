@@ -5,8 +5,6 @@
     <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/65a23ab1-e0ce-4ccd-bc3c-2c8b89cb18f5/osano.js"></script>
   {% endif %}
 
-  {% include _gtm-head.html %}
-  {% include _monetate-head.html %}
   <meta name="Netlify" content="This page was rendered with Netlify">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -35,12 +33,10 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@crsrdschurch">
 
-
-{% if page.search_excluded or jekyll.environment != "production" %}
-  <meta name="robots" content="noindex" />
-  <meta name="AdsBot-Google" content="noindex" />
-{% endif %}
-
+  {% if page.search_excluded or jekyll.environment != "production" or page.name == 'tag.html' or page.url contains "/page/" %}
+    <meta name="robots" content="noindex" />
+    <meta name="AdsBot-Google" content="noindex" />
+  {% endif %}
 
   {% if page.distribution_channels %}
     {% if page.podcast.distribution_channels %}
@@ -48,6 +44,30 @@
     {% else %}
       <link rel="canonical" href="{{ page | get_canonical_host }}">
     {% endif %}
+  {% endif %}
+
+  {% if page.content_type == "article" %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{{ page.title }} ",
+      "image": "{{ page.image.url }}",
+      "datePublished": "{{ page.published_at }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ page.author.full_name }}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Crossroads Church",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://crds-media.imgix.net/6zDHcr0pDzFT3kMGr8uwRJ/fb09a09ceb8f9f78a412b48ceaee9221/logo-230x230.jpg"
+        }
+      }
+    }
+    </script>
   {% endif %}
 
   <link rel="preload" href="{{site.components_endpoint}}/crds-components/crds-components.esm.js" as="script">
@@ -80,6 +100,15 @@
 
   <script>
   var CRDS = window.CRDS || {};
+
+  // GOOGLE ANALYTICS
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2977073-1');
+
+  // Tell GTM to not use Universal Analytics
+  window.dataLayer.push({"_event": "GtagWrapperIsActive", "gtagWrapperActive": true})
 
   CRDS.rollCall = {
     formUrl: '{{ site.ENV.ROLL_CALL_FORM_URL }}',
@@ -117,7 +146,11 @@
     }
   </script>
 
-{% include _facebook.html %}
-{% if page.js_vars %}{% include _js_vars.html %}{% endif %}
-{% javascript_link_tag application %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2977073-1"></script>
+  
+  {% include _gtm-head.html %}
+  {% include _monetate-head.html %}
+  {% include _facebook.html %}
+  {% if page.js_vars %}{% include _js_vars.html %}{% endif %}
+  {% javascript_link_tag application %}
 </head>

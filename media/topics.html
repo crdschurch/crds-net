@@ -6,7 +6,7 @@ title: Topics
 
 <div class="container">
   <ol class="breadcrumb text-orange hard-sides hard-bottom push-top">
-    <li><a href="/media">Media</a></li>
+    <li><a href="/">Media</a></li>
   </ol>
 
   <h1 class="font-family-condensed-extra text-uppercase flush-top push-bottom">
@@ -15,7 +15,7 @@ title: Topics
 
   <div class="topic-card-deck">
     {% for topic in site.categories %}
-    {% if topic.title != "Student Ministry" %}
+    {% if topic.title != "Student Ministry" and topic.title != "Kids' Club" %}
       <div class="topic-card col-md-4" style="background-image:url('{% if topic.image.url %}{{ topic.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}');">
         <div class="bg-overlay"></div>
         <div class="topic-card-content">

@@ -81,6 +81,8 @@ RUN gem install bundler jekyll --no-doc
 # Copy just the package files for js and ruby
 COPY package*.json ./
 COPY Gemfile* ./
+ADD ./vendor/gems ./vendor/gems
+ADD ./bin	./bin
 
 # Don't install Cypress
 ENV CYPRESS_INSTALL_BINARY 0 

@@ -1,5 +1,5 @@
 import { SeriesQueryBuilder, normalizeText } from 'crds-cypress-contentful';
-describe('Testing the Current Series on the Media landing page:', function () {
+describe.skip('Testing the Current Series on the Media landing page:', function () {
 
   let currentSeries;
   before(function () {

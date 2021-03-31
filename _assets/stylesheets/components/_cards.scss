@@ -169,7 +169,7 @@
 
   // fixes an issue where subtitles were under overlay
   // remove after deploy of crds-styles is complete
-  .card-video-player {
+.overlay-card .card-video-player {
     z-index: 0 !important;
   }
 

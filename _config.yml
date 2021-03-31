@@ -25,8 +25,11 @@ exclude:
   - Guardfile
   - Gemfile
   - Gemfile.lock
+  - Guardfile
   - gulpfile.js
   - lib
+  - node_modules
+  - package-lock.json
   - package.json
   - package-lock.json
   - _migrations
@@ -38,6 +41,7 @@ exclude:
   - tmp
   - vendor
   - buildlog.txt
+  - gulpfile.js
   - collections
 
 include:
@@ -112,6 +116,9 @@ collections:
       - videos
   sign_offs:
     output: false
+  sign_up_forms:
+    output: true
+    permalink: /sign-up/:slug
   songs:
     output: false
   system_pages:
@@ -128,13 +135,8 @@ collections:
   videos:
     output: true
     permalink: /media/:collection/:title
-  sign_up_forms:
-    output: true
-    permalink: /sign-up/:slug
 
 contentful:
-  config:
-    sites: distribution_channels
   album:
     map:
       date: published_at
@@ -143,6 +145,8 @@ contentful:
       date: published_at
   category:
   collection:
+  config:
+    sites: distribution_channels
   content_block:
     map:
       description: content
@@ -153,6 +157,13 @@ contentful:
   episode:
     map:
       date: published_at
+  exclude:
+    - location
+    - migration
+    - migrations
+    - page
+    - redirect
+    - song
   featured_media:
     map:
       page_path: path
@@ -174,16 +185,17 @@ contentful:
     order: "published_at desc"
     map:
       date: published_at
+  sign_up_form:
+    query: fields.pageType=OnsiteGroupSignupPage
   video:
     map:
       date: published_at
-  sign_up_form:
-    query: fields.pageType=OnsiteGroupSignupPage
-  exclude:
-    - migration
-    - migrations
 
 defaults:
+  - scope:
+      path: ""
+    values:
+      js_manifest: application_deferred
   - scope:
       path: ""
       type: articles
@@ -233,6 +245,11 @@ defaults:
       snail_trail: connect
   - scope:
       path: ""
+      type: pages
+    values:
+      sitemap: false
+  - scope:
+      path: ""
       type: perspective_sets
     values:
       layout: perspective_set
@@ -255,6 +272,11 @@ defaults:
     values:
       layout: series
       snail_trail: media
+  - scope:
+      path: ""
+      type: tags
+    values:
+      sitemap: false
   - scope:
       path: ""
       type: "trips"

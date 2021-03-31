@@ -1,5 +1,6 @@
 import { MessageQueryBuilder } from 'crds-cypress-contentful';
 import { getRelativeMessageUrl } from '../../support/GetUrl';
+const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/];
 
 function getYoutubeId(youtubeURL) {
   const regex = /youtu(?:be|.be)?(?:.+)\/(?:.+v=)?(.{11})/;
@@ -39,6 +40,7 @@ describe('Tests a message page with a BitMovin URL', function () {  //Skip until
   });
 
   it('BitMovin player should be displayed', function () {
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit(messageUrl);
     cy.get('#VideoManager').as('bitmovinPlayer').should('be.visible');
     cy.get('#js-media-video').as('youtubePlayer').should('not.exist');
@@ -56,6 +58,7 @@ describe('Tests a message page with only a Youtube URL', function () {
         const youtubeId = getYoutubeId(youtubeMessage.source_url.text);
         getRelativeMessageUrl(youtubeMessage)
           .then((url) => {
+            cy.ignoreMatchingErrors(errorsToIgnore);
             cy.visit(`${Cypress.config().baseUrl}${url}`);
 
             cy.get('#VideoManager').as('bitmovinPlayer')

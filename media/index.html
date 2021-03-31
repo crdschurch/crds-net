@@ -180,7 +180,7 @@ paginate:
           {% endif %}
 
           {% if item.description %}
-            {% assign description = item.description %}
+            {% assign description = item.description | truncate: 150 %}
           {% else %}
             {% assign description = item.content | truncate: 150 %}
           {% endif %}
@@ -328,7 +328,7 @@ paginate:
           <div class="text-center row soft-bottom push-bottom">
             <ul class="col-sm-10 col-sm-offset-1 list-unstyled">
               <li class="border-bottom border-dashed"></li>
-              <li class="push-half-ends">What in the heck is a <a href="/spiritual-outfitters" class="text-orange">spiritual outfitter?</a></li>
+              <li class="push-half-ends">What in the heck is a <a href="{{ site.site_url }}/spiritual-outfitters" class="text-orange">spiritual outfitter?</a></li>
               <li class="border-bottom border-dashed"></li>
               <li class="push-half-ends">Can someone <a onclick="window.Intercom('show')" class="text-orange pointer">guide or give me advice?</a></li>
               <li class="border-bottom border-dashed"></li>
@@ -336,7 +336,7 @@ paginate:
               <li class="border-bottom border-dashed"></li>
               <li class="push-half-ends">Lots of churches talk about this… <br />but how do you actually <a href="/media/articles/how-to-create-community-out-of-thin-air" class="text-orange">build community?</a></li>
               <li class="border-bottom border-dashed"></li>
-              <li class="push-half-ends">Any proof that you’re <a href="/annualreport" class="text-orange">making a difference?</a></li>
+              <li class="push-half-ends">Any proof that you’re <a href="{{ site.site_url }}/annualreport" class="text-orange">making a difference?</a></li>
               <li class="border-bottom border-dashed"></li>
               <li class="push-half-ends">I still have lots of <a onclick="window.Intercom('show')" class="text-orange pointer">questions.</a><br />Now what?</li>
               <li class="border-bottom border-dashed"></li>
@@ -368,7 +368,7 @@ paginate:
   <section class="soft-top">
     <div class="jumbotron jumbotron-xl grid-overlay-light flush-bottom" style="background-image: url('//crds-media.imgix.net/5rsJKDy5Vk8JDvuHeSq9j1/c493fb23ab79ea8ac433a58bfe111e46/crossroads-media-subscribe-bg-min.png?{{ site.imgix_params.placeholder_sixteen_nine}}');" data-optimize-bg-img>
       <div class="jumbotron-content">
-        <div class="container">
+        <div class="container text-center">
           <h1 class="component-header-box text-tan">
             Now Keep<br /> it coming
           </h1>

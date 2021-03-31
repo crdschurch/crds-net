@@ -30,6 +30,9 @@ package = "./_plugins/netlify-plugin-health-check"
     # At some point this will become automated, but for now it must be specified
 	jekyllSource = "/jekyll"
 
+[[plugins]]
+  package="./_plugins/rename-ga-references"
+
 [dev]
   BASEURL="/"
   CRDS_COMPONENTS_ENDPOINT="components-int.crossroads.net"

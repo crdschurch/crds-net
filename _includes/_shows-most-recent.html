@@ -1,0 +1,26 @@
+<div class="mobile-soft-left">
+  <div class="recently-added-image-container">
+    <a href="{{ site.url }}/media/videos/{{ episode.slug }}">
+      <img class="recently-added-image" src="{{ episode.image.url | imgix: site.imgix }}?auto=format,compress&w=175" data-optimize-img>
+    </a> 
+  </div>
+  <div>
+    {% for show in episode.collections %}
+    {% assign show_slug = show.slug %}
+    {% assign shows_slug_check = show_slug | slice: 0 %}
+    {% if shows_slug_check != "/" %}
+      {% assign show_slug = show_slug | prepend: "/" %}
+    {% endif %}
+
+    <a href="{{ site.url }}/media/collections{{ show_slug }}">
+      <h2 class="shows-landing-page-subtitle text-uppercase flush-top text-orange font-size-smaller">{{ show.title }}</h2>
+    </a>
+    {% endfor %}
+    <a href="{{ site.url }}/media/videos/{{ episode.slug }}">
+      <h3 class="font-family-condensed-extra text-uppercase text-white flush-top shows-recently-added-subtitle">{{ episode.title }}</h3>
+    </a>
+    <p class="font-size-smaller soft-half-top text-white shows-related-description">
+        {{ episode.description }}
+    </p>
+  </div>  
+</div>
