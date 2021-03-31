@@ -158,12 +158,8 @@ contentful:
     map:
       date: published_at
   exclude:
-    - location
     - migration
     - migrations
-    - page
-    - redirect
-    - song
   featured_media:
     map:
       page_path: path
@@ -243,11 +239,6 @@ defaults:
     values:
       layout: onsite-groups/detail
       snail_trail: connect
-  - scope:
-      path: ""
-      type: pages
-    values:
-      sitemap: false
   - scope:
       path: ""
       type: perspective_sets
