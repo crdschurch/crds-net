@@ -25,8 +25,8 @@ paginate:
     sort: starts_at desc
 ---
 <!-- Homepage Banner -->
-{% assign homePageBanner = site.content_blocks | where: 'slug',
-'home-page-promo-banner' | first %} {{ homePageBanner.content_block }}
+{% assign homePageBanner = site.content_blocks | where: 'slug', 'home-page-promo-banner' | first %}
+{{ homePageBanner.content_block }}
 
 <!-- Jumbotron -->
 <section class="jumbotron jumbotron-media jumbotron-overlay hard-top"
@@ -70,8 +70,9 @@ paginate:
   <div class="row">
     <!-- Featured -->
     <div class="col-md-8 overlap-header">
-      {% assign features = page.home_collection.docs | slice: 0, 3 %} {% for
-      item in features %} {% include _overlay-card.html autoplay=true %}
+      {% assign features = page.home_collection.docs | slice: 0, 3 %}
+      {% for item in features %} 
+      {% include _overlay-card.html autoplay=true %}
       {% endfor %}
     </div>
 
@@ -87,16 +88,16 @@ paginate:
         <div class="media featured">
           <div class="media-body">
             <h5 class="component-header flush-ends">
-              <a href="{{ message  }}" data-automation-id="message-title">{{ message.title }}</a>
+              <a href="{{ message | media_url }}" data-automation-id="message-title">{{ message.title }}</a>
             </h5>
             <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="message-description">
               {{ message.description | markdownify | strip_html | truncatewords: 15 }}
             </div>
-            <a href="{{ message  }}" class="btn btn-primary btn-sm push-half-top"
+            <a href="{{ message | media_url }}" class="btn btn-primary btn-sm push-half-top"
               data-automation-id="watch-message-button">Watch
               now</a>
           </div>
-          <a href="{{ message  }}" class="push-half-bottom" data-automation-id="message-video">
+          <a href="{{ message | media_url }}" class="push-half-bottom" data-automation-id="message-video">
             <div class="media-video">
               <img class="media-img"
                 src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
@@ -190,16 +191,18 @@ paginate:
       <hr class="push-half-bottom" />
       <h2 class="flush-top font-size-base text-gray-light">latest</h2>
 
-      {% assign below_the_fold = page.home_collection.docs | slice: 4 %} {% for
-      item in below_the_fold %} {% include _overlay-card.html %} {% endfor
-      %}
+      {% assign below_the_fold = page.home_collection.docs | slice: 4 %} 
+      {% for item in below_the_fold %}
+      {% include _overlay-card.html %} 
+      {% endfor %}
 
       <!-- Content Cards -->
       <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
         <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
           {% assign above_the_fold = page.home_collection.docs | slice: 5, 10 %}
-          {% for item in above_the_fold %} {% include _media-card.html
-          autoplay=true carousel=true %} {% endfor %}
+          {% for item in above_the_fold %} 
+          {% include _media-card.html autoplay=true carousel=true %}
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -313,5 +316,5 @@ paginate:
   }
 </script>
 
-{% javascript_link_tag autoplay async %} {% javascript_link_tag skeleton async
-%}
+{% javascript_link_tag autoplay async %} 
+{% javascript_link_tag skeleton async %}
