@@ -41,7 +41,7 @@
   </div>
   <div class="overlay-card-content">
     <p class="overlay-card-category">{{ item.category.title }}</p>
-    <h2 class="overlay-card-title {% if include.title == 'h2' %}font-size-h2{% endif %}">{{ item.title | truncate: 55
+    <h2 class="overlay-card-title {% if include.title == 'h2' %}font-size-h2{% endif %}">{{ item.title | truncate: 60
       }}</h2>
     <p class="overlay-card-author">{{ item.author.full_name }}</p>
     {% include media/_media-label.html source=item %}
