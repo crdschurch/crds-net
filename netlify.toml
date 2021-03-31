@@ -7,6 +7,11 @@
   pretty_urls = true
 
 [[plugins]]
+package = "./_plugins/netlify-plugin-contentful-redirects"
+  [plugins.inputs]
+    destination = "./tmp/.redirects_cache"
+
+[[plugins]]
 package = "@helloample/netlify-plugin-redirects"
   [plugins.inputs]
     source = "./tmp/.redirects_cache"
