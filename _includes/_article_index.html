@@ -7,11 +7,6 @@
     {% endfor %}
   </div>
 
-  <div class="loading hide">
-    {% include _preloader.html %}
-  </div>
-</div>
-
 <div class="push-top">
-  {% include _pagination.html collection="articles" remote=true label="" link_root="media/articles" %}
+  {% include _pagination.html collection="articles" remote=true label="" link_root=include.link_root %}
 </div>
