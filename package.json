@@ -52,7 +52,6 @@
   "dependencies": {
     "bitmovin-player": "8.1.0",
     "gulp-replace": "^1.0.0",
-    "netlify-plugin-jekyll-cache": "^1.0.0",
     "replace-in-file": "^6.1.0",
     "@netlify/cache-utils": "^1.0.7"
   }
