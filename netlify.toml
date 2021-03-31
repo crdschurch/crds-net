@@ -12,6 +12,9 @@ package = "./_plugins/netlify-plugin-contentful-redirects"
     destination = "./tmp/.redirects_cache"
 
 [[plugins]]
+package = "./_plugins/netlify-jekyll-cache"
+
+[[plugins]]
 package = "@helloample/netlify-plugin-redirects"
   [plugins.inputs]
     source = "./tmp/.redirects_cache"
