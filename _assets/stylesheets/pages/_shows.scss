@@ -19,9 +19,11 @@
   display: block;
 }
 
-.jumbotron-content {
-  text-align: left !important;
-  //important flags needed to override jumbotron default styles 
+.shows-landing-jumbotron {
+  .jumbotron-content {
+    text-align: left !important;
+    //important flags needed to override jumbotron default styles 
+  }
 }
 
 .jumbotron p {
