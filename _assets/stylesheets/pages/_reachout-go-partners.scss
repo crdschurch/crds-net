@@ -1,31 +1,57 @@
-.jumbotron .reachout-header {
-  font-size: 90px;
-}
-
-.nav-tabs.reachout-nav {
-  border: none;
-  text-align: center;
-  li.active {
-    border-bottom: 1px solid $cr-white;
+.reachout-partners-tpl {
+  .jumbotron .reachout-header {
+    font-size: 90px;
   }
-  > li {
+
+  .nav-tabs.reachout-nav {
+    border: none;
+    text-align: center;
+    li.active {
+      border-bottom: 1px solid $cr-white;
+    }
+    > li {
+      float: none;
+      display: inline-block;
+    }
+  }
+
+  .reachout-jumbotron {
+    @media screen and (min-width: $screen-lg) {
+      min-height: 1000px;
+    }
+  }
+
+  .tan-topo-map-bg {
+    background-size: cover;
+    min-height: 1000px;
+
+    @media screen and (min-width: $screen-xs) {
+      min-height: 1200px;
+    }
+
+    @media screen and (min-width: $screen-md) {
+      min-height: 750px;
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      min-height: 1000px;
+    }
+  }
+
+  .nav-tabs > li {
     float: none;
     display: inline-block;
   }
-}
 
-.reachout-jumbotron {
-  @media screen and (min-width: $screen-lg) {
-    min-height: 1000px;
+  @media screen and (max-width: 991px) {
+    .nav.nav-tabs {
+      display: none;
+    }
   }
-}
 
-.tan-topo-map-bg {
-  background-size: cover;
   @media screen and (min-width: $screen-md) {
-    min-height: 750px;
-  }
-  @media screen and (min-width: $screen-lg) {
-    min-height: 900px;
+    .dropdown {
+      display: none;
+    }
   }
 }
