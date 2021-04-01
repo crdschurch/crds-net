@@ -50,7 +50,7 @@ class BitmovinManager {
         }
       },
       network: {
-        preprocessHttpRequest: function(type, request) {
+        preprocessHttpRequest: (type, request) => {
           if(request.url.indexOf(".vtt") > -1) return Promise.resolve(request);
           let sessionId;
           let noSound = ["/media/", "/media", "/"]; // list of pages where sound will never be enabled [Analytics]
