@@ -2,7 +2,7 @@
 /* global moment */
 class BitmovinManager {
   constructor(bitmovinConfig) {
-    this.isCard = bitmovinConfig.isCard;
+    this.isCard = bitmovinConfig.isCard == 'true';
     this.isStream = bitmovinConfig.isStream == 'true';
     this.subtitles_url = bitmovinConfig.subtitles_url;
     this.spn_subtitles_url = bitmovinConfig.spn_subtitles_url;
@@ -61,7 +61,7 @@ class BitmovinManager {
               .pop()
               .split(";")
               .shift();
-          const hasSound = noSound.indexOf(window.location.pathname) < 1;
+          const hasSound = !this.isCard;
           request.url = `${request.url}?source=web&product=crds-net&hasSound=${hasSound}&session=${sessionId}`;
           return Promise.resolve(request);
         }
