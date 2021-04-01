@@ -2,7 +2,7 @@
 /* global moment */
 class BitmovinManager {
   constructor(bitmovinConfig) {
-    this.isCard = bitmovinConfig.isCard;
+    this.isCard = bitmovinConfig.isCard == 'true';
     this.isStream = bitmovinConfig.isStream == 'true';
     this.subtitles_url = bitmovinConfig.subtitles_url;
     this.spn_subtitles_url = bitmovinConfig.spn_subtitles_url;
