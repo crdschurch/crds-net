@@ -1,5 +1,6 @@
-var player;
+console.log("HELLO");
 
+var player;
 let videoElement = document.querySelector('#yt-wrap');
 
 if (videoElement) {

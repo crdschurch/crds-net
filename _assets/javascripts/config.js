@@ -34,6 +34,7 @@ module.exports = [
       'components/legacy-imgix',
       'components/audio_video_toggler',
       'components/clipboard',
+      'components/background-video',
       'components/discussion-questions',
       'components/images',
       'components/carousels',
@@ -133,6 +134,10 @@ module.exports = [
   {
     name: 'autoplay',
     files: ['components/autoplay-controller'],
+  },
+  {
+    name: 'background-video',
+    files: ['components/background-video'],
   },
   {
     name: 'skeleton',
