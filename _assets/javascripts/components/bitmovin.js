@@ -2,7 +2,7 @@
 /* global moment */
 class BitmovinManager {
   constructor(bitmovinConfig) {
-    this.isCard = bitmovinConfig.isCard;
+    this.isCard = bitmovinConfig.isCard == 'true';
     this.isStream = bitmovinConfig.isStream == 'true';
     this.subtitles_url = bitmovinConfig.subtitles_url;
     this.spn_subtitles_url = bitmovinConfig.spn_subtitles_url;
@@ -50,7 +50,7 @@ class BitmovinManager {
         }
       },
       network: {
-        preprocessHttpRequest: function(type, request) {
+        preprocessHttpRequest: (type, request) => {
           if(request.url.indexOf(".vtt") > -1) return Promise.resolve(request);
           let sessionId;
           let noSound = ["/media/", "/media", "/"]; // list of pages where sound will never be enabled [Analytics]
@@ -61,7 +61,7 @@ class BitmovinManager {
               .pop()
               .split(";")
               .shift();
-          const hasSound = noSound.indexOf(window.location.pathname) < 1;
+          const hasSound = !this.isCard;
           request.url = `${request.url}?source=web&product=crds-net&hasSound=${hasSound}&session=${sessionId}`;
           return Promise.resolve(request);
         }
