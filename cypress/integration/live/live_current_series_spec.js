@@ -1,16 +1,18 @@
 import { SeriesQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
 describe('Testing the Current Series on the Live page:', function() {
-  let currentSeries;
+  const scriptError = /.* > Script error.*/;
+   let currentSeries;
   before(function() {
     const qb = new SeriesQueryBuilder();
     qb.orderBy = '-fields.published_at';
     qb.select = 'fields.title,fields.description,fields.image,fields.starts_at,fields.ends_at,fields.youtube_url';
+    cy.ignoreMatchingErrors([scriptError]);
     cy.task('getCNFLResource', qb.queryParams)
       .then((series) =>{
         currentSeries = series;
       });
-
+     
     cy.visit('/live');
   });
 

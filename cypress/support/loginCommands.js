@@ -2,18 +2,6 @@ import { MinistryPlatformLoginPlugin, OktaLoginPlugin } from 'crds-cypress-login
 const oktaPlugin = OktaLoginPlugin(`https://authpreview.crossroads.net`, '0oahgpg7elMxVJedi0h7');
 
 /*** Add custom commands related to logging in/out or authentication here ***/
-
-const mpPlugin = MinistryPlatformLoginPlugin(Cypress.env('CRDS_ENV'));
-Cypress.Commands.add('mpLogin', (email, password) => {
-  return cy.wrap(mpPlugin.GetLoginCookies(email, password), { timeout: 30000 })
-    .then((cookies) => {
-      cookies.forEach((c) => {
-        cy.setCookie(c.name, c.value);
-      });
-    })
-    .then(cy.reload);
-});
-
 // Create custom command
 Cypress.Commands.add('oktaLogin', (email, password) => {
   return cy.wrap(oktaPlugin.login(email, password), {timeout: 30000});

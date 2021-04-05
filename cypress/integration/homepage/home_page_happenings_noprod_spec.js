@@ -25,16 +25,6 @@ describe('Tests Happening section is displayed', function () {
       .should('have.prop', 'shadowRoot').and('not.be.null');
   });
 
-  it('Checks happenings section exists for logged-in user (MP authentication)', function () {
-    cy.mpLogin(fred_flintstone.email, fred_flintstone.password);
-    cy.visit('/');
-
-    cy.get('crds-happenings-horizontal')
-      .scrollIntoView({ top: 100 })
-      .should('have.prop', 'shadowRoot')
-      .and('not.be.null');
-  });
-
   it('Checks happenings section exists for logged-in user (Okta authentication)', function () {
     // Setup route for final step of auth process so it isn't cancelled
     cy.server();
