@@ -7,7 +7,7 @@ title: Articles
 {% assign topic = page.category | get_doc %}
 {% assign tags = page.tags | get_doc %}
 
-<article class="article-tpl" data-grouping-media-type="article">
+<article class="article-tpl push-bottom" data-grouping-media-type="article">
   <header class="flush-bottom">
     <img class="article-bg-img" alt="{{ page.image | alt }}"
       src="{% if page.image.url %}{{ page.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}"
