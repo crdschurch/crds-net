@@ -2,28 +2,17 @@
 {% if paginator.total_pages > 1 %}
 
   {% if include.link_root %}
-    {% assign root = include.link_root %}
+    {% assign root = include.link_root | prepend: 'media/' %}
   {% elsif link_root %}
-    {% assign root = link_root %}
+    {% assign root = link_root | prepend: 'media/' %}
   {% else %}
-    {% assign root = include.collection %}
+    {% assign root = include.collection | prepend: 'media/' %}
   {% endif %}
 
   {% if include.remote == true %}
-    {% if paginator.total_pages > 1 %}
-    <ul class="pager push-bottom">
-        {% if paginator.previous_page %}
-        <li class="previous">
-            <a class="text-orange-dark" href="/{{ root }}{% if paginator.previous_page > 1 %}/page/{{paginator.previous_page}}{% endif %}" aria-label="Previous">&larr; Newer Posts</a>
-        </li>
-        {% endif %}
-        {% if paginator.next_page %}
-        <li class="next">
-            <a class="text-orange-dark" href="/{{ root }}/page/{{paginator.next_page}}" aria-label="Next">Older Posts &rarr;</a>
-        </li>
-        {% endif %}
-    </ul>
-    {% endif %}
+  <div class="load-more">
+    <button class="btn btn-blue" data-role="load-more" data-paginate="{{ include.collection }}">Load more{{ include.label | prepend: ' ' }}</button>
+  </div>
   {% endif %}
 
   <div class="text-center{% if include.remote == true %} hide{% endif %}">
