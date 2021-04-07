@@ -70,3 +70,9 @@ crds-site-select {
 .form-control, #subscribeModalForm .hs-input {
   background-color: $cr-white!important;  
 }
+
+.pastor-thumbnail {
+  height: 63px;
+  width: auto;
+  transform: translateY(-15px);
+}
