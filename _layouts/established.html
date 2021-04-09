@@ -59,11 +59,11 @@ layout: default
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
         
-        <div class="col-sm-4 text-left">
+        <div class="col-sm-4 text-left push-bottom">
           <p class="flush font-family-base-bold font-size-small text-uppercase">Service Times</p>
           <p class="flush font-size-small">{{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}</p>
         </div>
-        <div class="col-sm-4 text-left">
+        <div class="col-sm-4 text-left push-bottom">
           <p class="flush text-uppercase font-family-base-bold font-size-small">Address</p>
           <p class="flush font-family-base font-size-small">{{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}</p>
           <a href="{{ page.map_url }}" class="text-orange" target="_blank">Get directions</a>
@@ -86,11 +86,65 @@ layout: default
     </div>
 
     <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-
+      <div class="col-sm-8 col-sm-offset-2 push-top">
+        {% if page.care_link %}
+        <crds-button class="push-half-right" href="{{ page.care_link }}" color="white" display="outline"
+          text="Request care"></crds-button>
+        {% endif %}
+        {% if page.hubspot_form_id %}
+        <crds-button class="push-half-right" data-target="#subscribeModalForm" data-toggle="modal" href="" color="white"
+          display="outline" text="Subscribe for updates"></crds-button>
+        <div aria-labelledby="Subscribe email form" class="modal fade" id="subscribeModalForm" role="dialog" tabindex="-1">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content bg-gray-lightest">
+              <div class="modal-header hard-bottom"><button aria-label="Close" class="close pull-right" data-dismiss="modal"
+                  type="button"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body text-left hard-bottom">
+                <h4 class="font-family-condensed-extra text-uppercase soft-half-bottom text-blue">Stay in the know.
+                  <br />Get
+                  the latest Crossroads updates.</h4>
+                <div class="form" data-role="hsform">
+                  <!--[if lte IE 8]>
+                                      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                                      <![endif]-->
+                  <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                </div>
+              </div>
+              <div class="modal-footer">&nbsp;</div>
+            </div>
+          </div>
+        </div>
+        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+        <script>
+          hbspt.forms.create({
+            portalId: "3993985",
+            formId: "{{ page.hubspot_form_id }}",
+            css: "",
+            target: "[data-role=hsform]",
+            formInstanceId: 1,
+            onFormReady($form, ctx) {
+              $('fieldset[data-reactid=".hbspt-forms-0.1:$0"]').removeClass('form-columns-2');
+              $('fieldset[data-reactid=".hbspt-forms-0.1:$1"]').removeClass('form-columns-2');
+              $('input[data-reactid=".hbspt-forms-0.1:$0.1:$firstname.$firstname.0"]').attr('placeholder', 'First name')
+              $('input[data-reactid=".hbspt-forms-0.1:$0.1:$lastname.$lastname.0"]').attr('placeholder', 'Last name')
+              $('input[data-reactid=".hbspt-forms-0.1:$1.1:$email.$email.0"]').attr('placeholder', 'Email')
+              $('input[data-reactid=".hbspt-forms-0.1:$1.1:$mobilephone.$mobilephone.0"]').attr('placeholder', 'Phone number')
+              $('label[data-reactid=".hbspt-forms-0.1:$0.1:$firstname.0"]').hide()
+              $('label[data-reactid=".hbspt-forms-0.1:$0.1:$lastname.0"]').hide()
+              $('label[data-reactid=".hbspt-forms-0.1:$1.1:$email.0"]').hide()
+              $('div[data-reactid=".hbspt-forms-0.1:$1.1:$email.$email"]').addClass('flush-right')
+              $('span[data-reactid=".hbspt-forms-0.1:$1.1:$mobilephone.0.0"]').hide()
+            }
+          });
+        </script>
+        {% endif %}
+        <crds-button class="push-half-right" href="//www.facebook.com/crsrds{{ page.slug | downcase }}" color="white"
+          display="outline" icon="facebook" icon-align="left" icon-color="white" icon-size="16" text="Follow"></crds-button>
+        <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="white" display="outline"
+          icon="instagram" icon-align="left" icon-color="white" icon-size="16" text="Follow"></crds-button>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -98,3 +152,5 @@ layout: default
 <!-- {% if page.featured_below.size > 0 %}
   {{ page.featured_below }}
 {% endif %} -->
+
+
