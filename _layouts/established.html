@@ -40,80 +40,61 @@ layout: default
 {% endif %}
 
 <!-- Jumbotron section -->
-<div class="jumbotron jumbotron-xl flush-bottom width-100" style="background-image: url('https://crds-media.imgix.net/5JOuDYslXOkgGWoWGYsO4U/7203c8b84b3bf1807b7eaee0e5a5cf4f/crossroads-church-oakley-bg2.jpg?auto=format,compress&w=3584')"
+<section class="jumbotron jumbotron-xl locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
   id="location-page"  
   data-optimize-bg-img>
   <div class="bg-overlay"></div>
   <div class="container">
     <div class="row">
       <div class="col-sm-12 push-ends mobile-soft-sides">
-        <div class="">
+        <div>
           <span class="font-family-base text-uppercase text-white">
             <strong>welcome to</strong>
           </span>
-          <h1 class="font-family-condensed-extra text-uppercase">Crossroads <br />Oakley</h1>
-          <!-- {% if page.name == "Dayton" %} 
-          <div class="push-bottom">
-            <a href="{{ jekyll_env }}/dayton/volunteer-sign-up/" class="btn btn-orange">Ways to get involved</a>
-          </div>
-          {% else %} -->
-          <!-- <div class="push-bottom">
-            <a href="javascript:void(0)" class="btn btn-orange" data-smooth-scroll-to="service-times" data-smooth-scroll-offset="95">View service times</a>
-          </div> -->
-          {% endif %}
-          <div>
-            {% if location_happenings.size > 0 %}
-            <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="happenings"  data-smooth-scroll-offset="50">See what's
-              happening at {{ page.name }}</a>
-            {% endif %}
-
-            <!-- {% if page.kids_club_hours or page.student_ministry_hours %}
-            <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="kids-and-students" data-smooth-scroll-offset="50">Kids &amp; Students</a>
-            {% endif %} -->
-
-            <!-- <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="community-care" data-smooth-scroll-offset="50">Community Care</a> -->
-          </div>
+          <h1 class="font-family-condensed-extra text-uppercase">Crossroads <br />{{ page.name }}</h1>
         </div>
-      </div>
-    
-      <div class="col-sm-4 text-left">
-        <p class="flush font-size-small text-uppercase"><strong>Service Times</strong></p>
-        <p class="font-family-base font-size-small">Sunday at 9 & 11am <br>
-          Available online beginning every Saturday at 5pm<br>
-          <a href="/watch/#ways-to-watch">Other ways to watch</a>
-        {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}</p>
-      </div>
-      <div class="col-sm-4 text-left">
-        <p class="flush font-size-small text-uppercase"><strong>Address</strong></p>
-          <p class="font-family-base font-size-small">3500 Madison Road <br> 
-          Cincinnati, OH 45209
-          <a href="">Get directions</a>
-          {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}</p>
-      </div>
-      <div class="col-sm-4 text-left">
-        <p class="flush font-size-small text-uppercase"><strong>Leadership</strong></p>
-        <div class="d-flex">
-         <p class="font-family-base font-size-small">Greg McElfresh* <br>
-            Oakley* Community Pastor
-          {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}</p>
-          <img class="img-border img-circle pastor-thumbnail push-left" src="https://crds-media.imgix.net/5YudLbb8X7vOpXwiYtZsv8/2735871d31f66ed38d0d638dcb24f394/crossroads-east-side-pastor-greg-mcelfresh.jpg?auto=format,compress&w=400&h=400&fit=crop&ixlib=imgixjs-3.3.2">
-        </div>
-      </div>
-      <div class="col-sm-12">
-        <crds-button color="white" display="outline" text="Request care" href="" data-target=""
-          data-toggle="modal"></crds-button>
-          <crds-button color="white" display="outline" text="Subscribe for updates" href="" data-target=""
-          data-toggle="modal"></crds-button>
-          <crds-button color="white" display="outline" text="Follow" href="" data-target=""
-          data-toggle="modal"></crds-button>
-          <crds-button color="white" display="outline" text="Follow" href="" data-target=""
-          data-toggle="modal"></crds-button>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        
+        <div class="col-sm-4 text-left">
+          <p class="flush font-family-base-bold font-size-small text-uppercase">Service Times</p>
+          <p class="flush font-size-small">{{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}</p>
+        </div>
+        <div class="col-sm-4 text-left">
+          <p class="flush text-uppercase font-family-base-bold font-size-small">Address</p>
+          <p class="flush font-family-base font-size-small">{{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+          <a href="{{ page.map_url }}" class="text-orange" target="_blank">Get directions</a>
+        </div>
+        
+        <div class="align-items-center col-sm-4 d-flex text-left">
+          <div>
+            <p class="flush text-uppercase font-family-base-bold font-size-small">Leadership</p>
+            <p class="flush font-family-base font-size-small">{{ page.community_pastor_name }}</p>
+            <p class="flush font-family-base font-size-small">{{ page.name }} Community Pastor</p>
+            {% assign pastor_full_name = page.community_pastor_name | split: " " %}
+            <a class="text-orange">More about {{ pastor_full_name[0] }}</a>
+          </div>
+          <div class="push-left">
+            <img class="img-border img-circle img-size-4" src="{{ page.community_pastor_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+
+      </div>
+    </div>
+
   </div>
-</div>
+</section>
 
 <!-- Featured Section - Below Jumbotron-->
-{% if page.featured_below.size > 0 %}
+<!-- {% if page.featured_below.size > 0 %}
   {{ page.featured_below }}
-{% endif %}
+{% endif %} -->
