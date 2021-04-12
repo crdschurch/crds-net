@@ -51,7 +51,7 @@ layout: default
           <span class="font-family-base text-uppercase text-white">
             <strong>welcome to</strong>
           </span>
-          <h1 class="font-family-condensed-extra text-uppercase">Crossroads <br />{{ page.name }}</h1>
+          <h1 class="flush-top font-family-condensed-extra text-uppercase">Crossroads <br />{{ page.name }}</h1>
         </div>
       </div>
     </div>
@@ -59,17 +59,17 @@ layout: default
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
         
-        <div class="col-sm-4 text-left push-bottom">
+        <div class="col-sm-6 col-md-4 text-left push-bottom">
           <p class="flush font-family-base-bold font-size-small text-uppercase">Service Times</p>
           <p class="flush font-size-small">{{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}</p>
         </div>
-        <div class="col-sm-4 text-left push-bottom">
+        <div class="col-sm-6 col-md-4 text-left push-bottom">
           <p class="flush text-uppercase font-family-base-bold font-size-small">Address</p>
           <p class="flush font-family-base font-size-small">{{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}</p>
           <a href="{{ page.map_url }}" class="text-orange" target="_blank">Get directions</a>
         </div>
         
-        <div class="align-items-center col-sm-4 d-flex text-left">
+        <div class="align-items-center col-sm-12 col-md-4 d-flex text-left justify-content-between">
           <div>
             <p class="flush text-uppercase font-family-base-bold font-size-small">Leadership</p>
             <p class="flush font-family-base font-size-small">{{ page.community_pastor_name }}</p>
@@ -77,7 +77,7 @@ layout: default
             {% assign pastor_full_name = page.community_pastor_name | split: " " %}
             <a class="text-orange">More about {{ pastor_full_name[0] }}</a>
           </div>
-          <div class="push-left">
+          <div>
             <img class="img-border img-circle img-size-4" src="{{ page.community_pastor_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
             sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
           </div>
@@ -106,8 +106,8 @@ layout: default
                   the latest Crossroads updates.</h4>
                 <div class="form" data-role="hsform">
                   <!--[if lte IE 8]>
-                                      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
-                                      <![endif]-->
+                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                  <![endif]-->
                   <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
                 </div>
               </div>
@@ -148,9 +148,9 @@ layout: default
   </div>
 </section>
 
-<!-- Featured Section - Below Jumbotron-->
-<!-- {% if page.featured_below.size > 0 %}
+<!-- Featured Section - Below Jumbotron -->
+{% if page.featured_below.size > 0 %}
   {{ page.featured_below }}
-{% endif %} -->
+{% endif %}
 
-
+{% include footer.html %}
