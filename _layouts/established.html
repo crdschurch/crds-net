@@ -149,6 +149,48 @@ layout: default
 </section>
 
 <section>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "volunteer"]'>
+          <div slot="tab-events-updates">
+            <div class="col-xs-12 col-sm-6 soft">
+              <a href="{{ series.url }}" title="{{ series.title }}">
+                <img class="img-full-width"
+                  src="{% if series.image.url %}{{ series.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine}}"
+                  alt="{{ series.title }}" sizes="{{ site.image_sizes.full_width }}" data-optimize-img>
+              </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 soft">
+              <label
+                class="text-orange text-uppercase">Current
+                Series</label>
+              <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
+              <div class="push-half-top push-bottom font-size-small text-gray-dark">
+                {{ series.description | markdownify }}
+              </div>
+              <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series" color="orange"></crds-button>
+            </div>
+          </div>
+          <div slot="tab-community-pastor">
+            community pastor tab content
+          </div>
+          <div slot="tab-about">
+            about tab content
+          </div>
+          <div slot="tab-kids-students">
+            kids tab content
+          </div>
+          <div slot="tab-volunteer">
+            volunteer tab content
+          </div>
+        </crds-tabs>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
   <div class="bg-tan-light bg-topo-50 soft-ends">
     <div class="container-fluid soft-ends push-ends">
       <div class="row">
