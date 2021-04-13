@@ -2,5 +2,42 @@
   h1 {
     font-size: 94px;
     line-height: 86px;
+    padding-bottom: 30px;
+  }
+
+  .container {
+    @media (min-width: $screen-sm) {
+      padding-bottom: 550px;
+    }
+    
+    @media (min-width: $screen-md) {
+      padding-bottom: 350px;
+    }
+  }
+}
+
+.location-info-bg {
+  background-color: $cr-blue;
+  background-image: url("//crds-media.imgix.net/1KLwsN6ilL7RO0xk6JzOsX/840e8b99340ff36bff67036909c4f856/texture-topo-dark-100_2x.png");
+  background-size: cover;
+  color: $cr-white;
+  z-index: 2;
+
+  @media (min-width: $screen-sm) {
+    background: unset;
+    margin-top: -540px;
+  }
+
+  @media (min-width: $screen-md) {
+    background: unset;
+    margin-top: -310px;
+  }
+}
+
+.location-info-btn-container {
+  text-align: left;
+
+  @media (min-width: $screen-sm) {
+    text-align: center;
   }
 }
