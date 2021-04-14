@@ -9,7 +9,6 @@ image: "//crds-media.imgix.net/7EFusaW9y0WFSxO9KCdumH/2edc127ce50430b3894692f707
 # disable_hubspot: true
 permalink: pretty
 incremental: true
-
 markdown: kramdown
 plugins:
   - jekyll-include-cache

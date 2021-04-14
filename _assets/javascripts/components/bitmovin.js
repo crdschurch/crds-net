@@ -1,6 +1,14 @@
 class BitmovinManager {
   constructor(bitmovinConfig) {
-    this.isCard = bitmovinConfig.isCard;
+    this.isCard = bitmovinConfig.isCard == 'true';
+    this.isStream = bitmovinConfig.isStream == 'true';
+    this.subtitles_url = bitmovinConfig.subtitles_url;
+    this.spn_subtitles_url = bitmovinConfig.spn_subtitles_url;
+    this.autoplay = bitmovinConfig.autoplay == 'true';
+    this.videoDuration = Number(bitmovinConfig.duration) * 1000;
+    this.timezoneStr = "America/New_York";
+    this.dateStringFormat = "YYYY/MM/DD HH:mm:ss";
+    this.timeouts = [];
     this.container = document.getElementById(`${bitmovinConfig.id}`);
     this.playerConfig = {
       key: `${window.CRDS.env.bitmovinPlayerLicense}`,
@@ -28,7 +36,7 @@ class BitmovinManager {
         }
       },
       network: {
-        preprocessHttpRequest: function(type, request) {
+        preprocessHttpRequest: (type, request) => {
           if(request.url.indexOf(".vtt") > -1) return Promise.resolve(request);
           let sessionId;
           let noSound = ["/media/", "/media", "/"]; // list of pages where sound will never be enabled [Analytics]
@@ -39,8 +47,8 @@ class BitmovinManager {
               .pop()
               .split(";")
               .shift();
-          const hasSound = noSound.indexOf(window.location.pathname) < 1;
-          request.url = `${request.url}?source=web&product=crds-media&hasSound=${hasSound}&referrer=${document.referrer}&session=${sessionId}`;
+          const hasSound = !this.isCard;
+          request.url = `${request.url}?source=web&product=crds-net&hasSound=${hasSound}&session=${sessionId}`;
           return Promise.resolve(request);
         }
       },
