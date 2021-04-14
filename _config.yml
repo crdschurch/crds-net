@@ -7,6 +7,7 @@ image: "//crds-media.imgix.net/7EFusaW9y0WFSxO9KCdumH/2edc127ce50430b3894692f707
 
 # Build settings
 permalink: pretty
+incremental: true
 markdown: kramdown
 
 exclude:
