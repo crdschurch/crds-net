@@ -1,22 +1,22 @@
 .jumbotron.locations-jumbotron {
-  h1 {
-    font-size: 94px;
-    line-height: 86px;
-    padding-bottom: 30px;
+  
+  @media (min-width: $screen-sm) {
+    padding-bottom: 0;
+    padding-top: 115px;
   }
 
-  .container {
-    @media (min-width: $screen-sm) {
-      padding-bottom: 550px;
-    }
+  h1 {
+    font-size: 70px;
+    line-height: 61px;
     
-    @media (min-width: $screen-md) {
-      padding-bottom: 350px;
+    @media (min-width: $screen-sm) {
+      font-size: 94px;
+      line-height: 86px;
     }
   }
 }
 
-.location-info-bg {
+.location-info-bg-mobile {
   background-color: $cr-blue;
   background-image: url("//crds-media.imgix.net/1KLwsN6ilL7RO0xk6JzOsX/840e8b99340ff36bff67036909c4f856/texture-topo-dark-100_2x.png");
   background-size: cover;
@@ -24,13 +24,15 @@
   z-index: 2;
 
   @media (min-width: $screen-sm) {
-    background: unset;
-    margin-top: -540px;
+    display: none;
   }
+}
 
-  @media (min-width: $screen-md) {
-    background: unset;
-    margin-top: -310px;
+.location-info-desktop {
+  display: none;
+
+  @media (min-width: $screen-sm) {
+    display: block;
   }
 }
 

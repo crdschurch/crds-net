@@ -40,7 +40,7 @@ layout: default
 {% endif %}
 
 <!-- Jumbotron section -->
-<section class="jumbotron jumbotron-xl locations-jumbotron flush-bottom width-100 hard-bottom" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
+<section class="jumbotron locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
   id="location-page"  
   data-optimize-bg-img>
   <div class="bg-overlay"></div>
@@ -55,11 +55,8 @@ layout: default
         </div>
       </div>
     </div>
-</section>
-
-<section class="location-info-bg">
-  <div class="container">
-    <div class="row">
+    <div class="row location-info-desktop">
+      {% capture location_info %}
       <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 soft-ends">
         <div class="col-md-4 text-left push-bottom location-info-divider">
           <p class="flush font-family-base-bold font-size-small text-uppercase">Service Times</p>
@@ -104,6 +101,16 @@ layout: default
             icon="instagram" icon-align="left" icon-color="white" icon-size="16" text="Follow"></crds-button>
         </div>
       </div>
+      {% endcapture %}
+      {{ location_info }}
+    </div>
+  </div>
+</section>
+
+<section class="location-info-bg-mobile">
+  <div class="container">
+    <div class="row">
+      {{ location_info }}
     </div>
   </div>
 </section>
