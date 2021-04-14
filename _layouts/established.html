@@ -45,7 +45,8 @@ layout: default
   data-optimize-bg-img>
   <div class="bg-overlay"></div>
   <div class="container">
-    <div class="row">
+    <div class="row location-title-row" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+      <div class="bg-overlay"></div>
       <div class="col-sm-12 push-ends mobile-soft-sides">
         <div>
           <span class="font-family-base text-uppercase text-white">
@@ -55,20 +56,11 @@ layout: default
         </div>
       </div>
     </div>
-    <div class="row location-info-desktop">
+    <div class="row location-info-row">
       {% include _location-info.html %}
     </div>
   </div>
 </section>
-
-<section class="location-info-bg-mobile">
-  <div class="container">
-    <div class="row">
-      {% include _location-info.html %}
-    </div>
-  </div>
-</section>
-
 
 <!-- Featured Section - Below Jumbotron -->
 {% if page.featured_below.size > 0 %}
