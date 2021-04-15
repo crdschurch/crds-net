@@ -1,0 +1,35 @@
+---
+layout: default
+title: Videos
+permalink: /media/videos/tags/most-watched
+---
+
+<div class="container">
+  <ol class="breadcrumb hard-sides hard-bottom push-top flush-bottom">
+    <li><a href="/media">Media</a></li>
+    <li><a href="/media/videos">Videos</a></li>
+  </ol>
+
+  <h1 class="font-family-condensed-extra text-uppercase flush-top push-bottom">Most Watched</h1>
+
+  <div class="row">
+    <aside class="col-md-2">
+      {% include _video-nav.html label="Most Watched" %}
+    </aside>
+
+    <div class="col-md-10">
+      <div class="card-deck">
+        <div class="cards-4x cards-2x-sm">
+          <div class="row">
+            {% assign videos = site.videos | sort: 'view_count' | reverse %}
+            {% for video in videos limit: 16 %}
+              {% include _video-card.html image_size="4x" %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% javascript_link_tag autoplay %}

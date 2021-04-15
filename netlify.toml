@@ -12,9 +12,6 @@ package = "./_plugins/netlify-plugin-contentful-redirects"
     destination = "./tmp/.redirects_cache"
 
 [[plugins]]
-package = "./_plugins/netlify-jekyll-cache"
-
-[[plugins]]
 package = "@helloample/netlify-plugin-redirects"
   [plugins.inputs]
     source = "./tmp/.redirects_cache"
@@ -23,6 +20,18 @@ package = "@helloample/netlify-plugin-redirects"
 
 [[plugins]]
 package = "./_plugins/netlify-plugin-health-check"
+
+[[plugins]]
+  package = "netlify-plugin-jekyll-cache"
+
+	[plugins.inputs]
+
+    # This is only required if you have defined a source directory in Jekyll
+    # At some point this will become automated, but for now it must be specified
+	jekyllSource = "/jekyll"
+
+[[plugins]]
+  package="./_plugins/rename-ga-references"
 
 [dev]
   BASEURL="/"

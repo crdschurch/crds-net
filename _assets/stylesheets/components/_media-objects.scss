@@ -31,7 +31,7 @@
 
   .media-img {
     width: 100%;
-    @media (min-width: $screen-md) {
+    @media (min-width: $screen-sm) {
       max-width: 22.5rem; // 360px
     }
   }

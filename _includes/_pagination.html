@@ -1,0 +1,56 @@
+{% assign paginator = page[include.collection] %}
+{% if paginator.total_pages > 1 %}
+
+  {% if include.link_root %}
+    {% assign root = include.link_root | prepend: 'media/' %}
+  {% elsif link_root %}
+    {% assign root = link_root | prepend: 'media/' %}
+  {% else %}
+    {% assign root = include.collection | prepend: 'media/' %}
+  {% endif %}
+
+  {% if include.remote == true %}
+  <div class="load-more">
+    <button class="btn btn-blue" data-role="load-more" data-paginate="{{ include.collection }}">Load more{{ include.label | prepend: ' ' }}</button>
+  </div>
+  {% endif %}
+
+  <div class="text-center{% if include.remote == true %} hide{% endif %}">
+    <ul class="pagination" data-pagination="{{ include.collection }}">
+    {% if paginator.previous_page %}
+      <li>
+        <a href="/{{ root }}{% if paginator.previous_page > 1 %}/page/{{paginator.previous_page}}{% endif %}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+    {% else %}
+      <li class="disabled">
+      <a href="#" aria-label="Previous (Disabled)"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+    {% endif %}
+    {% if paginator.page == 1 %}
+      <li class="active" data-role="page"><a href="#">1</a></li>
+    {% else %}
+      <li><a href="/{{ root }}">1</a></li>
+    {% endif %}
+    {% for count in (2..paginator.total_pages) %}
+      {% if count == paginator.page %}
+        <li class="active" data-role="page"><a href="#">{{count}}</a></li>
+      {% else %}
+        <li><a href="/{{ root }}/page/{{count}}" data-role="page">{{count}}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if paginator.next_page %}
+      <li>
+        <a href="/{{ root }}/page/{{paginator.next_page}}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    {% else %}
+      <li class="disabled">
+        <a href="#" aria-label="Next (Disabled)"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+    {% endif %}
+    </ul>
+  </div>
+{% endif %}

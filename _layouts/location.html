@@ -5,7 +5,6 @@ layout: default
 <!-- Pull only the promos that exist for the specific location if any -->
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
 {% assign series = site.series | last %}
-{% include header.html %}
 
 <!-- Resi Player -->
 {% assign locations_with_live_stream =  "oakley, florence, mason, eastside, westside, lexington, uptown" | split: ", "%}
@@ -485,5 +484,3 @@ layout: default
 
 <!--Facebook Pixel Script -->
 {% include _fb-pixel.html %}
-
-{% include footer.html %}

@@ -1,12 +1,9 @@
-.media-label {
-  background-color: $cr-black; 
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  padding: 6px 8px;
-
-  .icon {
-    width: 12px;
-    height: 16px;
+.label {
+  .current-series & {
+    @media screen and (max-width: $screen-md) {
+      position: absolute;
+      top: -1rem;
+      right: calc(50% - 50px);
+    }
   }
 }

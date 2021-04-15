@@ -1,4 +1,4 @@
-<div class="card-stamp bg-charcoal text-white">
+<div class="card-stamp text-white">
   {% if include.source.collection %} {% assign content_type =
   include.source.collection | singularize %} {% else %} {% assign content_type =
   include.source.content_type | singularize %} {% endif %} {% if
@@ -14,7 +14,7 @@
     <use xlink:href="/assets/svgs/icons.svg#media-article"></use>
     {% elsif content_type == "video" or content_type == "message" %}
     <use xlink:href="/assets/svgs/icons.svg#media-video"></use>
-    {% elsif content_type == "song" %}
+    {% elsif content_type == "album" %}
     <use xlink:href="/assets/svgs/icons.svg#media-music"></use>
     {% elsif content_type == "podcast" or content_type == "episode" %}
     <use xlink:href="/assets/svgs/icons.svg#media-podcast"></use>

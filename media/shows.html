@@ -1,0 +1,134 @@
+---
+layout: default
+snail_trail: disabled
+---
+
+{% assign featured_shows_carousel = site.featured_media | where: 'page_path', 'shows-carousel' | first %}
+{% assign shows_carousel = featured_shows_carousel.entries %}
+{% assign shows_carousel_length = featured_shows_carousel.entries | size %}
+{% assign featured_shows = site.collections | where: 'featured_on_shows_landing_page', true %}
+{% assign recent_episodes = site.data['shows'] | sort: 'published_at' | reverse %}
+
+{% for featured_episode in recent_episodes limit: 1 %}
+<section>
+  <div class="shows-landing-jumbotron">
+    <div class="bg-video-player">
+      <div id="yt-wrap" player-id="{{ featured_episode.source_url | youtube_id | append: '?mute=1&' }}">
+        <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+        <div id="ytplayer"></div>
+      </div>
+    </div> 
+    <div class="mobile-bg" style="background-image: url('{{ featured_episode.image.url | imgix: site.imgix }}');" data-optimize-bg-img>
+      <div class="container">
+        <div class="row soft-ends push-ends">
+          <div class="hard-left col-sm-4">
+            <div class="jumbotron-content mobile-soft-left">
+              <div id="shows-jumbotron-content">
+                {% for show in featured_episode.collections %}
+                <a href="{{ site.url }}/media/collections{{ show.slug }}">
+                  {% if show.logo.url %}
+                  <img alt="{{ show.title }}" class="feature-logo soft-half-bottom" src="{{show.logo.url | imgix: site.imgix }}">
+                  {% else %}
+                  <h1 class="font-family-condensed-extra font-size-h1 text-uppercase text-white">{{ show.title }}</h1>
+                  {% endif %}
+                </a>
+                {% endfor %}
+                <a href="{{ site.url }}/media/videos/{{ featured_episode.slug }}">
+                  <h2 class="font-family-condensed-extra text-uppercase text-white flush-top shows-jumbotron-subtitle"> {{ featured_episode.title }} </h2>
+                </a>
+                {% for show in featured_episode.collections %}
+                <p class="font-size-smaller soft-half-top text-white">
+                  {{ show.description }}
+                </p>
+                <div class="video-control-container soft-half-top">
+                  <a href="{{ site.url }}/media/videos/{{ featured_episode.slug }}"><button class="more-videos btn btn-white">
+                    Watch Now</button>
+                  </a>
+                  <a href="{{ site.url }}/media/collections{{ show.slug }}"><button class="more-videos btn btn-white btn-outline">More Videos</button></a>
+                  <button id="mute-btn" class="video-control-button soft-sides mobile-flush-left">
+                  <svg id="volume-slash" class="icon-video" width="40" height="40" fill="white" viewBox="0 0 32 32">
+                    <g>
+                      <path class="mute" d="M22.6144315,18.0327405 L23.3048862,17.1443263 C23.4950866,16.8992975 23.4511413,16.5459849 23.2057692,16.3550635 L20.7799937,14.4801825 C21.7502901,12.9343754 22.298026,11.1371881 22.298026,9.25001609 C22.298026,5.89857602 20.6200057,2.79604436 17.8103276,0.952096577 C17.417636,0.694399132 16.8899502,0.803060524 16.6322527,1.1964388 C16.374212,1.58913043 16.4839033,2.11681624 16.8765949,2.37451369 C19.2063776,3.90346359 20.5968314,6.47374326 20.5968314,9.25035942 C20.5968314,10.7543498 20.1763651,12.1890579 19.4289189,13.4360718 L18.0887617,12.4003725 C18.6238633,11.4535936 18.923034,10.3771077 18.923034,9.25001609 C18.923034,7.03201906 17.7959424,4.95780526 15.9077061,3.76002369 C15.5142935,3.51077196 14.9925815,3.62643712 14.7433298,4.02053637 C14.4940437,4.4142923 14.6104298,4.93566099 15.0038081,5.18525604 C16.4012657,6.07154162 17.235538,7.6131601 17.235538,9.25001609 C17.235538,9.995677 17.0586929,10.7114689 16.7363136,11.3551632 L15.3455508,10.2800849 C15.4643745,9.95138848 15.5480421,9.60968015 15.5480421,9.25001609 C15.5480421,8.12924164 14.9317448,7.09388567 13.9389608,6.54721416 C13.5318497,6.32467288 13.0182057,6.47127135 12.7925059,6.87944679 C12.5678703,7.28758791 12.7165631,7.80051088 13.1247385,8.0258674 C13.5381668,8.25297486 13.7969285,8.66502985 13.8419037,9.11783715 L11.0480528,6.95854817 L11.0480528,3.34446682 C11.0480528,2.59001687 10.1354001,2.22019048 9.60771427,2.74787629 L7.86010262,4.49514462 L2.52161819,0.368517951 C2.276246,0.177974277 1.92255574,0.221919484 1.73201207,0.467291672 L1.04155732,1.35570584 C0.851013649,1.60073471 0.894958857,1.95404731 1.14033104,2.14496864 L21.8248253,18.1315142 C22.0701975,18.3224012 22.4235445,18.2781127 22.6144315,18.0327405 Z M11.0480528,15.1555654 L11.0480528,12.646088 L2.46150252,6.01001832 C2.21894557,6.15802441 2.04807424,6.41362759 2.04807424,6.71877213 L2.04807424,11.7812601 C2.04807424,12.2470793 2.42565971,12.625008 2.89182223,12.625008 L6.47984544,12.625008 L9.60771427,15.7521559 C10.1360867,16.2805627 11.0480528,15.9092943 11.0480528,15.1555654 Z"/>
+                    </g>
+                  </svg>
+                  <svg id="volume-up" class="hidden-icon" width="50" height="50" fill="white" viewBox="0 0 32 32">
+                    <g>
+                      <path class="unmute" d="M15.8103303,17.5482789 C18.6200084,15.7039878 20.2980286,12.6014562 20.2980286,9.25001609 C20.2980286,5.89857602 18.6200084,2.79638768 15.8103303,0.952096577 C15.4176387,0.694399132 14.8899529,0.803060524 14.6322554,1.1964388 C14.3742146,1.58913043 14.483906,2.11681624 14.8765976,2.37451369 C17.2063803,3.90346359 18.5968341,6.47374326 18.5968341,9.25035942 C18.5968341,12.0270099 17.2063803,14.5972552 14.8765976,16.1262051 C14.483906,16.3835593 14.3742146,16.9115884 14.6322554,17.3039367 C14.8797562,17.6804579 15.4032191,17.8158297 15.8103303,17.5482789 Z M9.04805547,15.1555654 L9.04805547,3.34446682 C9.04805547,2.59001687 8.13540276,2.22019048 7.60771695,2.74787629 L4.47984813,5.87502414 L0.891824911,5.87502414 C0.425662388,5.87502414 0.0480769231,6.2526096 0.0480769231,6.71877213 L0.0480769231,11.7812601 C0.0480769231,12.2470793 0.425662388,12.625008 0.891824911,12.625008 L4.47984813,12.625008 L7.60771695,15.7521559 C8.13608941,16.2805627 9.04805547,15.9092943 9.04805547,15.1555654 Z M13.9077088,14.7428237 C15.7959451,13.5369741 16.9230367,11.4838403 16.9230367,9.25001609 C16.9230367,7.01653524 15.7959451,4.96305808 13.9077088,3.75720845 C13.5142962,3.50620578 12.9925842,3.62293524 12.7433325,4.01947208 C12.4940464,4.41604324 12.6104325,4.94091382 13.0038108,5.19229414 C14.4012684,6.08489684 15.2355407,7.60155582 15.2355407,9.25001609 C15.2355407,10.8984764 14.4012684,12.4151353 13.0038108,13.307738 C12.6104325,13.5587407 12.4940464,14.0836456 12.7433325,14.4805601 C12.9721909,14.844756 13.4858348,15.0128121 13.9077088,14.7428237 Z M11.9393068,11.9524747 C12.9317475,11.4058032 13.5483881,10.3704472 13.5483881,9.24967277 C13.5483881,8.12889831 12.9317475,7.09388567 11.9389635,6.54755748 C11.5318523,6.3250162 11.0182084,6.47161467 10.7925086,6.87979012 C10.567873,7.28796556 10.7165657,7.80088854 11.1247412,8.02624505 C11.5786128,8.27549678 11.8605488,8.74481787 11.8605488,9.25001609 C11.8605488,9.75555764 11.5786128,10.2245354 11.1250845,10.4737871 C10.7169091,10.6991437 10.5682163,11.2120666 10.7928519,11.6202421 C11.018895,12.0301685 11.5328823,12.1757026 11.9393068,11.9524747 Z" id="volume-up"  fill-rule="nonzero"/>
+                    </g>
+                  </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="shows-carousel soft-top bg-black overflow-hidden"> 
+  <div class="container">
+    <div class="row">
+      <h2 class="font-family-condensed-extra text-uppercase flush-top text-white shows-landing-page-title mobile-soft-left">Shows</h2>
+    </div>
+    <div class="row soft-bottom push-bottom carousel-shows">
+      {% if shows_carousel_length > 4 %}
+      <crds-carousel display-arrows="true" arrow-color="white" display-bullets="false" slide-count="{{ shows_carousel_length }}" slide-per-view="4">
+      {% else %}
+      <crds-carousel display-arrows="false" display-bullets="false" slide-count="{{ shows_carousel_length }}" slide-per-view="4">
+      {% endif %}
+        <div slot="{% increment slot %}"></div>
+        {% for shows in shows_carousel %}
+        {% assign item = shows | get_doc %}
+        <div slot="{% increment slot %}">
+          <div style='width: 270px'>
+            <crds-portrait-card-shows href="/media/collections{{ item.slug }}" lead='{{ item.description | truncate: 100 }}' title='{{ item.title }}' image-src='{{ item.image.url | imgix: site.imgix }}' logo='{{ item.logo.url | imgix: site.imgix }}' />
+          </div>
+        </div>
+        {% endfor %}
+      </crds-carousel>
+    </div>
+  </div>
+</section>
+
+{% assign featured_teaching_pastors = site.featured_media | where: 'page_path', 'shows-teaching-pastors' | first %}
+{% assign teaching_pastors = featured_teaching_pastors.entries %}
+<section class="bg-black">
+  <div class="container">
+    <div class="row">
+      <h2 class="font-family-condensed-extra text-uppercase text-white shows-landing-page-title mobile-soft-left">Our Teaching Pastors</h2>
+    </div>
+    <div class="row">
+      {% for pastor in teaching_pastors %}
+        {% assign item = pastor | get_doc %}
+        <div class="col-sm-6 col-md-3">
+          <a class="shows-pastors-card text-center" href="{{ item | media_url }}">
+            <div class="shows-pastors-card-img" style="background-image: url('{{ item.image.url | imgix: site.imgix }}?w=228&h=228&crop=bottom,center&fit=crop');"></div>
+            <p class="font-family-condensed-extra font-size-h4 text-uppercase push-top text-white">{{ item.full_name }}</p>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="bg-black most-recent"> 
+  <div class="container">
+    <div class="row soft-ends">
+      <h2 class="font-family-condensed-extra text-uppercase text-white shows-landing-page-title mobile-soft-left">Recently Added</h2>
+    </div> 
+  </div>
+  <div class="container hard-left soft-bottom">
+    <div class="most-recent-wrapper">
+      {% for episode in recent_episodes limit: 4 offset: 1 %} 
+      {% include _shows-most-recent.html imgix_size="2x" %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+{% javascript_link_tag background-video %}

@@ -1,0 +1,98 @@
+---
+layout: default
+snail_trail: media
+title: Series
+paginate:
+  series:
+    offset: 1
+    sort: starts_at desc
+---
+
+<div class="container">
+  <ol class="breadcrumb text-orange hard-sides hard-bottom push-top flush-bottom">
+    <li><a href="/media">Media</a></li>
+  </ol>
+
+  <h3 class="section-header font-size-h1 flush-top push-bottom">Series</h3>
+
+  <!-- Begin current Series -->
+  {% for featured in page.series.offset %}
+    <div class="row soft-bottom current-series">
+      <div class="col-xs-12 col-md-7">
+        <a href="{{ featured.url }}" title="{{ featured.title }}">
+          <img class="img-full-width" src="{% if featured.image.url %}{{ featured.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine}}" alt="{{ featured.title }}" sizes="{{ site.image_sizes.full_width }}" data-optimize-img>
+        </a>
+      </div>
+
+      <div class="col-xs-12 col-md-5">
+        <label class="label label-default bg-gray-lightest text-capitalize no-border-radius font-family-accent text-capitalize soft-half-sides soft-quarter-ends">Current Series</label>
+
+        <h1 class="font-family-condensed-extra text-uppercase flush-bottom">{{ featured.title }}</h1>
+
+        <date class="metadata">{{ featured.starts_at | date: "%m.%d.%Y" }} &mdash; {{ featured.ends_at | date: "%m.%d.%Y" }}</date>
+
+        <div class="push-half-top push-bottom font-size-base">
+          {{ featured.description | markdownify }}
+        </div>
+
+        <a href="{{ featured.url }}" title="{{ featured.title }}" class="btn btn-outline btn-blue" role="button">View the series</a>
+      </div>
+    </div>
+  {% endfor %}
+  <!-- End current series -->
+  <!-- 30 Day Challenge CTA -->
+    <div class="row push-top">
+      <div class="col-sm-6 push-bottom">
+        <a href="//crossroads.net/30-day-challenge" class="portrait-card-default"
+          style="background-image: url('//crds-media.imgix.net/5PvWnFrTqMwZ54L4avf6pc/9fb8e63927247fda5a260a1606af8273/Image_2x.png?auto=format,compress&w=1600'); background-size: cover; background-position: inherit;"
+          data-optimize-bg-img>
+          <div class="portrait-card-content hr">
+            <p class="portrait-card-lead text-uppercase">give us 30 days to prove it.</p>
+            <h2 class="portrait-card-title font-family-condensed-extra text-uppercase">you were meant for more</h2>
+            <div class="push-top">
+              <crds-button href="//crossroads.net/30-day-challenge" color="orange" text="Take the 30 day challenge">
+              </crds-button>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-6 push-bottom">
+        <a href="//crossroads.net/app" class="portrait-card-default"
+          style="background-image: url('//crds-media.imgix.net/6mS23tRyZoeQwERTpod99f/0c90ec0c02c70a03baaa1c7251ca11ba/crds-ad-screentime-con02-555x475-bg_2x.png?auto=format,compress&w=1600')"
+          data-optimize-bg-img>
+          <div class="portrait-card-content hr">
+            <p class="portrait-card-lead text-uppercase">download the app</p>
+            <h2 class="portrait-card-title font-family-condensed-extra text-uppercase">screentime with a purpose</h2>
+            <div class="push-top">
+              <crds-button href="//crossroads.net/app" color="white" display="outline" text="Download App">
+              </crds-button>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  <!-- End CTA -->
+
+  <!-- Begin previous series -->
+  {% assign series_year = '' %}
+  {% assign current_year = site.time | date: '%Y' %}
+
+  {% for series in page.series.docs %}
+    {% assign new_series_year = series.starts_at | date: '%Y' %}
+    {% assign item = series %}
+
+    {% if new_series_year != series_year %}
+      {% unless forloop.first %}</div>{% endunless %}
+      {% assign series_year = new_series_year %}
+      <h4 class="component-header font-size-h3 push-top soft-half-top">{{ series_year }} Series</h4>
+      <div class="row">
+    {% endif %}
+
+    <div class="{% if series_year == current_year %}col-xs-12 col-md-4{% else %}col-xs-6 col-md-2{% endif %}">
+      {% include _series-card.html %}
+    </div>
+
+    {% if forloop.last %}</div>{% endif %}
+  {% endfor %}
+  <!-- End previous series -->
+</div>

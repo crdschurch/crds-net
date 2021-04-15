@@ -1,0 +1,31 @@
+media_types:
+  - title: Articles
+    url: /articles
+
+  - title: Music
+    url: (MUSIC_URL)
+
+  - title: Podcasts
+    url: /podcasts
+
+  - title: Series
+    url: /series
+
+  - title: Videos
+    url: /videos
+
+topics:
+  - title: Culture
+    url: /topics/culture
+
+  - title: Self
+    url: /topics/self
+
+  - title: Work
+    url: /topics/work
+
+  - title: Money
+    url: /topics/money
+
+  - title: Relationships
+    url: /topics/relationships

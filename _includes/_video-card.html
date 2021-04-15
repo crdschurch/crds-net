@@ -1,0 +1,48 @@
+{% assign topic = site.topics | where: 'title', video.topic | first %}
+
+{% if video.image.url %}
+{% assign image = video.image.url %}
+{% else %}
+{% assign image = site.default_image %}
+{% endif %}
+
+<div class="card">
+  <a class="relative block" href="{{ video | media_url}}">
+    <div class="beige-overlay"></div>
+    {% assign recommended_collection=site.videos %}
+    {% include _video-player-card.html %}
+    {% if include.imgix_size == "1x" %}
+    <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.card_1x }}"
+      alt="{{ video.title }}" data-optimize-img>
+    {% elsif include.imgix_size == "2x" %}
+    <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}"
+      alt="{{ video.title }}" data-optimize-img>
+    {% else %}
+    <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_4x }}"
+      alt="{{ video.title }}" data-optimize-img>
+    {% endif %}
+    {% include _media-label.html source=video %}
+  </a>
+  <div class="card-block hard">
+    {% if include.theme == "dark" %}
+    <a class="hover-text-gray-lighter" href="{{ video | media_url}}">
+      <h5 class="card-title font-size-smaller text-white push-quarter-bottom">{{ video.title }}</h5>
+      {% else %}
+      <a href="{{ video | media_url}}">
+        <h5 class="card-title font-size-smaller push-quarter-bottom">{{ video.title }}</h5>
+        {% endif %}
+        <div class="font-size-smaller push-quarter-top push-half-bottom">
+          {% for person in video.authors %}
+          {% assign video_author = site.authors | where: "name", person | first %}
+          <a class="text-gray" href="{{ video_author.url }}">{{ person }}</a>
+          {% unless forloop.last %}
+          <span class="text-gray">&amp;</span>
+          {% endunless %}
+          {% endfor %}
+          {% if video.topic != nil %}
+          <a class="text-gray" href="{{ topic.url }}">{{ video.topic | prepend: '∙ ' }}</a>
+          {% endif %}
+        </div>
+      </a>
+  </div>
+</div>

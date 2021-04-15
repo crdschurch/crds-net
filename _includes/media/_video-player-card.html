@@ -1,24 +1,2 @@
-{% comment %}
-// This assures the messages content type uses the background image instead of the thumbnail image like all other content types.
-{% endcomment %}
-{% assign handle = item.content_type %}
-{% case handle %}
-  {% when 'message' %}
-    {% assign banner_image = item.background_image.url %}
-  {% when 'episode' %}
-    {% assign banner_image = item.podcast.image.url %}
-  {% else %}
-    {% assign banner_image = item.image.url %}
-{% endcase %}
-
-{% if include.thumbnail == true %}
-    {% assign banner_image = item.image.url %}
-{% endif %}
-
-
-{% assign video = item %}
-    {% if video.bitmovin_url and include.autoplay == true %}
-    <div class="card-video-player" style="opacity: 0;"> 
-        {% include media/_video-player.html isCard=true %}
-    </div>
-{% endif %}
+<!-- @todo Replace references in Contentful -->
+{% include _video-player-card.html %}

@@ -1,0 +1,12 @@
+---
+paginate:
+  articles:
+    per: 10
+    sort: published_at desc
+    where:
+      tags.slug: :tag_slug
+      category.slug: :category_slug
+---
+
+{% capture tag %}articles/filters/{{ page.category_slug }}+{{ page.tag_slug }}{% endcapture %}
+{% include _article_filter.html link_root=tag %}

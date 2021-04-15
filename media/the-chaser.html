@@ -1,0 +1,57 @@
+---
+layout: default
+snail_trail: media
+title: The Chaser
+permalink: /the-chaser/
+---
+
+{% assign discussion = site.chaser %}
+<section>
+  <div class="jumbotron jumbotron-lg" style="background-image: url('//crds-cms-uploads.imgix.net/content/images/crossroads-guide-the-chaser-bg.jpg');">
+    <div class="container-fluid">
+      <div class="row">
+        <h1 class="title text-white">the chaser</h1>
+        <br><span class="small-heading text-uppercase">Post-Weekend Convo Starters</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+      {% if site.chaser_message %}
+        <p class="bg-gray soft metadata push-ends">
+          For the Weekend of {{ site.chaser_message.date | date: '%B %-d, %Y' }}
+        </p>
+      {% endif %}
+      <div class="push-bottom" data-track-viewport='{ "duration": 60000, "event": "ChaserView" }'>
+
+        {% include _discussion-questions.html type='chaser' discussion=discussion %}
+
+        <hr>
+        <section>
+          <p class="text-uppercase font-size-small"><strong>Don't belong to a group yet?</strong></p>
+          <a href="//www.crossroads.net/groups/search/create-group" class="btn btn-md btn-secondary">Start a Chaser Group</a> <a href="/groups/chaser" class="btn btn-md btn-secondary">Find a Chaser Group</a>
+        </section>
+        <hr>
+        <section class="bg-gray soft font-size-base">
+          <p>Use these Groups basics as you start your group:</p>
+          <ol class="crds-list">
+            <li><strong>Be great listeners</strong>. Pay attention when someone else is talking instead of thinking of what you’ll say next.</li>
+            <li><strong>Give examples, not advice</strong>. We’ve all gotten that not-so-helpful advice we wish
+              someone would have just kept to themself. Don’t be that person. Instead of advice, try sharing an example from your life that relates to what someone else is talking about. Empower them to decide what’s best for them. And keep it in the group — what’s said in the group stays in the group.</li>
+            <li><strong>Be there</strong>. Commit to watching the weekend and participating in the Chaser conversation for the entire series. Be real in your group. No one has it all together (even if it looks like they do) and you’ll connect better with the people in your group if everyone brings their authentic self every week.</li>
+          </ol>
+        </section>
+        <hr>
+        <section>
+          <p class="metadata"><strong>Missed the message? Want to watch it?</strong></p>
+          <a class="btn btn-primary" data-media-snippet="get_current_message_url:attr[href]">
+            Click here to watch
+          </a>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>

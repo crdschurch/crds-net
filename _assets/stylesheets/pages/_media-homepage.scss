@@ -1,0 +1,202 @@
+.media-hp-bg {
+  background-image: url("//crds-media.imgix.net/4Cv3i2mnRkUPNu8adub1AS/808edb5e8f033f772e374e160a83796c/map-tan-torn.png");
+  background-position: top center;
+  background-repeat: repeat-x;
+}
+
+.media-header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $screen-sm) {
+    flex-direction: row;
+  }
+
+  .component-header-box {
+    @media (min-width: $screen-xs) {
+      padding: 15px 50px 22px;
+    }
+  }
+
+  .d-sm-block {
+    display: none;
+
+    @media (min-width: $screen-sm) {
+      display: block;
+    }
+  }
+
+  .d-sm-none {
+    display: block;
+
+    @media (min-width: $screen-sm) {
+      display: none;
+    }
+  }
+}
+
+.media-homepage-card-player>div {
+  min-width: unset ;
+  min-height: unset;
+}
+
+
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.media-portrait-card {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-end;
+  min-height: 345px;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+
+  &::before {
+    background: linear-gradient(to bottom, transparent, $cr-black);
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .media-portrait-card-content {
+    padding: 25px 15px;
+    text-align: left;
+    text-decoration: none;
+    width: 100%;
+    z-index: 2;
+  }
+}
+
+.border-bottom-dashed-group {
+  > div {
+    border-bottom: 1px dashed $cr-gray-lighter;
+
+    &:last-child {
+      border: none;
+    }
+  }
+}
+
+.media-homepage-podcast-music {
+  &.card-deck--expanded-layout {
+    .card,
+    .album-container {
+      max-width: 33%;
+    }
+  }
+
+  .card {
+    padding: 0 15px;
+  }
+}
+
+.media-homepage-authors {
+  &.card-deck--expanded-layout {
+    flex-flow: row;
+
+    @media (min-width: $screen-sm) {
+      flex-flow: column;
+    }
+
+    .card {
+      max-width: 100%;
+    }
+  }
+
+  .card {
+    border-right: 1px dashed $cr-gray-lighter;
+    flex: unset;
+    padding: 0 8px;
+
+    &:last-child {
+      border: none;
+    }
+
+    @media (min-width: $screen-sm) {
+      border-right: none;
+      border-bottom: 1px dashed $cr-gray-lighter;
+      flex: unset;
+      padding: 0;
+
+      &:last-child {
+        border: none;
+      }
+    }
+
+    .media-author-card-title {
+      line-height: 1.2em;
+    }
+  }
+
+  &.flickity-enabled {
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    .flickity-slider {
+      display: flex;
+    }
+
+    .card {
+      min-height: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: $screen-md) and (min-width: $screen-sm) {
+  .media-home-latest-grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .media-home-latest-grid-item-1 {
+    order: 1;
+  }
+
+  .media-home-latest-grid-item-2 {
+    order: 3;
+  }
+
+  .media-home-latest-grid-item-3 {
+    order: 2;
+    margin-bottom: 15px;
+  }
+}
+
+@media (min-width: $screen-sm) {
+  .media-homepage-answers {
+    display: flex;
+
+    .media-portrait-card {
+      height: auto;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.media-homepage-footer-form {
+  .hs-richtext, .hs-main-font-element {
+    span { 
+      display: none;
+    }
+  }
+}

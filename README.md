@@ -146,6 +146,15 @@ To find an erroneous log use the following search term in the logz.io search bar
 
 APPLICATION_NAME is the value set to that environment variable
 
+Build logs output to `buildlogs.txt`
+
+* **Local development:**  
+  Log is located at `_site/buildlogs.txt`
+
+* **Netlify Build**  
+  The log can be found at `[DEPLOY_URL]/buildlog.txt` on any deploy preview
+  * Example: __https://YOUR_PROJECT_NAME.netlify.com/buildlog.txt__
+
 ## Advanced Setup
 ### Building Assets
 `crds-net` uses `jekyll-asset-pipeline` to create Javascript/CSS assets. If you see that assets are not showing up make sure to check that [the pipeline is installed correctly](https://github.com/crdschurch/jekyll-asset-pipeline). If all else fails, try `rm -rf _site` and then start Jekyll back up.

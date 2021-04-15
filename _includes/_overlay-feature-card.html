@@ -1,0 +1,23 @@
+{% comment %}
+// This assures the messages content types use the background image instead of the thumbnail image like all other content types.
+{% endcomment %}
+{% assign image_source = item | card_image %}
+
+<a href="{{ item | media_url }}" class="overlay-feature-card-link">
+  {% assign recommended_collection=site.messages %}
+  {% include _video-player-card.html %}
+  <div class="overlay-feature-card"
+  style="background-image: url('{% if image_source %}{{ image_source | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}');" data-optimize-bg-img data-hero-image>
+    <div class="bg-overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="overlay-feature-card-content">
+          <p class="overlay-feature-card-category">{{ item.category.title }}</p>
+          <h1 class="overlay-feature-card-title">{{ item.title | truncate: 55 }}</h1>
+          <p class="overlay-feature-card-author">{{ item.author | map: 'full_name' | join: ', ' }}</p>
+        </div>
+      </div>
+    </div>
+    {% include _media-label.html source=item %}
+  </div>
+</a>

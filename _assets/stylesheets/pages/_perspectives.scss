@@ -1,3 +1,250 @@
+/*
+** 1. Global template styles
+** 2. Header styles
+** 3. Article styles
+** 4. Footer btn styles
+** 5. Media home styles
+*/
+
+
+
+
+.perspective-tpl {
+  /* 1. Global template styles */
+  background: $cr-gray-lighter;
+
+
+
+
+  /* 2. Header styles */
+  > header {
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: $cr-white;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+
+    // This rule needed to override DDK styles
+    h3 {
+      color: $cr-white;
+    }
+  }
+
+  .page-title {
+    font-size: $font-size-h1;
+    font-weight: 100;
+    text-transform: lowercase;
+  }
+
+  .page-tagline {
+    font-size: $font-size-large;
+  }
+
+  @media screen and (min-width: $screen-sm) {
+    .page-title {
+      font-size: 4rem;
+    }
+  }
+
+
+
+
+  /* 3. Article styles */
+  > main {
+    margin-top: 2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .featured-article > article,
+  .related-articles > article {
+    background: $cr-white;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      time {
+        flex: 0 0 auto;
+      }
+    }
+
+    h1.title, h2.title, .title { margin: 0; }
+  }
+
+  .featured-article {
+    @include make-md-column(10);
+    @include make-md-column-offset(1);
+
+    article {
+      font-size: $font-size-base;
+      padding: 2rem;
+    }
+
+    header {
+      margin-bottom: 20px;
+    }
+
+    h1.title, .title {
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+
+    .published {
+      font-size: $font-size-base;
+    }
+
+    .content {
+      margin-bottom: 2rem;
+    }
+
+    footer {
+      display: flex;
+      flex-direction: column;
+
+      address {
+        background: initial;
+        color: $cr-gray-light;
+        font-size: $font-size-base;
+        margin-bottom: initial;
+        padding: initial;
+      }
+    }
+  }
+
+  .related-articles {
+    @include make-md-column(7);
+    @include make-md-column-offset(2.5);
+
+    > article {
+      font-size: $font-size-base;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      padding: 25px 30px 20px;
+
+      > a {
+        color: $cr-gray-dark;
+
+        &:hover,
+        &:focus {
+          color: $cr-gray-dark;
+          text-decoration: none;
+        }
+      }
+    }
+
+    h2.title, .title {
+      font-size: $font-size-base;
+    }
+
+    .published {
+      font-size: $font-size-small;
+    }
+
+    header {
+      margin-bottom: .5rem;
+    }
+
+    .content {
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      svg {
+        height: 1rem;
+        width: auto;
+      }
+
+      a {
+        color: $cr-gray-light;
+        cursor: pointer;
+
+        &:hover {
+          color: $cr-gray;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .perspective-set {
+    background-color: $cr-blue;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 60px 0;
+  }
+
+  .perspective-set-title {
+    color: $cr-white;
+    font-family: $condensed-extra-font-face;
+    font-size: $font-size-h3;
+    text-transform: uppercase;
+
+    &:hover,
+    &:focus {
+      &, h1, h2 {
+        color: $cr-white;
+        text-decoration: none;
+      }
+    }
+  }
+
+  h1.title, h2.title, .title {
+    font-family: $font-size-base;
+    font-weight: 600;
+  }
+
+  .published {
+    color: $cr-gray-light;
+  }
+
+  @media screen and (min-width: $screen-sm) {
+    .featured-article,
+    .related-articles {
+      header { align-items: center; }
+    }
+  }
+
+  @media screen and (min-width: $screen-md) {
+    .featured-article {
+      header { margin-bottom: 10px; }
+
+      article {
+        font-size: $font-size-large;
+        padding: 3.75rem;
+       }
+
+      footer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+
+
+
+
+  /* 4. Pagination btn styles */
+  footer.footer-btn {
+    a {
+      background: $cr-gray-light;
+      border-radius: 0;
+      color: $cr-white;
+      display: block;
+      font-size: $font-size-base;
+      padding: 1rem 0;
+      text-align: center;
+      width: 100%;
+    }
+  }
+}
+
+
+
+
+/* 5. Media home styles */
 .perspectives-landing {
   header {
     background-repeat: no-repeat;

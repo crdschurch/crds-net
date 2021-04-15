@@ -1,0 +1,11 @@
+---
+paginate:
+  articles:
+    per: 10
+    sort: published_at desc
+    where:
+      category.slug: :category_slug
+---
+
+{% capture category %}articles/filters/{{ page.category_slug }}{% endcapture %}
+{% include _article_filter.html link_root=category %}
