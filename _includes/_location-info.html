@@ -27,6 +27,7 @@
     </div>
     <hr class="visible-xs">
   </div>
+  {% if page.layout == "established" %}
   <div class="col-sm-12 soft-ends location-info-btn-container">
     {% if page.care_link %}
     <crds-button class="push-half-right" href="{{ page.care_link }}" color="white" display="outline"
@@ -41,4 +42,5 @@
     <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="white" display="outline"
       icon="instagram" icon-align="left" icon-color="white" icon-size="16" text="Follow"></crds-button>
   </div>
+  {% endif %}
 </div>
