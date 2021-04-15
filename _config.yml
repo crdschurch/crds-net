@@ -146,7 +146,7 @@ defaults:
       path: ""
       type: "locations"
     values:
-      layout: location
+      layout: established
   - scope:
       path: ""
       type: "onsite_groups"
