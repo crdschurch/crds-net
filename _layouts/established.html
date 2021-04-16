@@ -151,41 +151,70 @@ layout: default
 <section>
   <div class="container">
     <div class="row">
-      <div class="col-sm-12">
-        <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "volunteer"]'>
-          <div slot="tab-events-updates">
-            <div class="col-xs-12 col-sm-6 soft">
-              <a href="{{ series.url }}" title="{{ series.title }}">
-                <img class="img-full-width"
-                  src="{% if series.image.url %}{{ series.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine}}"
-                  alt="{{ series.title }}" sizes="{{ site.image_sizes.full_width }}" data-optimize-img>
-              </a>
+      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "volunteer"]'>
+
+        <!-- Events & Updates -->
+        <div slot="tab-events-updates">
+          <!-- Featured Section - Below Jumbotron-->
+          {% if page.featured_below.size > 0 %}
+          <div class="row">
+            {{ page.featured_below }}
+          </div>
+          {% endif %}
+
+          <div class="col-sm-8 col-sm-6 soft">
+            <a href="{{ series.url }}" title="{{ series.title }}">
+              <img class="img-full-width"
+                src="{{ series.image.url | imgix: site.imgix }}"
+                alt="{{ series.title }}"
+                data-optimize-img />
+            </a>
+            <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Series</strong></p>
+            <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
+            <div class="push-half-top push-bottom font-size-small text-gray-dark">
+              {{ series.description | markdownify }}
             </div>
-            <div class="col-xs-12 col-sm-6 soft">
-              <label
-                class="text-orange text-uppercase">Current
-                Series</label>
-              <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
-              <div class="push-half-top push-bottom font-size-small text-gray-dark">
-                {{ series.description | markdownify }}
-              </div>
-              <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series" color="orange"></crds-button>
-            </div>
+            <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series" color="orange"></crds-button>
           </div>
-          <div slot="tab-community-pastor">
-            community pastor tab content
+        </div>
+
+        <!-- Community Pastor -->
+        <div slot="tab-community-pastor" class="align-items-center d-flex">
+          <div class="col-sm-6">
+            <img class="img-full-width" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" data-optimize-img />
           </div>
-          <div slot="tab-about">
-            about tab content
+          <div class="col-sm-6">
+            <p class="text-orange text-uppercase flush-bottom"><strong>Community pastor</strong></p>   
+            <h2 class="section-header fflush-ends soft-half-bottom">{{ page.community_pastor_name }}</h2>
+            {{ page.community_pastor_bio | markdownify }}      
+            <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+            icon="facebook" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ pastor_full_name[0] }}"></crds-button>  
+            <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+            icon="instagram" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ pastor_full_name[0] }}"></crds-button>  
           </div>
-          <div slot="tab-kids-students">
-            kids tab content
+        </div>
+
+        <!-- About -->
+        <div slot="tab-about" class="align-items-center d-flex">
+          <div class="col-sm-6">
+            <img class="img-full-width" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" data-optimize-img />
           </div>
-          <div slot="tab-volunteer">
-            volunteer tab content
+          <div class="col-sm-6">
+            <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>   
+            <h2 class="section-header flush-ends soft-half-bottom">Crossroads {{ page.name }}</h2>
+            {{ page.community_pastor_bio | markdownify }}      
+            <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+            icon="facebook" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ pastor_full_name[0] }}"></crds-button>  
+            <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+            icon="instagram" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ pastor_full_name[0] }}"></crds-button>  
           </div>
-        </crds-tabs>
-      </div>
+        </div>
+
+        <!-- Kids and Students -->
+        <div slot="tab-kids-students">
+          kids tab content
+        </div>
+      </crds-tabs>
     </div>
   </div>
 </section>
@@ -220,10 +249,3 @@ layout: default
       </div>
     </div>
 </section>
-
-<!-- Featured Section - Below Jumbotron-->
-<!-- {% if page.featured_below.size > 0 %}
-  {{ page.featured_below }}
-{% endif %} -->
-
-
