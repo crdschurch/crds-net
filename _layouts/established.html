@@ -153,15 +153,15 @@ layout: default
     <div class="container-fluid soft-ends push-ends">
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
-          <div class="col-sm-6">
-            <crds-portrait-card theme="condensed" href="{{ page.care_link }}" lead="We're here to help" title="Community care"
+          <div class="col-sm-6 push-ends">
+            <crds-portrait-card class="push-top" theme="condensed" href="{{ page.care_link }}" lead="We're here to help" title="Community care"
               image-src="//crds-media.imgix.net//5BkrjC9nopyuPGUNrMnQ10/c7b56fe779f5772230d1d14aa486d55d/community-care.png">
               <p class="push-half-ends">Prayer requests, listening appointments, hospital visits, or questions about weddings or
                 funerals– we're here to help.</p>
               <crds-button class="push-half-right" href="{{ page.care_link }}" color="white" text="Request care"></crds-button>
             </crds-portrait-card>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-6 push-ends">
             <crds-portrait-card theme="condensed" data-target="#subscribeModalForm" data-toggle="modal" href=""
               lead="News & events" title="Stay Up To Date"
               image-src="//crds-media.imgix.net//2g8yKVrxSIiaMKBsmxCWFW/7e0f90537c00c3d0f0d793b0c1233b86/stay-up-to-date.png">
@@ -186,10 +186,3 @@ layout: default
       </div>
     </div>
 </section>
-
-<!-- Featured Section - Below Jumbotron-->
-<!-- {% if page.featured_below.size > 0 %}
-  {{ page.featured_below }}
-{% endif %} -->
-
-
