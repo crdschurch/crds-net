@@ -180,9 +180,9 @@ paginate:
           {% endif %}
 
           {% if item.description %}
-            {% assign description = item.description | truncate: 150 %}
+            {% assign description = item.description %}
           {% else %}
-            {% assign description = item.content | truncate: 150 %}
+            {% assign description = item.content | strip_newlines %}
           {% endif %}
           <div class="col-md-6 media-card-skeleton push-bottom">
             <crds-media-card heading='{{ item.title }}' icon-label='{{ item.duration | duration: format }}' image-src='{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}' url='{{ item | media_url }}' content-type='{{ item.content_type }}' truncate-length="25" data-optimize-img>
