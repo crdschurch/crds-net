@@ -182,11 +182,13 @@ paginate:
           {% if item.description %}
             {% assign description = item.description %}
           {% else %}
-            {% assign description = item.content | strip_newlines %}
+            {% assign description = item.content | strip_newlines | markdownify %}
           {% endif %}
           <div class="col-md-6 media-card-skeleton push-bottom">
-            <crds-media-card heading='{{ item.title }}' icon-label='{{ item.duration | duration: format }}' image-src='{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}' url='{{ item | media_url }}' content-type='{{ item.content_type }}' truncate-length="25" data-optimize-img>
-              {{ description | markdownify }}
+            <crds-media-card heading='{{ item.title }}' icon-label='{{ item.duration | duration: format }}' image-src='{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}' url='{{ item | media_url }}' content-type='{{ item.content_type }}' data-optimize-img>
+              <div class="font-size-small">
+                {{ description | strip_html | truncatewords: 25 }}
+              </div>
             </crds-media-card>
           </div>
         {% endfor %}
