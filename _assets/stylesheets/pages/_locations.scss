@@ -1,5 +1,63 @@
 .jumbotron.locations-jumbotron {
+  padding-top: 0;
+  padding-bottom: 0;
+
+  @media (min-width: $screen-sm) {
+    padding-bottom: 0;
+    padding-top: 115px;
+  }
+
   h1 {
-    font-size: 94px;
+    font-size: 70px;
+    line-height: 61px;
+    
+    @media (min-width: $screen-sm) {
+      font-size: 94px;
+      line-height: 86px;
+    }
+  }
+
+  > .bg-overlay {
+    @media (max-width: $screen-sm) {
+      background: none;
+    }
+  }
+}
+
+.location-info-btn-container {
+  text-align: left;
+
+  @media (min-width: $screen-sm) {
+    text-align: center;
+  }
+}
+
+.location-title-row {
+  background-size: cover;
+  padding: 50px 0;
+  position: relative;
+  
+  @media (min-width: $screen-sm) {
+    padding: unset;
+    background-image: none !important;
+  }
+
+  > .bg-overlay {
+    @media (min-width: $screen-sm) {
+      background: none;
+    }
+  }
+}
+
+.location-info-row {
+  background-color: $cr-blue;
+  background-image: url("//crds-media.imgix.net/1KLwsN6ilL7RO0xk6JzOsX/840e8b99340ff36bff67036909c4f856/texture-topo-dark-100_2x.png");
+  background-size: cover;
+  color: $cr-white;
+  z-index: 2;
+
+  @media (min-width: $screen-sm) {
+    background-color: unset;
+    background-image: none;
   }
 }
