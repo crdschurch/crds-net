@@ -191,35 +191,39 @@ layout: default
 </section>
 
 <section>
-  <div class="bg-tan-light bg-topo-50 soft-ends">
-    <div class="container-fluid soft-ends push-ends">
+  <div class="bg-tan-light bg-topo-50 bg-contain soft-ends">
+    <div class="container soft-ends push-ends">
       <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-          <div class="col-sm-6">
-            <crds-portrait-card theme="condensed" href="{{ page.care_link }}" lead="We're here to help"
-              title="Community care"
-              image-src="//crds-media.imgix.net//5OZiKpKybDXDdJMK1TCHfG/8c4d64a042198add2dad902ec05165d5/our-history-portrait.png?h=250">
-            </crds-portrait-card>
-          </div>
-          <div class="col-sm-6">
-            <crds-portrait-card theme="condensed" href="/ourhistory" lead="News & events" title="Stay Up To Date"
-              image-src="//crds-media.imgix.net//5OZiKpKybDXDdJMK1TCHfG/8c4d64a042198add2dad902ec05165d5/our-history-portrait.png?h=250">
-            </crds-portrait-card>
-          </div>
+        <div class="col-sm-6 push-ends">
+          <crds-portrait-card class="push-top" theme="condensed" lead="We're here to help" title="Community care"
+            image-src="//crds-media.imgix.net//5BkrjC9nopyuPGUNrMnQ10/c7b56fe779f5772230d1d14aa486d55d/community-care.png">
+            <p class="push-half-ends">Prayer requests, listening appointments, hospital visits, or questions about weddings or
+              funerals– we're here to help.</p>
+            <crds-button class="push-half-right" href="{{ page.care_link }}" color="white" text="Request care"></crds-button>
+          </crds-portrait-card>
+        </div>
+        <div class="col-sm-6 push-ends">
+          <crds-portrait-card theme="condensed" lead="News & events" title="Stay Up To Date"
+            image-src="//crds-media.imgix.net//2g8yKVrxSIiaMKBsmxCWFW/7e0f90537c00c3d0f0d793b0c1233b86/stay-up-to-date.png">
+            <p class="push-half-ends">We’ll keep you informed of new events, site changes, and all sorts of amazingly awesome
+              stuff.</p>
+            <crds-button class="push-half-right" data-target="#subscribeModalForm" data-toggle="modal" href="" color="white"
+              text="Sign up for our newsletter"></crds-button>
+          </crds-portrait-card>
         </div>
       </div>
     </div>
   </div>
-  <div class="bg-orange soft">
-    <div class="container text-center soft push-ends">
-      <div class="row">
-        <h2 class="text-white text-uppercase font-family-condensed-extra">We'd love to connect with you</h2>
-        <p class="font-size-base text-blue">Whether you have questions about Crossroads, faith, life, we are here to
-          help.</p>
-        <crds-button color="blue" text="Chat with us" data-trigger="chat"></crds-button>
+    <div class="bg-orange soft">
+      <div class="container text-center soft push-ends">
+        <div class="row">
+          <h2 class="text-white text-uppercase font-family-condensed-extra">We'd love to connect with you</h2>
+          <p class="font-size-base text-blue">Whether you have questions about Crossroads, faith, life, we are here to
+            help.</p>
+          <crds-button color="blue" text="Chat with us" data-trigger="chat"></crds-button>
+        </div>
       </div>
     </div>
-  </div>
 </section>
 
 <!-- Modal -->
