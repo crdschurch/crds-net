@@ -59,8 +59,7 @@ layout: default
 
             <div class="col-sm-8 push-bottom soft-bottom">
               <a href="{{ series.url }}" title="{{ series.title }}">
-                <img class="img-full-width" src="{{ series.image.url | imgix: site.imgix }}" alt="{{ series.title }}"
-                  data-optimize-img />
+                <img class="img-full-width" src="{{ series.image.url | imgix: site.imgix }}" alt="{{ series.title }}" />
               </a>
               <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Series</strong></p>
               <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
