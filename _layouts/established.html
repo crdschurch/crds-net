@@ -8,41 +8,44 @@ layout: default
 {% include header.html %}
 
 <!-- Resi Player -->
-{% assign locations_with_live_stream =  "oakley, florence, mason, eastside, westside, lexington, uptown" | split: ", "%}
+{% assign locations_with_live_stream = "oakley, florence, mason, eastside, westside, lexington, uptown" | split: ", "%}
 {% for location in locations_with_live_stream %}
-  {% if page.slug == location %}
-    <section class="bg-blue" id="resi-player">
-      <div class="container">
-        <div class="row text-center push-top">
-          <h2 class="flush-top font-family-condensed-extra font-size-h2 text-uppercase text-white">Welcome to Crossroads {{ page.name }}</h2>
-        </div>
-        <div class="row push-ends">
-          <div class="col-sm-10 col-sm-offset-1">
-            <div id="resi-video-player" data-embed-id="d3ebebe0-b605-48ab-a6e8-b9f3ef201b4e"></div>
-            <script type="application/javascript" src="https://control.resi.io/webplayer/loader.min.js"></script>
-          </div>
-        </div>
-        <div class="row text-center text-white push-bottom">
-          <p class="flush-bottom font-size-small text-uppercase">You're watching the</p>
-          <h3 class="flush-top font-family-condensed-extra font-size-h2 text-uppercase text-white">Crossroads Live Weekend</h3>
-          <a class="text-orange" href="javascript:void(0)" data-smooth-scroll-to="happenings" data-smooth-scroll-offset="50">View events & happenings at your location</a>
-        </div>
+{% if page.slug == location %}
+<section class="bg-blue" id="resi-player">
+  <div class="container">
+    <div class="row text-center push-top">
+      <h2 class="flush-top font-family-condensed-extra font-size-h2 text-uppercase text-white">Welcome to Crossroads {{
+        page.name }}</h2>
+    </div>
+    <div class="row push-ends">
+      <div class="col-sm-10 col-sm-offset-1">
+        <div id="resi-video-player" data-embed-id="d3ebebe0-b605-48ab-a6e8-b9f3ef201b4e"></div>
+        <script type="application/javascript" src="https://control.resi.io/webplayer/loader.min.js"></script>
       </div>
-    </section>
-  {% endif %}
+    </div>
+    <div class="row text-center text-white push-bottom">
+      <p class="flush-bottom font-size-small text-uppercase">You're watching the</p>
+      <h3 class="flush-top font-family-condensed-extra font-size-h2 text-uppercase text-white">Crossroads Live Weekend
+      </h3>
+      <a class="text-orange" href="javascript:void(0)" data-smooth-scroll-to="happenings"
+        data-smooth-scroll-offset="50">View events & happenings at your location</a>
+    </div>
+  </div>
+</section>
+{% endif %}
 {% endfor %}
 
 <!-- Featured Section -->
 {% if page.featured_section.size > 0 %}
-  <div class="overflow-hidden">
-    {{ page.featured_section }}
-  </div>
+<div class="overflow-hidden">
+  {{ page.featured_section }}
+</div>
 {% endif %}
 
 <!-- Jumbotron section -->
-<section class="jumbotron jumbotron-xl locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
-  id="location-page"  
-  data-optimize-bg-img>
+<section class="jumbotron jumbotron-xl locations-jumbotron flush-bottom width-100"
+  style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
+  id="location-page" data-optimize-bg-img>
   <div class="bg-overlay"></div>
   <div class="container">
     <div class="row">
@@ -58,18 +61,20 @@ layout: default
 
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
-        
+
         <div class="col-sm-4 text-left push-bottom">
           <p class="flush font-family-base-bold font-size-small text-uppercase">Service Times</p>
-          <p class="flush font-size-small">{{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}</p>
+          <p class="flush font-size-small">{{ page.service_times | markdownify | remove: '
+          <p>'| remove: '</p>' }}</p>
         </div>
         <div class="col-sm-4 text-left push-bottom">
           <p class="flush text-uppercase font-family-base-bold font-size-small">Address</p>
-          <p class="flush font-family-base font-size-small">{{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+          <p class="flush font-family-base font-size-small">{{ page.address | markdownify | remove: '
+          <p>' | remove: '</p>' }}</p>
           <a href="{{ page.map_url }}" class="text-orange" target="_blank">Get directions</a>
         </div>
-        
-        <div class="align-items-center col-sm-4 d-flex text-left">
+
+        <div class="align-items-center col-sm-4 df-screen-sm text-left">
           <div>
             <p class="flush text-uppercase font-family-base-bold font-size-small">Leadership</p>
             <p class="flush font-family-base font-size-small">{{ page.community_pastor_name }}</p>
@@ -78,8 +83,9 @@ layout: default
             <a class="text-orange">More about {{ pastor_full_name[0] }}</a>
           </div>
           <div class="push-left">
-            <img class="img-border img-circle img-size-4" src="{{ page.community_pastor_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
-            sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+            <img class="img-border img-circle img-size-4"
+              src="{{ page.community_pastor_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+              sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
           </div>
         </div>
       </div>
@@ -94,16 +100,18 @@ layout: default
         {% if page.hubspot_form_id %}
         <crds-button class="push-half-right" data-target="#subscribeModalForm" data-toggle="modal" href="" color="white"
           display="outline" text="Subscribe for updates"></crds-button>
-        <div aria-labelledby="Subscribe email form" class="modal fade" id="subscribeModalForm" role="dialog" tabindex="-1">
+        <div aria-labelledby="Subscribe email form" class="modal fade" id="subscribeModalForm" role="dialog"
+          tabindex="-1">
           <div class="modal-dialog" role="document">
             <div class="modal-content bg-gray-lightest">
-              <div class="modal-header hard-bottom"><button aria-label="Close" class="close pull-right" data-dismiss="modal"
-                  type="button"><span aria-hidden="true">&times;</span></button>
+              <div class="modal-header hard-bottom"><button aria-label="Close" class="close pull-right"
+                  data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body text-left hard-bottom">
                 <h4 class="font-family-condensed-extra text-uppercase soft-half-bottom text-blue">Stay in the know.
                   <br />Get
-                  the latest Crossroads updates.</h4>
+                  the latest Crossroads updates.
+                </h4>
                 <div class="form" data-role="hsform">
                   <!--[if lte IE 8]>
                                       <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
@@ -140,7 +148,8 @@ layout: default
         </script>
         {% endif %}
         <crds-button class="push-half-right" href="//www.facebook.com/crsrds{{ page.slug | downcase }}" color="white"
-          display="outline" icon="facebook" icon-align="left" icon-color="white" icon-size="16" text="Follow"></crds-button>
+          display="outline" icon="facebook" icon-align="left" icon-color="white" icon-size="16" text="Follow">
+        </crds-button>
         <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="white" display="outline"
           icon="instagram" icon-align="left" icon-color="white" icon-size="16" text="Follow"></crds-button>
       </div>
@@ -150,69 +159,147 @@ layout: default
 
 <section>
   <div class="container">
-    <div class="row">
-      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "volunteer"]'>
+    <div class="row soft-half">
+      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students"]'>
 
         <!-- Events & Updates -->
-        <div slot="tab-events-updates">
-          <!-- Featured Section - Below Jumbotron-->
-          {% if page.featured_below.size > 0 %}
+        <div slot="tab-events-updates" class="push-ends">
           <div class="row">
-            {{ page.featured_below }}
-          </div>
-          {% endif %}
-
-          <div class="col-sm-8 col-sm-6 soft">
-            <a href="{{ series.url }}" title="{{ series.title }}">
-              <img class="img-full-width"
-                src="{{ series.image.url | imgix: site.imgix }}"
-                alt="{{ series.title }}"
-                data-optimize-img />
-            </a>
-            <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Series</strong></p>
-            <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
-            <div class="push-half-top push-bottom font-size-small text-gray-dark">
-              {{ series.description | markdownify }}
+            <!-- Featured Section - Below Jumbotron-->
+            {% if page.featured_below.size > 0 %}
+            <div class="col-sm-12 push-bottom">
+              {{ page.featured_below }}
             </div>
-            <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series" color="orange"></crds-button>
+            {% endif %}
+
+            <div class="col-sm-8 push-bottom soft-bottom">
+              <a href="{{ series.url }}" title="{{ series.title }}">
+                <img class="img-full-width" src="{{ series.image.url | imgix: site.imgix }}" alt="{{ series.title }}"
+                  data-optimize-img />
+              </a>
+              <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Series</strong></p>
+              <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
+              <div class="push-half-top push-bottom font-size-small text-gray-dark">
+                {{ series.description | markdownify }}
+              </div>
+              <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series"
+                color="orange"></crds-button>
+            </div>
+            <div class="col-sm-4 push-bottom soft-bottom">
+              <crds-site-happenings-locations location="{{ page.title }}"></crds-site-happenings-locations>
+            </div>
           </div>
         </div>
 
         <!-- Community Pastor -->
-        <div slot="tab-community-pastor" class="align-items-center d-flex">
-          <div class="col-sm-6">
-            <img class="img-full-width" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" data-optimize-img />
-          </div>
-          <div class="col-sm-6">
-            <p class="text-orange text-uppercase flush-bottom"><strong>Community pastor</strong></p>   
-            <h2 class="section-header fflush-ends soft-half-bottom">{{ page.community_pastor_name }}</h2>
-            {{ page.community_pastor_bio | markdownify }}      
-            <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
-            icon="facebook" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ pastor_full_name[0] }}"></crds-button>  
-            <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
-            icon="instagram" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ pastor_full_name[0] }}"></crds-button>  
+        <div slot="tab-community-pastor" class="push-ends">
+          <div class="row align-items-center df-screen-sm">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="{{ page.community_pastor_image.url | imgix: site.imgix }}"
+                data-optimize-img />
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>Community pastor</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">{{ page.community_pastor_name }}</h2>
+              {{ page.community_pastor_bio | markdownify }}
+              <div class="soft-half-top">
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="facebook" icon-align="left" icon-color="blue" icon-size="16"
+                  text="Follow {{ pastor_full_name[0] }}"></crds-button>
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="instagram" icon-align="left" icon-color="blue" icon-size="16"
+                  text="Follow {{ pastor_full_name[0] }}"></crds-button>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- About -->
-        <div slot="tab-about" class="align-items-center d-flex">
-          <div class="col-sm-6">
-            <img class="img-full-width" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" data-optimize-img />
+        <div slot="tab-about" class="push-ends">
+          <div class="row align-items-center df-screen-sm">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="{{ page.about_image.url | imgix: site.imgix }}" data-optimize-img />
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">Crossroads {{ page.name }}</h2>
+              {{ page.description | markdownify }}
+              <div class="soft-half-top soft-bottom">
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="facebook" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
+                </crds-button>
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="instagram" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
+                </crds-button>
+              </div>
+              {{ page.additional_info | markdownify }}
+            </div>
           </div>
-          <div class="col-sm-6">
-            <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>   
-            <h2 class="section-header flush-ends soft-half-bottom">Crossroads {{ page.name }}</h2>
-            {{ page.community_pastor_bio | markdownify }}      
-            <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
-            icon="facebook" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ pastor_full_name[0] }}"></crds-button>  
-            <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
-            icon="instagram" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ pastor_full_name[0] }}"></crds-button>  
+          <div class="row align-items-center df-screen-sm push-top soft-top">
+              <div class="col-sm-6 col-sm-push-6 push-bottom">
+                <img class="img-full-width" src="{{ page.community_pastor_image.url | imgix: site.imgix }}"
+                  data-optimize-img />
+              </div>
+              <div class="col-sm-6 col-sm-pull-6 push-bottom">
+                <p class="text-orange text-uppercase flush-bottom"><strong>New here?</strong></p>
+                <h2 class="section-header flush-ends soft-half-bottom">WHat to expect</h2>
+                <p>Expect to be challenged. Expect to disagree with some things. Expect to hear a lot about a God who
+                  loves you and pursues you. Expect unfiltered conversations & Biblical truth. Expect opportunities to
+                  make a difference & make real friends. (And free coffee. Unless you're joining elsewhere — then the
+                  coffee is up to you)</p>
+                <div class="soft-half-top soft-bottom">
+                  <crds-button href="/new-around-here" color="blue" display="outline" text="New around here">
+                  </crds-button>
+                  <crds-button href="/about" color="blue" display="outline" text="About us">
+                  </crds-button>
+                </div>
+              </div>
           </div>
         </div>
 
         <!-- Kids and Students -->
-        <div slot="tab-kids-students">
-          kids tab content
+        <div slot="tab-kids-students" class="push-ends">
+          <div class="row align-items-center df-screen-sm">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width"
+                src="//crds-media.imgix.net//3SX7tTVQ0Wqi5WKRy5ikRd/cdc797e5c08a00d8031b4daef7ece443/crossroads-kids-club2.jpg"
+                data-optimize-img />
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>They'll love this place</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">Kids' Club</h2>
+              <p>A fun learning environment designed especially for kids (birth through fifth grade). It’s free, totally
+                secure, and don't worry-we'll let you know if your child needs you at any point during the service.</p>
+              <em>{{ page.kids_club_hours | markdownify }}</em>
+              <div class="soft-half-top">
+                <crds-button href="/kids-club" color="blue" display="outline" text="More about Kids' Club">
+                </crds-button>
+              </div>
+            </div>
+          </div>
+          <div class="row push-top soft-top">
+            <div class="align-items-center df-screen-sm">
+              <div class="col-sm-6 col-sm-push-6 push-bottom">
+                <img class="img-full-width" src="{{ page.community_pastor_image.url | imgix: site.imgix }}"
+                  data-optimize-img />
+              </div>
+              <div class="col-sm-6 col-sm-pull-6 push-bottom">
+                <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>
+                <h2 class="section-header flush-ends soft-half-bottom">Student ministry</h2>
+                <p>Middle School (grades 6-8) and High School (grades 9-12) students have a place to call their own.
+                  Students are challenged and encouraged through relevant teaching and fun events. Opportunities are
+                  provided for them to grow as they connect with God and with each other. </p>
+                <div class="soft-half-top soft-bottom">
+                  <crds-button href="/studentministry/" color="blue" display="outline"
+                    text="More about Student Ministry">
+                  </crds-button>
+                </div>
+                <div class="df-screen-sm">
+                  {{ page.student_ministry_hours | markdownify }}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </crds-tabs>
     </div>
@@ -225,7 +312,8 @@ layout: default
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
           <div class="col-sm-6">
-            <crds-portrait-card theme="condensed" href="{{ page.care_link }}" lead="We're here to help" title="Community care"
+            <crds-portrait-card theme="condensed" href="{{ page.care_link }}" lead="We're here to help"
+              title="Community care"
               image-src="//crds-media.imgix.net//5OZiKpKybDXDdJMK1TCHfG/8c4d64a042198add2dad902ec05165d5/our-history-portrait.png?h=250">
             </crds-portrait-card>
           </div>
@@ -238,14 +326,14 @@ layout: default
       </div>
     </div>
   </div>
-    <div class="bg-orange soft">
-      <div class="container text-center soft push-ends">
-        <div class="row">
-          <h2 class="text-white text-uppercase font-family-condensed-extra">We'd love to connect with you</h2>
-          <p class="font-size-base text-blue">Whether you have questions about Crossroads, faith, life, we are here to
-            help.</p>
-          <crds-button color="blue" text="Chat with us" data-trigger="chat"></crds-button>
-        </div>
+  <div class="bg-orange soft">
+    <div class="container text-center soft push-ends">
+      <div class="row">
+        <h2 class="text-white text-uppercase font-family-condensed-extra">We'd love to connect with you</h2>
+        <p class="font-size-base text-blue">Whether you have questions about Crossroads, faith, life, we are here to
+          help.</p>
+        <crds-button color="blue" text="Chat with us" data-trigger="chat"></crds-button>
       </div>
     </div>
+  </div>
 </section>
