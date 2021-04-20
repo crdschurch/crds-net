@@ -24,27 +24,19 @@ const isDayOfTheWeek = (day) => {
 
 const isServiceTime = () => {
   let isSunday = isDayOfTheWeek(0);
-  let isSaturday = isDayOfTheWeek(6);
-
-  let saturdayServiceTimes = (
-    (getEstTime() >= 1555 && getEstTime() <= 1710) || 
-    (getEstTime() >= 1725 && getEstTime() <= 1840)
-  );
-
-  let sundayServiceTimes = (
+  let serviceTimes = (
     (getEstTime() >= 825 && getEstTime() <= 940) || 
     (getEstTime() >= 955 && getEstTime() <= 1110) ||
     (getEstTime() >= 1140 && getEstTime() <= 1255)
   );
 
-  return (isSunday || isSaturday) && (saturdayServiceTimes || sundayServiceTimes);
+  return isSunday && serviceTimes;
 };
 
 const refreshPageForServiceStart = (hours, minutes, seconds) => {
   let isSunday = isDayOfTheWeek(0);
-  let isSaturday = isDayOfTheWeek(6);
 
-  if ((!isSunday || !isSaturday) || !document.getElementById('location-page')) {
+  if (!isSunday || !document.getElementById('location-page')) {
     return;
   }
 
@@ -67,13 +59,6 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
   document.getElementById('resi-player').remove();
 }
 
-if (isDayOfTheWeek(6)) {
-  refreshPageForServiceStart(15,55,1);
-  refreshPageForServiceStart(17,25,1);
-}
-
-if (isDayOfTheWeek(0)) {
-  refreshPageForServiceStart(8,25,1);
-  refreshPageForServiceStart(9,55,1);
-  refreshPageForServiceStart(11,40,1);
-}
+refreshPageForServiceStart(8,25,1);
+refreshPageForServiceStart(9,55,1);
+refreshPageForServiceStart(11,40,1);

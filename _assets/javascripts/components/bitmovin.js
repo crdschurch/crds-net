@@ -61,7 +61,7 @@ class BitmovinManager {
               .pop()
               .split(";")
               .shift();
-          const hasSound = noSound.indexOf(window.location.pathname) < 1;
+          const hasSound = !this.isCard;
           request.url = `${request.url}?source=web&product=crds-net&hasSound=${hasSound}&session=${sessionId}`;
           return Promise.resolve(request);
         }
