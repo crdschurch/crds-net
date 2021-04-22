@@ -10,11 +10,12 @@ layout: default
 <!-- Resi Player -->
 {% include _resi-player.html %}
 
+
 <!-- Featured Section -->
 {% if page.featured_section.size > 0 %}
-  <div class="overflow-hidden">
-    {{ page.featured_section }}
-  </div>
+<div class="overflow-hidden">
+  {{ page.featured_section }}
+</div>
 {% endif %}
 
 <!-- Jumbotron section -->
@@ -34,18 +35,191 @@ layout: default
         </div>
       </div>
     </div>
+
     <div class="row location-info-row">
       {% include _location-info.html %}
     </div>
   </div>
 </section>
 
-<!-- Featured Section - Below Jumbotron -->
-{% if page.featured_below.size > 0 %}
-  {{ page.featured_below }}
-{% endif %}
+<section>
+  <div class="container">
+    <div class="row soft-half">
+      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students"]' mobile-dropdown>
 
+        <!-- Events & Updates -->
+        <div slot="tab-events-updates" class="push-ends">
+          <div class="row">
+            <!-- Featured Section - Below Jumbotron-->
+            {% if page.featured_below.size > 0 %}
+            <div class="col-sm-12 push-bottom">
+              {{ page.featured_below }}
+            </div>
+            {% endif %}
 
+            <div class="col-sm-8 push-bottom soft-bottom">
+              <a href="{{ series.url }}" title="{{ series.title }}">
+                <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720&fit=crop" size="card"></crds-image>
+              </a>
+              <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Series</strong></p>
+              <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
+              <div class="push-half-top push-bottom font-size-small text-gray-dark">
+                {{ series.description | markdownify }}
+              </div>
+              <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series"
+                color="orange"></crds-button>
+            </div>
+            <div class="col-sm-4 push-bottom soft-bottom">
+              <crds-site-happenings-locations location="{{ page.title }}"></crds-site-happenings-locations>
+            </div>
+          </div>
+        </div>
+
+        <!-- Community Pastor -->
+        <div slot="tab-community-pastor" class="push-ends">
+          <div class="row align-items-center df-screen-sm">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" />
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>Community pastor</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">{{ page.community_pastor_name }}</h2>
+              {{ page.community_pastor_bio | markdownify }}
+              <div class="soft-half-top">
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="facebook" icon-align="left" icon-color="blue" icon-size="16"
+                  text="Follow {{ pastor_full_name[0] }}"></crds-button>
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="instagram" icon-align="left" icon-color="blue" icon-size="16"
+                  text="Follow {{ pastor_full_name[0] }}"></crds-button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- About -->
+        <div slot="tab-about" class="push-ends">
+          <div class="row align-items-center df-screen-sm">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="{{ page.about_image.url | imgix: site.imgix }}" />
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">Crossroads {{ page.name }}</h2>
+              {{ page.description | markdownify }}
+              <div class="soft-half-top soft-bottom">
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="facebook" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
+                </crds-button>
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="instagram" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
+                </crds-button>
+              </div>
+              {{ page.additional_info | markdownify }}
+            </div>
+          </div>
+          <div class="row align-items-center df-screen-sm push-top soft-top">
+              <div class="col-sm-6 col-sm-push-6 push-bottom">
+                <img class="img-full-width" src="//crds-media.imgix.net/5rncjmfpKINMWhX4Bq905/71baf8dcc6bb28045ccf93cfe808365b/what-to-expect-gfx.jpg"/>
+              </div>
+              <div class="col-sm-6 col-sm-pull-6 push-bottom">
+                <p class="text-orange text-uppercase flush-bottom"><strong>New here?</strong></p>
+                <h2 class="section-header flush-ends soft-half-bottom">WHat to expect</h2>
+                <p>Expect to be challenged. Expect to disagree with some things. Expect to hear a lot about a God who
+                  loves you and pursues you. Expect unfiltered conversations & Biblical truth. Expect opportunities to
+                  make a difference & make real friends. (And free coffee. Unless you're joining elsewhere — then the
+                  coffee is up to you)</p>
+                <div class="soft-half-top soft-bottom">
+                  <crds-button href="/new-around-here" color="blue" display="outline" text="New around here">
+                  </crds-button>
+                  <crds-button href="/about" color="blue" display="outline" text="About us">
+                  </crds-button>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <!-- Kids and Students -->
+        <div slot="tab-kids-students" class="push-ends">
+          <div class="row align-items-center df-screen-sm">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="//crds-media.imgix.net/3SX7tTVQ0Wqi5WKRy5ikRd/cdc797e5c08a00d8031b4daef7ece443/crossroads-kids-club2.jpg"/>
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>They'll love this place</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">Kids' Club</h2>
+              <p>A fun learning environment designed especially for kids (birth through fifth grade). It’s free, totally
+                secure, and don't worry-we'll let you know if your child needs you at any point during the service.</p>
+              <em>{{ page.kids_club_hours | markdownify }}</em>
+              <div class="soft-half-top">
+                <crds-button href="/kids-club" color="blue" display="outline" text="More about Kids' Club">
+                </crds-button>
+              </div>
+            </div>
+          </div>
+          <div class="row push-top soft-top">
+            <div class="align-items-center df-screen-sm">
+              <div class="col-sm-6 col-sm-push-6 push-bottom">
+                <img class="img-full-width" src="//crds-media.imgix.net/2mMGJ0sK1MJU04ykA3ukil/625d4ef0c64ade1ff74697aa4cbd7841/student-ministry-graphic.png"/>
+              </div>
+              <div class="col-sm-6 col-sm-pull-6 push-bottom">
+                <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>
+                <h2 class="section-header flush-ends soft-half-bottom">Student ministry</h2>
+                <p>Middle School (grades 6-8) and High School (grades 9-12) students have a place to call their own.
+                  Students are challenged and encouraged through relevant teaching and fun events. Opportunities are
+                  provided for them to grow as they connect with God and with each other. </p>
+                <div class="soft-half-top soft-bottom">
+                  <crds-button href="/studentministry/" color="blue" display="outline"
+                    text="More about Student Ministry">
+                  </crds-button>
+                </div>
+                <div class="df-screen-sm">
+                  {{ page.student_ministry_hours | markdownify }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </crds-tabs>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="bg-tan-light bg-topo-50 bg-contain soft-ends">
+    <div class="container soft-ends push-ends">
+      <div class="row">
+        <div class="col-sm-6 push-ends">
+          <crds-portrait-card class="push-top" theme="condensed" lead="We're here to help" title="Community care"
+            image-src="//crds-media.imgix.net//5BkrjC9nopyuPGUNrMnQ10/c7b56fe779f5772230d1d14aa486d55d/community-care.png">
+            <p class="push-half-ends">Prayer requests, listening appointments, hospital visits, or questions about weddings or
+              funerals– we're here to help.</p>
+            <crds-button class="push-half-right" href="{{ page.care_link }}" color="white" text="Request care"></crds-button>
+          </crds-portrait-card>
+        </div>
+        <div class="col-sm-6 push-ends">
+          <crds-portrait-card theme="condensed" lead="News & events" title="Stay Up To Date"
+            image-src="//crds-media.imgix.net//2g8yKVrxSIiaMKBsmxCWFW/7e0f90537c00c3d0f0d793b0c1233b86/stay-up-to-date.png">
+            <p class="push-half-ends">We’ll keep you informed of new events, site changes, and all sorts of amazingly awesome
+              stuff.</p>
+            <crds-button class="push-half-right" data-target="#subscribeModalForm" data-toggle="modal" href="" color="white"
+              text="Sign up for our newsletter"></crds-button>
+          </crds-portrait-card>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="bg-orange soft">
+      <div class="container text-center soft push-ends">
+        <div class="row">
+          <h2 class="text-white text-uppercase font-family-condensed-extra">We'd love to connect with you</h2>
+          <p class="font-size-base text-blue">Whether you have questions about Crossroads, faith, life, we are here to
+            help.</p>
+          <crds-button color="blue" text="Chat with us" data-trigger="chat"></crds-button>
+        </div>
+      </div>
+    </div>
+</section>
 
 <!-- Modal -->
 <div aria-labelledby="Subscribe email form" class="modal fade" id="subscribeModalForm" role="dialog" tabindex="-1">
@@ -56,8 +230,7 @@ layout: default
       </div>
       <div class="modal-body text-left hard-bottom">
         <h4 class="font-family-condensed-extra text-uppercase soft-half-bottom text-blue">Stay in the know.
-          <br />Get
-          the latest Crossroads updates.</h4>
+          <br />Get the latest Crossroads updates.</h4>
         <div class="form" data-role="hsform">
           <!--[if lte IE 8]>
             <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>

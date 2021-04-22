@@ -4,6 +4,10 @@
   padding-top: 56.25%;
 }
 
+.bg-contain {
+  background-size: contain;
+}
+
 .text-gray {
   color: $cr-gray !important;
 }
