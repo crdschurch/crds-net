@@ -45,7 +45,7 @@ layout: default
 <section>
   <div class="container">
     <div class="row soft-half">
-      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students"]'>
+      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students"]' mobile-dropdown>
 
         <!-- Events & Updates -->
         <div slot="tab-events-updates" class="push-ends">
@@ -59,7 +59,7 @@ layout: default
 
             <div class="col-sm-8 push-bottom soft-bottom">
               <a href="{{ series.url }}" title="{{ series.title }}">
-                <img class="img-full-width" src="{{ series.image.url | imgix: site.imgix }}" alt="{{ series.title }}" />
+                <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720&fit=crop" size="card"></crds-image>
               </a>
               <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Series</strong></p>
               <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
@@ -101,7 +101,7 @@ layout: default
         <div slot="tab-about" class="push-ends">
           <div class="row align-items-center df-screen-sm">
             <div class="col-sm-6 push-bottom">
-              <img class="img-full-width" src="{{ page.about_image.url | imgix: site.imgix }}" data-optimize-img />
+              <img class="img-full-width" src="{{ page.about_image.url | imgix: site.imgix }}" />
             </div>
             <div class="col-sm-6 push-bottom">
               <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>
@@ -120,8 +120,7 @@ layout: default
           </div>
           <div class="row align-items-center df-screen-sm push-top soft-top">
               <div class="col-sm-6 col-sm-push-6 push-bottom">
-                <img class="img-full-width" src="//crds-media.imgix.net/5rncjmfpKINMWhX4Bq905/71baf8dcc6bb28045ccf93cfe808365b/what-to-expect-gfx.jpg"
-                  data-optimize-img />
+                <img class="img-full-width" src="//crds-media.imgix.net/5rncjmfpKINMWhX4Bq905/71baf8dcc6bb28045ccf93cfe808365b/what-to-expect-gfx.jpg"/>
               </div>
               <div class="col-sm-6 col-sm-pull-6 push-bottom">
                 <p class="text-orange text-uppercase flush-bottom"><strong>New here?</strong></p>
@@ -144,9 +143,7 @@ layout: default
         <div slot="tab-kids-students" class="push-ends">
           <div class="row align-items-center df-screen-sm">
             <div class="col-sm-6 push-bottom">
-              <img class="img-full-width"
-                src="//crds-media.imgix.net/3SX7tTVQ0Wqi5WKRy5ikRd/cdc797e5c08a00d8031b4daef7ece443/crossroads-kids-club2.jpg"
-                data-optimize-img />
+              <img class="img-full-width" src="//crds-media.imgix.net/3SX7tTVQ0Wqi5WKRy5ikRd/cdc797e5c08a00d8031b4daef7ece443/crossroads-kids-club2.jpg"/>
             </div>
             <div class="col-sm-6 push-bottom">
               <p class="text-orange text-uppercase flush-bottom"><strong>They'll love this place</strong></p>
@@ -163,8 +160,7 @@ layout: default
           <div class="row push-top soft-top">
             <div class="align-items-center df-screen-sm">
               <div class="col-sm-6 col-sm-push-6 push-bottom">
-                <img class="img-full-width" src="//crds-media.imgix.net/2mMGJ0sK1MJU04ykA3ukil/625d4ef0c64ade1ff74697aa4cbd7841/student-ministry-graphic.png"
-                  data-optimize-img />
+                <img class="img-full-width" src="//crds-media.imgix.net/2mMGJ0sK1MJU04ykA3ukil/625d4ef0c64ade1ff74697aa4cbd7841/student-ministry-graphic.png"/>
               </div>
               <div class="col-sm-6 col-sm-pull-6 push-bottom">
                 <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>
