@@ -49,6 +49,40 @@ layout: default
 {% endif %}
 
 
+<!-- Stay in touch -->
+<section class="bg-blue bg-topo bg-contain soft-ends">
+  <div class="container text-center">
+    <h3 class="component-header-box text-orange">Stay in touch</h3>
+    <p class="push-ends font-family-serif text-white font-size-large">Get all the details happening at Crossroads {{ page.name }}.</p>
+
+    <div class="soft-ends text-center">
+      {% if page.care_link %}
+      <crds-button class="push-half-right" href="{{ page.care_link }}" color="white" display="outline"
+        text="Request care"></crds-button>
+      {% endif %}
+      {% if page.hubspot_form_id %}
+      <crds-button class="push-half-right" data-target="#subscribeModalForm" data-toggle="modal" href="" color="white"
+        display="outline" text="Subscribe for updates"></crds-button>
+      {% endif %}
+      <crds-button class="push-half-right" href="//www.facebook.com/crsrds{{ page.slug | downcase }}" color="white"
+        display="outline" icon="facebook" icon-align="left" icon-color="white" icon-size="16" text="Follow"></crds-button>
+      <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="white" display="outline"
+        icon="instagram" icon-align="left" icon-color="white" icon-size="16" text="Follow"></crds-button>
+    </div>
+  </div>
+</section>
+
+<!-- Chat with us -->
+<section class="bg-orange soft">
+  <div class="container text-center push-ends">
+    <div class="row">
+      <h3 class="component-header-box text-white">We'd love to connect with you</h2>
+      <p class="font-size-large font-family-serif text-blue push-ends">Whether you have questions about Crossroads, faith, life, we are here to help.</p>
+      <crds-button color="blue" text="Chat with us" data-trigger="chat"></crds-button>
+    </div>
+  </div>
+</section>
+
 
 <!-- Modal -->
 <div aria-labelledby="Subscribe email form" class="modal fade" id="subscribeModalForm" role="dialog" tabindex="-1">
