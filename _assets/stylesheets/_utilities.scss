@@ -8,6 +8,10 @@
   background-size: contain;
 }
 
+.border-bottom-dashed {
+  border-bottom: 1px dashed $cr-gray-lighter;
+}
+
 .text-gray {
   color: $cr-gray !important;
 }

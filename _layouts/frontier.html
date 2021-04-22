@@ -43,11 +43,73 @@ layout: default
   </div>
 </section>
 
-<!-- Featured Section - Below Jumbotron -->
-{% if page.featured_below.size > 0 %}
-  {{ page.featured_below }}
-{% endif %}
+<!-- Tabs Section -->
+<section>
+  <div class="container">
+    <div class="text-center push-ends border-bottom-dashed ">
+      <h3 class="component-header-box text-orange">{{ page.name }}</h3>
+      <p class="push-ends soft-bottom font-family-serif font-size-large">Grow in community and make a positive impact in your city.</p>
+    </div>
+    <div>
+      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "care"]' mobile-dropdown>
+        <!-- Events & Updates -->
+        <div slot="tab-events-updates" class="push-ends">
+          <div class="row">
+            <!-- Featured Section - Below Jumbotron-->
+            {% if page.featured_below.size > 0 %}
+            <div class="col-sm-12 push-bottom">
+              {{ page.featured_below }}
+            </div>
+            {% endif %}
 
+            <div class="col-sm-8 push-bottom soft-bottom">
+              <a href="{{ series.url }}" title="{{ series.title }}">
+                <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720&fit=crop" size="card"></crds-image>
+              </a>
+              <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Series</strong></p>
+              <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
+              <div class="push-half-top push-bottom font-size-small text-gray-dark">
+                {{ series.description | markdownify }}
+              </div>
+              <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series"
+                color="orange"></crds-button>
+            </div>
+            <div class="col-sm-4 push-bottom soft-bottom">
+              <div class="bg-blue soft push-bottom">
+                <div class="soft-half-ends">
+                  <p class="font-family-base-bold font-size-smaller text-orange text-uppercase flush">Join in community</p>
+                  <h4 class="flush-top font-family-condensed-extra font-size-h3 text-uppercase text-white">Come hang out</h4>
+                  <crds-button href="{{ page.care_link }}" color="white" display="outline" text="View the calendar of events"></crds-button>
+                </div>
+              </div>
+              <crds-site-happenings-locations location="{{ page.title }}"></crds-site-happenings-locations>
+            </div>
+          </div>
+        </div>
+
+        <!-- Community Pastor -->
+        <div slot="tab-community-pastor" class="push-ends">
+          pastor
+        </div>
+
+        <!-- About -->
+        <div slot="tab-about" class="push-ends">
+          about
+        </div>
+
+        <!-- Kids and Students -->
+        <div slot="tab-kids-students" class="push-ends">
+          Kids
+        </div>
+
+        <!-- Care -->
+        <div slot="tab-care" class="push-ends">
+          care
+        </div>
+      </crds-tabs>
+    </div>
+  </div>
+</section>
 
 <!-- Stay in touch -->
 <section class="bg-blue bg-topo bg-contain soft-ends">
