@@ -101,7 +101,7 @@ layout: default
         <div slot="tab-about" class="push-ends">
           <div class="row align-items-center df-screen-sm">
             <div class="col-sm-6 push-bottom">
-              <img class="img-full-width" src="{{ page.about_image.url | imgix: site.imgix }}" />
+              <img class="img-full-width" src="{% if page.about_image.url %}{{ page.about_image.url | imgix: site.imgix }}{% else %}{{  site.default_image | imgix: site.imgix }}{% endif %}" />
             </div>
             <div class="col-sm-6 push-bottom">
               <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>
