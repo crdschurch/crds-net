@@ -5,10 +5,6 @@ $(document).ready(function(){
     $("#mobile-navbar").toggleClass("open");
   });
 
-  $("[data-chat-trigger]").click(function () {
-    FrontChat('show');
-  });
-
   var $myGroup = $("[data-menu-modal]");
   $myGroup.on('show.bs.collapse','.collapse', function() {
     $(this).show();

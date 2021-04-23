@@ -1,0 +1,38 @@
+.hoc-detail {
+  background-image:
+    linear-gradient(to bottom, rgba($cr-gray-darkest, 0), (rgba($cr-gray-darkest, 1))),
+    url('//crds-media.imgix.net/7CVgB969cgnxXXoN0fuFRd/33b417ec3222eeb7fd3444b7ddb92194/oh-the-power-jumbotron-background.jpg');
+  background-size: cover;
+
+  .hoc-frame {
+    left: 11px;
+    position: absolute;
+    top: -3px;
+    width: 234px;
+    z-index: 8;
+  }
+
+  .hoc-detail-img-container {
+    height: 225px;
+    width: 225px;
+
+    img {
+      height: 100%;
+      max-height: 222px;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
+  .hoc-detail-jumbotron-content {
+    p {
+      text-align: left;
+    }
+  }
+
+  .hoc-detail-title {
+    font-size: 90px;
+    font-weight: 500;
+    text-align: left;
+  }
+}
