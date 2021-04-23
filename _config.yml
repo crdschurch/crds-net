@@ -58,7 +58,7 @@ collections:
     output: true
     permalink: /media/articles/:title
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
-    humans_of_crossroads:
+  humans_of_crossroads:
     output: true
     permalink: /media/humans-of-crossroads/:slug
   authors:
