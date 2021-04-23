@@ -28,6 +28,14 @@
   padding-top: 56.25%;
 }
 
+.bg-contain {
+  background-size: contain;
+}
+
+.border-bottom-dashed {
+  border-bottom: 1px dashed $cr-gray-lighter;
+}
+
 .font-size-smallest {
   font-size: 10px;
 }

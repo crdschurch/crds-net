@@ -7,29 +7,7 @@ layout: default
 {% assign series = site.series | last %}
 
 <!-- Resi Player -->
-{% assign locations_with_live_stream =  "oakley, florence, mason, eastside, westside, lexington, uptown" | split: ", "%}
-{% for location in locations_with_live_stream %}
-  {% if page.slug == location %}
-    <section class="bg-blue" id="resi-player">
-      <div class="container">
-        <div class="row text-center push-top">
-          <h2 class="flush-top font-family-condensed-extra font-size-h2 text-uppercase text-white">Welcome to Crossroads {{ page.name }}</h2>
-        </div>
-        <div class="row push-ends">
-          <div class="col-sm-10 col-sm-offset-1">
-            <div id="resi-video-player" data-embed-id="d3ebebe0-b605-48ab-a6e8-b9f3ef201b4e"></div>
-            <script type="application/javascript" src="https://control.resi.io/webplayer/loader.min.js" defer></script>
-          </div>
-        </div>
-        <div class="row text-center text-white push-bottom">
-          <p class="flush-bottom font-size-small text-uppercase">You're watching the</p>
-          <h3 class="flush-top font-family-condensed-extra font-size-h2 text-uppercase text-white">Crossroads Live Weekend</h3>
-          <a class="text-orange" href="javascript:void(0)" data-smooth-scroll-to="happenings" data-smooth-scroll-offset="50">View events & happenings at your location</a>
-        </div>
-      </div>
-    </section>
-  {% endif %}
-{% endfor %}
+{% include _resi-player.html %}
 
 <!-- Featured Section -->
 {% if page.featured_section.size > 0 %}
