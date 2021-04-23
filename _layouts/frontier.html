@@ -100,8 +100,11 @@ layout: default
               <a href="{{ series.url }}" title="{{ series.title }}">
                 <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720&fit=crop" size="card"></crds-image>
               </a>
-              <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Series</strong></p>
+              <div class="push-half-top">
+                <label class="label label-default bg-gray-lightest no-border-radius font-family-accent text-capitalize soft-half-sides soft-quarter-ends">Current Series</label>
+              </div>
               <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
+              <p class="font-family-base-bold text-gray-lighter">{{ series.starts_at | date: '%m.%d.%Y' }} &#8212; {{ series.ends_at | date: '%m.%d.%Y' }}</p>
               <div class="push-half-top push-bottom font-size-small text-gray-dark">
                 {{ series.description | markdownify }}
               </div>
@@ -123,22 +126,99 @@ layout: default
 
         <!-- Community Pastor -->
         <div slot="tab-community-pastor" class="push-ends">
-          pastor
+          <div class="row align-items-center df-screen-sm">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" />
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>Community pastor</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">{{ page.community_pastor_name }}</h2>
+              {{ page.community_pastor_bio | markdownify }}
+              <div class="soft-half-top">
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="facebook" icon-align="left" icon-color="blue" icon-size="16"
+                  text="Follow {{ pastor_full_name[0] }}"></crds-button>
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="instagram" icon-align="left" icon-color="blue" icon-size="16"
+                  text="Follow {{ pastor_full_name[0] }}"></crds-button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- About -->
         <div slot="tab-about" class="push-ends">
-          about
+          <div class="row align-items-center df-screen-sm">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="{% if page.about_image.url %}{{ page.about_image.url | imgix: site.imgix }}{% else %}{{  site.default_image | imgix: site.imgix }}{% endif %}" />
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">Crossroads {{ page.name }}</h2>
+              {{ page.description | markdownify }}
+              <div class="soft-half-top soft-bottom">
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="facebook" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
+                </crds-button>
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="instagram" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
+                </crds-button>
+              </div>
+              {{ page.additional_info | markdownify }}
+            </div>
+          </div>
+          <div class="row align-items-center df-screen-sm push-top soft-top">
+              <div class="col-sm-6 col-sm-push-6 push-bottom">
+                <img class="img-full-width" src="//crds-media.imgix.net/5rncjmfpKINMWhX4Bq905/71baf8dcc6bb28045ccf93cfe808365b/what-to-expect-gfx.jpg"/>
+              </div>
+              <div class="col-sm-6 col-sm-pull-6 push-bottom">
+                <p class="text-orange text-uppercase flush-bottom"><strong>More about Crossroads</strong></p>
+                <h2 class="section-header flush-ends soft-half-bottom">Adventure awaits</h2>
+                <p>Whatever your thoughts on church or your beliefs about God, you are welcome here. Expect to be challenged. Expect to disagree with some things. Expect to hear a lot about a God who loves you and pursues you. Expect unfiltered conversations & Biblical truth. Expect opportunities to make a difference & make real friends. (And when we meet in person, free coffee)</p>
+                <div class="soft-half-top soft-bottom">
+                  <crds-button href="/about" color="blue" display="outline" text="More About Us"></crds-button>
+                </div>
+              </div>
+          </div>
         </div>
 
         <!-- Kids and Students -->
         <div slot="tab-kids-students" class="push-ends">
-          Kids
+          <div class="row align-items-center df-screen-sm">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="//crds-media.imgix.net/3SX7tTVQ0Wqi5WKRy5ikRd/cdc797e5c08a00d8031b4daef7ece443/crossroads-kids-club2.jpg"/>
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>Kids' Club</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">We help kids get to know God.</h2>
+              <p>Your kids will love Kids’ Club! A fun learning environment designed especially for kids (birth through fifth grade). It’s free, totally secure, and don’t worry-we’ll let you know if your child needs you at any point during the service.</p>
+              <em>{{ page.kids_club_hours | markdownify }}</em>
+              <div class="soft-half-top">
+                <crds-button href="/kids-club" color="blue" display="outline" text="More about Kids' Club">
+                </crds-button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Care -->
         <div slot="tab-care" class="push-ends">
-          care
+          <div class="row align-items-center df-screen-sm">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="//crds-media.imgix.net/4XD7OHtkEqhaKBXrZJqQxx/fc62b5efdbda6dab941bbf8271b6819a/missional-conversations.jpg"/>
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>Community Care</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">You don’t have to do this on your own. Ask or for help.</h2>
+              <p>We’re not counselors, but our team is trained to listen, ask questions and help you find the support you need. Tell us what you are going through. You will be heard without judgement, and we will pray for you if you’d like. Appointments can be made and discussions had over the phone or through virtual media (Facetime, Zoom or Google Hangouts).</p>
+              <div class="soft-half-top">
+                {% if page.care_link %}
+                <crds-button class="push-half-right" href="{{ page.care_link }}" color="blue" display="outline"
+                  text="Request care"></crds-button>
+                {% endif %}
+              </div>
+            </div>
+          </div>
         </div>
       </crds-tabs>
     </div>
