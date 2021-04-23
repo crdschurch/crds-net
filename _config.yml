@@ -58,6 +58,9 @@ collections:
     output: true
     permalink: /media/articles/:title
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
+    humans_of_crossroads:
+    output: true
+    permalink: /media/humans-of-crossroads/:slug
   authors:
     output: true
     permalink: /media/:collection/:title
@@ -196,6 +199,12 @@ defaults:
       type: articles
     values:
       layout: article
+      snail_trail: media
+  - scope:
+      path: ""
+      type: humans_of_crossroads
+    values:
+      layout: humans-of-crossroads
       snail_trail: media
   - scope:
       path: ""
