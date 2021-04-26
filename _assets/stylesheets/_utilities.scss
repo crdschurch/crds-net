@@ -54,6 +54,10 @@
   color: $cr-orange-dark !important;
 }
 
+.text-gray-darker {
+  color: $cr-gray-darker !important;
+}
+
 a.hover-text-gray-lighter:hover * {
   color: $cr-gray-lighter;
 }

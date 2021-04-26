@@ -185,7 +185,7 @@ paginate:
             {% assign description = item.content | strip_newlines | markdownify %}
           {% endif %}
           <div class="col-md-6 media-card-skeleton push-bottom">
-            <crds-media-card heading='{{ item.title }}' icon-label='{{ item.duration | duration: format }}' image-src='{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}' url='{{ item | media_url }}' content-type='{{ item.content_type }}' data-optimize-img>
+            <crds-media-card heading='{{ item.title }}' icon-label='{{ item.duration | duration: format }}' image-src='{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}' url='{{ item | media_url }}' content-type='{{ item.content_type }}' truncate-length="null" data-optimize-img>
               <div class="font-size-small">
                 {{ description | strip_html | truncatewords: 25 }}
               </div>
@@ -288,6 +288,42 @@ paginate:
       </div>
       <div class="col-sm-6 portrait-card-skeleton-condensed push-bottom">
         <crds-portrait-card theme="condensed" href="{{ site.site_url }}/app" image-src="//crds-media.imgix.net/6CAprwzhiH5x2lOdYwP5N6/ac996756bc212dc48baede8c37891621/search-widget-crossroads-app.jpg" title="Connect with God & Pray with others" lead="Download the App"></crds-portrait-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Humans of Crossroads -->
+  <section class="container push-ends">
+    <div class="border-top flex-space-between flex-align-center">
+      <h3 class="font-family-serif font-size-small text-uppercase text-gray-dark flush soft-half-ends">Humans of Crossroads</h3>
+      <a class="font-size-smaller font-family-base-bold" href="/media/humans-of-crossroads">view all</a>
+    </div>
+
+    <div class="d-flex flex-column flex-md-row row">
+      <div class="col-md-9">
+        <div class="row">
+          {% for item in site.humans_of_crossroads limit: 2 %}
+  
+          {% if item.duration %}
+            {% assign format = 'short' %}
+          {% endif %}
+  
+          <div class="col-sm-6 media-card-skeleton push-bottom">
+            <crds-media-card heading='{{ item.title }}' icon-label='{{ item.duration | duration: format }}' image-src='{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}' url='/media/humans-of-crossroads/{{ item.slug }}' content-type='{{ item.content_type }}' category="Humans of Crossroads" truncate-length="null" data-optimize-img>
+              <div class="font-size-small">
+                {{ item.content | strip_html | strip_newlines | truncatewords: 25 }}
+              </div>
+            </crds-media-card>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="bg-orange bg-topo d-flex justify-content-center flex-column soft">
+          <h3 class="text-white font-family-condensed-extra text-uppercase">We want to hear your story</h3>
+          <p class="text-gray-darker">Incredible stories of how God is working in the lives of people around Crossroads.</p>
+          <crds-button text="Contact us" href="/contact" color="blue"></crds-button>
+        </div>
       </div>
     </div>
   </section>
