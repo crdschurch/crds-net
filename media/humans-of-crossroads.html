@@ -2,6 +2,10 @@
 layout: default_footer_flush
 snail_trail: disabled
 title: Humans of Crossroads
+paginate:
+  humans_of_crossroads:
+    per: 5
+    sort: date desc
 ---
 
 {% assign page_collection = site.collections | where: 'slug', '/humans-of-crossroads' | get_doc %}
@@ -30,22 +34,32 @@ title: Humans of Crossroads
 <section class="hoc-article-index soft-bottom"> 
   <div class="container">
     <div class="row">
-      <div class="col-sm-10 col-sm-offset-1">
-        {% for human in humans %}
-        <a href="{{ human.url }}" class="row d-block">
-          <div class="col-md-4 soft-bottom">
-            <img class="hoc-index-frame" alt="Humans of Crossroads Frame" src="//crds-media.imgix.net/2x1033SDblDgO5xghanyrg/3b1f78234778063c07e93106e61db295/HoC_Paper_05.png">
-            <div class="hoc-index-img">
-              <img alt="{{ human.title }}" src="{{ human.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img>
+      <div class="col-sm-10 col-sm-offset-1" data-page="humans_of_crossroads">
+        <div data-page-number="{{ page.humans_of_crossroads.page }}">
+          {% for item in page.humans_of_crossroads.docs %}
+          <a href="{{ item.slug }}" class="row d-block">
+            <div class="col-md-4 soft-bottom">
+              <img class="hoc-index-frame" alt="Humans of Crossroads Frame" src="//crds-media.imgix.net/2x1033SDblDgO5xghanyrg/3b1f78234778063c07e93106e61db295/HoC_Paper_05.png" />
+              <div class="hoc-index-img">
+                <img alt="{{ item.title }}" src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+              </div>
             </div>
-          </div>
             <div class="col-md-8 hoc-index-content mobile-soft-bottom">
-            <span class="hoc-collection-title text-uppercase soft-top push-top">Humans of Crossroads</span>
-            <h2 class="hoc-index-title font-family-condensed-extra text-white text-uppercase">{{ human.title }}</h2>
-            <p>{{ human.content | truncatewords: 50 }}</p>
-          </div>
-        </a>
-        {% endfor %}
+              <span class="hoc-collection-title text-uppercase soft-top push-top">Humans of Crossroads</span>
+              <h2 class="hoc-index-title font-family-condensed-extra text-white text-uppercase">{{ item.title }}</h2>
+              <p>{{ item.content | truncatewords: 50 | strip_html }}</p>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+
+        <div class="loading hide bg-gray-darkest">
+          {% include _preloader.html background="gray-darkest" %}
+        </div>
+
+        <div>
+          {% include _pagination.html collection="humans_of_crossroads" remote=true link_root="humans-of-crossroads" %}
+        </div>
       </div>
     </div>
   </div>
