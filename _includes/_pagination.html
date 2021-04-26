@@ -11,7 +11,7 @@
 
   {% if include.remote == true %}
   <div class="load-more">
-    <button class="btn btn-blue" data-role="load-more" data-paginate="{{ include.collection }}">Load more{{ include.label | prepend: ' ' }}</button>
+    <button class="btn {% if include.btn-type == 'white-outline' %}btn-white btn-outline{% else %}btn-blue{% endif %}" data-role="load-more" data-paginate="{{ include.collection }}">Load more{{ include.label | prepend: ' ' }}</button>
   </div>
   {% endif %}
 
