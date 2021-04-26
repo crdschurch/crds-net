@@ -9,7 +9,6 @@ paginate:
 ---
 
 {% assign page_collection = site.collections | where: 'slug', '/humans-of-crossroads' | get_doc %}
-{% assign humans = site.humans_of_crossroads %}
 
 {% for collection in page_collection %}
 <section class="humans-of-crossroads">
