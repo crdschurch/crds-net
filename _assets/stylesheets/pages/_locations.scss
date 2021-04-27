@@ -24,6 +24,22 @@
   }
 }
 
+.location-top-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (min-width: $screen-md) {
+    flex-direction: row;
+  }
+
+  .location-top-info-item {
+    @media (min-width: $screen-md) {
+      max-width: 33.3333%;
+    }
+  }
+}
+
 .location-info-btn-container {
   text-align: left;
 
