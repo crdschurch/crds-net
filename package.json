@@ -53,7 +53,6 @@
     "@netlify/cache-utils": "^1.0.7",
     "bitmovin-player": "8.1.0",
     "gulp-replace": "^1.0.0",
-    "replace-in-file": "^6.1.0",
-    "sal.js": "^0.8.4"
+    "replace-in-file": "^6.1.0"
   }
 }
