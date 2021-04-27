@@ -1,0 +1,21 @@
+---
+layout: default
+snail_trail: disabled
+---
+
+<section class="bg-blue bg-topo bg-contain soft-ends">
+  <div class="container text-white text-center soft-bottom">
+    <h1 class="font-family-condensed-extra text-uppercase text-white">Crossroads Timeline</h1>
+    <p class="font-family-serif">Time flies when your having fun. Check out what Crossroads has done over then years.</p>
+  </div>
+
+  <div class="container-fluid timeline push-ends soft-ends">
+    {% include timeline/_1994-spring2000.html %}
+
+    {% include timeline/_2001-2014.html %}
+    
+    {% include timeline/_2015-march2021.html %}
+  </div>
+</section>
+
+{% javascript_link_tag sal async %}
