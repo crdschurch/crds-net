@@ -2,21 +2,25 @@
   <div class="location-top-info-container">
 
     <div class="location-top-info-item text-left push-bottom location-info-divider">
-      <p class="flush font-family-base-bold font-size-small text-uppercase">Service Times</p>
+      <span class="flush font-family-base-bold font-size-small text-uppercase">Service Times</span>
       <p class="flush font-size-small">{{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}</p>
       <hr class="visible-xs">
     </div>
     <div class="location-top-info-item text-left push-bottom location-info-divider">
-      <p class="flush text-uppercase font-family-base-bold font-size-small">Address</p>
+      <span class="flush text-uppercase font-family-base-bold font-size-small">Address</span>
+      {% if page.address %}
       <p class="flush font-family-base font-size-small">{{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}</p>
       <a href="{{ page.map_url }}" class="text-orange" target="_blank">Get directions</a>
+      {% else %}
+      <p class="flush font-family-base font-size-small">Currently looking for new digs to house our ever-growing {{ page.name }} community.</p>
+      {% endif %}
       <hr class="visible-xs">
     </div>
     
     <div class="location-top-info-item text-left">
       <div class="align-items-center d-flex justify-content-between">
         <div class="push-right">
-          <p class="flush text-uppercase font-family-base-bold font-size-small">Leadership</p>
+          <span class="flush text-uppercase font-family-base-bold font-size-small">Leadership</span>
           <p class="flush font-family-base font-size-small">{{ page.community_pastor_name }}</p>
           <p class="flush font-family-base font-size-small">{{ page.name }} Community Pastor</p>
           {% assign pastor_full_name = page.community_pastor_name | split: " " %}

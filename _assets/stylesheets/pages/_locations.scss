@@ -18,8 +18,14 @@
   }
 
   > .bg-overlay {
-    @media (max-width: $screen-sm) {
-      background: none;
+    background-image: none;
+
+    @media (min-width: $screen-sm) {
+      background-image: linear-gradient(
+        to bottom,
+        rgba(23, 23, 23, 0),
+        $cr-black
+      );
     }
   }
 }
