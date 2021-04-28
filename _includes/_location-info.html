@@ -20,7 +20,7 @@
           <p class="flush font-family-base font-size-small">{{ page.community_pastor_name }}</p>
           <p class="flush font-family-base font-size-small">{{ page.name }} Community Pastor</p>
           {% assign pastor_full_name = page.community_pastor_name | split: " " %}
-          <a class="text-orange">More about {{ pastor_full_name[0] }}</a>
+          <a class="text-orange" href="#community-pastor">More about {{ pastor_full_name[0] }}</a>
         </div>
         <div>
           <img class="img-border img-circle img-size-4" src="{{ page.community_pastor_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
