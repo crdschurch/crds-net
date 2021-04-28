@@ -41,7 +41,7 @@
 
   .location-top-info-item {
     @media (min-width: $screen-md) {
-      max-width: 33.3333%;
+      max-width: 32%;
     }
   }
 }
@@ -81,5 +81,13 @@
   @media (min-width: $screen-sm) {
     background-color: unset;
     background-image: none;
+  }
+}
+
+.locations-pastor-img-container {
+  min-width: 64px;
+
+  .img-border {
+    border-color: $cr-gray-lightest;
   }
 }
