@@ -1,0 +1,27 @@
+{% if item.image.url %}
+  {% assign image = item.image.url %}
+{% else %}
+  {% assign image = page.image.url %}
+{% endif %}
+
+<div class="card">
+  <a class="relative block" href="{{ item | media_url }}" title="{{ item.title }}">
+    {% if item.duration > 0 %}
+    <div class="card-stamp text-white">
+      <span class="font-size-smallest soft-quarter-right">{{ item.duration | duration: "long" }}</span>
+    </div>
+    {% endif %}
+    {% assign recommended_collection=site.messages %}
+    {% include _video-player-card.html %}
+    <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}"
+      alt="{{ item.title }}" data-optimize-img>
+   </a>
+  <div class="card-block hard">
+    <h3 class="card-title font-size-smaller font-family-condensed push-half-top push-quarter-bottom">
+      {{ item.title }}
+    </h3>
+    {% if include.series != false %}
+    <p class="font-size-smaller text-gray push-quarter-top">{{ page.title }}</p>
+    {% endif %}
+  </div>
+</div>

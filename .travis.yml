@@ -11,6 +11,11 @@ cache:
   npm: true
   directories:
     - ~/.cache
+addons:
+  chrome: stable
+  apt:
+    packages:
+      - libgconf-2-4 #Needed to run Cypress if not already installed in dist
 install:
     - npm ci
 

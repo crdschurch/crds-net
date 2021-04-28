@@ -15,12 +15,30 @@
     text-decoration: none;
   }
 
+  &.small-cta-default {
+    min-height: 325px;
+    &.article-cta{
+      min-height: 250px;
+    }
+  }
+
   .portrait-card-content {
     padding: 25px 15px;
     text-align: left;
     text-decoration: none;
     width: 100%;
     z-index: 2;
+
+    &.hr{
+   &::before {
+      background-color: $cr-orange;
+      content: '';
+      display: block;
+      height: 2px;
+      margin-bottom: 5px;
+      width: 12px;
+    }
+  }
 
     .portrait-card-lead {
       color: $cr-orange;
@@ -43,4 +61,3 @@
     }
   }
 }
-

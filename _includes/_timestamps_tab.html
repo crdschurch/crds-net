@@ -1,0 +1,19 @@
+<table class="timestamps table">
+    <tbody>
+    {% for timestamp in page.timestamps %}
+        <tr>
+            <td>
+                <a href="javascript:CRDS.VideoManager.seekTo({{timestamp.minutes}}, {{timestamp.seconds}})" class="timestamp-play"></a>
+            </td>
+            <td>
+                <a href="javascript:CRDS.VideoManager.seekTo({{timestamp.minutes}}, {{timestamp.seconds}})">{{timestamp.description}}</a>
+            </td>
+            <td class="text-right">
+                <a href="javascript:CRDS.VideoManager.seekTo({{timestamp.minutes}}, {{timestamp.seconds}})">
+                    {{timestamp.minutes}}:{% if timestamp.seconds < 10 %}0{% endif %}{{timestamp.seconds}}
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

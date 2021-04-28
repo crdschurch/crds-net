@@ -1,0 +1,25 @@
+{% assign item = site.messages | last %}
+{% assign latest_series = site.series | last %}
+<div class="embed-container position-relative">
+	<a href="{{ item | media_url }}" data-automation-id="message-video">
+		<div class="media-video">
+			<img class="media-img full-width"
+				src="{{ item.image.url | imgix: site.imgix }}?auto=format,compress&w=750&h=422&fit=crop"
+				sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+			{% include media-homepage/_video-player-card.html autoplay=true thumbnail=true %}
+		</div>
+	</a>
+</div>
+
+<h3 class="flush font-family-condensed-extra font-size-h5 soft-half-ends text-gray-dark text-uppercase">
+	{{ item.title }}
+</h3>
+<p class="font-size-smaller font-family-base-bold text-uppercase">
+	Series: <a class="text-gray-dark" href="{{ latest_series.url }}">{{ latest_series.title }}</a>
+</p>
+
+<div>
+	<a href="{{ item | media_url }}" class="btn latest-message-btn btn-orange btn-block-mobile" type="button">
+		Watch now
+	</a>
+</div>

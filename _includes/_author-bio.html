@@ -1,0 +1,18 @@
+<div class="media media-author push-bottom">
+  <div class="media-img-wrapper">
+    <a href="{{ author.url }}" data-author-link>
+      <img data-author-img src="{{ author.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" class="img-circle img-size-5" sizes="{{ site.image_sizes.avatar }}" data-optimize-img>
+    </a>
+  </div>
+  <div class="media-body">
+    <a href="{{ author.url }}" data-author-link>
+      <h2 class="component-header push-quarter-ends" data-author-name>{{ author.full_name }}</h2>
+      {% if page.title == "Preview" %}
+        <p data-author-bio></p>
+      {% else %}
+        <span class="markdown">{{ author.summary | markdownify }}</span>
+      {% endif %}
+    </a>
+    {% include _author-social.html %}
+  </div>
+</div>

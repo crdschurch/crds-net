@@ -1,0 +1,10 @@
+{% if topic %}
+<p class="flush-bottom soft-top">
+  <strong>Topic</strong>
+</p>
+<ul class="list-inline">
+  <li>
+    <a data-grouping-media-topic="{{ topic.title | downcase }}" href="{{ topic.url }}">{{ topic.title }}</a>
+  </li>
+</ul>
+{% endif %}

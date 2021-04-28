@@ -1,0 +1,242 @@
+.topics-detail-tpl {
+  > header {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 200px;
+    padding-bottom: 100px;
+    position: relative;
+
+    &:not(.imgix-optimizing)::after {
+      background-image: linear-gradient(to bottom, rgba(23, 23, 23, 0), rgba(23, 23, 23, 0) 0%, #151515 90px);
+      bottom: 0;
+      content: '';
+      height: 90px;
+      position: absolute;
+      width: 100%;
+    }
+
+    div:first-child {
+      position: relative;
+      z-index: 1;
+    }
+
+    .description {
+      padding-bottom: 20px;
+
+      p:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .featured-media {
+    // This color is custom to specifically match the background of the topic image shadow.
+    background: #151515;
+    padding-bottom: 15px;
+    margin-top: -75px;
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+
+  .featured-media-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+
+    > div {
+      margin-bottom: 30px;
+
+      a:focus {
+        text-decoration: none;
+      }
+    }
+
+    .image {
+      position: relative;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .topic {
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.7;
+      color: $cr-gray-light;
+    }
+
+    .title {
+      color: $cr-white;
+      font-family: $condensed-extra-font-face;
+      text-transform: uppercase;
+    }
+
+    .credit {
+      font-size: 13px;
+      color: $cr-gray;
+    }
+  }
+
+  .subtopic-layout {
+    // By setting a top/bottom margin on the subtopics, it will ensure the design doesn't have wide gaps if promos aren't included. The margins will simply collapse if subtopic includes are stacked upon each other.
+    margin-top: -45px;
+    margin-bottom: 45px;
+
+    > header {
+      border-top: 2px solid lighten($cr-gray-light, 24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 0;
+
+      h5 {
+        text-transform: lowercase;
+        color: $cr-gray-light;
+      }
+    }
+
+    aside,
+    main {
+      .list-card {
+        border-top: 1px solid lighten($cr-gray-light, 24);
+        display: block;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-top: 18px;
+        padding-bottom: 18px;
+
+        &:hover,
+        &:focus {
+          text-decoration: none;
+        }
+
+        .image {
+          float: right;
+          margin-left: 18px;
+          margin-bottom: 18px;
+          position: relative;
+          width: 140px;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .title {
+          color: $cr-gray-dark;
+          font-family: $condensed-extra-font-face;
+          font-size: 26px;
+          font-weight: 500;
+          line-height: 0.9;
+          text-transform: uppercase;
+        }
+
+        .content {
+          color: $cr-gray-dark;
+          font-size: 13px;
+          line-height: 1.4;
+        }
+
+        .credit {
+          color: $cr-gray-light;
+          font-size: 13px;
+        }
+      }
+    }
+
+    main {
+      .feature-sub {
+        a {
+          text-decoration: none;
+        }
+
+        .topic {
+          display: none;
+        }
+
+        .title {
+          margin-top: 0;
+        }
+      }
+    }
+
+    aside {
+      .list-card:last-of-type {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  @media screen and (min-width: $screen-sm) {
+    .featured-media-grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-column-gap: 1rem;
+    }
+  }
+
+  @media screen and (min-width: $screen-md) {
+    .subtopic-layout {
+      margin-top: 60px;
+      margin-bottom: 60px;
+
+      main {
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1rem;
+
+        .feature-main {
+          grid-column-start: 1;
+          grid-column-end: 3;
+        }
+
+        .feature-sub {
+          .list-card {
+            border-top: none;
+            padding-top: 0;
+          }
+
+          .image {
+            display: block;
+            float: none;
+            margin: 0;
+            width: 100%;
+          }
+
+          .topic {
+            color: $cr-gray;
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1.7;
+            margin-bottom: 0;
+            padding-top: 8px;
+            text-transform: uppercase;
+          }
+
+          .title {
+            font-size: 38px;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-bottom: 8px;
+          }
+
+          .content {
+            display: none;
+          }
+        }
+      }
+
+      aside {
+        .list-card:first-of-type {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}

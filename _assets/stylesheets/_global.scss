@@ -1,0 +1,46 @@
+.jumbotron--tall {
+  @media (min-width: 767px) {
+    padding-bottom: 280px;
+  }
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.collection-header {
+  border-top-width: 2px;
+  font-size: 1.4rem;
+}
+
+.media-title {
+  color: $cr-white;
+  font-family: $condensed-extra-font-face;
+  font-size: 4rem;
+  line-height: 0.9;
+  text-transform: uppercase;
+
+  @media screen and (min-width: $screen-sm) {
+    font-size: 5.625rem;
+  }
+}
+
+.alert {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  &.show {
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+}
+
+hr.hero {
+  width: 31px;
+  height: 3px;
+  color: rgba($cr-white, 0.6);
+  margin-left: 0;
+}

@@ -1,0 +1,16 @@
+{% assign author_full_name = item.full_name | split: " " %}
+
+<div class="push-half-top">
+  <div class="flex-align-center">
+    <div>
+      <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" class="img-circle img-size-5" sizes="{{ site.image_sizes.avatar }}" data-optimize-img>
+    </div>
+    <div class="push-left">
+      <p class="flush-bottom font-family-base-mid media-author-card-title">{{ author_full_name | join: "<br />" }}</p>
+      <a href="{{ item | media_url }}" class="font-family-base-mid font-size-smaller font-family-base-bold text-orange-dark">View articles</a>
+    </div>
+  </div>
+  <div class="push-half-top">
+    <p class="font-size-smaller">{{ item.summary | strip_html | truncate: 150 }}</p>
+  </div>
+</div>

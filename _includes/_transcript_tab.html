@@ -1,0 +1,12 @@
+<div class="push-half-top">
+  <div class="transcript-tab">
+    <ul>
+    {% for transcript in page.transcription.body %}
+      <li>
+        <div>{{ transcript[0] }}</div>
+        <div>{{ transcript[1] }}</div>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+</div>

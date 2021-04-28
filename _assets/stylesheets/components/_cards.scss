@@ -1,3 +1,7 @@
+.card-stamp {
+  z-index: 3;
+}
+
 .card-deck--expanded-layout .card {
   flex-basis: 270px;
 }
@@ -16,7 +20,6 @@
 // Added from Media
 .card-deck--expanded-layout {
   .card {
-    cursor: pointer;
     margin-bottom: 1.5rem;
 
     &.card-2x {
@@ -94,6 +97,7 @@
 // Fix for fading placeholder images in
 .card-title--overlap {
   position: relative;
+  z-index: 1;
 }
 
 .card {
@@ -160,6 +164,12 @@
   .overlay-card-link:hover {
     color: initial;
     text-decoration: none;
+  }
+
+  // fixes an issue where subtitles were under overlay
+  // remove after deploy of crds-styles is complete
+.overlay-card .card-video-player {
+    z-index: 0 !important;
   }
 
   .overlay-card-content {

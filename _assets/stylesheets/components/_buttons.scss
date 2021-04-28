@@ -1,0 +1,17 @@
+.btn-subscribe {
+  @media (max-width: $screen-xs) {
+    max-width: unset;
+  }
+
+  max-width: 250px;
+}
+
+.btn-text {
+  min-width: 148px;
+}
+
+.btn-block {
+  .btn-text {
+    min-width: unset;
+  }
+}

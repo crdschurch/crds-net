@@ -1,0 +1,47 @@
+table.timestamps {
+  a {
+    color: $cr-gray-light;
+    text-decoration: none;
+  }
+
+  tr:hover {
+    a {
+      color: $cr-blue;
+    }
+
+    .timestamp-play {
+      display: block;
+    }
+  }
+
+  tbody>tr:first-child>td {
+    border-top: none;
+  }
+
+  tbody>tr:last-child>td {
+    border-bottom: 1px solid #cacaca;
+  }
+
+  td {
+    position: relative;
+
+    &:first-child {
+      width: 24px;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  .timestamp-play {
+    display: none;
+    position: absolute;
+    top: calc(50% - 5px);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 0 5px 8.8px;
+    border-color: transparent transparent transparent #0094d9;
+  }
+}

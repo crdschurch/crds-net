@@ -1,0 +1,30 @@
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+  {% for tab in include.tabs %}
+    {% if page[tab] != blank %}
+    <li role="presentation"><a href="#{{tab}}" aria-controls="{{tab}}" role="tab" data-toggle="tab">
+      {% if include.names[forloop.index0] %}
+        {{ include.names[forloop.index0] }}
+      {% else %}
+        {{ tab | capitalize | replace: "_", " " }}
+      {% endif %}
+    </a></li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+
+  <div class="tab-content">
+  {% for tab in include.tabs %}
+    <div role="tabpanel" class="tab-pane soft-bottom" id="{{tab}}">
+      {% if include.templates[forloop.index0] and include.templates[forloop.index0] != 'none' %}
+        {% assign template = include.templates[forloop.index0] %}
+        {% include {{ template }} %}
+      {% else %}
+        <div class="soft-top">
+          {{ page[tab] | markdownify }}
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+  </div>
+</div>

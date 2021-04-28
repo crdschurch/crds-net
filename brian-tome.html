@@ -2,7 +2,6 @@
 layout: default
 ---
 
-{% include header.html %}
 <section class="bg-blue">
   <div class="container-fluid bg-topo">
     <div class="row df-screen-md">
@@ -94,14 +93,14 @@ layout: default
         </h2>
         {% assign bt_articles = site.articles | where: 'author.full_name' , "Brian Tome" | reverse | slice: 0 %}
         {% for item in bt_articles %}
-        {% include media/_media-card.html %}
+        {% include _media-card.html %}
         {% endfor %}
 
         <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
           <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
             {% assign bt_articles_carousel = site.articles | where: 'author.full_name' , "Brian Tome" | reverse | slice: 1, 2 %}
             {% for item in bt_articles_carousel %}
-            {% include media/_media-card.html carousel = true %}
+            {% include _media-card.html carousel = true %}
             {% endfor %}
           </div>
         </div>
@@ -115,7 +114,7 @@ layout: default
           podcast
         </h2>
         {% assign featured = site.podcasts | where: 'title', 'The Aggressive Life with Brian Tome' | first %}
-        {% include media/_media-object-featured.html media_type="podcast" %}
+        {% include _media-object-featured.html media_type="podcast" %}
         <hr class="flush-top push-half-bottom" />
         <h2 class="text-uppercase font-family-serif font-size-base font-size-small text-gray-light flush-top">
           latest episodes
@@ -123,7 +122,7 @@ layout: default
         {% assign bt_episodes = site.episodes | where: 'podcast.title', 'The Aggressive Life with Brian Tome' | reverse | slice: 0, 2 %}
         {% for media in bt_episodes %}
         <hr class="flush-top push-half-bottom" />
-        {% include media/_media-object.html media_type="episode" %}
+        {% include _media-object.html media_type="episode" %}
         {% endfor %}
         <div class="push-ends">
           <crds-button color="orange" text="View all episodes"
@@ -163,8 +162,6 @@ layout: default
     </div>
   </div>
 </section>
-
-  {% include footer.html %}
 
 <!--[if lte IE 8]>
   <script

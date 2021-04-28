@@ -1,4 +1,5 @@
 require 'pry'
+require 'rspec'
 require 'vcr'
 require 'csv'
 require 'jekyll'
@@ -6,14 +7,20 @@ require 'colorize'
 require 'utils/html_util'
 require 'utils/meta_util'
 require 'crds/redirects'
+require 'jekyll-crds'
+require 'jekyll-placeholders'
+require 'article-tags'
+require 'video-tags'
 require 'crds/jekyll_pages'
 require 'crds/onsite_groups'
 
 Dir['./spec/support/**/*.rb'].each { |f| require f }
 
+require_relative './support/jekyll_helper'
 VCR.configure do |config|
   config.cassette_library_dir = "spec/vcr"
   config.hook_into :webmock
+  config.ignore_request {|request| request.uri == 'https://use.typekit.net/gir0nnu.css' }
 end
 
 

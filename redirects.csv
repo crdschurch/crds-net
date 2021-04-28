@@ -48,7 +48,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /studentcamps*,https://${env:CRDS_ANGULAR_ENDPOINT}/mycamps:splat,200!
 /camps/:campId/*,https://${env:CRDS_ANGULAR_ENDPOINT}/camps/:campId/,200!
 /childcare/*,https://${env:CRDS_CHILDCARE_ENDPOINT}/:splat,200!
-/corkboard*,https://${env:CRDS_ANGULAR_ENDPOINT}/corkboard:splat,200!
+/corkboard*,https://${env:CRDS_CORKBOARD_ENDPOINT}/:splat,200!
 /invoices/*,https://${env:CRDS_INVOICES}/:splat,200!
 /undivided/*,https://undivided.com,301!
 /mptools/*,https://${env:CRDS_ANGULAR_ENDPOINT}/mptools/:splat,200!
@@ -56,10 +56,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /profile/*,https://${env:CRDS_PROFILE_ENDPOINT}/:splat,200! Role=user
 /profile/*,/signin?redirectUrl=/profile/:splat,302!
 /signout,https://${env:CRDS_ANGULAR_ENDPOINT}/signout,200!
-/register,/,301! Role=user
-/register,https://${env:CRDS_ANGULAR_ENDPOINT}/register,200!
-/forgot-password,https://${env:CRDS_ANGULAR_ENDPOINT}/forgot-password,200!
-/reset-password*,https://${env:CRDS_ANGULAR_ENDPOINT}/reset-password:splat,200!
+/signin/reset-password/*,/reset-password-okta?token=:splat,302!
 /impersonate,https://${env:CRDS_ANGULAR_ENDPOINT}/impersonate,200!
 /volunteer-sign-up,/404.html,404!
 /volunteer-sign-up/*,/volunteer,301!
@@ -76,21 +73,21 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /series/* autoPlay=:autoPlay,/media/series/:splat?autoPlay=:autoPlay,302!
 /series/* sound=:sound,/media/series/:splat?sound=:sound,302!
 /series/*,/media/series/:splat,302!
-/media/articles/filters//page/10,https://${env:CRDS_MEDIA_ENDPOINT}/articles/page/10,301!
-/media/articles/filters//page/2,https://${env:CRDS_MEDIA_ENDPOINT}/articles/page/2,301!
-/media/articles/filters//page/4,https://${env:CRDS_MEDIA_ENDPOINT}/articles/page/4,301!
-/media/articles/filters//page/5,https://${env:CRDS_MEDIA_ENDPOINT}/articles/page/5,301!
-/media/articles/filters//page/6,https://${env:CRDS_MEDIA_ENDPOINT}/articles/page/6,301!
-/media/articles/filters//page/7,https://${env:CRDS_MEDIA_ENDPOINT}/articles/page/7,301!
-/media/articles/filters//page/8,https://${env:CRDS_MEDIA_ENDPOINT}/articles/page/8,301!
-/media/articles/filters//page/9,https://${env:CRDS_MEDIA_ENDPOINT}/articles/page/9,301!
-/media/articles/filters//page/12,https://${env:CRDS_MEDIA_ENDPOINT}/articles/page/12,301!
-/media/articles/filters//page/13,https://${env:CRDS_MEDIA_ENDPOINT}/articles/page/13,301!
-/media/articles/filters//page/14,https://${env:CRDS_MEDIA_ENDPOINT}/articles/page/14,301!
-/media/articles/filters//page/15,https://${env:CRDS_MEDIA_ENDPOINT}/articles/page/15,301!
-/media/articles/filters/+,https://${env:CRDS_MEDIA_ENDPOINT}/articles/,301!
-/media/articles/filters/+/page/2,https://${env:CRDS_MEDIA_ENDPOINT}/articles/page/2,301!
-/media/articles/filters/+/page/3,https://${env:CRDS_MEDIA_ENDPOINT}/articles/page/3,301!
+/media/articles/filters//page/10,/media/articles/page/10,301!
+/media/articles/filters//page/2,/media/articles/page/2,301!
+/media/articles/filters//page/4,/media/articles/page/4,301!
+/media/articles/filters//page/5,/media/articles/page/5,301!
+/media/articles/filters//page/6,/media/articles/page/6,301!
+/media/articles/filters//page/7,/media/articles/page/7,301!
+/media/articles/filters//page/8,/media/articles/page/8,301!
+/media/articles/filters//page/9,/media/articles/page/9,301!
+/media/articles/filters//page/12,/media/articles/page/12,301!
+/media/articles/filters//page/13,/media/articles/page/13,301!
+/media/articles/filters//page/14,/media/articles/page/14,301!
+/media/articles/filters//page/15,/media/articles/page/15,301!
+/media/articles/filters/+,/media/articles/,301!
+/media/articles/filters/+/page/2,/media/articles/page/2,301!
+/media/articles/filters/+/page/3,/media/articles/page/3,301!
 /articles/*,/media/articles/:splat,301!
 /podcasts/*,/media/podcasts/:splat,302!
 /videos/*,/media/videos/:splat,302!
@@ -99,8 +96,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /topics/*,/media/topics/:splat,302!
 /authors/*,/media/authors/:splat,302!
 /songs/*,/media/songs/:splat,302!
-/oktasignin*,https://${env:CRDS_OKTA_SIGNIN_ENDPOINT}:splat,200!
-/signin/*,https://${env:CRDS_ANGULAR_ENDPOINT}/signin/:splat,200!
 /event-checkin/*,https://${env:CRDS_EVENT_CHECKIN_ENDPOINT}/:splat,200!
 /media/music/,${env:CRDS_MUSIC_ENDPOINT},301!
 /music/,${env:CRDS_MUSIC_ENDPOINT},301!
@@ -139,8 +134,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /media/songs/be-thou-my-vision,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/be-thou-my-vision,301!
 /media/songs/listen,${env:CRDS_MUSIC_ENDPOINT}/music/whatever-pleases-you/listen,301!
 /media/songs/*,${env:CRDS_MUSIC_ENDPOINT}/:splat,302!
-/media/shows,https://crds-media.netlify.app/shows,200!
-/media/*,https://${env:CRDS_MEDIA_ENDPOINT}/:splat,200!
 /onsitegroups,/groups/onsite,301!
 /groups/onsite/:group/anywhere,/groups/onsite/:group/online,301!
 /groups/home,/connect/?refinementList%5BgroupType%5D%5B0%5D=At%20Home,301!
@@ -194,6 +187,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /groups/onsite,/groups/site-based,301!
 /groups/onsite/*,/groups/site-based/:splat,301!
 /care/communitycare,/care,301!
-/adventure,https://${env:CRDS_MEDIA_ENDPOINT}/series/the-adventurous-life,301!
+/adventure,/series/the-adventurous-life,301!
 /weeklyworship,/reopen,301!
 /*,/404.html,404

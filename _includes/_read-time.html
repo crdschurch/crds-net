@@ -1,0 +1,8 @@
+{% if include.duration %}
+  {% if include.content_type == 'article' %}
+    {% assign format = 'short' %}
+  {% else %}
+    {% assign format = 'long' %}
+  {% endif %}
+  <span class="read-time push-quarter-ends">{{ include.duration | duration: format }}</span>
+{% endif %}
