@@ -67,7 +67,7 @@ layout: default
           <crds-portrait-card theme="condensed" lead="Join us" title="Help launch the future"
           image-src="//crds-media.imgix.net/1IzQq01XGZAtULMc8Zf9cc/2319ef5827e77deb759aac6241175149/launch-team-sign-up-image.png">
             <p class="push-half-ends">Crossroads is a growing community that needs leaders and doers. Join our team and help build the church you want to belong to.</p>
-            <crds-button class="push-half-right" data-target="#subscribeModalForm" data-toggle="modal" href="" color="white"
+            <crds-button class="push-half-right" data-target="#launchModalForm" data-toggle="modal" href="" color="white"
               text="Sign up"></crds-button>
           </crds-portrait-card>
         </div>
@@ -156,7 +156,7 @@ layout: default
               <h2 class="section-header flush-ends soft-half-bottom">Crossroads {{ page.name }}</h2>
               {{ page.description | markdownify }}
               <div class="soft-half-top soft-bottom">
-                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                <crds-button href="//www.facebook.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
                   icon="facebook" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
                 </crds-button>
                 <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
@@ -209,7 +209,8 @@ layout: default
             <div class="col-sm-6 push-bottom">
               <p class="text-orange text-uppercase flush-bottom"><strong>Community Care</strong></p>
               <h2 class="section-header flush-ends soft-half-bottom">You don’t have to do this on your own. Ask or for help.</h2>
-              <p>We’re not counselors, but our team is trained to listen, ask questions and help you find the support you need. Tell us what you are going through. You will be heard without judgement, and we will pray for you if you’d like. Appointments can be made and discussions had over the phone or through virtual media (Facetime, Zoom or Google Hangouts).</p>
+              <p class="flush">We’re not counselors, but our team is trained to listen, ask questions and help you find the support you need. Tell us what you are going through. You will be heard without judgement, and we will pray for you if you’d like. Appointments can be made and discussions had over the phone or through virtual media (Facetime, Zoom or Google Hangouts).</p>
+              <p>From prayer requests, listening appointments, hospital visits, or questions about weddings or funerals– we're here to help.</p>
               <div class="soft-half-top">
                 {% if page.care_link %}
                 <crds-button class="push-half-right" href="{{ page.care_link }}" color="blue" display="outline"
@@ -306,4 +307,4 @@ layout: default
   });
 </script>
 
-{% include footer.html %}
+{% include _frontier-launch-team-modal.html %}

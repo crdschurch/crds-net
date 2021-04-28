@@ -2,12 +2,12 @@
   <div class="location-top-info-container">
 
     <div class="location-top-info-item text-left push-bottom location-info-divider">
-      <span class="flush font-family-base-bold font-size-small text-uppercase">Service Times</span>
+      <span class="flush font-family-base-bold font-size-smaller text-uppercase">Service Times</span>
       <p class="flush font-size-small">{{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}</p>
       <hr class="visible-xs">
     </div>
     <div class="location-top-info-item text-left push-bottom location-info-divider">
-      <span class="flush text-uppercase font-family-base-bold font-size-small">Address</span>
+      <span class="flush text-uppercase font-family-base-bold font-size-smaller">Address</span>
       {% if page.address %}
       <p class="flush font-family-base font-size-small">{{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}</p>
       <a href="{{ page.map_url }}" class="text-orange" target="_blank">Get directions</a>
@@ -20,13 +20,13 @@
     <div class="location-top-info-item text-left">
       <div class="align-items-center d-flex justify-content-between">
         <div class="push-right">
-          <span class="flush text-uppercase font-family-base-bold font-size-small">Leadership</span>
+          <span class="flush text-uppercase font-family-base-bold font-size-smaller">Leadership</span>
           <p class="flush font-family-base font-size-small">{{ page.community_pastor_name }}</p>
           <p class="flush font-family-base font-size-small">{{ page.name }} Community Pastor</p>
           {% assign pastor_full_name = page.community_pastor_name | split: " " %}
           <a class="text-orange" href="#community-pastor">More about {{ pastor_full_name[0] }}</a>
         </div>
-        <div>
+        <div class="locations-pastor-img-container">
           <img class="img-border img-circle img-size-4" src="{{ page.community_pastor_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
           sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
         </div>
@@ -35,7 +35,7 @@
     </div>
   </div>
   {% if page.layout == "established" %}
-  <div class="col-sm-12 soft-ends location-info-btn-container">
+  <div class="soft-ends location-info-btn-container">
     {% if page.care_link %}
     <crds-button class="push-half-right" href="{{ page.care_link }}" color="white" display="outline"
       text="Request care"></crds-button>
