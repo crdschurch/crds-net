@@ -9,7 +9,7 @@ title: Humans of Crossroads
         <div class="col-sm-6 col-sm-offset-1 text-left">
           <img class="hoc-frame" alt="Humans of Crossroads Frame" src="//crds-media.imgix.net/2x1033SDblDgO5xghanyrg/3b1f78234778063c07e93106e61db295/HoC_Paper_05.png" />
           <div class="hoc-detail-img-container push-bottom">
-            <img alt="{{ page.title }}" src="{{ page.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+            <img alt="{{ page.title }}" src="{{ page.image.url | imgix: site.imgix }}?fit=facearea&facepad=10&w=222&h=222" data-optimize-img />
           </div>
           <ol class="breadcrumb text-white hard-sides">
             <li><a href="/media">Media</a></li>
@@ -30,10 +30,11 @@ title: Humans of Crossroads
   </div>
 </section>
 
-<section>
+<section class="push-bottom soft-bottom">
   <div class="container soft-ends">
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
+        <div class="lead">{{ page.lead_text | markdownify }}</div>
         {{ page.content }}
       </div>
     </div>
