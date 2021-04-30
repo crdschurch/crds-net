@@ -1,0 +1,36 @@
+.authenticity {
+
+  .authenticity-image-stack-1 {
+    display: grid;
+    position: relative;
+    grid-template-columns: repeat(12, 1fr);
+
+
+    .authenticity-image-stack-1-item-1 {
+      grid-column: 8 / span 7;
+      grid-row: 1;
+      margin-right: -140px;
+    }
+
+    .authenticity-image-stack-1-item-2 {
+      grid-column: 12 / 1;
+      grid-row: 1;
+      z-index: 2;
+      padding-top: 15%;
+    }
+
+    .authenticity-image-stack-1-item-3 {
+      grid-row: 1;
+      grid-column: 2 / span 5;
+      padding-top: 80px;
+      z-index: 3;
+    }
+
+  } 
+
+  .authenticity-title-img {
+    margin-top: -13%;
+    z-index: 2;
+    position: relative;
+  }
+}
