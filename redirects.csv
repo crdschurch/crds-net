@@ -44,8 +44,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /search-component/*,https://${env:CRDS_SEARCH_COMPONENT_ENDPOINT}/:splat,200!
 /proxy/content/*,${env:CRDS_CMS_ENDPOINT}/:splat,200!
 /proxy/gateway/*,${env:CRDS_GATEWAY_ENDPOINT}/:splat,200!
-/mycamps*,/studentcamps:splat,302!
-/studentcamps*,https://${env:CRDS_ANGULAR_ENDPOINT}/mycamps:splat,200!
+/mycamps*,https://${env:CRDS_ANGULAR_ENDPOINT}/mycamps:splat,200!
 /camps/:campId/*,https://${env:CRDS_ANGULAR_ENDPOINT}/camps/:campId/,200!
 /childcare/*,https://${env:CRDS_CHILDCARE_ENDPOINT}/:splat,200!
 /corkboard*,https://${env:CRDS_ANGULAR_ENDPOINT}/corkboard:splat,200!
