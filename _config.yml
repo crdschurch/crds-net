@@ -8,7 +8,7 @@ image: "//crds-media.imgix.net/7EFusaW9y0WFSxO9KCdumH/2edc127ce50430b3894692f707
 # Build settings
 # disable_hubspot: true
 permalink: pretty
-incremental: false
+incremental: true
 markdown: kramdown
 plugins:
   - jekyll-include-cache
@@ -297,9 +297,11 @@ imgix_params:
   meta_image: "auto=format,compress&w=1200&h=630&fit=crop"
   overlay_50: "blend64=MTUxNTE1&balph=50&bm=normal"
   placeholder: "auto=format,compress&w=10"
+  placeholder_face_detection: "fit=facearea&facepad=10&auto=format,compress&w=10"
   placeholder_card: "auto=format,compress&w=12&h=9&fit=crop"
   placeholder_sixteen_nine: "auto=format,compress&w=16&h=9&fit=crop"
   placeholder_square: "auto=format,compress&w=10&h=10&fit=crop"
+  placeholder_square_face_detection: "fit=facearea&facepad=10&auto=format,compress&w=10&h=10&fit=crop"
   thin_hero: "auto=format,compress&fit=crop&crop=faces&w=3.125h=1"
 
 image_sizes:

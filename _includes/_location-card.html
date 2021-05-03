@@ -8,9 +8,13 @@
       <a href="{{ location.url }}" data-automation-id="location-name">{{ location.name }}</a>
     </h4>
     <div data-automation-id="location-address" class="push-bottom">
-      {{ location.address | markdownify | remove: '<p>'| remove: '</p>' }} <br>
-      {% if location.slug != 'anywhere' %}
-        (<a target="_blank" href="{{ location.map_url }}" data-automation-id="location-map-url">Map</a>)
+      {% if location.address %}
+        {{ location.address | markdownify | remove: '<p>'| remove: '</p>' }} <br>
+        {% if location.slug != 'anywhere' %}
+          (<a target="_blank" href="{{ location.map_url }}" data-automation-id="location-map-url">Map</a>)
+        {% endif %}
+      {% else %}
+      <p>Currently looking for new digs to house our ever-growing {{ location.name }} community.</p>
       {% endif %}
     </div>
     <div class="card-text">
