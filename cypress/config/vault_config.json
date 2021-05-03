@@ -1,16 +1,13 @@
 {
-  "sources": [
-    {
-      "secret": "crds-net",
-      "keys": [
-        "CONTENTFUL_SPACE_ID",
-        "CONTENTFUL_ACCESS_TOKEN",
-        "CONTENTFUL_ENV",
-        "CRDS_GATEWAY_ENDPOINT",
-        "OKTA_API_SUBDOMAIN",
-        "OKTA_API_TESTING_TOKEN",
-        "TEST_USER_PW"
-      ]
-    }
-  ]
-}
+    "sources": [
+      {
+        "secret": "crds-media",
+        "keys": [
+          "CONTENTFUL_SPACE_ID", 
+          "CONTENTFUL_ACCESS_TOKEN", 
+          "BITMOVIN_BUCKET", 
+          "BITMOVIN_DIRECTORY"
+        ]
+      }
+     ]
+  }

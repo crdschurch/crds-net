@@ -1,0 +1,54 @@
+---
+layout: default
+snail_trail: media
+title: Videos
+paginate:
+  videos:
+    offset: 2
+    per: 8
+    sort: date desc
+---
+
+<div class="container">
+  <ol class="breadcrumb hard-sides hard-bottom push-top flush-bottom text-orange">
+    <li><a href="/media">Media</a></li>
+  </ol>
+
+  <h1 class="font-family-condensed-extra text-uppercase flush-top push-bottom">Videos</h1>
+
+  <div class="row">
+    <aside class="col-md-2">
+      {% include _video-nav.html label="Recent" %}
+    </aside>
+
+    <div class="col-md-10">
+
+      {% if page.videos.page == 1 %}
+        <div class="cards-2x">
+          <div class="row">
+          {% for video in page.videos.offset %}
+            {% include _video-card.html imgix_size="2x" %}
+          {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="cards-4x" data-page="videos">
+        <div class="row" data-page-number="{{ page.videos.page }}">
+          {% for video in page.videos.docs %}
+            {% include _video-card.html imgix_size="4x" %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="loading hide">
+        {% include _preloader.html %}
+      </div>
+      <div>
+        {% include _pagination.html collection="videos" link_root="videos" remote=true %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% javascript_link_tag autoplay %}

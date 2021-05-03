@@ -1,23 +1,30 @@
 _site
 _redirects
-.netlify
+.DS*
 .aws
 .sass-cache
 .jekyll-metadata
 .jekyll-cache
-.envrc
 .env
-collections
-!spec/fixtures/collections
+.envrc
+.vscode
+.netlify
+.asset_pipeline
 system-pages.json
 node_modules
-.DS_Store
-loadenv.ps1
+lambda
+.cache
+contentful-export-*
 tmp
-.vscode
+loadenv.ps1
 buildlog.txt
 
-#Ignore cypress generated files
+# Ignore content for the site, but not any nested "collections" directories.
+collections/*
+!**/*/collections
+
+#ignore Cypress stuff
+cypress/screenshots
 cypress/videos
 cypress/screenshots
 

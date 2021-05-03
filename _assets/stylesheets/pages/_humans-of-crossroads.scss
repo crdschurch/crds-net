@@ -1,0 +1,103 @@
+.humans-of-crossroads {
+  background-image:
+    linear-gradient(to bottom, rgba($cr-gray-darkest, 0), (rgba($cr-gray-darkest, 1))),
+    url('//crds-media.imgix.net/2Fctn8o4bWp33fXihUZi03/3070d528e6fe8c80b0f2fae86ea02a69/pile-of-images.png');
+  background-size: cover;
+
+  .hoc-breadcrumb {
+    display: inline-block;
+    text-align: left;
+    
+    @media (min-width: $screen-md) {
+      padding-top: 270px;
+    }
+    
+    .breadcrumb {
+      background-color: $cr-black !important;
+    }
+  }
+
+  .hoc-title {
+    color: $cr-tan;
+    font-size: 32px;
+    font-weight: 900;
+    text-align: left;
+
+    @media (min-width: $screen-md) {
+      font-size: 72px;
+    }
+  }
+
+  p {
+    font-size: 21px;
+    text-align: left;
+  }
+}
+
+.hoc-article-index {
+  background-color: $cr-gray-darkest;
+}
+
+.hoc-index-img {
+  display: flex;
+  max-height: 310px;
+  width: auto;
+
+  @media (min-width: $screen-md) {
+    margin-right: -5px;
+  }
+
+  img {
+    height: 100%;
+    height: 314px;
+    object-fit: cover;
+    padding-bottom: 10px;
+    width: 100%;
+  }
+}
+
+.hoc-collection-title {
+  color: $cr-orange;
+  font-size: 14px;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.hoc-index-content { 
+  padding-top: 10px;
+
+  @media (min-width: $screen-md) {
+    padding-top: 75px;
+    padding-left: 35px;
+  }
+
+  p {
+    color: $cr-white;
+    font-size: 14px;
+  }
+}
+
+.hoc-index-title {
+  font-size: 46px;
+  font-weight: 500 !important;
+  line-height: 40px;
+  margin: 0px;
+  padding-bottom: 15px;
+}
+
+.hoc-index-frame {
+  height: 343px;
+  left: 0;
+  position: absolute;
+  top: -12px;
+  width: 100%;
+  z-index: 8;
+
+
+  @media (min-width: $screen-md) {
+    height: 314px;
+    left: 8px;
+    top: -4px;
+    width: 373px;
+  }
+}

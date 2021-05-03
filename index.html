@@ -47,7 +47,6 @@ paginate:
     limit: 1
 ---
 
-{% include header.html %}
 {% include home/_jumbotron.html %}
 
 <section class="soft-top bg-blue soft-bottom bg-topo push-bottom" style="position: relative; top: -1.5rem;">
@@ -136,7 +135,7 @@ paginate:
           <p class="overlay-card-category">{{ most_recent.category.title }}</p>
           <h2 class="overlay-card-title">{{ most_recent.title }}</h2>
           <p class="overlay-card-author">{{ most_recent.author.full_name }}</p>
-          {% include media/_media-label.html source=most_recent %}
+          {% include _media-label.html source=most_recent %}
         </div>
       </a>
 
@@ -208,21 +207,20 @@ paginate:
   </div>
 </section>
 
-
-{% include footer.html %}
-
 <!-- Trigger for Hotjar to start tracking visitors to home page who are unauthenticated -->
 <script>
-  var triggerTimer = setInterval(hotJarTrigger, 1000);
-  function hotJarTrigger() {
-    if (window.hj.scriptLoaded == true) {
-      hj("trigger", "track_unauthenticated_homepage_users");
-      triggerFired();
+  if (window.hj) {
+    var triggerTimer = setInterval(hotJarTrigger, 1000);
+    function hotJarTrigger() {
+      if (window.hj.scriptLoaded == true) {
+        hj("trigger", "track_unauthenticated_homepage_users");
+        triggerFired();
+      }
     }
-  }
-  function triggerFired() {
-    clearInterval(triggerTimer);
-    console.log("unauthenticated user - hotjar trigger");
+    function triggerFired() {
+      clearInterval(triggerTimer);
+      console.log("unauthenticated user - hotjar trigger");
+    }
   }
 </script>
 

@@ -1,0 +1,18 @@
+<div class="container">
+  <ol class="breadcrumb hard-sides hard-bottom push-top">
+    <li><a href="/media">Media</a></li>
+    <li><a href="/media/articles">Articles</a></li>
+  </ol>
+
+  <h1 class="font-family-condensed-extra text-uppercase flush-top push-bottom">{{ page.title }}</h1>
+
+  <div class="row">
+    <aside class="col-md-2">
+      {% include _article_filters.html label=page.title %}
+    </aside>
+
+    <div class="col-md-10">
+      {% include _article_index.html link_root=include.link_root %}
+    </div>
+  </div>
+</div>

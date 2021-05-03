@@ -1,0 +1,19 @@
+.pagination {
+  margin: 0;
+}
+
+.pagination > li > a {
+  padding: 6px 12px;
+}
+
+.load-more {
+  clear: both;
+}
+
+.pager li>a, .pager li>span {
+  border: none;
+
+  &:hover {
+    background-color: $cr-white;
+  }
+}

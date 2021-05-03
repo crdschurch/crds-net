@@ -1,3 +1,309 @@
 ---
-layout: location
+layout: default
 ---
+
+<!-- Pull only the promos that exist for the specific location if any -->
+{% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
+{% assign series = site.series | last %}
+
+<!-- Resi Player -->
+{% include _resi-player.html %}
+
+<!-- Featured Section -->
+{% if page.featured_section.size > 0 %}
+  <div class="overflow-hidden">
+    {{ page.featured_section }}
+  </div>
+{% endif %}
+
+<!-- Jumbotron section -->
+<section class="jumbotron locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
+  id="location-page"  
+  data-optimize-bg-img>
+  <div class="bg-overlay"></div>
+  <div class="container">
+    <div class="row location-title-row" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+      <div class="bg-overlay"></div>
+      <div class="col-sm-12 push-ends mobile-soft-sides">
+        <div>
+          <span class="font-family-base text-uppercase text-white">
+            <strong>welcome to</strong>
+          </span>
+          <h1 class="flush-ends font-family-condensed-extra text-uppercase">Crossroads <br />{{ page.name }}</h1>
+        </div>
+        <div>
+          <p class="font-family-serif font-size-h6 text-white push-top">A place to know God, make friends explore the adventure of faith together.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row location-info-row">
+      {% include _location-info.html %}
+    </div>
+  </div>
+</section>
+
+<!-- Impact Section -->
+<section class="bg-tan bg-topo-50 bg-contain">
+  <div class="container soft-ends">
+    <div class="text-center">
+      <h2 class="component-header-box text-blue">Change your life. Impact others.</h2>
+      <p class="font-family-serif text-gray-darker font-size-base push-half">Your choices impact the world. We can’t wait to see what you’ll do next.</p>
+    </div>
+
+    <div class="row push-ends">
+      <div class="col-sm-6">
+        <div class="portrait-card-skeleton-condensed push-bottom">
+          <crds-portrait-card theme="condensed" lead="Stay up-to-date" title="Never miss an event"
+          image-src="//crds-media.imgix.net/2g8yKVrxSIiaMKBsmxCWFW/7e0f90537c00c3d0f0d793b0c1233b86/stay-up-to-date.png">
+            <p class="push-half-ends">Doing life together is better than going it alone. Sign up to get notified when we’re gathering together or finding ways to get closer to God.</p>
+            <crds-button class="push-half-right" data-target="#subscribeModalForm" data-toggle="modal" href="" color="white"
+              text="Sign up"></crds-button>
+          </crds-portrait-card>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="portrait-card-skeleton-condensed push-bottom">
+          <crds-portrait-card theme="condensed" lead="Join us" title="Help launch the future"
+          image-src="//crds-media.imgix.net/1IzQq01XGZAtULMc8Zf9cc/2319ef5827e77deb759aac6241175149/launch-team-sign-up-image.png">
+            <p class="push-half-ends">Crossroads is a growing community that needs leaders and doers. Join our team and help build the church you want to belong to.</p>
+            <crds-button class="push-half-right" data-target="#subscribeModalForm" data-toggle="modal" href="" color="white"
+              text="Sign up"></crds-button>
+          </crds-portrait-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tabs Section -->
+<section class="overflow-hidden">
+  <div class="container">
+    <div class="text-center push-ends border-bottom-dashed ">
+      <h3 class="component-header-box text-orange">{{ page.name }}</h3>
+      <p class="push-ends soft-bottom font-family-serif font-size-large">Grow in community and make a positive impact in your city.</p>
+    </div>
+    <div>
+      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "care"]' mobile-dropdown>
+        <!-- Events & Updates -->
+        <div slot="tab-events-updates" class="push-ends">
+          <div class="row">
+            <!-- Featured Section - Below Jumbotron-->
+            {% if page.featured_below.size > 0 %}
+            <div class="col-sm-12 push-bottom">
+              {{ page.featured_below }}
+            </div>
+            {% endif %}
+
+            <div class="col-sm-8 push-bottom soft-bottom">
+              <a href="{{ series.url }}" title="{{ series.title }}">
+                <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720&fit=crop" size="card"></crds-image>
+              </a>
+              <div class="push-half-top">
+                <label class="label label-default bg-gray-lightest no-border-radius font-family-accent text-capitalize soft-half-sides soft-quarter-ends">Current Series</label>
+              </div>
+              <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
+              <p class="font-family-base-bold text-gray-lighter">{{ series.starts_at | date: '%m.%d.%Y' }} &#8212; {{ series.ends_at | date: '%m.%d.%Y' }}</p>
+              <div class="push-half-top push-bottom font-size-small text-gray-dark">
+                {{ series.description | markdownify }}
+              </div>
+              <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series"
+                color="orange"></crds-button>
+            </div>
+            <div class="col-sm-4 push-bottom soft-bottom">
+              <div class="bg-blue soft push-bottom">
+                <div class="soft-half-ends">
+                  <p class="font-family-base-bold font-size-smaller text-orange text-uppercase flush">Join in community</p>
+                  <h4 class="flush-top font-family-condensed-extra font-size-h3 text-uppercase text-white">Come hang out</h4>
+                  <crds-button href="{{ page.google_calendar_link }}" color="white" display="outline" text="View the calendar of events"></crds-button>
+                </div>
+              </div>
+              <crds-site-happenings-locations location="{{ page.title }}"></crds-site-happenings-locations>
+            </div>
+          </div>
+        </div>
+
+        <!-- Community Pastor -->
+        <div slot="tab-community-pastor" class="push-ends">
+          <div class="row align-items-center df-screen-sm">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" />
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>Community pastor</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">{{ page.community_pastor_name }}</h2>
+              {{ page.community_pastor_bio | markdownify }}
+              <div class="soft-half-top">
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="facebook" icon-align="left" icon-color="blue" icon-size="16"
+                  text="Follow {{ pastor_full_name[0] }}"></crds-button>
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="instagram" icon-align="left" icon-color="blue" icon-size="16"
+                  text="Follow {{ pastor_full_name[0] }}"></crds-button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- About -->
+        <div slot="tab-about" class="push-ends">
+          <div class="row align-items-center df-screen-sm">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="{% if page.about_image.url %}{{ page.about_image.url | imgix: site.imgix }}{% else %}{{  site.default_image | imgix: site.imgix }}{% endif %}" />
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">Crossroads {{ page.name }}</h2>
+              {{ page.description | markdownify }}
+              <div class="soft-half-top soft-bottom">
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="facebook" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
+                </crds-button>
+                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  icon="instagram" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
+                </crds-button>
+              </div>
+              {{ page.additional_info | markdownify }}
+            </div>
+          </div>
+          <div class="row align-items-center df-screen-sm push-top soft-top">
+              <div class="col-sm-6 col-sm-push-6 push-bottom">
+                <img class="img-full-width" src="//crds-media.imgix.net/5rncjmfpKINMWhX4Bq905/71baf8dcc6bb28045ccf93cfe808365b/what-to-expect-gfx.jpg"/>
+              </div>
+              <div class="col-sm-6 col-sm-pull-6 push-bottom">
+                <p class="text-orange text-uppercase flush-bottom"><strong>More about Crossroads</strong></p>
+                <h2 class="section-header flush-ends soft-half-bottom">Adventure awaits</h2>
+                <p>Whatever your thoughts on church or your beliefs about God, you are welcome here. Expect to be challenged. Expect to disagree with some things. Expect to hear a lot about a God who loves you and pursues you. Expect unfiltered conversations & Biblical truth. Expect opportunities to make a difference & make real friends. (And when we meet in person, free coffee)</p>
+                <div class="soft-half-top soft-bottom">
+                  <crds-button href="/about" color="blue" display="outline" text="More About Us"></crds-button>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <!-- Kids and Students -->
+        <div slot="tab-kids-students" class="push-ends">
+          <div class="row align-items-center df-screen-sm">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="//crds-media.imgix.net/3SX7tTVQ0Wqi5WKRy5ikRd/cdc797e5c08a00d8031b4daef7ece443/crossroads-kids-club2.jpg"/>
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>Kids' Club</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">We help kids get to know God.</h2>
+              <p>Your kids will love Kids’ Club! A fun learning environment designed especially for kids (birth through fifth grade). It’s free, totally secure, and don’t worry-we’ll let you know if your child needs you at any point during the service.</p>
+              <em>{{ page.kids_club_hours | markdownify }}</em>
+              <div class="soft-half-top">
+                <crds-button href="/kids-club" color="blue" display="outline" text="More about Kids' Club">
+                </crds-button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Care -->
+        <div slot="tab-care" class="push-ends">
+          <div class="row align-items-center df-screen-sm">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="//crds-media.imgix.net/4XD7OHtkEqhaKBXrZJqQxx/fc62b5efdbda6dab941bbf8271b6819a/missional-conversations.jpg"/>
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>Community Care</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">You don’t have to do this on your own. Ask or for help.</h2>
+              <p>We’re not counselors, but our team is trained to listen, ask questions and help you find the support you need. Tell us what you are going through. You will be heard without judgement, and we will pray for you if you’d like. Appointments can be made and discussions had over the phone or through virtual media (Facetime, Zoom or Google Hangouts).</p>
+              <div class="soft-half-top">
+                {% if page.care_link %}
+                <crds-button class="push-half-right" href="{{ page.care_link }}" color="blue" display="outline"
+                  text="Request care"></crds-button>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </crds-tabs>
+    </div>
+  </div>
+</section>
+
+<!-- Stay in touch -->
+<section class="bg-blue bg-topo bg-contain soft-ends">
+  <div class="container text-center">
+    <h3 class="component-header-box text-orange">Stay in touch</h3>
+    <p class="push-ends font-family-serif text-white font-size-large">Get all the details happening at Crossroads {{ page.name }}.</p>
+
+    <div class="soft-ends text-center">
+      {% if page.care_link %}
+      <crds-button class="push-half-right" href="{{ page.care_link }}" color="white" display="outline"
+        text="Request care"></crds-button>
+      {% endif %}
+      {% if page.hubspot_form_id %}
+      <crds-button class="push-half-right" data-target="#subscribeModalForm" data-toggle="modal" href="" color="white"
+        display="outline" text="Subscribe for updates"></crds-button>
+      {% endif %}
+      <crds-button class="push-half-right" href="//www.facebook.com/crsrds{{ page.slug | downcase }}" color="white"
+        display="outline" icon="facebook" icon-align="left" icon-color="white" icon-size="16" text="Follow"></crds-button>
+      <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="white" display="outline"
+        icon="instagram" icon-align="left" icon-color="white" icon-size="16" text="Follow"></crds-button>
+    </div>
+  </div>
+</section>
+
+<!-- Chat with us -->
+<section class="bg-orange soft">
+  <div class="container text-center push-ends">
+    <h3 class="component-header-box text-white">We'd love to connect with you</h2>
+    <p class="font-size-large font-family-serif text-blue push-ends">Whether you have questions about Crossroads, faith, life, we are here to help.</p>
+    <crds-button color="blue" text="Chat with us" data-trigger="chat"></crds-button>
+  </div>
+</section>
+
+
+<!-- Modal -->
+<div aria-labelledby="Subscribe email form" class="modal fade" id="subscribeModalForm" role="dialog" tabindex="-1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-gray-lightest">
+      <div class="modal-header hard-bottom"><button aria-label="Close" class="close pull-right" data-dismiss="modal"
+          type="button"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body text-left hard-bottom">
+        <h4 class="font-family-condensed-extra text-uppercase soft-half-bottom text-blue">Stay in the know.
+          <br />Get
+          the latest Crossroads updates.</h4>
+        <div class="form" data-role="hsform">
+          <!--[if lte IE 8]>
+            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+          <![endif]-->
+          <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+        </div>
+      </div>
+      <div class="modal-footer">&nbsp;</div>
+    </div>
+  </div>
+</div>
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+<script>
+  hbspt.forms.create({
+    portalId: "3993985",
+    formId: "{{ page.hubspot_form_id }}",
+    css: "",
+    target: "[data-role=hsform]",
+    formInstanceId: 1,
+    onFormReady($form, ctx) {
+      $('fieldset[data-reactid=".hbspt-forms-0.1:$0"]').removeClass('form-columns-2');
+      $('fieldset[data-reactid=".hbspt-forms-0.1:$1"]').removeClass('form-columns-2');
+      $('input[data-reactid=".hbspt-forms-0.1:$0.1:$firstname.$firstname.0"]').attr('placeholder', 'First name')
+      $('input[data-reactid=".hbspt-forms-0.1:$0.1:$lastname.$lastname.0"]').attr('placeholder', 'Last name')
+      $('input[data-reactid=".hbspt-forms-0.1:$1.1:$email.$email.0"]').attr('placeholder', 'Email')
+      $('input[data-reactid=".hbspt-forms-0.1:$1.1:$mobilephone.$mobilephone.0"]').attr('placeholder', 'Phone number')
+      $('label[data-reactid=".hbspt-forms-0.1:$0.1:$firstname.0"]').hide()
+      $('label[data-reactid=".hbspt-forms-0.1:$0.1:$lastname.0"]').hide()
+      $('label[data-reactid=".hbspt-forms-0.1:$1.1:$email.0"]').hide()
+      $('div[data-reactid=".hbspt-forms-0.1:$1.1:$email.$email"]').addClass('flush-right')
+      $('span[data-reactid=".hbspt-forms-0.1:$1.1:$firstname.0.0"]').addClass('text-blue')
+      $('span[data-reactid=".hbspt-forms-0.1:$1.1:$lastname.0.0"]').addClass('text-blue')
+      $('span[data-reactid=".hbspt-forms-0.1:$2.1:$email.0.0"]').addClass('text-blue')
+      $('span[data-reactid=".hbspt-forms-0.1:$1.1:$mobilephone.0.0"]').hide()
+    }
+  });
+</script>
+
+{% include footer.html %}

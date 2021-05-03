@@ -1,0 +1,56 @@
+---
+layout: default
+---
+
+<section class="bg-black">
+  <div class="jumbotron jumbotron-xl flush-bottom" style="background-image: url('{{ page.image.url | imgix: site.imgix }}');" data-optimize-bg-img>
+    <div class="bg-overlay"></div>
+    <div class="jumbotron-content push-ends">
+      <div class="container">
+        {% if page.featured_on_shows_landing_page == true %}
+        <div class="push-bottom text-left">
+          <div class="bg-black-50 inline-block soft-half-sides">
+            <ol class="breadcrumb flush hard">
+              <li><a class="text-white" href="/media">Media</a></li>
+              <li><a class="text-white" href="/media/shows">Shows</a></li>
+            </ol>
+          </div>
+        </div>
+        {% endif %}
+        <div class="row">
+          <div class="col-sm-5 text-left">
+            <div>
+              {% if page.logo %}
+              <img class="full-width" src="{{ page.logo.url | imgix: site.imgix }}" alt="{{page.title}} logo" />
+              {% else %}
+              <h1 class="font-family-condensed-extra">{{page.title}}</h1>
+              {% endif %}
+              
+              <p class="font-family-serif font-size-large">{{ page.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-black">
+  <div class="container soft-bottom">
+    {% assign items = page.docs %}
+    {% for item in items %}
+    <div class="row soft-bottom">
+     <a href="{{ item | media_url }}">
+       <div class="col-sm-6 push-half-bottom">
+         <img class="full-width" src="{% if item.podcast.image.url %}{{ item.podcast.image.url  | imgix: site.imgix }}{% else %}{{ item.image.url | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ item.title }}" data-optimize-img>
+       </div>
+       <div class="col-sm-6">
+         <p class="text-uppercase text-orange font-size-smaller font-family-base-black flush-bottom">{{ page.title }}</p>
+         <h2 class="text-uppercase text-white font-family-condensed-extra font-size-h2 flush-top">{{ item.title }}</h2>
+         <p class="text-white font-size-smaller">{{ item.description }}</p>
+       </div>
+      </a>
+     </div>
+    {% endfor %}
+  </div>
+</section>

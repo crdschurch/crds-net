@@ -1,72 +1,85 @@
-.locations-header {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
+.jumbotron.locations-jumbotron {
+  padding-top: 0;
+  padding-bottom: 0;
 
-  @media (min-width: 767px) {
-    flex-direction: row;
-    align-items: center;
+  @media (min-width: $screen-sm) {
+    padding-bottom: 0;
+    padding-top: 115px;
   }
 
-  .searchbar {
-    width: 100%;
-    @media (min-width: 767px) {
-      width: 50%;
-      padding: .5rem;
-      margin-left: auto;
+  h1 {
+    font-size: 70px;
+    line-height: 61px;
+    
+    @media (min-width: $screen-sm) {
+      font-size: 94px;
+      line-height: 86px;
+    }
+  }
+
+  > .bg-overlay {
+    background-image: none;
+
+    @media (min-width: $screen-sm) {
+      background-image: linear-gradient(
+        to bottom,
+        rgba(23, 23, 23, 0),
+        $cr-black
+      );
     }
   }
 }
 
-#search-input {
-  @media (max-width: 766px) {
-    font-size: 14px;
+.location-top-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (min-width: $screen-md) {
+    flex-direction: row;
+  }
+
+  .location-top-info-item {
+    @media (min-width: $screen-md) {
+      max-width: 33.3333%;
+    }
   }
 }
 
-#geo-search {
-  display: none;
-}
+.location-info-btn-container {
+  text-align: left;
 
-#section-locations crds-button {
-    position: absolute;
-    bottom: 0;
-}
-crds-site-select {
-    position: absolute;
-}
-
-@media screen and (min-width: 995px){
-  crds-site-select {
-      left: 125px;
-      bottom: 0px;
+  @media (min-width: $screen-sm) {
+    text-align: center;
   }
 }
 
-@media screen and (max-width: 995px){
-  crds-site-select {
-      left: 10px;
-      bottom: -45px;
+.location-title-row {
+  background-size: cover;
+  padding: 50px 0;
+  position: relative;
+  
+  @media (min-width: $screen-sm) {
+    padding: unset;
+    background-image: none !important;
+  }
+
+  > .bg-overlay {
+    @media (min-width: $screen-sm) {
+      background: none;
+    }
   }
 }
 
-@media screen and (max-width: 770px){
-  crds-site-select {
-      left: 125px;
-      bottom: 0px;
+.location-info-row {
+  background-color: $cr-blue;
+  background-image: url("//crds-media.imgix.net/1KLwsN6ilL7RO0xk6JzOsX/840e8b99340ff36bff67036909c4f856/texture-topo-dark-100_2x.png");
+  background-size: cover;
+  color: $cr-white;
+  z-index: 2;
+
+  @media (min-width: $screen-sm) {
+    background-color: unset;
+    background-image: none;
   }
-}
-
-
-.card-text {
-    padding-bottom: 30px;
-    cursor: auto;
-}
-
-#section-locations.card-deck--expanded-layout .card{
-  margin-bottom: 3.5em;
-}
-
-.form-control, #subscribeModalForm .hs-input {
-  background-color: $cr-white!important;  
 }

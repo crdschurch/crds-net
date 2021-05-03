@@ -21,6 +21,18 @@ package = "@helloample/netlify-plugin-redirects"
 [[plugins]]
 package = "./_plugins/netlify-plugin-health-check"
 
+[[plugins]]
+  package = "netlify-plugin-jekyll-cache"
+
+	[plugins.inputs]
+
+    # This is only required if you have defined a source directory in Jekyll
+    # At some point this will become automated, but for now it must be specified
+	jekyllSource = "/jekyll"
+
+[[plugins]]
+  package="./_plugins/rename-ga-references"
+
 [dev]
   BASEURL="/"
   CRDS_COMPONENTS_ENDPOINT="components-int.crossroads.net"
@@ -38,7 +50,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_FORM_MAKER = "https://form-maker-int.crossroads.net/"
   CRDS_COMPONENTS_ENDPOINT = "components-int.crossroads.net"
-  CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
   CRDS_COMPONENTS_ROOT_URL="https://int.crossroads.net"
   CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
@@ -58,7 +69,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_FORM_MAKER = "https://form-maker-int.crossroads.net/"
   CRDS_COMPONENTS_ENDPOINT = "components-int.crossroads.net"
-  CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
   CRDS_COMPONENTS_ROOT_URL="https://int.crossroads.net"
   CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
@@ -78,7 +88,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_FORM_MAKER = "https://form-maker-int.crossroads.net/"
   CRDS_COMPONENTS_ENDPOINT = "components-int.crossroads.net"
-  CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
   CRDS_COMPONENTS_ROOT_URL="https://int.crossroads.net"
   CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
@@ -99,7 +108,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_FORM_MAKER = "https://form-maker-int.crossroads.net/"
   CRDS_COMPONENTS_ENDPOINT = "components-int.crossroads.net"
-  CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
   CRDS_COMPONENTS_ROOT_URL="https://runway.crossroads.net"
   CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
@@ -120,7 +128,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_FORM_MAKER = "https://form-maker-demo.crossroads.net/"
   CRDS_COMPONENTS_ENDPOINT = "components-demo.crossroads.net"
-  CRDS_MEDIA_ENDPOINT = "crds-media-demo.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-demo.crossroads.net'
   CRDS_COMPONENTS_ROOT_URL="https://demo.crossroads.net"
   CRDS_SEARCH_ENDPOINT = "crds-search-demo.crossroads.net"
@@ -140,7 +147,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_FOCUS_MISSION = "https://crds.focusmissions.com/"
   CRDS_FORM_MAKER = "https://form-maker.crossroads.net/"
   CRDS_COMPONENTS_ENDPOINT = "components.crossroads.net"
-  CRDS_MEDIA_ENDPOINT = "crds-media.crossroads.net"
   CRDS_GIVING_HISTORY = 'https://giving-history.crossroads.net'
   CRDS_COMPONENTS_ROOT_URL="https://www.crossroads.net"
   CRDS_SEARCH_ENDPOINT = "crds-search.crossroads.net"
@@ -161,7 +167,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_FORM_MAKER = "https://form-maker-int.crossroads.net/"
   CRDS_COMPONENTS_ENDPOINT = "components-int.crossroads.net"
   CRDS_COMPONENTS_ROOT_URL="https://int.crossroads.net"
-  CRDS_MEDIA_ENDPOINT = "crds-media-int.crossroads.net/"
   CRDS_GIVING_HISTORY = 'https://giving-history-int.crossroads.net'
   CRDS_DATA_ENDPOINT = "crds-data.crossroads.net"
   CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"

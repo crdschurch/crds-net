@@ -1,0 +1,17 @@
+<div data-page="articles">
+  <div class="row" data-page-number="{{ page.articles.page }}">
+    {% for item in page.articles.docs %}
+    <div class="col-sm-6">
+      {% include _overlay-card.html collection="articles" title="h3" %}
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="loading hide">
+    {% include _preloader.html %}
+  </div>
+</div>
+
+<div class="push-top">
+  {% include _pagination.html collection="articles" remote=true label="" link_root=include.link_root %}
+</div>

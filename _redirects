@@ -1,0 +1,10 @@
+/albums /music 302!
+/the-chaser /weekendfollowup 302!
+/episodes /podcasts 302!
+/message /series 302!
+/message/* /series 302!
+/perspectives/sets /perspectives 302!
+/tags /topics 302!
+/videos/tags /videos 302!
+/weekend-prompts /weekendfollowup 302!
+/*  /404/index.html 404

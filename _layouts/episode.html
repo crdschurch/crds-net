@@ -1,0 +1,101 @@
+---
+layout: default
+---
+
+{% assign podcast = site.podcasts | where: 'title', page.podcast.title | first %}
+
+<div class="media-podcast-episode" data-grouping-media-type="podcast">
+  <header style="background-image: url('{{ podcast.bg_image.url | imgix: site.imgix }}');" data-optimize-bg-img>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="episode-header">
+            <ol class="breadcrumb hard text-white">
+              <li><a href="/media/">Media</a></li>
+              <li><a href="/media/podcasts">Podcasts</a></li>
+              <li><a href="{{ podcast.url }}">{{ podcast.title }}</a></li>
+            </ol>
+
+            <div class="episode-header-content">
+              <div class="episode-artwork">
+                <img src="{{ podcast.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" alt="{{ podcast.title }}" sizes="{{ site.image_sizes.episode_thumb }}" data-optimize-img>
+              </div>
+
+              <h1 class="font-family-condensed-extra font-size-h3 text-uppercase text-white flush-ends">{{ page.title }}</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container push-top soft-top">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="embedded-audio-player">
+          {{ page.audio_embed_code }}
+        </div>
+
+        <h2 class="component-header mobile-push-half-top">This episode</h2>
+
+        {% assign tabs = 'description show_notes' | split: ' ' %}
+        {% if page.show_notes or page.description %}
+          {% include _tabs.html tabs=tabs %}
+        {% endif %}
+
+      </div>
+    </div>
+
+    <div class="row push-bottom soft-bottom">
+      <div class="col-sm-8 col-sm-offset-2">
+        {% for author_obj in podcast.author %}
+          {% assign author = site.authors | where: 'full_name', author_obj.full_name | first %}
+          {% if author %}
+            {% if forloop.first %}<p class="push-ends">Hosted by {% endif %}
+              <a href="{{ author.url }}" data-grouping-media-author="{{ author.full_name | titleize }}g">{{ author.full_name | titleize }}</a> {% if forloop.last == false %} and {% endif %}
+            {% if forloop.last %}</p>{% endif %}
+          {% endif %}
+        {% endfor %}
+
+        <p>{{ page.published_at | format_date }} {% if page.duration != nil %} <span class="divider push-quarter-sides">•</span> {% include _read-time.html duration=page.duration content_type='episode' %} {% endif %}</p>
+
+        <div class="soft-half-top push-top">
+            {% include _media-social-share.html %}
+        </div>
+
+        <!-- Topic -->
+        {% assign topic = page.category | get_doc %}
+        {% include _topic.html %}
+
+        <!-- Tags -->
+        {% include _tags_list.html tags=page.tags %}
+      </div>
+    </div>
+
+    {% include _subscribe-buttons.html content_type=podcast %}
+
+    {% if site.podcasts.size > 1 %}
+      <div class="row push-top soft-half-top">
+        <div class="col-sm-8 col-sm-offset-2">
+
+            <div class="push-ends">
+              <h2 class="component-header flush-top">More content to explore</h2>
+            </div>
+
+            <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
+              <div class="feature-cards">
+
+              {% assign recent_episodes = site.episodes | sort: 'published_at' | reverse | exclude: page.title | slice: 0, 3 %}
+              {% for episode in recent_episodes %}
+                {% include _episode-card.html %}
+              {% endfor %}
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+</div>

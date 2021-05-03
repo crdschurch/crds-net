@@ -1,0 +1,27 @@
+---
+layout: none
+---
+<?xml version="1.0" encoding="utf-8"?>
+<catalog>
+  <!-- Articles -->
+  {% include _product-feed.html collection=site.articles %}
+
+  <!-- Messages -->
+  {% include _product-feed.html collection=site.messages %}
+
+  <!-- Episodes -->
+  {% include _product-feed.html collection=site.episodes %}
+
+  <!-- Podcasts -->
+  {% include _product-feed.html collection=site.podcasts %}
+
+  <!-- Videos -->
+  {% include _product-feed.html collection=site.videos %}
+
+  <!-- Series -->
+  {% include _product-feed.html collection=site.series %}
+
+  <!-- Perspectives -->
+  {% include _product-feed.html collection=site.perspectives %}
+
+</catalog>

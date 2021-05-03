@@ -4,3 +4,40 @@
   window.monetateQ.push(["setPageType", "{{ page.monetate_page_type }}"]);
 </script>
 {% endif %}
+
+{% if page.content_type contains 'article'
+  or page.content_type contains 'episode'
+  or page.content_type contains 'message'
+  or page.content_type contains 'perspectives'
+  or page.content_type contains 'podcast'
+  or page.content_type contains 'series'
+  or page.content_type contains 'video' %}
+<script>
+  window.monetateQ = window.monetateQ || [];
+  window.monetateQ.push(["setPageType", "product"]);
+  window.monetateQ.push(["addProductDetails",
+    ["{{ page.contentful_id }}"]]);
+</script>
+{% endif %}
+
+{% if page.content_type == 'category' %}
+<script>
+  window.monetateQ = window.monetateQ || [];
+  window.monetateQ.push(["setPageType", "topic"]);
+  window.monetateQ.push([
+    "addCategories", ["{{ page.title | truncate: 128 | asciify }}"]
+  ]);
+  window.monetateQ.push([
+    "addProducts", [
+      {% for item in page.featured_media %}
+      "{{ item.contentful_id }}",
+      {% endfor %}
+      {% for data in page.featured_tag_data %}
+      {% assign media_items = data.media %}
+        {% for item in media_items %}
+        "{{ item.contentful_id }}",
+        {% endfor %}
+      {% endfor %}
+    ]]);
+</script>
+{% endif %}
