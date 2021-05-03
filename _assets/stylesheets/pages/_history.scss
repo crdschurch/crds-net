@@ -7,30 +7,97 @@
 
 
     .authenticity-image-stack-1-item-1 {
-      grid-column: 8 / span 7;
+      grid-column: 8 / 1;
       grid-row: 1;
-      margin-right: -140px;
+
+      @media screen and (min-width: $screen-sm) {
+        grid-column: 8 / span 7;
+        grid-row: 1;
+        margin-right: -140px;
+      }
+      @media screen and (min-width: $screen-md) {
+        grid-column: 8 / span 7;
+        grid-row: 1;
+        margin-right: -140px;
+      }
+      @media screen and (min-width: $screen-lg) {
+        // Do this
+      }
+
     }
 
     .authenticity-image-stack-1-item-2 {
-      grid-column: 12 / 1;
+      grid-column: 13 / 1;
       grid-row: 1;
-      z-index: 2;
-      padding-top: 15%;
+      z-index: 5;
+      padding-top: 10%;
+
+      @media screen and (min-width: $screen-sm) {
+        grid-column: 12 / 1;
+        grid-row: 1;
+        z-index: 5;
+        padding-top: 15%;
+      }
+      @media screen and (min-width: $screen-md) {
+        grid-column: 12 / 1;
+        grid-row: 1;
+        z-index: 5;
+        padding-top: 15%;
+      }
+      @media screen and (min-width: $screen-lg) {
+        // Do this
+      }
+
     }
 
     .authenticity-image-stack-1-item-3 {
       grid-row: 1;
-      grid-column: 2 / span 5;
-      padding-top: 80px;
-      z-index: 3;
-    }
+      grid-column: 3 / span 7;
+      padding-top: 0;
+      z-index: 10;
 
-  } 
+      @media screen and (min-width: $screen-sm) {
+        grid-row: 1;
+        grid-column: 2 / span 5;
+        padding-top: 80px;
+        z-index: 10;
+      }
+      @media screen and (min-width: $screen-md) {
+        grid-row: 1;
+        grid-column: 2 / span 5;
+        padding-top: 80px;
+        z-index: 10;
+      }
+      @media screen and (min-width: $screen-lg) {
+        // Do this
+      }
+
+    }
+  }
 
   .authenticity-title-img {
-    margin-top: -13%;
-    z-index: 2;
+    margin-top: -65px;
+    z-index: 5;
+
+    @media screen and (min-width: $screen-sm) {
+      margin-top: -95px;
+      z-index: 5;
+    }
+    @media screen and (min-width: $screen-md) {
+      margin-top: -105px;
+      z-index: 5;
+    }
+    @media screen and (min-width: $screen-lg) {
+      margin-top: -125px;
+      z-index: 5;
+    }
+
+  }
+
+  .authenticity-video {
+    margin-top: -80px;
+    z-index: 0;
     position: relative;
   }
+
 }
