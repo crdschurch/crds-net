@@ -267,7 +267,92 @@
   }
 
   .biblical-truth-img-stack {
-    margin-top: -80px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    margin-top: -40px;
+    row-gap: 40px;
+    position: relative;
+    
+    @media screen and (min-width: $screen-sm) {
+      grid-template-rows: unset;
+      margin-top: -140px;
+    }
+    
+    @media screen and (min-width: $screen-md) {
+      margin-top: -160px;
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      margin-top: -215px;
+    }
+
+
+    .biblical-truth-img-stack-item-1 {
+      grid-column: 13 / 1;
+      grid-row: 1;
+
+      @media screen and (min-width: $screen-sm) {
+        grid-column: 13 / 5;
+      }
+    }
+
+    .biblical-truth-img-stack-item-2 {
+      grid-column: 1 / 10;
+      grid-row: 2;
+      
+      @media screen and (min-width: $screen-sm) {
+        grid-row: 1;
+        align-self: center;
+        grid-column: 1/5;
+      }
+    }
+  }
+
+  .biblical-truth-content-row {
+    @media screen and (min-width: $screen-md) {
+      display: flex;
+      justify-content: space-between; 
+    }
+    
+    .biblical-truth-content-col-1 {
+      padding: 0 48px;
+
+      @media screen and (min-width: $screen-md) {
+        max-width: 33%;
+      }
+    }
+
+    .biblical-truth-content-col-2 {
+      display: flex;
+      justify-content: flex-end;
+
+      @media screen and (min-width: $screen-md) {
+        display: unset;
+        padding: 0 24px;
+        max-width: 33%;
+      }
+
+      img {
+        max-width: 75%;
+
+        @media screen and (min-width: $screen-md) {
+          max-width: 100%;
+        }
+      }
+    }
+    .biblical-truth-content-col-3 {
+      padding: 0 48px;
+      max-width: 90%;
+
+      @media screen and (min-width: $screen-sm) {
+        max-width: 80%;
+      }
+
+      @media screen and (min-width: $screen-md) {
+        max-width: 25%;
+      }
+    }
   }
 }
 
