@@ -667,3 +667,115 @@
     }
   }
 }
+
+// REPRODUCTION
+.reproduction {
+
+  .reproduction-img-title {
+    position: relative;
+    z-index: 2;
+    margin-top: -90px;
+
+    @media screen and (min-width: $screen-md) {
+      margin-top: -90px;
+    }
+    @media screen and (min-width: $screen-lg) {
+      margin-top: -90px;
+    }
+
+    img {
+      width: 100%;
+    }
+
+  }
+
+  .reproduction-image-stack-1 {
+    display: grid;
+    position: relative;
+    grid-template-columns: repeat(12, 1fr);
+    margin-top: 60px;
+    z-index: 1;
+
+    @media screen and (min-width: $screen-sm) {
+
+    }
+    @media screen and (min-width: $screen-md) {
+
+    }
+    @media screen and (min-width: $screen-lg) {
+
+    }
+
+    .reproduction-image-stack-1-item-1 {
+      grid-column: 13 / 2;
+      grid-row: 1;
+
+      @media screen and (min-width: $screen-sm) {
+
+      }
+      @media screen and (min-width: $screen-md) {
+
+      }
+      @media screen and (min-width: $screen-lg) {
+
+      }
+    }
+
+    .reproduction-image-stack-1-item-2 {
+      grid-column: 1 / 5;
+      grid-row: 1;
+      margin-top: -45px;
+
+      @media screen and (min-width: $screen-sm) {
+
+      }
+      @media screen and (min-width: $screen-md) {
+
+      }
+      @media screen and (min-width: $screen-lg) {
+
+      }
+    }
+
+    .reproduction-image-stack-1-item-3 {
+      grid-column: 2 / 4;
+      grid-row: 1;
+      margin-left: 20px;
+      margin-top: 80px;
+
+      @media screen and (min-width: $screen-sm) {
+
+      }
+      @media screen and (min-width: $screen-md) {
+
+      }
+      @media screen and (min-width: $screen-lg) {
+
+      }
+    }
+
+  }
+
+  .reproduction-article {
+    margin-top: 110px;
+    z-index: 0;
+    position: relative;
+
+    @media screen and (min-width: $screen-sm) {
+      margin-top: 0px;
+    }
+    @media screen and (min-width: $screen-md) {
+    }
+
+  }
+
+  .reproduction-content {
+    padding-top: 100px;
+    padding-bottom: 0px;
+
+    @media screen and (min-width: $screen-sm) {
+    }
+    @media screen and (min-width: $screen-md) {
+    }
+  }
+}
