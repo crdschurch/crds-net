@@ -681,7 +681,9 @@
     }
     @media screen and (min-width: $screen-lg) {
       margin-top: -90px;
-    }
+    }    grid-column: 10 / 8;
+    grid-row: 1;
+    margin-top: 955px;
 
     img {
       width: 100%;
@@ -730,7 +732,9 @@
 
       }
       @media screen and (min-width: $screen-md) {
-
+        grid-column: 10 / 8;
+        grid-row: 1;
+        margin-top: 955px;
       }
       @media screen and (min-width: $screen-lg) {
 
