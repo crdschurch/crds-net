@@ -311,7 +311,7 @@ paginate:
           {% endif %}
   
           <div class="col-sm-6 media-card-skeleton push-bottom">
-            <crds-media-card heading='{{ item.title }}' icon-label='{{ item.duration | duration: format }}' image-src='{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_face_detection }}' url='/media/humans-of-crossroads/{{ item.slug }}' content-type="null" category="Humans of Crossroads" truncate-length="null" data-optimize-img>
+            <crds-media-card heading="{{ item.title }}" icon-label="{{ item.duration | duration: format }}" image-src='{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_face_detection }}' url='/media/humans-of-crossroads/{{ item.slug }}' content-type="null" category="Humans of Crossroads" truncate-length="null" data-optimize-img>
               <div class="font-size-small">
                 {{ item.content | strip_html | strip_newlines | truncatewords: 25 }}
               </div>
