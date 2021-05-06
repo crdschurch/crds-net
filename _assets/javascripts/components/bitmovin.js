@@ -204,8 +204,8 @@ class BitmovinManager {
   }
 
   onPlayerStart() {
-    var defJSLoaded = new Event('mediaMetricInteraction');
-    document.dispatchEvent(defJSLoaded);
+    const mediaMetric = new Event('mediaMetricInteraction');
+    document.dispatchEvent(mediaMetric);
 
     if (this.getIsMuted()) this.enableSubtitles();
     if (typeof analytics !== "undefined") {

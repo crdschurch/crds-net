@@ -8,7 +8,7 @@ class YoutubeManager {
     this.pauseVideo = this.pauseVideo.bind(this);
     this.seekTo = this.seekTo.bind(this);
     this.videoStopped = this.videoStopped.bind(this);
-    
+
     let videoElement = document.querySelector('#js-media-video');
     if (videoElement) {
       this.createPlayer(videoElement.getAttribute('player-id'), videoElement.getAttribute('video-id'));
@@ -76,8 +76,8 @@ class YoutubeManager {
     }
 
     if (event.data == YT.PlayerState.PLAYING) {
-      var defJSLoaded = new Event('mediaMetricInteraction');
-      document.dispatchEvent(defJSLoaded);
+      const mediaMetric = new Event('mediaMetricInteraction');
+      document.dispatchEvent(mediaMetric);
     }
   }
 
