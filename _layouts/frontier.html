@@ -29,14 +29,14 @@ layout: default
           <span class="font-family-base text-uppercase text-white">
             <strong>welcome to</strong>
           </span>
-          <h1 class="flush-ends font-family-condensed-extra text-uppercase">Crossroads <br />{{ page.name }}</h1>
+          <h1 class="flush-ends font-family-condensed-extra text-uppercase soft-half-top">Crossroads <br />{{ page.name }}</h1>
         </div>
         <div>
           <p class="font-family-serif font-size-h6 text-white push-top">A place to know God, make friends explore the adventure of faith together.</p>
         </div>
       </div>
     </div>
-    <div class="row location-info-row">
+    <div class="row location-info-row soft-ends">
       {% include _location-info.html %}
     </div>
   </div>
@@ -79,7 +79,7 @@ layout: default
 <!-- Tabs Section -->
 <section class="overflow-hidden">
   <div class="container">
-    <div class="text-center push-ends border-bottom-dashed ">
+    <div class="text-center push-ends border-bottom-dashed push-top">
       <h3 class="component-header-box text-orange">{{ page.name }}</h3>
       <p class="push-ends soft-bottom font-family-serif font-size-large">Grow in community and make a positive impact in your city.</p>
     </div>
@@ -115,10 +115,10 @@ layout: default
                 <div class="soft-half-ends">
                   <p class="font-family-base-bold font-size-smaller text-orange text-uppercase flush">Join in community</p>
                   <h4 class="flush-top font-family-condensed-extra font-size-h3 text-uppercase text-white">Come hang out</h4>
-                  <crds-button href="{{ page.google_calendar_link }}" color="white" display="outline" text="View the calendar of events"></crds-button>
+                  <crds-button href="{{ page.google_calendar_link }}" color="white" display="outline" text="View Calendar"></crds-button>
                 </div>
               </div>
-              <crds-site-happenings-locations location="{{ page.title }}"></crds-site-happenings-locations>
+              <crds-site-happenings-locations location="{{ page.name }}"></crds-site-happenings-locations>
             </div>
           </div>
         </div>
@@ -204,7 +204,7 @@ layout: default
         <div slot="tab-care" class="push-ends">
           <div class="row align-items-center df-screen-sm">
             <div class="col-sm-6 push-bottom">
-              <img class="img-full-width" src="//crds-media.imgix.net/4XD7OHtkEqhaKBXrZJqQxx/fc62b5efdbda6dab941bbf8271b6819a/missional-conversations.jpg"/>
+              <img class="img-full-width" src="//crds-media.imgix.net/6N4nLjk0vm3R230kgN2twX/91151f5ad6f4f46a7830d3a46c2438de/community-care-chat-with-us.jpg"/>
             </div>
             <div class="col-sm-6 push-bottom">
               <p class="text-orange text-uppercase flush-bottom"><strong>Community Care</strong></p>
@@ -227,9 +227,9 @@ layout: default
 
 <!-- Stay in touch -->
 <section class="bg-blue bg-topo bg-contain soft-ends">
-  <div class="container text-center">
+  <div class="container text-center push-ends">
     <h3 class="component-header-box text-orange">Stay in touch</h3>
-    <p class="push-ends font-family-serif text-white font-size-large">Get all the details happening at Crossroads {{ page.name }}.</p>
+    <p class="push-half-ends font-family-serif text-white font-size-large">Get all the details happening at Crossroads {{ page.name }}.</p>
 
     <div class="soft-ends text-center">
       {% if page.care_link %}
@@ -252,7 +252,7 @@ layout: default
 <section class="bg-orange soft">
   <div class="container text-center push-ends">
     <h3 class="component-header-box text-white">We'd love to connect with you</h2>
-    <p class="font-size-large font-family-serif text-blue push-ends">Whether you have questions about Crossroads, faith, life, we are here to help.</p>
+    <p class="font-family-serif font-size-large push-bottom push-half-top text-blue">Whether you have questions about Crossroads, faith, life, we are here to help.</p>
     <crds-button color="blue" text="Chat with us" data-trigger="chat"></crds-button>
   </div>
 </section>
