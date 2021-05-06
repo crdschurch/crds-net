@@ -206,4 +206,15 @@ title: Articles
       </footer>
     </div>
   </div>
+  
+  <crds-media-metrics slug="{{ page.slug }}" type="{{ page.content_type | upcase }}" is-view="true"/>
 </article>
+
+<script type="text/javascript">
+  setTimeout(
+    function(){
+      const mediaMetric = new Event('mediaMetricInteraction');
+      document.dispatchEvent(mediaMetric);
+    }, 
+  30000);
+</script>
