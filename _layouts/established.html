@@ -44,8 +44,11 @@ layout: default
 <section class="overflow-hidden">
   <div class="container">
     <div class="row soft-half">
+      {% if page.community_pastor_name %}
       <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students"]' mobile-dropdown>
-
+      {% else %}
+      <crds-tabs tabs='["events & updates", "about", "kids & students"]' mobile-dropdown>
+      {% endif %}
         <!-- Events & Updates -->
         <div slot="tab-events-updates" class="push-ends">
           <div class="row">
