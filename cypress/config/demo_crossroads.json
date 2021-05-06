@@ -1,6 +1,6 @@
 {
   "projectId": "k8zvaf",
-  "baseUrl": "https://demo.crossroads.net/media",
+  "baseUrl": "https://demo.crossroads.net",
   "testFiles": "**/*spec.js",
   "env": {
     "CONTENTFUL_ENV": "demo",
