@@ -1,4 +1,6 @@
 import { SeriesQueryBuilder, normalizeText } from 'crds-cypress-contentful';
+const uncaughtExceptionError = /.*> Script error.*/;
+
 describe.skip('Testing the Current Series on the Media landing page:', function () {
 
   let currentSeries;
@@ -10,12 +12,12 @@ describe.skip('Testing the Current Series on the Media landing page:', function 
       .then((series) => {
         currentSeries = series;
       });
-
-    cy.visit('/');
+      cy.ignoreMatchingErrors([uncaughtExceptionError]);
+    cy.visit('/media');
   });
-
+  
   beforeEach(function () {
-    cy.get('[data-automation-id="series-section"]').as('featuredSeries')
+     cy.get('[data-automation-id="message-video"]').as('featuredSeries')
       .should('have.length', 1)
       .scrollIntoView();
   });

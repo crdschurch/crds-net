@@ -1,5 +1,5 @@
 import { SeriesQueryBuilder } from 'crds-cypress-contentful';
-const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/];
+const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/, /.*> Cannot set property 'status' of undefined*/];
 
 describe('Tesing the Media/Series/[Current Series] page:', function () {
   let currentSeries;
@@ -11,7 +11,7 @@ describe('Tesing the Media/Series/[Current Series] page:', function () {
       .then((series) => {
         currentSeries = series;
         cy.ignoreMatchingErrors(errorsToIgnore);
-        cy.visit(`/series/${currentSeries.slug.text}`);
+        cy.visit(`media/series/${currentSeries.slug.text}`);
       });
   });
 

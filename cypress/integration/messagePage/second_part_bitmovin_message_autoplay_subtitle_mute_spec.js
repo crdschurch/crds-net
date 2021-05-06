@@ -20,7 +20,7 @@ describe('Tests message with Bitmovin player without transcription', function ()
       });
   });
 
-  describe('Tests message autoplays and query params applied', () => {
+  describe.skip('Tests message autoplays and query params applied', () => {
     it('Checks sound is on and subtitles off', function () {
       cy.ignoreMatchingErrors(errorsToIgnore);
       cy.visit(`${relativeMessageUrl}?autoPlay=true&${soundOn}`);
