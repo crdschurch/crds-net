@@ -1,209 +1,244 @@
 ---
-layout: default
+layout: default_footer_flush
 title: Articles
 ---
-
 {% assign author = page.author | get_doc %}
 {% assign topic = page.category | get_doc %}
 {% assign tags = page.tags | get_doc %}
 
-<article class="article-tpl push-bottom" data-grouping-media-type="article">
-  <header class="flush-bottom">
-    <img class="article-bg-img" alt="{{ page.image | alt }}"
-      src="{% if page.image.url %}{{ page.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}"
-      data-optimize-img>
-    <div class="beige-overlay"></div>
-    <div class="bg-overlay"></div>
-    <div class="container mobile-soft-half-bottom content-position">
-      <div class="row mobile-soft-half-bottom">
-        <div class="col-md-8 col-md-offset-2">
-          <ol class="breadcrumb text-white hard-left">
-            <li><a href="/media">Media</a></li>
-            <li><a href="/media/articles">Articles</a></li>
-          </ol>
-          <h1 class="media-title flush-top" data-title>
-            {{ page.title | escape }}
-          </h1>
-          <p class="flush-bottom soft-half-top">
-            {% if topic %}
-            <a data-grouping-media-topic="{{ topic.title | downcase }}"
-              href="{{ topic.url }}">{{ topic.title | upcase | append: " | " }}</a>
-            {% endif %}
-            <a href="{{ author.url }}" data-grouping-media-author="{{ page.author.full_name | titleize }}"
-              data-author-name>{{ page.author.full_name | titleize | append: " | " }}</a>
-            {% include _read-time.html duration=page.duration content_type=article %}
-          </p>
-          <div class="soft-top">
-            {% include _media-social-share.html type='light' %}
+<article class="article-tpl">
+  <div class="container soft-ends hard-sides">
+    <div class="col-md-9">
+      <div class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
+        <div class="overlay-card-image">
+            <div class="beige-overlay"></div>
+          <img src="{% if page.image.url %}{{ page.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}"
+            sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}"
+            alt="{{ page.image | alt }}" data-optimize-img>
+        </div>
+        <div class="overlay-card-content">
+          <p class="overlay-card-category">{{ page.category.title }}</p>
+          <h2 class="overlay-card-title {% if include.title == 'h2' %}font-size-h2{% endif %}">{{ page.title | truncate: 70 }}</h2>
+          <p class="overlay-card-author text-gray-light">{{ page.author.full_name }}</p>
+          <div class="card-stamp text-white">
+          {% if page.duration %}
+            {% assign format = 'short' %}
+          {% endif %}
+            <span class="font-size-smallest soft-quarter-right">{{ page.duration | duration: format }}</span>
+            <svg class="icon" viewBox="0 0 256 256">
+              <use xlink:href="/assets/svgs/icons.svg#media-article"></use>
+            </svg>
           </div>
         </div>
       </div>
-    </div>
-  </header>
-
-  <div class="container push-top">
-    <div class="row">
-      {% if page.preview %}
-      <main class="col-md-8 col-md-offset-2" data-body></main>
-      {% else %}
-      <main class="col-md-8 col-md-offset-2">
-        {% if page.lead_text %}
-        <div class="lead">{{ page.lead_text | markdownify }}</div>
-        {% endif %}
-        <div class="col-xs-6 col-sm-4 col-md-3 pull-right">
-          <!-- 30 Day Challenge CTA -->
-          <a href="//www.crossroads.net/30-day-challenge/" class="portrait-card-default small-cta-default article-cta bg-blue">
-            <div class="portrait-card-content">
-              <h2 class="portrait-card-title font-family-condensed-extra text-uppercase">30 days can change your life</h2>
-              <div class="push-top">
-                <crds-button href="//www.crossroads.net/30-day-challenge/" color="orange" text="Start today">
-                </crds-button>
-              </div>
-            </div>
-          </a>
-          <!-- End CTA-->
-          <!-- {% include _subscribe-call-to-action.html %} -->
-          <div class="push-top soft-top border-top border-bottom">
-            <div class="text-center">
-              {% include _media-social-share.html heart=false %}
-            </div>
-            <p class="font-family-base-bold font-size-smaller text-center text-cyan">
-              Share with others
-            </p>
-          </div>
-          <!-- Subscrive Button w/ 30 Day CTA-->
-          <div class="text-center push-half-top">
-            <a href="#" role="button" class="btn btn-orange" data-toggle="modal" data-target="#subscribeModalForm"
-              style="width: 135px;">Subscribe</a>
-        </div>
-          <!-- End Subscribe Button-->
-        </div>
-
         {{ page.content }}
-
-        <!-- Author Bio -->
-        <section class="author-bio">
-          <hr class="push-half-bottom">
-          <address class="flush-bottom">
-            <small class="font-size-smaller text-gray text-uppercase">
-              Written by
+      <div class="container soft-top">
+          {% include _article-social-share.html %}
+      </div>
+      <div class="border-bottom border-dashed push-half-sides"></div>
+      <div class="row">
+    
+    <!-- Discussion Questions -->
+    <section class="container">
+      {% if page.discussion %} {% assign discussion = page.discussion | get_doc %}
+        <div class="col-md-9">
+          {% include _collapsible-discussion-questions.html %}
+        </div>
+        {% endif %}
+    </section>
+    <div class="border-bottom border-dashed push-sides"></div>
+    
+    <!-- Author Section -->
+    <section class="container">
+       <div class="row soft-top">
+        <div class="col-md-2 flush-bottom push-half-left border-right">
+          <address>
+            <a href="{{ author.url }}" data-author-link>
+              <img data-author-img
+                src="{{ author.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+                class="img-circle img-size-5" sizes="{{ site.image_sizes.avatar }}" data-optimize-img>
+            </a>
+            <small class="font-size-smaller text-gray">
+              Meet the author
             </small>
             <br>
-            <h2 class="font-family-condensed-extra font-size-h4 text-gray-dark text-uppercase push-quarter-bottom"><a
+            <h2 class="flush font-family-condensed-extra font-size-h4 text-gray-dark text-uppercase"><a
                 href="{{ author.url }}" data-grouping-media-author="{{ author.full_name }}"
                 data-author-name="">{{ author.full_name }}</a></h2>
           </address>
-          <a href="{{ author.url }}" data-author-link>
-            <img data-author-img
-              src="{{ author.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
-              class="img-circle img-size-5" sizes="{{ site.image_sizes.avatar }}" data-optimize-img>
-          </a>
+        </div>
+        <div class="col-md-5 push-top">
           <div class="font-size-small">
             {% if page.title == "Preview" %}
             <p data-author-bio></p>
             {% else %}
-            <p class="flush-bottom push-half-top">{{ author.summary }}</p>
+            <p class="flush-bottom push-top font-size-smaller">{{ author.summary }}</p>
             {% endif %}
             <div class="push-half-ends">
               {% include _author-social.html %}
             </div>
           </div>
-          <small class="text-gray font-size-smaller">
-            Published on
-            <date data-post-date>{{ page.date | format_date }}</date>
-          </small>
-          <hr class="push-half-bottom">
-        </section>
-      </main>
-      {% endif %}
-
-      {% if page.discussion %} {% assign discussion =
-      page.discussion | get_doc %}
-      <div class="col-md-8 col-md-offset-2">
-        {% include _collapsible-discussion-questions.html discussion=discussion %}
-      </div>
-      {% endif %}
-
-      {% assign related = page | related: site, 5 | exclude: page.title %}
-
-      {% if page.recommended_media and page.recommended_media != page %}
-      {% assign recommended = page.recommended_media | get_doc %}
-      {% else %}
-      {% assign recommended = related | first %}
-      {% endif %}
-
-      <footer class="col-md-8 col-md-offset-2">
-        <section class="soft-top">
-          <div class="row">
-            <div class="col-xs-12 col-sm-6">
-              {% include _article-card.html post=recommended %}
-            </div>
-            <div class="col-xs-12 col-sm-6">
-
-              {% if page.sign_off %}
-              {% assign sign_off = page.sign_off %}
-              {% else %}
-              {% assign sign_off = site.sign_offs | where: "contentful_id", site.ENV['DEFAULT_SIGN_OFF_ID'] | first %}
-              {% endif %}
-
-              <div class="signoff-card">
-                {% if sign_off and sign_off.background_image %}
-                {% assign background_image = sign_off.background_image.url | imgix: site.imgix %}
-                {% else %}
-                {% assign background_image = 'https://crds-media.imgix.net/431kdnusOmv7yMibq7VdGs/15709ee9a84d2a3b4113e55cabc77c1a/sign-off-default-background.jpg' | imgix: site.imgix %}
-                {% endif %}
-
-                <div class="content" style="background-image: url('{{ background_image }}?w=600&auto=format,compress')"
-                  data-optimize-bg-img>
-                  <h3>{{ sign_off.title }}</h3>
-
-                  {% if sign_off.body %}
-                  {{ sign_off.body | markdownify }}
-                  {% endif %}
-                </div>
-
-                <footer class="flush">
-                  {% if sign_off.cta %}
-                  {{ sign_off.cta | markdownify }}
-                  {% endif %}
-                </footer>
-              </div>
-            </div>
-          </div>
-
-          <div class="soft-top">
-            <div class="row">
-
-              {% if page.recommended_media and page.recommended_media != page %}
-              {% assign posts = related | exclude: page.title | slice: 0, 3 %}
-              {% else %}
-              {% assign posts = related | exclude: page.title | slice: 1, 3 %}
-              {% endif %}
-
-              {% for post in posts %}
-              <div class="col-xs-12 col-sm-4">
-                {% include _article-card.html post=post %}
-              </div>
-              {% endfor %}
-            </div>
-          </div>
-        </section>
-
-        {% if topic %}
-        <div class="topic-and-tags soft-top">
-          <a class="topic" href="{{ topic.url }}">{{ topic.title }}</a>
-
-          <ul class="tags list-inline">
-            {% for tag in tags %}
-            <li>
-              <a href="{{ tag.url }}">{{ tag.title }}</a>
-            </li>
-            {% endfor %}
-          </ul>
         </div>
-        {% endif %}
-
-      </footer>
+      </div>
     </div>
   </div>
+</section>
+    
+  <!-- Article Sidebar-->
+  <section class="article-sidebar">
+    <div class="col-md-3 article-sidebar">
+      <div class="push-half-bottom border-ends">
+        <div class="border-ends flex-space-between flex-align-center">
+          <h3 class="font-family-serif font-size-small text-uppercase text-gray-light flush soft-half-ends">Popular This Week</h3>
+          <a class="font-size-smaller font-family-base-bold" href="/articles">view all</a>
+        </div>
+      </div>
+    <div class="border-bottom-dashed-group">
+    {% assign popular_this_week =  site.featured_media | where: 'page_path', 'media-homepage-popular' | first %}
+    {% assign featured_popular_items = popular_this_week.entries %}
+
+    {% for content in featured_popular_items limit: 4 %}
+      {% assign item = content | get_doc %}
+      {% assign image = item.image.url %}
+
+      {% if item.content_type == 'episode' %}
+        {% assign image = item.podcast_img %}
+      {% endif %}
+
+      {% if item.duration %}
+        {% assign format = 'short' %}
+      {% endif %}
+
+      {% if item.content_type == 'message' %}
+        {% assign content_type = 'video' %}
+      {% else %}
+        {% assign content_type = item.content_type %}
+      {% endif %}
+        <div class="push-bottom">
+          <div class="article-detail-media-object">
+            <crds-media-object
+              url="{{ item | media_url }}"
+              image-src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}?auto=format"
+              type="{{ content_type }}"
+              title="{{ item.title }}"
+              duration="{{ item.duration | duration: format }}"
+              data-optimize-img
+            ></crds-media-object>
+        </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="soft-bottom">
+        {% include media-homepage/_hubspot-newsletter-form.html %}
+      </div>
+      <div class="border-top">
+        <h3 class="font-family-serif font-size-small text-uppercase text-gray-lightest flush soft-half-ends">Latest Weekly Message</h3>
+        <div class="push-half-bottom">
+          {% include media-homepage/_latest-message.html %}
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <!-- Popular in Category -->
+    <section class="popular-category container push-bottom">
+      <div class="row row-no-gutters soft">
+        <div class="border-top flex-space-between flex-align-center">
+          <h3 class="font-family-serif font-size-small text-uppercase text-gray-light flush soft-half-ends">Popular in {{ page.category.title }}</h3>
+          <a class="font-size-smaller font-family-base-bold" href="/articles/filters/{{ page.category.title }}">view all</a>
+        </div>
+      </div>
+      <div class="row row-no-gutters">
+        {% assign related = page | related: site, 5 | exclude: page.title %}
+  
+        {% if page.recommended_media and page.recommended_media != page %}
+        {% assign recommended = page.recommended_media | get_doc %}
+        {% else %}
+        {% assign recommended = related | first %}
+        {% endif %}
+  
+        {% if page.recommended_media and page.recommended_media != page %}
+        {% assign posts = related | exclude: page.title | slice: 0, 3 %}
+        {% else %}
+        {% assign posts = related | exclude: page.title | slice: 1, 3 %}
+        {% endif %}
+  
+        {% for post in posts %}
+         <div class="col-xs-12 col-sm-4">
+            {% include _article-card.html post=post %}
+          </div>
+            {% endfor %}
+        </div>
+      </div>
+    </section>
+
+  <!-- Popular Authors -->
+  <section class="popular-authors container push-bottom bg-tan">
+      <div class="row row-no-gutters soft">
+        <div class="flex-space-between flex-align-center">
+          <h3 class="font-family-serif font-size-small text-uppercase text-gray-light flush soft-half-ends">Popular Authors</h3>
+          <a class="font-size-smaller font-family-base-bold" href="/authors">view all</a>
+        </div>
+        <div class="row seven-cols flex-space-between flex-align-center">
+          {% assign media_featured_authors = site.featured_media | where: 'page_path', 'article-detail-popular-authors' | first %}
+          {% assign featured_authors = media_featured_authors.entries %}
+          {% for content in featured_authors limit: 7 %}
+          {% assign item = content | get_doc %}
+          <div class="article-author col-lg-1 col-md-3 col-sm-4 col-xs-6">
+            {% include _author-card.html %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+  </section>
+
+  <!-- Popular Topics -->
+  <section class="container push-bottom">
+    <div class="row row-no-gutters soft">
+      <div>
+        <h3 class="font-family-serif font-size-small text-uppercase text-gray-lighter flush soft-half-ends">Popular Topics</h3>        
+      <div class="text-capitalize">
+        {% assign media_popular_topics = site.featured_media | where: 'page_path', 'article-detail-popular-topics' | first %}
+        {% assign popular_topics = media_popular_topics.entries %}
+        {% for content in popular_topics %}
+        {% assign item = content | get_doc %}
+        <crds-button class="push-half-right" text="{{ item.title }}" href="{{ item | media_url }}" display="outline" color="blue"></crds-button>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Prefooter Subscribe Form -->
+  <section class="soft-top">
+    <div class="jumbotron jumbotron-xl grid-overlay-light flush-bottom" style="background-image: url('//crds-media.imgix.net/4TdSCGoNEJn0RRuPLuNv3h/86ded15c0c78b2f5d3204c07dbc3b365/bianca-castillo-iAGPCmxKbls-unsplash.jpg?{{ site.imgix_params.placeholder_sixteen_nine}}');" data-optimize-bg-img>
+      <div class="jumbotron-content">
+        <div class="container text-center">
+          <h1 class="component-header-box text-white">
+            Now Keep<br /> it coming
+          </h1>
+          <div class="media-homepage-footer-form col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+            <script>
+              hbspt.forms.create({
+                portalId: '3993985',
+                formId: '52b50268-5d9c-4369-8359-e96ff69094f9',
+                submitButtonClass: 'btn btn-orange flush',
+                errorMessageClass: 'hs-error-msgs inputs-list list-unstyled soft-half-top',
+                inlineMessage: '<p>Thanks for signing up! Our top picks will hit your inbox every week.</p>',
+                onFormReady($form, ctx) {
+                  $('div[data-reactid=".hbspt-forms-1.5"]').appendTo($('div[data-reactid=".hbspt-forms-1.1:$0.$email.$email"]'));
+                  $('div[data-reactid=".hbspt-forms-1.1:$0.$email.$email"]').addClass('d-flex');
+                  $('div[data-reactid=".hbspt-forms-1.1:$0.0"]').addClass('hidden');
+                }
+              });
+            </script>
+          </div>
+        </div>
+        <div class="container text-center">
+          <p class="font-family-serif push-top soft-top text-white">Subscribe to get our best content delivered straight to your inbox.</p>
+        </div> 
+      </div>
+    </div>
+  </section>
 </article>

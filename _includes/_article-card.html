@@ -2,18 +2,16 @@
 {% assign author = post.author | get_doc %}
 {% assign topic = post.category | get_doc %}
 
-<div class="card">
-  <a class="relative" href="{{ post.url }}">
-    <div class="beige-overlay"></div>
-
-    {% include _media-label.html source=post %}
+<div class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
+  <div class="overlay-card-image">
+      <div class="beige-overlay"></div>
     <img src="{% if post.image %}{{ post.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ post.image.title }}" sizes="{{ site.image_sizes.cards_3x }}" data-optimize-img>
-  </a>
-  <p class="text-orange-dark font-size-smaller push-quarter-top flush-bottom"><a href="{{ topic.url }}">{{ topic.title | upcase }}</a></p>
-  <a href="{{ post.url }}">
-    <h2 class="font-family-condensed-extra font-size-h3 flush-ends">{{ post.title | upcase }}</h2>
-  </a>
-  <p class="text-gray-light font-size-small flush-bottom push-quarter-top"><a href="{{ author.url }}">
-    {{ author.name | titleize }}
-  </a></p>
+  </div>
+  <div class="overlay-card-content">
+    <p class="overlay-card-category">{{ post.category.title }}</p>
+    <h2 class="overlay-card-title {% if include.title == 'h2' %}font-size-h2{% endif %}">{{ post.title | truncate: 70
+      }}</h2>
+    <p class="overlay-card-author">{{ post.author.full_name }}</p>
+    {% include _media-label.html source=post %}
+  </div>
 </div>
