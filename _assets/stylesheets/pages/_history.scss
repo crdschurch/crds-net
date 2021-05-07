@@ -273,12 +273,12 @@
     margin-top: -40px;
     row-gap: 40px;
     position: relative;
-    
+
     @media screen and (min-width: $screen-sm) {
       grid-template-rows: unset;
       margin-top: -140px;
     }
-    
+
     @media screen and (min-width: $screen-md) {
       margin-top: -160px;
     }
@@ -300,7 +300,7 @@
     .biblical-truth-img-stack-item-2 {
       grid-column: 1 / 10;
       grid-row: 2;
-      
+
       @media screen and (min-width: $screen-sm) {
         grid-row: 1;
         align-self: center;
@@ -312,9 +312,9 @@
   .biblical-truth-content-row {
     @media screen and (min-width: $screen-md) {
       display: flex;
-      justify-content: space-between; 
+      justify-content: space-between;
     }
-    
+
     .biblical-truth-content-col-1 {
       padding: 0 48px;
 
@@ -761,16 +761,14 @@
   .reproduction-img-title {
     position: relative;
     z-index: 2;
-    margin-top: -90px;
+    margin-top: -55px;
 
     @media screen and (min-width: $screen-md) {
       margin-top: -90px;
     }
     @media screen and (min-width: $screen-lg) {
       margin-top: -90px;
-    }    grid-column: 10 / 8;
-    grid-row: 1;
-    margin-top: 955px;
+    }
 
     img {
       width: 100%;
@@ -867,6 +865,78 @@
     @media screen and (min-width: $screen-sm) {
     }
     @media screen and (min-width: $screen-md) {
+    }
+  }
+}
+
+
+// GROWTH
+.growth {
+
+  .growth-img-title {
+    position: relative;
+    z-index: 2;
+    margin-top: 40px;
+
+    @media screen and (min-width: $screen-md) {
+      margin-top: -115px;
+    }
+    @media screen and (min-width: $screen-lg) {
+      margin-top: -190px;
+    }
+
+    img {
+      width: 100%;
+    }
+
+  }
+
+  .growth-image-stack-1-item-1 {
+    margin-top:50px;
+
+    @media screen and (min-width: $screen-sm) {
+      margin-top: 50px;
+    }
+    @media screen and (min-width: $screen-md) {
+      margin-top: 100px;
+    }
+    @media screen and (min-width: $screen-lg) {
+      margin-top: 100px;
+    }
+  }
+
+  .growth-image-stack-1-item-2 {
+
+    @media screen and (min-width: $screen-sm) {
+    }
+    @media screen and (min-width: $screen-md) {
+    }
+    @media screen and (min-width: $screen-lg) {
+
+    }
+  }
+
+  .growth-article {
+    margin-top: 110px;
+    z-index: 0;
+    position: relative;
+
+    @media screen and (min-width: $screen-sm) {
+      margin-top: 0px;
+    }
+    @media screen and (min-width: $screen-md) {
+    }
+
+  }
+
+  .growth-content {
+    padding-top: 0px;
+    padding-bottom: 120px;
+
+    @media screen and (min-width: $screen-sm) {
+    }
+    @media screen and (min-width: $screen-md) {
+      padding-bottom: 120px;
     }
   }
 }
