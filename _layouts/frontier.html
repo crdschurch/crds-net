@@ -84,7 +84,11 @@ layout: default
       <p class="push-ends soft-bottom font-family-serif font-size-large">Grow in community and make a positive impact in your city.</p>
     </div>
     <div>
+      {% if page.community_pastor_name %}
       <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "care"]' mobile-dropdown>
+      {% else %}
+      <crds-tabs tabs='["events & updates", "about", "kids & students", "care"]' mobile-dropdown>
+      {% endif %}
         <!-- Events & Updates -->
         <div slot="tab-events-updates" class="push-ends">
           <div class="row">
@@ -198,6 +202,30 @@ layout: default
               </div>
             </div>
           </div>
+          {% if page.student_ministry_hours %}
+          <div class="row push-top soft-top">
+            <div class="align-items-center df-screen-sm">
+              <div class="col-sm-6 col-sm-push-6 push-bottom">
+                <img class="img-full-width" src="//crds-media.imgix.net/2mMGJ0sK1MJU04ykA3ukil/625d4ef0c64ade1ff74697aa4cbd7841/student-ministry-graphic.png"/>
+              </div>
+              <div class="col-sm-6 col-sm-pull-6 push-bottom">
+                <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>
+                <h2 class="section-header flush-ends soft-half-bottom">Student ministry</h2>
+                <p>Middle School (grades 6-8) and High School (grades 9-12) students have a place to call their own.
+                  Students are challenged and encouraged through relevant teaching and fun events. Opportunities are
+                  provided for them to grow as they connect with God and with each other. </p>
+                <div class="soft-half-top soft-bottom">
+                  <crds-button href="/studentministry/" color="blue" display="outline"
+                    text="More about Student Ministry">
+                  </crds-button>
+                </div>
+                <div class="df-screen-sm">
+                  {{ page.student_ministry_hours | markdownify }}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
         </div>
 
         <!-- Care -->

@@ -16,19 +16,27 @@
       {% endif %}
       <hr class="visible-xs">
     </div>
-    
+
     <div class="location-top-info-item text-left">
-      <div class="align-items-center d-flex justify-content-between">
+      <div class="{% if page.community_pastor_name %}align-items-center {% endif %}d-flex justify-content-between">
         <div class="push-right">
           <span class="flush text-uppercase font-family-base-bold font-size-smaller">Leadership</span>
+          {% if page.community_pastor_name %}
           <p class="flush font-family-base font-size-small">{{ page.community_pastor_name }}</p>
           <p class="flush font-family-base font-size-small">{{ page.name }} Community Pastor</p>
           {% assign pastor_full_name = page.community_pastor_name | split: " " %}
           <a class="text-orange" href="#community-pastor">More about {{ pastor_full_name[0] }}</a>
+          {% else %}
+          <p class="flush font-family-base font-size-small">New face coming soon</p>
+          {% endif %}
         </div>
         <div class="locations-pastor-img-container">
+          {% if page.community_pastor_image %}
           <img class="img-border img-circle img-size-4" src="{{ page.community_pastor_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
           sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+          {% else %}
+          <img class="img-border img-circle img-size-4" src="https://crossroads-media.imgix.net/images/avatar.svg"/>
+          {% endif %}
         </div>
       </div>
       <hr class="visible-xs">
