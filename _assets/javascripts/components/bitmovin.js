@@ -168,7 +168,8 @@ class BitmovinManager {
   getAutoPlay() {
     if (this.isStream || this.autoplay || (this.getStartTime() > 0 && !this.currentHasEnded())) return true;
     let urlParams = new URLSearchParams(window.location.search);
-    let autoPlay = urlParams.has("autoplay") ? Boolean(urlParams.get("autoplay")) : false;
+    let autoplayString = urlParams.has("autoPlay") ? urlParams.get("autoPlay") : "false";
+    let autoPlay = autoplayString == "true" ? true : false;
     return autoPlay;
   }
 
@@ -204,6 +205,11 @@ class BitmovinManager {
   }
 
   onPlayerStart() {
+    if (!this.isCard) {
+      const mediaMetric = new Event('mediaMetricInteraction');
+      document.dispatchEvent(mediaMetric);
+    }
+
     if (this.getIsMuted()) this.enableSubtitles();
     if (typeof analytics !== "undefined") {
       if (this.getAutoPlay)

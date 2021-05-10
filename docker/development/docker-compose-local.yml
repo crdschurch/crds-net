@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  crds-net:
+    build: 
+      context: ../../
+      dockerfile: ./docker/development/Dockerfile.local
+    container_name: crds-net-development
+    env_file: ../../.env
+    volumes:
+      - type: volume
+        source: crds-net_node_modules
+        target: /crds-net/node_modules
+      - type: bind
+        source: ../../
+        target: /crds-net
+    ports:
+      - 4000:4000
+    entrypoint: 
+      - ./docker/development/entrypoint-local.sh
+
+volumes: 
+  crds-net_node_modules:

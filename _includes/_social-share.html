@@ -5,7 +5,7 @@
 <!-- // -->
 <div class="clearfix">
   <div class="pull-left">
-    <crds-heart-button contentful-id="{{ item.contentful_id }}"></crds-heart-button>
+    <crds-heart-button contentful-id="{{ item.contentful_id }}" contentful-slug= "{{ item.slug }}" contentful-type="{{ item.content_type | upcase }}"></crds-heart-button>
   </div>
   <div class="pull-right">
 {% endif %}
