@@ -197,7 +197,10 @@ layout: default
               <p>Your kids will love Kids’ Club! A fun learning environment designed especially for kids (birth through fifth grade). It’s free, totally secure, and don’t worry-we’ll let you know if your child needs you at any point during the service.</p>
               <em>{{ page.kids_club_hours | markdownify }}</em>
               <div class="soft-half-top">
-                <crds-button href="/kids-club" color="blue" display="outline" text="More about Kids' Club">
+                <crds-button class="push-half-right" href="/kids-club" color="blue" display="outline" text="More about Kids' Club">
+                </crds-button>
+                <crds-button text="Sign up for the newsletter" color="orange" href="#"
+                  onClick="$('#kidsClubModalForm').modal(); return false;">
                 </crds-button>
               </div>
             </div>
@@ -336,3 +339,31 @@ layout: default
 </script>
 
 {% include _frontier-launch-team-modal.html %}
+
+<!-- Kid's Club Form Modal -->
+<div class="modal" id="kidsClubModalForm" tabindex="-1" role="dialog" aria-labelledby="Subscribe email form">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-left hard-bottom">
+        <h3 class="font-family-condensed-extra font-size-h2 text-uppercase flush-top">Subscribe</h3>
+        <!--[if lte IE 8]>
+  <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+  <![endif]-->
+        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+        <script>
+          hbspt.forms.create({
+            portalId: '3993985',
+            formId: 'afe5bd1e-c69f-44fe-bed8-486c416bdc35'
+          });
+        </script>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>
+
