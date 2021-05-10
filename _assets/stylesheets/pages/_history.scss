@@ -382,10 +382,13 @@
   }
 
   .culturally-current-article {
-    margin-top: -240px;
+    margin-top: -220px;
     z-index: 0;
     position: relative;
 
+    @media screen and (min-width: $screen-xs) {
+      margin-top: -240px;
+    }
     @media screen and (min-width: $screen-sm) {
       margin-top: -140px;
     }
