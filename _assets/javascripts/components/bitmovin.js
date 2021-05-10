@@ -205,8 +205,10 @@ class BitmovinManager {
   }
 
   onPlayerStart() {
-    const mediaMetric = new Event('mediaMetricInteraction');
-    document.dispatchEvent(mediaMetric);
+    if (!this.isCard) {
+      const mediaMetric = new Event('mediaMetricInteraction');
+      document.dispatchEvent(mediaMetric);
+    }
 
     if (this.getIsMuted()) this.enableSubtitles();
     if (typeof analytics !== "undefined") {
