@@ -74,6 +74,11 @@ class YoutubeManager {
         });
       }
     }
+
+    if (event.data == YT.PlayerState.PLAYING) {
+      const mediaMetricView = new Event('mediaMetricInteractionView');
+      document.dispatchEvent(mediaMetricView);
+    }
   }
 
   pauseVideo() {

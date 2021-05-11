@@ -84,7 +84,11 @@ layout: default
       <p class="push-ends soft-bottom font-family-serif font-size-large">Grow in community and make a positive impact in your city.</p>
     </div>
     <div>
+      {% if page.community_pastor_name %}
       <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "care"]' mobile-dropdown>
+      {% else %}
+      <crds-tabs tabs='["events & updates", "about", "kids & students", "care"]' mobile-dropdown>
+      {% endif %}
         <!-- Events & Updates -->
         <div slot="tab-events-updates" class="push-ends">
           <div class="row">
@@ -118,7 +122,7 @@ layout: default
                   <crds-button href="{{ page.google_calendar_link }}" color="white" display="outline" text="View Calendar"></crds-button>
                 </div>
               </div>
-              <crds-site-happenings-locations location="{{ page.title }}"></crds-site-happenings-locations>
+              <crds-site-happenings-locations location="{{ page.name }}"></crds-site-happenings-locations>
             </div>
           </div>
         </div>
@@ -193,11 +197,38 @@ layout: default
               <p>Your kids will love Kids’ Club! A fun learning environment designed especially for kids (birth through fifth grade). It’s free, totally secure, and don’t worry-we’ll let you know if your child needs you at any point during the service.</p>
               <em>{{ page.kids_club_hours | markdownify }}</em>
               <div class="soft-half-top">
-                <crds-button href="/kids-club" color="blue" display="outline" text="More about Kids' Club">
+                <crds-button class="push-half-right" href="/kids-club" color="blue" display="outline" text="More about Kids' Club">
+                </crds-button>
+                <crds-button text="Sign up for the newsletter" color="orange" href="#"
+                  onClick="$('#kidsClubModalForm').modal(); return false;">
                 </crds-button>
               </div>
             </div>
           </div>
+          {% if page.student_ministry_hours %}
+          <div class="row push-top soft-top">
+            <div class="align-items-center df-screen-sm">
+              <div class="col-sm-6 col-sm-push-6 push-bottom">
+                <img class="img-full-width" src="//crds-media.imgix.net/2mMGJ0sK1MJU04ykA3ukil/625d4ef0c64ade1ff74697aa4cbd7841/student-ministry-graphic.png"/>
+              </div>
+              <div class="col-sm-6 col-sm-pull-6 push-bottom">
+                <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>
+                <h2 class="section-header flush-ends soft-half-bottom">Student ministry</h2>
+                <p>Middle School (grades 6-8) and High School (grades 9-12) students have a place to call their own.
+                  Students are challenged and encouraged through relevant teaching and fun events. Opportunities are
+                  provided for them to grow as they connect with God and with each other. </p>
+                <div class="soft-half-top soft-bottom">
+                  <crds-button href="/studentministry/" color="blue" display="outline"
+                    text="More about Student Ministry">
+                  </crds-button>
+                </div>
+                <div class="df-screen-sm justify-content-between">
+                  {{ page.student_ministry_hours | markdownify }}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
         </div>
 
         <!-- Care -->
@@ -308,3 +339,31 @@ layout: default
 </script>
 
 {% include _frontier-launch-team-modal.html %}
+
+<!-- Kid's Club Form Modal -->
+<div class="modal" id="kidsClubModalForm" tabindex="-1" role="dialog" aria-labelledby="Subscribe email form">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-left hard-bottom">
+        <h3 class="font-family-condensed-extra font-size-h2 text-uppercase flush-top">Subscribe</h3>
+        <!--[if lte IE 8]>
+  <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+  <![endif]-->
+        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+        <script>
+          hbspt.forms.create({
+            portalId: '3993985',
+            formId: 'afe5bd1e-c69f-44fe-bed8-486c416bdc35'
+          });
+        </script>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>
+

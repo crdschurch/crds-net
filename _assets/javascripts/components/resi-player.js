@@ -55,6 +55,15 @@ const refreshPageForServiceStart = (hours, minutes, seconds) => {
   }, timeout);
 };
 
+if (isServiceTime() && document.getElementById('resi-player')) {
+  const resiPlayer = document.getElementById('resi-video-player-container');
+  const resiScript = document.createElement('script');
+  resiScript.src = 'https://control.resi.io/webplayer/loader.min.js';
+  resiScript.type = 'application/javascript';
+
+  resiPlayer.appendChild(resiScript);
+}
+
 if (!isServiceTime() && document.getElementById('resi-player')) {
   document.getElementById('resi-player').remove();
 }

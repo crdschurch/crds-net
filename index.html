@@ -93,7 +93,7 @@ paginate:
     <div class="col-md-8">
       {% include home/_latest-message.html %}
     </div>
-    <div class="col-sm-4">
+    <div class="col-md-4">
       {% include home/_current-series.html %}
       <div>
         <a href="/watch/#ways-to-watch"><img src="//crds-media.imgix.net/34df7tsGquaZaP97trNmAL/a71dee0a17b96c679c4c9ba005a55b3b/many-ways-to-watch-monetate2.jpg?auto=format,compress&w=1800" /></a>
@@ -122,7 +122,7 @@ paginate:
       </div>
       <p class="text-blue font-family-serif font-size-large">Unfiltered & authentic takes on life</p>
     </div>
-    <div class="col-sm-8">
+    <div class="col-md-8">
       {% assign most_recent = page.home_collection.docs | sort: "published_at" | reverse | first %}
       <a href="{{ most_recent.url }}" class="overlay-card">
         <div class="bg-overlay"></div>
@@ -185,7 +185,7 @@ paginate:
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-md-4">
       <crds-sign-up title="Sign Up for the Weekly Digest" content="Get our latest content, delivered straight to your inbox, every week." onClick="$('#subscribeModalForm').modal(); return false;"></crds-sign-up>
       <div class="soft-ends">
         {% include home/_content-menu.html %}
