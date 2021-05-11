@@ -107,24 +107,32 @@ snail_trail: disabled
 
 </section>
 
+
 <!-- Authenticity video modal -->
-<div class="modal fade modal-video" id="authenticity-video" role="dialog" tabindex="-1">
+<div class="modal modal-video fade" id="authenticity-video" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel">
   <div class="modal-dialog" role="document">
-    <div class="modal-content modal-backdrop">
-      <div class="modal-header"><button aria-label="Close" class="close pull-right" data-dismiss="modal"
-          type="button"><span aria-hidden="true">&times;</span></button>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="soft">
+      <div class="modal-body">
         <div class="embed-responsive embed-responsive-16by9">
           <video class="embed-responsive-item" width="560" height="315" controls>
             <source src="//videos.ctfassets.net/y3a9myzsdjan/32itYfLt9onTHDK1DimqJ1/eacfc915d1bbe42c4f9951033782fc62/The_Ends_of_The_Earth_-_India.mp4" type="video/mp4"></source>
           </video>
         </div>
       </div>
-      <div class="modal-footer">&nbsp;</div>
     </div>
   </div>
 </div>
+
+<script>
+  $("#authenticity-video").on('hidden.bs.modal', function (e) {
+    $("#authenticity-video video")[0].pause();
+  });
+</script>
 
 
 <!-- Biblical Truth  -->
@@ -198,10 +206,15 @@ snail_trail: disabled
           </video>
         </div>
       </div>
-      <div class="modal-footer">&nbsp;</div>
     </div>
   </div>
 </div>
+
+<script>
+  $("#biblical-truth-video").on('hidden.bs.modal', function (e) {
+    $("#biblical-truth-video video")[0].pause();
+  });
+</script>
 
 
 <!-- Culturally Current -->
@@ -377,10 +390,15 @@ snail_trail: disabled
           </video>
         </div>
       </div>
-      <div class="modal-footer">&nbsp;</div>
     </div>
   </div>
 </div>
+
+<script>
+  $("#doing-life-video").on('hidden.bs.modal', function (e) {
+    $("#doing-life-video video")[0].pause();
+  });
+</script>
 
 
 <!-- Excellence -->
