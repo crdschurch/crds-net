@@ -317,12 +317,15 @@
     .culturally-current-image-stack-1-item-1 {
       grid-column: 13 / 3;
       grid-row: 1;
-      margin-top: -160px;
+      margin-top: -120px;
+
+      @media screen and (min-width: $screen-xs) {
+        margin-top: -160px;
+      }
 
       @media screen and (min-width: $screen-sm) {
         grid-column: 13 / 1;
         grid-row: 1;
-        margin-top: -160px;
       }
       @media screen and (min-width: $screen-md) {
         grid-column: 13 / 1;
