@@ -76,8 +76,8 @@ class YoutubeManager {
     }
 
     if (event.data == YT.PlayerState.PLAYING) {
-      const mediaMetric = new Event('mediaMetricInteraction');
-      document.dispatchEvent(mediaMetric);
+      const mediaMetricView = new Event('mediaMetricInteractionView');
+      document.dispatchEvent(mediaMetricView);
     }
   }
 
