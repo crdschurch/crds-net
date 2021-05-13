@@ -26,6 +26,19 @@
   }
 }
 
+.video-image {
+  display: block;
+  position: relative;
+
+  .video-image-icon {
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px rgba(0, 0, 0, .15);
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
 
 // AUTHENTICITY
 .authenticity {
@@ -385,7 +398,7 @@
   }
 
   .culturally-current-article {
-    margin-top: -220px;
+    margin-top: -170px;
     z-index: 0;
     position: relative;
 
@@ -778,6 +791,35 @@
       }
     }
 
+  }
+
+  .reproduction-hoc-content {
+    position: relative;
+
+    @media screen and (min-width: $screen-sm) {
+      &::before {
+        content: '';
+        position: absolute;
+        right: 0;
+        display: block;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid $cr-blue;
+        width: 0;
+        top: 0;
+        height: 0;
+      }
+  
+      &::after {
+        background-color: $cr-blue;
+        content: "";
+        display: block;
+        height: 2px;
+        width: 96%;
+        position: absolute;
+        top: 9px;
+      }
+    }
   }
 
   .reproduction-article {
