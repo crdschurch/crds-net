@@ -42,7 +42,7 @@
     const mediaMetricShare = new Event('mediaMetricInteractionShare');
     document.dispatchEvent(mediaMetricShare);
     
-    let link = `https://www.facebook.com/sharer/sharer.php?u=https://www.crossroads.net/media{{ page.url }}`;
+    let link = `https://www.facebook.com/sharer/sharer.php?u=https://www.crossroads.net{{ page.url | url_encode }}`;
     window.open(link, '_blank');
   }
 
@@ -50,7 +50,7 @@
     const mediaMetricShare = new Event('mediaMetricInteractionShare');
     document.dispatchEvent(mediaMetricShare);
     
-    let link = `https://twitter.com/home?status={{ page.title | escape | titleize }}%20{{ site.url }}{{ page.url }}`;
+    let link = `https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.crossroads.net{{ page.url | url_encode }}%3Fsmid%3Dtw-share&text={{ page.title | url_encode }}`;
     window.open(link, '_blank');
   }
 
