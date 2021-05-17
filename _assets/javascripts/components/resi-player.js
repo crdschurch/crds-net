@@ -40,10 +40,7 @@ const isServiceTime = () => {
 };
 
 const refreshPageForServiceStart = (hours, minutes, seconds) => {
-  let isSunday = isDayOfTheWeek(0);
-  let isSaturday = isDayOfTheWeek(6);
-
-  if ((!isSunday || !isSaturday) || !document.getElementById('location-page')) {
+  if ((!document.getElementById('location-page'))) {
     return;
   }
 
