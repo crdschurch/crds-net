@@ -1,0 +1,134 @@
+---
+layout: default
+snail_trail: disabled
+permalink: /what-color-is-god
+---
+
+<section class="jumbotron featured-series-landing-jumbotron flush" style="background-image: url(//crds-media.imgix.net/4QZbSgqbcdTbAqifv0NvVN/0a6837192d54952bfc5a9d178af16cc4/WCIG_SlideForWeb_2x.jpg);" data-optimize-bg-img>
+
+</section>
+
+<section class="bg-black soft-ends">
+  <div class="container soft-ends">
+    <div class="row soft-ends">
+      <div class="col-md-10 col-md-offset-1 text-center text-white">
+        <p class="font-size-base soft-bottom">Conversations about race and ethnicity can be painful and combative, but they don’t have to be. You can have a positive experience talking about race, ethnicity, and reconciliation. This series explores what the Bible says and how it offers us an opportunity for freedom, justice, peace, and hope.</p>
+        <crds-button text="Watch Online" href="/watch" color="orange" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container soft-ends">
+    <div class="text-center">
+      <h2 class="font-family-condensed-extra">Locations &amp; Service Times</h2>
+    </div>
+    <div class="push-top soft-top">
+      <div class="card-deck carousel locations" data-crds-carousel="mobile-scroll" data-automation-id="locations-carousel">
+        <div id="section-locations" class="feature-cards card-deck--expanded-layout">
+          {% assign locations_sorted_names = site.locations | sort: 'name' | group_by: 'name' %}
+          {% for name_group in locations_sorted_names %}
+            {% assign locations_sorted_slugs = name_group.items | sort: 'slug' %}
+            {% for location in locations_sorted_slugs %}
+            <div class="card">
+              <a href="{{ location.url }}" class="block" data-automation-id="location-image">
+                <img src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}"
+                  sizes="{{ site.image_sizes.cards_4x }}" alt="{{ location.title }}" data-optimize-img />
+              </a>
+              <div class="card-block">
+                <h4 class="card-title card-title--overlap text-uppercase">
+                  <a href="{{ location.url }}" data-automation-id="location-name">{{ location.name }}</a>
+                </h4>
+                <div data-automation-id="location-address" class="push-bottom">
+                  {% if location.address %}
+                    {{ location.address | markdownify | remove: '<p>'| remove: '</p>' }} <br>
+                    {% if location.slug != 'anywhere' %}
+                      (<a target="_blank" href="{{ location.map_url }}" data-automation-id="location-map-url">Map</a>)
+                    {% endif %}
+                  {% else %}
+                  <p>Currently looking for new digs to house our ever-growing {{ location.name }} community.</p>
+                  {% endif %}
+                </div>
+                <div class="card-text">
+                  <div data-automation-id="location-service-times" class="push-half-bottom">
+                    {% if location.slug != 'anywhere' %}
+                      <strong>Service Times:</strong>
+                      <br />
+                    {% endif %}
+                    {{ location.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-black">
+  <div class="jumbotron jumbotron-sm flush" style="background-image: url(//crds-media.imgix.net/6gP1iI6HaP1KcYqCqHhsK3/ab775f8f2c8263c0221a832e5b399484/FAQ_Strip_2x.jpg);" data-optimize-bg-img></div>
+
+  <div class="container soft-ends">
+    <div class="text-center">
+      <h3 class="font-family-condensed-extra text-white">FAQS</h3>
+    </div>
+    <div class="row push-ends">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+        <div class="collapsible-container">
+          <button class="collapsible text-uppercase"><span>Why are we asking this question and talking about this?</span></button>
+          <div class="content">
+            <p class="text-white soft-ends text-left">Race has been a topic that has caused disunity across many aspects of our lives for generations. Especially in the church. God’s heart for us is to be united, not separated from one another. Our hope is that this series opens up conversations and challenges all of us in ways that will take our community to the next level in loving others well and seeing them for who God created them to be. </p>
+          </div>
+
+          <button class="collapsible text-uppercase"><span>What does the Bible actually say about race and injustice?</span></button>
+          <div class="content">
+            <p class="text-white soft-ends text-left">We talk about reconciliation every week at Crossroads through the Gospel – it’s the story of our own reconciliation with God. We’re going to dive deeper into that in this series to look at what that reconciliation looks like between people. The Bible doesn’t say anything about race in the way we are used to hearing about it, but it says a whole lot about ethnicity, reconciliation, and justice. Check out Revelation 7:9 or Acts 2. 
+            </p>
+          </div>
+          
+          <button class="collapsible text-uppercase"><span>Is Crossroads a woke church?</span></button>
+          <div class="content">
+            <p class="text-white soft-ends text-left">Crossroads does not identify as a “woke church.” We are a church going after what we believe is in the Bible on this topic to get to a better place. We die on the hill of culturally current communication, and the topic of race and justice has been long important, but particularly unavoidable in this past year. With all of the voices and opinions, we want to explore what God has to say about this.</p>
+          </div>
+
+          <button class="collapsible text-uppercase"><span>Does Crossroads support Black Lives Matter?</span></button>
+          <div class="content">
+            <p class="text-white soft-ends text-left">Crossroads is not affiliated with Black Lives Matter. The only group working in the racial reconciliation space that we are directly affiliated with is LivingUNDIVIDED. You can learn more about that movement here.</p>
+          </div>
+
+          <button class="collapsible text-uppercase"><span>Is this series based on critical race theory?</span></button>
+          <div class="content">
+            <p class="text-white soft-ends text-left">In Romans 12 Paul calls us not to be conformed by the patterns of this world. Critical race theory and many of the political beliefs we hold are rooted in patterns of the world. We’re not looking to lean into those beliefs but looking to the Bible and what it teaches about how we should approach race in our everyday lives.</p>
+          </div>
+
+          <button class="collapsible text-uppercase"><span>Why can’t we all just be color blind and not make race an issue?</span></button>
+          <div class="content">
+            <p class="text-white soft-ends text-left">We believe that God created each of us uniquely and in His image on purpose. That means we value the different races and ethnicities that are part of who we are. All of us are loved by God and designed to be part of His kingdom. </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row push-ends">
+      <div class="col-sm-6">
+        <a href="/undivided">
+          <img class="width-100" src="//crds-media.imgix.net/1boWVMlj0jXdwR8nVKUh85/73291e72e664bcaf202b023c22bb3826/Undivided_2x.jpg?{{ site.imgix_params.placeholder_card }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+      </div>
+
+      <div class="col-sm-6">
+        <a href="/undivided">
+          <img class="width-100" src="//crds-media.imgix.net/7dMJnWwqQBHAapBSjapGbs/3ed619e83b2544536a46376a4e31ee43/Go_2x.jpg?{{ site.imgix_params.placeholder_card }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% javascript_link_tag accordion async %}
