@@ -1,3 +1,5 @@
+/* global CRDS */
+/* global moment */
 class BitmovinManager {
   constructor(bitmovinConfig) {
     this.isCard = bitmovinConfig.isCard == 'true';
@@ -10,6 +12,10 @@ class BitmovinManager {
     this.dateStringFormat = "YYYY/MM/DD HH:mm:ss";
     this.timeouts = [];
     this.container = document.getElementById(`${bitmovinConfig.id}`);
+    if (bitmovinConfig.countdown !== false && CRDS.Countdown) {
+      this.countdown = new CRDS.Countdown();
+    }
+
     this.playerConfig = {
       key: `${window.CRDS.env.bitmovinPlayerLicense}`,
       playback: {
@@ -26,6 +32,9 @@ class BitmovinManager {
         key: `${window.CRDS.env.bitmovinAnalyticsLicense}`,
         title: bitmovinConfig.title
       },
+      ui: {
+        playbackSpeedSelectionEnabled: true
+      },
       cast: {
         enable: true
       },
@@ -33,6 +42,11 @@ class BitmovinManager {
         type: "googlecast",
         customReceiverConfig: {
           receiverStylesheetUrl: "https://d1gb5n5uoite2y.cloudfront.net/bitmovin-cast-v1.0.css"
+        }
+      },
+      events: {
+        onPlaybackFinished: () => {
+          this.showStandbyMessaging();
         }
       },
       network: {
@@ -53,10 +67,26 @@ class BitmovinManager {
         }
       },
     };
-    this.subtitles_url = bitmovinConfig.subtitles_url;
-    this.spn_subtitles_url = bitmovinConfig.spn_subtitles_url;
+
+    if (this.getHidePlaybackSpeed()) {
+      this.playerConfig.ui.playbackSpeedSelectionEnabled = false;
+    }
+
+    if (this.isStream) {
+      if (this.countdown.events) this.streamInit(this.countdown.events, bitmovinConfig);
+      this.countdown.streamStatusPromise.then(events => {
+        this.streamInit(events, bitmovinConfig);
+      });
+    } else {
+      this.createSource(bitmovinConfig);
+      if (!this.isCard) this.createPlayer();
+    }
+  }
+
+  createSource(bitmovinConfig) {
     this.source = {
       title: bitmovinConfig.title,
+      //  description: desc,
       hls: bitmovinConfig.url,
       options: {
         startTime: this.getStartTime()
@@ -71,9 +101,6 @@ class BitmovinManager {
         }
       }
     };
-
-    this.manuallyTurnedOnCC = false;
-    if (!this.isCard) this.createPlayer();
   }
 
   createPlayer() {
@@ -83,37 +110,143 @@ class BitmovinManager {
     });
     this.bitmovinPlayer.on("playbackfinished", () => {
       this.onPlayerEnd("Ended");
-    });
-    this.bitmovinPlayer.on("playbackfinished", () => {
       this.revealPostVideoMessage();
     });
-    this.bitmovinPlayer.on("paused", () => {
+    this.bitmovinPlayer.on("paused", eventProps => {
+      if (eventProps.issuer !== "ui") return;
       this.onPlayerEnd("Paused");
+      if (this.isStream) this.cancelStreams();
     });
-    this.bitmovinPlayer.on("ready", () => {
-      this.setQualityOptions();
-    });
-    this.bitmovinPlayer.on("sourceloaded", () => this.addExternalSubtitles());
+
     this.bitmovinPlayer.on("subtitleenable", subtitle => {
       this.onSubtitlesEnabled(subtitle);
     });
     this.bitmovinPlayer.on("subtitledisable", () => {
       this.onSubtitleDisabled();
     });
+    this.bitmovinPlayer.on("sourceloaded", () => {
+      this.addExternalSubtitles();
+    });
+    this.bitmovinPlayer.on("ready", () => {
+      this.onPlayerReady(new Date());
+    });
+
     return this.bitmovinPlayer.load(this.source);
   }
 
-  setQualityOptions() {
-    const qualities = this.bitmovinPlayer.getAvailableVideoQualities();
-    const dedupedQualities = qualities.reduce((unique, item) => {
-      if (unique.find(u => u.label.split("(").shift() == item.label.split("(").shift())) {
-        this.removeQualityByIndex(item.id);
-        return unique;
-      } else return [...unique, item];
-    }, []);
-    if (this.isCard) {
-      const quality = dedupedQualities.find(quality => quality.label.includes("720"));
-      this.bitmovinPlayer.setVideoQuality(quality.id);
+  scheduleFutureEvents() {
+    this.events.forEach(e => {
+      const now = moment();
+      const timeTilEventStart = moment.tz(e.start, this.dateStringFormat, this.timezoneStr) - now;
+      const videoEndTime =
+        moment.tz(e.start, this.dateStringFormat, this.timezoneStr) + this.videoDuration;
+      const timeTilVideoEnd = videoEndTime - now;
+      if (moment.tz(e.start, this.dateStringFormat, this.timezoneStr) > now) {
+        let eventStartTimeout = setTimeout(() => {
+          this.restartVideo();
+        }, timeTilEventStart);
+        this.timeouts.push(eventStartTimeout);
+      }
+
+      let videoEndTimeout = setTimeout(() => {
+        this.showStandbyMessaging();
+      }, timeTilVideoEnd);
+      this.timeouts.push(videoEndTimeout);
+    });
+  }
+
+  cancelStreams() {
+    for (var i in this.timeouts) {
+      clearTimeout(this.timeouts[i]);
+    }
+  }
+
+  getHidePlaybackSpeed() {
+    return this.isStream;
+  }
+
+  getAutoPlay() {
+    if (this.isStream || this.autoplay || (this.getStartTime() > 0 && !this.currentHasEnded())) return true;
+    let urlParams = new URLSearchParams(window.location.search);
+    let autoplayString = urlParams.has("autoPlay") ? urlParams.get("autoPlay") : "false";
+    let autoPlay = autoplayString == "true" ? true : false;
+    return autoPlay;
+  }
+
+  getIsMuted() {
+    if (this.isCard) return true;
+    if (!this.getAutoPlay() || this.autoplay) return false;
+
+    let urlParams = new URLSearchParams(window.location.search);
+    let sound = urlParams.has("sound") ? parseInt(urlParams.get("sound")) : 0;
+    if (sound == 11) return false;
+    return true;
+  }
+
+  revealPostVideoMessage() {
+    const messageEl = document.getElementById("post-video-message");
+    messageEl.style.opacity = 1;
+    messageEl.style.zIndex = 2;
+  }
+
+  getStartTime() {
+    let startTime = 0;
+    if (this.isStream && this.countdown.currentEvent) {
+      startTime = this.calculateStreamElapsed();
+    } else {
+      let urlParams = new URLSearchParams(window.location.search);
+      let min = urlParams.has("min") ? parseInt(urlParams.get("min")) : 0;
+      let sec = urlParams.has("sec") ? parseInt(urlParams.get("sec")) : 0;
+      if (min || sec) {
+        startTime = min * 60 + sec;
+      }
+    }
+    return startTime;
+  }
+
+  onPlayerStart() {
+    if (!this.isCard) {
+      const mediaMetricView = new Event('mediaMetricInteractionView');
+      document.dispatchEvent(mediaMetricView);
+    }
+
+    if (this.getIsMuted()) this.enableSubtitles();
+    if (typeof analytics !== "undefined") {
+      if (this.getAutoPlay)
+        analytics.track("VideoStarted", {
+          Title: this.bitmovinPlayer.getSource().title,
+          VideoId: this.bitmovinPlayer.getSource().hls,
+          Source: "CrossroadsNet",
+          VideoTotalDuration: this.bitmovinPlayer.getDuration()
+        });
+    }
+  }
+
+  onSubtitlesEnabled(subtitle) {
+    if (subtitle.subtitle.lang == "spn") document.cookie = "spn_subs=true;domain=.crossroads.net;path=/";
+    else document.cookie = "spn_subs=;domain=.crossroads.net;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC";
+
+    if (this.container.offsetWidth <= 300) {
+      this.container.querySelector(".bmpui-ui-subtitle-overlay").style.fontSize = "0.7em";
+    } else if (this.container.offsetWidth <= 600) {
+      this.container.querySelector(".bmpui-ui-subtitle-overlay").style.fontSize = "0.9em";
+    }
+  }
+
+  onSubtitleDisabled() {
+    document.cookie = "spn_subs=;domain=.crossroads.net;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC";
+  }
+
+  onPlayerEnd(reason) {
+    if (typeof analytics !== "undefined") {
+      analytics.track("VideoEnded", {
+        Title: this.bitmovinPlayer.getSource().title,
+        VideoId: this.bitmovinPlayer.getSource().hls,
+        Source: "CrossroadsNet",
+        VideoTotalDuration: this.bitmovinPlayer.getDuration(),
+        CurrentTime: this.bitmovinPlayer.getCurrentTime(),
+        ReasonForEnding: reason
+      });
     }
   }
 
@@ -137,67 +270,31 @@ class BitmovinManager {
     return label;
   }
 
-  getAutoPlay() {
-    if (this.getStartTime() > 0) return true;
-    let urlParams = new URLSearchParams(window.location.search);
-    let autoplayString = urlParams.has("autoPlay") ? urlParams.get("autoPlay") : "false";
-    let autoPlay = autoplayString == "true" ? true : false;
-    return autoPlay;
+  showStandbyMessaging() {
+    this.pauseVideo();
+    this.standbyElm.style.opacity = 1;
+    this.standbyElm.style.zIndex = 10;
   }
 
-  getIsMuted() {
-    if (this.isCard) return true;
-    if (!this.getAutoPlay()) return false;
-    let urlParams = new URLSearchParams(window.location.search);
-    let sound = urlParams.has("sound") ? parseInt(urlParams.get("sound")) : 0;
-    if (sound == 11) return false;
-    return true;
+  hideStandbyMessaging() {
+    this.standbyElm.style.opacity = 0;
+    this.standbyElm.style.zIndex = 0;
   }
 
-  getStartTime() {
-    let startTime = 0;
-    let urlParams = new URLSearchParams(window.location.search);
-    let min = urlParams.has("min") ? parseInt(urlParams.get("min")) : 0;
-    let sec = urlParams.has("sec") ? parseInt(urlParams.get("sec")) : 0;
-    if (min || sec) {
-      startTime = min * 60 + sec;
-    }
-    return startTime;
+  calculateStreamElapsed() {
+    this.currentStreamStart = moment.tz(
+      this.countdown.currentEvent.start,
+      this.dateStringFormat,
+      this.timezoneStr
+    );
+    this.now = moment();
+    this.timeElapsed = (this.now - this.currentStreamStart) / 1000;
+    return this.timeElapsed;
   }
 
-  revealPostVideoMessage() {
-    const messageEl = document.getElementById("post-video-message");
-    messageEl.style.opacity = 1;
-    messageEl.style.zIndex = 2;
-  }
-
-  onPlayerStart() {
-    if (this.getIsMuted()) {
-      this.enableSubtitles();
-    }
-    if (typeof analytics !== "undefined" && this.bitmovinPlayer.getSource()) {
-      analytics.track("VideoStarted", {
-        Title: this.bitmovinPlayer.getSource().title,
-        VideoId: this.bitmovinPlayer.getSource().hls,
-        Source: "CrossroadsNet",
-        VideoTotalDuration: this.bitmovinPlayer.getDuration()
-      });
-    }
-  }
-
-  onSubtitlesEnabled(subtitle) {
-    if (subtitle.subtitle.lang == "spn") document.cookie = "spn_subs=true;domain=.crossroads.net;path=/";
-    else document.cookie = "spn_subs=;domain=.crossroads.net;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC";
-
-    if (this.container.offsetWidth <= 300) {
-      this.container.querySelector(".bmpui-ui-subtitle-overlay").style.fontSize = "0.7em";
-    } else if (this.container.offsetWidth <= 600) {
-      this.container.querySelector(".bmpui-ui-subtitle-overlay").style.fontSize = "0.9em";
-    }
-  }
-
-  onSubtitleDisabled() {
-    document.cookie = "spn_subs=;domain=.crossroads.net;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC";
+  restartVideo() {
+    this.hideStandbyMessaging();
+    this.seekTo(0, 0);
   }
 
   enableSubtitles() {
@@ -216,47 +313,24 @@ class BitmovinManager {
   }
 
   addExternalSubtitles() {
-    if (this.subtitles_url) 
-    this.bitmovinPlayer.subtitles.add({
-      id: "external",
-      lang: "en",
-      label: "English",
-      url: this.subtitles_url,
-      kind: "subtitle"
-    });
-    if (this.spn_subtitles_url)
-    this.bitmovinPlayer.subtitles.add({
-      id: "external_spn",
-      lang: "spn",
-      label: "Spanish",
-      url: this.spn_subtitles_url,
-      kind: "subtitle"
-    });
-
-
-
-
-  }
-
-  onPlayerEnd(reason) {
-    if (typeof analytics !== "undefined" && this.bitmovinPlayer.getSource()) {
-      analytics.track("VideoEnded", {
-        Title: this.bitmovinPlayer.getSource().title,
-        VideoId: this.bitmovinPlayer.getSource().hls,
-        Source: "CrossroadsNet",
-        VideoTotalDuration: this.bitmovinPlayer.getDuration(),
-        CurrentTime: this.bitmovinPlayer.getCurrentTime(),
-        ReasonForEnding: reason
+    if (this.subtitles_url) {
+      this.bitmovinPlayer.subtitles.add({
+        id: "external",
+        lang: "en",
+        label: "English",
+        url: this.subtitles_url,
+        kind: "subtitle"
       });
     }
-  }
-
-  onUnmute() {
-    //TODO: if not manuallyTurnedOnCC then turn off subtitles
-  }
-
-  onMuted() {
-    //TODO: turn on subtitles?
+    if (this.spn_subtitles_url) {
+      this.bitmovinPlayer.subtitles.add({
+        id: "external_spn",
+        lang: "spn",
+        label: "Spanish",
+        url: this.spn_subtitles_url,
+        kind: "subtitle"
+      });
+    }
   }
 
   onCCEnabled() {
@@ -267,7 +341,7 @@ class BitmovinManager {
     min = min || 0;
     sec = sec || 0;
     this.bitmovinPlayer.seek(min * 60 + sec, true);
-    this.bitmovinPlayer.play();
+    this.playVideo();
     history.pushState({}, document.title, "?min=" + min + "&sec=" + sec);
   }
 
@@ -283,14 +357,40 @@ class BitmovinManager {
     else this.bitmovinPlayer.play();
   }
 
-  getCookie(name) {
-    var value = "; " + document.cookie;
-    var parts = value.split("; " + name + "=");
-    if (parts.length == 2)
-      return parts
-        .pop()
-        .split(";")
-        .shift();
+  onPlayerReady(readyTime) {
+    this.setQualityOptions();
+    analytics.track("VideoReady", {
+      Title: this.bitmovinPlayer.getSource().title,
+      VideoId: this.bitmovinPlayer.getSource().hls,
+      Source: "CrossroadsNet",
+      VideoTimeToReady: readyTime.getTime() - window.performance.timing.domContentLoadedEventEnd
+    });
+  }
+
+  setQualityOptions() {
+    const qualities = this.bitmovinPlayer.getAvailableVideoQualities();
+    const dedupedQualities = qualities.reduce((unique, item) => {
+      if (unique.find(u => u.label.split("(").shift() == item.label.split("(").shift())) {
+        this.removeQualityByIndex(item.id);
+        return unique;
+      } else return [...unique, item];
+    }, []);
+    if (this.isCard) {
+      const quality = dedupedQualities.find(quality => quality.label.includes("720"));
+      this.bitmovinPlayer.setVideoQuality(quality.id);
+    }
+  }
+
+  streamInit(events, bitmovinConfig) {
+    this.createSource(bitmovinConfig);
+    this.createPlayer();
+    this.bitmovinPlayer.on("sourceloaded", () => {
+      this.videoDuration = this.bitmovinPlayer.getDuration() * 1000;
+      this.events = events.data.broadcasts;
+      this.scheduleFutureEvents();
+      this.standbyElm = document.getElementById("standby-message");
+      this.manuallyTurnedOnCC = false;
+    });
   }
 
   removeQualityByIndex(id) {
@@ -313,10 +413,18 @@ class BitmovinManager {
     }
     waitForElementToDisplay();
   }
+
+  getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2)
+      return parts
+        .pop()
+        .split(";")
+        .shift();
+  }
 }
 
-Array.prototype.diff = function(a) {
-  return this.filter(function(i) {
-    return a.indexOf(i) < 0;
-  });
-};
+var defBitmovinLoaded = new Event("deferred-bitmovin-ready");
+document.dispatchEvent(defBitmovinLoaded);
+window.defBitmovinLoaded = true;

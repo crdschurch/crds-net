@@ -4,32 +4,41 @@
 {% if include.heart != false %}
 <div class="clearfix">
   <div class="pull-left">
-    <crds-heart-button contentful-id="{{ item.contentful_id }}"></crds-heart-button>
+    <crds-heart-button contentful-id="{{ item.contentful_id }}" contentful-slug= "{{ item.slug }}" contentful-type="{{ item.content_type | upcase }}"></crds-heart-button>
   </div>
   <div class="pull-right">
 {% endif %}
 
 <div class="social-share sidebar {% if include.type == 'light' %}text-gray-light{% else %}text-orange{% endif %}">
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.crossroads.net/media{{ page.url }}" target="_blank">
+  <a href='javascript:share("https://www.facebook.com/sharer/sharer.php?u=https://www.crossroads.net/media{{ page.url }}")'>
     <svg class="icon" viewBox="0 0 256 256">
       <use xlink:href="/assets/svgs/icons.svg#facebook"></use>
     </svg>
   </a>
-  <a href="https://twitter.com/home?status={{ page.title | escape | titleize }}%20{{ site.url }}{{ page.url }}" target="_blank">
+  <a href='javascript:share("https://twitter.com/home?status={{ page.title | escape | titleize }}%20{{ site.url }}{{ page.url }}")'>
     <svg class="icon" viewBox="0 0 256 256">
       <use xlink:href="/assets/svgs/icons.svg#twitter"></use>
     </svg>
   </a>
-  <a href="javascript:void(0);" class="clipboard"
+  <a href="javascript:share();" class="clipboard"
     data-clipboard-text="{{ site.url }}{{ item.url }}"
     data-clipboard-success="{{ site.url }}{{ item.url }} copied to clipboard!">
     <svg class="icon" viewBox="0 0 256 256">
       <use xlink:href="/assets/svgs/icons.svg#link"></use>
     </svg>
-  </a>
+  </a>  
 </div>
 
 {% if include.heart != false %}
   </div>
 </div>
 {% endif %}
+
+<script type="text/javascript">
+  function share(link) {
+    const mediaMetricShare = new Event('mediaMetricInteractionShare');
+    document.dispatchEvent(mediaMetricShare);
+
+    link && window.open(link, '_blank');
+  }
+</script>

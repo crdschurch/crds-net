@@ -24,19 +24,23 @@ const isDayOfTheWeek = (day) => {
 
 const isServiceTime = () => {
   let isSunday = isDayOfTheWeek(0);
-  let serviceTimes = (
-    (getEstTime() >= 825 && getEstTime() <= 940) || 
-    (getEstTime() >= 955 && getEstTime() <= 1110) ||
-    (getEstTime() >= 1140 && getEstTime() <= 1255)
+  let isSaturday = isDayOfTheWeek(6);
+
+  let saturdayServiceTimes = (
+    (getEstTime() >= 1655 && getEstTime() <= 1815)
   );
 
-  return isSunday && serviceTimes;
+  let sundayServiceTimes = (
+    (getEstTime() >= 825 && getEstTime() <= 945) || 
+    (getEstTime() >= 955 && getEstTime() <= 1115) ||
+    (getEstTime() >= 1140 && getEstTime() <= 1300)
+  );
+
+  return (isSunday || isSaturday) && (saturdayServiceTimes || sundayServiceTimes);
 };
 
 const refreshPageForServiceStart = (hours, minutes, seconds) => {
-  let isSunday = isDayOfTheWeek(0);
-
-  if (!isSunday || !document.getElementById('location-page')) {
+  if ((!document.getElementById('location-page'))) {
     return;
   }
 
@@ -55,10 +59,26 @@ const refreshPageForServiceStart = (hours, minutes, seconds) => {
   }, timeout);
 };
 
+if (isServiceTime() && document.getElementById('resi-player')) {
+  const resiPlayer = document.getElementById('resi-video-player-container');
+  const resiScript = document.createElement('script');
+  resiScript.src = 'https://control.resi.io/webplayer/loader.min.js';
+  resiScript.type = 'application/javascript';
+
+  resiPlayer.appendChild(resiScript);
+}
+
 if (!isServiceTime() && document.getElementById('resi-player')) {
   document.getElementById('resi-player').remove();
 }
 
-refreshPageForServiceStart(8,25,1);
-refreshPageForServiceStart(9,55,1);
-refreshPageForServiceStart(11,40,1);
+
+if (isDayOfTheWeek(6)) {
+  refreshPageForServiceStart(16,55,1);
+}
+
+if (isDayOfTheWeek(0)) {
+  refreshPageForServiceStart(8,25,1);
+  refreshPageForServiceStart(9,55,1);
+  refreshPageForServiceStart(11,40,1);
+}

@@ -6,10 +6,10 @@ title: Humans of Crossroads
   <div class="jumbotron jumbotron-lg hard-bottom">
     <div class="container soft-ends">
       <div class="row">
-        <div class="col-sm-6 col-sm-offset-1 text-left">
+        <div class="col-sm-8 col-sm-offset-2 text-left">
           <img class="hoc-frame" alt="Humans of Crossroads Frame" src="//crds-media.imgix.net/2x1033SDblDgO5xghanyrg/3b1f78234778063c07e93106e61db295/HoC_Paper_05.png" />
           <div class="hoc-detail-img-container push-bottom">
-            <img alt="{{ page.title }}" src="{{ page.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+            <img alt="{{ page.title }}" src="{{ page.image.url | imgix: site.imgix }}?fit=facearea&facepad=10&w=222&h=222" data-optimize-img />
           </div>
           <ol class="breadcrumb text-white hard-sides">
             <li><a href="/media">Media</a></li>
@@ -18,11 +18,11 @@ title: Humans of Crossroads
           <div class="hoc-detail-jumbotron-content">
             <h1 class="font-family-condensed-extra flush text-uppercase text-white hoc-detail-title"> {{ page.title }}</h1>
             <p class="font-size-smaller text-gray flush">
-              {{ page.title | remove:'Story' }}  | {% include _read-time.html duration=page.duration content_type=article %}
+              {% include _read-time.html duration=page.duration content_type=article %}
             </p>
           </div>
         </div>
-        <div class="col-sm-10 soft-top col-sm-offset-1">
+        <div class="col-md-8 col-md-offset-2 soft-top">
           {% include _social-share.html type='light' %}
         </div>
       </div>
@@ -30,11 +30,27 @@ title: Humans of Crossroads
   </div>
 </section>
 
-<section>
+<main class="push-bottom soft-bottom">
   <div class="container soft-ends">
     <div class="row">
-      <div class="col-sm-10 col-sm-offset-1">
+      <div class="col-md-8 col-md-offset-2 font-size-base">
+        {% if page.lead_text %}
+        <div class="lead">{{ page.lead_text | markdownify }}</div>
+        {% endif %}
+
         {{ page.content }}
+      </div>
+    </div>
+  </div>
+</main>
+
+<section class="bg-orange bg-topo bg-contain soft-ends">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h3 class="component-header-box text-white">We want to hear your story</h3>
+        <p class="push-ends font-family-serif text-white font-size-large">Incredible stories of how God is working in the lives of people around Crossroads.</p>
+        <crds-button color="blue" text="Share Your Story" href="/shareyourstory"></crds-button>
       </div>
     </div>
   </div>
