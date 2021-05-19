@@ -17,7 +17,7 @@ layout: default
             {{ page.body | markdownify }}
           </div>
           <footer>
-            {% include _media-social-share.html %}
+            {% include _social-share.html %}
             {% if page.author %}
               {% assign author = page.author | get_doc %}
               <address>Written by <a href="{{ author.url }}">{{ author.full_name }}</a></address>
