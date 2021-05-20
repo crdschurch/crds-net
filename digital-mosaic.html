@@ -1,0 +1,27 @@
+---
+layout: default
+---
+
+<section class="bg-orange bg-topo bg-contain">
+  <div class="container soft-ends">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center text-white">
+        <h2 class="component-header-box text-white">Our Memories</h2>
+        <p class="font-family-serif">God has done some amazing things in and through our community in the past 25 years. Take a look below to see some of them.</p>
+      </div>
+    </div>
+
+    <div class="story-card-container">
+      {% for story in site.data.community-stories %}
+      <div class="story-card">
+        <img src="{{story.picture.url}}" width="198" height="198" alt="{{story.name}}" /> 
+        <div class="story-card-content">
+          <p class="flush font-family-condensed-extra font-size-h4">{{story.name}}</p>
+          <p class="font-size-smaller text-gray-light">{{story.site}}</p>
+          <p class="font-size-smaller">{{story.message}}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
