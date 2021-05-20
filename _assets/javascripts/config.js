@@ -151,4 +151,9 @@ module.exports = [
     name: 'iFrameResizer',
     deps: ['vendor/iframeResizer.min'],
   },
+  {
+    name: 'sal',
+    deps: ['vendor/sal'],
+    files: ['components/sal']
+  },
 ];
