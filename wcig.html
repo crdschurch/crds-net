@@ -1,0 +1,216 @@
+---
+layout: default
+snail_trail: disabled
+permalink: /colorofgod
+---
+
+<section class="jumbotron featured-series-landing-jumbotron flush" style="background-image: url(//crds-media.imgix.net/4QZbSgqbcdTbAqifv0NvVN/0a6837192d54952bfc5a9d178af16cc4/WCIG_SlideForWeb_2x.jpg);" data-optimize-bg-img>
+</section>
+
+<section class="bg-black soft-ends">
+  <div class="container soft-ends">
+    <div class="row soft-ends">
+      <div class="col-sm-8 col-sm-offset-2 text-center text-white">
+        <p class="font-size-base">This series explores what the Bible says about race and how it offers everyone an opportunity for freedom, justice, peace, and hope.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container soft-ends">
+    <div class="text-center">
+      <h2 class="font-family-condensed-extra">Locations &amp; Service Times</h2>
+    </div>
+    <div class="push-top soft-top">
+      <div class="card-deck carousel locations" data-crds-carousel="mobile-scroll" data-automation-id="locations-carousel">
+        <div id="section-locations" class="feature-cards card-deck--expanded-layout">
+          {% assign locations_sorted_names = site.locations | sort: 'name' | group_by: 'name' %}
+          {% for name_group in locations_sorted_names %}
+            {% assign locations_sorted_slugs = name_group.items | sort: 'slug' %}
+            {% for location in locations_sorted_slugs %}
+            <div class="card">
+              <a href="{{ location.url }}" class="block" data-automation-id="location-image">
+                <img src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}"
+                  sizes="{{ site.image_sizes.cards_4x }}" alt="{{ location.title }}" data-optimize-img />
+              </a>
+              <div class="card-block">
+                <h4 class="card-title card-title--overlap text-uppercase">
+                  <a href="{{ location.url }}" data-automation-id="location-name">{{ location.name }}</a>
+                </h4>
+                <div data-automation-id="location-address" class="push-bottom">
+                  {% if location.address %}
+                    {{ location.address | markdownify | remove: '<p>'| remove: '</p>' }} <br>
+                    {% if location.slug != 'anywhere' %}
+                      (<a target="_blank" href="{{ location.map_url }}" data-automation-id="location-map-url">Map</a>)
+                    {% endif %}
+                  {% else %}
+                  <p>Currently looking for new digs to house our ever-growing {{ location.name }} community.</p>
+                  {% endif %}
+                </div>
+                <div class="card-text">
+                  <div data-automation-id="location-service-times" class="push-half-bottom">
+                    {% if location.slug != 'anywhere' %}
+                      <strong>Service Times:</strong>
+                      <br />
+                    {% endif %}
+                    {{ location.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-black">
+  <div class="jumbotron jumbotron-md flush" style="background-image: url(//crds-media.imgix.net/6gP1iI6HaP1KcYqCqHhsK3/ab775f8f2c8263c0221a832e5b399484/FAQ_Strip_2x.jpg);" data-optimize-bg-img></div>
+
+  <div class="container soft-ends">
+    <div class="text-center">
+      <h3 class="font-family-condensed-extra text-white">FAQS</h3>
+    </div>
+    <div class="row push-ends">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+        <div class="collapsible-container push-bottom">
+          <button class="collapsible text-uppercase"><span>Why are we asking this question and talking about this?</span></button>
+          <div class="content">
+            <p class="text-white soft-ends text-left">Race has been a topic that has caused disunity across many aspects of our lives for generations. Especially in the church. God’s heart for us is to be united, not separated from one another. Our hope is that this series opens up conversations and challenges all of us in ways that will take our community to the next level in loving others well and seeing them for who God created them to be. </p>
+          </div>
+
+          <button class="collapsible text-uppercase"><span>What does the Bible actually say about race and injustice?</span></button>
+          <div class="content">
+            <p class="text-white soft-ends text-left">We talk about reconciliation every week at Crossroads through the Gospel – it’s the story of our own reconciliation with God. We’re going to dive deeper into that in this series to look at what that reconciliation looks like between people. The Bible doesn’t say anything about race in the way we are used to hearing about it, but it says a whole lot about ethnicity, reconciliation, and justice. Check out Revelation 7:9 or Acts 2. 
+            </p>
+          </div>
+          
+          <button class="collapsible text-uppercase"><span>Is Crossroads a woke church?</span></button>
+          <div class="content">
+            <p class="text-white soft-ends text-left">Crossroads does not identify as a “woke church.” We are a church going after what we believe is in the Bible on this topic to get to a better place. We die on the hill of culturally current communication, and the topic of race and justice has been long important, but particularly unavoidable in this past year. With all of the voices and opinions, we want to explore what God has to say about this.</p>
+          </div>
+
+          <button class="collapsible text-uppercase"><span>Does Crossroads support Black Lives Matter?</span></button>
+          <div class="content">
+            <p class="text-white soft-ends text-left">Crossroads is not affiliated with Black Lives Matter. The only group working in the racial reconciliation space that we are directly affiliated with is LivingUNDIVIDED. You can <a href="/undivided">learn more about that movement here.</a></p>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <crds-button target="_blank" text="View all FAQs" href="//assets.ctfassets.net/y3a9myzsdjan/4sI8SNqxhb62zV3OpcNrDn/1e4bf6ada9d8c139ee68b6cf53234367/What_Color_is_God_FAQs.pdf" color="white" display="outline" />
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row push-ends">
+      <div class="col-sm-6 push-bottom">
+        <a href="/undivided">
+          <img class="width-100" src="//crds-media.imgix.net/1boWVMlj0jXdwR8nVKUh85/73291e72e664bcaf202b023c22bb3826/Undivided_2x.jpg?{{ site.imgix_params.placeholder_card }}" sizes="{{ site.image_sizes.full_width }}" data-optimize-img />
+        </a>
+      </div>
+
+      <div class="col-sm-6 push-bottom">
+        <img class="width-100" src="//crds-media.imgix.net/7dMJnWwqQBHAapBSjapGbs/3ed619e83b2544536a46376a4e31ee43/Go_2x.jpg?{{ site.imgix_params.placeholder_card }}" sizes="{{ site.image_sizes.full_width }}" data-optimize-img />
+      </div>
+    </div> -->
+
+    <div class="jumbotron jumbotron-md push-ends" style="background-image: url('//crds-media.imgix.net/4POrSFEX1a9TpUuzlosF6e/0080a7afa6e08f2d7cc4e1525325775a/undivided-hands.jpg?auto=format,compress&w=1920');" data-optimize-bg-img>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+          <img src="//crds-media.imgix.net/1odui7XgHNuPbVurZ4hwts/3966f127064b9423526d4c74b3c58df3/living-undivided-logo-tagline.png" />
+        </div>
+      </div>
+      <div class="push-top">
+        <crds-button target="_blank" text="Learn more" href="/undivided" color="white" display="outline"></crds-button>
+        <crds-button data-target="#undividedModal" data-toggle="modal" href="" color="white" display="outline" text="Sign up for updates"></crds-button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Streaming Platforms -->
+<section id="ways-to-watch">
+  <div class="jumbotron jumbotron-xl topo-overlay-50 flush-bottom" style="background-image: url('//crds-media.imgix.net/mCRCelzuZV305vVyKUCYi/63bd6e0e1cb57302ca25eab8e8fe2b6b/streaming-background-img_2x.jpg?{{ site.imgix_params.placeholder_sixteen_nine }}');" data-optimize-bg-img>
+    <div class="container push-ends">
+      <div class="row flex-row-align-center">
+        <div class="col-sm-10 col-sm-offset-1 text-white">
+          <h4 class="section-header text-white">Streaming Platforms</h4>
+          <p class="font-family-base">The Crossroads Anywhere TV App brings church into your living room. It’s the best way to watch the Crossroads Weekly. Plus it’s full of content your entire family will love like Crossroads Music, Kids’ Club weekly teaching, and Spark Talks.</p>
+          <div class="row btn-streaming-group" style="margin-top: 1rem;">
+            <a 
+              class="btn btn-outline btn-white btn-streaming-img"
+              href="https://www.amazon.com/Crossroads-Church/dp/B07D83Z1JB"
+              onClick="ga('gtm2.send', 'event', 'Watch-AmazonFireTvCTA-Btn', 'clicked')"
+              data-role="Watch-AmazonFireTvCTA-Btn"
+              target="_blank"
+            >
+              <img src="//crds-media.imgix.net/75ULrftCuomwcVHvZDwcK3/384270b2e01e74cee093719bd4e0ae18/Logo_Amazongfire.png">
+            </a>
+            <a 
+              class="btn btn-outline btn-white btn-streaming-img"
+              href="https://channelstore.roku.com/details/76455/crossroads"
+              onClick="ga('gtm2.send', 'event', 'Watch-RokuTvCTA-Btn', 'clicked')"
+              data-role="Watch-RokuTvCTA-Btn"
+              target="_blank"
+            >
+              <img src="//crds-media.imgix.net/77yQBDadk6AGz1WldY5KE3/7be90e5cce172386448004075e79f4dc/Logo_Roku.png">
+            </a>
+            <a
+              class="btn btn-outline btn-white btn-streaming-img"
+              href="https://appadvice.com/tv/app/crossroads-anywhere/1029478803"
+              onClick="ga('gtm2.send', 'event', 'Watch-AppleTvCTA-Btn', 'clicked')"
+              data-role="Watch-AppleTvCTA-Btn"
+              target="_blank"
+            >
+              <img src="//crds-media.imgix.net/6wRDkHPRFR70XqfkxKFrgO/e9d2fca6ca51e59e45630f535a379bdb/Logo_Apple.png">
+              <p class="push-quarter-left flush-bottom">Apple TV</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-orange soft">
+  <div class="container text-center soft push-ends">
+    <div class="row">
+      <h2 class="text-white text-uppercase font-family-condensed-extra">We'd love to chat with you</h2>
+      <crds-button color="blue" text="Chat with us" data-trigger="chat"></crds-button>
+    </div>
+  </div>
+</section>
+
+<!-- Undivided Form Modal -->
+<div class="modal fade" id="undividedModal" tabindex="-1" role="dialog" aria-labelledby="Subscribe email form">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body hard-bottom">
+        <h3 class="font-family-condensed-extra font-size-h2 text-uppercase flush-top">Subscribe</h3>
+        <p>Get regular emails about events, cohort seasons and other news about the movement for racial healing, solidarity and justice.</p>
+        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+        <script>
+          hbspt.forms.create({
+            region: "na1",
+            portalId: '19546812',
+            formId: '0f035e68-01a9-4e3b-bee4-6abd92f0e73d',
+            css: "",
+            submitButtonClass: 'btn btn-orange btn-lg push-top',
+            errorMessageClass: 'hs-error-msgs inputs-list list-unstyled'
+          });
+        </script>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>
+
+{% javascript_link_tag accordion async %}

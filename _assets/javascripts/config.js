@@ -152,6 +152,10 @@ module.exports = [
     deps: ['vendor/iframeResizer.min'],
   },
   {
+    name: 'accordion',
+    files: ['components/accordion'],
+  },
+  {
     name: 'sal',
     deps: ['vendor/sal'],
     files: ['components/sal']
