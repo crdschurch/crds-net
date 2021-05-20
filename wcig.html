@@ -10,8 +10,8 @@ permalink: /colorofgod
 <section class="bg-black soft-ends">
   <div class="container soft-ends">
     <div class="row soft-ends">
-      <div class="col-md-10 col-md-offset-1 text-center text-white">
-        <p class="font-size-base soft-bottom">Conversations about race and ethnicity can be painful and combative, but they don’t have to be. You can have a positive experience talking about race, ethnicity, and reconciliation. This series explores what the Bible says and how it offers us an opportunity for freedom, justice, peace, and hope.</p>
+      <div class="col-sm-8 col-sm-offset-2 text-center text-white">
+        <p class="font-size-base soft-bottom">This series explores what the Bible says about race and how it offers everyone an opportunity for freedom, justice, peace, and hope.</p>
         <crds-button text="Watch Online" href="/watch" color="orange" />
       </div>
     </div>
@@ -101,12 +101,12 @@ permalink: /colorofgod
         </div>
 
         <div class="text-center">
-          <crds-button target="_blank" text="View all FAQs" href="//assets.ctfassets.net/y3a9myzsdjan/4sI8SNqxhb62zV3OpcNrDn/91df204f34488581080fbd33b3421144/What_Color_is_God" color="white" display="outline" />
+          <crds-button target="_blank" text="View all FAQs" href="//assets.ctfassets.net/y3a9myzsdjan/4sI8SNqxhb62zV3OpcNrDn/1e4bf6ada9d8c139ee68b6cf53234367/What_Color_is_God_FAQs.pdf" color="white" display="outline" />
         </div>
       </div>
     </div>
 
-    <div class="row push-ends">
+    <!-- <div class="row push-ends">
       <div class="col-sm-6 push-bottom">
         <a href="/undivided">
           <img class="width-100" src="//crds-media.imgix.net/1boWVMlj0jXdwR8nVKUh85/73291e72e664bcaf202b023c22bb3826/Undivided_2x.jpg?{{ site.imgix_params.placeholder_card }}" sizes="{{ site.image_sizes.full_width }}" data-optimize-img />
@@ -115,6 +115,18 @@ permalink: /colorofgod
 
       <div class="col-sm-6 push-bottom">
         <img class="width-100" src="//crds-media.imgix.net/7dMJnWwqQBHAapBSjapGbs/3ed619e83b2544536a46376a4e31ee43/Go_2x.jpg?{{ site.imgix_params.placeholder_card }}" sizes="{{ site.image_sizes.full_width }}" data-optimize-img />
+      </div>
+    </div> -->
+
+    <div class="jumbotron jumbotron-md push-ends" style="background-image: url('//crds-media.imgix.net/4POrSFEX1a9TpUuzlosF6e/0080a7afa6e08f2d7cc4e1525325775a/undivided-hands.jpg?auto=format,compress&w=1920');" data-optimize-bg-img>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+          <img src="//crds-media.imgix.net/1odui7XgHNuPbVurZ4hwts/3966f127064b9423526d4c74b3c58df3/living-undivided-logo-tagline.png" />
+        </div>
+      </div>
+      <div class="push-top">
+        <crds-button target="_blank" text="Learn more" href="/undivided" color="white" display="outline"></crds-button>
+        <crds-button data-target="#undividedModal" data-toggle="modal" href="" color="white" display="outline" text="Sign up for updates"></crds-button>
       </div>
     </div>
   </div>
@@ -172,5 +184,34 @@ permalink: /colorofgod
     </div>
   </div>
 </section>
+
+<!-- Undivided Form Modal -->
+<div class="modal fade" id="undividedModal" tabindex="-1" role="dialog" aria-labelledby="Subscribe email form">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body hard-bottom">
+        <h3 class="font-family-condensed-extra font-size-h2 text-uppercase flush-top">Subscribe</h3>
+        <p>Get regular emails about events, cohort seasons and other news about the movement for racial healing, solidarity and justice</p>
+        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+        <script>
+          hbspt.forms.create({
+            region: "na1",
+            portalId: '19546812',
+            formId: '0f035e68-01a9-4e3b-bee4-6abd92f0e73d',
+            css: "",
+            submitButtonClass: 'btn btn-orange btn-lg push-top',
+            errorMessageClass: 'hs-error-msgs inputs-list list-unstyled'
+          });
+        </script>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>
 
 {% javascript_link_tag accordion async %}
