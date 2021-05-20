@@ -3,6 +3,25 @@ layout: default
 snail_trail: disabled
 ---
 
+<div class="preview" id="history-preloader">
+  <div class="inline-preloader-wrapper bg-gray-darkest" data-preloader data-preview-preloader>
+    <svg viewBox="0 0 102 101" class="inline-preloader">
+      <g fill="none" fill-rule="evenodd">
+        <g transform="translate(1 1)" stroke-width="2">
+          <ellipse stroke="#eee" cx="50" cy="49.421" rx="50" ry="49.421"></ellipse>
+          <path d="M50 98.842c27.614 0 50-22.127 50-49.42C100 22.125 77.614 0 50 0" stroke-opacity=".631" stroke="#3B6E8F"></path>
+        </g>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<script>
+  $(window).on("load", function() {
+    document.getElementById('history-preloader').remove()
+  });
+</script>
+
 <section class="bg-orange bg-topo-50 history">
   <div class="container soft-ends">
     <div class="row push-ends soft-ends">
@@ -29,7 +48,7 @@ snail_trail: disabled
 </section>
 
 <!-- Authenticity -->
-<section class="bg-tan authenticity overflow-hidden" id="seven-hills" style="background-image: url('//crds-media.imgix.net/41sWWbmW7SEUQzJD9zLOQm/55a0a2046ff8fd5a8376f5785212eae8/authenticity-map-texture_.png??auto=format,compress&w=2400');">
+<section class="bg-tan authenticity overflow-hidden bg-contain" id="seven-hills" style="background-image: url('//crds-media.imgix.net/41sWWbmW7SEUQzJD9zLOQm/cf685c5510aa7893c44a497aa665e7de/authenticity-map-texture_.png?auto=format');">
   <div class="container-fluid hard-sides">
     <div class="row">
 
@@ -137,7 +156,7 @@ snail_trail: disabled
 
 
 <!-- Biblical Truth  -->
-<section class="biblical-truth bg-orange bg-topo-50 overflow-hidden">
+<section class="biblical-truth bg-orange bg-contain overflow-hidden" style="background-image: url('//crds-media.imgix.net/41sWWbmW7SEUQzJD9zLOQm/cf685c5510aa7893c44a497aa665e7de/authenticity-map-texture_.png?auto=format'); background-blend-mode: multiply;">
   <div 
     class="biblical-truth-img-title"
     data-sal="slide-left"
@@ -224,7 +243,7 @@ snail_trail: disabled
 
 
 <!-- Culturally Current -->
-<section class="culturally-current overflow-hidden" style="background-image: url('//crds-media.imgix.net/41sWWbmW7SEUQzJD9zLOQm/55a0a2046ff8fd5a8376f5785212eae8/authenticity-map-texture_.png??auto=format,compress&w=2400'); background-blend-mode: multiply;">
+<section class="culturally-current overflow-hidden bg-contain" style="background-image: url('//crds-media.imgix.net/41sWWbmW7SEUQzJD9zLOQm/cf685c5510aa7893c44a497aa665e7de/authenticity-map-texture_.png?auto=format'); background-blend-mode: multiply;">
   <div class="container-fluid hard-sides">
     <div class="row">
       <div 
@@ -300,7 +319,7 @@ snail_trail: disabled
 
 
 <!-- Doing Life Together -->
-<section class="doing-life bg-blue overflow-hidden" style="background-image: url('//crds-media.imgix.net/41sWWbmW7SEUQzJD9zLOQm/55a0a2046ff8fd5a8376f5785212eae8/authenticity-map-texture_.png??auto=format,compress&w=2400'); background-blend-mode: multiply;">
+<section class="doing-life bg-blue overflow-hidden bg-contain" style="background-image: url('//crds-media.imgix.net/41sWWbmW7SEUQzJD9zLOQm/cf685c5510aa7893c44a497aa665e7de/authenticity-map-texture_.png?auto=format'); background-blend-mode: multiply;">
   <div class="container-fluid hard-sides">
 
     <div class="row">
@@ -410,7 +429,7 @@ snail_trail: disabled
 
 
 <!-- Excellence -->
-<section class="excellence bg-tan overflow-hidden" style="background-image: url('//crds-media.imgix.net/41sWWbmW7SEUQzJD9zLOQm/55a0a2046ff8fd5a8376f5785212eae8/authenticity-map-texture_.png??auto=format,compress&w=2400'); background-blend-mode: multiply;">
+<section class="excellence bg-tan bg-contain overflow-hidden" style="background-image: url('//crds-media.imgix.net/41sWWbmW7SEUQzJD9zLOQm/cf685c5510aa7893c44a497aa665e7de/authenticity-map-texture_.png?auto=format'); background-blend-mode: multiply;">
   <div class="container-fluid hard-sides">
 
     <div class="row excellence-content soft-sides">
@@ -481,7 +500,7 @@ snail_trail: disabled
 </section>
 
 <!-- Reproduction -->
-<section class="reproduction bg-orange overflow-hidden" style="background-image: url('//crds-media.imgix.net/41sWWbmW7SEUQzJD9zLOQm/55a0a2046ff8fd5a8376f5785212eae8/authenticity-map-texture_.png??auto=format,compress&w=2400'); background-blend-mode: multiply;">
+<section class="reproduction bg-orange overflow-hidden bg-contain" style="background-image: url('//crds-media.imgix.net/41sWWbmW7SEUQzJD9zLOQm/cf685c5510aa7893c44a497aa665e7de/authenticity-map-texture_.png?auto=format'); background-blend-mode: multiply;">
   <div class="container-fluid hard-sides">
 
     <div class="row flex-row">
@@ -558,7 +577,7 @@ snail_trail: disabled
 </section>
 
 <!-- Growth -->
-<section class="growth bg-primary overflow-hidden" style="background-image: url('//crds-media.imgix.net/41sWWbmW7SEUQzJD9zLOQm/55a0a2046ff8fd5a8376f5785212eae8/authenticity-map-texture_.png??auto=format,compress&w=2400'); background-blend-mode: multiply;">
+<section class="growth bg-primary overflow-hidden bg-contain" style="background-image: url('//crds-media.imgix.net/41sWWbmW7SEUQzJD9zLOQm/cf685c5510aa7893c44a497aa665e7de/authenticity-map-texture_.png?auto=format'); background-blend-mode: multiply;">
   <div class="container-fluid hard-sides">
 
     <div class="row flex-row">
