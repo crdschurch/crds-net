@@ -155,4 +155,9 @@ module.exports = [
     name: 'accordion',
     files: ['components/accordion'],
   },
+  {
+    name: 'sal',
+    deps: ['vendor/sal'],
+    files: ['components/sal']
+  },
 ];
