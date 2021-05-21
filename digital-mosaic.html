@@ -2,17 +2,33 @@
 layout: default
 ---
 
-<section class="bg-orange bg-topo bg-contain">
-  <div class="container soft-ends">
+<section class="align-items-center d-flex flush jumbotron jumbotron-xl" style="background-image: url('//crds-media.imgix.net/4oh1S4JAIDMHvP03fkBaB9/db992b2b8df1e5f474209d9125ad9b71/header-mosaic_2x.jpg'); background-position: top;">
+  <div class="blue-overlay"></div>
+  <div class="container">
     <div class="row">
-      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center text-white">
+      <div class="col-sm-6 col-sm-offset-3">
+        <img class="memories-jumbotron-logo" src="//crds-media.imgix.net/2S78oQ2dQ8d20ByrxmZygA/5cf2d298739abbd94bf954f7a380b964/crds-logo-wayfinder_2x.png" width="380" heigth="380" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-blue d-flex justify-content-center" style="height: 15px;">
+  <img class="memories-logo" src="//crds-media.imgix.net/b0n8I39h8uHbHb7O9iXlo/4f4d2b9f72b098683201da1a16d6009e/25AnnivGraphics-01.png" width="180" heigth="180" />
+</section>
+
+<section class="bg-orange bg-topo-50 bg-contain">
+  <div class="container soft-ends">
+    <div class="row push-top">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center text-white push-top soft-ends">
         <h2 class="component-header-box text-white">Our Memories</h2>
-        <p class="font-family-serif">God has done some amazing things in and through our community in the past 25 years. Take a look below to see some of them.</p>
+        <p class="font-family-serif font-size-large soft-ends">God has done some amazing things in and through our community in the past 25 years. Take a look below to see some of them.</p>
       </div>
     </div>
 
     <div class="story-card-container">
-      {% for story in site.data.community-stories %}
+      {% assign stories = site.data.community-stories | shuffle %}
+      {% for story in stories %}
       <div class="story-card">
         <img src="{{story.picture.url}}" width="198" height="198" alt="{{story.name}}" /> 
         <div class="story-card-content">

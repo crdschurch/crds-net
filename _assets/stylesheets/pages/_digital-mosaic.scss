@@ -38,3 +38,25 @@
     }
   }
 }
+
+.memories-jumbotron-logo {
+  mix-blend-mode: screen;
+}
+
+.memories-logo {
+  height: 180px;
+  margin-top: -80px;
+  z-index: 2;
+}
+
+.blue-overlay {
+  background-blend-mode: multiply;
+  background-color: $cr-blue;
+  bottom: 0;
+  left: 0;
+  mix-blend-mode: multiply;
+  opacity: 85%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
