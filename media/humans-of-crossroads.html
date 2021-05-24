@@ -37,13 +37,12 @@ paginate:
         <div data-page-number="{{ page.humans_of_crossroads.page }}">
           {% for item in page.humans_of_crossroads.docs %}
           <a href="{{ item.slug }}" class="row block">
-            <div class="col-md-4 soft-bottom">
-              <img class="hoc-index-frame" alt="Humans of Crossroads Frame" src="//crds-media.imgix.net/2x1033SDblDgO5xghanyrg/3b1f78234778063c07e93106e61db295/HoC_Paper_05.png" />
-              <div class="hoc-index-img">
-                <img alt="{{ item.title }}" src="{{ item.image.url | imgix: site.imgix }}?fit=facearea&facepad=10&w=310&h=310" data-optimize-img/>
+            <div class="col-md-4 d-flex justify-content-center soft-bottom">
+              <div class="hoc-img"  data-optimize-bg-img>
+                <img alt="{{ item.title }}" src="{{ item.image.url | imgix: site.imgix }}?fit=facearea&facepad=10&w=350&h=350" data-optimize-img/>
               </div>
             </div>
-            <div class="col-md-8 hoc-index-content mobile-soft-bottom">
+            <div class="col-md-8 hoc-index-content mobile-soft-bottom push-bottom">
               <span class="hoc-collection-title text-uppercase soft-top push-top">Humans of Crossroads</span>
               <h2 class="hoc-index-title font-family-condensed-extra text-white text-uppercase soft-half-top">{{ item.title }}</h2>
               <p>{{ item.content | truncatewords: 50 | strip_html }}</p>

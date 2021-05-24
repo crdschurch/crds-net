@@ -11,12 +11,12 @@
 {% endif %}
 
 <div class="social-share sidebar {% if include.type == 'light' %}text-gray-light{% else %}text-orange{% endif %}">
-  <a href='javascript:share("https://www.facebook.com/sharer/sharer.php?u=https://www.crossroads.net/media{{ page.url }}")'>
+  <a href="javascript:shareFacebook()">
     <svg class="icon" viewBox="0 0 256 256">
       <use xlink:href="/assets/svgs/icons.svg#facebook"></use>
     </svg>
   </a>
-  <a href='javascript:share("https://twitter.com/home?status={{ page.title | escape | titleize }}%20{{ site.url }}{{ page.url }}")'>
+  <a href="javascript:shareTwitter()">
     <svg class="icon" viewBox="0 0 256 256">
       <use xlink:href="/assets/svgs/icons.svg#twitter"></use>
     </svg>
@@ -28,6 +28,8 @@
       <use xlink:href="/assets/svgs/icons.svg#link"></use>
     </svg>
   </a>
+  
+  <crds-media-metrics-share slug="{{ item.slug }}" type="{{ item.content_type | upcase }}" />
 </div>
 
 {% if include.heart != false %}
@@ -36,10 +38,24 @@
 {% endif %}
 
 <script type="text/javascript">
-  function share(link) {
+  function shareFacebook() {
     const mediaMetricShare = new Event('mediaMetricInteractionShare');
     document.dispatchEvent(mediaMetricShare);
+    
+    let link = `https://www.facebook.com/sharer/sharer.php?u=https://www.crossroads.net{{ page.url | url_encode }}`;
+    window.open(link, '_blank');
+  }
 
-    link && window.open(link, '_blank');
+  function shareTwitter() {
+    const mediaMetricShare = new Event('mediaMetricInteractionShare');
+    document.dispatchEvent(mediaMetricShare);
+    
+    let link = `https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.crossroads.net{{ page.url | url_encode }}%3Fsmid%3Dtw-share&text={{ page.title | url_encode }}`;
+    window.open(link, '_blank');
+  }
+
+  function share() {
+    const mediaMetricShare = new Event('mediaMetricInteractionShare');
+    document.dispatchEvent(mediaMetricShare);
   }
 </script>
