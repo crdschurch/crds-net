@@ -43,7 +43,7 @@ layout: default
 
 <section class="overflow-hidden">
   <div class="container">
-    <div class="row soft-half">
+    <div class="row soft-half soft-top push-top">
       {% if page.community_pastor_name %}
       <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students"]' mobile-dropdown>
       {% else %}
@@ -178,7 +178,7 @@ layout: default
                     text="More about Student Ministry">
                   </crds-button>
                 </div>
-                <div class="df-screen-sm justify-content-between">
+                <div>
                   {{ page.student_ministry_hours | markdownify }}
                 </div>
               </div>
