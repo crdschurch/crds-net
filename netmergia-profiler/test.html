@@ -1,0 +1,60 @@
+
+      
+      
+      
+      
+      
+      
+
+
+
+
+    
+
+  
+
+  
+  <!-- Author Section -->
+  <section class="container">
+     <div class="row soft-top">
+      <div class="col-md-2 flush-bottom push-half-left border-right">
+        <address>
+          <a href="{{ author.url }}" data-author-link>
+            <img data-author-img
+              src="{{ author.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+              class="img-circle img-size-5" sizes="{{ site.image_sizes.avatar }}" data-optimize-img>
+          </a>
+          <small class="font-size-smaller text-gray">
+            Meet the author
+          </small>
+          <br>
+          <h2 class="flush font-family-condensed-extra font-size-h4 text-gray-dark text-uppercase"><a
+              href="{{ author.url }}" data-grouping-media-author="{{ author.full_name }}"
+              data-author-name="">{{ author.full_name }}</a></h2>
+        </address>
+      </div>
+      <div class="col-md-5 push-top">
+        <div class="font-size-small">
+          {% if page.title == "Preview" %}
+          <p data-author-bio></p>
+          {% else %}
+          <p class="flush-bottom push-top font-size-smaller">{{ author.summary }}</p>
+          {% endif %}
+          <div class="push-half-ends">
+            {% include _author-social.html %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</section>
+  
+
+
+
+
+
+
+

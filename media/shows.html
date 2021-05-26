@@ -10,12 +10,13 @@ snail_trail: disabled
 {% assign recent_episodes = site.data['shows'] | sort: 'published_at' | reverse %}
 
 {% for featured_episode in recent_episodes limit: 1 %}
+{% assign youtube_url = featured_episode.source_url | youtube_id | append: '?mute=1&' %}
 <section>
   <div class="shows-landing-jumbotron">
     <div class="bg-video-player">
-      <div id="yt-wrap" player-id="{{ featured_episode.source_url | youtube_id | append: '?mute=1&' }}">
-        <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-        <div id="ytplayer"></div>
+      <video width="640" height="360" id="player1" preload="none">
+        <source type="video/youtube" src="http://www.youtube.com/watch?v=nOEw9iiopwI" />
+    </video>
       </div>
     </div> 
     <div class="mobile-bg" style="background-image: url('{{ featured_episode.image.url | imgix: site.imgix }}');" data-optimize-bg-img>

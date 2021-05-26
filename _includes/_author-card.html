@@ -1,0 +1,8 @@
+{% assign author_full_name = item.full_name %}
+
+<div class="push-half-top">
+  <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" class="img-circle" width="140px" data-optimize-img>
+</div>
+<div class="push-half-top text-center">
+  <a href="{{ item | media_url }}" class="text-blue font-family-base-bold font-size-smaller">{{ author_full_name }}</a>
+</div> 
