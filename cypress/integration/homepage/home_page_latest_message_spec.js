@@ -1,7 +1,7 @@
 import { MessageQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 import { getRelativeMessageUrl } from '../../support/GetUrl';
 
-describe.skip('Tests the Current Message on the Homepage', function() {
+describe('Tests the Current Message on the Homepage', function() {
   // const requestFilter = new RequestFilter(amplitude.isVideoStarted);
   let currentMessage;  
   const importDeclarationsError = /.*> Cannot set property 'status' of undefined*/;
@@ -42,7 +42,7 @@ describe.skip('Tests the Current Message on the Homepage', function() {
     getRelativeMessageUrl(currentMessage)
       .then((url) => {
         const autoplay = currentMessage.bitmovin_url ? 'true' : 'false';
-        const relativeAutoplayURL = `${url}?autoPlay=${autoplay}&sound=11`;
+        const relativeAutoplayURL = `/media${url}?autoPlay=${autoplay}&sound=11`;
 
         cy.get('[data-automation-id="message-video"]').as('videoImagelink')
           .should('exist')

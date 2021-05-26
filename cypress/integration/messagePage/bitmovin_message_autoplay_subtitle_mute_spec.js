@@ -20,7 +20,7 @@ describe('Tests message with Bitmovin player and transcription', function () {
       });
   });
 
-  describe.skip('Tests message autoplays and query params applied', () => {
+  describe('Tests message autoplays and query params applied', () => {
     it('Checks sound is on and subtitles off', function () {
       cy.ignoreMatchingErrors(errorsToIgnore);
       cy.visit(`${relativeMessageURL}?autoPlay=true&${soundOn}`);
@@ -36,7 +36,7 @@ describe('Tests message with Bitmovin player and transcription', function () {
         .should('have.been.calledWith', 'VideoStarted');
     });
 
-    it('Checks sound is off and subtitles on', function () {
+    it.skip('Checks sound is off and subtitles on', function () {
       cy.ignoreMatchingErrors(errorsToIgnore);
       cy.visit(`${relativeMessageURL}?autoPlay=true&${soundOff}`);
 
@@ -46,7 +46,7 @@ describe('Tests message with Bitmovin player and transcription', function () {
           cy.subtitleSelect().find('option').should('have.length.gte', 2);
           cy.subtitleSelect().find('option[selected="selected"]').should('not.contain', 'off');
           cy.subtitleOverlay().should('exist').and('be.visible');
-        });
+      });
 
       // Confirm autoplay has started by listening for the event
       cy.get('@analytics.track')

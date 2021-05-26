@@ -12,7 +12,7 @@ describe('Testing the 404 page:', function() {
       .should('exist').and('be.visible');
   });
 
-  it.skip('/search page should load with search input when the search button is clicked', function() {
+  it('/search page should load with search input when the search button is clicked', function() {
   cy.get('[data-automation-id="404-search-button"]').click();
 
   cy.get('.ais-SearchBox-input').as('searchField')
