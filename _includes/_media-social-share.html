@@ -2,7 +2,6 @@
 {% unless item %}{% assign item = page %}{% endunless %}
 
 {% if include.heart != false %}
-<!-- // -->
 <div class="clearfix">
   <div class="pull-left">
     <crds-heart-button contentful-id="{{ item.contentful_id }}" contentful-slug= "{{ item.slug }}" contentful-type="{{ item.content_type | upcase }}"></crds-heart-button>
@@ -27,7 +26,7 @@
     <svg class="icon" viewBox="0 0 256 256">
       <use xlink:href="/assets/svgs/icons.svg#link"></use>
     </svg>
-  </a>
+  </a>  
 </div>
 
 {% if include.heart != false %}
