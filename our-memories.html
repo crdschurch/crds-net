@@ -14,7 +14,7 @@ layout: default
 </section>
 
 <section class="bg-blue d-flex justify-content-center" style="height: 15px;">
-  <img class="memories-logo" src="//crds-media.imgix.net/b0n8I39h8uHbHb7O9iXlo/4f4d2b9f72b098683201da1a16d6009e/25AnnivGraphics-01.png" width="180" heigth="180" />
+  <img class="memories-logo" src="//crds-media.imgix.net/b0n8I39h8uHbHb7O9iXlo/4f4d2b9f72b098683201da1a16d6009e/25AnnivGraphics-01.png" width="180" height="180" />
 </section>
 
 <section class="bg-orange bg-topo-50 bg-contain">
@@ -30,11 +30,11 @@ layout: default
       {% assign stories = site.data.community-stories | shuffle %}
       {% for story in stories %}
       <div class="story-card">
-        <img src="{{story.picture.url}}" width="198" height="198" alt="{{story.name}}" /> 
+        <img src="{{ story.picture | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}"  sizes="{{ site.image_sizes.full_width }}" width="198" height="198" alt="{{story.name}}" data-optimize-img /> 
         <div class="story-card-content">
-          <p class="flush font-family-condensed-extra font-size-h4">{{story.name}}</p>
-          <p class="font-size-smaller text-gray-light">{{story.site}}</p>
-          <p class="font-size-smaller">{{story.message}}</p>
+          <p class="flush font-family-condensed-extra font-size-h4">{{ story.name }}</p>
+          <p class="font-size-smaller text-gray-light">{{ story.site }}</p>
+          <p class="font-size-smaller">{{ story.message }}</p>
         </div>
       </div>
       {% endfor %}
