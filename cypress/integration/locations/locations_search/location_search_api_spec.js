@@ -1,7 +1,6 @@
 const importDeclarationsError = /.*> Cannot set property 'status' of undefined*/;
 
-//TODO Need to get the new Api endpoint for location search
-describe.skip('Tests the location search API call', function() {
+describe('Tests the location search API call', function() {
   it('Checks searching for Oakley by zip returns Oakley location first', function() {
     const oakleyZip = '45209';
     cy.ignoreMatchingErrors([importDeclarationsError]);
