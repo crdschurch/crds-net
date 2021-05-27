@@ -30,15 +30,44 @@ layout: default
     <div class="story-card-container">
       {% assign stories = site.data.community-stories | shuffle %}
       {% for story in stories %}
-      <div class="story-card">
-        <img src="{{ story.picture | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}"  sizes="{{ site.image_sizes.full_width }}" width="198" height="198" alt="{{story.name}}" data-optimize-img /> 
-        <div class="story-card-content">
-          <p class="flush font-family-condensed-extra font-size-h4">{{ story.name }}</p>
-          <p class="font-size-smaller text-gray-light">{{ story.site }}</p>
-          <p class="font-size-smaller">{{ story.message }}</p>
+      <div class="story-card-outer">
+        <div class="story-card">
+          <img src="{{ story.picture | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}"  sizes="{{ site.image_sizes.full_width }}" width="198" height="198" alt="{{story.name}}" data-optimize-img /> 
+          <div class="story-card-content">
+            <p class="flush font-family-condensed-extra font-size-h4">{{ story.name }}</p>
+            <p class="font-size-smaller text-gray-light">{{ story.site }}</p>
+            <p class="font-size-smaller">{{ story.message }}</p>
+          </div>
         </div>
       </div>
       {% endfor %}
     </div>
   </div>
 </section>
+
+
+<script>
+  $(document).ready(function () {
+    var $container = $('.story-card-container');
+    var $cards = $('.story-card-outer');
+    var orders = [];
+    for(var i = 0; i < $cards.length; i++){
+      orders.push(i);
+    }
+
+    // @todo Investigate other was to shuffle
+    orders = orders.sort(function () {
+      return .5 - Math.random();
+    });
+
+    var $orderedItems = $.map(orders, function(value) {
+      if (typeof $($cards[value]).clone !== 'function') {
+        return;
+      }
+
+      return $($cards[value]).html();
+    });
+
+    $container.empty().html($orderedItems).addClass('loaded');
+  });
+</script>

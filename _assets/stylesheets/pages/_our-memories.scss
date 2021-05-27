@@ -1,6 +1,7 @@
 .story-card-container {
   columns: 1;
   column-gap: 30px;
+  opacity: 0;
 
   @media (min-width: $screen-xs) {
     columns: 2;
@@ -13,6 +14,11 @@
   }
   @media (min-width: $screen-lg) {
     columns: 5;
+  }
+
+  &.loaded {
+    opacity: 1;
+    transition: 2s;
   }
 
   .story-card {
