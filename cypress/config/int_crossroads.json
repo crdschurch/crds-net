@@ -4,6 +4,7 @@
   "testFiles": "**/*spec.js",
   "env": {
     "CONTENTFUL_ENV": "int",
-    "vaultEnv": "int"
+    "vaultEnv": "int",
+    "CRDS_GATEWAY_ENDPOINT": "https://gatewayint.crossroads.net/gateway"
   }
 }
