@@ -13,18 +13,18 @@ title: Articles
         <div class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
           <div class="overlay-card-image">
             <div class="beige-overlay"></div>
-          <img src="{% if page.image.url %}{{ page.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}"
-            sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}"
-            alt="{{ page.image | alt }}" data-optimize-img>
+            <img src="{% if page.image.url %}{{ page.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}"
+              sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}"
+              alt="{{ page.image | alt }}" data-optimize-img>
           </div>
           <div class="overlay-card-content">
             <p class="overlay-card-category">{{ page.category.title }}</p>
             <h2 class="overlay-card-title {% if include.title == 'h2' %}font-size-h2{% endif %}">{{ page.title | truncate: 70 }}</h2>
             <p class="overlay-card-author text-gray-light">{{ page.author.full_name }}</p>
             <div class="card-stamp text-white">
-            {% if page.duration %}
-              {% assign format = 'short' %}
-            {% endif %}
+              {% if page.duration %}
+                {% assign format = 'short' %}
+              {% endif %}
               <span class="font-size-smallest soft-quarter-right">{{ page.duration | duration: format }}</span>
               <svg class="icon" viewBox="0 0 256 256">
                 <use xlink:href="/assets/svgs/icons.svg#media-article"></use>
@@ -91,48 +91,49 @@ title: Articles
             <a class="font-size-smaller font-family-base-bold" href="/articles">view all</a>
           </div>
         </div>
-      <div class="border-bottom-dashed-group">
-        {% assign popular_this_week =  site.featured_media | where: 'page_path', 'media-homepage-popular' | first %}
-        {% assign featured_popular_items = popular_this_week.entries %}
-    
-      {% for content in featured_popular_items limit: 4 %}
-        {% assign item = content | get_doc %}
-        {% assign image = item.image.url %}
-    
-        {% if item.content_type == 'episode' %}
-          {% assign image = item.podcast_img %}
-        {% endif %}
-    
-        {% if item.duration %}
-          {% assign format = 'short' %}
-        {% endif %}
-    
-        {% if item.content_type == 'message' %}
-          {% assign content_type = 'video' %}
-        {% else %}
-          {% assign content_type = item.content_type %}
-        {% endif %}
-        <div class="push-bottom">
-          <div class="article-detail-media-object">
-            <crds-media-object
-              url="{{ item | media_url }}"
-              image-src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}?auto=format"
-              type="{{ content_type }}"
-              title="{{ item.title }}"
-              duration="{{ item.duration | duration: format }}"
-              data-optimize-img
-            ></crds-media-object>
+        <div class="border-bottom-dashed-group">
+          {% assign popular_this_week =  site.featured_media | where: 'page_path', 'media-homepage-popular' | first %}
+          {% assign featured_popular_items = popular_this_week.entries %}
+      
+          {% for content in featured_popular_items limit: 4 %}
+          {% assign item = content | get_doc %}
+          {% assign image = item.image.url %}
+      
+          {% if item.content_type == 'episode' %}
+            {% assign image = item.podcast_img %}
+          {% endif %}
+      
+          {% if item.duration %}
+            {% assign format = 'short' %}
+          {% endif %}
+      
+          {% if item.content_type == 'message' %}
+            {% assign content_type = 'video' %}
+          {% else %}
+            {% assign content_type = item.content_type %}
+          {% endif %}
+          <div class="push-bottom">
+            <div class="article-detail-media-object">
+              <crds-media-object
+                url="{{ item | media_url }}"
+                image-src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}?auto=format"
+                type="{{ content_type }}"
+                title="{{ item.title }}"
+                duration="{{ item.duration | duration: format }}"
+                data-optimize-img
+              ></crds-media-object>
+            </div>
           </div>
+          {% endfor %}
         </div>
-        {% endfor %}
-      </div>
-      <div class="soft-bottom">
-        {% include media-homepage/_hubspot-newsletter-form.html %}
-      </div>
-      <div class="border-top">
-        <h3 class="font-family-serif font-size-small text-uppercase text-gray-lightest flush soft-half-ends">Latest Weekly Message</h3>
-        <div class="push-half-bottom">
-          {% include media-homepage/_latest-message.html %}
+        <div class="soft-bottom">
+          {% include media-homepage/_hubspot-newsletter-form.html %}
+        </div>
+        <div class="border-top">
+          <h3 class="font-family-serif font-size-small text-uppercase text-gray-lightest flush soft-half-ends">Latest Weekly Message</h3>
+          <div class="push-half-bottom">
+            {% include media-homepage/_latest-message.html %}
+          </div>
         </div>
       </div>
     </div>
