@@ -27,7 +27,7 @@
     "bootstrap-sass": "^3.4.0",
     "contentful-cli": "^0.28.0",
     "crds-cypress-config": "^1.0.1",
-    "crds-cypress-contentful": "^2.0.0",
+    "crds-cypress-contentful": "^2.0.2",
     "crds-cypress-login": "^2.0.0",
     "crds-styles": "^4.0.9",
     "cypress": "^4.8.0",

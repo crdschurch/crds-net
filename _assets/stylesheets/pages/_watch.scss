@@ -12,13 +12,13 @@
 }
 
 .btn-streaming-group {
+  align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-
-  .btn-streaming-img {
-    &:first-child{
-      margin-right: 15px;
-    }
+  
+  @media (min-width: $screen-xs) {
+    flex-direction: row;
   }
 }
 
