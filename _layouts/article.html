@@ -10,7 +10,8 @@ title: Articles
   <section class="container">
     <div class="row">
       <div class="col-md-9">
-        <div class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
+        <div class="overlay-card article-tpl-image">
+          <!-- Jumbotron -->
           <div class="overlay-card-image">
             <div class="beige-overlay"></div>
             <img src="{% if page.image.url %}{{ page.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}"
@@ -19,7 +20,7 @@ title: Articles
           </div>
           <div class="overlay-card-content">
             <p class="overlay-card-category">{{ page.category.title }}</p>
-            <h2 class="overlay-card-title {% if include.title == 'h2' %}font-size-h2{% endif %}">{{ page.title | truncate: 70 }}</h2>
+            <h2 class="overlay-card-title">{{ page.title | truncate: 70 }}</h2>
             <p class="overlay-card-author text-gray-light">{{ page.author.full_name }}</p>
             <div class="card-stamp text-white">
               {% if page.duration %}
@@ -32,43 +33,49 @@ title: Articles
             </div>
           </div>
         </div>
-        
-        <div class="">
+
+        <!-- Content -->
+        <div class="soft-ends article-tpl-content">
           {{ page.content }}
         </div>
 
-        <div class="soft-top">
+        <div class="border-bottom-dashed article-tpl-content">
           {% include _article-social-share.html %}
         </div>
 
         <!-- Discussion Questions -->
         {% if page.discussion %} {% assign discussion = page.discussion | get_doc %}
-        <div class="">
-          <div class="border-ends border-dashed">
+        <div class="border-bottom-dashed article-tpl-content">
+          <div class="">
             {% include _collapsible-discussion-questions.html %}
           </div>
         </div>
         {% endif %}
-        
+
         <!-- Author Section -->
-        <div class="row soft-ends push-bottom">
-          <div class="col-md-2 push-half-left border-right">
-            <address>
-              <a href="{{ author.url }}" data-author-link>
+        <div class="article-tpl-content article-tpl-author-section row row-no-gutters soft-ends">
+          <div>
+            <address class="article-tpl-author">
+              <a class="push-half-right" href="{{ author.url }}" data-author-link>
                 <img data-author-img
                   src="{{ author.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
-                  class="img-circle img-size-5" sizes="{{ site.image_sizes.avatar }}" data-optimize-img>
+                  class="img-circle img-size-5" sizes="{{ site.image_sizes.avatar }}" alt="{{ author.full_name }}" data-optimize-img>
               </a>
-              <small class="font-size-smaller text-gray">
-                Meet the author
-              </small>
-              <br>
-              <h2 class="flush font-family-condensed-extra font-size-h4 text-gray-dark text-uppercase"><a
-                  href="{{ author.url }}" data-grouping-media-author="{{ author.full_name }}"
-                  data-author-name="">{{ author.full_name }}</a></h2>
+
+              <div>
+                <small class="font-size-smaller text-gray">
+                  Meet the author
+                </small>
+                <br>
+                <h2 class="flush font-family-condensed-extra font-size-h4 text-gray-dark text-uppercase">
+                  <a href="{{ author.url }}" data-grouping-media-author="{{ author.full_name }}"data-author-name="">
+                    {{ author.full_name }}
+                  </a>
+                </h2>
+              </div>
             </address>
           </div>
-          <div class="col-md-5">
+          <div class="article-tpl-author-bio">
             <div class="font-size-small">
               {% if page.title == "Preview" %}
               <p data-author-bio></p>
@@ -81,16 +88,18 @@ title: Articles
             </div>
           </div>
         </div>
+
       </div>
 
       <!-- Sidebar -->
-      <div class="col-md-3">
+      <div class="col-md-3 col-md-3 hidden-sm hidden-xs">
         <div class="push-half-bottom border-ends">
           <div class="border-ends flex-space-between flex-align-center">
             <h3 class="font-family-serif font-size-small text-uppercase text-gray-light flush soft-half-ends">Popular This Week</h3>
-            <a class="font-size-smaller font-family-base-bold" href="/articles">view all</a>
+            <a class="font-size-smaller font-family-base-bold" href="/media/articles">view all</a>
           </div>
         </div>
+
         <div class="border-bottom-dashed-group">
           {% assign popular_this_week =  site.featured_media | where: 'page_path', 'media-homepage-popular' | first %}
           {% assign featured_popular_items = popular_this_week.entries %}
@@ -126,25 +135,28 @@ title: Articles
           </div>
           {% endfor %}
         </div>
+
         <div class="soft-bottom">
           {% include media-homepage/_hubspot-newsletter-form.html %}
         </div>
+
         <div class="border-top">
           <h3 class="font-family-serif font-size-small text-uppercase text-gray-lightest flush soft-half-ends">Latest Weekly Message</h3>
           <div class="push-half-bottom">
             {% include media-homepage/_latest-message.html %}
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
   <section class="container">
+    <!-- Popular in category -->
     <div class="row soft-bottom">
-      <!-- Popular in category -->
       <div class="border-top flex-space-between push-half-sides soft-half-top">
         <h3 class="flush font-family-serif font-size-small soft-bottom text-gray-light text-uppercase">Popular in {{ page.category.title }}</h3>
-        <a class="font-size-smaller font-family-base-bold" href="/articles/filters/{{ page.category.title }}">view all</a>
+        <a class="font-size-smaller font-family-base-bold" href="/media/articles/filters/{{ page.category.title }}">view all</a>
       </div>
       {% assign page_category = topic.slug %}
       {% assign posts = site.articles | where: "category.slug", page_category | exclude: page.title %}
@@ -156,36 +168,45 @@ title: Articles
     </div>
 
     <!-- Popular Authors -->
-    <div class="bg-tan soft-bottom soft-sides">
+    <div class="bg-tan row soft-bottom soft-sides">
       <div class="flex-space-between flex-align-center">
         <h3 class="font-family-serif font-size-small text-uppercase text-gray-light soft-half-ends">Popular Authors</h3>
-        <a class="font-size-smaller font-family-base-bold" href="/authors">view all</a>
+        <a class="font-size-smaller font-family-base-bold" href="/media/authors">view all</a>
       </div>
-      <div class="article-popular-author">
-        {% assign media_featured_authors = site.featured_media | where: 'page_path', 'article-detail-popular-authors' | first %}
-        {% assign featured_authors = media_featured_authors.entries %}
-        {% for content in featured_authors limit: 7 %}
-        {% assign item = content | get_doc %}
-        <div class="article-author col-lg-1">
-          {% include _author-card.html %}
+      <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
+        <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
+          {% assign media_featured_authors = site.featured_media | where: 'page_path', 'article-detail-popular-authors' | first %}
+          {% assign featured_authors = media_featured_authors.entries %}
+          {% for content in featured_authors limit: 6 %}
+          {% assign item = content | get_doc %}
+          <div class="col-md-2 carousel-cell">
+            <div class="d-flex flex-align-center flex-column justify-content-center push-half-top">
+              <a href="{{ item | media_url }}">
+                <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" alt="{{ author_full_name }}" class="img-circle" width="140px" data-optimize-img>
+              </a>
+              <div class="push-half-top text-center">
+                <a href="{{ item | media_url }}" class="text-blue font-family-base-bold font-size-smaller">{{ item.full_name }}</a>
+              </div> 
+            </div>
+          </div>
+          {% endfor %}
         </div>
-        {% endfor %}
       </div>
     </div>
 
-  <!-- Popular Topics -->
-  <div class="row soft-sides soft-ends push-ends push-left">
-    <h3 class="font-family-serif font-size-small text-uppercase text-gray-lighter flush soft-half-ends">Popular Topics</h3>        
-    <div class="text-capitalize">
-      {% assign media_popular_topics = site.featured_media | where: 'page_path', 'article-detail-popular-topics' | first %}
-      {% assign popular_topics = media_popular_topics.entries %}
-      {% for content in popular_topics %}
-      {% assign item = content | get_doc %}
-      <crds-button class="push-half-right" text="{{ item.title }}" href="{{ item | media_url }}" display="outline" color="blue"></crds-button>
-      {% endfor %}
+    <!-- Popular Topics -->
+    <div class="row soft-sides soft-ends push-ends">
+      <h3 class="font-family-serif font-size-small text-uppercase text-gray-lighter flush soft-half-ends">Popular Topics</h3>        
+      <div class="text-capitalize">
+        {% assign media_popular_topics = site.featured_media | where: 'page_path', 'article-detail-popular-topics' | first %}
+        {% assign popular_topics = media_popular_topics.entries %}
+        {% for content in popular_topics %}
+        {% assign item = content | get_doc %}
+        <crds-button class="push-half-right" text="{{ item.title }}" href="{{ item | media_url }}" display="outline" color="blue"></crds-button>
+        {% endfor %}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- Prefooter Subscribe Form -->
   <section>
@@ -220,6 +241,3 @@ title: Articles
     </div>
   </section>
 </article>
-
-
-  

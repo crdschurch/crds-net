@@ -1,7 +1,56 @@
 .article-tpl {
+  @media screen and (min-width: $screen-md) {
+    margin-top: 30px;
+  }
+
+  .article-tpl-image {
+    margin: 0 -15px;
+
+    @media screen and (min-width: $screen-md) {
+      margin: unset;
+    }
+  }
+
+  .article-tpl-content {
+    @media screen and (min-width: $screen-md) {
+      margin-left: 28px;
+      margin-right: 28px;
+    }
+  }
+
   address {
     background: none;
-    padding: 0px;
+    padding: 16px 0;
+    margin-bottom: 0;
+  }
+  .article-tpl-author-section {
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: $screen-sm) {
+      align-items: center;
+      flex-direction: row;
+    }
+
+    .article-tpl-author {
+      display: flex;
+  
+      @media screen and (min-width: $screen-sm) {
+        flex-direction: column;
+        border-right: 1px solid $cr-gray-lighter;
+        padding-right: 18px;
+
+        h2 {
+          white-space: nowrap;
+        }
+      }
+    }
+  
+    .article-tpl-author-bio {
+      @media screen and (min-width: $screen-sm) {
+        padding-left: 18px;
+      }
+    }
   }
 
   /* Overrides Jumbotron Overlay Card Styles */
@@ -29,32 +78,20 @@
       font-weight: 500;
     }
   }
-}
 
-.article-popular-author { 
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  @media screen and (min-width: $screen-md) {
-    flex-direction: row;
-  }
-
-  .article-author {
-    margin: auto;
-    width: 150px;
-  
-    .article-author-card-title {
-      display: flex;
-      justify-content: center;
+  .card-deck--expanded-layout {
+    @media screen and (min-width: $screen-sm) {
+      justify-content: center !important;
     }
-  } 
-}
 
-.flex-start {
-  align-items: flex-start;
-  display: flex;
+    @media screen and (min-width: $screen-md) {
+      flex-flow: nowrap !important;
+
+      .carousel-cell {
+        margin-right: unset;
+      }
+    }
+  }
 }
 
 .social-share {
