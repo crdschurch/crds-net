@@ -31,7 +31,11 @@
       display: block;
       width: 100%;
       object-fit: cover;
-      height: 198px;
+      height: 250px;
+      
+      @media (min-width: $screen-sm) {
+        height: 198px;
+      }
     }
 
     .story-card-content {
