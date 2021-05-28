@@ -96,10 +96,10 @@ layout: default
               </div>
               {% endif %}
               <div class="soft-half-top">
-                <crds-button href="//www.facebook.com/{{ page.community_pastor_facebook_url | downcase }}" color="blue" display="outline"
+                <crds-button href="{{ page.community_pastor_facebook_url | downcase }}" color="blue" display="outline"
                 icon="facebook" icon-align="left" icon-color="blue" icon-size="16"
                 text="Follow {{ pastor_full_name[0] }}"></crds-button>
-                <crds-button href="//www.instagram.com/{{ page.community_pastor_instagram_url| downcase }}" color="blue" display="outline"
+                <crds-button href="{{ page.community_pastor_instagram_url| downcase }}" color="blue" display="outline"
                 icon="instagram" icon-align="left" icon-color="blue" icon-size="16"
                 text="Follow {{ pastor_full_name[0] }}"></crds-button>
               </div>
@@ -188,6 +188,28 @@ layout: default
                 </div>
                 <div>
                   {{ page.student_ministry_hours | markdownify }}
+                </div>
+                <!-- SM Leader Info -->
+                {% assign sm_leader_full_name = page.student_ministry_leader_name | split: " " %}
+                <div class="push-top d-flex">
+                  <div class="locations-pastor-img-container">
+                    {% if page.community_pastor_image %}
+                    <img class="img-border img-circle img-size-4" src="{{ page.community_pastor_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+                    sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
+                    {% else %}
+                    <img class="img-border img-circle img-size-4" src="https://crossroads-media.imgix.net/images/avatar.svg"/>
+                    {% endif %}
+                  </div>
+                  <div class="push-left">
+                    <span class="text-uppercase font-family-base-bold font-size-small">Leadership</span>
+                    {% if page.student_ministry_leader_name %}
+                    <p class="flush font-family-base font-size-small">{{ page.student_ministry_leader_name}}</p>
+                    <p class="hard-top flush font-family-base font-size-small">SM Leader</p>
+                    {% endif %}
+                  </div>
+                  <crds-button class="push-left" href="{{ page.community_pastor_facebook_url | downcase }}" color="blue" display="outline"
+                  icon="facebook" icon-align="left" icon-color="blue" icon-size="16"
+                  text="Follow {{ student_ministry_leader_name[0] }}"></crds-button>
                 </div>
               </div>
             </div>

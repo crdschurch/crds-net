@@ -146,10 +146,10 @@ layout: default
               </div>
               {% endif %}
               <div class="soft-half-top">
-                <crds-button href="//www.facebook.com/{{ page.community_pastor_facebook_url | downcase }}" color="blue" display="outline"
+                <crds-button href="{{ page.community_pastor_facebook_url | downcase }}" color="blue" display="outline"
                   icon="facebook" icon-align="left" icon-color="blue" icon-size="16"
                   text="Follow {{ pastor_full_name[0] }}"></crds-button>
-                <crds-button href="//www.instagram.com/{{ page.community_pastor_instagram_url| downcase }}" color="blue" display="outline"
+                <crds-button href="{{ page.community_pastor_instagram_url| downcase }}" color="blue" display="outline"
                   icon="instagram" icon-align="left" icon-color="blue" icon-size="16"
                   text="Follow {{ pastor_full_name[0] }}"></crds-button>
               </div>
