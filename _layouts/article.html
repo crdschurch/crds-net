@@ -33,25 +33,25 @@ title: Articles
           </div>
         </div>
         
-        <div class="soft-sides">
+        <div class="">
           {{ page.content }}
         </div>
 
-        <div class="soft-top soft-left">
+        <div class="soft-top">
           {% include _article-social-share.html %}
         </div>
 
         <!-- Discussion Questions -->
-        <div class="soft-left">
-          <div class="border-bottom border-dashed"></div>
-          {% if page.discussion %} {% assign discussion = page.discussion | get_doc %}
+        {% if page.discussion %} {% assign discussion = page.discussion | get_doc %}
+        <div class="">
+          <div class="border-ends border-dashed">
             {% include _collapsible-discussion-questions.html %}
-          {% endif %}
-          <div class="border-bottom border-dashed"></div>
+          </div>
         </div>
+        {% endif %}
         
         <!-- Author Section -->
-        <div class="row soft-ends soft-left soft-bottom push-bottom">
+        <div class="row soft-ends push-bottom">
           <div class="col-md-2 push-half-left border-right">
             <address>
               <a href="{{ author.url }}" data-author-link>
@@ -68,14 +68,14 @@ title: Articles
                   data-author-name="">{{ author.full_name }}</a></h2>
             </address>
           </div>
-          <div class="col-md-5 push-top">
+          <div class="col-md-5">
             <div class="font-size-small">
               {% if page.title == "Preview" %}
               <p data-author-bio></p>
               {% else %}
-              <p class="flush-bottom push-top font-size-smaller">{{ author.summary }}</p>
+              <p class="font-size-smaller">{{ author.summary }}</p>
               {% endif %}
-              <div class="push-half-ends">
+              <div>
                 {% include _author-social.html %}
               </div>
             </div>
@@ -142,16 +142,17 @@ title: Articles
   <section class="container">
     <div class="row soft-bottom">
       <!-- Popular in category -->
-      <div class="border-top flex-space-between flex-align-center push-half-sides">
-        <h3 class="font-family-serif font-size-small text-uppercase text-gray-light soft-half-ends">Popular in {{ page.category.title }}</h3>
+      <div class="border-top flex-space-between push-half-sides soft-half-top">
+        <h3 class="flush font-family-serif font-size-small soft-bottom text-gray-light text-uppercase">Popular in {{ page.category.title }}</h3>
         <a class="font-size-smaller font-family-base-bold" href="/articles/filters/{{ page.category.title }}">view all</a>
       </div>
-      {% assign posts = topic %}
+      {% assign page_category = topic.slug %}
+      {% assign posts = site.articles | where: "category.slug", page_category | exclude: page.title %}
       {% for post in posts limit: 3 %}
       <div class="col-md-4">
-        {% include _article-card.html %}
+        {% include _article-card.html post=post %}
       </div>
-    {% endfor %}
+      {% endfor %}
     </div>
 
     <!-- Popular Authors -->
