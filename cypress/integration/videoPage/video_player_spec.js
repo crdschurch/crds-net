@@ -1,7 +1,7 @@
 import { ContentfulQueryBuilder } from 'crds-cypress-contentful';
 const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/];
 
-describe.skip('Tests Video page with Bitmovin video', () => {
+describe('Tests Video page with Bitmovin video', () => {
   let bitmovinVideo;
 
   before(() => {
@@ -23,7 +23,7 @@ describe.skip('Tests Video page with Bitmovin video', () => {
       .and('contain', 'bitmovinplayer');
   });
 
-  it.skip('Checks video autoplays if url has autoplay=true query params', () => {
+  it('Checks video autoplays if url has autoplay=true query params', () => {
     cy.visit(`media/videos/${bitmovinVideo.slug.text}?autoPlay=true&sound=11`);
 
     // Confirm autoplay has started by listening for the event
