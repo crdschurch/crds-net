@@ -1,0 +1,73 @@
+.story-card-container {
+  columns: 1;
+  column-gap: 30px;
+  opacity: 0;
+
+  @media (min-width: $screen-xs) {
+    columns: 2;
+  }
+  @media (min-width: $screen-sm) {
+    columns: 3;
+  }
+  @media (min-width: $screen-md) {
+    columns: 4;
+  }
+  @media (min-width: $screen-lg) {
+    columns: 5;
+  }
+
+  &.loaded {
+    opacity: 1;
+    transition: 2s;
+  }
+
+  .story-card {
+    display: inline-block;
+    background-color: $cr-white;
+    width: 100%;
+    margin-bottom: 30px;
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+      height: 250px;
+      
+      @media (min-width: $screen-sm) {
+        height: 198px;
+      }
+    }
+
+    .story-card-content {
+      background-color: $cr-white;
+      color: $cr-gray-darker;
+      display: inline-block;
+      margin: -20px 10px 0;
+      padding: 5px;
+      position: relative;
+      z-index: 2;
+    }
+  }
+}
+
+.memories-jumbotron-logo {
+  mix-blend-mode: screen;
+}
+
+.memories-logo {
+  height: 180px;
+  margin-top: -80px;
+  z-index: 2;
+}
+
+.blue-overlay {
+  background-blend-mode: multiply;
+  background-color: $cr-blue;
+  bottom: 0;
+  left: 0;
+  mix-blend-mode: multiply;
+  opacity: 85%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

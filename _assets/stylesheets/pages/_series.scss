@@ -17,3 +17,11 @@
     }
   }
 }
+
+.featured-series-landing-jumbotron {
+  min-height: 225px;
+
+  @media screen and (min-width: $screen-sm) {
+    min-height: 450px;
+  }
+}
