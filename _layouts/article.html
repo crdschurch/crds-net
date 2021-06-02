@@ -36,7 +36,7 @@ title: Articles
         </div>
 
         <!-- Content -->
-        <div class="soft-ends article-tpl-content">
+        <div class="soft-ends article-tpl-content font-size-base">
           {{ page.content }}
         </div>
 
@@ -154,7 +154,7 @@ title: Articles
 
   <section class="container">
     <!-- Popular in category -->
-    <div class="row soft-bottom">
+    <div class="push-top row soft-ends">
       <div class="border-top flex-space-between push-half-sides soft-half-top">
         <h3 class="flush font-family-serif font-size-small soft-bottom text-gray-light text-uppercase">Popular in {{ page.category.title }}</h3>
         <a class="font-size-smaller font-family-base-bold" href="/media/articles/filters/{{ page.category.title }}">view all</a>
@@ -241,4 +241,15 @@ title: Articles
       </div>
     </div>
   </section>
+
+  <crds-media-metrics-view slug="{{ page.slug }}" type="{{ page.content_type | upcase }}" />
 </article>
+
+<script type="text/javascript">
+  setTimeout(
+    function(){
+      const mediaMetricView = new Event('mediaMetricInteractionView');
+      document.dispatchEvent(mediaMetricView);
+    }, 
+  30000);
+</script>
