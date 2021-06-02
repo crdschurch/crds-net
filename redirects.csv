@@ -38,7 +38,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /connect/* my=:1,/mygroups,301!
 /connect/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
 /group-leader/*,https://${env:CRDS_GROUP_LEADER_DOMAIN}/:splat,200!
-/groups/search/*,https://${env:CRDS_GROUPS_ENDPOINT}/:splat,200!
+/groups/search/*,https://${env:CRDS_GROUPS_LEGACY_ENDPOINT}/:splat,200!
 /map/*,/connect/:splat,302!
 /search/*,https://${env:CRDS_SEARCH_ENDPOINT}/:splat,200!
 /search-component/*,https://${env:CRDS_SEARCH_COMPONENT_ENDPOINT}/:splat,200!
@@ -184,6 +184,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /groups/onsite-groups/*,/groups/onsite,301!
 /groups/onsite,/groups/site-based,301!
 /groups/onsite/*,/groups/site-based/:splat,301!
+/groups/details/*,https://${env:CRDS_GROUPS_ENDPOINT}/:splat,200!
 /care/communitycare,/care,301!
 /adventure,/series/the-adventurous-life,301!
 /weeklyworship,/reopen,301!

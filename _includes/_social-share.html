@@ -29,7 +29,9 @@
     </svg>
   </a>
   
-  <crds-media-metrics-share slug="{{ item.slug }}" type="{{ item.content_type | upcase }}" />
+  {% if include.media_metric != false %}
+    <crds-media-metrics-share slug="{{ item.slug }}" type="{{ item.content_type | upcase }}" />  
+  {% endif %}
 </div>
 
 {% if include.heart != false %}
