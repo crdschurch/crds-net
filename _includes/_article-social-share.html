@@ -1,0 +1,37 @@
+{% assign item = include.item %}
+{% unless item %}{% assign item = page %}{% endunless %}
+
+<section class="soft-half-left">
+  <div class="row soft-bottom">
+    <div class="flex-start flex-align-center">
+      <a href="#" role="button" class="btn btn-blue push-half-right" data-toggle="modal" data-target="#subscribeModalForm"
+      style="width: 105px;">Subscribe</a>
+      <div class="article-detail-social">
+        <crds-heart-button theme="button" contentful-id="{{ item.contentful_id }}"></crds-heart-button>
+      </div>
+      <div class="social-share sidebar">
+        <a class="text-blue" href="https://www.facebook.com/sharer/sharer.php?u=https://www.crossroads.net/media{{ page.url }}" target="_blank">
+          <svg class="icon" viewBox="0 0 256 256">
+            <use xlink:href="/assets/svgs/icons.svg#facebook"></use>
+          </svg>
+        </a>
+        <a class="text-blue" href="https://twitter.com/home?status={{ page.title | escape | titleize }}%20{{ site.url }}{{ page.url }}" target="_blank">
+          <svg class="icon" viewBox="0 0 256 256">
+            <use xlink:href="/assets/svgs/icons.svg#twitter"></use>
+          </svg>
+        </a>
+        <a class="text-blue"href="javascript:void(0);" class="clipboard"
+          data-clipboard-text="{{ site.url }}{{ item.url }}"
+          data-clipboard-success="{{ site.url }}{{ item.url }} copied to clipboard!">
+          <svg class="icon" viewBox="0 0 256 256">
+            <use xlink:href="/assets/svgs/icons.svg#link"></use>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {% if include.media_metric != false %}
+    <crds-media-metrics-share slug="{{ item.slug }}" type="{{ item.content_type | upcase }}" />  
+  {% endif %}
+</section>
