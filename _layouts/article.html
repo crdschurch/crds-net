@@ -37,6 +37,10 @@ title: Articles
 
         <!-- Content -->
         <div class="soft-ends article-tpl-content font-size-base">
+          {% if page.lead_text %}
+          <div class="lead">{{ page.lead_text | markdownify }}</div>
+          {% endif %}
+          
           {{ page.content }}
         </div>
 
@@ -209,41 +213,41 @@ title: Articles
     </div>
   </section>
 
-  <!-- Prefooter Subscribe Form -->
-  <section>
-    <div class="jumbotron jumbotron-xl grid-overlay-light flush-bottom" style="background-image: url('//crds-media.imgix.net/4TdSCGoNEJn0RRuPLuNv3h/86ded15c0c78b2f5d3204c07dbc3b365/bianca-castillo-iAGPCmxKbls-unsplash.jpg?{{ site.imgix_params.placeholder_sixteen_nine}}');" data-optimize-bg-img>
-      <div class="jumbotron-content">
-        <div class="container text-center">
-          <h1 class="component-header-box text-white">
-            Now Keep<br />it coming
-          </h1>
-          <div class="media-homepage-footer-form col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
-            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
-            <script>
-              hbspt.forms.create({
-                portalId: '3993985',
-                formId: '52b50268-5d9c-4369-8359-e96ff69094f9',
-                submitButtonClass: 'btn btn-orange flush',
-                errorMessageClass: 'hs-error-msgs inputs-list list-unstyled soft-half-top',
-                inlineMessage: '<p>Thanks for signing up! Our top picks will hit your inbox every week.</p>',
-                onFormReady($form, ctx) {
-                  $('div[data-reactid=".hbspt-forms-1.5"]').appendTo($('div[data-reactid=".hbspt-forms-1.1:$0.$email.$email"]'));
-                  $('div[data-reactid=".hbspt-forms-1.1:$0.$email.$email"]').addClass('d-flex');
-                  $('div[data-reactid=".hbspt-forms-1.1:$0.0"]').addClass('hidden');
-                }
-              });
-            </script>
-          </div>
-        </div>
-        <div class="container text-center">
-          <p class="font-family-serif push-top soft-top text-white">Subscribe to get our best content delivered straight to your inbox.</p>
-        </div> 
-      </div>
-    </div>
-  </section>
-
   <crds-media-metrics-view slug="{{ page.slug }}" type="{{ page.content_type | upcase }}" />
 </article>
+
+ <!-- Prefooter Subscribe Form -->
+ <section>
+  <div class="jumbotron jumbotron-xl grid-overlay-light flush-bottom" style="background-image: url('//crds-media.imgix.net/4TdSCGoNEJn0RRuPLuNv3h/86ded15c0c78b2f5d3204c07dbc3b365/bianca-castillo-iAGPCmxKbls-unsplash.jpg?{{ site.imgix_params.placeholder_sixteen_nine}}');" data-optimize-bg-img>
+    <div class="jumbotron-content">
+      <div class="container text-center">
+        <h1 class="component-header-box text-white">
+          Now Keep<br />it coming
+        </h1>
+        <div class="media-homepage-footer-form col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+          <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+          <script>
+            hbspt.forms.create({
+              portalId: '3993985',
+              formId: '52b50268-5d9c-4369-8359-e96ff69094f9',
+              submitButtonClass: 'btn btn-orange flush',
+              errorMessageClass: 'hs-error-msgs inputs-list list-unstyled soft-half-top',
+              inlineMessage: '<p>Thanks for signing up! Our top picks will hit your inbox every week.</p>',
+              onFormReady($form, ctx) {
+                $('div[data-reactid=".hbspt-forms-1.5"]').appendTo($('div[data-reactid=".hbspt-forms-1.1:$0.$email.$email"]'));
+                $('div[data-reactid=".hbspt-forms-1.1:$0.$email.$email"]').addClass('d-flex');
+                $('div[data-reactid=".hbspt-forms-1.1:$0.0"]').addClass('hidden');
+              }
+            });
+          </script>
+        </div>
+      </div>
+      <div class="container text-center">
+        <p class="font-family-serif push-top soft-top text-white">Subscribe to get our best content delivered straight to your inbox.</p>
+      </div> 
+    </div>
+  </div>
+</section>
 
 <script type="text/javascript">
   setTimeout(

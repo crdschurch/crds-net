@@ -12,6 +12,38 @@
   }
 
   .article-tpl-content {
+    h1,
+    h2,
+    h3 {
+      font-family: $base-font-face;
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-top: 0;
+    }
+
+    h2 {
+      @extend .font-family-condensed-extra;
+      @extend .font-size-h3;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    h3,
+    .lead {
+      font-family: $serif-font-face;
+      line-height: 1.5;
+    }
+
+    h4,
+    h5 {
+      line-height: 1.4;
+    }
+
+    h6 {
+      line-height: 1.5;
+    }
+
     @media screen and (min-width: $screen-md) {
       margin-left: 28px;
       margin-right: 28px;
