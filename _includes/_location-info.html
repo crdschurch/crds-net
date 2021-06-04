@@ -5,7 +5,10 @@
       <span class="font-family-base-bold font-size-smaller text-uppercase">Service Times</span>
       <p class="flush font-size-small">{{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}</p>
       {% if page.name == "Oakley" %}
-      <a class="text-orange" href="#about">Hang out during the week</a>
+        <a class="text-orange" href="#about">Hang out during the week</a>
+      {% endif %}
+      {% if page.name == "Eastside" or page.name == "eastside" or page.name == "East side" or page.name == "East Side" %}
+        <a class="text-orange" href="#about">Hang out during the week</a>
       {% endif %}
       <hr class="visible-xs">
     </div>
