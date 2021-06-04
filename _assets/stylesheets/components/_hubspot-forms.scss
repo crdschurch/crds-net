@@ -35,6 +35,10 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
   list-style: none;
 }
 
+input[type="checkbox"] {
+  -webkit-appearance: checkbox;
+}
+
 [data-role="hsform"] .field {
   margin-bottom: 22px;
 }
