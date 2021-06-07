@@ -1,5 +1,6 @@
 import { SeriesQueryBuilder, normalizeText } from 'crds-cypress-contentful';
-describe.skip('Testing the Current Series on the Media landing page:', function () {
+
+describe('Testing the Current Series on the Media landing page:', function () {
 
   let currentSeries;
   before(function () {
@@ -15,20 +16,20 @@ describe.skip('Testing the Current Series on the Media landing page:', function 
   });
 
   beforeEach(function () {
-    cy.get('[data-automation-id="series-section"]').as('featuredSeries')
+    cy.get('div.media-body').as('featuredSeries')
       .should('have.length', 1)
       .scrollIntoView();
   });
 
   it('The current series title, title link, and description should match Contentful', function () {
     cy.get('@featuredSeries').within(() => {
-      cy.get('[data-automation-id="featured-title"]').as('seriesTitle')
+      cy.get('[data-automation-id="series-title"]').as('seriesTitle')
         .should('be.visible')
         .and('have.text', currentSeries.title.text);
       cy.get('@seriesTitle')
         .should('have.attr', 'href', `/media/series/${currentSeries.slug.text}`);
 
-      cy.get('[data-automation-id="featured-description"]').as('seriesDescription')
+      cy.get('[data-automation-id="series-description"]').as('seriesDescription')
         .should('be.visible')
         .normalizedText()
         .then((elementText) => {
@@ -38,8 +39,8 @@ describe.skip('Testing the Current Series on the Media landing page:', function 
   });
 
   it('The current series image and image link should match Contentful', function () {
-    cy.get('@featuredSeries').scrollIntoView().within(() => {
-      cy.get('[data-automation-id="featured-image"]').as('seriesImageLink')
+    cy.get('.media').scrollIntoView().within(() => {
+      cy.get('[data-automation-id="series-image"]').as('seriesImageLink')
         .should('have.attr', 'href', `/media/series/${currentSeries.slug.text}`);
 
       cy.imgixShouldRunOnElement('img', currentSeries.image);
