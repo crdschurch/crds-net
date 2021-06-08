@@ -66,7 +66,7 @@
 
     .article-tpl-author {
       display: flex;
-
+  
       @media screen and (min-width: $screen-sm) {
         flex-direction: column;
         border-right: 1px solid $cr-gray-lighter;
@@ -77,7 +77,7 @@
         }
       }
     }
-
+  
     .article-tpl-author-bio {
       @media screen and (min-width: $screen-sm) {
         padding-left: 18px;
@@ -99,7 +99,7 @@
     max-height: 430px;
   }
 
-  .overlay-card-heading {
+  .overlay-card .overlay-card-title {
     @media screen and (min-width: $screen-sm) {
       font-size: 54px;
       font-weight: 500;
@@ -129,4 +129,4 @@
 .social-share {
   margin-left: 14px;
   margin-top: 4px;
-}
+} 

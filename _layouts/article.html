@@ -21,7 +21,7 @@ title: Articles
           </div>
           <div class="overlay-card-content">
             <p class="overlay-card-category">{{ page.category.title }}</p>
-            <h2 class="overlay-card-title overlay-card-heading">{{ page.title | truncate: 70 }}</h2>
+            <h2 class="overlay-card-title">{{ page.title | truncate: 70 }}</h2>
             <p class="overlay-card-author text-gray-light">{{ page.author.full_name }}</p>
             <div class="card-stamp text-white">
               {% if page.duration %}
