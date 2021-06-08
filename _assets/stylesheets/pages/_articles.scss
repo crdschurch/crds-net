@@ -99,7 +99,7 @@
     max-height: 430px;
   }
 
-  .overlay-card .overlay-card-title {
+  .overlay-card-heading {
     @media screen and (min-width: $screen-sm) {
       font-size: 54px;
       font-weight: 500;
@@ -129,4 +129,4 @@
 .social-share {
   margin-left: 14px;
   margin-top: 4px;
-} 
+}
