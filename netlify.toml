@@ -7,6 +7,17 @@
   pretty_urls = true
 
 [[plugins]]
+package = "@netlify/plugin-sitemap"
+
+  [plugins.inputs]
+  buildDir = "_site"
+  filePath = "sitemap.xml"
+  exclude = [
+    '**/page/**',
+    '**/tags/**'
+  ]
+
+[[plugins]]
 package = "./_plugins/netlify-plugin-contentful-redirects"
   [plugins.inputs]
     destination = "./tmp/.redirects_cache"
