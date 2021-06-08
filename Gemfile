@@ -47,7 +47,6 @@ end
 # ---------------------------------------- | Plugins
 
 group :jekyll_plugins do
-  gem 'jekyll-sitemap'
   gem 'jekyll-include-cache'
 
   # gem 'jekyll-asset-pipeline', path: File.expand_path('../jekyll-asset-pipeline', __dir__)
