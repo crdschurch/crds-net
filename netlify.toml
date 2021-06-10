@@ -57,6 +57,7 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
   CRDS_GROUP_LEADER_DOMAIN = "group-leader-int.crossroads.net"
   CRDS_GROUPS_ENDPOINT = "groups-int.crossroads.net"
+  CRDS_GROUPS_LEGACY_ENDPOINT = "groups-legacy-int.crossroads.net"
   CRDS_INVOICES = "invoices-int.crossroads.net"
 
 [context.deploy-preview.environment]
@@ -76,6 +77,7 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
   CRDS_GROUP_LEADER_DOMAIN = "group-leader-int.crossroads.net"
   CRDS_GROUPS_ENDPOINT = "groups-int.crossroads.net"
+  CRDS_GROUPS_LEGACY_ENDPOINT = "groups-legacy-int.crossroads.net"
   CRDS_INVOICES = "invoices-int.crossroads.net"
 
 [context.development.environment]
@@ -95,6 +97,7 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
   CRDS_GROUP_LEADER_DOMAIN = "group-leader-int.crossroads.net"  
   CRDS_GROUPS_ENDPOINT = "groups-int.crossroads.net"
+  CRDS_GROUPS_LEGACY_ENDPOINT = "groups-legacy-int.crossroads.net"
   CRDS_INVOICES = "invoices-int.crossroads.net"
   CRDS_CORKBOARD_ENDPOINT = "corkboard-int.crossroads.net"
 
@@ -115,6 +118,7 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
   CRDS_GROUP_LEADER_DOMAIN = "group-leader-int.crossroads.net"
   CRDS_GROUPS_ENDPOINT = "groups-int.crossroads.net"
+  CRDS_GROUPS_LEGACY_ENDPOINT = "groups-legacy-int.crossroads.net"
   CRDS_INVOICES = "invoices-int.crossroads.net"
 
 
@@ -134,7 +138,8 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_COMPONENTS_ROOT_URL="https://demo.crossroads.net"
   CRDS_SEARCH_ENDPOINT = "crds-search-demo.crossroads.net"
   CRDS_GROUP_LEADER_DOMAIN = "group-leader-demo.crossroads.net"
-  CRDS_GROUPS_ENDPOINT = "groups-demo.crossroads.net"
+  CRDS_GROUPS_ENDPOINT = "groups-int.crossroads.net"
+  CRDS_GROUPS_LEGACY_ENDPOINT = "groups-legacy-int.crossroads.net"
   CRDS_INVOICES = "invoices-demo.crossroads.net"
 
 [context.master.environment]
@@ -154,7 +159,9 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_SEARCH_ENDPOINT = "crds-search.crossroads.net"
   CRDS_GROUP_LEADER_DOMAIN = "group-leader.crossroads.net"
   CRDS_GROUPS_ENDPOINT = "groups.crossroads.net"
+  CRDS_GROUPS_LEGACY_ENDPOINT = "groups-legacy.crossroads.net"
   CRDS_INVOICES = "invoices.crossroads.net"
+  CRDS_CORKBOARD_ENDPOINT = "crds-angular.crossroads.net/corkboard"
 
 [context.rebrand.environment]
   CRDS_PEOPLE_DOMAIN = "people-int.crossroads.net"
@@ -174,5 +181,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_SEARCH_ENDPOINT = "crds-search-int.crossroads.net"
   CRDS_GROUP_LEADER_DOMAIN = "group-leader-int.crossroads.net"
   CRDS_GROUPS_ENDPOINT = "groups-int.crossroads.net"
+  CRDS_GROUPS_LEGACY_ENDPOINT = "groups-legacy-int.crossroads.net"
   CRDS_INVOICES = "invoices-int.crossroads.net"
 

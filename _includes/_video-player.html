@@ -4,4 +4,7 @@
     {% assign video_id = video.source_url | youtube_id %}
     {% include _youtube-embed.html %}
 {% endif %}
+
+{% if include.media_metric != false %}
 <crds-media-metrics-view slug="{{ video.slug }}" type="{{ video.content_type | upcase }}" />
+{% endif %}
