@@ -1,7 +1,8 @@
-var player;
-let videoElement = document.querySelector('#yt-wrap');
+let ytPlayer = null;
+let ytVideoElement = document.querySelector('#yt-wrap');
+let htmlVideoElement = document.querySelector('#htmlPlayer');
 
-if (videoElement) {
+if (ytVideoElement) {
   // 2. This code loads the IFrame Player API code asynchronously.
   var tag = document.createElement('script');
   tag.src = 'https://www.youtube.com/player_api';
@@ -11,10 +12,10 @@ if (videoElement) {
   // 3. This function creates an <iframe> (and YouTube player)
   // after the API code downloads.;
 
-  let playerId = videoElement.getAttribute('player-id');
+  let playerId = ytVideoElement.getAttribute('player-id');
   
   window.onYouTubePlayerAPIReady = () => {
-    player = new YT.Player('ytplayer', {
+    ytPlayer = new YT.Player('ytplayer', {
       width: '100%',
       height: '100%',
       videoId: playerId,
@@ -45,8 +46,8 @@ function onPlayerReady(event) {
 // the player should play for six seconds and then stop.
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.ENDED) {
-    player.seekTo(0);
-    player.playVideo();
+    ytPlayer.seekTo(0);
+    ytPlayer.playVideo();
   }
 }
 
@@ -58,16 +59,16 @@ var display = 'icon-video';
 
 if (muteButton) {
   muteButton.addEventListener('click', function () {
-    if (player.isMuted()) {
-      player.unMute();
+    if (ytPlayer) {
+      if (ytPlayer.isMuted()) {
+        ytPlayer.unMute();
+      } else {
+        ytPlayer.mute();
+      }
     } else {
-      player.mute();
+      htmlVideoElement.muted = !htmlVideoElement.muted
     }
-  });
-}
 
-if (muteButton) {
-  muteButton.addEventListener('click', function () {  
     if (muteIcon.classList.contains(hidden)) {
       muteIcon.classList.add(display);
       muteIcon.classList.remove(hidden);
