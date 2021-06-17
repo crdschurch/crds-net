@@ -158,6 +158,7 @@ layout: no-header-no-footer
               {% for item in page.partner %}
               <div class="row">
                 <div class="col-sm-12 col-md-push-6 col-md-6 push-top">
+                  <img src="{{ item.partner_image.url | imgix: site.imgix }}?auto=format,compress&w=600" data-optimize-img />
                   <img class="imgix-fluid img-responsive" src="{{ item.partner_image.url }}">
                 </div>
                 <div class="col-sm-12 col-md-pull-6 col-md-6">
