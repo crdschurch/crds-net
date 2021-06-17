@@ -1,204 +1,194 @@
-<!DOCTYPE html>
-<html dir="ltr" lang="en-US">
-  {% include _head.html %}
-  <body class="{% if page.path == 'preview.html' %}preview{% endif %} crds-styles relative">
-    {% include _gtm_noscript.html %}
-    {% include _facebook_noscript.html %}
-    {% include _monetate-body.html %}
+---
+layout: no-header-no-footer
+---
 
-    {% javascript_link_tag application_deferred async %}
+{% assign trips_header = site.content_blocks | where: 'slug', 'go-trips-nav' | first %}
+{% assign trips_footer = site.content_blocks | where: 'slug', 'go-trips-footer' | first %}
 
-    {% assign trips_header = site.content_blocks | where: 'slug', 'go-trips-nav' | first %}
-    {% assign trips_footer = site.content_blocks | where: 'slug', 'go-trips-footer' | first %}
-
-    {{ trips_header.content_block | markdownify }}
-    <div class="jumbotron jumbotron-xl"
-      style="background-image: url('{{ page.image.url }}'); margin-top: -12px; padding-bottom: 0px;">
-      <div class="jumbtron-content"
-        style="bottom: 0; width: 100%; padding: 30px; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);">
-        <div class="container push-top soft-top">
-          <div class="row soft-top text-left push-top">
-            <div class="col-sm-10 col-sm-offset-1 push-top">
-              <h1 class="font-family-condensed-extra text-uppercase" style="line-height: .9em;">
-                <strong>{{ page.country }}</strong><br>
-                {{ page.trip_details }}</h1>
-              <span class="font-family-base font-size-base push-half-top">{{ page.start_date | date:"%-m/%-d/%Y" }}
-                - {{ page.end_date | date:"%-m/%-d/%Y" }}</span>
+{{ trips_header.content_block | markdownify }}
+<div class="jumbotron jumbotron-xl"
+  style="background-image: url('{{ page.image.url }}'); margin-top: -12px; padding-bottom: 0px;">
+  <div class="jumbtron-content"
+    style="bottom: 0; width: 100%; padding: 30px; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);">
+    <div class="container push-top soft-top">
+      <div class="row soft-top text-left push-top">
+        <div class="col-sm-10 col-sm-offset-1 push-top">
+          <h1 class="font-family-condensed-extra text-uppercase" style="line-height: .9em;">
+            <strong>{{ page.country }}</strong><br>
+            {{ page.trip_details }}</h1>
+          <span class="font-family-base font-size-base push-half-top">{{ page.start_date | date:"%-m/%-d/%Y" }}
+            - {{ page.end_date | date:"%-m/%-d/%Y" }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1 push-ends">
+        <div class="soft-bottom">
+          <ul class="nav nav-tabs font-size-small" role="tablist">
+            <li role="navigation" style="float: none; display: inline-block;" class="active"><a href="#overview"
+                aria-controls="overview" role="tab" data-toggle="tab">Overview</a></li>
+            {% if page.itinerary %}
+            <li role="navigation" style="float: none; display: inline-block;"><a href="#itinerary"
+                aria-controls="intinerary" role="tab" data-toggle="tab">Itinerary</a></li>
+            {% endif %}
+            {% if page.lodging_name or page.lodging_description or page.lodging_image1 %}
+            <li role="navigation" style="float: none; display: inline-block;"><a href="#lodging" aria-controls="lodging"
+                role="tab" data-toggle="tab">Lodging</a></li>
+            {% endif %}
+            {% if page.partner %}
+            <li role="navigation" style="float: none; display: inline-block;"><a href="#partner" aria-controls="partner"
+                role="tab" data-toggle="tab">Partner</a></li>
+            {% endif %}
+          </ul>
+          <div class="tab-content push-top">
+            <!-- Overview -->
+            <div role="tabpanel" class="tab-pane in active" id="overview">
+              <div class="row">
+                <div class="col-sm-12 push-ends">
+                  <p class="lead">{{ page.trip_description }}</p>
+                  {% if page.trip_full%}
+                  <crds-button color="blue" disabled="true" text="Trip is Full" href=""></crds-button>
+                  {% else %}
+                  <crds-button color="blue" text="Sign up" href="{{ page.sign_up_link }}"></crds-button>
+                  {% endif %}
+                </div>
+              </div>
+              <!-- Trip Details -->
+              <div class="row">
+                <hr>
+                <div class="col-sm-6 push-ends">
+                  <p class="metadata">Trip Details</p>
+                  <p class="font-size-base"><strong>Signup Deadline</strong>:
+                    {{ page.signup_deadline | date:"%-m/%-d/%Y" }} <br><strong>When</strong>:
+                    {{ page.start_date | date:"%-m/%-d/%Y" }}
+                    - {{ page.end_date | date:"%-m/%-d/%Y" }} <br><strong>Deposit</strong>: {{ page.deposit }}
+                    <br><strong>Size of Trip</strong>: {{ page.trip_size }}
+                    <br><strong>Minimum Age</strong>: {{ page.minimum_age }}<br><strong>Restrictions</strong>:
+                    {{ page.restrictions }}
+                    <br><strong>Total Cost</strong>: {{ page.total_cost }} (Don't worry. <a
+                      href="{{ jekyll_env }}/reachout/go/support-raising">Check this
+                      out.</a>)<br>{% if page.other_requirements %}<strong>Other Requirements</strong>:
+                    {{ page.other_requirements }} {% endif %} </p>
+                  {% if page.trip_full%}
+                  <crds-button color="blue" disabled="true" text="Trip is Full" href=""></crds-button>
+                  {% else %}
+                  <crds-button color="blue" text="Sign up" href="{{ page.sign_up_link }}"></crds-button>
+                  {% endif %}
+                </div>
+                <div class="col-sm-6 soft-top" style="min-height: 365px;">
+                  {% include _reachout-google-map.html %}
+                </div>
+              </div>
+              <!-- FAQ -->
+              <div class="row">
+                <hr>
+                <div class="col-sm-12 push-top">
+                  <p class="metadata">Frequently Asked Questions</p>
+                </div>
+                <div class="col-sm-6 push-bottom">
+                  <h4 class="font-family-condensed-extra text-uppercase font-size-h4 push-bottom"
+                    style="line-height: .9em;">{{ page.faq1_title}}</h4>
+                  <p class="font-size-small font-family-base flush">
+                    {% if page.faq1_subtitle %}
+                    <strong>{{ page.faq1_subtitle }}</strong><br>
+                    {% endif %}
+                    {{ page.faq1 | markdownify }}</p>
+                </div>
+                <div class="col-sm-6 push-bottom">
+                  <h4 class="font-family-condensed-extra text-uppercase font-size-h4 push-bottom"
+                    style="line-height: .9em;">{{ page.faq2_title }}</h4>
+                  <p class="font-size-small font-family-base flush">
+                    {% if page.faq2_subtitle %}
+                    <strong>{{ page.faq2_subtitle }}</strong><br>
+                    {% endif %}
+                    {{ page.faq2 | markdownify }}
+                  </p>
+                </div>
+                <div class="col-sm-12"><a href="{{jekyll_env}}/reachout/go/faqs/faqs-{{ page.country_slug }}/"
+                    class="btn btn-gray">View all FAQs</a>   <a class="link" href="mailto:gotrips@crossroads.net">Ask us
+                    a question</a></div>
+              </div>
+            </div>
+            <!-- Itinerary -->
+            <div role="tabpanel" class="tab-pane" id="itinerary">
+              {% for item in page.itinerary %}
+              <div class="row push-half-bottom push-top itinerary">
+                <div class="col-sm-3">
+                  <h4 class="font-family-condensed-extra text-uppercase font-size-h3 flush-top">{{ item.day }}</h4>
+                </div>
+                <div class="col-sm-9">
+                  <p class="font-size-base push-quarter-top">{{ item.activities }}</p>
+                </div>
+              </div>
+              <hr>
+              {% endfor %}
+            </div>
+            <!-- Lodging -->
+            <div role="tabpanel" class="tab-pane" id="lodging">
+              <div class="row">
+                <div class="col-sm-12 col-md-push-6 col-md-6 push-ends">
+                  <img class="imgix-fluid img-responsive" src="{{ page.lodging_image1.url }}" data-optimize-img>
+                  {% if page.lodging_video %}
+                    <div class="push-top embed-responsive embed-responsive-16by9">
+                      <iframe width="320" height="240" frameborder="0" allowfullscreen="" src="{{ page.lodging_video }}"></iframe>
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="col-sm-12 col-md-pull-6 col-md-6">
+                  <h4 class="component-header">{{ page.lodging_name }}</h4>
+                  <p class="font-size-base">{{ page.lodging_description | markdownify }}
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-6 col-md-push-6">
+                  <img class="imgix-fluid img-responsive" src="{{ page.lodging_image2.url}}" data-optimize-img>
+                </div>
+                <div class="col-sm-12 col-md-pull-6 col-md-6">
+                  <img class="imgix-fluid img-responsive" src="{{ page.lodging_image3.url }}" data-optimize-img>
+                </div>
+              </div>
+            </div>
+            <!-- Partner -->
+            <div role="tabpanel" class="tab-pane" id="partner">
+              {% for item in page.partner %}
+              <div class="row">
+                <div class="col-sm-12 col-md-push-6 col-md-6 push-top">
+                  <img class="imgix-fluid img-responsive" src="{{ item.partner_image.url }}">
+                </div>
+                <div class="col-sm-12 col-md-pull-6 col-md-6">
+                  <h4 class="component-header"><a href="{{ item.partner_website }}"
+                      target="_blank">{{ item.partner_name }}</a>
+                  </h4>
+                  <p>{{ item.partner_description | markdownify }}</p>
+                  {% if item.partner_website %}
+                  <crds-button color="blue" text="Learn more about
+                  {{ item.partner_name }}" href="{{ item.partner_website }}"></crds-button>
+                  {% endif %}
+                </div>
+              </div>
+              {% if item.partner_video %}
+              <div class="row">
+                <div class="col-md-6 col-md-offset-6 push-top">
+                  <div class="push-top embed-responsive embed-responsive-16by9">
+                  <iframe width="320" height="240" frameborder="0" allowfullscreen="" src="{{ item.partner_video }}"></iframe>
+                </div>
+                </div>
+              </div>
+              {% endif %}
+              {% if forloop.last == false %}
+                <hr class="push-ends">
+              {% endif %}
+              {% endfor %}
             </div>
           </div>
         </div>
       </div>
     </div>
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-10 col-sm-offset-1 push-ends">
-            <div class="soft-bottom">
-              <ul class="nav nav-tabs font-size-small" role="tablist">
-                <li role="navigation" style="float: none; display: inline-block;" class="active"><a href="#overview"
-                    aria-controls="overview" role="tab" data-toggle="tab">Overview</a></li>
-                {% if page.itinerary %}
-                <li role="navigation" style="float: none; display: inline-block;"><a href="#itinerary"
-                    aria-controls="intinerary" role="tab" data-toggle="tab">Itinerary</a></li>
-                {% endif %}
-                {% if page.lodging_name or page.lodging_description or page.lodging_image1 %}
-                <li role="navigation" style="float: none; display: inline-block;"><a href="#lodging" aria-controls="lodging"
-                    role="tab" data-toggle="tab">Lodging</a></li>
-                {% endif %}
-                {% if page.partner %}
-                <li role="navigation" style="float: none; display: inline-block;"><a href="#partner" aria-controls="partner"
-                    role="tab" data-toggle="tab">Partner</a></li>
-                {% endif %}
-              </ul>
-              <div class="tab-content push-top">
-                <!-- Overview -->
-                <div role="tabpanel" class="tab-pane in active" id="overview">
-                  <div class="row">
-                    <div class="col-sm-12 push-ends">
-                      <p class="lead">{{ page.trip_description }}</p>
-                      {% if page.trip_full%}
-                      <crds-button color="blue" disabled="true" text="Trip is Full" href=""></crds-button>
-                      {% else %}
-                      <crds-button color="blue" text="Sign up" href="{{ page.sign_up_link }}"></crds-button>
-                      {% endif %}
-                    </div>
-                  </div>
-                  <!-- Trip Details -->
-                  <div class="row">
-                    <hr>
-                    <div class="col-sm-6 push-ends">
-                      <p class="metadata">Trip Details</p>
-                      <p class="font-size-base"><strong>Signup Deadline</strong>:
-                        {{ page.signup_deadline | date:"%-m/%-d/%Y" }} <br><strong>When</strong>:
-                        {{ page.start_date | date:"%-m/%-d/%Y" }}
-                        - {{ page.end_date | date:"%-m/%-d/%Y" }} <br><strong>Deposit</strong>: {{ page.deposit }}
-                        <br><strong>Size of Trip</strong>: {{ page.trip_size }}
-                        <br><strong>Minimum Age</strong>: {{ page.minimum_age }}<br><strong>Restrictions</strong>:
-                        {{ page.restrictions }}
-                        <br><strong>Total Cost</strong>: {{ page.total_cost }} (Don't worry. <a
-                          href="{{ jekyll_env }}/reachout/go/support-raising">Check this
-                          out.</a>)<br>{% if page.other_requirements %}<strong>Other Requirements</strong>:
-                        {{ page.other_requirements }} {% endif %} </p>
-                      {% if page.trip_full%}
-                      <crds-button color="blue" disabled="true" text="Trip is Full" href=""></crds-button>
-                      {% else %}
-                      <crds-button color="blue" text="Sign up" href="{{ page.sign_up_link }}"></crds-button>
-                      {% endif %}
-                    </div>
-                    <div class="col-sm-6 soft-top" style="min-height: 365px;">
-                      {% include _reachout-google-map.html %}
-                    </div>
-                  </div>
-                  <!-- FAQ -->
-                  <div class="row">
-                    <hr>
-                    <div class="col-sm-12 push-top">
-                      <p class="metadata">Frequently Asked Questions</p>
-                    </div>
-                    <div class="col-sm-6 push-bottom">
-                      <h4 class="font-family-condensed-extra text-uppercase font-size-h4 push-bottom"
-                        style="line-height: .9em;">{{ page.faq1_title}}</h4>
-                      <p class="font-size-small font-family-base flush">
-                        {% if page.faq1_subtitle %}
-                        <strong>{{ page.faq1_subtitle }}</strong><br>
-                        {% endif %}
-                        {{ page.faq1 | markdownify }}</p>
-                    </div>
-                    <div class="col-sm-6 push-bottom">
-                      <h4 class="font-family-condensed-extra text-uppercase font-size-h4 push-bottom"
-                        style="line-height: .9em;">{{ page.faq2_title }}</h4>
-                      <p class="font-size-small font-family-base flush">
-                        {% if page.faq2_subtitle %}
-                        <strong>{{ page.faq2_subtitle }}</strong><br>
-                        {% endif %}
-                        {{ page.faq2 | markdownify }}
-                      </p>
-                    </div>
-                    <div class="col-sm-12"><a href="{{jekyll_env}}/reachout/go/faqs/faqs-{{ page.country_slug }}/"
-                        class="btn btn-gray">View all FAQs</a>   <a class="link" href="mailto:gotrips@crossroads.net">Ask us
-                        a question</a></div>
-                  </div>
-                </div>
-                <!-- Itinerary -->
-                <div role="tabpanel" class="tab-pane" id="itinerary">
-                  {% for item in page.itinerary %}
-                  <div class="row push-half-bottom push-top itinerary">
-                    <div class="col-sm-3">
-                      <h4 class="font-family-condensed-extra text-uppercase font-size-h3 flush-top">{{ item.day }}</h4>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="font-size-base push-quarter-top">{{ item.activities }}</p>
-                    </div>
-                  </div>
-                  <hr>
-                  {% endfor %}
-                </div>
-                <!-- Lodging -->
-                <div role="tabpanel" class="tab-pane" id="lodging">
-                  <div class="row">
-                    <div class="col-sm-12 col-md-push-6 col-md-6 push-ends">
-                      <img class="imgix-fluid img-responsive" src="{{ page.lodging_image1.url }}" data-optimize-img>
-                      {% if page.lodging_video %}
-                        <div class="push-top embed-responsive embed-responsive-16by9">
-                          <iframe width="320" height="240" frameborder="0" allowfullscreen="" src="{{ page.lodging_video }}"></iframe>
-                        </div>
-                      {% endif %}
-                    </div>
-                    <div class="col-sm-12 col-md-pull-6 col-md-6">
-                      <h4 class="component-header">{{ page.lodging_name }}</h4>
-                      <p class="font-size-base">{{ page.lodging_description | markdownify }}
-                      </p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-12 col-md-6 col-md-push-6">
-                      <img class="imgix-fluid img-responsive" src="{{ page.lodging_image2.url}}" data-optimize-img>
-                    </div>
-                    <div class="col-sm-12 col-md-pull-6 col-md-6">
-                      <img class="imgix-fluid img-responsive" src="{{ page.lodging_image3.url }}" data-optimize-img>
-                    </div>
-                  </div>
-                </div>
-                <!-- Partner -->
-                <div role="tabpanel" class="tab-pane" id="partner">
-                  {% for item in page.partner %}
-                  <div class="row">
-                    <div class="col-sm-12 col-md-push-6 col-md-6 push-top">
-                      <img src="{{ item.partner_image.url | imgix: site.imgix }}?auto=format,compress&w=600" data-optimize-img />
-                    </div>
-                    <div class="col-sm-12 col-md-pull-6 col-md-6">
-                      <h4 class="component-header"><a href="{{ item.partner_website }}"
-                          target="_blank">{{ item.partner_name }}</a>
-                      </h4>
-                      <p>{{ item.partner_description | markdownify }}</p>
-                      {% if item.partner_website %}
-                      <crds-button color="blue" text="Learn more about
-                      {{ item.partner_name }}" href="{{ item.partner_website }}"></crds-button>
-                      {% endif %}
-                    </div>
-                  </div>
-                  {% if item.partner_video %}
-                  <div class="row">
-                    <div class="col-md-6 col-md-offset-6 push-top">
-                      <div class="push-top embed-responsive embed-responsive-16by9">
-                      <iframe width="320" height="240" frameborder="0" allowfullscreen="" src="{{ item.partner_video }}"></iframe>
-                    </div>
-                    </div>
-                  </div>
-                  {% endif %}
-                  {% if forloop.last == false %}
-                    <hr class="push-ends">
-                  {% endif %}
-                  {% endfor %}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    {{ trips_footer.content_block | markdownify }}
-
-    {% include _footer-script.html %}
-  </body>
-</html>
+  </div>
+</section>
+{{ trips_footer.content_block | markdownify }}
