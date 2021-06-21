@@ -119,7 +119,7 @@ layout: default
                 <div class="soft-half-ends">
                   <p class="font-family-base-bold font-size-smaller text-orange text-uppercase flush">Join in community</p>
                   <h4 class="flush-top font-family-condensed-extra font-size-h3 text-uppercase text-white">Come hang out</h4>
-                  <crds-button href="{{ page.google_calendar_link }}" color="white" display="outline" text="View Calendar"></crds-button>
+                  <crds-button href="{{ page.google_calendar_link }}" color="white" display="outline" text="View Calendar" target="_blank"></crds-button>
                 </div>
               </div>
               <crds-site-happenings-locations location="{{ page.name }}"></crds-site-happenings-locations>
@@ -172,10 +172,10 @@ layout: default
               <h2 class="section-header flush-ends soft-half-bottom">Crossroads {{ page.name }}</h2>
               {{ page.description | markdownify }}
               <div class="soft-half-top soft-bottom">
-                <crds-button href="{{ page.facebook_page_url }}" color="blue" display="outline"
+                <crds-button href="{{ page.facebook_page_url }}" color="blue" display="outline" target="_blank"
                   icon="facebook" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
                 </crds-button>
-                <crds-button href="{{ page.instagram_page_url }}" color="blue" display="outline"
+                <crds-button href="{{ page.instagram_page_url }}" color="blue" display="outline" target="_blank"
                   icon="instagram" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
                 </crds-button>
               </div>
