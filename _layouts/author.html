@@ -4,60 +4,132 @@ layout: default
 
 {% assign author = site.authors | where: 'full_name', page.title | first %}
 
-<div class="container push-bottom">
-  {% include _author-bio.html %}
+<section class="bg-orange bg-topo-50">
+  <div class="container soft-ends">
+    {% include _author-bio.html %}
+  </div>
+</section>
 
-  <!-- Articles -->
-  {% assign articles = site.articles | filter: 'author.full_name', author.full_name | reverse %}
+<section class="overflow-hidden author">
+  <div class="container">
+    <div class="row soft-half soft-top push-top">
 
-  {% if articles.size > 0 %}
-    <div class="push-ends">
-      <h2 class="page-header font-size-h2 flush-top">Articles</h2>
-    </div>
-    <div data-card-deck class="card-deck">
-      <div class="cards-4x">
-        <div class="row">
-          {% for post in articles %}
-            {% include _article-card.html post=post %}
-          {% endfor %}
+      {% assign articles = site.articles | filter: 'author.full_name', author.full_name | reverse %}
+      {% assign videos = site.videos | filter: 'author.full_name', author.full_name | reverse %}
+      {% assign messages = site.messages | filter: 'author.full_name', author.full_name | reverse %}
+      {% assign podcasts = site.podcasts | filter: 'author.full_name', author.full_name | reverse %}
+
+       <!-- Create tabs_array -->
+      {% assign tabs_array = "featured" | split: "|" %}
+
+      {% if articles.size > 0 %}
+        {% assign tabs_array = tabs_array | push: "articles" %}
+      {% endif %}
+
+      {% if videos.size > 0 %}
+        {% assign tabs_array = tabs_array | push: "videos" %}
+      {% endif %}
+
+      {% if messages.size > 0 %}
+        {% assign tabs_array = tabs_array | push: "messages" %}
+      {% endif %}
+
+      {% if podcasts.size > 0 %}
+        {% assign tabs_array = tabs_array | push: "podcasts" %}
+      {% endif %}
+
+      <crds-tabs tabs='{{tabs_array | jsonify }}' mobile-dropdown navigation-class="align-tabs-left">
+
+        <!-- Featured -->
+        <div slot="tab-featured" class="push-ends">
+          <div class="row">
+            <div class="col-sm-8 push-bottom soft-bottom">
+              hey
+            </div>
+            <div class="col-sm-4 push-bottom soft-bottom">
+              hey
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  {% endif %}
 
-  <!-- Podcasts -->
-  {% assign podcasts = site.podcasts | filter: 'author.full_name', author.full_name | reverse %}
-
-  {% if podcasts.size > 0 %}
-    <div id="podcasts" class="push-ends">
-      <h2 class="page-header font-size-h2 flush-top">Podcasts</h2>
-    </div>
-    <div data-card-deck class="card-deck">
-      <div class="cards-4x">
-        <div class="row">
-          {% for podcast in podcasts %}
-            {% include _podcast-card.html %}
-          {% endfor %}
+        <!-- Articles -->
+        {% if articles.size > 0 %}
+        <div slot="tab-articles" class="push-ends">
+          <div data-card-deck class="card-deck">
+            <div class="cards-4x">
+              <div class="row">
+                {% for post in articles %}
+                  {% include _article-card.html post=post %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  {% endif %}
+        {% endif %}
 
-  <!-- Videos -->
-  {% assign videos = site.videos | filter: 'author.full_name', author.full_name | reverse %}
-
-  {% if videos.size > 0 %}
-    <div class="push-ends">
-      <h2 class="page-header font-size-h2 flush-top">Videos</h2>
-    </div>
-    <div data-card-deck class="card-deck">
-      <div class="cards-4x">
-        <div class="row">
-          {% for video in videos %}
-            {% include _video-card.html %}
-          {% endfor %}
+        <!-- Videos -->
+        {% if videos.size > 0 %}
+        <div slot="tab-videos" class="push-ends">
+          <div data-card-deck class="card-deck">
+            <div class="cards-4x">
+              <div class="row">
+                {% for video in videos %}
+                  {% include _video-card.html %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  {% endif %}
-</div>
+        {% endif %}
+
+        <!-- Messages -->
+        {% if messages.size > 0 %}
+        <div slot="tab-messages" class="push-ends">
+          <div data-card-deck class="card-deck">
+            <div class="cards-4x">
+              <div class="row">
+                {% for message in messages %}
+                <div class="card media-author">
+                  <div class="media-video">
+                    <a href="{{ message | media_url }}">
+                      <img class="media-img"
+                        src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                        sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h5 class="component-header flush-ends">
+                      <a href="{{ message | media_url }}" data-automation-id="message-title">{{ message.title }}</a>
+                    </h5>
+                    <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="message-description">
+                      {{ message.description | markdownify | strip_html | truncatewords: 15 }}
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+         <!-- Podcasts -->
+        {% if podcasts.size > 0 %}
+        <div slot="tab-podcasts" class="push-ends">
+          <div data-card-deck class="card-deck">
+            <div class="cards-4x">
+              <div class="row">
+                {% for podcast in podcasts %}
+                  {% include _podcast-card.html %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </crds-tabs>
+
+   </div>
+  </div>
+</section>
+
