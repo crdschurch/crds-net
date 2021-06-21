@@ -87,13 +87,25 @@ layout: default
               <p class="text-orange text-uppercase flush-bottom"><strong>Community pastor</strong></p>
               <h2 class="section-header flush-ends soft-half-bottom">{{ page.community_pastor_name }}</h2>
               {{ page.community_pastor_bio | markdownify }}
+
+              {% if page.community_pastor_email %}
+              <div class="soft-half-ends border-bottom">
+                <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.</p>
+                <crds-button href="mailto:{{ page.community_pastor_email }}" color="blue" text="Email me" target="_blank"></crds-button>
+              </div>
+              {% endif %}
+
               <div class="soft-half-top">
-                <crds-button href="//www.facebook.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                {% if page.community_pastor_facebook_url %}
+                <crds-button href="{{ page.community_pastor_facebook_url }}" color="blue" display="outline"
                   icon="facebook" icon-align="left" icon-color="blue" icon-size="16"
-                  text="Follow {{ pastor_full_name[0] }}"></crds-button>
-                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
+                  text="Follow {{ pastor_full_name[0] }}" target="_blank"></crds-button>
+                {% endif %}
+                {% if page.community_pastor_instagram_url %}
+                <crds-button href="{{ page.community_pastor_instagram_url }}" color="blue" display="outline"
                   icon="instagram" icon-align="left" icon-color="blue" icon-size="16"
-                  text="Follow {{ pastor_full_name[0] }}"></crds-button>
+                  text="Follow {{ pastor_full_name[0] }}" target="_blank"></crds-button>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -110,11 +122,11 @@ layout: default
               <h2 class="section-header flush-ends soft-half-bottom">Crossroads {{ page.name }}</h2>
               {{ page.description | markdownify }}
               <div class="soft-half-top soft-bottom">
-                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
-                  icon="facebook" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
+                <crds-button href="{{ page.facebook_page_url }}" color="blue" display="outline"
+                  icon="facebook" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}" target="_blank">
                 </crds-button>
-                <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="blue" display="outline"
-                  icon="instagram" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
+                <crds-button href="{{ page.instagram_page_url }}" color="blue" display="outline"
+                  icon="instagram" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}" target="_blank">
                 </crds-button>
               </div>
               {{ page.additional_info | markdownify }}
@@ -162,6 +174,7 @@ layout: default
               </div>
             </div>
           </div>
+          {% if page.student_ministry_hours %}
           <div class="row push-top soft-top">
             <div class="align-items-center df-screen-sm">
               <div class="col-sm-6 col-sm-push-6 push-bottom">
@@ -181,9 +194,34 @@ layout: default
                 <div>
                   {{ page.student_ministry_hours | markdownify }}
                 </div>
+                {% if page.student_ministry_leader_name %}
+                <div class="row row-no-gutters push-top">
+                  <div class="d-flex col-sm-6 col-xs-8">
+                    {% if page.student_ministry_leader_image %}
+                    <img class="img-circle img-size-4 object-fit-cover" src="{{ page.student_ministry_leader_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+                    sizes="{{ site.image_sizes.cards_4x }}"  alt="{{ page.student_ministry_leader_name }}" data-optimize-img />
+                    {% else %}
+                    <img class="img-border img-circle img-size-4" src="https://crossroads-media.imgix.net/images/avatar.svg"  alt="{{ page.student_ministry_leader_name }}" />
+                    {% endif %}
+
+                    <div class="soft-half-left">
+                      <p class="flush text-uppercase"><strong>Leadership</strong></p>
+                      <p class="flush">{{ page.student_ministry_leader_name }}</p>
+                      <p>SM Leader</p>
+                    </div>
+                  </div>
+
+                  {% if page.student_ministry_leader_email %}
+                  <div class="col-sm-6 col-xs-4">
+                    <crds-button text="Email me" target="_blank" color="blue" display="outline" href="mailto:{{ page.student_ministry_leader_email }}" />
+                  </div>
+                  {% endif %}
+                </div>
+                {% endif %}
               </div>
             </div>
           </div>
+          {% endif %}
         </div>
       </crds-tabs>
     </div>
