@@ -32,6 +32,10 @@
   background-size: contain;
 }
 
+.object-fit-cover {
+  object-fit: cover;
+}
+
 .border-bottom-dashed {
   border-bottom: 1px dashed $cr-gray-lighter;
 }
