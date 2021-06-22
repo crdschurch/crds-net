@@ -20,7 +20,7 @@ layout: default
       {% assign podcasts = site.podcasts | filter: 'author.full_name', author.full_name | reverse %}
 
        <!-- Create tabs_array -->
-      {% assign tabs_array = "featured" | split: "|" %}
+      {% assign tabs_array = "latest" | split: "|" %}
 
       {% if articles.size > 0 %}
         {% assign tabs_array = tabs_array | push: "articles" %}
@@ -41,7 +41,7 @@ layout: default
       <crds-tabs tabs='{{tabs_array | jsonify }}' mobile-dropdown navigation-class="align-tabs-left">
 
         <!-- Featured -->
-        <div slot="tab-featured" class="push-ends">
+        <div slot="tab-latest" class="push-ends">
           <div class="row">
             <div class="col-sm-8 push-bottom soft-bottom">
               hey
