@@ -1,7 +1,7 @@
 <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 soft-ends">
   <div class="location-top-info-container">
 
-    <div class="location-top-info-item text-left push-bottom location-info-divider">
+    <div class="location-top-info-item text-left push-bottom location-info-divider mobile-flush-bottom">
       <span class="font-family-base-bold font-size-smaller text-uppercase">Service Times</span>
       <p class="flush font-size-small">{{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}</p>
       {% if page.name == "Oakley" %}
@@ -12,7 +12,7 @@
       {% endif %}
       <hr class="visible-xs">
     </div>
-    <div class="location-top-info-item text-left push-bottom location-info-divider">
+    <div class="location-top-info-item text-left push-bottom location-info-divider mobile-flush-bottom">
       <span class="soft-bottom text-uppercase font-family-base-bold font-size-smaller">Address</span>
       {% if page.address %}
       <p class="flush font-family-base font-size-small">{{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}</p>
