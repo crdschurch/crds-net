@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256px" height="256px" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44 (41411) - http://www.bohemiancoding.com/sketch -->
+    <title>screwhead-crds</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="256x256" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="screwhead-crds" fill="#000000" fill-rule="nonzero">
+            <path d="M127.580943,10 C62.6546385,10 10,62.6332815 10,127.609527 C10,192.549734 62.6546385,245.219054 127.580943,245.219054 C192.525268,245.219054 245.215947,192.549734 245.215947,127.609527 C245.215947,62.6332815 192.525268,10 127.580943,10 L127.580943,10 Z M168.984783,193.681891 L126.925945,151.571662 L85.7140495,192.816982 L61.0986367,168.149073 L102.274492,126.939791 L61.7473592,86.4152271 L86.380792,61.7112802 L126.925945,102.2899 L168.101801,61.0986367 L192.753253,85.7485269 L151.613438,126.939791 L193.654257,169.032 L168.984783,193.681891 Z"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,72 @@
+// --- Typography
+
+$base-font-face: 'acumin-pro', helvetica, arial, sans-serif;
+$condensed-font-face: 'acumin-pro-semi-condensed', sans-serif;
+$condensed-extra-font-face: 'acumin-pro-extra-condensed', sans-serif;
+$accent-font-face: 'lexia', serif;
+$serif-font-face: 'sentinel', 'lexia', serif;
+$serif-italic-font-face: 'sentinel-italic', 'lexia', serif;
+$base-font-size: 16px;
+
+// --- Colors
+
+// Blue
+$cr-blue: rgba(37, 55, 70, 1); // #253746
+$cr-blue-dark: rgba(16, 34, 48, 1);// #102230 
+$cr-blue-light: $cr-blue;
+$cr-blue-lighter: rgba(219, 228, 234, 1);
+
+// Orange
+$cr-orange: rgba(255, 130, 0, 1); // #FF8200
+$cr-orange-dark: rgb(187, 73, 0); // #BB4900
+$cr-orange-light: $cr-orange;
+$cr-orange-lighter: $cr-orange;
+
+// Tan
+$cr-tan: rgba(216, 207, 185, 1); // #D8CFB9
+$cr-tan-light: rgba(231, 226, 208, 1); // #E7E2D0
+
+// Grayscale
+$cr-gray-darkest: rgba(33, 33, 32, 1); // #212120
+$cr-gray-darker: rgba(74, 73, 72, 1); // #4A4948
+$cr-gray-dark: rgba(87, 86, 84, 1);// #575654 
+$cr-gray: rgba(110, 109, 107, 1); // #6E6D6B
+$cr-gray-light: rgba(130, 129, 127, 1);// #82817F 
+$cr-gray-lighter: rgba(150, 149, 146, 1); // #969592
+$cr-gray-lightest: rgba(235, 233, 228, 1); // #EBE9E4
+$cr-white: rgba(255, 255, 255, 1); // #FFFFFF
+$cr-black: rgba(0, 0, 0, 1); // #000000
+$cr-gray-alpha: rgba($cr-gray, 0.25);
+
+// Alerts
+$cr-rust: rgba(172, 45, 23, 1); // #AC2D17
+$cr-green: rgba(20, 156, 100, 1); // #149C64
+$alert-success: $cr-green;
+$alert-info: rgba(36, 145, 167, 1); // #2491A7
+$alert-warning: rgba(186, 98, 40, 1); // #BA6228
+$alert-danger: rgba(176, 120, 44, 1); // #B0782C;
+
+// Misc
+$cr-black-alpha: rgba($cr-black, 0.5);
+$cr-path-to-icons-sprite: ‘assets/svgs/’ !default; // include trailing slash
+$cr-dark-theme-border: darken($cr-gray, 5);
+
+// --- Deprecated Colors
+
+// Deprecated - Cyan
+$cr-cyan: $cr-blue;
+$cr-cyan-dark: $cr-blue;
+$cr-cyan-light: $cr-blue;
+$cr-cyan-lighter: $cr-blue;
+
+// Deprecated - Teal (Secondary)
+$cr-teal: $cr-gray-lighter;
+$cr-teal-dark: $cr-gray-lighter;
+$cr-teal-light: $cr-gray-lighter;
+$cr-teal-lighter: $cr-gray-lighter;
+
+// Deprecated - Gold (Secondary)
+$cr-gold: $cr-tan;
+$cr-gold-dark: $cr-tan;
+$cr-gold-light: $cr-tan;
+$cr-gold-lighter:$cr-tan;

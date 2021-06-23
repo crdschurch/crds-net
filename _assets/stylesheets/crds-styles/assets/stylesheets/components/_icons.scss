@@ -1,0 +1,313 @@
+$dimensions: 16px;
+$sprite_arr: _str-split('assets/svgs/icons.css.svg', '/');
+$sprite_basename: nth($sprite_arr, 3);
+
+%icon-dimensions {
+  width: auto;
+  height: $dimensions * 2;
+  background-size: $dimensions * 2;
+  @for $i from 1 through 6 {
+    &.icon-#{$i} {
+      width: auto;
+      height: $dimensions * $i;
+      background-size: $dimensions * $i;
+    }
+  }
+}
+
+.icon:not(svg) {
+  text-indent: 200%;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  background-size: 32px 32px;
+}
+
+svg.icon {
+  @extend %icon-dimensions;
+  use {
+    fill: currentColor;
+  }
+}
+
+%svg-common {
+  background-image: url("#{$cr-path-to-icons-sprite}#{$sprite_basename}");
+  background-repeat: no-repeat;
+  @extend %icon-dimensions;
+
+  .dark-theme & {
+    filter: invert(75%);
+    -webkit-filter: invert(75%);
+  }
+}
+
+.icon.account-thin:not(svg) {
+  @extend %svg-common;
+  background-position: 0 0;
+}
+
+.icon.calendar:not(svg) {
+  @extend %svg-common;
+  background-position: 0 1.8865143699336773%;
+}
+
+.icon.camera:not(svg) {
+  @extend %svg-common;
+  background-position: 0 3.7730287398673545%;
+}
+
+.icon.caret-down:not(svg) {
+  @extend %svg-common;
+  background-position: 0 5.659543109801032%;
+}
+
+.icon.chart-bar-thin:not(svg) {
+  @extend %svg-common;
+  background-position: 0 7.546057479734709%;
+}
+
+.icon.chat-thin:not(svg) {
+  @extend %svg-common;
+  background-position: 0 9.432571849668387%;
+}
+
+.icon.check-circle:not(svg) {
+  @extend %svg-common;
+  background-position: 0 11.319086219602063%;
+}
+
+.icon.chevron-down:not(svg) {
+  @extend %svg-common;
+  background-position: 0 13.20560058953574%;
+}
+
+.icon.chevron-down-thin:not(svg) {
+  @extend %svg-common;
+  background-position: 0 15.092114959469418%;
+}
+
+.icon.chevron-left:not(svg) {
+  @extend %svg-common;
+  background-position: 0 16.978629329403095%;
+}
+
+.icon.chevron-left-thin:not(svg) {
+  @extend %svg-common;
+  background-position: 0 18.865143699336773%;
+}
+
+.icon.chevron-right:not(svg) {
+  @extend %svg-common;
+  background-position: 0 20.751658069270448%;
+}
+
+.icon.chevron-right-thin:not(svg) {
+  @extend %svg-common;
+  background-position: 0 22.638172439204126%;
+}
+
+.icon.chevron-up:not(svg) {
+  @extend %svg-common;
+  background-position: 0 24.524686809137805%;
+}
+
+.icon.chevron-up-thin:not(svg) {
+  @extend %svg-common;
+  background-position: 0 26.41120117907148%;
+}
+
+.icon.circle-thin:not(svg) {
+  @extend %svg-common;
+  background-position: 0 28.297715549005158%;
+}
+
+.icon.clock-o:not(svg) {
+  @extend %svg-common;
+  background-position: 0 30.184229918938836%;
+}
+
+.icon.close:not(svg) {
+  @extend %svg-common;
+  background-position: 0 32.07074428887251%;
+}
+
+.icon.close-thin:not(svg) {
+  @extend %svg-common;
+  background-position: 0 33.95725865880619%;
+}
+
+.icon.contrast:not(svg) {
+  @extend %svg-common;
+  background-position: 0 35.84377302873987%;
+}
+
+.icon.copy:not(svg) {
+  @extend %svg-common;
+  background-position: 0 37.730287398673546%;
+}
+
+.icon.credit-card:not(svg) {
+  @extend %svg-common;
+  background-position: 0 39.616801768607225%;
+}
+
+.icon.download:not(svg) {
+  @extend %svg-common;
+  background-position: 0 41.503316138540896%;
+}
+
+.icon.equalizer:not(svg) {
+  @extend %svg-common;
+  background-position: 0 43.389830508474574%;
+}
+
+.icon.exclamation-circle:not(svg) {
+  @extend %svg-common;
+  background-position: 0 45.27634487840825%;
+}
+
+.icon.eye:not(svg) {
+  @extend %svg-common;
+  background-position: 0 47.166335028373496%;
+}
+
+.icon.eye-slash:not(svg) {
+  @extend %svg-common;
+  background-position: 0 49.06035816935662%;
+}
+
+.icon.facebook:not(svg) {
+  @extend %svg-common;
+  background-position: 0 50.95062638172439%;
+}
+
+.icon.github:not(svg) {
+  @extend %svg-common;
+  background-position: 0 52.83714075165807%;
+}
+
+.icon.heart:not(svg) {
+  @extend %svg-common;
+  background-position: 0 54.72365512159175%;
+}
+
+.icon.heart-o:not(svg) {
+  @extend %svg-common;
+  background-position: 0 56.610169491525426%;
+}
+
+.icon.instagram:not(svg) {
+  @extend %svg-common;
+  background-position: 0 58.496683861459104%;
+}
+
+.icon.link:not(svg) {
+  @extend %svg-common;
+  background-position: 0 60.383198231392775%;
+}
+
+.icon.location-arrow:not(svg) {
+  @extend %svg-common;
+  background-position: 0 62.269712601326454%;
+}
+
+.icon.map-marker:not(svg) {
+  @extend %svg-common;
+  background-position: 0 64.15622697126014%;
+}
+
+.icon.media-article:not(svg) {
+  @extend %svg-common;
+  background-position: 0 66.0427413411938%;
+}
+
+.icon.media-music:not(svg) {
+  @extend %svg-common;
+  background-position: 0 67.92925571112748%;
+}
+
+.icon.media-podcast:not(svg) {
+  @extend %svg-common;
+  background-position: 0 69.81577008106116%;
+}
+
+.icon.media-video:not(svg) {
+  @extend %svg-common;
+  background-position: 0 71.70228445099484%;
+}
+
+.icon.menu:not(svg) {
+  @extend %svg-common;
+  background-position: 0 73.58879882092852%;
+}
+
+.icon.menu-thin:not(svg) {
+  @extend %svg-common;
+  background-position: 0 75.4753131908622%;
+}
+
+.icon.minus:not(svg) {
+  @extend %svg-common;
+  background-position: 0 77.36182756079587%;
+}
+
+.icon.play-thin:not(svg) {
+  @extend %svg-common;
+  background-position: 0 79.24834193072955%;
+}
+
+.icon.plus:not(svg) {
+  @extend %svg-common;
+  background-position: 0 81.13485630066323%;
+}
+
+.icon.question-circle:not(svg) {
+  @extend %svg-common;
+  background-position: 0 83.02137067059691%;
+}
+
+.icon.screwhead-crds:not(svg) {
+  @extend %svg-common;
+  background-position: 0 84.90788504053059%;
+}
+
+.icon.search:not(svg) {
+  @extend %svg-common;
+  background-position: 0 86.79439941046427%;
+}
+
+.icon.search-thin:not(svg) {
+  @extend %svg-common;
+  background-position: 0 88.68091378039793%;
+}
+
+.icon.share:not(svg) {
+  @extend %svg-common;
+  background-position: 0 90.56742815033161%;
+}
+
+.icon.twitter:not(svg) {
+  @extend %svg-common;
+  background-position: 0 92.45394252026529%;
+}
+
+.icon.university:not(svg) {
+  @extend %svg-common;
+  background-position: 0 94.34045689019896%;
+}
+
+.icon.usd:not(svg) {
+  @extend %svg-common;
+  background-position: 0 96.22697126013264%;
+}
+
+.icon.user-plus-thin:not(svg) {
+  @extend %svg-common;
+  background-position: 0 98.11348563006632%;
+}
+
+.icon.youtube:not(svg) {
+  @extend %svg-common;
+  background-position: 0 100%;
+}
+
