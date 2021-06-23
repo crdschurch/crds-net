@@ -136,10 +136,6 @@ module.exports = [
     files: ['components/autoplay-controller'],
   },
   {
-    name: 'background-video',
-    files: ['components/background-video'],
-  },
-  {
     name: 'skeleton',
     files: ['components/skeleton'],
   },
