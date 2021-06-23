@@ -18,7 +18,7 @@ layout: default
 
 <!-- Jumbotron section -->
 <section class="jumbotron locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
-  id="location-page"  
+  id="location-page"
   data-optimize-bg-img>
   <div class="bg-overlay"></div>
   <div class="container">
@@ -92,14 +92,16 @@ layout: default
         <!-- Events & Updates -->
         <div slot="tab-events-updates" class="push-ends">
           <div class="row">
-            <!-- Featured Section - Below Jumbotron-->
-            {% if page.featured_below.size > 0 %}
-            <div class="col-sm-12 push-bottom">
-              {{ page.featured_below }}
-            </div>
-            {% endif %}
 
             <div class="col-sm-8 push-bottom soft-bottom">
+              <!-- Featured Section - Below Jumbotron -->
+              {% if page.featured_below.size > 0 %}
+              <div class="overflow-hidden push-bottom">
+                {{ page.featured_below }}
+              </div>
+              {% endif %}
+
+              <!-- Current Series -->
               <a href="{{ series.url }}" title="{{ series.title }}">
                 <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720&fit=crop" size="card"></crds-image>
               </a>
@@ -402,4 +404,3 @@ layout: default
     </div>
   </div>
 </div>
-

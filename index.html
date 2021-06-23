@@ -49,6 +49,10 @@ paginate:
 
 {% include home/_jumbotron.html %}
 
+<!-- Good News Graphic -->
+{% assign good_news_graphic = site.content_blocks | where: 'slug', 'good-news-graphic' | first %}
+
+
 <section class="soft-top bg-blue soft-bottom bg-topo push-bottom" style="position: relative; top: -1.5rem;">
   <div class="container">
     <div>
@@ -73,7 +77,9 @@ paginate:
     </div>
     <div class=" push-bottom">
       <div class="col-sm-8">
-        <a href="https://share.hsforms.com/1_UzcT1lIRrmQPQ9fBVxt4A2dls1"><img class="push-ends soft-sides" src="//crds-media.imgix.net/1YXgKAhw35Oj1bSjoP3mjl/e81993ffa50d62787c9d26090683fd4d/undivided-home-page-callout2.jpg" alt="Undivided: A Journey on Race, Relationship and Reconciliation" /></a>
+        <!-- Good News Graphic -->
+        {{ good_news_graphic.content_block | markdownify }}
+
       </div>
       <div class="col-sm-4">
         {% assign the_good_news = site.content_blocks | where: 'slug', 'good-news-home' | first %}

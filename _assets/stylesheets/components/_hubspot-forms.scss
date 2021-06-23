@@ -27,7 +27,16 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
   border-radius: 0;
   &[type="checkbox"] {
     height: 13px;
+    -webkit-appearance: auto;
   }
+}
+
+.hs-form-checkbox {
+  list-style: none;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: checkbox;
 }
 
 [data-role="hsform"] .field {

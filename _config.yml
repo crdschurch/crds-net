@@ -134,6 +134,8 @@ collections:
   trips:
     output: true
     permalink: /reachout/go/:country_slug/:slug
+  trip_partners:
+    output: false
   videos:
     output: true
     permalink: /media/:collection/:title
