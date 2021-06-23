@@ -1,0 +1,104 @@
+/**
+** Media Objects
+** 1. Base layout
+** 2. Text
+** 3. Images
+**/
+
+/* 1. Base layout */
+.media {
+  display: flex;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  > div:last-child {
+    margin-left: 1rem;
+  }
+
+  .media-body {
+    flex-grow: 1;
+    width: initial;
+  }
+}
+
+.media-link {
+  cursor: pointer;
+
+  .media-heading {
+    color: $cr-cyan;
+    font-weight: 400;
+  }
+}
+
+/* 2. Text */
+.media-heading {
+  color: $cr-gray-dark;
+
+  margin-bottom: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  .media-dark & {
+    color: $cr-white;
+  }
+
+  &.media-heading-stacked {
+    flex-direction: column;
+  }
+}
+
+.media-meta {
+  color: $cr-gray-light;
+  font-size: $font-size-smaller;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  > *:first-child {
+    margin-right: 0.5rem;
+  }
+}
+
+.media-label {
+  display: flex;
+
+  > *:not(:last-child) {
+    margin-right: 5px;
+  }
+
+  .label {
+    margin-top: 0;
+  }
+}
+
+/* 3. Images*/
+.media-img-wrapper {
+  margin-top: 0.25rem;
+  position: relative;
+
+  .media & {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 96px;
+  }
+
+  .img-circle {
+    border-color: rgba($cr-gray-lighter, 0.4);
+    border-style: solid;
+    border-width: 2px;
+  }
+}
+
+.media-object-default {
+  background-image: url('//crossroads-media.imgix.net/images/avatar.svg');
+  background-position: center;
+  background-size: cover;
+}
+
+.media-object-overlay {
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

@@ -1,0 +1,45 @@
+.dropdown {
+  display: inline-block;
+
+  .dropdown-toggle.btn {
+    padding: 14px 16px 12px;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    .icon {
+      margin: 2px 0 0 4px;
+      height: 14px;
+      // specified width to prevent IE 11 width:auto issue
+      width: 12px;
+    }
+  }
+
+  .crds-list {
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
+
+    li {
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    a {
+      padding: 0.375rem 0.75rem;
+      font-weight: 300;
+      color: $cr-gray-light;
+
+      &.on {
+        font-weight: 600;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

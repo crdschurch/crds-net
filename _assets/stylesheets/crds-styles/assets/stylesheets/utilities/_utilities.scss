@@ -1,0 +1,916 @@
+/* Contents:
+** 1. Image styles
+** 2. Text rules
+** 3. Display helpers
+** 4. Vertical positioning
+** 5. Border stuff
+** 6. Corners
+** 7. Stackable floats
+** 8. Vertical Align
+** 9. Maintain aspect Ratio
+** 10. Margin rules
+** 11. Padding rules
+** 12. Sticky
+** 13. Misc.
+*/
+
+
+
+
+/* 1. Image styles */
+
+.img-background {
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.img-background-100 {
+  background-size: 100%;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+
+.img-background-top {
+  background-position: top center;
+}
+
+.img-full-width {
+  width: 100%;
+  height: auto;
+}
+
+.img-full-size {
+  width: 100%;
+  height: 100%;
+}
+
+.absolute-cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.img-border {
+  border-color: rgba($cr-gray-lighter, .4);
+  border-style: solid;
+  border-width: 2px;
+}
+
+.bg-overlay {
+  position: absolute;
+  top: 25%;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(23, 23, 23, 0),
+    $cr-black
+  );
+}
+
+
+/* 2. Text rules */
+
+a.underline,
+.underline {
+  text-decoration: underline;
+}
+
+.text-shadow-75 {
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, .75);
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.sub {
+  vertical-align: sub;
+}
+
+.truncate {
+  max-width: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media only screen and (min-width: $screen-sm-min) {
+  .sm-text-right {
+    text-align: right;
+  }
+  .sm-text-left {
+    text-align: left;
+  }
+  .sm-text-center {
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: $screen-md-min) {
+  .md-text-right {
+    text-align: right;
+  }
+  .md-text-left {
+    text-align: left;
+  }
+  .md-text-center {
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: $screen-lg-min) {
+  .lg-text-right {
+    text-align: right;
+  }
+  .lg-text-left {
+    text-align: left;
+  }
+  .lg-text-center {
+    text-align: center;
+  }
+}
+
+
+
+
+/* 3. Display helpers */
+
+.block {
+  display: block;
+}
+
+.relative {
+  position: relative;
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.static {
+  position: static;
+}
+
+.center {
+  display: inline-block;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  vertical-align: middle;
+}
+
+
+
+
+/* 4. Vertical positioning */
+
+.vertical-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.vertical-bottom {
+  position: absolute;
+  left: 50%;
+  bottom: 0%;
+  transform: translate(-50%, 0%);
+  width: 100%;
+}
+
+.vertical-10 {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, -10%);
+  width: 100%;
+}
+
+.vertical-20 {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -20%);
+  width: 100%;
+}
+
+.vertical-70 {
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, -70%);
+  width: 100%;
+}
+
+.vertical-80 {
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  transform: translate(-50%, -80%);
+  width: 100%;
+}
+
+.vertical-align-bottom {
+  vertical-align: bottom;
+}
+
+
+/* 5. Border stuff */
+
+.no-borders {
+  border: 0 !important;
+}
+
+.border {
+  border: 1px solid currentColor;
+
+  &.border-dashed {
+    border-color: currentColor;
+    border-style: dashed;
+    border-width: 1px;
+  }
+}
+
+.border-bottom {
+  border-bottom: 1px solid $gray-lighter;
+
+  &.border-dashed {
+    border-color: currentColor;
+    border-style: dashed;
+    border-width: 1px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid $gray-lighter;
+
+  &.border-dashed {
+    border-color: currentColor;
+    border-style: dashed;
+    border-width: 1px;
+  }
+}
+
+.border-left {
+  border-left: 1px solid $gray-lighter;
+
+  &.border-dashed {
+    border-color: currentColor;
+    border-style: dashed;
+    border-width: 1px;
+  }
+}
+
+.border-right {
+  border-right: 1px solid $gray-lighter;
+
+  &.border-dashed {
+    border-color: currentColor;
+    border-style: dashed;
+    border-width: 1px;
+  }
+}
+
+.border-sides {
+  border-left: 1px solid $gray-lighter;
+  border-right: 1px solid $gray-lighter;
+
+  &.border-dashed {
+    border-color: currentColor;
+    border-style: dashed;
+    border-width: 1px;
+  }
+}
+
+.border-ends {
+  border-top: 1px solid $gray-lighter;
+  border-bottom: 1px solid $gray-lighter;
+
+  &.border-dashed {
+    border-color: currentColor;
+    border-style: dashed;
+    border-width: 1px;
+  }
+}
+
+.border-width-3 {
+  border-width: 3px !important;
+}
+
+.dashed {
+  border-bottom: 1px dashed $cr-gray-lighter;
+  height: 1px;
+  opacity: 0.75; 
+  width: 85%;
+  margin-left: 24.5px; 
+  margin-bottom: 45px; 
+}
+
+.no-border-radius {
+  border-radius: 0 !important;
+}
+
+
+
+/* 6. Corners */
+
+.square-corners {
+  border-radius: 0;
+}
+
+.round-corners {
+  border-radius: $border-radius-base;
+}
+
+
+
+
+/* 7. Stackable floats */
+
+@media only screen and (min-width: $screen-sm-min) {
+  .sm-pull-right {
+    float: right;
+  }
+  .sm-pull-left {
+    float: left;
+  }
+}
+@media only screen and (min-width: $screen-md-min) {
+  .md-pull-right {
+    float: right;
+  }
+  .md-pull-left {
+    float: left;
+  }
+}
+@media only screen and (min-width: $screen-lg-min) {
+  .lg-pull-right {
+    float: right;
+  }
+  .lg-pull-left {
+    float: left;
+  }
+}
+
+
+
+
+/* 8. Vertical align */
+
+// If the element is blurry, add transform-style: preserve-3d; to the parent
+// Reference:
+// http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
+
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+
+
+/* 9. Maintain aspect ratio */
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+
+  &:before{
+    display: block;
+    content: ' ';
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+
+  > .aspect-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.sixteen-nine {
+  @include aspect-ratio(16,9);
+}
+
+
+
+
+/* 10. Margin rules */
+
+.push {
+  margin: $line-height-computed;
+}
+.push-center {
+  margin: 0 auto;
+}
+.push-half {
+  margin: $line-height-computed / 2;
+}
+.push-quarter {
+  margin: $line-height-computed / 4;
+}
+.push-top {
+  margin-top: $line-height-computed;
+}
+.push-half-top {
+  margin-top: $line-height-computed / 2;
+}
+.push-quarter-top {
+  margin-top: $line-height-computed / 4;
+}
+.push-right {
+  margin-right: $line-height-computed;
+}
+.push-half-right {
+  margin-right: $line-height-computed / 2;
+}
+.push-quarter-right {
+  margin-right: $line-height-computed / 4;
+}
+.push-bottom {
+  margin-bottom: $line-height-computed;
+}
+.push-half-bottom {
+  margin-bottom: $line-height-computed / 2;
+}
+.push-quarter-bottom {
+  margin-bottom: $line-height-computed / 4;
+}
+.push-left {
+  margin-left: $line-height-computed;
+}
+.push-half-left {
+  margin-left: $line-height-computed / 2;
+}
+.push-quarter-left {
+  margin-left: $line-height-computed / 4;
+}
+.push-sides {
+  margin-right: $line-height-computed;
+  margin-left: $line-height-computed;
+}
+.push-ends {
+  margin-top: $line-height-computed;
+  margin-bottom: $line-height-computed;
+}
+.push-half-sides {
+  margin-right: $line-height-computed / 2;
+  margin-left: $line-height-computed / 2;
+}
+.push-half-ends {
+  margin-top: $line-height-computed / 2;
+  margin-bottom: $line-height-computed / 2;
+}
+.push-quarter-sides {
+  margin-right: $line-height-computed / 4;
+  margin-left: $line-height-computed / 4;
+}
+.push-quarter-ends {
+  margin-top: $line-height-computed / 4;
+  margin-bottom: $line-height-computed / 4;
+}
+.flush {
+  margin: 0 !important;
+}
+.flush-top {
+  margin-top: 0 !important;
+}
+.flush-right {
+  margin-right: 0 !important;
+}
+.flush-bottom {
+  margin-bottom: 0 !important;
+}
+.flush-left {
+  margin-left: 0 !important;
+}
+.flush-sides {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+.flush-ends {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+@media only screen and (max-width: $screen-sm-min) {
+  .mobile-push {
+    margin: $line-height-computed;
+  }
+  .mobile-push-center {
+    margin: 0 auto;
+  }
+  .mobile-push-half {
+    margin: $line-height-computed / 2;
+  }
+  .mobile-push-quarter {
+    margin: $line-height-computed / 4;
+  }
+  .mobile-push-top {
+    margin-top: $line-height-computed;
+  }
+  .mobile-push-half-top {
+    margin-top: $line-height-computed / 2;
+  }
+  .mobile-push-quarter-top {
+    margin-top: $line-height-computed / 4;
+  }
+  .mobile-push-right {
+    margin-right: $line-height-computed;
+  }
+  .mobile-push-half-right {
+    margin-right: $line-height-computed / 2;
+  }
+  .mobile-push-quarter-right {
+    margin-right: $line-height-computed / 4;
+  }
+  .mobile-push-bottom {
+    margin-bottom: $line-height-computed;
+  }
+  .mobile-push-half-bottom {
+    margin-bottom: $line-height-computed / 2;
+  }
+  .mobile-push-quarter-bottom {
+    margin-bottom: $line-height-computed / 4;
+  }
+  .mobile-push-left {
+    margin-left: $line-height-computed;
+  }
+  .mobile-push-half-left {
+    margin-left: $line-height-computed / 2;
+  }
+  .mobile-push-quarter-left {
+    margin-left: $line-height-computed / 4;
+  }
+  .mobile-push-sides {
+    margin-right: $line-height-computed;
+    margin-left: $line-height-computed;
+  }
+  .mobile-push-ends {
+    margin-top: $line-height-computed;
+    margin-bottom: $line-height-computed;
+  }
+  .mobile-push-half-sides {
+    margin-right: $line-height-computed / 2;
+    margin-left: $line-height-computed / 2;
+  }
+  .mobile-push-half-ends {
+    margin-top: $line-height-computed / 2;
+    margin-bottom: $line-height-computed / 2;
+  }
+  .mobile-push-quarter-sides {
+    margin-right: $line-height-computed / 4;
+    margin-left: $line-height-computed / 4;
+  }
+  .mobile-push-quarter-ends {
+    margin-top: $line-height-computed / 4;
+    margin-bottom: $line-height-computed / 4;
+  }
+  .mobile-flush {
+    margin: 0;
+  }
+  .mobile-flush-top {
+    margin-top: 0;
+  }
+  .mobile-flush-right {
+    margin-right: 0;
+  }
+  .mobile-flush-bottom {
+    margin-bottom: 0;
+  }
+  .mobile-flush-left {
+    margin-left: 0;
+  }
+  .mobile-flush-sides {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .mobile-flush-ends {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+
+
+
+/* 11. Padding rules */
+.hard {
+  padding: 0 !important;
+}
+.hard-top {
+  padding-top: 0 !important;
+}
+.hard-right {
+  padding-right: 0 !important;
+}
+.hard-bottom {
+  padding-bottom: 0 !important;
+}
+.hard-left {
+  padding-left: 0 !important;
+}
+.hard-sides {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+.hard-ends {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.soft {
+  padding: $line-height-computed;
+}
+.soft-half {
+  padding: $line-height-computed / 2;
+}
+.soft-quarter {
+  padding: $line-height-computed / 4;
+}
+.soft-top {
+  padding-top: $line-height-computed;
+}
+.soft-half-top {
+  padding-top: $line-height-computed / 2;
+}
+.soft-quarter-top {
+  padding-top: $line-height-computed / 4;
+}
+.soft-right {
+  padding-right: $line-height-computed;
+}
+.soft-half-right {
+  padding-right: $line-height-computed / 2;
+}
+.soft-quarter-right {
+  padding-right: $line-height-computed / 4;
+}
+.soft-bottom {
+  padding-bottom: $line-height-computed;
+}
+.soft-half-bottom {
+  padding-bottom: $line-height-computed / 2;
+}
+.soft-quarter-bottom {
+  padding-bottom: $line-height-computed / 4;
+}
+.soft-left {
+  padding-left: $line-height-computed;
+}
+.soft-half-left {
+  padding-left: $line-height-computed / 2;
+}
+.soft-quarter-left {
+  padding-left: $line-height-computed / 4;
+}
+.soft-sides {
+  padding-right: $line-height-computed;
+  padding-left: $line-height-computed;
+}
+.soft-ends {
+  padding-top: $line-height-computed;
+  padding-bottom: $line-height-computed;
+}
+.soft-half-sides {
+  padding-right: $line-height-computed / 2;
+  padding-left: $line-height-computed / 2;
+}
+.soft-half-ends {
+  padding-top: $line-height-computed / 2;
+  padding-bottom: $line-height-computed / 2;
+}
+.soft-quarter-sides {
+  padding-right: $line-height-computed / 4;
+  padding-left: $line-height-computed / 4;
+}
+.soft-quarter-ends {
+  padding-top: $line-height-computed / 4;
+  padding-bottom: $line-height-computed / 4;
+}
+
+@media only screen and (max-width: $screen-sm-min) {
+  .mobile-hard {
+    padding: 0;
+  }
+  .mobile-hard-top {
+    padding-top: 0;
+  }
+  .mobile-hard-right {
+    padding-right: 0;
+  }
+  .mobile-hard-bottom {
+    padding-bottom: 0;
+  }
+  .mobile-hard-left {
+    padding-left: 0;
+  }
+  .mobile-hard-sides {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .mobile-hard-ends {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .mobile-soft {
+    padding: $line-height-computed;
+  }
+  .mobile-soft-half {
+    padding: $line-height-computed / 2;
+  }
+  .mobile-soft-quarter {
+    padding: $line-height-computed / 4;
+  }
+  .mobile-soft-top {
+    padding-top: $line-height-computed;
+  }
+  .mobile-soft-half-top {
+    padding-top: $line-height-computed / 2;
+  }
+  .mobile-soft-quarter-top {
+    padding-top: $line-height-computed / 4;
+  }
+  .mobile-soft-right {
+    padding-right: $line-height-computed;
+  }
+  .mobile-soft-half-right {
+    padding-right: $line-height-computed / 2;
+  }
+  .mobile-soft-quarter-right {
+    padding-right: $line-height-computed / 4;
+  }
+  .mobile-soft-bottom {
+    padding-bottom: $line-height-computed;
+  }
+  .mobile-soft-half-bottom {
+    padding-bottom: $line-height-computed / 2;
+  }
+  .mobile-soft-quarter-bottom {
+    padding-bottom: $line-height-computed / 4;
+  }
+  .mobile-soft-left {
+    padding-left: $line-height-computed;
+  }
+  .mobile-soft-half-left {
+    padding-left: $line-height-computed / 2;
+  }
+  .mobile-soft-quarter-left {
+    padding-left: $line-height-computed / 4;
+  }
+  .mobile-soft-sides {
+    padding-right: $line-height-computed;
+    padding-left: $line-height-computed;
+  }
+  .mobile-soft-ends {
+    padding-top: $line-height-computed;
+    padding-bottom: $line-height-computed;
+  }
+  .mobile-soft-half-sides {
+    padding-right: $line-height-computed / 2;
+    padding-left: $line-height-computed / 2;
+  }
+  .mobile-soft-half-ends {
+    padding-top: $line-height-computed / 2;
+    padding-bottom: $line-height-computed / 2;
+  }
+}
+
+
+/* 12. Sticky */
+.sticky-top {
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1px;
+  z-index: 3;
+}
+
+.stick-below-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 48px;
+  z-index: 3;
+
+  .header-notification-open & {
+    top: 94px;
+  }
+}
+
+
+/* 13. Misc. */
+
+.pointer {
+  cursor: pointer;
+}
+
+.or-divider {
+  margin-top: -41px;
+
+  span {
+    background: $cr-white;
+    padding: 5px;
+    vertical-align: middle;
+  }
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.half-width {
+  width: 50%;
+}
+
+.half-height {
+  height: 50%;
+}
+
+.display-table {
+  display: table;
+}
+
+.display-table-cell {
+  display: table-cell;
+}
+
+@each $label, $size in (
+  xs: $screen-xs-min,
+  sm: $screen-sm-min,
+  md: $screen-md-min,
+  lg: $screen-lg-min
+) {
+  @media only screen and (min-width: $size) {
+    .full-width-#{$label} {
+      width: 100%;
+    }
+
+    .full-height-#{$label} {
+      height: 100%;
+    }
+
+    .half-width-#{$label} {
+      width: 50%;
+    }
+
+    .half-height-#{$label} {
+      height: 50%;
+    }
+
+    .display-table-#{$label} {
+      display: table;
+    }
+
+    .display-table-cell-#{$label} {
+      display: table-cell;
+    }
+
+    .position-relative-#{$label} {
+      position: relative;
+    }
+
+    .position-absolute-#{$label} {
+      position: absolute;
+    }
+  }
+}
+
+// Empty href attributes for UI Bootstrap
+.nav,
+.pagination,
+.carousel,
+.panel-title a,
+a[ng-click] {
+  cursor: pointer;
+}

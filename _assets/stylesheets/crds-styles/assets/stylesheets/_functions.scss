@@ -1,0 +1,86 @@
+/* stylelint-disable */
+// Pulled from Bourbon.
+// https://github.com/thoughtbot/bourbon/blob/master/core/bourbon/validators/_is-length.scss
+/* stylelint-enable */
+
+@function _is-length($value) {
+  @return type-of($value) != 'null' and (str-slice($value + '', 1, 4) == 'calc'
+  or index(auto inherit initial 0, $value)
+  or (type-of($value) == 'number' and not(unitless($value))));
+}
+
+/* stylelint-disable */
+// Pulled from Bourbon.
+// https://github.com/thoughtbot/bourbon/blob/master/core/bourbon/utilities/_unpack-shorthand.scss
+/* stylelint-enable */
+
+@function _unpack-shorthand($shorthand) {
+  @if length($shorthand) == 1 {
+    @return nth($shorthand, 1)
+      nth($shorthand, 1)
+      nth($shorthand, 1)
+      nth($shorthand, 1);
+  } @else if length($shorthand) == 2 {
+    @return nth($shorthand, 1)
+      nth($shorthand, 2)
+      nth($shorthand, 1)
+      nth($shorthand, 2);
+  } @else if length($shorthand) == 3 {
+    @return nth($shorthand, 1)
+      nth($shorthand, 2)
+      nth($shorthand, 3)
+      nth($shorthand, 2);
+  } @else {
+    @return $shorthand;
+  }
+}
+
+@function _str-split($string, $separator: null, $limit: null) {
+  $string: unquote($string);
+
+  @if type-of($string) != 'string' {
+    @error '`str-split` expected string; #{type-of($string)} given.';
+  }
+
+  $result: zip(());
+
+  @if not $separator {
+    @return ($string,);
+  }
+
+  @if $separator == '' {
+    @for $i from 1 through str-length($string) {
+      $result: append($result, str-slice($string, $i, $i));
+    }
+
+    @return $result;
+  }
+
+  $running: true;
+  $progress: $string;
+  $length: str-length($separator);
+
+  @while $running {
+    $index: str-index($progress, $separator);
+    @if $index {
+      $result: append($result, str-slice($progress, 1, ($index - 1)));
+      $progress: str-slice($progress, ($index + $length));
+    } @else {
+      $running: false;
+    }
+  }
+
+  $result: append($result, $progress);
+
+  @if $limit and $limit > 0 {
+    $limit: if($limit > length($result), length($result), $limit);
+    $return: ();
+    @for $i from 1 through $limit {
+      $return: append($return, nth($result, $i));
+    }
+
+    @return $return;
+  }
+
+  @return $result;
+}

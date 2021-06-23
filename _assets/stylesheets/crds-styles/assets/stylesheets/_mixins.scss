@@ -1,0 +1,172 @@
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+@mixin crds-bg-variant($background, $color: $cr-white) {
+  background-color: $background;
+  color: $color;
+
+  &.topo-overlay,
+  &.topo-overlay-50 {
+    position: relative;
+    &:before {
+      background-size: cover;
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  &.topo-overlay {
+    background-image: url('//crds-media.imgix.net/1KLwsN6ilL7RO0xk6JzOsX/840e8b99340ff36bff67036909c4f856/texture-topo-dark-100_2x.png');
+  }
+
+  &.topo-overlay-50 {
+    background-image: url('//crds-media.imgix.net/5keOksLK6PtMmlTnUQQeRT/86d3609bea8e6725c7a0b38a9a5530f3/texture-topo-dark-50_2x.png?format=auto');
+  }
+
+  &.grid-overlay {
+    position: relative;
+    &:before {
+      background-image: url('//crds-media.imgix.net/57F0cU8HetdfUx9qDWpwtN/dda670721faf791c676f1174a8c4ff25/texture-grid-dark-100_3x.png');
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+}
+
+@mixin crds-button-variant($color, $background, $border) {
+  @include button-variant($color, $background, $border);
+
+  // solid buttons
+  &.active,
+  &:active {
+    &,
+    &:hover,
+    &:focus {
+      background: darken($background, 5);
+      border-color: darken($background, 5);
+      box-shadow: none;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+
+  &:focus {
+    border-color: $input-border-focus;
+    box-shadow: 0 0 0 1px $input-border-focus inset;
+  }
+
+  &.disabled {
+    opacity: 0.65;
+
+    &.active,
+    &:active,
+    &:focus,
+    &:hover {
+      &,
+      &:focus,
+      &:hover {
+        background: $background;
+        border-color: $border;
+        box-shadow: none;
+      }
+    }
+  }
+
+  // outline buttons
+  &.btn-outline {
+    background: transparent;
+    border-style: solid;
+    border-width: 1px;
+    color: $border;
+
+    &.active,
+    &:active {
+      &,
+      &:hover,
+      &:focus {
+        background: rgba(tint(desaturate($border, 75), 95%), 0.75);
+        border-color: $border;
+        color: $border;
+        box-shadow: none;
+
+        .dark-theme & {
+          background: rgba(shade(desaturate($border, 75), 95%), 0.75);
+          border-color: rgba($border, 0.75);
+        }
+      }
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    &:focus {
+      border-color: $input-border-focus;
+      box-shadow: 0 0 0 1px $input-border-focus inset;
+    }
+
+    &:hover {
+      background: rgba(tint(desaturate($border, 75), 90%), 0.75);
+
+      .dark-theme & {
+        background: rgba(shade(desaturate($border, 75), 90%), 0.75);
+      }
+    }
+
+    &.disabled {
+      opacity: 0.65;
+
+      &.active,
+      &:active,
+      &:focus,
+      &:hover {
+        &,
+        &:hover,
+        .dark-theme & {
+          background: transparent;
+          border-color: $border;
+          color: $border;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}
+
+/* stylelint-disable */
+// Pulled from Bourbon.//
+// https://github.com/thoughtbot/bourbon/blob/master/core/bourbon/library/_position.scss
+/* stylelint-enable */
+
+@mixin position($position, $box-edge-values) {
+  $box-edge-values: _unpack-shorthand($box-edge-values);
+
+  $offsets: (
+    top: nth($box-edge-values, 1),
+    right: nth($box-edge-values, 2),
+    bottom: nth($box-edge-values, 3),
+    left: nth($box-edge-values, 4)
+  );
+
+  position: $position;
+
+  @each $offset, $value in $offsets {
+    @if _is-length($value) {
+      #{$offset}: $value;
+    }
+  }
+}

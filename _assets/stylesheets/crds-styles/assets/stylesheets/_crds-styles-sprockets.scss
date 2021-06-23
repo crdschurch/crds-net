@@ -1,0 +1,19 @@
+.wf-loading {
+  visibility: hidden;
+}
+
+@import 'bootstrap-sprockets';
+@import 'variables';
+@import 'overrides';
+@import 'functions';
+@import 'mixins';
+@import 'bootstrap';
+@import 'vendors/datepicker';
+@import 'vendors/timepicker';
+@import 'vendors/toast';
+@import 'vendors/wtf-forms';
+@import 'base/modules';
+@import 'components/modules';
+@import 'layouts/modules';
+@import 'themes/modules';
+@import 'utilities/modules';

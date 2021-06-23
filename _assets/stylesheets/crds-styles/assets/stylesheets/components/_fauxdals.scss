@@ -1,0 +1,70 @@
+.fauxdal-open {
+  position: fixed;
+  overflow: hidden;
+}
+
+.fauxdal-wrapper {
+  background-color: darken($cr-blue, 20);
+  color: $cr-white;
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+  }
+}
+
+.fauxdal {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 7;
+  .close {
+    opacity: 1;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    a {
+      color: $cr-white;
+      display: block;
+      padding: 1rem;
+      margin: -1rem;
+      &:hover {
+        color: rgba($cr-white, 0.5);
+      }
+    }
+  }
+  &.fauxdal-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  .fauxdal-content {
+    max-width: $container-tablet;
+    margin: 0 auto;
+    text-align: center;
+  }
+  &.fauxdal-fullscreen {
+    @media (min-width: $screen-xs) {
+      padding-top: initial;
+    }
+    .container-fluid {
+      background-color: darken($cr-blue, 20);
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+  }
+  .title,
+  .control-label {
+    color: $cr-white;
+  }
+}

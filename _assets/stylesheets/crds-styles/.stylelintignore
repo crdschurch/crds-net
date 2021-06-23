@@ -1,0 +1,5 @@
+# External library overrides
+/assets/stylesheets/vendors/*
+/assets/stylesheets/components/_icons.scss
+/assets/stylesheets/utilities/_utilities.scss
+/assets/stylesheets/components/_typography.scss

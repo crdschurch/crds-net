@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256px" height="256px" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>contrast</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="contrast" fill="#000000" fill-rule="nonzero">
+            <path d="M128,10 C193.172875,10 246,62.827125 246,128 C246,193.172875 193.172875,246 128,246 C62.827125,246 10,193.172875 10,128 C10,62.827125 62.827125,10 128,10 Z M39.5,128 C39.5,176.874125 79.125875,216.5 128,216.5 L128,39.5 C79.125875,39.5 39.5,79.125875 39.5,128 Z"></path>
+        </g>
+    </g>
+</svg>
