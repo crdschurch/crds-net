@@ -103,15 +103,6 @@
   <script>
   var CRDS = window.CRDS || {};
 
-  // GOOGLE ANALYTICS
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-2977073-1');
-
-  // Tell GTM to not use Universal Analytics
-  window.dataLayer.push({"_event": "GtagWrapperIsActive", "gtagWrapperActive": true})
-
   CRDS.rollCall = {
     formUrl: '{{ site.ENV.ROLL_CALL_FORM_URL }}',
     totalFieldId: '{{ site.ENV.ROLL_CALL_TOTAL_FIELD_ID }}',
