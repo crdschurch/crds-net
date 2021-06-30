@@ -31,6 +31,16 @@
 <script src="https://bitmovin-a.akamaihd.net/bitmovin-player/stable/8.4.0/bitmovinplayer.js"></script>
 {% javascript_link_tag bitmovin %}
 <script type="text/javascript">
+  var timestamps = [];
+  
+  {% for time in video.timestamps %} 
+    timestamps.push({
+      "description": "{{time.description}}",
+      "minutes": {{time.minutes}},
+      "seconds": {{time.seconds}}
+    });
+  {% endfor %}
+
   var videoManagerID = `{{ include.isCard }}` ? `bitmovinPlayer{{video.slug | camelcase }}` : 'VideoManager';
   var bitmovinConfig = {
       title: `{{ video.title }}`,
@@ -39,7 +49,8 @@
       image: `{{ video.image.url | imgix: site.imgix }}`,
       isCard: `{{ include.isCard }}`,
       subtitles_url: '{{ video.transcription.url }}',
-      spn_subtitles_url: '{{ video.spn_transcription.url }}'
+      spn_subtitles_url: '{{ video.spn_transcription.url }}',
+      timestamps: timestamps
   }
   CRDS[videoManagerID] = new BitmovinManager(bitmovinConfig);
 </script>
