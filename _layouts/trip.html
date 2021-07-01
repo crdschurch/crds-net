@@ -69,9 +69,7 @@ layout: no-header-no-footer
                     <br><strong>Size of Trip</strong>: {{ page.trip_size }}
                     <br><strong>Minimum Age</strong>: {{ page.minimum_age }}<br><strong>Restrictions</strong>:
                     {{ page.restrictions }}
-                    <br><strong>Total Cost</strong>: {{ page.total_cost }} (Don't worry. <a
-                      href="{{ jekyll_env }}/reachout/go/support-raising">Check this
-                      out.</a>)<br>{% if page.other_requirements %}<strong>Other Requirements</strong>:
+                    <br><strong>Total Cost</strong>: {{ page.total_cost }} <br>{% if page.other_requirements %}<strong>Other Requirements</strong>:
                     {{ page.other_requirements }} {% endif %} </p>
                   {% if page.trip_full%}
                   <crds-button color="blue" disabled="true" text="Trip is Full" href=""></crds-button>
