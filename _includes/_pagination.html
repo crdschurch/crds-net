@@ -9,12 +9,25 @@
     {% assign root = include.collection | prepend: 'media/' %}
   {% endif %}
 
+  <!-- For "Load More" pagination -->
   {% if include.remote == true %}
   <div class="load-more">
     <button class="btn {% if include.btn-type == 'white-outline' %}btn-white btn-outline{% else %}btn-blue{% endif %}" data-role="load-more" data-paginate="{{ include.collection }}">Load more{{ include.label | prepend: ' ' }}</button>
   </div>
-  {% endif %}
+  <!-- End "Load More" pagination -->
 
+  {% elsif include.n_of_total_pagination == "true" %}
+  <div class="text-center">
+    <button id="pagination-previous-button"><<</button>
+    <input type="text" id="pagination-current-page" placeholder="{{paginator.page}}">
+    <span>of</span>
+    <span id="total_pages">{{paginator.total_pages}}</span>
+    <button id="pagination-submit-button">Go!</button>
+    <button id="pagination-next-button">>></button>
+  </div>
+
+  {% else %}
+  <!-- For Enumerated pagination -->
   <div class="text-center{% if include.remote == true %} hide{% endif %}">
     <ul class="pagination" data-pagination="{{ include.collection }}">
     {% if paginator.previous_page %}
@@ -53,4 +66,6 @@
     {% endif %}
     </ul>
   </div>
+  <!-- End Enumerated pagination -->
+  {% endif %}
 {% endif %}

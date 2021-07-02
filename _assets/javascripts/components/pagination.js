@@ -83,4 +83,53 @@ CRDS.PageLoader.prototype.activatePage = function(type) {
 
 $(document).ready(function() {
   new CRDS.Pagination();
+
+  const currentPage = parseInt(paginationInput.getAttribute("placeholder"));
+  const host = window.location.host;
+  const pageNumber = parseInt(paginationInput.value);
+  const paginationInput = document.getElementById("pagination-current-page");
+  const paginationNextButton = document.getElementById("pagination-next-button");
+  const paginationPrevButton = document.getElementById("pagination-previous-button");
+  const paginationSubmitButton = document.getElementById("pagination-submit-button");
+  const protocol = window.location.protocol;
+  const protocolAndHost = `${protocol}//${host}`
+  const totalPaginatedPages = parseInt(document.getElementById("total_pages").innerText);
+
+  paginationSubmitButton.addEventListener("click", function(e) {
+    if (pageNumber > 1 && pageNumber <= totalPaginatedPages) {
+        window.location.href = `${protocolAndHost}/media/articles/page/${paginationInput.value}/`;
+    } else if (pageNumber == 1) {
+        window.location.href = `${protocolAndHost}/media/articles/`;
+    } else {
+      console.log('Cant navigate past bounds of paginated collection');
+    }
+  }, false);
+
+  paginationInput.addEventListener("keyup", function(e) {
+    if (e.key == 'Enter') {
+      if (pageNumber > 1 && pageNumber <= totalPaginatedPages) {
+          window.location.href = `${protocolAndHost}/media/articles/page/${paginationInput.value}/`;
+      } else if (pageNumber == 1) {
+          window.location.href = `${protocolAndHost}/media/articles/`;
+      } else {
+        console.log('Cant navigate past bounds of paginated collection');
+      }
+    }
+  }, false);
+
+  paginationPrevButton.addEventListener("click", function(e) {
+    if (currentPage > 2) {
+      window.location.href = `${protocolAndHost}/media/articles/page/${currentPage - 1}/`;
+    } else {
+      window.location.href = `${protocolAndHost}/media/articles/`;
+    }
+  }, false);
+
+  paginationNextButton.addEventListener("click", function(e) {
+    if (currentPage < totalPaginatedPages) {
+      window.location.href = `${protocolAndHost}/media/articles/page/${parseInt(currentPage) + 1}/`;
+    } else {
+      window.location.href = `${protocolAndHost}/media/articles/page/${totalPaginatedPages}`;
+    }
+  }, false);
 });
