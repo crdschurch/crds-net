@@ -32,6 +32,9 @@ package = "@helloample/netlify-plugin-redirects"
 [[plugins]]
 package = "./_plugins/netlify-plugin-health-check"
 
+[[plugins]]
+  package="./_plugins/rename-ga-references"
+
 [dev]
   BASEURL="/"
   CRDS_COMPONENTS_ENDPOINT="components-int.crossroads.net"
