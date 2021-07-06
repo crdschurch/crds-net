@@ -13,9 +13,9 @@ snail_trail: disabled
 <section>
   <div class="shows-landing-jumbotron">
     <div class="bg-video-player">
-      {% if featured_episode.video_file %}
+      {% if featured_episode.preview_video %}
       <div class="html-video-wrap">
-        <video src="{{featured_episode.video_file.url}}" autoplay loop playsinline muted id="htmlPlayer">
+        <video src="{{featured_episode.preview_video.url}}" autoplay loop playsinline muted id="htmlPlayer">
         </video>
       </div>
       {% else %}
