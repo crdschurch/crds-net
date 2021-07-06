@@ -101,20 +101,9 @@ layout: default
               </div>
               {% endif %}
 
-              <!-- Current Series -->
-              <a href="{{ series.url }}" title="{{ series.title }}">
-                <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720&fit=crop" size="card"></crds-image>
-              </a>
-              <div class="push-half-top">
-                <label class="label label-default bg-gray-lightest no-border-radius font-family-accent text-capitalize soft-half-sides soft-quarter-ends">Current Series</label>
-              </div>
-              <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
-              <p class="font-family-base-bold text-gray-lighter">{{ series.starts_at | date: '%m.%d.%Y' }} &#8212; {{ series.ends_at | date: '%m.%d.%Y' }}</p>
-              <div class="push-half-top push-bottom font-size-small text-gray-dark">
-                {{ series.description | markdownify }}
-              </div>
-              <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series"
-                color="orange"></crds-button>
+              <!-- Frontier Series -->
+              {% assign frontier_series = site.content_blocks | where: 'slug', 'frontier-series' | first %}
+              {{ frontier_series.content_block }}
             </div>
             <div class="col-sm-4 push-bottom soft-bottom">
               <div class="bg-blue soft push-bottom">
