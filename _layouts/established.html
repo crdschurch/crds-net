@@ -74,7 +74,7 @@ layout: default
                 color="orange"></crds-button>
             </div>
             <div class="col-sm-4 push-bottom soft-bottom">
-              <crds-site-happenings-locations location="{{ page.name }}"></crds-site-happenings-locations>
+              <crds-site-happenings-locations location="{{ page.name }}" show-limit="5"></crds-site-happenings-locations>
             </div>
           </div>
         </div>
@@ -220,6 +220,25 @@ layout: default
                   {% endif %}
                 </div>
                 {% endif %}
+
+                {% if page.slug == "mason" %}
+                <div class="row row-no-gutters push-top">
+                  <div class="d-flex col-sm-6 col-xs-8">
+                    <img class="img-border img-circle img-size-4" src="https://crossroads-media.imgix.net/images/avatar.svg"  alt="Olivia Smith" />
+
+                    <div class="soft-half-left">
+                      <p class="flush text-uppercase"><strong>Leadership</strong></p>
+                      <p class="flush">Olivia Smith</p>
+                      <p>SM Leader</p>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6 col-xs-4">
+                    <crds-button text="Email me" target="_blank" color="blue" display="outline" href="mailto:olivia.smith@crossroads.net" />
+                  </div>
+                </div>
+                {% endif %}
+
               </div>
             </div>
           </div>
@@ -244,7 +263,8 @@ layout: default
         </div>
         <div class="col-sm-6 push-ends">
           <crds-portrait-card theme="condensed" lead="News & events" title="Stay Up To Date"
-            image-src="//crds-media.imgix.net//2g8yKVrxSIiaMKBsmxCWFW/7e0f90537c00c3d0f0d793b0c1233b86/stay-up-to-date.png">
+            image-src="{% if page.stay_up_to_date_img.url %}{{ page.stay_up_to_date_img.url | imgix: site.imgix }}{% else %}//crds-media.imgix.net//2g8yKVrxSIiaMKBsmxCWFW/7e0f90537c00c3d0f0d793b0c1233b86/stay-up-to-date.png{% endif %}"
+            >
             <p class="push-half-ends">We’ll keep you informed of new events, site changes, and all sorts of amazingly awesome
               stuff.</p>
             <crds-button class="push-half-right" data-target="#subscribeModalForm" data-toggle="modal" href="" color="white"
