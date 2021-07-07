@@ -18,7 +18,7 @@ layout: default
 
 <!-- Jumbotron section -->
 <section class="jumbotron locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
-  id="location-page"  
+  id="location-page"
   data-optimize-bg-img>
   <div class="bg-overlay"></div>
   <div class="container">
@@ -92,14 +92,16 @@ layout: default
         <!-- Events & Updates -->
         <div slot="tab-events-updates" class="push-ends">
           <div class="row">
-            <!-- Featured Section - Below Jumbotron-->
-            {% if page.featured_below.size > 0 %}
-            <div class="col-sm-12 push-bottom">
-              {{ page.featured_below }}
-            </div>
-            {% endif %}
 
             <div class="col-sm-8 push-bottom soft-bottom">
+              <!-- Featured Section - Below Jumbotron -->
+              {% if page.featured_below.size > 0 %}
+              <div class="overflow-hidden push-bottom">
+                {{ page.featured_below }}
+              </div>
+              {% endif %}
+
+              <!-- Current Series -->
               <a href="{{ series.url }}" title="{{ series.title }}">
                 <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720&fit=crop" size="card"></crds-image>
               </a>
@@ -119,10 +121,10 @@ layout: default
                 <div class="soft-half-ends">
                   <p class="font-family-base-bold font-size-smaller text-orange text-uppercase flush">Join in community</p>
                   <h4 class="flush-top font-family-condensed-extra font-size-h3 text-uppercase text-white">Come hang out</h4>
-                  <crds-button href="{{ page.google_calendar_link }}" color="white" display="outline" text="View Calendar"></crds-button>
+                  <crds-button href="{{ page.google_calendar_link }}" color="white" display="outline" text="View Calendar" target="_blank"></crds-button>
                 </div>
               </div>
-              <crds-site-happenings-locations location="{{ page.name }}"></crds-site-happenings-locations>
+              <crds-site-happenings-locations location="{{ page.name }}" show-limit="4"></crds-site-happenings-locations>
             </div>
           </div>
         </div>
@@ -141,7 +143,7 @@ layout: default
               {% if page.community_pastor_email %}
               <div class="soft-half-ends border-bottom">
                 <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.</p>
-                <crds-button href="mailto:{{ page.community_pastor_email }}" color="blue" text="Email me"></crds-button>
+                <crds-button href="mailto:{{ page.community_pastor_email }}" color="blue" text="Email me" target="_blank"></crds-button>
               </div>
               {% endif %}
 
@@ -149,12 +151,12 @@ layout: default
                 {% if page.community_pastor_facebook_url %}
                 <crds-button href="{{ page.community_pastor_facebook_url }}" color="blue" display="outline"
                   icon="facebook" icon-align="left" icon-color="blue" icon-size="16"
-                  text="Follow {{ pastor_full_name[0] }}"></crds-button>
+                  text="Follow {{ pastor_full_name[0] }}" target="_blank"></crds-button>
                 {% endif %}
                 {% if page.community_pastor_instagram_url %}
                 <crds-button href="{{ page.community_pastor_instagram_url }}" color="blue" display="outline"
                   icon="instagram" icon-align="left" icon-color="blue" icon-size="16"
-                  text="Follow {{ pastor_full_name[0] }}"></crds-button>
+                  text="Follow {{ pastor_full_name[0] }}" target="_blank"></crds-button>
                 {% endif %}
               </div>
             </div>
@@ -172,10 +174,10 @@ layout: default
               <h2 class="section-header flush-ends soft-half-bottom">Crossroads {{ page.name }}</h2>
               {{ page.description | markdownify }}
               <div class="soft-half-top soft-bottom">
-                <crds-button href="{{ page.facebook_page_url }}" color="blue" display="outline"
+                <crds-button href="{{ page.facebook_page_url }}" color="blue" display="outline" target="_blank"
                   icon="facebook" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
                 </crds-button>
-                <crds-button href="{{ page.instagram_page_url }}" color="blue" display="outline"
+                <crds-button href="{{ page.instagram_page_url }}" color="blue" display="outline" target="_blank"
                   icon="instagram" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
                 </crds-button>
               </div>
@@ -237,6 +239,30 @@ layout: default
                 <div>
                   {{ page.student_ministry_hours | markdownify }}
                 </div>
+                {% if page.student_ministry_leader_name %}
+                <div class="row row-no-gutters push-top">
+                  <div class="d-flex col-sm-6 col-xs-8">
+                    {% if page.student_ministry_leader_image %}
+                    <img class="img-circle img-size-4 object-fit-cover" src="{{ page.student_ministry_leader_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+                    sizes="{{ site.image_sizes.cards_4x }}"  alt="{{ page.student_ministry_leader_name }}" data-optimize-img />
+                    {% else %}
+                    <img class="img-border img-circle img-size-4" src="https://crossroads-media.imgix.net/images/avatar.svg"  alt="{{ page.student_ministry_leader_name }}" />
+                    {% endif %}
+
+                    <div class="soft-half-left">
+                      <p class="flush text-uppercase"><strong>Leadership</strong></p>
+                      <p class="flush">{{ page.student_ministry_leader_name }}</p>
+                      <p>SM Leader</p>
+                    </div>
+                  </div>
+
+                  {% if page.student_ministry_leader_email %}
+                  <div class="col-sm-6 col-xs-4">
+                    <crds-button text="Email me" target="_blank" color="blue" display="outline" href="mailto:{{ page.student_ministry_leader_email }}" />
+                  </div>
+                  {% endif %}
+                </div>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -378,4 +404,3 @@ layout: default
     </div>
   </div>
 </div>
-
