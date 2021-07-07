@@ -76,13 +76,29 @@
 
   &.jumbotron-home {
     .bg-video-player {
-      z-index: 0;
+      z-index: 1;
     }
 
     &.inline-video.playing {
       .close-video,
       .jumbotron-background-cover {
         z-index: 2;
+      }
+
+      .close-video {
+        margin-top: 1.5rem;
+      }
+      
+      .inline-video-player {
+        @media screen and (min-width: $screen-sm) {
+          margin-top: 1.5rem;
+        }
+      }
+    }
+
+    .bg-video-player {
+      @media screen and (max-width: $screen-xs) {
+        display: none;
       }
     }
 

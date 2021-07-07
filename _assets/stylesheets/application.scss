@@ -4,7 +4,7 @@ $icon-font-path: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/";
   @return $path;
 }
 
-@import 'crds-styles/assets/stylesheets/crds-styles';
+@import '../../node_modules/crds-styles/assets/stylesheets/crds-styles';
 
 @import 'fonts';
 @import 'global';

@@ -12,6 +12,7 @@ class BitmovinManager {
     this.dateStringFormat = "YYYY/MM/DD HH:mm:ss";
     this.timeouts = [];
     this.container = document.getElementById(`${bitmovinConfig.id}`);
+    this.timestamps = bitmovinConfig.timestamps;
     if (bitmovinConfig.countdown !== false && CRDS.Countdown) {
       this.countdown = new CRDS.Countdown();
     }
@@ -67,6 +68,17 @@ class BitmovinManager {
         }
       },
     };
+
+    if (!!this.timestamps && this.timestamps.length >0) {
+      this.playerConfig.ui.metadata = { 
+        markers: this.timestamps.map(time => {
+          return {
+            time: ((time.minutes || 0) * 60) + (time.seconds || 0),
+            title: time.description
+          }
+        })
+      };
+    }
 
     if (this.getHidePlaybackSpeed()) {
       this.playerConfig.ui.playbackSpeedSelectionEnabled = false;

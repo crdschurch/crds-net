@@ -13,10 +13,16 @@ snail_trail: disabled
 <section>
   <div class="shows-landing-jumbotron">
     <div class="bg-video-player">
+      {% if featured_episode.preview_video %}
+      <div class="html-video-wrap">
+        <video src="{{featured_episode.preview_video.url}}" autoplay loop playsinline muted id="htmlPlayer">
+        </video>
+      </div>
+      {% else %}
       <div id="yt-wrap" player-id="{{ featured_episode.source_url | youtube_id | append: '?mute=1&' }}">
-        <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
         <div id="ytplayer"></div>
       </div>
+      {% endif %}
     </div> 
     <div class="mobile-bg" style="background-image: url('{{ featured_episode.image.url | imgix: site.imgix }}');" data-optimize-bg-img>
       <div class="container">
@@ -129,6 +135,3 @@ snail_trail: disabled
     </div>
   </div>
 </section>
-
-
-{% javascript_link_tag background-video %}
