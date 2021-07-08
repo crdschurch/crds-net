@@ -84,6 +84,22 @@
       .jumbotron-background-cover {
         z-index: 2;
       }
+
+      .close-video {
+        margin-top: 1.5rem;
+      }
+      
+      .inline-video-player {
+        @media screen and (min-width: $screen-sm) {
+          margin-top: 1.5rem;
+        }
+      }
+    }
+
+    .bg-video-player {
+      @media screen and (max-width: $screen-xs) {
+        display: none;
+      }
     }
 
     &.grid-overlay:before {
