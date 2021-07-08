@@ -113,8 +113,12 @@ layout: default
               </div>
               <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series"
                 color="orange"></crds-button>
+
               {% else %}
 
+              <!-- Frontier Series -->
+              {% assign frontier_series = site.content_blocks | where: 'slug', 'frontier-series' | first %}
+              {{ frontier_series.content_block }}
               {% endif %}
 
             </div>
