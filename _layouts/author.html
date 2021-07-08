@@ -14,7 +14,7 @@ layout: default
   <div class="container">
     <div class="row soft-half soft-top push-top">
 
-      {% assign articles = site.articles | filter: 'author.full_name', author.full_name | reverse %}
+      {% assign articles = site.articles | filter: 'author.full_name', author.full_name | sort: 'date' | reverse %}
       {% assign videos = site.videos | filter: 'author.full_name', author.full_name | reverse %}
       {% assign messages = site.messages | filter: 'author.full_name', author.full_name | reverse %}
       {% assign podcasts = site.podcasts | filter: 'author.full_name', author.full_name | reverse %}
@@ -72,28 +72,29 @@ layout: default
               <div class="border-bottom-dashed-group">
                 {% for post in latest_array limit: 10 offset: array_offset %}
 
-                  {% if post.content_type == "article" %}
+                  {% assign item = post %}
+                  {% assign image = post.image.url %}
+                  {% assign content_type = post.content_type %}
+
+                  {% if item.content_type == 'episode' %}
+                    {% assign image = post.podcast_img %}
+                  {% endif %}
+
+                  {% if item.duration %}
+                    {% assign format = 'short' %}
+                  {% endif %}
+
+                  {% if item.content_type == 'message' %}
+                    {% assign content_type = 'video' %}
+                  {% endif %}
+
+                  {% if post.content_type == 'article' %}
                     {% assign article_count = article_count | plus:1 %}
                   {% endif %}
 
-                  {% unless item.content_type == "article" and article_count <= 2 %}
-                    {% if latest_index <= 8 %}
+                  {% if post.content_type != 'article' or post.content_type == 'article' and article_count > 2 %}
+                    {% if latest_index < 8 %}
                       {% assign latest_index = latest_index | plus:1 %}
-                      {% assign item = post %}
-                      {% assign image = post.image.url %}
-                      {% assign content_type = post.content_type %}
-
-                      {% if item.content_type == 'episode' %}
-                        {% assign image = post.podcast_img %}
-                      {% endif %}
-
-                      {% if item.duration %}
-                        {% assign format = 'short' %}
-                      {% endif %}
-
-                      {% if item.content_type == 'message' %}
-                        {% assign content_type = 'video' %}
-                      {% endif %}
 
                       <div class="push-bottom">
                         <div class="article-detail-media-object">
@@ -108,7 +109,7 @@ layout: default
                         </div>
                       </div>
                     {% endif %}
-                  {% endunless %}
+                  {% endif %}
 
                 {% endfor %}
               </div>

@@ -72,8 +72,8 @@
     </script>
   {% endif %}
 
-  <link rel="preload" href="{{site.components_endpoint}}/crds-components/crds-components.esm.js" as="script">
-  <link rel="preload" href="{{site.components_endpoint}}/crds-components.js" as="script">
+  <link rel="preload" href="http://localhost:3333/build/crds-components.esm.js" as="script">
+  <link rel="preload" href="http://localhost:3333/build/crds-components.js" as="script">
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
 
@@ -138,8 +138,8 @@
   <script id="MPWidgets" src="https://adminint.crossroads.net/widgets/dist/MPWidgets.js"></script>
   {% endif %}
 
-  <script type="module" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components/crds-components.esm.js"></script>
-  <script nomodule="" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components.js"></script>
+  <script type="module" onload="componentsLoaded()" src="http://localhost:3333/build/crds-components.esm.js"></script>
+  <script nomodule="" onload="componentsLoaded()" src="http://localhost:3333/build/crds-components.js"></script>
   <script>
     function componentsLoaded() {
       var componentsReady = new Event('components-ready');
@@ -149,7 +149,7 @@
   </script>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2977073-1"></script>
-  
+
   {% include _gtm-head.html %}
   {% include _monetate-head.html %}
   {% include _facebook.html %}
