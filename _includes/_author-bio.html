@@ -1,7 +1,7 @@
 <div class="media media-author">
     <div class="media-img-wrapper">
       <a href="{{ author.url }}" data-author-link>
-        <img data-author-img src="{{ author.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" class="img-circle" sizes="350px" data-optimize-img>
+        <img data-author-img src="{{ author.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" class="img-circle full-width" sizes="350px" data-optimize-img>
       </a>
 
       {% include _author-social.html %}

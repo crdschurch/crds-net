@@ -100,11 +100,10 @@ layout: default
                         <div class="article-detail-media-object">
                           <crds-media-object
                             url="{{ item | media_url }}"
-                            image-src="{% if image %}{{ image | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}"
+                            image-src="{% if image %}{{ image | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?auto=format"
                             type="{{ content_type }}"
                             title="{{ item.title }}"
                             duration="{{ item.duration | duration: format }}"
-                            data-optimize-img
                           ></crds-media-object>
                         </div>
                       </div>
