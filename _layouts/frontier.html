@@ -84,11 +84,14 @@ layout: default
       <p class="push-ends soft-bottom font-family-serif font-size-large">Grow in community and make a positive impact in your city.</p>
     </div>
     <div>
-      {% if page.community_pastor_name %}
+      {% if page.community_pastor_name and page.site_id != 23 %}
       <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "care"]' mobile-dropdown>
+      {% elsif page.site_id == 23 %}
+      <crds-tabs tabs='["events & updates", "the team", "about", "kids & students", "care"]' mobile-dropdown>
       {% else %}
       <crds-tabs tabs='["events & updates", "about", "kids & students", "care"]' mobile-dropdown>
       {% endif %}
+
         <!-- Events & Updates -->
         <div slot="tab-events-updates" class="push-ends">
           <div class="row">
@@ -135,8 +138,13 @@ layout: default
           </div>
         </div>
 
-        <!-- Community Pastor -->
-        <div slot="tab-community-pastor" class="push-ends">
+        <!-- Community Pastor or The Team -->
+        {% assign community_slot = "tab-community-pastor" %}
+        {% if page.site_id == 23 %}
+          {% assign community_slot = "tab-the-team" %}
+        {% endif %}
+
+        <div slot="{{ community_slot }}" class="push-ends">
           <div class="row align-items-center df-screen-sm">
             <div class="col-sm-6 push-bottom">
               <img class="img-full-width" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" />
@@ -167,6 +175,53 @@ layout: default
               </div>
             </div>
           </div>
+
+          {% if page.site_id == 23 %}
+          <div class="row align-items-center df-screen-sm push-top soft-top">
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>Director of Connections</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">Brenna Maureen</h2>
+              <p>Brenna is the Director of Connections for Crossroads Columbus. She is a proud Dayton Flyer and a self-declared nerd. After spending a few years in R&D for building materials (insulation is cool), Brenna recently took a big career pivot to work at Crossroads. Brenna lives in Gahanna with her husband Javi and their crazy-but-cute dog Shaggy. She is an avid reader of thriller novels, loves a good cocktail, and spends way too much money on concerts.</p>
+              <div class="soft-half-ends">
+                <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.</p>
+                <crds-button href="mailto:brenna.maureen@crossroads.net" color="blue" text="Email me" target="_blank"></crds-button>
+              </div>
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="//crds-media.imgix.net/szY1SfRQFgxz4zisFYdC0/1ef94e58f12859fca460a4b552bf16e1/brenna-maureen.jpg"/>
+            </div>
+          </div>
+
+          <div class="row align-items-center df-screen-sm push-top soft-top">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="//crds-media.imgix.net/2yl2iAjar8ECSJGJPFVjq3/5fba9711d096f15f7e9903229347298a/caroline-draper.jpg"/>
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>Crossroads Columbus Site Producer & Director of Invitation</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">Caroline Draper</h2>
+              <p>Caroline Draper is the Site Producer of Crossroads Columbus and a commissioned pastor for Crossroads. Before moving to Columbus in April of 2020, Caroline worked in First Impressions at Crossroads Florence and First Impressions Site Support. She came to Crossroads with a background in Student Ministry and education. Caroline and Dakota got married three years ago and have two baby girls, Hampton and Evie. Caroline loves spending time with friends over a meal, writing, flower arranging, and red wine—she wishes she was musically gifted and that she slept more.</p>
+              <div class="soft-half-ends">
+                <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.</p>
+                <crds-button href="mailto:caroline.draper@crossroads.net" color="blue" text="Email me" target="_blank"></crds-button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row align-items-center df-screen-sm push-top soft-top">
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>Crossroads Columbus Ministry Director</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">Dakota Draper</h2>
+              <p>Dakota Draper is the Community Director at Crossroads Columbus and a commissioned pastor for Crossroads. Dakota spent the three years before moving to Columbus at Crossroads Florence running Student Ministry. Dakota loves his wife and their two beautiful little girls (Being a girl dad is the best!). Dakota is a sports enthusiast, loves a glass of bourbon on the rocks, and singing country music with the windows rolled down.</p>
+              <div class="soft-half-ends">
+                <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.</p>
+                <crds-button href="mailto:dakota.draper@crossroads.net" color="blue" text="Email me" target="_blank"></crds-button>
+              </div>
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="//crds-media.imgix.net/4KxIVrGDEMTfI2YugYx4d3/213fbecb57dcedbc979ef56a1f88a671/dakota-draper.jpg"/>
+            </div>
+          </div>
+          {% endif %}
         </div>
 
         <!-- About -->
