@@ -1,29 +1,29 @@
 <a href="{{ post.url }}">
-    <div class="overlay-card article-tpl-image">
-        <div class="overlay-card-image">
-            <div class="beige-overlay"></div>
-            <img src="{% if post.image.url %}{{ post.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}"
-            sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}"
-            alt="{{ post.image | alt }}" data-optimize-img>
-        </div>
-        <div class="overlay-card-content">
-            {% if post.category %}
-                <p class="overlay-card-category">{{ post.category.title }}</p>
-            {% endif %}
-            <h2 class="overlay-card-title overlay-card-heading">{{ post.title | truncate: 70 }}</h2>
-            <div class="card-stamp text-white">
-                <svg class="icon" viewBox="0 0 256 256">
-                {% if post.content_type == "video" or post.content_type == "message" %}
-                    <use xlink:href="/assets/svgs/icons.svg#media-video"></use>
-                {% elsif post.content_type == "podcast" %}
-                    <use xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
-                {% else  %}
-                    <use xlink:href="/assets/svgs/icons.svg#media-article"></use>
-                {% endif %}
-                </svg>
-                {% assign format = 'short' %}
-                <span class="font-size-smallest soft-quarter-right">{{ post.duration | duration: format }}</span>
-            </div>
-        </div>
+  <div class="overlay-card article-tpl-image">
+    <div class="overlay-card-image">
+      <div class="beige-overlay"></div>
+        <img src="{% if post.image.url %}{{ post.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}"
+        sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}"
+        alt="{{ post.image | alt }}" data-optimize-img>
     </div>
+    <div class="overlay-card-content">
+      <p class="overlay-card-category">{{ post.category.title }}</p>
+      <h2 class="overlay-card-title overlay-card-heading">{{ post.title | truncate: 70 }}</h2>
+      <div class="card-stamp text-white">
+        <svg class="icon" viewBox="0 0 256 256">
+          {% if post.content_type == "video" or post.content_type == "message" %}
+            <use xlink:href="/assets/svgs/icons.svg#media-video"></use>
+          {% elsif post.content_type == "podcast" %}
+            <use xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
+          {% else  %}
+            <use xlink:href="/assets/svgs/icons.svg#media-article"></use>
+          {% endif %}
+        </svg>
+        {% if post.duration %}
+          {% assign format = 'short' %}
+        {% endif %}
+        <span class="font-size-smallest soft-quarter-right">{{ post.duration | duration: format }}</span>
+      </div>
+    </div>
+  </div>
 </a>

@@ -38,7 +38,7 @@ layout: default
         {% assign tabs_array = tabs_array | push: "podcasts" %}
       {% endif %}
 
-      {% assign latest_array = articles | concat: videos | concat: messages | concat: podcasts | sort: 'date' | reverse %}
+      {% assign latest_array = articles | concat: videos | concat: messages | sort: 'date' | reverse %}
 
       <crds-tabs tabs='{{tabs_array | jsonify }}' mobile-dropdown navigation-class="align-tabs-left">
 
@@ -154,21 +154,20 @@ layout: default
             <div class="cards-4x">
               <div class="row">
                 {% for message in messages %}
-                <div class="card media-author">
-                  <div class="media-video">
+                <div class="card">
+                  <a class="relative block" href="{{  message | media_url }}">
+                    <div class="beige-overlay"></div>
+                    <img class="media-img"
+                    src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                    sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+                  </a>
+                  <div class="card-block hard">
                     <a href="{{ message | media_url }}">
-                      <img class="media-img"
-                        src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                        sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+                      <h5 class="card-title font-size-smaller push-quarter-bottom">{{ video.title }}</h5>
+                      <div class="font-size-smaller push-quarter-top push-half-bottom">
+                        {{ message.description | markdownify | strip_html | truncatewords: 15 }}
+                      </div>
                     </a>
-                  </div>
-                  <div class="media-body">
-                    <h5 class="component-header flush-ends">
-                      <a href="{{ message | media_url }}" data-automation-id="message-title">{{ message.title }}</a>
-                    </h5>
-                    <div class="soft-quarter-top font-size-smaller flush-bottom" data-automation-id="message-description">
-                      {{ message.description | markdownify | strip_html | truncatewords: 15 }}
-                    </div>
                   </div>
                 </div>
                 {% endfor %}

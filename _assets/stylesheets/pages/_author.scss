@@ -20,7 +20,7 @@
   flex-wrap: wrap;
   align-items: center;
 
-  @media screen and (min-width: 576px) {
+  @media screen and (min-width: $screen-xs) {
     flex-wrap: nowrap;
   }
 
@@ -39,7 +39,7 @@
     height: 200px;
     width: 200px;
 
-    @media screen and (min-width: 576px) {
+    @media screen and (min-width: $screen-xs) {
       margin: 80px 15px 0;
       display: inline-block;
     }
