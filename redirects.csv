@@ -37,6 +37,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /connect/?my=1,/mygroups,301!
 /connect/* my=:1,/mygroups,301!
 /connect/*,https://${env:CRDS_MAP_DOMAIN}/:splat,200!
+/connect-new/*,https://${env:CRDS_CONNECT_NEW_DOMAIN}/:splat,200!
 /group-leader/*,https://${env:CRDS_GROUP_LEADER_DOMAIN}/:splat,200!
 /groups/search/*,https://${env:CRDS_GROUPS_LEGACY_ENDPOINT}/:splat,200!
 /map/*,/connect/:splat,302!
