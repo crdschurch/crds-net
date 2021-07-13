@@ -4,7 +4,7 @@
       <div class="beige-overlay"></div>
         <img src="{% if post.image.url %}{{ post.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}"
         sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}"
-        alt="{{ post.image | alt }}" data-optimize-img>
+        alt="{{ post.image | alt }}" data-optimize-img style="max-height: 430px;">
     </div>
     <div class="overlay-card-content">
       <p class="overlay-card-category">{{ post.category.title }}</p>
