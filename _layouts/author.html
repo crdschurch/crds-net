@@ -2,7 +2,7 @@
 layout: default
 ---
 
-{% assign author = site.authors | where: 'full_name', page.title | first %}
+{% assign author = page %}
 
 <div class="container push-bottom">
   {% include _author-bio.html %}
