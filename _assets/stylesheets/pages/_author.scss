@@ -80,7 +80,7 @@
     max-width: 640px;
     width: 100%;
 
-    @media screen and (min-width: 576px) {
+    @media screen and (min-width: $screen-xs) {
       margin-top: 40px;
     }
   }
