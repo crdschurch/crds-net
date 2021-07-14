@@ -22,28 +22,24 @@ describe('Testing the Current Series on the Media landing page:', function () {
   });
 
   it('The current series title, title link, and description should match Contentful', function () {
-    cy.get('@featuredSeries').within(() => {
+      cy.get('@featuredSeries').within(() => {
       cy.get('[data-automation-id="series-title"]').as('seriesTitle')
         .should('be.visible')
         .and('have.text', currentSeries.title.text);
       cy.get('@seriesTitle')
         .should('have.attr', 'href', `/media/series/${currentSeries.slug.text}`);
-
-      cy.get('[data-automation-id="series-description"]').as('seriesDescription')
+       
+      cy.get('crds-button', { includeShadowDom: true })
         .should('be.visible')
-        .normalizedText()
-        .then((elementText) => {
-          expect(normalizeText(currentSeries.description.text)).to.contain(elementText);
-        });
-    });
+        .should('have.attr', 'text', 'Watch the current teaching series');
+      });
   });
 
   it('The current series image and image link should match Contentful', function () {
     cy.get('.media').scrollIntoView().within(() => {
       cy.get('[data-automation-id="series-image"]').as('seriesImageLink')
         .should('have.attr', 'href', `/media/series/${currentSeries.slug.text}`);
-
-      cy.imgixShouldRunOnElement('img', currentSeries.image);
+     cy.imgixShouldRunOnElement('img', currentSeries.image);
     });
   });
 });

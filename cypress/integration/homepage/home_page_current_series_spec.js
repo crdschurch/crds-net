@@ -18,11 +18,10 @@ describe('Testing the Current Series on the Homepage:', function() {
       .and('have.text', currentSeries.title.text);
     cy.get('@seriesTitle')
       .should('have.attr', 'href', `/media/series/${currentSeries.slug.text}`);
-    cy.get('[data-automation-id="series-description"]').as('seriesDescription')
-      .normalizedText()
-      .then((elementText) => {
-        expect(normalizeText(currentSeries.description.text)).to.contain(elementText);
-      });
+    cy.get('crds-button', { includeShadowDom: true })
+      .should('be.visible')
+      .should('have.attr', 'text', 'Take the 30 day challenge');
+
     cy.get('[data-automation-id="series-image"]').as('seriesImageLink')
       .scrollIntoView()
       .should('have.attr', 'href', `/media/series/${currentSeries.slug.text}`)
