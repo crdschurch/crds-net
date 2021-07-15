@@ -10,7 +10,7 @@
   h1 {
     font-size: 70px;
     line-height: 61px;
-    
+
     @media (min-width: $screen-sm) {
       font-size: 94px;
       line-height: 86px;
@@ -62,7 +62,7 @@
   background-size: cover;
   padding: 50px 0;
   position: relative;
-  
+
   @media (min-width: $screen-sm) {
     padding: unset;
     background-image: none !important;
@@ -77,7 +77,7 @@
 
 .location-info-row {
   background-color: $cr-blue;
-  background-image: url("//crds-media.imgix.net/1KLwsN6ilL7RO0xk6JzOsX/840e8b99340ff36bff67036909c4f856/texture-topo-dark-100_2x.png");
+  background-image: url('//crds-media.imgix.net/1KLwsN6ilL7RO0xk6JzOsX/840e8b99340ff36bff67036909c4f856/texture-topo-dark-100_2x.png');
   background-size: cover;
   color: $cr-white;
   z-index: 2;
@@ -98,10 +98,64 @@
 
 .launch-form-header {
   color: $cr-blue;
-  
+
   h1 {
     color: $cr-blue;
     font-family: $condensed-extra-font-face !important;
     font-weight: 500 !important;
+  }
+}
+
+.location-overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+
+  .modal-dialog {
+    width: 90%;
+    margin: auto;
+
+    @media (min-width: $screen-md) {
+      width: 70%;
+    }
+
+    @media (min-width: $screen-lg) {
+      width: 60%;
+    }
+  }
+}
+
+.location-overlay-content {
+  img {
+    margin-top: 60px;
+  }
+
+  h3 {
+    font-size: 49px;
+  }
+
+  .overlay-bottom-text {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $screen-sm) {
+      flex-direction: row;
+    }
+
+    .two-thirds-layout {
+      flex: 3;
+      margin-bottom: 30px;
+
+      @media (min-width: $screen-sm) {
+        margin-right: 56px;
+      }
+    }
+
+    .one-third-layout {
+      flex: 1;
+
+      ol {
+        list-style-position: inside;
+        padding: 0;
+      }
+    }
   }
 }
