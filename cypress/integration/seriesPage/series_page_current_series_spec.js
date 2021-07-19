@@ -32,10 +32,10 @@ describe('Testing the Current Series on the Media/Series page:', function () {
           .and('contain', `${start} — ${end}`);
 
 
-        cy.get('div.col-xs-12.col-md-5 > div').as('currentSeriesDescription')
-          .normalizedText()
-          .should('contain', normalizeText(currentSeries.description.text));
-      });
+        cy.get('div.col-xs-12.col-md-5 > a').as('viewSeriesButton')
+        .should('be.visible')
+        .and('contain','View the series');
+     });
   });
 
   it('The current series image and image link should match Contentful', function () {
