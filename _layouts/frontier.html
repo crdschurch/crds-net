@@ -98,7 +98,9 @@ layout: default
 
             <div class="col-sm-8 push-bottom soft-bottom">
               <!-- Featured Section - Below Jumbotron -->
+              {% assign hasPromo = false %}
               {% if page.featured_below.size > 0 %}
+              {% assign hasPromo = true %}
               <div class="overflow-hidden push-bottom">
                 {{ page.featured_below }}
               </div>
@@ -133,7 +135,7 @@ layout: default
                   <crds-button href="{{ page.google_calendar_link }}" color="white" display="outline" text="View Calendar" target="_blank"></crds-button>
                 </div>
               </div>
-              <crds-site-happenings-locations location="{{ page.name }}" show-limit="4"></crds-site-happenings-locations>
+              <crds-site-happenings-locations location="{{ page.name }}" show-limit="4" has-promo="{{ hasPromo }}"></crds-site-happenings-locations>
             </div>
           </div>
         </div>
