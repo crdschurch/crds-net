@@ -4,60 +4,196 @@ layout: default
 
 {% assign author = page %}
 
-<div class="container push-bottom">
-  {% include _author-bio.html %}
+<section class="bg-orange bg-topo-50 author-header">
+  <div class="container soft-ends">
+    {% include _author-bio.html %}
+  </div>
+</section>
 
-  <!-- Articles -->
-  {% assign articles = site.articles | filter: 'author.full_name', author.full_name | reverse %}
+<section class="overflow-hidden author">
+  <div class="container">
+    <div class="row soft-half soft-top push-top">
 
-  {% if articles.size > 0 %}
-    <div class="push-ends">
-      <h2 class="page-header font-size-h2 flush-top">Articles</h2>
-    </div>
-    <div data-card-deck class="card-deck">
-      <div class="cards-4x">
-        <div class="row">
-          {% for post in articles %}
-            {% include _article-card.html post=post %}
-          {% endfor %}
+      {% assign articles = site.articles | filter: 'author.full_name', author.full_name | sort: 'date' | reverse %}
+      {% assign videos = site.videos | filter: 'author.full_name', author.full_name | reverse %}
+      {% assign messages = site.messages | filter: 'author.full_name', author.full_name | reverse %}
+      {% assign podcasts = site.podcasts | filter: 'author.full_name', author.full_name | reverse %}
+
+       <!-- Create tabs_array -->
+      {% assign tabs_array = "latest" | split: "|" %}
+
+      {% if articles.size > 0 %}
+        {% assign tabs_array = tabs_array | push: "articles" %}
+      {% endif %}
+
+      {% if videos.size > 0 %}
+        {% assign tabs_array = tabs_array | push: "videos" %}
+      {% endif %}
+
+      {% if messages.size > 0 %}
+        {% assign tabs_array = tabs_array | push: "messages" %}
+      {% endif %}
+
+      {% if podcasts.size > 0 %}
+        {% assign tabs_array = tabs_array | push: "podcasts" %}
+      {% endif %}
+
+      {% assign latest_array = articles | concat: videos | concat: messages | sort: 'date' | reverse %}
+
+      <crds-tabs tabs='{{tabs_array | jsonify }}' mobile-dropdown navigation-class="align-tabs-left">
+
+        <!-- Latest -->
+        <div slot="tab-latest" class="push-ends">
+          <div class="row">
+            <div class="col-sm-8 push-bottom soft-bottom">
+
+              <!-- Display Most Recent 2 Posts -->
+              {% if articles.size > 0 %}
+                {% for post in articles limit: 2 %}
+                  {% include _post-hero.html post=post %}
+                {% endfor %}
+              {% else %}
+                {% for post in latest_array limit: 2 %}
+                  {% include _post-hero.html post=post %}
+                {% endfor %}
+              {% endif %}
+
+            </div>
+            <div class="col-sm-4 push-bottom soft-bottom">
+
+              {% assign array_offset = 2 %}
+              {% if articles.size > 0 %}
+                {% assign array_offset = 0 %}
+              {% endif %}
+
+              {% assign article_count = 0 %}
+              {% assign latest_index = 0 %}
+
+              <div class="border-bottom-dashed-group">
+                {% for post in latest_array limit: 10 offset: array_offset %}
+
+                  {% assign item = post %}
+                  {% assign image = post.image.url %}
+                  {% assign content_type = post.content_type %}
+
+                  {% if item.content_type == 'episode' %}
+                    {% assign image = post.podcast_img %}
+                  {% endif %}
+
+                  {% if item.duration %}
+                    {% assign format = 'short' %}
+                  {% endif %}
+
+                  {% if item.content_type == 'message' %}
+                    {% assign content_type = 'video' %}
+                  {% endif %}
+
+                  {% if post.content_type == 'article' %}
+                    {% assign article_count = article_count | plus:1 %}
+                  {% endif %}
+
+                  {% if post.content_type != 'article' or post.content_type == 'article' and article_count > 2 %}
+                    {% if latest_index < 8 %}
+                      {% assign latest_index = latest_index | plus:1 %}
+
+                      <div class="push-bottom">
+                        <div class="article-detail-media-object">
+                          <crds-media-object
+                            url="{{ item | media_url }}"
+                            image-src="{% if image %}{{ image | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?auto=format"
+                            type="{{ content_type }}"
+                            title="{{ item.title }}"
+                            duration="{{ item.duration | duration: format }}"
+                          ></crds-media-object>
+                        </div>
+                      </div>
+                    {% endif %}
+                  {% endif %}
+
+                {% endfor %}
+              </div>
+
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  {% endif %}
 
-  <!-- Podcasts -->
-  {% assign podcasts = site.podcasts | filter: 'author.full_name', author.full_name | reverse %}
-
-  {% if podcasts.size > 0 %}
-    <div id="podcasts" class="push-ends">
-      <h2 class="page-header font-size-h2 flush-top">Podcasts</h2>
-    </div>
-    <div data-card-deck class="card-deck">
-      <div class="cards-4x">
-        <div class="row">
-          {% for podcast in podcasts %}
-            {% include _podcast-card.html %}
-          {% endfor %}
+        <!-- Articles -->
+        {% if articles.size > 0 %}
+        <div slot="tab-articles" class="push-ends">
+          <div data-card-deck class="card-deck">
+            <div class="cards-4x">
+              <div class="row">
+                {% for post in articles %}
+                  {% include _article-card.html post=post %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  {% endif %}
+        {% endif %}
 
-  <!-- Videos -->
-  {% assign videos = site.videos | filter: 'author.full_name', author.full_name | reverse %}
-
-  {% if videos.size > 0 %}
-    <div class="push-ends">
-      <h2 class="page-header font-size-h2 flush-top">Videos</h2>
-    </div>
-    <div data-card-deck class="card-deck">
-      <div class="cards-4x">
-        <div class="row">
-          {% for video in videos %}
-            {% include _video-card.html %}
-          {% endfor %}
+        <!-- Videos -->
+        {% if videos.size > 0 %}
+        <div slot="tab-videos" class="push-ends">
+          <div data-card-deck class="card-deck">
+            <div class="cards-4x">
+              <div class="row">
+                {% for video in videos %}
+                  {% include _video-card.html %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  {% endif %}
-</div>
+        {% endif %}
+
+        <!-- Messages -->
+        {% if messages.size > 0 %}
+        <div slot="tab-messages" class="push-ends">
+          <div data-card-deck class="card-deck">
+            <div class="cards-4x">
+              <div class="row">
+                {% for message in messages %}
+                <div class="card">
+                  <a class="relative block" href="{{  message | media_url }}">
+                    <div class="beige-overlay"></div>
+                    <img class="media-img"
+                    src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                    sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+                  </a>
+                  <div class="card-block hard">
+                    <a href="{{ message | media_url }}">
+                      <h5 class="card-title font-size-smaller push-quarter-bottom">{{ video.title }}</h5>
+                      <div class="font-size-smaller push-quarter-top push-half-bottom">
+                        {{ message.description | markdownify | strip_html | truncatewords: 15 }}
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+         <!-- Podcasts -->
+        {% if podcasts.size > 0 %}
+        <div slot="tab-podcasts" class="push-ends">
+          <div data-card-deck class="card-deck">
+            <div class="cards-4x">
+              <div class="row">
+                {% for podcast in podcasts %}
+                  {% include _podcast-card.html %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </crds-tabs>
+
+   </div>
+  </div>
+</section>
+
