@@ -154,6 +154,6 @@ module.exports = [
   {
     name: 'sal',
     deps: ['vendor/sal'],
-    files: ['components/sal']
+    files: ['components/sal'],
   },
 ];
