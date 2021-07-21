@@ -73,6 +73,7 @@ class BitmovinManager {
       this.playerConfig.ui.metadata = { 
         markers: this.timestamps.map(time => {
           return {
+            cssClasses: ['bitmovin-seekbar-playbackposition', 'bitmovin-seekbar-backdrop', 'bitmovin-seekbar-playbackposition-marker'],
             time: ((time.minutes || 0) * 60) + (time.seconds || 0),
             title: time.description
           }
