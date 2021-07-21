@@ -43,6 +43,7 @@ module.exports = [
       'components/jumbotron-video',
       'components/filters',
       'components/smart-banner',
+      'components/modal',
       'components/pagination',
       'components/tabs',
       'components/track-viewport',
@@ -154,6 +155,6 @@ module.exports = [
   {
     name: 'sal',
     deps: ['vendor/sal'],
-    files: ['components/sal']
+    files: ['components/sal'],
   },
 ];

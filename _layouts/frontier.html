@@ -27,16 +27,17 @@ layout: default
       <div class="col-sm-12 push-ends mobile-soft-sides">
         <div>
           <!-- Welcome Overlay -->
-          <crds-button color="white" display="outline" text="Open Overlay" href="" data-target="#welcomeLocationOverlay"
-          data-toggle="modal"></crds-button>
           <span class="font-family-base text-uppercase text-white">
             <strong>welcome to</strong>
           </span>
           <div aria-labelledby="Welcome to crossroads columbus" class="location-overlay modal fade" id="welcomeLocationOverlay" role="dialog">
             <div class="modal-dialog" role="document">
               <div class="">
-                <div class="modal-header hard-bottom"><button aria-label="Close" class="close pull-right" style="background-color: transparent;"
-                    data-dismiss="modal" type="button"><span style="font-size: 30px" aria-hidden="true">&times;</span></button>
+                <div class="modal-header hard-bottom">
+                  <button aria-label="Close" class="close pull-right" style="background-color: transparent;"
+                    data-dismiss="modal" onclick="closeColumbusOverlay()" type="button">
+                    <span style="font-size: 30px" aria-hidden="true">&times;</span>
+                  </button>
                 </div>
                 <div class="modal-body location-overlay-content">
                   <div>
@@ -146,6 +147,7 @@ layout: default
 
               {% if page.slug == 'columbus' %}
               <!-- Current Series -->
+              <div id="columbus-location-page">
               <a href="{{ series.url }}" title="{{ series.title }}">
                 <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720&fit=crop" size="card"></crds-image>
               </a>
@@ -155,8 +157,8 @@ layout: default
                 {{ series.description | markdownify }}
               </div>
               <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series"
-                color="orange"></crds-button>
-
+                color="orange"></crds-button> 
+              </div>
               {% else %}
 
               <!-- Frontier Series -->
@@ -505,3 +507,10 @@ layout: default
     </div>
   </div>
 </div>
+
+<script>
+  function closeColumbusOverlay() {
+    document.getElementById('welcomeLocationOverlay').style.display = 'hidden';
+    console.log('HELLO WORLD')
+  }
+</script>
