@@ -43,7 +43,6 @@ module.exports = [
       'components/jumbotron-video',
       'components/filters',
       'components/smart-banner',
-      'components/modal',
       'components/pagination',
       'components/tabs',
       'components/track-viewport',

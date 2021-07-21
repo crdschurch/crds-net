@@ -125,7 +125,10 @@
 
 .location-overlay-content {
   img {
+    display: block;
     margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   h3 {
@@ -155,6 +158,7 @@
       ol {
         list-style-position: inside;
         padding: 0;
+        color: $cr-white;
       }
     }
   }
