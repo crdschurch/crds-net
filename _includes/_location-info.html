@@ -34,7 +34,14 @@
           <p class="flush font-family-base font-size-small">{{ page.community_pastor_name }}</p>
           <p class="hard-top flush font-family-base font-size-small">{{ page.name }} Community Pastor</p>
           {% assign pastor_full_name = page.community_pastor_name | split: " " %}
-          <a class="text-orange" href="#community-pastor">More about {{ pastor_full_name[0] }}</a>
+
+          <!-- if this is columbus, then show meet the team -->
+          {% if page.site_id == 23 %}
+            <a class="text-orange" href="#the-team">Meet the team</a>
+          {% else %}
+            <a class="text-orange" href="#community-pastor">More about {{ pastor_full_name[0] }}</a>
+          {% endif %}
+
           {% else %}
           <p class="flush font-family-base font-size-small">New face coming soon</p>
           {% endif %}
