@@ -167,7 +167,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_ENDPOINT = "groups.netlify.app"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy.netlify.app"
   CRDS_INVOICES = "crds-invoices.netlify.app"
-  CRDS_CORKBOARD_ENDPOINT = "crds-angular.crossroads.net/corkboard"
 
 [context.rebrand.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-int.netlify.app"
