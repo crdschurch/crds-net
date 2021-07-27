@@ -110,11 +110,7 @@ $(document).ready(function() {
   }
 
   function pageIsWithinPaginationBounds() {
-    if (paginationInputValue() > 1 && paginationInputValue() <= totalPaginatedPages) {
-      return true
-    } else { 
-      return false
-    }
+    return paginationInputValue() > 1 && paginationInputValue() <= totalPaginatedPages;
   }
 
   function navigateToPageByInput() {
