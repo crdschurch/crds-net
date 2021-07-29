@@ -163,7 +163,8 @@ layout: default
                   </a>
                   <div class="card-block hard">
                     <a href="{{ message | media_url }}">
-                      <h5 class="card-title font-size-smaller push-quarter-bottom">{{ video.title }}</h5>
+                      <h5 class="card-title font-size-smaller
+                        push-quarter-bottom">{{ message.title }}</h5>
                       <div class="font-size-smaller push-quarter-top push-half-bottom">
                         {{ message.description | markdownify | strip_html | truncatewords: 15 }}
                       </div>
