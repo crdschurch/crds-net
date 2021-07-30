@@ -1,6 +1,4 @@
-# default build settings for int, preview deploys etc
-[build]
-  command = "bin/build-command.sh"
+# default build settings for int, preview deploys etc [build] command = "bin/build-command.sh"
   functions = "_functions"
 
 [build.processing.html]
@@ -31,9 +29,6 @@ package = "@helloample/netlify-plugin-redirects"
 
 [[plugins]]
 package = "./_plugins/netlify-plugin-health-check"
-
-[[plugins]]
-  package="./_plugins/rename-ga-references"
 
 [dev]
   BASEURL="/"
