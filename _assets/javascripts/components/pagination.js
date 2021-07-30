@@ -87,14 +87,7 @@ $(document).ready(function() {
   const currentPage = parseInt(document.getElementById("pagination-current-page").getAttribute("placeholder"));
   const protocolAndHost = `${window.location.protocol}//${window.location.host}`
   const totalPaginatedPages = parseInt(document.getElementById("total_pages").innerText);
-
-  function deactivatePreviousButton() {
-    document.getElementById("pagination-previous-button").style.display = "none";
-  }
-
-  function deactivateNextButton() {
-    document.getElementById("pagination-next-button").style.display = "none";
-  }
+  let canNavigate = true;
 
   function checkIfNavigationButtonsNeedDeactivation() {
     if (currentPage == 1) {
@@ -104,23 +97,21 @@ $(document).ready(function() {
     }
   }
 
-
-  function paginationInputValue() {
-    return parseInt(document.getElementById("pagination-current-page").value);
+  function deactivateNextButton() {
+    document.getElementById("pagination-next-button").style.display = "none";
   }
 
-  function pageIsWithinPaginationBounds() {
-    return paginationInputValue() > 1 && paginationInputValue() <= totalPaginatedPages;
+  function deactivatePreviousButton() {
+    document.getElementById("pagination-previous-button").style.display = "none";
   }
 
-  function navigateToPageByInput() {
-    if (pageIsWithinPaginationBounds()) {
-      const pageToNavigateTo = paginationInputValue();
-      window.location.href = `${protocolAndHost}/media/articles/page/${pageToNavigateTo}/`;
-    } else if (paginationInputValue() == 1) {
-      window.location.href = `${protocolAndHost}/media/articles/`;
-    } else {
-      console.log('Cant navigate past bounds of paginated collection');
+  function disableSubmitIfNeeded(event) {
+    if (event.target.value > totalPaginatedPages) {
+      canNavigate = false;
+      document.getElementById("pagination-submit-button").disabled = true;
+    } else if (event.target.value < totalPaginatedPages) {
+      canNavigate = true;
+      document.getElementById("pagination-submit-button").disabled = false;
     }
   }
 
@@ -140,23 +131,47 @@ $(document).ready(function() {
     }
   }
 
+  function navigateToPageByInput() {
+    if (pageIsWithinPaginationBounds()) {
+      const pageToNavigateTo = paginationInputValue();
+      window.location.href = `${protocolAndHost}/media/articles/page/${pageToNavigateTo}/`;
+    } else if (paginationInputValue() == 1) {
+      window.location.href = `${protocolAndHost}/media/articles/`;
+    } else {
+      console.log('Cant navigate past bounds of paginated collection');
+    }
+  }
+
+  function paginationInputValue() {
+    return parseInt(document.getElementById("pagination-current-page").value);
+  }
+
+  function pageIsWithinPaginationBounds() {
+    console.log()
+    return paginationInputValue() > 1 && paginationInputValue() <= totalPaginatedPages;
+  }
+
   checkIfNavigationButtonsNeedDeactivation();
 
-  document.getElementById("pagination-submit-button").addEventListener("click", function(e) {
-    navigateToPageByInput()
+  document.getElementById("pagination-submit-button").addEventListener("click", function() {
+    navigateToPageByInput();
   }, false);
 
   document.getElementById("pagination-current-page").addEventListener("keyup", function(e) {
-    if (e.key == 'Enter') {
+    if (e.key == 'Enter' && canNavigate) {
       navigateToPageByInput();
     }
   }, false);
 
-  document.getElementById("pagination-previous-button").addEventListener("click", function(e) {
-    moveBackOnePage()
+  document.getElementById("pagination-previous-button").addEventListener("click", function() {
+    moveBackOnePage();
   }, false);
 
-  document.getElementById("pagination-next-button").addEventListener("click", function(e){
-    moveForwardOnePage()
+  document.getElementById("pagination-next-button").addEventListener("click", function(){
+    moveForwardOnePage();
+  }, false);
+
+  document.getElementById("pagination-current-page").addEventListener("input", function(e){
+    disableSubmitIfNeeded(e);
   }, false);
 });
