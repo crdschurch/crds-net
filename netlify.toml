@@ -1,5 +1,4 @@
 # default build settings for int, preview deploys etc
-
 [build]
   command = "bin/build-command.sh"
   functions = "_functions"
