@@ -202,8 +202,8 @@ layout: default
                 <div class="row row-no-gutters push-top">
                   <div class="d-flex col-sm-6 col-xs-8">
                     {% if page.student_ministry_leader_image %}
-                    <img class="img-circle img-size-4 object-fit-cover" src="{{ page.student_ministry_leader_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
-                    sizes="{{ site.image_sizes.cards_4x }}"  alt="{{ page.student_ministry_leader_name }}" data-optimize-img />
+                    <img class="img-circle img-size-4 object-fit-cover" src="{{ page.student_ministry_leader_image.url | imgix: site.imgix }}"
+                    sizes="{{ site.image_sizes.cards_4x }}"  alt="{{ page.student_ministry_leader_name }}" />
                     {% else %}
                     <img class="img-border img-circle img-size-4" src="https://crossroads-media.imgix.net/images/avatar.svg"  alt="{{ page.student_ministry_leader_name }}" />
                     {% endif %}
