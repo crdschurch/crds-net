@@ -30,7 +30,7 @@
     "crds-cypress-config": "^1.0.1",
     "crds-cypress-contentful": "^2.0.2",
     "crds-cypress-login": "^2.0.0",
-    "crds-styles": "^4.0.10",
+    "crds-styles": "^4.0.11",
     "cypress": "^4.8.0",
     "cypress-plugin-retries": "^1.3.0",
     "del": "^3.0.0",
