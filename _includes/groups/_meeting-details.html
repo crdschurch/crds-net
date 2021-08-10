@@ -14,7 +14,7 @@
   {% endif %}
 </p>
 <p class="push-top font-size-smaller">
-  <a href="/groups/{{ category_slug }}/{{ group_slug.slug }}/{% if meeting.location.slug == 'anywhere' %}online{% else %}{{ meeting.location.slug }}{% endif %}">Learn more</a>
+  <a href="/groups/{{ category_slug }}/{{ group_slug.slug }}/{% if meeting.location.slug == 'anywhere' %}online{% else %}{{ page.location.slug }}{% endif %}">Learn more</a>
   {% if meeting.registration_link %}
   <span class="push-half-sides">/</span><a href="{{ meeting.registration_link }}" type="button">Register</a>
   {% endif %}
