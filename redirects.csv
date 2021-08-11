@@ -60,6 +60,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /mancamp/signup-reg/,/mancamp-account?redirectUrl=/mancamp/signup-reg/,302! 
 /mancamp/signup/,/mancamp/signup/,200! Role=user
 /mancamp/signup/,/mancamp-account?redirectUrl=/mancamp/signup/,302! 
+/mancamp-account,/mancamp-account, 302!
 /impersonate,https://${env:CRDS_ANGULAR_ENDPOINT}/impersonate,200!
 /volunteer-sign-up,/404.html,404!
 /volunteer-sign-up/*,/volunteer,301!
