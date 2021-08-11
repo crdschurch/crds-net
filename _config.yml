@@ -213,7 +213,7 @@ defaults:
       type: authors
     values:
       layout: author
-      snail_trail: media
+      snail_trail: disabled
   - scope:
       path: ""
       type: categories
