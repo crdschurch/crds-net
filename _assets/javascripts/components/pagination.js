@@ -147,7 +147,6 @@ $(document).ready(function() {
   }
 
   function pageIsWithinPaginationBounds() {
-    console.log()
     return paginationInputValue() > 1 && paginationInputValue() <= totalPaginatedPages;
   }
 
