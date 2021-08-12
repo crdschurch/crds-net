@@ -106,6 +106,7 @@ layout: default
               </div>
               {% endif %}
 
+              {% if page.slug != 'columbus' %}
               <a href="{{ series.url }}" title="{{ series.title }}">
                 <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720&fit=crop" size="card"></crds-image>
               </a>
@@ -116,6 +117,7 @@ layout: default
               </div>
               <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series"
                 color="orange"></crds-button>
+              {% endif %}
 
             </div>
             <div class="col-sm-4 push-bottom soft-bottom">
