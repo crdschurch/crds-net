@@ -16,6 +16,7 @@ layout: default
   </div>
 {% endif %}
 
+{% if page.slug == "columbus" %}
 <!-- Columbus Modal -->
 <div aria-labelledby="Welcome to crossroads columbus" class="location-overlay modal fade" id="welcomeLocationOverlay" role="dialog">
   <div class="modal-dialog" role="document">
@@ -107,7 +108,7 @@ $(document).ready(function () {
 });
 
 </script>
-
+{% endif %}
 
 <!-- Jumbotron section -->
 <section class="jumbotron locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
