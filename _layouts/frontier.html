@@ -214,13 +214,7 @@ $(document).ready(function () {
                 {{ series.description | markdownify }}
               </div>
               <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series"
-                color="orange"></crds-button> 
-              </div>
-              {% else %}
-
-              <!-- Frontier Series -->
-              {% assign frontier_series = site.content_blocks | where: 'slug', 'frontier-series' | first %}
-              {{ frontier_series.content_block }}
+                color="orange"></crds-button>
               {% endif %}
 
             </div>
