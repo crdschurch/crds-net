@@ -75,9 +75,8 @@ layout: default
               </div>
               <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series"
                 color="orange"></crds-button>
+              {% endif %}  
             </div>
-            {% endif %}
-
             <div class="col-sm-4 push-bottom soft-bottom">
               <crds-site-happenings-locations location="{{ page.name }}" show-limit="5" has-promo="{{ hasPromo }}"></crds-site-happenings-locations>
             </div>
