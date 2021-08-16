@@ -64,6 +64,7 @@ layout: default
               {% endif %}
 
               <!-- Current Series -->
+              {% if page.slug != "uptown" %}
               <a href="{{ series.url }}" title="{{ series.title }}">
                 <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720&fit=crop" size="card"></crds-image>
               </a>
@@ -75,6 +76,8 @@ layout: default
               <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series"
                 color="orange"></crds-button>
             </div>
+            {% endif %}
+
             <div class="col-sm-4 push-bottom soft-bottom">
               <crds-site-happenings-locations location="{{ page.name }}" show-limit="5" has-promo="{{ hasPromo }}"></crds-site-happenings-locations>
             </div>
