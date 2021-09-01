@@ -71,11 +71,11 @@ title: Series
           <div class="cards-3x">
             <div class="row">
               {% for msg_obj in page.videos %}
-                {% assign message = site.videos | where: 'slug', msg_obj.slug | first %}
-                {% unless message %}
+                {% assign item = site.videos | where: 'slug', msg_obj.slug | first %}
+                {% unless item %}
                   {% assign item = site.messages | where: 'slug', msg_obj.slug | first %}
                 {% endunless %}
-                {% if item or message %}
+                {% if item %}
                   {% include _message-card.html %}
                 {% endif %}
               {% endfor %}
