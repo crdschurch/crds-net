@@ -187,7 +187,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /groups/onsite-groups/*,/groups/onsite,301!
 /groups/onsite,/groups/site-based,301!
 /groups/onsite/*,/groups/site-based/:splat,301!
-/groups/details/*,https://${env:CRDS_GROUPS_ENDPOINT}/:splat,200!
+/groups/*,https://${env:CRDS_GROUPS_ENDPOINT}/:splat,200
 /care/communitycare,/care,301!
 /adventure,/series/the-adventurous-life,301!
 /weeklyworship,/reopen,301!
