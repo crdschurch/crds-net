@@ -83,4 +83,94 @@ CRDS.PageLoader.prototype.activatePage = function(type) {
 
 $(document).ready(function() {
   new CRDS.Pagination();
+
+  const currentPage = parseInt(document.getElementById("pagination-current-page").getAttribute("placeholder"));
+  const protocolAndHost = `${window.location.protocol}//${window.location.host}`
+  const totalPaginatedPages = parseInt(document.getElementById("total_pages").innerText);
+  let canNavigate = true;
+
+  function checkIfNavigationButtonsNeedDeactivation() {
+    if (currentPage == 1) {
+      deactivatePreviousButton();
+    } else if (currentPage == totalPaginatedPages) {
+      deactivateNextButton();
+    }
+  }
+
+  function deactivateNextButton() {
+    document.getElementById("pagination-next-button").style.display = "none";
+  }
+
+  function deactivatePreviousButton() {
+    document.getElementById("pagination-previous-button").style.display = "none";
+  }
+
+  function disableSubmitIfNeeded(event) {
+    if (event.target.value > totalPaginatedPages) {
+      canNavigate = false;
+      document.getElementById("pagination-submit-button").disabled = true;
+    } else if (event.target.value < totalPaginatedPages) {
+      canNavigate = true;
+      document.getElementById("pagination-submit-button").disabled = false;
+    }
+  }
+
+  function moveBackOnePage() {
+    if (currentPage > 2) {
+      window.location.href = `${protocolAndHost}/media/articles/page/${currentPage - 1}/`;
+    } else {
+      window.location.href = `${protocolAndHost}/media/articles/`;
+    }
+  }
+
+  function moveForwardOnePage() {
+    if (currentPage < totalPaginatedPages) {
+      window.location.href = `${protocolAndHost}/media/articles/page/${parseInt(currentPage) + 1}/`;
+    } else {
+      window.location.href = `${protocolAndHost}/media/articles/page/${totalPaginatedPages}`;
+    }
+  }
+
+  function navigateToPageByInput() {
+    if (pageIsWithinPaginationBounds()) {
+      const pageToNavigateTo = paginationInputValue();
+      window.location.href = `${protocolAndHost}/media/articles/page/${pageToNavigateTo}/`;
+    } else if (paginationInputValue() == 1) {
+      window.location.href = `${protocolAndHost}/media/articles/`;
+    } else {
+      console.log('Cant navigate past bounds of paginated collection');
+    }
+  }
+
+  function paginationInputValue() {
+    return parseInt(document.getElementById("pagination-current-page").value);
+  }
+
+  function pageIsWithinPaginationBounds() {
+    return paginationInputValue() > 1 && paginationInputValue() <= totalPaginatedPages;
+  }
+
+  checkIfNavigationButtonsNeedDeactivation();
+
+  document.getElementById("pagination-submit-button").addEventListener("click", function() {
+    navigateToPageByInput();
+  }, false);
+
+  document.getElementById("pagination-current-page").addEventListener("keyup", function(e) {
+    if (e.key == 'Enter' && canNavigate) {
+      navigateToPageByInput();
+    }
+  }, false);
+
+  document.getElementById("pagination-previous-button").addEventListener("click", function() {
+    moveBackOnePage();
+  }, false);
+
+  document.getElementById("pagination-next-button").addEventListener("click", function(){
+    moveForwardOnePage();
+  }, false);
+
+  document.getElementById("pagination-current-page").addEventListener("input", function(e){
+    disableSubmitIfNeeded(e);
+  }, false);
 });
