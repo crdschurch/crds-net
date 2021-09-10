@@ -32,25 +32,25 @@ layout: default
           <img src="//crds-media.imgix.net/2ud1GhmoEf2udWaruq6XC3/57449963f031b6e036ea7506d81b6c6f/crds-logo-mark.svg" width="50" height="50" />
           <h3 class="component-header text-center text-white push-ends" >WELCOME TO CROSSROADS COLUMBUS</h3>
           <div class="embed-responsive embed-responsive-16by9">
-            <video class="embed-responsive-item" width="560" height="315" controls>
+            <video class="embed-responsive-item bg-black" width="560" height="315" poster="//crds-media.imgix.net/NUTfkKo8lBCFmcovbkCtQ/12b66b7d66e65503a6303d4355fad32d/crossroads-columbus-pastor-vicki-diler.jpeg" controls>
               <source src="//videos.ctfassets.net/y3a9myzsdjan/2cWZ3G7xhM6OokQy1bfhcw/ed3ea2912b752e0543e0bcf02d7d5e43/Columbus_Welcome_V1.1.mp4" type="video/mp4"></source>
             </video>
           </div>
         </div>
-        <div class="text-left soft overlay-bottom-text">
-          <div class="two-thirds-layout text-white">
-            <p style="font-size: 22px;">We're a church in Columbus. We meet digitally for Sunday morning services while we're searching for new digs to hold our growing community. We hang out together, we learn about God, and we serve our city. We believe following God is more than just sitting in a building on Sunday.</p>
-            <p class="strong" style="font-size: 16px;">We’d love to meet with you!</p>
-            <crds-button href="mailto:{{ page.community_pastor_email }}" color="white" display="outline" text="Email {{ page.community_pastor_name }}" target="_blank"></crds-button>
+        <div class="text-left soft-ends overlay-bottom-text row">
+          <div class="col-md-7 text-white">
+            <p style="font-size: 22px;">We’re a community in Columbus who’s been building momentum over the past few years. As we continue to move out of launch mode and determine where we want to lay down some roots (i.e. physical location), we continue to build a solid base of bold, courageous teammates who hang out together, learn about God, and serve the city we love.</p>
+            <p class="font-family-base-bold" style="font-size: 16px;">We’d love to meet with you!</p>
+            <div class="push-bottom">
+              <crds-button display="outline" data-dismiss="modal" color="white"
+              text="Explore Crossroads Columbus"></crds-button>
+            </div>
           </div>
-          <div class="one-third-layout">
-            <p class="text-orange" style="font-size: 16px; line-height: 20.5px;">HOW TO BE A PART OF CROSSROADS COLUMBUS</p>
-            <ol>
-              <li><b>Watch the weekly online</b> (until we meet in person again)</li>
-              <li><b>Hang out:</b> Attend an event and make real friends</li>
-              <li><b>Serve Columbus</b> to give back to the city we love</li>
-            </ol>
-            <crds-button data-dismiss="modal" onClick="$('#columbusEmailModalForm').modal(); return false;" color="orange"  text="Join the {{ page.name }} Community "></crds-button>
+          <div class="col-md-5">
+            <p class="font-family-base-bold text-white">Get plugged in around here</p>
+            <div>
+              <crds-button data-target="#columbusEmailModalForm" data-toggle="modal" color="white" display="outline" text="Sign up for Columbus 101"></crds-button>
+            </div>
           </div>
         </div>
       </div>
@@ -111,6 +111,7 @@ $(document).ready(function () {
 {% endif %}
 
 <!-- Jumbotron section -->
+{% if page.site_id != 23 %} 
 <section class="jumbotron locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
   id="location-page"
   data-optimize-bg-img>
@@ -170,6 +171,10 @@ $(document).ready(function () {
   </div>
 </section>
 
+{% else %}
+{% include _columbus-top-section.html %}
+{% endif %}
+
 <!-- Tabs Section -->
 <section class="overflow-hidden">
   <div class="container">
@@ -215,8 +220,13 @@ $(document).ready(function () {
             <div class="col-sm-4 push-bottom soft-bottom">
               <div class="bg-blue soft push-bottom">
                 <div class="soft-half-ends">
+                  {% if page.site_id == 23 %} 
+                  <p class="font-family-base-bold font-size-smaller text-orange text-uppercase flush">Come hang out.</p>
+                  <h4 class="flush-top font-family-condensed-extra font-size-h3 text-uppercase text-white">Make plans to meet your community.</h4>
+                  {% else %}
                   <p class="font-family-base-bold font-size-smaller text-orange text-uppercase flush">Join in community</p>
                   <h4 class="flush-top font-family-condensed-extra font-size-h3 text-uppercase text-white">Come hang out</h4>
+                  {% endif %}
                   <crds-button href="{{ page.google_calendar_link }}" color="white" display="outline" text="View Calendar" target="_blank"></crds-button>
                 </div>
               </div>
@@ -446,7 +456,11 @@ $(document).ready(function () {
 <section class="bg-blue bg-topo bg-contain soft-ends">
   <div class="container text-center push-ends">
     <h3 class="component-header-box text-orange">Stay in touch</h3>
+    {% if page.site_id == 23 %} 
+    <p class="push-half-ends font-family-serif text-white font-size-large">Get all the details on what we're bringing to Columbus.</p>
+    {% else %}
     <p class="push-half-ends font-family-serif text-white font-size-large">Get all the details happening at Crossroads {{ page.name }}.</p>
+    {% endif %}
 
     <div class="soft-ends text-center">
       {% if page.care_link %}
