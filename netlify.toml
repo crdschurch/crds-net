@@ -102,7 +102,7 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy-int.netlify.app"
   CRDS_INVOICES = "crds-invoices-int.netlify.app"
   CRDS_CORKBOARD_ENDPOINT = "crds-corkboard-int.netlify.app"
-  CRDS_VOLUNTEER = "https://volunteers-int.crossroads.net"
+  CRDS_VOLUNTEER = "https://crds-volunteer-int.netlify.app/"
 
 [context.runway.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-int.netlify.app"
