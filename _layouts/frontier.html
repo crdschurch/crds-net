@@ -18,11 +18,11 @@ layout: default
 
 {% if page.slug == "columbus" %}
 <!-- Columbus Modal -->
-<div aria-labelledby="Welcome to crossroads columbus" class="location-overlay modal fade" id="welcomeLocationOverlay" role="dialog">
+<div aria-labelledby="Welcome to crossroads columbus" class="location-overlay modal fade stop-video" id="welcomeLocationOverlay" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="">
       <div class="modal-header hard-bottom">
-        <button aria-label="Close" class="close pull-right" style="background-color: transparent;"
+        <button aria-label="Close" class="close pull-right stop-video" style="background-color: transparent;"
           data-dismiss="modal" type="button">
           <span style="font-size: 30px" aria-hidden="true">&times;</span>
         </button>
@@ -32,7 +32,7 @@ layout: default
           <img src="//crds-media.imgix.net/2ud1GhmoEf2udWaruq6XC3/57449963f031b6e036ea7506d81b6c6f/crds-logo-mark.svg" width="50" height="50" />
           <h3 class="component-header text-center text-white push-ends" >WELCOME TO CROSSROADS COLUMBUS</h3>
           <div class="embed-responsive embed-responsive-16by9">
-            <video class="embed-responsive-item bg-black" width="560" height="315" poster="//crds-media.imgix.net/NUTfkKo8lBCFmcovbkCtQ/12b66b7d66e65503a6303d4355fad32d/crossroads-columbus-pastor-vicki-diler.jpeg" controls>
+            <video id="modalVideo" class="embed-responsive-item bg-black" width="560" height="315" poster="//crds-media.imgix.net/NUTfkKo8lBCFmcovbkCtQ/12b66b7d66e65503a6303d4355fad32d/crossroads-columbus-pastor-vicki-diler.jpeg" controls>
               <source src="//videos.ctfassets.net/y3a9myzsdjan/2cWZ3G7xhM6OokQy1bfhcw/ed3ea2912b752e0543e0bcf02d7d5e43/Columbus_Welcome_V1.1.mp4" type="video/mp4"></source>
             </video>
           </div>
@@ -566,3 +566,5 @@ $(document).ready(function () {
     </div>
   </div>
 </div>
+
+{% javascript_link_tag video-modal-close %}
