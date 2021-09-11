@@ -42,6 +42,7 @@ module.exports = [
       'components/countdown',
       'components/jumbotron-video',
       'components/filters',
+      'components/flickity-display',
       'components/smart-banner',
       'components/pagination',
       'components/tabs',
