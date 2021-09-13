@@ -13,8 +13,19 @@
   <div class="load-more">
     <button class="btn {% if include.btn-type == 'white-outline' %}btn-white btn-outline{% else %}btn-blue{% endif %}" data-role="load-more" data-paginate="{{ include.collection }}">Load more{{ include.label | prepend: ' ' }}</button>
   </div>
-  {% endif %}
 
+  {% elsif include.n_of_total_pagination == "true" %}
+  <div class="input-pagination">
+    <button class="btn btn-link text-blue" id="pagination-previous-button">&lt;</button>
+    <input class="form-control form-control-custom-small" type="number"
+    max="{{paginator.total_pages}}" id="pagination-current-page" placeholder="{{paginator.page}}">
+    <span>of</span>
+    <span id="total_pages">{{paginator.total_pages}}</span>
+    <button class="btn btn-blue" id="pagination-submit-button">Go!</button>
+    <button class="btn btn-link text-blue" id="pagination-next-button">&gt;</button>
+  </div>
+
+  {% else %}
   <div class="text-center{% if include.remote == true %} hide{% endif %}">
     <ul class="pagination" data-pagination="{{ include.collection }}">
     {% if paginator.previous_page %}
@@ -53,4 +64,5 @@
     {% endif %}
     </ul>
   </div>
+  {% endif %}
 {% endif %}

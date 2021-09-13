@@ -124,6 +124,9 @@
 }
 
 .location-overlay-content {
+  margin: 0 auto;
+  max-width: 710px;
+
   img {
     display: block;
     margin-left: auto;
@@ -160,5 +163,139 @@
         color: $cr-white;
       }
     }
+  }
+}
+
+.columbus {
+  &.jumbotron {
+    p {
+      font-weight: 200 !important;
+    }
+  }
+
+  #service-times {
+    font-weight: 200 !important;
+  }
+
+  @media (min-width: $screen-md) {
+
+    .location-top-info-item {
+      margin-left: 30px;
+      margin-right: 30px;
+      position: relative;
+      width: 30%;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:not(:last-child) {
+        &::after {
+          background-color: $cr-white;
+          content: "";
+          display: inline-block;
+          height: 130px;
+          left: 100%;
+          margin-left: 20px;
+          position: absolute;
+          top: 0;
+          width: 1px;
+        }
+      }
+    }
+  }
+}
+
+.orange-rip-1 {
+  max-width: 430px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.welcome-section {
+  position: relative;
+
+  &::after {
+    background-image: url('//crds-media.imgix.net/49G8WvjJ7hM8BYwYrtbqsv/6a86eb5ddb77cea3020018e68f8992c0/columbus-orange-bg2b.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+    display: block;
+    height: 450px;
+    max-width: 365px;
+    position: absolute;
+    right: 0;
+    top: -65px;
+    width: 100%;
+  }
+
+  > div {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.columbus-hello-box {
+  position: relative;
+
+  .content {
+    padding: 30px;
+    position: absolute;
+    top: 75px;
+  }
+}
+
+.columbus-hello-col {
+  position: relative;
+
+  .content {
+    padding: 30px;
+    position: absolute;
+    top: 75px;
+
+  }
+
+  img {
+    height: 615px;
+    width: 100%;
+  }
+
+  @media (min-width: 576px) {
+    @include make-xs-column(8);
+
+    float: none;
+    margin: 0 auto;
+
+    img {
+      height: 550px;
+    }
+  }
+
+  @media (min-width: $screen-sm) {
+    @include make-xs-column(6);
+
+    .content {
+      padding: 30px;
+      position: absolute;
+      top: 75px;
+    }
+
+    img {
+      height: 600px;
+    }
+  }
+
+  @media (min-width: $screen-md) {
+    @include make-xs-column(5);
+  }
+  
+  @media (min-width: $screen-lg) {
+    @include make-xs-column(4);
   }
 }
