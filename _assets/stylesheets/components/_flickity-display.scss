@@ -18,3 +18,8 @@
   opacity: 1;
   transition: opacity 0.3s ease;
 }
+
+// Update cursor
+.flickity-enabled.is-draggable .flickity-viewport {
+  cursor: auto !important;
+}
