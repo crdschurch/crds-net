@@ -6,8 +6,34 @@
   padding: 6px 12px;
 }
 
+.input-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-pagination > button {
+  justify-content: center;
+  margin: 0px 5px;
+}
+
+.input-pagination > input {
+  justify-content: center;
+  margin: 0px 5px;
+}
+
+.input-pagination > span {
+  justify-content: center;
+  margin: 0px 5px;
+}
+
 .load-more {
   clear: both;
+}
+
+.form-control-custom-small {
+  display: inline;
+  width: 65px;
 }
 
 .pager li>a, .pager li>span {
