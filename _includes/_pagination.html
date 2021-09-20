@@ -17,7 +17,7 @@
   {% elsif include.n_of_total_pagination == "true" %}
   <div class="input-pagination">
     <button class="btn btn-link text-blue" id="pagination-previous-button">&lt;</button>
-    <input class="form-control form-control-custom-small" type="number"
+    <input class="form-control form-control-custom-small" require type="number" min="1"
     max="{{paginator.total_pages}}" id="pagination-current-page" placeholder="{{paginator.page}}">
     <span>of</span>
     <span id="total_pages">{{paginator.total_pages}}</span>
