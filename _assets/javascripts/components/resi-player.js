@@ -54,6 +54,11 @@ const refreshPageForServiceStart = (hours, minutes, seconds) => {
   }, timeout);
 };
 
+// For OnDemand Card
+if (isServiceTime() && document.getElementById('ondemand-cta')) {
+  document.getElementById('ondemand-cta').remove();
+} 
+
 if (isServiceTime() && document.getElementById('resi-player')) {
   const resiPlayer = document.getElementById('resi-video-player-container');
   const resiScript = document.createElement('script');
@@ -71,4 +76,5 @@ if (isDayOfTheWeek(0)) {
   refreshPageForServiceStart(8,25,1);
   refreshPageForServiceStart(9,55,1);
   refreshPageForServiceStart(11,40,1);
+  refreshPageForServiceStart(13,30,1);
 }
