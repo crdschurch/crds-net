@@ -29,6 +29,7 @@ layout: default
 <section class="jumbotron locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
   id="location-page"
   data-optimize-bg-img>
+  {% include locations/_on-demand-card.html %}
   <div class="bg-overlay"></div>
   <div class="container">
     <div class="row location-title-row" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
