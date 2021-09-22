@@ -25,7 +25,7 @@ layout: default
 {% endif %}
 
 <!-- Jumbotron section -->
-{% if page.site_id != 23 %} 
+{% if page.site_id != 23 %}
 <section class="jumbotron locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
   id="location-page"
   data-optimize-bg-img>
@@ -107,7 +107,7 @@ layout: default
 
         <!-- Events & Updates -->
         <div slot="tab-events-updates" class="push-ends">
-          <div class="row">
+          <div class="row" id="events-updates">
 
             <div class="col-sm-8 push-bottom soft-bottom">
               <!-- Featured Section - Below Jumbotron -->
@@ -134,7 +134,7 @@ layout: default
             <div class="col-sm-4 push-bottom soft-bottom">
               <div class="bg-blue soft push-bottom">
                 <div class="soft-half-ends">
-                  {% if page.site_id == 23 %} 
+                  {% if page.site_id == 23 %}
                   <p class="font-family-base-bold font-size-smaller text-orange text-uppercase flush">Come hang out.</p>
                   <h4 class="flush-top font-family-condensed-extra font-size-h3 text-uppercase text-white">Make plans to meet your community.</h4>
                   {% else %}
@@ -370,7 +370,7 @@ layout: default
 <section class="bg-blue bg-topo bg-contain soft-ends">
   <div class="container text-center push-ends">
     <h3 class="component-header-box text-orange">Stay in touch</h3>
-    {% if page.site_id == 23 %} 
+    {% if page.site_id == 23 %}
     <p class="push-half-ends font-family-serif text-white font-size-large">Get all the details on what we're bringing to Columbus.</p>
     {% else %}
     <p class="push-half-ends font-family-serif text-white font-size-large">Get all the details happening at Crossroads {{ page.name }}.</p>
