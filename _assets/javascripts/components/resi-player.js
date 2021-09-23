@@ -22,6 +22,12 @@ const isDayOfTheWeek = (day) => {
   }
 };
 
+const isNotCtaRenderTime = () => {
+  let isSunday = isDayOfTheWeek(0);
+  let serviceWindow = (getEstTime() >= 825 && 1330);
+  return isSunday && serviceWindow
+}
+
 const isServiceTime = () => {
   let isSunday = isDayOfTheWeek(0);
 
@@ -54,6 +60,10 @@ const refreshPageForServiceStart = (hours, minutes, seconds) => {
   }, timeout);
 };
 
+if (isNotCtaRenderTime() && document.getElementById('ondemand-cta')) {
+  document.getElementById('ondemand-cta').remove()
+}
+
 if (isServiceTime() && document.getElementById('resi-player')) {
   const resiPlayer = document.getElementById('resi-video-player-container');
   const resiScript = document.createElement('script');
@@ -71,4 +81,5 @@ if (isDayOfTheWeek(0)) {
   refreshPageForServiceStart(8,25,1);
   refreshPageForServiceStart(9,55,1);
   refreshPageForServiceStart(11,40,1);
+  refreshPageForServiceStart(13,30,1);
 }
