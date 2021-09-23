@@ -196,6 +196,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /online/getstarted,https://online.crossroads.net/,301!
 /getstarted/thank-you,https://online.crossroads.net/,301!
 /live,https://online.crossroads.net/,301!
-/signin,${CRDS_ONLINE_DOMAIN}/sign-in,301 Cookie=fromOnline
+/signin,${env:CRDS_ONLINE_DOMAIN}/sign-in,301 Cookie=fromOnline
 /*,/404.html,404
 
