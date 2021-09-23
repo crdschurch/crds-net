@@ -58,8 +58,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy-int.netlify.app"
   CRDS_INVOICES = "crds-invoices-int.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer-int.netlify.app/"
-  CRDS_ONLINE_DOMAIN = "https://online-int.crossroads.net"
-
 
 [context.deploy-preview.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-int.netlify.app"
@@ -82,8 +80,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy-int.netlify.app"
   CRDS_INVOICES = "crds-invoices-int.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer-int.netlify.app/"
-  CRDS_ONLINE_DOMAIN = "https://online-int.crossroads.net"
-
 
 [context.development.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-int.netlify.app"
@@ -107,8 +103,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_INVOICES = "crds-invoices-int.netlify.app"
   CRDS_CORKBOARD_ENDPOINT = "crds-corkboard-int.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer-int.netlify.app/"
-  CRDS_ONLINE_DOMAIN = "https://online-int.crossroads.net"
-  
 
 [context.runway.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-int.netlify.app"
@@ -131,8 +125,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy-int.netlify.app"
   CRDS_INVOICES = "crds-invoices-int.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer-int.netlify.app/"
-  CRDS_ONLINE_DOMAIN = "https://online-int.crossroads.net"
-
 
 
 [context.release.environment]
@@ -156,8 +148,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy-demo.netlify.app"
   CRDS_INVOICES = "crds-invoices-demo.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer-demo.netlify.app/"
-  CRDS_ONLINE_DOMAIN = "https://online-demo.crossroads.net"
-
 
 [context.master.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people.netlify.app"
@@ -181,8 +171,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_INVOICES = "crds-invoices.netlify.app"
   CRDS_CORKBOARD_ENDPOINT = "crds-corkboard.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer.netlify.app/"
-  CRDS_ONLINE_DOMAIN = "https://online.crossroads.net"
-
 
 [context.rebrand.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-int.netlify.app"
@@ -205,5 +193,3 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy-int.netlify.app"
   CRDS_INVOICES = "crds-invoices-int.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer-int.netlify.app/"
-  CRDS_ONLINE_DOMAIN = "https://online-int.crossroads.net"
-
