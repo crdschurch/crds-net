@@ -24,18 +24,20 @@
   .ondemand-card {
     display: flex;
     flex-direction: row;
-    margin-left: auto;
-    margin-right: 32px;
-    margin-top: -100px;
-    padding-right: 0px;
-    background-color: white;
+    position: absolute;
+    width: 100%;
+    right: 32px;
+    background-color: $cr-white;
     border-radius: 8px;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
     max-width: 397px;
     align-items: center;
+    justify-content: space-around;
+    z-index: 3;
+    top: 30px;
 
     p {
-      color: #FF8200;
+      color: $cr-orange;
       font-size: 13px;
       line-height: 16px;
       font-family: $font-family-base;
@@ -44,7 +46,7 @@
     }
 
     h1 {
-      color: #4A4948;
+      color: $cr-gray-darker;
       font-size: 40px;
       line-height: 44px;
       font-family: $condensed-extra-font-face;
@@ -56,9 +58,10 @@
       max-width: 350px;
       top: 11px;
       position: absolute;
-      z-index: 1;
+      z-index: 3;
       left: 50%;
-      margin-left: -171px;
+      width: 100%;
+      transform: translateX(-50%);
       margin-right: 0px;
       margin-top: 0px;
 
@@ -73,12 +76,6 @@
 
     .text-container {
       text-align: left;
-      padding-left: 22px;
-    }
-
-    .button {
-      padding-right: 22px;
-      padding-left: 32px;
     }
   }
 
