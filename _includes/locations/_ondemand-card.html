@@ -1,9 +1,2 @@
-<div id="ondemand-cta" class="ondemand-card">
-  <div class="text-container text-uppercase">
-    <p>missed the livestream?</p>
-    <h1>watch it on demand</h1>
-  </div>
-  <div class="button">
-    <crds-button href="/media/videos/" color="orange" text="Watch now"></crds-button>
-  </div>
-</div>
+{% assign onDemandCard = site.content_blocks | where: 'slug', 'on-demand-cta' | first %}
+{{ onDemandCard.content_block | markdownify  }}
