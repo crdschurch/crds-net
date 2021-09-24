@@ -1,12 +1,14 @@
 import { stubLocationSearchResponse } from './helpers/location_search';
 import { searchErrorResponse } from '../../../fixtures/location_search_results';
 
+const errorsToIgnore =  /.* > Cannot read property 'getAttribute' of null*/;
+
 describe('Tests invalid search', function() {
   it('Checks error is displayed', function() {
     // Setup search response error
     const errorResponse = searchErrorResponse();
     stubLocationSearchResponse(errorResponse, 400);
-    
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit('/locations');
 
     const keyword = 'ljs;oifjoeia';

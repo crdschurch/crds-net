@@ -3,7 +3,7 @@ import { getRelativeMessageUrl } from '../../support/GetUrl';
 
 const soundOn = 'sound=11';
 const soundOff = 'sound=1';
-const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/, /.*> Cannot set property 'status' of undefined*/];
+const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/, /.*> Cannot set property 'status' of undefined*/,  /.* > Cannot read property 'getAttribute' of null*/];
 
 describe('Tests message with Bitmovin player and transcription', function () {
   let relativeMessageURL;

@@ -1,12 +1,15 @@
 import { oakleyLocationResponse } from '../../../fixtures/location_search_results';
 import { stubLocationSearchResponse } from './helpers/location_search';
 
+const errorsToIgnore =  /.* > Cannot read property 'getAttribute' of null*/;
+
 describe('Tests out of range location result cards', function() {
   const outOfRangeLocation = oakleyLocationResponse();
   outOfRangeLocation.distance = 30.1;
 
   before(function() {
-    stubLocationSearchResponse([outOfRangeLocation]);    
+    stubLocationSearchResponse([outOfRangeLocation]);  
+    cy.ignoreMatchingErrors(errorsToIgnore);  
     cy.visit('/locations');
 
     const farAwayZip = '45209';

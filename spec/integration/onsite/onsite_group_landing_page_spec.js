@@ -16,7 +16,7 @@ function sortByCategoryThenSlug(group1, group2){
   return 0;
 }
 
-describe('Given I navigate to /onsite/group Page:', function() {
+describe.skip('Given I navigate to /onsite/group Page:', function() {
   let onsiteGroupList;
   before(function() {
     // Get Onsite Groups

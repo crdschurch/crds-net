@@ -1,7 +1,10 @@
 import { SeriesQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
-describe('Testing the Current Series on the Media landing page:', function () {
+const errorsToIgnore =  /.* > Cannot read property 'getAttribute' of null*/;
 
+
+describe('Testing the Current Series on the Media landing page:', function () {
+ 
   let currentSeries;
   before(function () {
     const qb = new SeriesQueryBuilder();
@@ -11,7 +14,7 @@ describe('Testing the Current Series on the Media landing page:', function () {
       .then((series) => {
         currentSeries = series;
       });
-
+      cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit('/');
   });
 

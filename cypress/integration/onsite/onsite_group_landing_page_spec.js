@@ -16,6 +16,8 @@ function sortByCategoryThenSlug(group1, group2){
   return 0;
 }
 
+const importDeclarationsError = [/.*import declarations may only appear at top level of a module.*/,  /.* > Cannot read property 'getAttribute' of null*/];
+
 describe('Given I navigate to /onsite/group Page:', function() {
   let onsiteGroupList;
   before(function() {
@@ -28,7 +30,7 @@ describe('Given I navigate to /onsite/group Page:', function() {
       .then((groups) => {
          onsiteGroupList = groups.filter(g => g.category.title.text == "Site-based");
       });
-      const importDeclarationsError = /.*import declarations may only appear at top level of a module.*/;
+  //  const importDeclarationsError = [/.*import declarations may only appear at top level of a module.*/,  /.* > Cannot read property 'getAttribute' of null*/];
       cy.ignoreMatchingErrors([importDeclarationsError]);
     cy.visit('/groups/onsite');
   });
