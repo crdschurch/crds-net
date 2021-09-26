@@ -81,5 +81,5 @@ if (isDayOfTheWeek(0)) {
   refreshPageForServiceStart(8,25,1);
   refreshPageForServiceStart(9,55,1);
   refreshPageForServiceStart(11,40,1);
-  refreshPageForServiceStart(13,30,1);
+  refreshPageForServiceStart(13,1,1);
 }
