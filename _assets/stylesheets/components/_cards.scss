@@ -218,6 +218,10 @@
   }
 
   @media screen and (min-width: $screen-md) {
+    .overlay-card-title {
+      font-size: 3.5vw;
+    }
+
     .overlay-card-content {
       padding: 30px;
     }
