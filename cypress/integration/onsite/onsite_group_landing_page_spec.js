@@ -16,7 +16,7 @@ function sortByCategoryThenSlug(group1, group2){
   return 0;
 }
 
-const importDeclarationsError = [/.*import declarations may only appear at top level of a module.*/,  /.* > Cannot read property 'getAttribute' of null*/];
+const errorsToIgnore = [/.*import declarations may only appear at top level of a module.*/,  /.* > Cannot read property 'getAttribute' of null*/];
 
 describe('Given I navigate to /onsite/group Page:', function() {
   let onsiteGroupList;
@@ -28,10 +28,10 @@ describe('Given I navigate to /onsite/group Page:', function() {
     qb.limit = 100;
     cy.task('getCNFLResource', qb.queryParams)
       .then((groups) => {
-         onsiteGroupList = groups.filter(g => g.category.title.text == "Site-based");
+        onsiteGroupList = groups.filter(g => g.category.title.text == "Site-based");
       });
-  //  const importDeclarationsError = [/.*import declarations may only appear at top level of a module.*/,  /.* > Cannot read property 'getAttribute' of null*/];
-      cy.ignoreMatchingErrors([importDeclarationsError]);
+    //  const importDeclarationsError = [/.*import declarations may only appear at top level of a module.*/,  /.* > Cannot read property 'getAttribute' of null*/];
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit('/groups/onsite');
   });
   

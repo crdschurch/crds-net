@@ -1,4 +1,4 @@
-const errorsToIgnore =  /.* > Cannot read property 'getAttribute' of null*/;
+const errorsToIgnore =   /.* > Cannot read property 'getAttribute' of null*/;
 
 describe('Testing the 404 page:', function() {
   before(function() {

@@ -1,5 +1,8 @@
 import { ContentfulQueryBuilder } from 'crds-cypress-contentful';
 
+
+const errorsToIgnore =  /.* > Cannot read property 'getAttribute' of null*/;
+
 describe('Testing navigation between pages:', function() {
   it('(DE6321) Navigating to a location with a known redirect should land on the redirected page served by Netlify', function() {
     const andoverSlug = '/andover';
@@ -12,7 +15,7 @@ describe('Testing navigation between pages:', function() {
       .its('to.text')
       .should('exist')
       .and('eq', lexingtonSlug);
-    
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit(andoverSlug);
 
     const lexingtonRegex = new RegExp(`${Cypress.config().baseUrl}${lexingtonSlug}/?`);

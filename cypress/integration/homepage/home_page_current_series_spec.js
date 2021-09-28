@@ -1,4 +1,6 @@
-import { SeriesQueryBuilder, normalizeText } from 'crds-cypress-contentful';
+import { SeriesQueryBuilder} from 'crds-cypress-contentful';
+
+const errorsToIgnore =  /.* > Cannot read property 'getAttribute' of null*/;
 describe('Testing the Current Series on the Homepage:', function() {
   let currentSeries;
   before(function() {
@@ -9,11 +11,12 @@ describe('Testing the Current Series on the Homepage:', function() {
       .then((series) => {
         currentSeries = series;
       });
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit('/');
   });
  
   it('Current series title, description, and image should match Contentful', function() {
-      cy.get('[data-automation-id="series-title"]').as('seriesTitle')
+    cy.get('[data-automation-id="series-title"]').as('seriesTitle')
       .should('be.visible')
       .and('have.text', currentSeries.title.text);
     cy.get('@seriesTitle')

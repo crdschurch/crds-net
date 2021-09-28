@@ -4,7 +4,7 @@ import { getRelativeMessageUrl } from '../../support/GetUrl';
 describe('Tests the Current Message on the Homepage', function() {
   // const requestFilter = new RequestFilter(amplitude.isVideoStarted);
   let currentMessage;  
-  const importDeclarationsError = /.*> Cannot set property 'status' of undefined*/;
+  const errorsToIgnore = [/.*> Cannot set property 'status' of undefined*/,  /.* > Cannot read property 'getAttribute' of null*/];
 
   before(function() {
     const qb = new MessageQueryBuilder();
@@ -13,7 +13,7 @@ describe('Tests the Current Message on the Homepage', function() {
     cy.task('getCNFLResource', qb.queryParams)
       .then((message) => {
         currentMessage = message;
-        cy.ignoreMatchingErrors([importDeclarationsError]);
+        cy.ignoreMatchingErrors(errorsToIgnore);
       });
 
     //Setup capture for events
@@ -25,9 +25,9 @@ describe('Tests the Current Message on the Homepage', function() {
     //     requestFilter.keepMatch(xhr.request);
     //   }
     // });
-    cy.ignoreMatchingErrors([importDeclarationsError]);
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit('/');
-    });
+  });
 
   it('Checks title, image, and button have correct link', function() {
     cy.get('.latest-message-headline').as('title')
@@ -74,7 +74,7 @@ describe('Tests the Current Message on the Homepage', function() {
     if (currentMessage.bitmovin_url.hasValue) {
       cy.get('div[data-video-player]').as('videoPlayer')
         .should('have.prop', 'id').and('contain', 'bitmovinPlayer');
-    //  cy.wait(3000);
+      //  cy.wait(3000);
       // Confirm autoplay has started by listening for the event
       cy.get('@analytics.track',{ timeout: 50000 })
         .should('have.been.calledWith', 'VideoStarted');

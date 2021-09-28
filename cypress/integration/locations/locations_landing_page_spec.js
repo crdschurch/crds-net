@@ -1,5 +1,9 @@
 import { ContentfulQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
+
+const errorsToIgnore =  /.* > Cannot read property 'getAttribute' of null*/;
+
+
 describe('Given I navigate to /locations and do not search:', function() {
   let locationList; 
 
@@ -13,7 +17,7 @@ describe('Given I navigate to /locations and do not search:', function() {
       .then((locations) => {
         locationList = locations;
       });
-
+    cy.ignoreMatchingErrors(errorsToIgnore); 
     cy.visit('/locations');
   });
 
