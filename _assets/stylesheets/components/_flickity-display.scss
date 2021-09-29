@@ -1,0 +1,25 @@
+// Flickity Wrapper
+.card-deck.carousel {
+  max-height: 500px;
+}
+
+.card-deck.carousel.is-visible {
+  max-height: none;
+}
+
+// Flickity Cell
+.carousel-cell {
+  opacity: 0;
+  display: none;
+}
+
+.carousel-cell.is-visible {
+  display: flex;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+// Update cursor
+.flickity-enabled.is-draggable .flickity-viewport {
+  cursor: auto !important;
+}

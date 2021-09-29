@@ -156,8 +156,25 @@ $(document).ready(function() {
     navigateToPageByInput();
   }, false);
 
-  document.getElementById("pagination-current-page").addEventListener("keyup", function(e) {
-    if (e.key == 'Enter' && canNavigate) {
+  document.getElementById("pagination-current-page").addEventListener("keydown", function(e) {
+    const dashKeyCode = 189;
+    const numPadNumber0KeyCode = 96;
+    const numPadMultiplyKeyCode = 106;
+    const number0KeyCode = 48;
+    const colonKeyCode = 58;
+    const backspaceKeyCode = 8;
+    const enterKeyCode = 13;
+
+    if (e.keyCode == dashKeyCode || e.key == "-") {
+      e.preventDefault();
+      return false;
+    } else if (!((e.keyCode > numPadNumber0KeyCode && e.keyCode < numPadMultiplyKeyCode)
+      || (e.keyCode > number0KeyCode && e.keyCode < colonKeyCode)
+      || e.keyCode == backspaceKeyCode
+      || e.keyCode == enterKeyCode)) {
+      e.preventDefault();
+      return false;
+    } else if (e.key == 'Enter' && canNavigate) {
       navigateToPageByInput();
     }
   }, false);
