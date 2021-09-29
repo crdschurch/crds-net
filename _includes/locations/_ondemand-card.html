@@ -1,0 +1,2 @@
+{% assign onDemandCard = site.content_blocks | where: 'slug', 'on-demand-cta' | first %}
+{{ onDemandCard.content_block | markdownify  }}
