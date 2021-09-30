@@ -1,7 +1,7 @@
 import { stubLocationSearchResponse } from './helpers/location_search';
 import { searchErrorResponse } from '../../../fixtures/location_search_results';
 
-const errorsToIgnore =  /.* > Cannot read property 'getAttribute' of null*/;
+const errorsToIgnore = [ /.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
 
 describe('Tests invalid search', function() {
   it('Checks error is displayed', function() {

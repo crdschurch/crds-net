@@ -1,13 +1,13 @@
 import { ContentfulQueryBuilder } from 'crds-cypress-contentful';
 
 
-const errorsToIgnore =  /.* > Cannot read property 'getAttribute' of null*/;
+const errorsToIgnore = [ /.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
 
 describe('Testing navigation between pages:', function() {
   it('(DE6321) Navigating to a location with a known redirect should land on the redirected page served by Netlify', function() {
     const andoverSlug = '/andover';
     const lexingtonSlug = '/lexington';
-    cy.wait(5000);
+    
     const qb = new ContentfulQueryBuilder('redirect');
     qb.select = 'fields.from,fields.to';
     qb.searchFor = `fields.from=${andoverSlug}`;

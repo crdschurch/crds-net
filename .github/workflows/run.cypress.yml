@@ -14,7 +14,7 @@ jobs:
     - name: Cypress run
       uses: cypress-io/github-action@v2
       with:
-        config-file: cypress/config/int_crossroads.json --headed -b electron
+        config-file: cypress/config/int_crossroads.json
       env:
        # pass the Vault Role and Secret ID as an environment variable
        VAULT_ROLE_ID: ${{ secrets.VAULT_ROLE_ID }}

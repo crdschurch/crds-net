@@ -26,7 +26,7 @@ describe.skip('Given I navigate to /onsite/group Page:', function() {
     qb.limit = 100;
     cy.task('getCNFLResource', qb.queryParams)
       .then((groups) => {
-         onsiteGroupList = groups.filter(g => g.category.title.text == "Site-based");
+         onsiteGroupList = groups.filter(g => g.category.title.text == 'Site-based');
       });
       const importDeclarationsError = /.*import declarations may only appear at top level of a module.*/;
       cy.ignoreMatchingErrors([importDeclarationsError]);

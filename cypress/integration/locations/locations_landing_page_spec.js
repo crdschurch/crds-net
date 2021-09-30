@@ -1,7 +1,7 @@
 import { ContentfulQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
 
-const errorsToIgnore =  /.* > Cannot read property 'getAttribute' of null*/;
+const errorsToIgnore = [ /.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
 
 
 describe('Given I navigate to /locations and do not search:', function() {
@@ -52,7 +52,7 @@ describe('Given I navigate to /locations and do not search:', function() {
       cy.get('#section-locations .card').eq(index).as(`${name}CardImage`)
         .scrollIntoView()
         .within(() => {
-          cy.get('[data-automation-id="location-image"]').within(() => {
+          cy.get('[data-automation-id="location-image"]' , {timeout: 60000}).within(() => {
             cy.imgixShouldRunOnElement('img', location.image);
           });          
         });

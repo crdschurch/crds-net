@@ -63,7 +63,7 @@ describe('Tests the Current Message on the Homepage', function() {
       });
   });
 
-  it('Checks card image and, if Bitmovin video, player exists and video autoplays', function() {
+  it.skip('Checks card image and, if Bitmovin video, player exists and video autoplays', function() {
     cy.visit('/'); //Revisit to confirm analytics event
     cy.get('[data-automation-id="message-video"]').as('currentMessageVideo')
       .scrollIntoView()

@@ -1,7 +1,7 @@
 import { oakleyLocationResponse } from '../../../fixtures/location_search_results';
 import { stubLocationSearchResponse } from './helpers/location_search';
 
-const errorsToIgnore =  /.* > Cannot read property 'getAttribute' of null*/;
+const errorsToIgnore = [ /.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
 
 describe('Tests out of range location result cards', function() {
   const outOfRangeLocation = oakleyLocationResponse();

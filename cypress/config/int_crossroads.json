@@ -2,7 +2,7 @@
   "projectId": "k8zvaf",
   "baseUrl": "https://int.crossroads.net",
   "testFiles": "**/*spec.js",
-  "env": {
+    "env": {
     "CONTENTFUL_ENV": "int",
     "vaultEnv": "int",
     "CRDS_GATEWAY_ENDPOINT": "https://gatewayint.crossroads.net/gateway"

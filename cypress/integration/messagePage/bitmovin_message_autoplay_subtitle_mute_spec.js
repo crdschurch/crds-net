@@ -21,7 +21,7 @@ describe('Tests message with Bitmovin player and transcription', function () {
   });
 
   describe('Tests message autoplays and query params applied', () => {
-    it('Checks sound is on and subtitles off', function () {
+    it.skip('Checks sound is on and subtitles off', function () {
       cy.ignoreMatchingErrors(errorsToIgnore);
       cy.visit(`${relativeMessageURL}?autoPlay=true&${soundOn}`);
 
@@ -32,7 +32,7 @@ describe('Tests message with Bitmovin player and transcription', function () {
         });
 
       // Confirm autoplay has started by listening for the event
-      cy.get('@analytics.track')
+      cy.get('@analytics.track', {timeout: 60000})
         .should('have.been.calledWith', 'VideoStarted');
     });
 
