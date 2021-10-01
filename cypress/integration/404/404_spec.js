@@ -1,7 +1,9 @@
+
+const errorsToIgnore =  [ /.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
+
 describe('Testing the 404 page:', function() {
   before(function() {
-    const importDeclarationsError = /.*import declarations may only appear at top level of a module.*/;
-    cy.ignoreMatchingErrors([importDeclarationsError]);
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit('/404');
   });
 
@@ -13,17 +15,16 @@ describe('Testing the 404 page:', function() {
   });
 
   it('/search page should load with search input when the search button is clicked', function() {
-  cy.get('[data-automation-id="404-search-button"]').click();
-
-  cy.get('.ais-SearchBox-input').as('searchField')
-     .should('exist').and('be.visible');
- 
+    cy.get('[data-automation-id="404-search-button"]').click();
+    cy.get('.ais-SearchBox-input').as('searchField')
+      .should('exist').and('be.visible');
   });  
 });
 
 describe('Testing invalid routes serve the expected 404 page:', () => {
   ['/notapage', '/live/notapage'].forEach((slug) => {
     it(`crossroads.net${slug}`, () => {
+      cy.ignoreMatchingErrors(errorsToIgnore);
       cy.visit(slug, { failOnStatusCode: false });
 
       cy.get('crds-shared-header').should('exist');

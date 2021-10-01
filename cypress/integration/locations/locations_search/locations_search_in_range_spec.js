@@ -1,6 +1,6 @@
 import { oakleyLocationResponse, florenceLocationResponse } from '../../../fixtures/location_search_results';
 import { stubLocationSearchResponse } from './helpers/location_search';
-const importDeclarationsError = /.*> Cannot set property 'status' of undefined*/;
+const errorsToIgnore = [ /.*> Cannot set property 'status' of undefined*/,  /.* > Cannot read property 'getAttribute' of null*/];
 
 describe('Tests in range location result cards', function () {
   const nearestLocation = oakleyLocationResponse();
@@ -10,7 +10,7 @@ describe('Tests in range location result cards', function () {
 
   before(function () {
     stubLocationSearchResponse([nextNearestLoc, nearestLocation]);
-    cy.ignoreMatchingErrors([importDeclarationsError]);
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit('/locations');
 
     const oakleyZip = '45209';
