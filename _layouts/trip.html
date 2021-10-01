@@ -43,12 +43,16 @@ layout: no-header-no-footer
             <li role="navigation" style="float: none; display: inline-block;"><a href="#partner" aria-controls="partner"
                 role="tab" data-toggle="tab">Partner</a></li>
             {% endif %}
+            <li role="navigation" style="float: none; display: inline-block;">
+              <a href="#faqs" aria-controls="faqs" role="tab" data-toggle="tab">FAQs</a>
+            </li>
+
           </ul>
           <div class="tab-content push-top">
             <!-- Overview -->
             <div role="tabpanel" class="tab-pane in active" id="overview">
               <div class="row">
-                <div class="col-sm-12 push-ends">
+                <div class="col-sm-8 push-bottom">
                   <p class="lead">{{ page.trip_description }}</p>
                   {% if page.trip_full%}
                   <crds-button color="blue" disabled="true" text="Trip is Full" href=""></crds-button>
@@ -56,11 +60,7 @@ layout: no-header-no-footer
                   <crds-button color="blue" text="Sign up" href="{{ page.sign_up_link }}"></crds-button>
                   {% endif %}
                 </div>
-              </div>
-              <!-- Trip Details -->
-              <div class="row">
-                <hr>
-                <div class="col-sm-6 push-ends">
+                <div class="col-sm-4 push-bottom">
                   <p class="metadata">Trip Details</p>
                   <p class="font-size-base"><strong>Signup Deadline</strong>:
                     {{ page.signup_deadline | date:"%-m/%-d/%Y" }} <br><strong>When</strong>:
@@ -77,39 +77,8 @@ layout: no-header-no-footer
                   <crds-button color="blue" text="Sign up" href="{{ page.sign_up_link }}"></crds-button>
                   {% endif %}
                 </div>
-                <div class="col-sm-6 soft-top" style="min-height: 365px;">
-                  {% include _reachout-google-map.html %}
-                </div>
               </div>
-              <!-- FAQ -->
-              <div class="row">
-                <hr>
-                <div class="col-sm-12 push-top">
-                  <p class="metadata">Frequently Asked Questions</p>
-                </div>
-                <div class="col-sm-6 push-bottom">
-                  <h4 class="font-family-condensed-extra text-uppercase font-size-h4 push-bottom"
-                    style="line-height: .9em;">{{ page.faq1_title}}</h4>
-                  <p class="font-size-small font-family-base flush">
-                    {% if page.faq1_subtitle %}
-                    <strong>{{ page.faq1_subtitle }}</strong><br>
-                    {% endif %}
-                    {{ page.faq1 | markdownify }}</p>
-                </div>
-                <div class="col-sm-6 push-bottom">
-                  <h4 class="font-family-condensed-extra text-uppercase font-size-h4 push-bottom"
-                    style="line-height: .9em;">{{ page.faq2_title }}</h4>
-                  <p class="font-size-small font-family-base flush">
-                    {% if page.faq2_subtitle %}
-                    <strong>{{ page.faq2_subtitle }}</strong><br>
-                    {% endif %}
-                    {{ page.faq2 | markdownify }}
-                  </p>
-                </div>
-                <div class="col-sm-12"><a href="{{jekyll_env}}/reachout/go/faqs/faqs-{{ page.country_slug }}/"
-                    class="btn btn-gray">View all FAQs</a>   <a class="link" href="mailto:gotrips@crossroads.net">Ask us
-                    a question</a></div>
-              </div>
+
             </div>
             <!-- Itinerary -->
             <div role="tabpanel" class="tab-pane" id="itinerary">
@@ -183,6 +152,41 @@ layout: no-header-no-footer
               {% endif %}
               {% endfor %}
             </div>
+
+            <!-- FAQ -->
+            <div role="tabpanel" class="tab-pane" id="faqs">
+              <div class="row">
+                <hr>
+                <div class="col-sm-12 push-top">
+                  <p class="metadata">Frequently Asked Questions</p>
+                </div>
+                <div class="col-sm-6 push-bottom">
+                  <h4 class="font-family-condensed-extra text-uppercase font-size-h4 push-bottom"
+                    style="line-height: .9em;">{{ page.faq1_title}}</h4>
+                  <p class="font-size-small font-family-base flush">
+                    {% if page.faq1_subtitle %}
+                    <strong>{{ page.faq1_subtitle }}</strong><br>
+                    {% endif %}
+                    {{ page.faq1 | markdownify }}</p>
+                </div>
+                <div class="col-sm-6 push-bottom">
+                  <h4 class="font-family-condensed-extra text-uppercase font-size-h4 push-bottom"
+                    style="line-height: .9em;">{{ page.faq2_title }}</h4>
+                  <p class="font-size-small font-family-base flush">
+                    {% if page.faq2_subtitle %}
+                    <strong>{{ page.faq2_subtitle }}</strong><br>
+                    {% endif %}
+                    {{ page.faq2 | markdownify }}
+                  </p>
+                </div>
+                <div class="col-sm-12"><a href="{{jekyll_env}}/go/faqs/faqs-{{ page.country_slug }}/"
+                    class="btn btn-gray">View all FAQs</a>   <a class="link" href="mailto:gotrips@crossroads.net">Ask us
+                    a question</a>
+                </div>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>
