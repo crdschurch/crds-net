@@ -133,7 +133,7 @@ collections:
     permalink: /media/:collection/:title
   trips:
     output: true
-    permalink: /reachout/go/:country_slug/:slug
+    permalink: /go/:country_slug/:slug
   trip_partners:
     output: false
   videos:
