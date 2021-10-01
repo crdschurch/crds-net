@@ -1,6 +1,6 @@
 import { MessageQueryBuilder } from 'crds-cypress-contentful';
 import { getRelativeMessageUrl } from '../../support/GetUrl';
-const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/];
+const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/,  /.* > Cannot read property 'getAttribute' of null*/, /.* > Cannot set property 'status' of undefined*/];
 
 const soundOn = 'sound=11';
 const soundOff = 'sound=1';
@@ -20,7 +20,7 @@ describe('Tests message with Bitmovin player without transcription', function ()
       });
   });
 
-  describe('Tests message autoplays and query params applied', () => {
+  describe.skip('Tests message autoplays and query params applied', () => {
     it('Checks sound is on and subtitles off', function () {
       cy.ignoreMatchingErrors(errorsToIgnore);
       cy.visit(`${relativeMessageUrl}?autoPlay=true&${soundOn}`);

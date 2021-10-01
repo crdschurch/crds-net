@@ -1,6 +1,6 @@
 import { SeriesQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
-const importDeclarationsError = /.*> Cannot set property 'status' of undefined*/;
+const errorsToIgnore =[ /.*> Cannot set property 'status' of undefined*/,  /.* > Cannot read property 'getAttribute' of null*/];
 describe('Testing the Current Series on the Homepage:', function() {
   let currentSeries;
   before(function() {
@@ -11,7 +11,7 @@ describe('Testing the Current Series on the Homepage:', function() {
       .then((series) => {
         currentSeries = series;
       });
-      cy.ignoreMatchingErrors([importDeclarationsError]);
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit('/');
   });
   it('Current series title, description, and image should match Contentful', function() {

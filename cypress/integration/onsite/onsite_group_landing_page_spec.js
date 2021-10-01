@@ -16,6 +16,8 @@ function sortByCategoryThenSlug(group1, group2){
   return 0;
 }
 
+const errorsToIgnore = [/.*import declarations may only appear at top level of a module.*/,  /.* > Cannot read property 'getAttribute' of null*/, /.* > Cannot set property 'status' of undefined*/];
+
 describe('Given I navigate to /onsite/group Page:', function() {
   let onsiteGroupList;
   before(function() {
@@ -26,10 +28,10 @@ describe('Given I navigate to /onsite/group Page:', function() {
     qb.limit = 100;
     cy.task('getCNFLResource', qb.queryParams)
       .then((groups) => {
-         onsiteGroupList = groups.filter(g => g.category.title.text == "Site-based");
+        onsiteGroupList = groups.filter(g => g.category.title.text == 'Site-based');
       });
-      const importDeclarationsError = /.*import declarations may only appear at top level of a module.*/;
-      cy.ignoreMatchingErrors([importDeclarationsError]);
+    //  const importDeclarationsError = [/.*import declarations may only appear at top level of a module.*/,  /.* > Cannot read property 'getAttribute' of null*/];
+    cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit('/groups/onsite');
   });
   
@@ -40,7 +42,7 @@ describe('Given I navigate to /onsite/group Page:', function() {
   });
 
   it('Onsite Group card for Financial Peace should be first', function() {
-    let firstOnsiteGroup =     cy.get('.osg-row').as('onsiteGroupCards').first().find('a');
+    let firstOnsiteGroup =  cy.get('.osg-row').as('onsiteGroupCards').first().find('a');
     cy.log(firstOnsiteGroup);
     cy.get('.osg-row').as('onsiteGroupCards')
       .first()
@@ -48,12 +50,12 @@ describe('Given I navigate to /onsite/group Page:', function() {
       .should('have.attr', 'href', '/groups/site-based/COME-AS-YOU-ARE-FLORENCE-2019/columbus');
   });
 
- [3].forEach((index) => {    
-  it(`Verify Site-Based groups section is visible #${index} `, function() {
-    let title = onsiteGroupList[index].title.text;
-    cy.get('.osg-row h4').eq(index +1 ).as(`${title}Card`)
-      .normalizedText()
-      .should('eq', normalizeText(title));
+  [3].forEach((index) => {    
+    it(`Verify Site-Based groups section is visible #${index} `, function() {
+      let title = onsiteGroupList[index].title.text;
+      cy.get('.osg-row h4').eq(index +1 ).as(`${title}Card`)
+        .normalizedText()
+        .should('eq', normalizeText(title));
     });
-  })
+  });
 });

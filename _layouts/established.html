@@ -21,6 +21,7 @@ layout: default
 <section class="jumbotron locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
   id="location-page"
   data-optimize-bg-img>
+  {% include locations/_ondemand-card.html %}
   <div class="bg-overlay"></div>
   <div class="container">
     <div class="row location-title-row" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
@@ -51,7 +52,7 @@ layout: default
       {% endif %}
         <!-- Events & Updates -->
         <div slot="tab-events-updates" class="push-ends">
-          <div class="row">
+          <div class="row" id="events-updates">
             <div class="col-sm-8 push-bottom soft-bottom">
 
               <!-- Featured Section - Below Jumbotron -->
