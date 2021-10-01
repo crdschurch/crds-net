@@ -53,7 +53,7 @@ layout: no-header-no-footer
             <div role="tabpanel" class="tab-pane in active" id="overview">
               <div class="row">
                 <div class="col-sm-8 push-bottom">
-                  <p class="lead">{{ page.trip_description }}</p>
+                  <p class="font-size-base">{{ page.trip_description }}</p>
                   {% if page.trip_full%}
                   <crds-button color="blue" disabled="true" text="Trip is Full" href=""></crds-button>
                   {% else %}
@@ -62,15 +62,42 @@ layout: no-header-no-footer
                 </div>
                 <div class="col-sm-4 push-bottom">
                   <p class="metadata">Trip Details</p>
-                  <p class="font-size-base"><strong>Signup Deadline</strong>:
-                    {{ page.signup_deadline | date:"%-m/%-d/%Y" }} <br><strong>When</strong>:
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    <strong>Signup Deadline</strong>:
+                    {{ page.signup_deadline | date:"%-m/%-d/%Y" }}
+                  </p>
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    <strong>When</strong>:
                     {{ page.start_date | date:"%-m/%-d/%Y" }}
-                    - {{ page.end_date | date:"%-m/%-d/%Y" }} <br><strong>Deposit</strong>: {{ page.deposit }}
-                    <br><strong>Size of Trip</strong>: {{ page.trip_size }}
-                    <br><strong>Minimum Age</strong>: {{ page.minimum_age }}<br><strong>Restrictions</strong>:
-                    {{ page.restrictions }}
-                    <br><strong>Total Cost</strong>: {{ page.total_cost }} <br>{% if page.other_requirements %}<strong>Other Requirements</strong>:
-                    {{ page.other_requirements }} {% endif %} </p>
+                    - {{ page.end_date | date:"%-m/%-d/%Y" }}
+                  </p>
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    <strong>Deposit</strong>: {{ page.deposit }}
+                  </p>
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    <strong>Size of Trip</strong>: {{ page.trip_size }}
+                  </p>
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    <strong>Minimum Age</strong>: {{ page.minimum_age }}
+                  </p>
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    <strong>Restrictions</strong>: {{ page.restrictions }}
+                  </p>
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    <strong>Total Cost</strong>: {{ page.total_cost }} 
+                  </p>
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    {% if page.other_requirements %}<strong>Other Requirements</strong>:
+                    {{ page.other_requirements }} {% endif %}
+                  </p>
                   {% if page.trip_full%}
                   <crds-button color="blue" disabled="true" text="Trip is Full" href=""></crds-button>
                   {% else %}
@@ -156,10 +183,6 @@ layout: no-header-no-footer
             <!-- FAQ -->
             <div role="tabpanel" class="tab-pane" id="faqs">
               <div class="row">
-                <hr>
-                <div class="col-sm-12 push-top">
-                  <p class="metadata">Frequently Asked Questions</p>
-                </div>
                 <div class="col-sm-6 push-bottom">
                   <h4 class="font-family-condensed-extra text-uppercase font-size-h4 push-bottom"
                     style="line-height: .9em;">{{ page.faq1_title}}</h4>
@@ -179,9 +202,11 @@ layout: no-header-no-footer
                     {{ page.faq2 | markdownify }}
                   </p>
                 </div>
-                <div class="col-sm-12"><a href="{{jekyll_env}}/go/faqs/faqs-{{ page.country_slug }}/"
-                    class="btn btn-gray">View all FAQs</a>   <a class="link" href="mailto:gotrips@crossroads.net">Ask us
-                    a question</a>
+                <div class="col-sm-12">
+                  <a href="{{jekyll_env}}/go/faqs/faqs-{{ page.country_slug }}/" class="btn btn-orange">View all FAQs</a>   
+                  <a class="link" href="mailto:gotrips@crossroads.net">
+                    Ask us a question
+                  </a>
                 </div>
               </div>
             </div>
