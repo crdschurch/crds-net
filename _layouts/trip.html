@@ -43,73 +43,69 @@ layout: no-header-no-footer
             <li role="navigation" style="float: none; display: inline-block;"><a href="#partner" aria-controls="partner"
                 role="tab" data-toggle="tab">Partner</a></li>
             {% endif %}
+            <li role="navigation" style="float: none; display: inline-block;">
+              <a href="#faqs" aria-controls="faqs" role="tab" data-toggle="tab">FAQs</a>
+            </li>
+
           </ul>
           <div class="tab-content push-top">
             <!-- Overview -->
             <div role="tabpanel" class="tab-pane in active" id="overview">
               <div class="row">
-                <div class="col-sm-12 push-ends">
-                  <p class="lead">{{ page.trip_description }}</p>
+                <div class="col-sm-8 push-bottom">
+                  <p class="font-size-base">{{ page.trip_description }}</p>
                   {% if page.trip_full%}
                   <crds-button color="blue" disabled="true" text="Trip is Full" href=""></crds-button>
                   {% else %}
                   <crds-button color="blue" text="Sign up" href="{{ page.sign_up_link }}"></crds-button>
                   {% endif %}
                 </div>
-              </div>
-              <!-- Trip Details -->
-              <div class="row">
-                <hr>
-                <div class="col-sm-6 push-ends">
+                <div class="col-sm-4 push-bottom bg-tan-light soft">
                   <p class="metadata">Trip Details</p>
-                  <p class="font-size-base"><strong>Signup Deadline</strong>:
-                    {{ page.signup_deadline | date:"%-m/%-d/%Y" }} <br><strong>When</strong>:
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    <strong>Signup Deadline</strong>:
+                    {{ page.signup_deadline | date:"%-m/%-d/%Y" }}
+                  </p>
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    <strong>When</strong>:
                     {{ page.start_date | date:"%-m/%-d/%Y" }}
-                    - {{ page.end_date | date:"%-m/%-d/%Y" }} <br><strong>Deposit</strong>: {{ page.deposit }}
-                    <br><strong>Size of Trip</strong>: {{ page.trip_size }}
-                    <br><strong>Minimum Age</strong>: {{ page.minimum_age }}<br><strong>Restrictions</strong>:
-                    {{ page.restrictions }}
-                    <br><strong>Total Cost</strong>: {{ page.total_cost }} <br>{% if page.other_requirements %}<strong>Other Requirements</strong>:
-                    {{ page.other_requirements }} {% endif %} </p>
+                    - {{ page.end_date | date:"%-m/%-d/%Y" }}
+                  </p>
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    <strong>Deposit</strong>: {{ page.deposit }}
+                  </p>
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    <strong>Size of Trip</strong>: {{ page.trip_size }}
+                  </p>
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    <strong>Minimum Age</strong>: {{ page.minimum_age }}
+                  </p>
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    <strong>Restrictions</strong>: {{ page.restrictions }}
+                  </p>
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    <strong>Total Cost</strong>: {{ page.total_cost }} 
+                  </p>
+                  <hr class="flush soft-quarter-bottom">
+                  <p class="flush soft-quarter-bottom text-gray-dark">
+                    {% if page.other_requirements %}<strong>Other Requirements</strong>:
+                    {{ page.other_requirements }} {% endif %}
+                  </p>
                   {% if page.trip_full%}
                   <crds-button color="blue" disabled="true" text="Trip is Full" href=""></crds-button>
                   {% else %}
                   <crds-button color="blue" text="Sign up" href="{{ page.sign_up_link }}"></crds-button>
                   {% endif %}
                 </div>
-                <div class="col-sm-6 soft-top" style="min-height: 365px;">
-                  {% include _reachout-google-map.html %}
-                </div>
               </div>
-              <!-- FAQ -->
-              <div class="row">
-                <hr>
-                <div class="col-sm-12 push-top">
-                  <p class="metadata">Frequently Asked Questions</p>
-                </div>
-                <div class="col-sm-6 push-bottom">
-                  <h4 class="font-family-condensed-extra text-uppercase font-size-h4 push-bottom"
-                    style="line-height: .9em;">{{ page.faq1_title}}</h4>
-                  <p class="font-size-small font-family-base flush">
-                    {% if page.faq1_subtitle %}
-                    <strong>{{ page.faq1_subtitle }}</strong><br>
-                    {% endif %}
-                    {{ page.faq1 | markdownify }}</p>
-                </div>
-                <div class="col-sm-6 push-bottom">
-                  <h4 class="font-family-condensed-extra text-uppercase font-size-h4 push-bottom"
-                    style="line-height: .9em;">{{ page.faq2_title }}</h4>
-                  <p class="font-size-small font-family-base flush">
-                    {% if page.faq2_subtitle %}
-                    <strong>{{ page.faq2_subtitle }}</strong><br>
-                    {% endif %}
-                    {{ page.faq2 | markdownify }}
-                  </p>
-                </div>
-                <div class="col-sm-12"><a href="{{jekyll_env}}/reachout/go/faqs/faqs-{{ page.country_slug }}/"
-                    class="btn btn-gray">View all FAQs</a>   <a class="link" href="mailto:gotrips@crossroads.net">Ask us
-                    a question</a></div>
-              </div>
+
             </div>
             <!-- Itinerary -->
             <div role="tabpanel" class="tab-pane" id="itinerary">
@@ -183,6 +179,39 @@ layout: no-header-no-footer
               {% endif %}
               {% endfor %}
             </div>
+
+            <!-- FAQ -->
+            <div role="tabpanel" class="tab-pane" id="faqs">
+              <div class="row">
+                <div class="col-sm-6 push-bottom">
+                  <h4 class="font-family-condensed-extra text-uppercase font-size-h4 push-bottom"
+                    style="line-height: .9em;">{{ page.faq1_title}}</h4>
+                  <p class="font-size-small font-family-base flush">
+                    {% if page.faq1_subtitle %}
+                    <strong>{{ page.faq1_subtitle }}</strong><br>
+                    {% endif %}
+                    {{ page.faq1 | markdownify }}</p>
+                </div>
+                <div class="col-sm-6 push-bottom">
+                  <h4 class="font-family-condensed-extra text-uppercase font-size-h4 push-bottom"
+                    style="line-height: .9em;">{{ page.faq2_title }}</h4>
+                  <p class="font-size-small font-family-base flush">
+                    {% if page.faq2_subtitle %}
+                    <strong>{{ page.faq2_subtitle }}</strong><br>
+                    {% endif %}
+                    {{ page.faq2 | markdownify }}
+                  </p>
+                </div>
+                <div class="col-sm-12">
+                  <a href="{{jekyll_env}}/go/faqs/faqs-{{ page.country_slug }}/" class="btn btn-orange">View all FAQs</a>   
+                  <a class="link" href="mailto:gotrips@crossroads.net">
+                    Ask us a question
+                  </a>
+                </div>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>
