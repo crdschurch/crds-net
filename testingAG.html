@@ -1,0 +1,206 @@
+---
+layout: default
+---
+<section class="bg-primary">
+  <div class="jumbotron bg-topo flush-bottom">
+    <div class="container">
+      <div class="row soft-top flex-row">
+        <div class="col-xs-offset-3 col-xs-6 col-sm-offset-0 col-sm-4 col-md-3 push-bottom">
+          <img
+            class="img-responsive"
+            alt="crossroads reachout logo" title="crossroads reachout logo"
+            src="//crds-media.imgix.net/5pKjSGkcmbWmYbo5fIjy16/c3bca32354c5e5769281b11af9a328df/crossroads-reachout-logo.png?auto=format,compress&w=1200" data-optimize-img />
+        </div>
+        <div class="soft col-xs-12 col-sm-8 text-left flex-child">
+          <div class="row soft mobile-bard">
+            <div class="col-sm-12 soft mobile-hard">
+              <h1 class="font-family-condensed-extra text-uppercase font-size-h1 flush-top text-white" style="line-height: .9em;">
+                  You were born to make a difference
+              </h1>
+              <p class="font-family-serif font-size-small text-white">
+                In the spirit of “we do things locally, nationally we do it with partners’] Crossroads has always been about world change. It’s who we are. Through local, national, and international partnerships we will experience lives transformed. Join us. It’s time to get in the game and GO.
+              </p>
+              <a href="/go/events" class="btn btn-orange">
+                View Local Events
+              </a>
+              <a href="/go/all-trips" class="btn btn-orange">
+                View GO Trips
+              </a>
+              <a href="/go/partners" class="btn btn-orange">
+                View Our Partners
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Orange Stripe -->
+<section class="flush-top hard-top">
+  <img class="img-responsive"
+    alt="orange diagonal stripes for crossroads reachout" title="crossroads reachout go orange texture"
+    src="//crds-media.imgix.net/6QlQoO4fSXrwUJQNhoMGcZ/682513bbd5a149d63696a19242a862bb/go-reachout-orange-texture.jpg?auto=format,compress&w=2400" data-optimize-img />
+</section>
+
+
+<!-- Latest Events -->
+<section>
+  <div class="container push-ends soft-bottom">
+    <div class="row">
+      <div class="col-sm-8 push-bottom">
+        <h4 class="font-family-base">
+          Fuel for the Fight
+        </h4>
+        <p class="">
+          In every community right now healthcare workers are feeling tired and forgotten. Not OK. We’re launching Fuel for the Fight, a way for Crossroads people to refuel and refresh local healthcare professionals by preparing personal encouragement notes and hand delivered care packages, and we need YOU.
+        </p>
+        <a href="/fuel/" class="btn btn-primary">
+          Learn how to participate
+        </a>
+      </div>
+      <div class="col-sm-4">
+          {% assign series_media = site.promos | where: "section", "ReachOut"  | sort: 'date' | reverse | group_by: 'date' %}
+          {% for series_promo in series_media %}
+          {% assign series_sorted_promos = series_promo.items | sort: 'title' %}
+          {% for item in series_sorted_promos %}
+          {% include _promo-card-reachout.html %}
+          {% endfor %}
+          {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Events, Trips, & Partners -->
+<section class="bg-tan">
+  <div class="container-fluid">
+    <div class="row push-ends push-half-sides">
+      <div class="col-md-6 hard-sides jumbotron flush-bottom" id="jumbo" style="background-image: url('//crds-media.imgix.net/38M02RdF5h4K7lCtcNmrJ4/e9c9c38387b46ed6180a3906a02cd7e1/reachout-promo-thanksgiving-food-drive.jpg?{{ site.imgix_params.placeholder }}');" data-optimize-bg-img>
+        <div class="bg-overlay"></div>
+        <div class="container-fluid">
+          <div class="row push-top push-bottom soft-sides soft-ends text-left">
+            <div class="col-md-11 mobile-flush-bottom mobile-flush-top mobile-hard overflow-hidden push-ends soft-ends soft-sides">
+              <h2 class="section-header flush-ends soft-half-ends text-white" style="line-height:.9em;">Local<br>Partnerships</h2>
+              <span class="font-size-base text-white">
+                Transformation starts at home. Loading up a Thanksgiving Food Drive box, volunteering at a local prison, or helping clean up a local park – you can be a force for good in your ‘hood.
+              </span>
+              <br>
+              <a href="/reachout/local/" class="btn btn-white btn-outline">
+                <strong>View all local opportunities</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 hard-sides jumbotron flush-bottom" id="jumbo" style="background-image: url('//crds-media.imgix.net/3g89Df7dJxwUQZSYf5gIoe/28692757167968f8a60d0bd48b0e1e5f/reachout-promo-go-trips.jpg?{{ site.imgix_params.placeholder }}');" data-optimize-bg-img>
+        <div class="bg-overlay"></div>
+        <div class="container-fluid">
+          <div class="row push-top push-bottom soft-sides soft-ends text-left">
+            <div class="col-md-11 mobile-flush-bottom mobile-flush-top mobile-hard overflow-hidden push-ends soft-ends soft-sides">
+              <h2 class="section-header flush-ends soft-half-ends text-white" style="line-height:.9em;">Global<br>Partnerships</h2>
+              <span class="font-size-base text-white">
+                We are highly invested in the relationships with our global partners to help them achieve their goals and set them up for long-term success. Our partners are in India, Bolivia, South Africa, and Nicaragua.
+              </span>
+              <br>
+              <a href="/reachout/go/partners" class="btn btn-white btn-outline">
+                <strong>Learn more</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="container push-ends soft-bottom">
+  <div class="row push-ends soft-bottom">
+    <div class="col-md-6 push-top soft-sides">
+    <h4 class="font-family-base">
+      Fuel for the Fight
+    </h4>
+    <p class="metadata">
+      February 7 - March 6
+    </p>
+    <p class="">
+      In every community right now healthcare workers are feeling tired and forgotten. Not OK. We’re launching Fuel for the Fight, a way for Crossroads people to refuel and refresh local healthcare professionals by preparing personal encouragement notes and hand delivered care packages, and we need YOU.
+    </p>
+    <a href="/fuel/" class="btn btn-primary">
+      Learn how to participate
+    </a>
+    </div>
+    <br />
+    <div class="col-md-6 soft-sides">
+      <a href="/fuel/">
+        <img class="imgix-fluid img-responsive" alt="fuel for the fight" title="fuel for the fight"
+        src="//crds-media.imgix.net/1G19z6cTolYfI6rQ3KO340/d77f67fa05b70f5fc5c8561a3f780955/reachout-fuel-for-the-fight-gfx2.jpg?auto=format,compress&w=1200"
+        data-optimize-img>
+      </a>
+    </div>
+  </div>
+  <hr class="push-ends">
+
+  <div class="row">
+    <div class="col-md-6 soft-sides">
+      <a href="https://www.crossroads.net/reachout/go/new-orleans" style="">
+        <img class="imgix-fluid img-responsive" alt="" title=""
+          data-src="//images.ctfassets.net/y3a9myzsdjan/6oulumaGi8zIMQlo8R0PkM/2f1b2587178df06a0663185f58a9d7a4/IMG_3692.jpg"
+          src="//images.ctfassets.net/y3a9myzsdjan/6oulumaGi8zIMQlo8R0PkM/2f1b2587178df06a0663185f58a9d7a4/IMG_3692.jpg">
+      </a>
+    </div>
+    <div class="col-md-6 push-top soft-sides">
+        <h4 class="font-family-base">
+          GO Trips Postponed
+        </h4>
+        <p class="">
+          Due to the COVID-19 virus, we do not currently have any trips planned. Your safety is the number one concern on our GO trips. We are working carefully with our partners and using guidelines from the State Department and the CDC to decide when we be able to GO again. In the meantime, we are continuing to fuel the work with our partners financially. Please check back regularly for updates.
+        </p>
+        <a href="/reachout/go/" class="btn btn-primary">
+          Learn More
+        </a>
+    </div>
+  </div>
+</div>
+
+<section class="bg-orange">
+  <div class="container">
+    <div class="row push-ends text-center soft-ends">
+      <div class="col-sm-6 col-sm-offset-3 text-center push-top push-bottom">
+        <div class="form text-center" data-role="hsform">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--[if lte IE 8]>
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+<![endif]-->
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+<script>
+  hbspt.forms.create({
+	portalId: "3993985",
+	formId: "2b48aede-43b2-4720-b9fa-902588ddaa79",
+  target: "[data-role=hsform]",
+  css: "",
+  formInstanceId: '1',
+  onFormReady($form, ctx) {
+    $('div[data-reactid=".hbspt-forms-0.1:$0.0"]').addClass('lead')
+    $('label[data-reactid=".label-email-2b48aede-43b2-4720-b9fa-902588ddaa79_1"]').addClass('hidden')
+    $('div[data-reactid=".hbspt-forms-0.1:$0.0:$email"]').addClass('flush-bottom')
+  }
+
+});
+</script>
+
+<style>
+  #jumbo {
+    height: 620px;
+  }
+</style>
