@@ -65,24 +65,51 @@ title: Series
   <div class="container">
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
+         <!-- Create tabs_array -->
+        {% assign tabs_array = "" | split: "|" %}
+  
         {% if page.videos.size > 0 %}
-        <section class="push-bottom soft-quarter-bottom">
-          <h2 class="component-header flush-top">In This Series</h2>
-          <div class="cards-3x">
-            <div class="row">
-              {% for msg_obj in page.videos %}
-                {% assign item = site.videos | where: 'slug', msg_obj.slug | first %}
-                {% unless item %}
-                  {% assign item = site.messages | where: 'slug', msg_obj.slug | first %}
-                {% endunless %}
-                {% if item %}
-                  {% include _message-card.html %}
-                {% endif %}
-              {% endfor %}
+          {% assign tabs_array = tabs_array | push: "broadcast" %}
+        {% endif %}
+  
+        {% if page.live_messages.size > 0 %}
+          {% assign tabs_array = tabs_array | push: "live" %}
+        {% endif %}
+  
+  
+        <crds-tabs tabs='{{tabs_array | jsonify }}' navigation-class="align-tabs-left component-header" horizontal-only>
+          <div slot="tab-broadcast">
+            <div class="cards-3x">
+              <div class="row">
+                {% for msg_obj in page.videos %}
+                  {% assign item = site.videos | where: 'slug', msg_obj.slug | first %}
+                  {% unless item %}
+                    {% assign item = site.messages | where: 'slug', msg_obj.slug | first %}
+                  {% endunless %}
+                  {% if item %}
+                    {% include _message-card.html %}
+                  {% endif %}
+                {% endfor %}
+              </div>
             </div>
           </div>
-        </section>
-        {% endif %}
+          <div slot="tab-live">
+            <div class="cards-3x">
+              <div class="row">
+                {% for msg_obj in page.live_messages %}
+                  {% assign item = site.videos | where: 'slug', msg_obj.slug | first %}
+                  {% unless item %}
+                    {% assign item = site.messages | where: 'slug', msg_obj.slug | first %}
+                  {% endunless %}
+                  {% if item %}
+                    {% include _message-card.html %}
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </crds-tabs>
+
       </div>
 
       <div class="col-sm-10 col-sm-offset-1">
