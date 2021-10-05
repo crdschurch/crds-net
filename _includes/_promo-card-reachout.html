@@ -1,0 +1,37 @@
+{% assign targets = item.target_audience | join: ',' %}
+
+<div class="border-bottom hard-top media" data-filter="{{ targets }}">
+  {% if item.link_url %}
+    <a href="{{ item.link_url }}" class="media-img-wrapper">
+      <div class="media-object">
+        <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+          sizes="{{ site.image_sizes.media_object }}"
+          alt="{{ item.title }}"
+          data-optimize-img>
+        </div>
+    </a>
+  {% else %}
+    <div class="media-img-wrapper">
+      <div class="media-object">
+        <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+          sizes="{{ site.image_sizes.media_object }}"
+          alt="{{ item.title }}"
+          data-optimize-img>
+      </div>
+    </div>
+  {% endif %}
+  <div class="media-body">
+    <h4 class="flush font-family-base-bold font-size-small soft-quarter-bottom">
+      {% if item.link_url %}
+        <a href="{{ item.link_url }}">
+          {{ item.title }}
+        </a>
+      {% else %}
+        {{ item.title }}
+      {% endif %}
+    </h4>
+    <div class="card-text font-size-smaller">
+      {{ item.description | markdownify }}
+    </div>
+  </div>
+</div>
