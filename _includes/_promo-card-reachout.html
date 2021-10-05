@@ -1,6 +1,6 @@
 {% assign targets = item.target_audience | join: ',' %}
 
-<div class="media border-bottom" data-filter="{{ targets }}">
+<div class="border-bottom hard-top media" data-filter="{{ targets }}">
   {% if item.link_url %}
     <a href="{{ item.link_url }}" class="media-img-wrapper">
       <div class="media-object">
@@ -21,7 +21,7 @@
     </div>
   {% endif %}
   <div class="media-body">
-    <h4 class="font-family-base-bold font-size-base">
+    <h4 class="flush font-family-base-bold font-size-small soft-quarter-bottom">
       {% if item.link_url %}
         <a href="{{ item.link_url }}">
           {{ item.title }}
