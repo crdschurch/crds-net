@@ -116,6 +116,7 @@ collections:
     permalink: /media/:collection/:title
     has_many:
       - videos
+      - live_messages
   sign_offs:
     output: false
   sign_up_forms:

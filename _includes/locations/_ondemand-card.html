@@ -1,2 +1,15 @@
-{% assign onDemandCard = site.content_blocks | where: 'slug', 'on-demand-cta' | first %}
-{{ onDemandCard.content_block | markdownify  }}
+{% for serie in site.series %}
+{% if serie.live_messages %}
+{% assign lastest_series = serie %}
+{% assign lastest_live_message = lastest_series.live_messages | last | get_doc %}
+{% endif %}
+{% endfor %}
+<div id="ondemand-cta" class="ondemand-card">
+  <div class="text-container text-uppercase">
+    <p>missed the livestream?</p>
+    <h5>watch it on demand</h5>
+  </div>
+  <div class="button">
+    <crds-button href="{{ lastest_live_message | media_url }}" color="orange" text="Watch now"></crds-button>
+  </div>
+</div>
