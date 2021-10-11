@@ -1,7 +1,7 @@
 import { SeriesQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
 const importDeclarationsError = /.*> Cannot set property 'status' of undefined*/;
-describe('Testing the Current Series on the Live page:', function() {
+describe.skip('Testing the Current Series on the Live page:', function() {
   let currentSeries;
   before(function() {
     const qb = new SeriesQueryBuilder();
@@ -11,7 +11,7 @@ describe('Testing the Current Series on the Live page:', function() {
       .then((series) =>{
         currentSeries = series;
       });
-      cy.ignoreMatchingErrors([importDeclarationsError]);
+    cy.ignoreMatchingErrors([importDeclarationsError]);
     cy.visit('/live');
   });
 

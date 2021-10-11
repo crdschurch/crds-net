@@ -1,7 +1,9 @@
-import { SeriesQueryBuilder, normalizeText } from 'crds-cypress-contentful';
+import { SeriesQueryBuilder} from 'crds-cypress-contentful';
+
+const errorsToIgnore =  [/.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
 
 describe('Testing the Current Series on the Media landing page:', function () {
-
+ 
   let currentSeries;
   before(function () {
     const qb = new SeriesQueryBuilder();
@@ -11,7 +13,8 @@ describe('Testing the Current Series on the Media landing page:', function () {
       .then((series) => {
         currentSeries = series;
       });
-
+    cy.ignoreMatchingErrors(errorsToIgnore);
+    cy.clearLocalStorage();
     cy.visit('/');
   });
 
@@ -22,7 +25,7 @@ describe('Testing the Current Series on the Media landing page:', function () {
   });
 
   it('The current series title, title link, and description should match Contentful', function () {
-      cy.get('@featuredSeries').within(() => {
+    cy.get('@featuredSeries').within(() => {
       cy.get('[data-automation-id="series-title"]').as('seriesTitle')
         .should('be.visible')
         .and('have.text', currentSeries.title.text);
@@ -32,14 +35,14 @@ describe('Testing the Current Series on the Media landing page:', function () {
       cy.get('crds-button', { includeShadowDom: true })
         .should('be.visible')
         .should('have.attr', 'text', 'Watch the current teaching series');
-      });
+    });
   });
 
   it('The current series image and image link should match Contentful', function () {
     cy.get('.media').scrollIntoView().within(() => {
       cy.get('[data-automation-id="series-image"]').as('seriesImageLink')
         .should('have.attr', 'href', `/media/series/${currentSeries.slug.text}`);
-     cy.imgixShouldRunOnElement('img', currentSeries.image);
+      cy.imgixShouldRunOnElement('img', currentSeries.image);
     });
   });
 });

@@ -126,7 +126,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_INVOICES = "crds-invoices-int.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer-int.netlify.app/"
 
-
 [context.release.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-demo.netlify.app"
   CRDS_MAP_DOMAIN = "crds-connect-demo.netlify.app"
