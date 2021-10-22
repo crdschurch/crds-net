@@ -1,13 +1,9 @@
 ---
-layout: no-header-no-footer
+layout: container-fluid
 ---
 
-{% assign trips_header = site.content_blocks | where: 'slug', 'go-trips-nav' | first %}
-{% assign trips_footer = site.content_blocks | where: 'slug', 'go-trips-footer' | first %}
-
-{{ trips_header.content_block | markdownify }}
 <div class="jumbotron jumbotron-xl"
-  style="background-image: url('{{ page.image.url }}'); margin-top: -12px; padding-bottom: 0px;">
+  style="background-image: url('{{ page.image.url }}'); padding-bottom: 0px;">
   <div class="jumbtron-content"
     style="bottom: 0; width: 100%; padding: 30px; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);">
     <div class="container push-top soft-top">
@@ -218,4 +214,3 @@ layout: no-header-no-footer
     </div>
   </div>
 </section>
-{{ trips_footer.content_block | markdownify }}
