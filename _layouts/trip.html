@@ -145,10 +145,11 @@ layout: container-fluid
             </div>
             <!-- Partner -->
             <div role="tabpanel" class="tab-pane" id="partner">
-              {% for item in page.partner %}
+              {% assign partners = page.partner | get_docs %}
+              {% for item in partners %}
               <div class="row">
                 <div class="col-sm-12 col-md-push-6 col-md-6 push-top">
-                  <img src="{{ page.trip_partner_img | imgix: site.imgix }}?auto=format,compress&w=600" data-optimize-img />
+                  <img src="{{ item.partner_image.url | imgix: site.imgix }}?auto=format,compress&w=600" data-optimize-img />
                 </div>
                 <div class="col-sm-12 col-md-pull-6 col-md-6">
                   <h4 class="component-header"><a href="{{ item.partner_website }}"
