@@ -16,13 +16,7 @@ layout: default
   </div>
 {% endif %}
 
-{% if page.slug == "columbus" %}
-  {% include locations/_columbus-modal.html %}
-{% endif %}
-
-{% if page.slug == "georgetown" %}
-  {% include locations/_georgetown-modal.html %}
-{% endif %}
+{% include locations/_welcome-modal.html %}
 
 <!-- Jumbotron section -->
 {% if page.site_id != 23 %}
