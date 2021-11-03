@@ -1,6 +1,7 @@
 {% assign targets = item.country | join: ',' %}
+{% assign trip_focus = item.focus | where: "focus", page.focus | join: ',' %}
 
-<div class="{{ targets| downcase | replace: ' ' , '-' }} card push-ends col-xs-12 col-sm-4">
+<div class="{{ targets| downcase | replace: ' ' , '-' }} {{ item.crossroads_community | downcase | replace: ' ' , '-' }} {{ item.audience | downcase | replace: ' ' , '-' }} {{ trip_focus | downcase | replace: ' ' , '-' | replace: ',' , ' ' }} {{ item.length_in_days | downcase | replace: ' ' , '-' }} {{ item.season | downcase }} {{ item.age | downcase }} card push-ends col-xs-12 col-sm-4">
     <a href="/go/{{ item.country_slug }}{{item.slug }}">
         <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}"
             class="card-img-top img-responsive" alt="{{ item.country }}" data-optimize-img >

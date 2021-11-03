@@ -1,0 +1,533 @@
+---
+layout: container-fluid
+---
+
+{% assign go_trip_FilterCollapseter2 = site.content_blocks | where: 'slug', 'go-trips-footer2' | first %}
+{% assign trip_cards = site.trips | sort: "start_date" %}
+
+<section class="" style="position:fixed;">
+<section>
+  <div class="jumbotron jumbotron-lg" style="background-image: url('//crds-media.imgix.net/7F3mYGcYgqu346ypdvu0f7/d47c85c24fa6b7d1cd573a9b30588c28/092517_2017_SA_Undivided-131.jpg?{{ site.imgix_params.placeholder }}');" data-optimize-bg-img >
+    <div class="bg-overlay"></div>
+    <div class="container soft-ends">
+      <div class="row">
+        <div class="soft col-xs-12 col-sm-8 col-sm-offset-2">
+          <p class="small-heading text-uppercase"><a href="/go" class="text-white underline"><strong>GO</strong></a> / <strong>All Trips</strong></p>
+          <h1 class="font-family-condensed-extra text-uppercase font-size-giant soft-half-bottom flush-top text-white" style="line-height: .9em;">
+              ALL TRIPS
+          </h1>
+          <p class="font-family-serif font-size-base flush-top text-white">
+            Poverty. Injustice. Unsafe drinking water. Food Insecurity. Human trafficking. The work varies from partner to partner, place to place, but the call is the same: GO, change the world.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section>
+  <div class="container">
+    <div class="row soft-bottom push-bottom">
+
+      <!-- Mobile Filters Button -->
+      <div class="col-xs-12 visible-xs visible-sm">
+        <a type="button" href="#CollapseFilter" data-toggle="collapse" class="toggle-btn text-center btn btn-outline btn-gray btn-block">Filter the results</a>
+      </div>
+
+
+      <div id="CollapseFilter" class="main-container collapse">
+      <div class="col-xs-12 col-sm-12 col-md-3 push-bottom push-top panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel-scroll">
+
+          <div class="visible-xs visible-sm">
+            <button type="button" class="close" href="#CollapseFilter" data-toggle="collapse" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p class="component-header">
+              Filter trips
+            </p>
+          </div>
+
+          <!-- Country Select -->
+          <div class="border-bottom border-top toggle">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCountry" aria-expanded="true" aria-controls="collapseCountry" style="color: inherit; text-decoration: inherit;">
+              <div class="panel-heading-trips" role="tab" id="headingOne">
+                <i class="pull-right float-xs-right text-primary" style="transform: translateY(10px); margin-top: -2px;">
+                  <div class="rotate">
+                    <crds-icon name="chevron-down" size="14" class="hydrated"></crds-icon>
+                  </div>
+                </i>
+                <p class="font-size-smaller push-quarter-top text-uppercase">
+                  <strong>PLACES</strong>
+                </p>
+              </div>
+            </a>
+            <div id="collapseCountry" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body-trips">
+                <div class="font-size-small">
+                  <ul class="list-inline flush" id="filterOptions">
+                    <li class="hard"><button class="volunteer-btn active" id="all"><span class="">All</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="alabama"><span class="">Alabama</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="appalachia"><span class="">Appalachia</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="india"><span class="">India</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="nicaragua"><span class="">Nicaragua</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="puerto-rico"><span class="">Puerto Rico</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="south-africa"><span class="">South Africa</span></button></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Crossroads Community -->
+          <div class="border-bottom toggle">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCommunity" aria-expanded="true" aria-controls="collapseCommunity" style="color: inherit; text-decoration: inherit;">
+              <div class="panel-heading-trips" role="tab" id="headingTwo">
+                <i class="pull-right float-xs-right text-primary" style="transform: translateY(10px); margin-top: -2px;">
+                  <div class="rotate">
+                    <crds-icon name="chevron-down" size="14" class="hydrated"></crds-icon>
+                  </div>
+                </i>
+                <p class="font-size-smaller push-quarter-top text-uppercase">
+                  <strong>CROSSROADS COMMUNITY</strong>
+                </p>
+              </div>
+            </a>
+            <div id="collapseCommunity" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="panel-body-trips">
+                <div class="font-size-small">
+                  <ul class="list-inline flush" id="filterOptions">
+                    <li class="hard"><button class="volunteer-btn active" id="all"><span class="">All</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="online"><span class="">Online</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="columbus"><span class="">Columbus</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="dayton"><span class="">Dayton</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="east-side"><span class="">East Side</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="florence"><span class="">Florence</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="georgetown"><span class="">Georgetown</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="lexington"><span class="">Lexington</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="mason"><span class="">Mason</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="oakley"><span class="">Oakley</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="uptown"><span class="">Uptown</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="west-side"><span class="">West Side</span></button></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Focus -->
+          <div class="border-bottom toggle">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFocus" aria-expanded="true" aria-controls="collapseFocus" style="color: inherit; text-decoration: inherit;">
+              <div class="panel-heading-trips" role="tab" id="headingThree">
+                <i class="pull-right float-xs-right text-primary" style="transform: translateY(10px); margin-top: -2px;">
+                  <div class="rotate">
+                    <crds-icon name="chevron-down" size="14" class="hydrated"></crds-icon>
+                  </div>
+                </i>
+                <p class="font-size-smaller push-quarter-top text-uppercase">
+                  <strong>FOCUS</strong>
+                </p>
+              </div>
+            </a>
+            <div id="collapseFocus" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+              <div class="panel-body-trips">
+                <div class="font-size-small">
+                  <ul class="list-inline flush" id="filterOptions">
+                    <li class="hard"><button class="volunteer-btn active" id="all"><span class="">All</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="education"><span class="">Education</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="human-trafficking"><span class="">Human Trafficking</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="medical"><span class="">Medical</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="poverty"><span class="">Poverty</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="unsafe-drinking-water"><span class="">Unsafe Drinking Water</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="vulnerable-children"><span class="">Vulnerable Children</span></button></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Season -->
+          <div class="border-bottom toggle">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeason" aria-expanded="true" aria-controls="collapseSeason" style="color: inherit; text-decoration: inherit;">
+              <div class="panel-heading-trips" role="tab" id="headingFour">
+                <i class="pull-right float-xs-right text-primary" style="transform: translateY(10px); margin-top: -2px;">
+                  <div class="rotate">
+                    <crds-icon name="chevron-down" size="14" class="hydrated"></crds-icon>
+                  </div>
+                </i>
+                <p class="font-size-smaller push-quarter-top text-uppercase">
+                  <strong>SEASON</strong>
+                </p>
+              </div>
+            </a>
+            <div id="collapseSeason" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
+              <div class="panel-body-trips">
+                <div class="font-size-small">
+                  <ul class="list-inline flush" id="filterOptions">
+                    <li class="hard"><button class="volunteer-btn active" id="all"><span class="">All</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="winter"><span class="">Winter</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="spring"><span class="">Spring</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="summer"><span class="">Summer</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="fall"><span class="">Fall</span></button></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Audience -->
+          <div class="border-bottom toggle">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAudience" aria-expanded="true" aria-controls="collapseAudience" style="color: inherit; text-decoration: inherit;">
+              <div class="panel-heading-trips" role="tab" id="headingFive">
+                <i class="pull-right float-xs-right text-primary" style="transform: translateY(10px); margin-top: -2px;">
+                  <div class="rotate">
+                    <crds-icon name="chevron-down" size="14" class="hydrated"></crds-icon>
+                  </div>
+                </i>
+                <p class="font-size-smaller push-quarter-top text-uppercase">
+                  <strong>AUDIENCE</strong>
+                </p>
+              </div>
+            </a>
+            <div id="collapseAudience" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
+              <div class="panel-body-trips">
+                <div class="font-size-small">
+                  <ul class="list-inline flush" id="filterOptions">
+                    <li class="hard"><button class="volunteer-btn active" id="all"><span class="">All</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="high-school"><span class="">High School</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="college"><span class="">College</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="family"><span class="">Family</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="educators"><span class="">Educators</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="doctors"><span class="">Doctors</span></button></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Length of Trip -->
+          <div class="border-bottom toggle">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseLength" aria-expanded="true" aria-controls="collapseLength" style="color: inherit; text-decoration: inherit;">
+              <div class="panel-heading-trips" role="tab" id="headingSix">
+                <i class="pull-right float-xs-right text-primary" style="transform: translateY(10px); margin-top: -2px;">
+                  <div class="rotate">
+                    <crds-icon name="chevron-down" size="14" class="hydrated"></crds-icon>
+                  </div>
+                </i>
+                <p class="font-size-smaller push-quarter-top text-uppercase">
+                  <strong>LENGTH IN DAYS</strong>
+                </p>
+              </div>
+            </a>
+            <div id="collapseLength" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSix">
+              <div class="panel-body-trips">
+                <div class="font-size-small">
+                  <ul class="list-inline flush" id="filterOptions">
+                    <li class="hard"><button class="volunteer-btn active" id="all"><span class="">All</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="less-than-7"><span class="">Less than 7</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="more-than-7"><span class="">More than 7</span></button></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Age -->
+          <div class="border-bottom toggle">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAge" aria-expanded="true" aria-controls="collapseAge" style="color: inherit; text-decoration: inherit;">
+              <div class="panel-heading-trips" role="tab" id="headingSeven">
+                <i class="pull-right float-xs-right text-primary" style="transform: translateY(10px); margin-top: -2px;">
+                  <div class="rotate">
+                    <crds-icon name="chevron-down" size="14" class="hydrated"></crds-icon>
+                  </div>
+                </i>
+                <p class="font-size-smaller push-quarter-top text-uppercase">
+                  <strong>AGE</strong>
+                </p>
+              </div>
+            </a>
+            <div id="collapseAge" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSeven">
+              <div class="panel-body-trips">
+                <div class="font-size-small">
+                  <ul class="list-inline flush" id="filterOptions">
+                    <li class="hard"><button class="volunteer-btn active" id="all"><span class="">All</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="10+"><span class="">10+</span></button></li>
+                    <li class="hard"><button class="volunteer-btn" id="18+"><span class="">18+</span></button></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 hard-sides push-top visible-sm visible-xs">
+            <a type="button" href="#CollapseFilter" data-toggle="collapse" class="toggle-btn btn btn-primary btn-outline">Close</a>
+            <a type="button" href="#CollapseFilter" data-toggle="collapse" class="toggle-btn btn btn-secondary pull-right">Apply filtes</a>
+          </div>
+
+        </div>
+
+      </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-9">
+        <div id="ourHolder" class="row volunteer-flex">
+            {% if trip_cards %}
+                {% for item in trip_cards %}
+                  {% include _trip-card.html %}
+                {% endfor %}
+            {% endif %}
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Footer section -->
+{{ go_trip_footer2.content_block | markdownify }}
+
+</section>
+
+<script>
+  var $btns = $('.volunteer-btn').click(function() {
+    if (this.id == 'all') {
+      $('#ourHolder > div').fadeIn(450);
+    } else {
+      var $el = $('.' + this.id).fadeIn(450);
+      $('#ourHolder > div').not($el).hide();
+    }
+
+    $btns.removeClass('active');
+    $(this).addClass('active');
+  })
+
+
+  $(".main-container.collapse").on('shown.bs.collapse', function () {
+    //when a collapsed div is shown hide all other collapsible divs that are visible
+    $(".main-container.collapse").not($(this)).collapse('hide');
+  });
+
+</script>
+
+
+<style>
+  .active {
+    background-color: #253746 !important;
+    color:white !important;
+  }
+
+  .active a {
+    background-color: #253746 !important;
+    color:white !important;
+  }
+
+  .panel-heading-trips {
+    padding: 3px 10px 0px 0px;
+  }
+
+  .panel-body-trips {
+    padding: 0px 0px 10px 0px;
+  }
+
+  .panel-body {
+    padding: 0px 0px 10px 0px !important;
+  }
+
+  .accordion .accordion-heading {
+    padding: 0px 10px 0px 0px !important;
+  }
+
+  [aria-expanded="true"] .if-collapsed {
+    display: none;
+  }
+
+  [aria-expanded="false"] .if-not-collapsed {
+    display: none;
+  }
+
+  [aria-expanded="true" ] .rotate {
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    -moz-transition: all .5s;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    -ms-transition: all .5s;
+    transition: all .5s;
+  }
+
+  [aria-expanded="false" ] .rotate {
+    -moz-transition: all .5s;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    -ms-transition: all .5s;
+    transition: all .5s;
+  }
+
+  .filter-drawer {
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: block;
+    background: white;
+    width: 290px;
+    z-index: 3;
+    border: 1px solid #6e6d6b;
+    box-shadow: 2px 0 4px -1px #00000021;
+    padding: 0 25px 25px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+
+  @media only screen and (min-width: 320px) {
+    .volunteer-flex {
+      display: block;
+      flex-wrap: nowrap;
+    }
+
+    .panel-group {
+      z-index: 1;
+      position: fixed;
+      background-color: white;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      top: 25px;
+      left: 0;
+      background-color: white;
+    }
+
+    .panel-scroll {
+      height: auto;
+      position: relative;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      padding-top: 40px;
+      width: 90%;
+      left: 5%;
+    }
+
+    #ourHolder {
+      margin-left: -15px;
+    }
+
+    .volunteer-btn {
+      padding: 0 4px;
+      background-color:#fff;
+      border-radius:0px;
+      border:1px solid #253746;
+      overflow:auto;
+      float:left;
+      font-size: 13px;
+      margin-right: 3px;
+    }
+    .volunteer-btn input[type="checkbox"] {
+      -webkit-appearance: initial;
+
+    }
+    .volunteer-btn input[type="radio"] {
+      -webkit-appearance: initial;
+
+    }
+
+    .volunteer-btn:hover {
+      background-color: #253746 !important;
+      color:white!important;
+    }
+
+    .volunteer-btn:active {
+      background-color: #253746 !important;
+      color:white !important;
+    }
+
+    .volunteer-btn label {
+        float:left;
+        width:auto;
+        font-weight: 300;
+        margin-bottom: 0px;
+    }
+
+    .volunteer-btn span {
+        text-align:center;
+        padding:3px 0px;
+        display:block;
+        padding: 2px 5px 4px 5px;
+    }
+
+    .volunteer-btn label input {
+        position:absolute;
+        top:-20px;
+    }
+
+    .volunteer-btn input:checked + span {
+        background-color:#253746;
+        color:#fff;
+    }
+  }
+
+
+  @media only screen and (min-width: 768px) {
+    .volunteer-flex {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    #ourHolder {
+      margin-left: -15px;
+    }
+    .panel-group {
+      width: 100%;
+      position: sticky;
+      top: 70px;
+      position: -webkit-sticky;
+    }
+  }
+
+  @media only screen and (min-width: 992px) {
+    #CollapseFilter {
+      display: contents;
+    }
+
+    #ourHolder {
+      margin-left: 25px;
+    }
+    .panel-group {
+      width: 240px;
+      position: sticky;
+      top: 70px;
+      position: -webkit-sticky;
+      z-index: 0;
+    }
+    .panel-scroll {
+      height: 590px;
+      position: relative;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      padding-top:0px;
+      width: auto;
+      left: 0;
+    }
+  }
+
+  @media only screen and (min-width: 1200px) {
+    .panel-group {
+      width: 265px;
+      position: sticky;
+      top: 70px;
+      position: -webkit-sticky;
+      z-index: 0;
+      background-color: white;
+      height: auto;
+      overflow: auto;
+      left: 0;
+    }
+  }
+
+</style>
