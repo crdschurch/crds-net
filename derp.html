@@ -297,16 +297,12 @@ layout: container-fluid
   };
   
   function filterPosts() {
-    var postsToDisplay = []
-
-    Object.entries(filters).foreach(function([key, value]) {
-      // key === country
-      // value === all
-
-      // key === coummunity
-      // value === columbus
-
-
+    var  $matches = []
+    $('#ourHolder > div').hide();
+    Object.entries(filters).forEach(function([key, value]) {
+      $('.' + key + '-' + value).each(function ($match) {
+        $(this).fadeIn(450)
+      })
     })
   }
 
@@ -319,10 +315,9 @@ layout: container-fluid
     filters[type] = id
 
     // Set active correct buttons
-    $el.parentsUntil('ul').find('button').not('#' + id).removeClass('active');
+    $el.parents('ul').find('button').not('#' + id).removeClass('active');
     $el.addClass('active');
-    
-    console.log(type, id, filters, $el.parentsUntil('ul'));
+
     filterPosts();
   });
   
