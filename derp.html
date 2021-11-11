@@ -7,7 +7,7 @@ layout: container-fluid
 
 <main class="">
   <section>
-    <div class="jumbotron jumbotron-lg" style="background-image: url('//crds-media.imgix.net/7F3mYGcYgqu346ypdvu0f7/d47c85c24fa6b7d1cd573a9b30588c28/092517_2017_SA_Undivided-131.jpg?{{ site.imgix_params.placeholder }}');" data-optimize-bg-img >
+    <div class="jumbotron jumbotron-lg" style="background-image: url('//crds-media.imgix.net/7F3mYGcYgqu346ypdvu0f7/d47c85c24fa6b7d1cd573a9b30588c28/092517_2017_SA_Undivided-131.jpg?{{ site.imgix_params.placeholder }}');" data-optimize-bg-img>
       <div class="bg-overlay"></div>
       <div class="container soft-ends">
         <div class="row">
@@ -250,8 +250,8 @@ layout: container-fluid
                   <div class="font-size-small">
                     <ul class="list-inline flush" id="filterOptions">
                       <li class="hard"><button class="volunteer-btn active" data-type="age" id="all"><span class="">All</span></button></li>
-                      <li class="hard"><button class="volunteer-btn" data-type="age" id="10+"><span class="">10+</span></button></li>
-                      <li class="hard"><button class="volunteer-btn" data-type="age" id="18+"><span class="">18+</span></button></li>
+                      <li class="hard"><button class="volunteer-btn" data-type="age" id="10plus"><span class="">10+</span></button></li>
+                      <li class="hard"><button class="volunteer-btn" data-type="age" id="18plus"><span class="">18+</span></button></li>
                     </ul>
                   </div>
                 </div>
@@ -270,13 +270,15 @@ layout: container-fluid
 
         <div class="col-xs-12 col-sm-12 col-md-9">
           <div id="ourHolder" class="row volunteer-flex">
-              {% if trip_cards %}
-                {% for item in trip_cards %}
-                  {% include _trip-card.html %}
-                {% endfor %}
-              {% endif %}
+            {% if trip_cards %}
+              {% for item in trip_cards %}
+                {% include _trip-card.html %}
+              {% endfor %}
+            {% endif %}
           </div>
-
+          <div id="no-results" class="col-xs-12 text-center soft">
+            No results
+          </div>
         </div>
 
       </div>
@@ -292,23 +294,35 @@ layout: container-fluid
 
 <script>
   // Add default filters here when adding a new filter
-  var filters = {
-    country: 'all'
-  };
-  
+  var filters = {};
+  $('#no-results').hide()
+
   function filterPosts() {
-    var  $matches = []
-    $('#ourHolder > div').hide();
+    var classes = [];
+    $('#no-results').hide()
     Object.entries(filters).forEach(function([key, value]) {
-      $('.' + key + '-' + value).each(function ($match) {
-        $(this).fadeIn(450)
-      })
+      if (value !== 'all') {
+        classes.push('.' + key + '-' + value)
+      }
     })
+    var $allItems = $('#ourHolder > div')
+    if (classes.length > 0) {
+      $allItems.not(classes.join('')).hide();
+      $('#no-results').show()
+      
+      $(classes.join('')).each(function ($match) {
+        $(this).fadeIn(450)
+        $('#no-results').hide()
+      });
+
+      return;
+    }
+
+    $allItems.fadeIn();
   }
 
   $('.volunteer-btn').on('click', function(e) {
     e.preventDefault();
-    var $posts = $('#ourHolder > div');
     var $el = $(this);
     var type = $el.data('type')
     var id = $el.attr('id')
@@ -320,47 +334,6 @@ layout: container-fluid
 
     filterPosts();
   });
-  
-
-  // var $btns = $('.volunteer-btn').click(function() {
-  //   var $posts = $('#ourHolder > div')
-  //   if (this.id == 'all') {
-  //     $posts.fadeIn(450);
-  //   } else {
-  //     var $el = $('.' + this.id).fadeIn(450);
-  //     $posts.not($el).hide();
-  //   }
-
-  //   $posts
-  //     .filter(function() {
-  //       var $post = $(this);
-  //       return $btns.toArray().every(function(btns) {
-  //         return $post.hasClass($(btns).attr('id'));
-  //       });
-  //     })
-  //     .show();
-  //   });
-
-  //   $posts.addClass('active');
-
-  // $(document).ready(function() {
-  //   $('#ourHolder > div').show();
-
-  //   var $btns = $('.volunteer-btn').click(function() {
-  //     var $posts = $('#ourHolder > div').hide();
-  //     var $elements = $('.volunteer-btn').attr('id');
-  //     console.log($btns.attr('id'));
-  //     $posts
-  //       .filter(function() {
-  //         var $post = $(this);
-  //         return $elements.toArray().every(function(element) {
-  //           return $post.hasClass($(element).attr('id'));
-  //         });
-  //       })
-  //       .show();
-  //   });
-  // });
-
 
   $(".main-container.collapse").on('shown.bs.collapse', function () {
     //when a collapsed div is shown hide all other collapsible divs that are visible
