@@ -286,7 +286,6 @@ layout: container-fluid
   </section>
 
 
-
 <!-- Footer section -->
 {{ go_trip_footer2.content_block | markdownify }}
 
@@ -429,20 +428,21 @@ layout: container-fluid
       background-color: white;
       width: 100vw;
       height: 100vh;
-      overflow: hidden;
-      top: 25px;
+      overflow: scroll;
+      top: 0;
       left: 0;
       background-color: white;
+      padding-top: 20px;
     }
 
     .panel-scroll {
       height: auto;
       position: relative;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      padding-top: 40px;
+      padding-top: 60px;
       width: 90%;
       left: 5%;
+      overflow: scroll;
+      padding-bottom: 120px;
     }
 
     #ourHolder {
@@ -515,9 +515,9 @@ layout: container-fluid
     }
     .panel-group {
       width: 100%;
-      position: sticky;
-      top: 70px;
-      position: -webkit-sticky;
+      top: 0px;
+      overflow: scroll;
+      position: fixed;
     }
   }
 
