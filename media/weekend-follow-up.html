@@ -39,8 +39,10 @@ permalink: /weekendfollowup/
 
         <hr>
         <section>
+          {% assign item = site.messages | last %}
+          {% assign latest_series = site.series | last %}
           <p class="metadata"><strong>Missed the message? Want to watch it?</strong></p>
-          <a class="btn btn-primary" data-media-snippet="get_current_message_url:attr[href]">
+          <a class="btn btn-primary" href="{{ item | media_url }}">
             Click here to watch
           </a>
         </section>
