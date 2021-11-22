@@ -52,6 +52,20 @@ paginate:
 <!-- Good News Graphic -->
 {% assign good_news_graphic = site.content_blocks | where: 'slug', 'good-news-graphic' | first %}
 
+<!-- Assign Logged Out Home Ad -->
+{% assign logged_out_home_ad = site.content_blocks | where: 'slug', 'logged-out-home-ad' | first %}
+
+
+<section class="bg-black flush-top" style="top: -1.5rem; position: relative;">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- Logged Out Home Ad -->
+        {{ logged_out_home_ad.content_block | markdownify }}
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="soft-top bg-blue soft-bottom bg-topo push-bottom" style="position: relative; top: -1.5rem;">
   <div class="container">
