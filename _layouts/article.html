@@ -187,7 +187,7 @@ title: Articles
           <div class="col-md-2 carousel-cell">
             <div class="d-flex flex-align-center flex-column justify-content-center push-half-top">
               <a href="{{ item | media_url }}">
-                <img src="{{ item.image.url | imgix: site.imgix }}?auto=format,compress&w=140&h=140&fit=crop" alt="{{ author_full_name }}" class="img-circle" width="140px" data-optimize-img>
+                <img src="{{ item.image.url | imgix: site.imgix }}?auto=format,compress&w=140&h=140&fit=crop" alt="{{ author_full_name }}" class="img-circle" width="140px">
               </a>
               <div class="push-half-top text-center">
                 <a href="{{ item | media_url }}" class="text-blue font-family-base-bold font-size-smaller">{{ item.full_name }}</a>
