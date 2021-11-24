@@ -24,7 +24,7 @@ module Jekyll
         featured_docs = featured_obj ? featured_obj.data['docs'].first(7) : []
         # And find all other Jekyll docs that are attached to this collection.
         recent_docs = collectable_docs.select do |doc|
-          doc.data['collections'].to_a.collect { |c| c['id'] }.include?(collection.data['contentful_id'])
+          (doc.data['collections'] || []).compact.to_a.collect { |c| c['id'] }.include?(collection.data['contentful_id'])
         end
         # Merge featured docs and recent docs into one .docs property for the
         # collection.
