@@ -4,7 +4,7 @@ layout: default
 
 {% assign podcast = site.podcasts | where: 'title', page.podcast.title | first %}
 
-<div class="media-podcast-episode" data-grouping-media-type="podcast">
+<div class="media-podcast-episode" data-grouping-media-type="episode">
   <header style="background-image: url('{{ podcast.bg_image.url | imgix: site.imgix }}');" data-optimize-bg-img>
     <div class="container">
       <div class="row">
