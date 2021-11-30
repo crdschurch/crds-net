@@ -47,9 +47,9 @@ layout: default
   <div class="container">
     <div class="row soft-half soft-top push-top mobile-flush-top">
       {% if page.community_pastor_name %}
-      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students"]' mobile-dropdown>
+      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "groups"]' mobile-dropdown>
       {% else %}
-      <crds-tabs tabs='["events & updates", "about", "kids & students"]' mobile-dropdown>
+      <crds-tabs tabs='["events & updates", "about", "kids & students", "groups"]' mobile-dropdown>
       {% endif %}
         <!-- Events & Updates -->
         <div slot="tab-events-updates" class="push-ends">
@@ -248,6 +248,26 @@ layout: default
             </div>
           </div>
           {% endif %}
+        </div>
+
+        <!-- Groups -->
+        <div slot="tab-groups" class="push-ends">
+          <div class="row align-items-center df-screen-sm">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="//crds-media.imgix.net/7JQyiiFy5WYeeCMEoM9nuA/ff1e862a5f7988c54b12f0b2f4489447/groups-square.png"/>
+            </div>
+            <div class="col-sm-6 push-ends soft-ends">
+              <h2 class="section-header flush-ends soft-half-bottom">Groups</h2>
+              <p class="flush-bottom"><strong>Live the life you were made for.</strong></p>
+              <p>The people you surround yourself with have a direct impact on the quality of your life. From lifestage to shared interests, in homes or online, there are hundreds of groups ready for you.</p>
+              <div class="soft-half-top">
+                <crds-button class="push-half-right" href="/findgroups?www_crds_connect_new%5BrefinementList%5D%5Bsite%5D%5B0%5D={{ page.name | titleize | replace: ' ' , '%20' }}" color="blue" display="outline" text="View {{ page.name | titleize }} groups">
+                </crds-button>
+                <crds-button class="push-half-right" href="/findgroups" color="blue" display="outline" text="View all groups">
+                </crds-button>
+              </div>
+            </div>
+          </div>
         </div>
       </crds-tabs>
     </div>
