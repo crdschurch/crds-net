@@ -26,12 +26,7 @@ permalink: /weekendfollowup/
 <section class="container">
   <div class="row soft-top">
     <div class="col-sm-offset-2 col-sm-8">
-      <p class="lead">The Weekend Follow-Up is a set of discussion prompts to help your group unpack the weekend. Add
-        Crossroads to your group chat in the Crossroads App to get a couple messages each week, all designed to help you
-        move further and faster toward the full life you were made for.
-        <br />
-        <a href="#app" data-smooth-scroll-to="app" data-smooth-scroll-offset="92">Opt-in to get these questions and
-          challenges sent right to your group.</a>
+      <p class="lead">The Weekend Follow-Up is a set of discussion prompts to help your group unpack the weekend. These questions are designed to help you move further and faster toward the full life you were made for.
 
         {% if site.chaser_message %}
       <p class="bg-gray soft metadata push-ends">
@@ -43,25 +38,11 @@ permalink: /weekendfollowup/
         {% include _discussion-questions.html type='chaser' discussion=discussion %}
 
         <hr>
-        <div class="row" id="app">
-          <div class="col-sm-12 bg-tan-light soft">
-            <h3 class="section-header flush-ends soft-half-bottom font-size-h3">Get The Weekend Follow-Up sent right to
-              your group</h3>
-            <p class="text-gray">Step 1: <a href="/app">Download the Crossroads App</a></p>
-            <p class="text-gray">Step 2: Create a group chat with your group</p>
-            <p class="text-gray">Step 3: Turn on the Weekend Follow-Up</p>
-            <br />
-            <p class="text-gray"><strong>Still not sure?</strong> Check out this video tutorial</p>
-            <div class="embed-responsive embed-responsive-16by9 push-ends">
-              <iframe width="320" height="240" src="https://www.youtube.com/embed/xKIynCaK_BA" frameborder="0"
-                allowfullscreen=""></iframe>
-            </div>
-          </div>
-        </div>
-        <hr>
         <section>
+          {% assign item = site.messages | last %}
+          {% assign latest_series = site.series | last %}
           <p class="metadata"><strong>Missed the message? Want to watch it?</strong></p>
-          <a class="btn btn-primary" data-media-snippet="get_current_message_url:attr[href]">
+          <a class="btn btn-primary" href="{{ item | media_url }}">
             Click here to watch
           </a>
         </section>

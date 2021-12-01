@@ -1,0 +1,222 @@
+.all-trips {
+  .active {
+    background-color: $cr-blue !important;
+    color: $cr-white !important;
+  }
+
+  .active a {
+    background-color: $cr-blue !important;
+    color: $cr-white !important;
+  }
+
+  .panel-heading-trips {
+    padding: 3px 10px 0px 0px;
+  }
+
+  .panel-body-trips {
+    padding: 0px 0px 10px 0px;
+  }
+
+  .panel-body {
+    padding: 0px 0px 10px 0px !important;
+  }
+
+  .accordion .accordion-heading {
+    padding: 0px 10px 0px 0px !important;
+  }
+
+  [aria-expanded="true"] .if-collapsed {
+    display: none;
+  }
+
+  [aria-expanded="false"] .if-not-collapsed {
+    display: none;
+  }
+
+  [aria-expanded="true" ] .rotate {
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    -moz-transition: all .5s;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    -ms-transition: all .5s;
+    transition: all .5s;
+  }
+
+  [aria-expanded="false" ] .rotate {
+    -moz-transition: all .5s;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    -ms-transition: all .5s;
+    transition: all .5s;
+  }
+
+  .filter-drawer {
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: block;
+    background: $cr-white;
+    width: 290px;
+    z-index: 3;
+    border: 1px solid $cr-gray;
+    box-shadow: 2px 0 4px -1px #00000021;
+    padding: 0 25px 25px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+
+  @media only screen and (min-width: 320px) {
+    .volunteer-flex {
+      display: block;
+      flex-wrap: nowrap;
+    }
+
+    .panel-group {
+      z-index: 1;
+      position: fixed;
+      background-color: $cr-white;
+      width: 100vw;
+      height: 100vh;
+      overflow: scroll;
+      top: 0;
+      left: 0;
+      background-color: $cr-white;
+      padding-top: 20px;
+    }
+
+    .panel-scroll {
+      height: auto;
+      position: relative;
+      padding-top: 60px;
+      width: 90%;
+      left: 5%;
+      overflow: scroll;
+      padding-bottom: 120px;
+    }
+
+    #ourHolder {
+      margin-left: -15px;
+    }
+
+    .volunteer-btn {
+      padding: 0 4px;
+      background-color: $cr-white;
+      border-radius:0px;
+      border:1px solid $cr-blue;
+      overflow:auto;
+      float:left;
+      font-size: 13px;
+      margin-right: 3px;
+    }
+
+    .volunteer-btn input[type="checkbox"] {
+      -webkit-appearance: initial;
+    }
+
+    .volunteer-btn input[type="radio"] {
+      -webkit-appearance: initial;
+    }
+
+    .volunteer-btn:hover {
+      background-color: $cr-blue !important;
+      color:$cr-white!important;
+    }
+
+    .volunteer-btn:active {
+      background-color: $cr-blue !important;
+      color:$cr-white !important;
+    }
+
+    .volunteer-btn label {
+      float:left;
+      width:auto;
+      font-weight: 300;
+      margin-bottom: 0px;
+    }
+
+    .volunteer-btn span {
+      text-align:center;
+      padding:3px 0px;
+      display:block;
+      padding: 2px 5px 4px 5px;
+    }
+
+    .volunteer-btn label input {
+      position:absolute;
+      top:-20px;
+    }
+
+    .volunteer-btn input:checked + span {
+      background-color:$cr-blue;
+      color:$cr-white;
+    }
+  }
+
+
+  @media only screen and (min-width: 768px) {
+    .volunteer-flex {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    #ourHolder {
+      margin-left: -15px;
+    }
+
+    .panel-group {
+      width: 100%;
+      top: 0px;
+      overflow: scroll;
+      position: fixed;
+    }
+  }
+
+  @media only screen and (min-width: 992px) {
+    #CollapseFilter {
+      display: contents;
+    }
+
+    #ourHolder {
+      margin-left: 25px;
+    }
+
+    .panel-group {
+      width: 240px;
+      position: sticky;
+      top: 70px;
+      position: -webkit-sticky;
+      z-index: 0;
+    }
+
+    .panel-scroll {
+      height: 590px;
+      position: relative;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      padding-top:0px;
+      width: auto;
+      left: 0;
+    }
+  }
+
+  @media only screen and (min-width: 1200px) {
+    .panel-group {
+      width: 265px;
+      position: sticky;
+      top: 70px;
+      position: -webkit-sticky;
+      z-index: 0;
+      background-color: $cr-white;
+      height: auto;
+      overflow: auto;
+      left: 0;
+    }
+  }
+}

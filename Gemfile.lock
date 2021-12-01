@@ -39,10 +39,10 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-crds.git
-  revision: e79f425439d32b50db30efbbb31da80ee1b5efdc
-  tag: 2.3.2
+  revision: e01666333f51429616e333f86fef829ca7ea50d3
+  tag: 2.3.3
   specs:
-    jekyll-crds (2.3.2)
+    jekyll-crds (2.3.3)
       activesupport
       httparty
       jekyll
@@ -300,4 +300,4 @@ DEPENDENCIES
   webvtt-ruby
 
 BUNDLED WITH
-   2.2.14
+   2.2.27
