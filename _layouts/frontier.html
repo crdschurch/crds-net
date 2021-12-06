@@ -115,7 +115,7 @@ layout: default
               {% endif %}
 
               <a href="{{ series.url }}" title="{{ series.title }}">
-                <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720&fit=crop" size="card"></crds-image>
+                <image class="media-img img-full-width" src="{{ series.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img>
               </a>
               <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Series</strong></p>
               <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
