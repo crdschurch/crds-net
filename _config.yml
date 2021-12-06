@@ -87,6 +87,8 @@ collections:
   messages:
     output: true
     permalink: /media/series/(:series/:slug)/:title
+  meta:
+    output: false
   onsite_group_categories:
     output: false
   onsite_group_meetings:
@@ -116,6 +118,7 @@ collections:
     permalink: /media/:collection/:title
     has_many:
       - videos
+      - live_messages
   sign_offs:
     output: false
   sign_up_forms:

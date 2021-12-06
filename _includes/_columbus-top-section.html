@@ -12,9 +12,6 @@
       <div class="bg-overlay"></div>
       <div class="col-sm-12 push-ends mobile-soft-sides mt-75">
         <div>
-          <div>
-            <crds-arrow arrow-color="orange" text-color="blue" arrow-size="large">Ready <br />For Launch</crds-arrow>
-          </div>
           <span class="font-family-accent text-white font-size-h6">Welcome to</span>
           <h1 class="flush-ends font-family-condensed-extra text-uppercase soft-half-top">Crossroads <br />{{ page.name }}</h1>
         </div>
@@ -26,7 +23,7 @@
     <div class="row location-info-row soft-ends">
       <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 soft-ends">
         <div class="location-top-info-container">
-      
+
           <div class="location-top-info-item text-left push-bottom location-info-divider mobile-flush-bottom">
             <div>
 
@@ -47,12 +44,12 @@
 
               <span class="soft-bottom text-uppercase font-family-base-bold font-size-smaller">Get to know us in 5 days</span>
               <p class="flush-top font-family-base font-size-small">Sign up for a weekly email so you can get to know who we are and what we are running after. It’s a no pressure kind of format and you can opt-out at any time.</p>
-              
-              <a class="pointer text-orange" data-toggle="modal" data-target="#columbusEmailModalForm">Sign up</a>
+
+              <a class="pointer text-orange" data-toggle="modal" data-target="#subscribeModalForm">Sign up</a>
               <hr class="visible-xs">
             </div>
           </div>
-      
+
           <div class="location-top-info-item text-left">
             <div class="d-flex justify-content-between">
               <div class="push-right">
@@ -61,9 +58,9 @@
                 <p class="flush font-family-base font-size-small">{{ page.community_pastor_name }}</p>
                 <p class="hard-top flush font-family-base font-size-small">{{ page.name }} Community Pastor</p>
                 {% assign pastor_full_name = page.community_pastor_name | split: " " %}
-      
+
                 <a class="text-orange" href="#the-team">Meet the team</a>
-      
+
                 {% else %}
                 <p class="flush font-family-base font-size-small">New face coming soon</p>
                 {% endif %}
@@ -97,7 +94,7 @@
         </div>
         {% endif %}
       </div>
-      
+
     </div>
   </div>
 </section>

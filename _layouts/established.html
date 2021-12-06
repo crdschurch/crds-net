@@ -60,7 +60,7 @@ layout: default
               {% assign hasPromo = false %}
               {% if page.featured_below.size > 0 %}
               {% assign hasPromo = true %}
-              <div class="overflow-hidden push-bottom">
+              <div class="push-bottom">
                 {{ page.featured_below }}
               </div>
               {% endif %}
@@ -74,7 +74,7 @@ layout: default
               <div class="push-half-top push-bottom font-size-small text-gray-dark">
                 {{ series.description | markdownify }}
               </div>
-              <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series"
+              <crds-button href="{{ series.url }}#at-sites" title="{{ series.title }}" text="Watch current teaching series"
                 color="orange"></crds-button>
 
             </div>

@@ -109,7 +109,7 @@ layout: default
               {% assign hasPromo = false %}
               {% if page.featured_below.size > 0 %}
               {% assign hasPromo = true %}
-              <div class="overflow-hidden push-bottom">
+              <div class="push-bottom">
                 {{ page.featured_below }}
               </div>
               {% endif %}
@@ -122,7 +122,7 @@ layout: default
               <div class="push-half-top push-bottom font-size-small text-gray-dark">
                 {{ series.description | markdownify }}
               </div>
-              <crds-button href="{{ series.url }}" title="{{ series.title }}" text="Watch current teaching series"
+              <crds-button href="{{ series.url }}#at-sites" title="{{ series.title }}" text="Watch current teaching series"
                 color="orange"></crds-button>
 
             </div>
@@ -391,7 +391,7 @@ layout: default
 <!-- Chat with us -->
 <section class="bg-orange soft">
   <div class="container text-center push-ends">
-    <h3 class="component-header-box text-white">We'd love to connect with you</h2>
+    <h3 class="component-header-box text-white">We'd love to connect with you</h3>
     <p class="font-family-serif font-size-large push-bottom push-half-top text-blue">Whether you have questions about Crossroads, faith, life, we are here to help.</p>
     <crds-button color="blue" text="Chat with us" data-trigger="chat"></crds-button>
   </div>

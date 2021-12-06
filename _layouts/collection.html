@@ -47,8 +47,10 @@ layout: default
     {% assign tabs_array = "" | split: "|" %}
 
     {% for season_number in season_numbers %}
-    {% capture tab %}Season {{season_number}}{% endcapture %}
+      {% if season_number %}
+      {% capture tab %}Season {{season_number}}{% endcapture %}
       {% assign tabs_array = tabs_array | push: tab %}
+      {% endif %}
     {% endfor %}
 
     <crds-tabs tabs='{{tabs_array | jsonify }}' mobile-dropdown navigation-class="align-tabs-left shows" dropdown-icon-color="white">
@@ -57,7 +59,7 @@ layout: default
       {% for group in groups %}
       {% assign season_number = group.items | map: 'season_number' | first %}
       <div class="soft-top" slot="tab-season-{{ season_number }}">
-        {% assign episodes = group.items | sort: 'episode_number' | reverse %}
+        {% assign episodes = group.items | sort: 'published_at' | reverse %}
         {% for episode in episodes %}
         <div class="row soft-bottom">
           <a href="{{ episode | media_url }}">
@@ -75,7 +77,6 @@ layout: default
       </div>
       {% endfor %}
     </crds-tabs>
-
     {% endif %}
    
   </div>
