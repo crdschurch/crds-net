@@ -1,0 +1,293 @@
+---
+layout: default
+paginate:
+  messages:
+    per: 1
+    limit: 1
+    sort: published_at desc
+---
+
+{% assign series = site.series | last %}
+
+<!-- Resi player
+<section class="bg-blue" id="resi-player">
+-->
+<section class="bg-blue">
+  <div class="container soft-ends">
+    <div class="row push-ends">
+      <div id="resi-video-player-container" class="col-sm-10 col-sm-offset-1">
+        <div id="resi-video-player" data-embed-id="d3ebebe0-b605-48ab-a6e8-b9f3ef201b4e"></div>
+      </div>
+    </div>
+    <div class="row text-center text-white push-bottom soft-bottom">
+      <div class="col-sm-12">
+        <p class="flush-bottom font-size-small text-uppercase">You're watching the</p>
+        <h3 class="flush-top font-family-condensed-extra font-size-h2 text-uppercase text-white">Crossroads Live Weekend</h3>
+        <p class="font-size-small text-white"><em>Live weekly on Sundays at 8:30-9:30am & 10-11am</em></p>
+        <div class="dropdown">
+          <button class="btn btn-white btn-sm btn-outline dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            View events at your location
+            <svg class="icon icon-1 pull-right push-left" viewBox="0 0 256 256">
+              <use xlink:href="/assets/svgs/icons.svg#chevron-down" xmlns:xlink="http://www.w3.org/1999/xlink"></use>
+            </svg>
+          </button>
+          <ul class="crds-list dropdown-menu">
+            <li>
+              <a href="/columbus#events-updates">Columbus</a>
+            </li>
+            <li>
+              <a href="/dayton#events-updates">Dayton</a>
+            </li>
+            <li>
+              <a href="/eastside#events-updates">East Side</a>
+            </li>
+            <li>
+              <a href="/florence#events-updates">Florence</a>
+            </li>
+            <li>
+              <a href="/georgetown#events-updates">Georgetown</a>
+            </li>
+            <li>
+              <a href="/lexington#events-updates">Lexington</a>
+            </li>
+            <li>
+              <a href="/mason#events-updates">Mason</a>
+            </li>
+            <li>
+              <a href="/oakley#events-updates">Oakley</a>
+            </li>
+            <li>
+              <a href="/uptown#events-updates">Uptown</a>
+            </li>
+            <li>
+              <a href="/westside#events-updates">West Side</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Two Services Section -->
+<section class="bg-tan-light">
+  <div class="container soft-bottom">
+    <div class="row text-center push-ends soft-ends">
+      <div class="col-sm-12">
+        <p class="flush-bottom font-size-small text-orange text-uppercase">
+          <strong>Watch Weekly Teachings</strong>
+        </p>
+        <h3 class="section-header flush-ends text-gray-darker">
+          TWO INSPIRATIONAL MESSAGES<br>
+          EVERY WEEK
+        </h3>
+      </div>
+    </div>
+
+    <div class="row" style="margin-right: 0; margin-left: 0;">
+
+      <!-- Live Message -->
+      <div class="col-xs-6 push-bottom" style="padding-left: 8px; padding-right: 8px;">
+        <div class="bg-white weekend-container">
+          <div class="">
+            <img
+              src="//crds-media.imgix.net/7nczKf5t6LrI0kDNZbFHKG/929f776a88b0c2eb84cc3f1b27222e72/watch-live-message-img.jpg?auto=compress&w=1200&corner-radius=8,8,0,0"
+              alt="Senior Pastor Brian Tome delivers a weekly message on stage"
+              title="Crossroads Weekly Live Message"
+              data-optimize-img
+            >
+          </div>
+          <div class="soft-sides mobile-soft-half-sides push-half-ends">
+            <h3 class="section-header flush-ends soft-half-ends text-gray-dark" style="line-height:.9em;">
+              Live Message
+            </h3>
+            <p class="font-size-small text-gray-dark">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+            </p>
+            <div class="">
+              <p class="flush-bottom font-size-smaller text-orange text-uppercase">
+                NEW MESSAGES:
+              </p>
+              <p class="font-size-small text-gray-dark flush-bottom mobile-push-bottom">
+                Live Sundays at 8:30-9:30am & 10-11am.
+              </p>
+              <p class="font-size-small text-gray-dark">
+                On demand weekly on Sunday at 2pm (EST)
+              </p>
+            </div>
+
+            {% assign home_messages = page.messages.docs %}
+            {% for message in home_messages %}
+            {% assign item = message %}
+            <div class="row">
+              <div class="col-xs-12 weekend-message">
+                <hr>
+                <div class="row">
+                  <a href="{{ message | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
+                    <div class="">
+                      <img class="img-responsive img-full-width"
+                        src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                        sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+                      {% include _video-player-card.html autoplay=true thumbnail=true %}
+                    </div>
+                  </a>
+                  <div class="col-sm-6 col-xs-12">
+                    <p class="flush-bottom font-size-smaller text-orange text-uppercase">
+                      LATEST MESSAGE
+                    </p>
+                    <h5 class="component-header flush-ends">
+                      <a href="{{ message | media_url }}" data-automation-id="message-title">{{ message.title }}</a>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Online Message -->
+      <div class="col-xs-6 push-bottom" style="padding-left: 8px; padding-right: 8px;">
+        <div class="bg-white weekend-container">
+          <div class="">
+            <img
+              src="//crds-media.imgix.net/6TpOHe8Cry8cFQlDmNyw9B/b45c8cc672680059e856bdb973e3fc52/watch-online-message-img.jpg?auto=compress&w=1200&corner-radius=8,8,0,0"
+              alt="Hannah Shepperd delivers a weekly message on location"
+              title="Crossroads Weekly Online Message"
+              data-optimize-img
+              style="border-radius: 8px 8px 0px 0px !important;"
+            >
+          </div>
+          <div class="soft-sides mobile-soft-half-sides push-half-ends">
+            <h3 class="section-header flush-ends soft-half-ends text-gray-dark" style="line-height:.9em;">
+              Online Message
+            </h3>
+            <p class="font-size-small text-gray-dark">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+            </p>
+            <div class="">
+              <p class="flush-bottom font-size-smaller text-orange text-uppercase">
+                NEW MESSAGES:
+              </p>
+              <p class="font-size-small text-gray-dark">
+                Weekly on Friday at 5pm (EST)
+              </p>
+            </div>
+
+            {% assign home_messages = page.messages.docs %}
+            {% for message in home_messages %}
+            {% assign item = message %}
+            <div class="row">
+              <div class="col-xs-12 weekend-message">
+                <hr>
+                <div class="row">
+                  <a href="{{ message | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
+                    <div class="">
+                      <img class="img-responsive img-full-width"
+                        src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                        sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+                      {% include _video-player-card.html autoplay=true thumbnail=true %}
+                    </div>
+                  </a>
+                  <div class="col-sm-6 col-xs-12">
+                    <p class="flush-bottom font-size-smaller text-orange text-uppercase">
+                      LATEST MESSAGE
+                    </p>
+                    <h5 class="component-header flush-ends">
+                      <a href="{{ message | media_url }}" data-automation-id="message-title">{{ message.title }}</a>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Two CTAs-->
+<section class="">
+  <div class="container soft-ends">
+    <div class="row soft-ends push-top">
+      <div class="col-sm-6 push-bottom">
+        <div class="portrait-card-skeleton">
+          <crds-portrait-card
+            href="#"
+            data-trigger="chat" data-track="click"
+            lead="We'd love to chat with you"
+            title="People are available now to talk, listen, and pray with you."
+            image-src="//crds-media.imgix.net/5kCbHa0UL3Q0AFFyM3Ii2U/3d84270947d430db83ddd28ef0ca32e2/eliott-reyna-vfraDDWY0-o-unsplash.jpg"
+          />
+        </div>
+      </div>
+      <div class="col-sm-6 push-bottom">
+        <div class="portrait-card-skeleton">
+          <crds-portrait-card
+            href="/app"
+            lead="Download the App"
+            title="Connect With God. Pray With Others."
+            image-src="//crds-media.imgix.net/3tHfRrQ1ZwyNBLvnoDS37s/f67819758e1efc2faabd7405b2a4680b/crossroads-app-home.jpg?format=auto"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<style>
+
+  .weekend-container {
+    border-radius: 8px;
+    position: relative;
+  }
+
+  .weekend-message {
+    left: 0px;
+    position: absolute;
+    bottom: 20px;
+  }
+
+  @media only screen and (min-width: 320px) {
+    .weekend-container {
+      min-height: 875px;
+    }
+  }
+
+
+  @media only screen and (min-width: 375px) {
+    .weekend-container {
+      min-height: 755px;
+    }
+  }
+
+  @media only screen and (min-width: 480px) {
+    .weekend-container {
+      min-height: 825px;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    .weekend-container {
+      min-height: 695px;
+    }
+  }
+
+  @media only screen and (min-width: 1200px) {
+    .weekend-container {
+      min-height: 785px;
+    }
+  }
+
+
+</style>
