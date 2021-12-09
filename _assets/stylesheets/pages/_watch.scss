@@ -28,3 +28,59 @@
     display: flex;
   }
 }
+
+.watch {
+  .weekend-container {
+    .watch-top-image {
+      height: 200px;
+      object-fit: cover;
+
+      @media (min-width: $screen-md) {
+        height: auto;
+        object-fit: unset;
+      }
+    }
+  }
+
+  .weekend-container {
+    position: relative;
+  }
+
+  .weekend-message {
+    left: 0px;
+    position: absolute;
+    bottom: 20px;
+  }
+
+  @media only screen and (min-width: 320px) {
+    .weekend-container {
+      min-height: 1045px;
+    }
+  }
+
+
+  @media only screen and (min-width: 375px) {
+    .weekend-container {
+      min-height: 835px;
+    }
+  }
+
+  @media only screen and (min-width: 480px) {
+    .weekend-container {
+      min-height: 905px;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    .weekend-container {
+      min-height: 695px;
+    }
+  }
+
+  @media only screen and (min-width: 1200px) {
+    .weekend-container {
+      min-height: 785px;
+    }
+  }
+  
+}
