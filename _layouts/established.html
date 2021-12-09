@@ -67,7 +67,7 @@ layout: default
 
               <!-- Current Series -->
               <a href="{{ series.url }}" title="{{ series.title }}">
-                <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720&fit=crop" size="card"></crds-image>
+                <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720" no-crop size="card"></crds-image>
               </a>
               <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Series</strong></p>
               <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
