@@ -4,7 +4,7 @@ layout: default
 
 {% assign podcast = site.podcasts | where: 'title', page.podcast.title | first %}
 
-<div class="media-podcast-episode" data-grouping-media-type="podcast">
+<div class="media-podcast-episode" data-grouping-media-type="episode">
   <header style="background-image: url('{{ podcast.bg_image.url | imgix: site.imgix }}');" data-optimize-bg-img>
     <div class="container">
       <div class="row">
@@ -52,7 +52,7 @@ layout: default
           {% assign author = site.authors | where: 'full_name', author_obj.full_name | first %}
           {% if author %}
             {% if forloop.first %}<p class="push-ends">Hosted by {% endif %}
-              <a href="{{ author.url }}" data-grouping-media-author="{{ author.full_name | titleize }}g">{{ author.full_name | titleize }}</a> {% if forloop.last == false %} and {% endif %}
+              <a href="{{ author.url }}" data-grouping-media-author="{{ author.full_name | titleize }}">{{ author.full_name | titleize }}</a> {% if forloop.last == false %} and {% endif %}
             {% if forloop.last %}</p>{% endif %}
           {% endif %}
         {% endfor %}

@@ -7,7 +7,7 @@ title: Articles
 {% assign topic = page.category | get_doc %}
 {% assign tags = page.tags | get_doc %}
 
-<article class="article-tpl">
+<article class="article-tpl" data-grouping-media-type="article">
   <section class="container">
     <div class="row">
       <div class="col-md-9">
@@ -73,7 +73,7 @@ title: Articles
                 </small>
                 <br>
                 <h2 class="flush font-family-condensed-extra font-size-h4 text-gray-dark text-uppercase">
-                  <a href="{{ author.url }}" data-grouping-media-author="{{ author.full_name }}"data-author-name="">
+                  <a href="{{ author.url }}" data-grouping-media-author="{{ author.full_name }}">
                     {{ author.full_name }}
                   </a>
                 </h2>
@@ -160,7 +160,7 @@ title: Articles
     <!-- Popular in category -->
     <div class="push-top row soft-ends">
       <div class="border-top flex-space-between push-half-sides soft-half-top">
-        <h3 class="flush font-family-serif font-size-small soft-bottom text-gray-light text-uppercase">Popular in {{ page.category.title }}</h3>
+        <h3 class="flush font-family-serif font-size-small soft-bottom text-gray-light text-uppercase" data-grouping-media-topic="{{ page.category.title }}">Popular in {{ page.category.title }}</h3>
         <a class="font-size-smaller font-family-base-bold" href="/media/articles/filters/{{ page.category.title }}">view all</a>
       </div>
       {% assign page_category = topic.slug %}

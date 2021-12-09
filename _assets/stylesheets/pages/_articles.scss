@@ -55,6 +55,27 @@
     padding: 16px 0;
     margin-bottom: 0;
   }
+
+  .social-container {
+    display: flex;
+    position: relative;
+    top: unset;
+    right: unset;
+
+    .social-btn {
+      .icon-color {
+        fill: $cr-orange-dark !important;
+      }
+  
+      &:focus,
+      &:hover {
+        .icon-color {
+          fill: $cr-orange !important;
+        }
+      }
+    }
+  }
+
   .article-tpl-author-section {
     display: flex;
     flex-direction: column;

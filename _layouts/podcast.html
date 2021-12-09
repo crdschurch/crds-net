@@ -5,7 +5,7 @@ title: Podcast
 
 {% assign episodes = site.episodes | filter: 'podcast.title', page.title %}
 
-<section class="media-podcast-show">
+<section class="media-podcast-show" data-grouping-media-type="podcast">
   <section class="podcast-hero jumbotron hard-top text-white" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}');" data-optimize-bg-img>
     <div class="header-content">
       <div class="container">
@@ -57,7 +57,7 @@ title: Podcast
           {% assign author = site.authors | where: 'full_name', author_obj.full_name | first %}
           {% if author %}
             {% if forloop.first %}<p class="push-ends">Hosted by {% endif %}
-              <a href="{{ author.url }}">{{ author.full_name | titleize }}</a> {% if forloop.last == false %} and {% endif %}
+              <a href="{{ author.url }}" data-grouping-media-author="{{ author.full_name | titleize }}">{{ author.full_name | titleize }}</a> {% if forloop.last == false %} and {% endif %}
             {% if forloop.last %}</p>{% endif %}
           {% endif %}
         {% endfor%}
