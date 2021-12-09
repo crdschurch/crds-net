@@ -32,7 +32,7 @@ describe('Tests Video page with Bitmovin video', () => {
   });
 });
 
-describe('Tests Video page with Youtube video', () => {
+describe.skip('Tests Video page with Youtube video', () => {
   it('Checks video uses Youtube player', () => {
     const qb = new ContentfulQueryBuilder('video');
     qb.select = 'fields.slug';
