@@ -10,6 +10,11 @@ paginate:
 {% assign series = site.series | last %}
 {% assign online = series.videos | last | get_doc %}
 {% assign at_site = series.live_messages | last | get_doc %}
+{% assign watch_in_room_image = site.content_blocks | where: 'slug', 'watch-in-room-image' | first %}
+{% assign watch_in_room_details = site.content_blocks | where: 'slug', 'watch-in-room-details' | first %}
+{% assign watch_online_image = site.content_blocks | where: 'slug', 'watch-online-image' | first %}
+{% assign watch_online_details = site.content_blocks | where: 'slug', 'watch-online-details' | first %}
+{% assign watch_bottom_cta = site.content_blocks | where: 'slug', 'watch-bottom-cta' | first %}
 
 <main class="watch">
   <!-- Resi player -->
@@ -90,33 +95,14 @@ paginate:
         <!-- Live Message -->
         <div class="col-xs-6 push-bottom" style="padding-left: 8px; padding-right: 8px;">
           <div class="bg-white weekend-container">
-            <div class="">
-              <img
-                src="//crds-media.imgix.net/7nczKf5t6LrI0kDNZbFHKG/25b59629a9c0d2b94e56c27e69fe6e1a/watch-live-message-img.jpg?auto=format,compress&w=1200"
-                alt="Senior Pastor Brian Tome delivers a weekly message on stage"
-                title="Crossroads Weekly Live Message"
-                class="watch-top-image"
-                data-optimize-img
-              > 
-            </div>
+
+            <!-- Watch In Room Image - Content Block-->
+            {{ watch_in_room_image.content_block | markdownify }}
+
             <div class="soft-sides mobile-soft-half-sides push-half-ends">
-              <h3 class="section-header flush-ends soft-half-ends text-gray-dark" style="line-height:.9em;">
-                In-Room
-              </h3>
-              <p class="font-size-base text-gray-dark">
-                65 minute service filmed in front of a live audience at Crossroads Oakley in Cincinnati, OH.
-              </p>
-              <div class="">
-                <p class="flush-bottom font-size-smaller text-orange text-uppercase">
-                  NEW MESSAGES:
-                </p>
-                <p class="font-size-small text-gray-dark flush-bottom mobile-push-bottom">
-                  Live Sundays at 8:30 & 10:00am.
-                </p>
-                <p class="font-size-small text-gray-dark">
-                  On demand weekly on Sunday at 11am (EST)
-                </p>
-              </div>
+
+              <!-- Watch In Room Image - Content Block-->
+              {{ watch_in_room_details.content_block | markdownify }}
 
               <div class="row">
                 <div class="col-xs-12 weekend-message">
@@ -148,31 +134,14 @@ paginate:
         <!-- Online Message -->
         <div class="col-xs-6 push-bottom" style="padding-left: 8px; padding-right: 8px;">
           <div class="bg-white weekend-container">
-            <div class="">
-              <img
-                src="//crds-media.imgix.net/6TpOHe8Cry8cFQlDmNyw9B/5f83dff35fc4d00f4a8bf1c75ef7dc2a/watch-online-message-img.jpg?auto=format,compress&w=1200"
-                alt="Hannah Shepperd delivers a weekly message on location"
-                title="Crossroads Weekly Online Message"
-                class="watch-top-image"
-                data-optimize-img
-              > 
-            </div>
+            
+            <!-- Watch In Room Image - Content Block-->
+            {{ watch_online_image.content_block | markdownify }}
+            
             <div class="soft-sides mobile-soft-half-sides push-half-ends">
-              <h3 class="section-header flush-ends soft-half-ends text-gray-dark" style="line-height:.9em;">
-                Online
-              </h3>
-              <p class="font-size-base text-gray-dark">
-                25 minutes or less, created and optimized for video viewing.
-              </p>
-              <div class="">
-                <p class="flush-bottom font-size-smaller text-orange text-uppercase">
-                  NEW MESSAGES:
-                </p>
-                <p class="font-size-small text-gray-dark">
-                  Weekly on Friday at 5pm (EST)
-                </p>
-              </div>
 
+               <!-- Watch In Room Image - Content Block-->
+              {{ watch_online_details.content_block | markdownify }}
 
               <div class="row">
                 <div class="col-xs-12 weekend-message">
@@ -206,33 +175,7 @@ paginate:
     </div>
   </section>
 
+ <!-- Watch Two CTAs - Content Block-->
+  {{ watch_bottom_cta.content_block | markdownify }}
 
-  <!-- Two CTAs-->
-  <section class="">
-    <div class="container soft-ends">
-      <div class="row soft-ends push-top">
-        <div class="col-sm-6 push-bottom">
-          <div class="portrait-card-skeleton">
-            <crds-portrait-card
-              href="#"
-              data-trigger="chat" data-track="click"
-              lead="We'd love to chat with you"
-              title="People are available now to talk, listen, and pray with you."
-              image-src="//crds-media.imgix.net/5kCbHa0UL3Q0AFFyM3Ii2U/3d84270947d430db83ddd28ef0ca32e2/eliott-reyna-vfraDDWY0-o-unsplash.jpg"
-            />
-          </div>
-        </div>
-        <div class="col-sm-6 push-bottom">
-          <div class="portrait-card-skeleton">
-            <crds-portrait-card
-              href="/app"
-              lead="Download the App"
-              title="Connect With God. Pray With Others."
-              image-src="//crds-media.imgix.net/3tHfRrQ1ZwyNBLvnoDS37s/f67819758e1efc2faabd7405b2a4680b/crossroads-app-home.jpg?format=auto"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
