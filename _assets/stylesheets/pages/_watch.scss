@@ -28,3 +28,74 @@
     display: flex;
   }
 }
+
+.watch {
+  .weekend-container {
+    .watch-top-image {
+      height: 200px;
+      object-fit: cover;
+
+      @media (min-width: $screen-md) {
+        height: auto;
+        object-fit: unset;
+      }
+    }
+  }
+
+  .weekend-container {
+    position: relative;
+  }
+
+  .weekend-message {
+    left: 0px;
+    position: absolute;
+    top: 30em;
+  }
+
+  @media only screen and (min-width: 320px) {
+    .weekend-container {
+      min-height: 1045px;
+    }
+    .weekend-message {
+      top: 40em;
+    }
+  }
+
+
+  @media only screen and (min-width: 375px) {
+    .weekend-container {
+      min-height: 835px;
+    }
+    .weekend-message {
+      top: 33.5em;
+    }
+  }
+
+  @media only screen and (min-width: 480px) {
+    .weekend-container {
+      min-height: 905px;
+    }
+    .weekend-message {
+      top: 30em;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    .weekend-container {
+      min-height: 695px;
+    }
+    .weekend-message {
+      top: 24.5em;
+    }
+  }
+
+  @media only screen and (min-width: 1200px) {
+    .weekend-container {
+      min-height: 785px;
+    }
+    .weekend-message {
+      top: 29em;
+    }
+  }
+  
+}
