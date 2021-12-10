@@ -64,7 +64,7 @@ if (isNotCtaRenderTime() && document.getElementById('ondemand-cta')) {
   document.getElementById('ondemand-cta').remove()
 }
 
-if (!isServiceTime() && document.getElementById('resi-player')) {
+if (isServiceTime() && document.getElementById('resi-player')) {
   const resiPlayer = document.getElementById('resi-video-player-container');
   const resiScript = document.createElement('script');
   resiScript.src = 'https://control.resi.io/webplayer/loader.min.js';
@@ -73,7 +73,7 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
   resiPlayer.appendChild(resiScript);
 }
 
-if (isServiceTime() && document.getElementById('resi-player')) {
+if (!isServiceTime() && document.getElementById('resi-player')) {
   document.getElementById('resi-player').remove();
 }
 
