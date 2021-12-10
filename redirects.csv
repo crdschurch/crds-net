@@ -90,6 +90,17 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /media/articles/filters/+,/media/articles/,301!
 /media/articles/filters/+/page/2,/media/articles/page/2,301!
 /media/articles/filters/+/page/3,/media/articles/page/3,301!
+/media/videos/youre-meant-for-more-or-heroes-week-1-in-room,/media/series/heroes/youre-meant-for-more-or-heroes-week-1-in-room,301!
+/media/videos/unmask-your-villain-or-heroes-week-2-live-service,/media/series/heroes/unmask-your-villain-or-heroes-week-2-live-service,301!
+/media/videos/undercover-hero-mission-or-heroes-week-3-live-service,/media/series/heroes/undercover-hero-mission-or-heroes-week-3-live-service,301!
+/media/videos/civilian-or-soldier-or-heroes-week-4-live-service,/media/series/heroes/civilian-or-soldier-or-heroes-week-4-live-service,301!
+/media/videos/uncover-your-super-powers-or-heroes-week-5-live-service,/media/series/heroes/uncover-your-super-powers-or-heroes-week-5-live-service,301!
+/media/videos/build-your-life-on-truth-or-rock-solid-week-1-live-service,/media/series/rock-solid/build-your-life-on-truth-or-rock-solid-week-1-live-service,301!
+/media/videos/our-foundation-or-rock-solid-week-2-live-service,/media/series/rock-solid/our-foundation-or-rock-solid-week-2-live-service,301!
+/media/videos/starting-over-or-rock-solid-week-3-live-service,/media/series/rock-solid/starting-over-or-rock-solid-week-3-live-service,301!
+/media/videos/what-do-you-trust-or-rock-solid-week-4-live-service,/media/series/rock-solid/what-do-you-trust-or-rock-solid-week-4-live-service,301!
+/media/videos/isaiah-or-a-promise-of-peace-week-1-live-service,/media/series/promise-of-peace/isaiah-or-a-promise-of-peace-week-1-live-service,301!
+/media/videos/zechariah-or-a-promise-of-peace-week-2-live-service,/media/series/promise-of-peace/zechariah-or-a-promise-of-peace-week-2-live-service,301!
 /articles/*,/media/articles/:splat,301!
 /podcasts/*,/media/podcasts/:splat,302!
 /videos/*,/media/videos/:splat,302!
