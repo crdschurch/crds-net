@@ -93,11 +93,11 @@ layout: default
     </div>
     <div>
       {% if page.community_pastor_name and page.site_id != 23 %}
-      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "care"]' mobile-dropdown>
+      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "care", "groups"]' mobile-dropdown>
       {% elsif page.site_id == 23 %}
-      <crds-tabs tabs='["events & updates", "the team", "about", "kids & students", "care"]' mobile-dropdown>
+      <crds-tabs tabs='["events & updates", "the team", "about", "kids & students", "care", "groups"]' mobile-dropdown>
       {% else %}
-      <crds-tabs tabs='["events & updates", "about", "kids & students", "care"]' mobile-dropdown>
+      <crds-tabs tabs='["events & updates", "about", "kids & students", "care", "groups"]' mobile-dropdown>
       {% endif %}
 
         <!-- Events & Updates -->
@@ -356,6 +356,10 @@ layout: default
             </div>
           </div>
         </div>
+
+        <!-- Groups -->
+        {% assign groups_tab = site.content_blocks | where: 'slug', 'locations-groups-tab' | first %}
+        {{ groups_tab.content_block }}
       </crds-tabs>
     </div>
   </div>
