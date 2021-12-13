@@ -24,6 +24,10 @@ paginate:
     limit: 1
     sort: starts_at desc
 ---
+
+<!-- Resi Player -->
+{% include _resi-player.html %}
+
 <!-- Site Specific Ads -->
 {% assign oakley_ad = site.content_blocks | where: 'slug', 'logged-in-home-ad-oakley' | first %}
 {% assign uptown_ad = site.content_blocks | where: 'slug', 'logged-in-home-ad-uptown' | first %}
