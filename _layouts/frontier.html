@@ -359,7 +359,7 @@ layout: default
 
         <!-- Groups -->
         {% assign groups_tab = site.content_blocks | where: 'slug', 'locations-groups-tab' | first %}
-        {{ groups_tab.content_block }}
+        {{ groups_tab.content_block | liquify }}
       </crds-tabs>
     </div>
   </div>
