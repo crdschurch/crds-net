@@ -32,16 +32,14 @@ const isServiceTime = () => {
   let isSunday = isDayOfTheWeek(0);
 
   let sundayServiceTimes = (
-    (getEstTime() >= 825 && getEstTime() <= 945) || 
-    (getEstTime() >= 955 && getEstTime() <= 1115) ||
-    (getEstTime() >= 1140 && getEstTime() <= 1300)
+    (getEstTime() >= 825 && getEstTime() <= 1300)
   );
 
   return isSunday && sundayServiceTimes;
 };
 
 const refreshPageForServiceStart = (hours, minutes, seconds) => {
-  if ((!document.getElementById('location-page'))) {
+  if (!document.getElementById('has-resi-player')) {
     return;
   }
 
@@ -55,7 +53,7 @@ const refreshPageForServiceStart = (hours, minutes, seconds) => {
     return;
   }
 
-  setTimeout(() => {
+  return setTimeout(() => {
     window.location.reload(true);
   }, timeout);
 };
@@ -70,7 +68,5 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
 
 if (isDayOfTheWeek(0)) {
   refreshPageForServiceStart(8,25,1);
-  refreshPageForServiceStart(9,55,1);
-  refreshPageForServiceStart(11,40,1);
   refreshPageForServiceStart(13,1,1);
 }
