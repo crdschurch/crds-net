@@ -59,7 +59,12 @@ paginate:
 {% assign logged_out_home_ad = site.content_blocks | where: 'slug', 'logged-out-home-ad' | first %}
 
 <!-- From /Watch -->
-{% assign series = site.series | last %}
+{% for serie in site.series %}
+  {% if serie.videos.size > 0 %}
+    {% assign series = serie %}
+  {% endif %}
+{% endfor %}
+
 {% assign online = series.videos | last | get_doc %}
 {% assign at_site = series.live_messages | last | get_doc %}
 {% assign watch_in_room_image = site.content_blocks | where: 'slug', 'watch-in-room-image' | first %}
