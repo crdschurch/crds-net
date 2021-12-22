@@ -1,22 +1,18 @@
-{% assign locations_with_live_stream =  "oakley, florence, mason, eastside, westside, lexington, uptown" | split: ", "%}
-{% for location in locations_with_live_stream %}
-  {% if page.slug == location %}
-    <section class="bg-blue" id="resi-player">
-      <div class="container">
-        <div class="row text-center push-top">
-          <h2 class="flush-top font-family-condensed-extra font-size-h2 text-uppercase text-white">Welcome to Crossroads {{ page.name }}</h2>
-        </div>
-        <div class="row push-ends">
-          <div id="resi-video-player-container" class="col-sm-10 col-sm-offset-1">
-            <div id="resi-video-player" data-embed-id="d3ebebe0-b605-48ab-a6e8-b9f3ef201b4e"></div>
-          </div>
-        </div>
-        <div class="row text-center text-white push-bottom">
-          <p class="flush-bottom font-size-small text-uppercase">You're watching the</p>
-          <h3 class="flush-top font-family-condensed-extra font-size-h2 text-uppercase text-white">Crossroads Live Weekend</h3>
-          <a class="text-orange" href="#events-updates">View events & happenings at your location</a>
+<section class="bg-blue" id="resi-player">
+  <div class="container">
+    <div class="row text-center push-top">
+      <h2 class="flush-top font-family-condensed-extra font-size-h2 text-uppercase text-white">Welcome to Crossroads</h2>
+    </div>
+    <div class="row push-ends">
+      <div id="resi-video-player-container" class="col-sm-10 col-sm-offset-1">
+        <div style="position:relative;overflow:hidden;padding-top:56.25%;">
+          <iframe allow="autoplay; fullscreen" allowfullscreen="true" src="https://control.resi.io/webplayer/video.html?id=d3ebebe0-b605-48ab-a6e8-b9f3ef201b4e" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe>
         </div>
       </div>
-    </section>
-  {% endif %}
-{% endfor %}
+    </div>
+    <div class="row text-center text-white push-bottom soft-bottom">
+      <p class="flush-bottom font-size-small text-uppercase">You're watching</p>
+      <h3 class="flush-top font-family-condensed-extra font-size-h2 text-uppercase text-white">Christmas at Crossroads</h3>
+    </div>
+  </div>
+</section>
