@@ -25,7 +25,7 @@ const isDayOfTheWeek = (day) => {
 const isNotCtaRenderTime = () => {
   // let isSunday = isDayOfTheWeek(0);
 
-  let isChristmasEve = isDayOfTheWeek(5);
+  let isChristmasEve = isDayOfTheWeek(4);
   let serviceWindow = (getEstTime() >= 1825 && getEstTime() <= 1945);
   return isChristmasEve && serviceWindow;
 };
@@ -37,7 +37,7 @@ const isServiceTime = () => {
   //   (getEstTime() >= 825 && getEstTime() <= 1300)
   // );
 
-  let isChristmasEve = isDayOfTheWeek(5);
+  let isChristmasEve = isDayOfTheWeek(4);
 
   let christmasEveServiceTimes = (
     (getEstTime() >= 1825 && getEstTime() <= 1945)
@@ -74,7 +74,7 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
   document.getElementById('resi-player').remove();
 }
 
-if (isDayOfTheWeek(5)) {
+if (isDayOfTheWeek(4)) {
   refreshPageForServiceStart(18,25,1);
   refreshPageForServiceStart(19,45,1);
 }
