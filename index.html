@@ -58,6 +58,20 @@ paginate:
 <!-- Assign Logged Out Home Ad -->
 {% assign logged_out_home_ad = site.content_blocks | where: 'slug', 'logged-out-home-ad' | first %}
 
+<!-- From /Watch -->
+{% for serie in site.series %}
+  {% if serie.videos.size > 0 %}
+    {% assign series = serie %}
+  {% endif %}
+{% endfor %}
+
+{% assign online = series.videos | last | get_doc %}
+{% assign at_site = series.live_messages | last | get_doc %}
+{% assign watch_in_room_image = site.content_blocks | where: 'slug', 'watch-in-room-image' | first %}
+{% assign watch_in_room_details = site.content_blocks | where: 'slug', 'watch-in-room-details' | first %}
+{% assign watch_online_image = site.content_blocks | where: 'slug', 'watch-online-image' | first %}
+{% assign watch_online_details = site.content_blocks | where: 'slug', 'watch-online-details' | first %}
+{% assign watch_bottom_cta = site.content_blocks | where: 'slug', 'watch-bottom-cta' | first %}
 
 <section class="bg-black flush-top" style="top: -1.5rem; position: relative;" id="has-resi-player">
   <div class="container">
@@ -67,6 +81,106 @@ paginate:
         {{ logged_out_home_ad.content_block | markdownify }}
       </div>
     </div>
+  </div>
+</section>
+
+<!-- Two Services Section -->
+<section class="bg-tan-light watch-section" style="margin-top:-24px;">
+  <div class="container soft-bottom">
+    <div class="row text-center push-ends soft-ends">
+      <div class="col-sm-12">
+        <p class="flush-bottom font-size-small text-orange text-uppercase">
+          <strong>Watch Weekly Teachings</strong>
+        </p>
+        <h3 class="section-header flush-ends text-gray-darker">
+          TWO INSPIRATIONAL MESSAGES<br>
+          EVERY WEEK
+        </h3>
+      </div>
+    </div>
+
+    <div class="row" style="margin-right: 0; margin-left: 0;">
+
+      <!-- Live Message -->
+      <div class="col-xs-6 push-bottom" style="padding-left: 8px; padding-right: 8px;">
+        <div class="bg-white weekend-container">
+
+          <!-- Watch In Room Image - Content Block-->
+          {{ watch_in_room_image.content_block | markdownify }}
+
+          <div class="soft-sides mobile-soft-half-sides push-half-ends">
+
+            <!-- Watch In Room Details - Content Block-->
+            {{ watch_in_room_details.content_block | markdownify }}
+
+            <div class="row">
+              <div class="col-xs-12 weekend-message">
+                <hr>
+                <div class="row">
+                  <a href="{{ at_site | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
+                    <div class="">
+                      <img class="img-responsive img-full-width"
+                        src="{{ at_site.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                        sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+                    </div>
+                  </a>
+                  <div class="col-sm-6 col-xs-12">
+                    <p class="flush-bottom font-size-smaller text-orange text-uppercase">
+                      LATEST MESSAGE
+                    </p>
+                    <h5 class="component-header flush-ends">
+                      <a href="{{ at_site | media_url }}" data-automation-id="message-title">{{ at_site.title }}</a>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Online Message -->
+      <div class="col-xs-6 push-bottom" style="padding-left: 8px; padding-right: 8px;">
+        <div class="bg-white weekend-container">
+
+          <!-- Watch Online Image - Content Block-->
+          {{ watch_online_image.content_block | markdownify }}
+
+          <div class="soft-sides mobile-soft-half-sides push-half-ends">
+
+             <!-- Watch Online Details - Content Block-->
+            {{ watch_online_details.content_block | markdownify }}
+
+            <div class="row">
+              <div class="col-xs-12 weekend-message">
+                <hr>
+                <div class="row">
+                  <a href="{{ online | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
+                    <div class="">
+                      <img class="img-responsive img-full-width"
+                        src="{{ online.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                        sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+                    </div>
+                  </a>
+                  <div class="col-sm-6 col-xs-12">
+                    <p class="flush-bottom font-size-smaller text-orange text-uppercase">
+                      LATEST MESSAGE
+                    </p>
+                    <h5 class="component-header flush-ends">
+                      <a href="{{ online | media_url }}" data-automation-id="message-title">{{ online.title }}</a>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </section>
 
@@ -107,7 +221,7 @@ paginate:
 </section>
 
 
-{% comment %}Get Equipped: Watch the Weekend{% endcomment %}
+{% comment %}Get Equipped: Watch the Weekend
 <section class="bg-tan-light soft-bottom">
   <div class="container soft-ends hard-sides">
     <div class="text-center push-bottom soft-ends mobile-push-half-sides">
@@ -123,7 +237,7 @@ paginate:
       </div>
     </div>
   </div>
-</section>
+</section>{% endcomment %}
 
 {% comment %}Kids Club Jumbotron{% endcomment %}
 {% include home/_kids-club-jumbotron.html %}
@@ -209,7 +323,6 @@ paginate:
       </div>
     </div>
     <div class="col-md-4">
-      <crds-sign-up title="Sign Up for the Weekly Digest" content="Get our latest content, delivered straight to your inbox, every week." onClick="$('#subscribeModalForm').modal(); return false;"></crds-sign-up>
       <div class="soft-ends">
         {% include home/_content-menu.html %}
       </div>
