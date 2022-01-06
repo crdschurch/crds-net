@@ -7,7 +7,7 @@ layout: default
 {% assign series = site.series | last %}
 
 <!-- Resi Player -->
-{% include _resi-player.html %}
+{% include locations/_resi-player.html %}
 
 {% include locations/_welcome-modal.html %}
 
@@ -20,7 +20,7 @@ layout: default
 
 <!-- Jumbotron section -->
 <section class="jumbotron locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
-  id="location-page"
+  id="has-resi-player"
   data-optimize-bg-img>
   {% include locations/_ondemand-card.html %}
   <div class="bg-overlay"></div>
@@ -47,9 +47,9 @@ layout: default
   <div class="container">
     <div class="row soft-half soft-top push-top mobile-flush-top">
       {% if page.community_pastor_name %}
-      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students"]' mobile-dropdown>
+      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "groups"]' mobile-dropdown>
       {% else %}
-      <crds-tabs tabs='["events & updates", "about", "kids & students"]' mobile-dropdown>
+      <crds-tabs tabs='["events & updates", "about", "kids & students", "groups"]' mobile-dropdown>
       {% endif %}
         <!-- Events & Updates -->
         <div slot="tab-events-updates" class="push-ends">
@@ -67,7 +67,7 @@ layout: default
 
               <!-- Current Series -->
               <a href="{{ series.url }}" title="{{ series.title }}">
-                <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720&fit=crop" size="card"></crds-image>
+                <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720" no-crop size="card"></crds-image>
               </a>
               <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Series</strong></p>
               <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
@@ -249,6 +249,10 @@ layout: default
           </div>
           {% endif %}
         </div>
+
+        <!-- Groups -->
+        {% assign groups_tab = site.content_blocks | where: 'slug', 'locations-groups-tab' | first %}
+        {{ groups_tab.content_block | liquify }}
       </crds-tabs>
     </div>
   </div>

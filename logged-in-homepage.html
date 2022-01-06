@@ -24,6 +24,10 @@ paginate:
     limit: 1
     sort: starts_at desc
 ---
+
+<!-- Resi Player -->
+{% include _resi-player.html %}
+
 <!-- Site Specific Ads -->
 {% assign oakley_ad = site.content_blocks | where: 'slug', 'logged-in-home-ad-oakley' | first %}
 {% assign uptown_ad = site.content_blocks | where: 'slug', 'logged-in-home-ad-uptown' | first %}
@@ -33,7 +37,7 @@ paginate:
 {{ homePageBanner.content_block }}
 
 <!-- Jumbotron -->
-<section class="jumbotron jumbotron-media jumbotron-overlay hard-top"
+<section class="jumbotron jumbotron-media jumbotron-overlay hard-top" id="has-resi-player"
   style="background-image: url('//crds-media.imgix.net/6gWC5HMFaoQvmEkuMqWOeF/bc288c31f87a72a80e9a53de1ceb96cf/media-landing-bg.jpg?{ site.imgix_params.placeholder }');"
   data-optimize-bg-img
   data-hero-image>

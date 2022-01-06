@@ -24,9 +24,9 @@
 		    <h3 class="latest-message-subtitle font-size-smaller font-family-base-bold text-uppercase">
 			    Series: <a href="{{ item.series.slug }}">{{ item.series.title }}</a>
 		    </h3>
-		    <p class="latest-message-body text-gray-dark">
-			    {{ item.description }}
-		    </p>
+		    <div class="latest-message-body text-gray-dark">
+			    {{ item.description | markdownify }}
+				</div>
 		  <div class="row soft-half-left">
 			  <a href="{{ item | media_url }}" class="btn latest-message-btn btn-orange btn-block-mobile" type="button">
 			    Watch now
