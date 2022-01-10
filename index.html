@@ -84,39 +84,71 @@ paginate:
   </div>
 </section>
 
-<!-- Two Services Section -->
-<section class="bg-tan-light watch-section" style="margin-top:-24px;">
+<!-- linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), -->
+<!-- Curent Series Section -->
+<section class="bg-blue watch-section" style="margin-top:-24px; 
+  background-image: url('{{ series.background_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}');" data-optimize-bg-img> 
+  <!-- Backgroun image of curent series-->
   <div class="container soft-bottom">
     <div class="row text-center push-ends soft-ends">
       <div class="col-sm-12">
-        <p class="flush-bottom font-size-small text-orange text-uppercase">
-          <strong>Watch Weekly Teachings</strong>
+        <p calss="flush-bottom font-size-small text-white text-uppercase">
+          <strong>Current Series</strong>
         </p>
-        <h3 class="section-header flush-ends text-gray-darker">
-          TWO INSPIRATIONAL MESSAGES<br>
-          EVERY WEEK
-        </h3>
+        <h2 class="section-header flush-ends text-white">{{ series.title }}</h2>
+        <p class="push-top col-sm-10 col-sm-offset-1">{{ series.description }}</p>
+        <div class="row btn push-right">
+          <crds-button block="true" display="outline" color="white" href="/latest-weekend" text="Watch the current teaching series"></crds-button>
+        </div>
       </div>
     </div>
 
-    <div class="row" style="margin-right: 0; margin-left: 0;">
+    <div class="row push-bottom" style="margin-right: 0; margin-left: 0;">
 
-      <!-- Live Message -->
+      <!-- Online Message -->
       <div class="col-xs-6 push-bottom" style="padding-left: 8px; padding-right: 8px;">
         <div class="bg-white weekend-container">
-
-          <!-- Watch In Room Image - Content Block-->
-          {{ watch_in_room_image.content_block | markdownify }}
-
-          <div class="soft-sides mobile-soft-half-sides push-half-ends">
-
-            <!-- Watch In Room Details - Content Block-->
-            {{ watch_in_room_details.content_block | markdownify }}
-
+          <div class="col-md-12 col-sm-6 col-xs-12 push-top soft-sides">
+            <h4 class="component-header flush-ends push-quarter-bottom">Online Message</h4>
+            <p class="text-gray-light">
+              25 minutes or less, created and optimized for video viewing.
+          </div>
             <div class="row">
               <div class="col-xs-12 weekend-message">
-                <hr>
-                <div class="row">
+                <hr class="push-sides">
+                <div class="row soft-sides soft-half-ends">
+                  <a href="{{ online | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
+                    <div class="">
+                      <img class="img-responsive img-full-width"
+                        src="{{ online.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                        sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+                    </div>
+                  </a>
+                  <div class="col-sm-6 col-xs-12 push-half-top">
+                    <h5 class="component-header flush-ends">
+                      <a href="{{ online | media_url }}" data-automation-id="message-title">{{ online.title }}</a>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      <!-- In-Room Message -->
+      <div class="col-xs-6 push-bottom" style="padding-left: 8px; padding-right: 8px;">
+        <div class="bg-white weekend-container">
+          <div class="col-md-12 col-sm-6 col-xs-12 push-top soft-sides">
+            <h5 class="component-header flush-ends push-quarter-bottom">In-Room Message</h5>
+            <p class="text-gray-light">
+              65 minute service filmed in front of a live audience.
+            </p>
+          </div>
+            <div class="row">
+              <div class="col-xs-12 weekend-message">
+                <hr class="push-sides">
+                <div class="row soft-sides soft-half-ends">
                   <a href="{{ at_site | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
                     <div class="">
                       <img class="img-responsive img-full-width"
@@ -124,10 +156,7 @@ paginate:
                         sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
                     </div>
                   </a>
-                  <div class="col-sm-6 col-xs-12">
-                    <p class="flush-bottom font-size-smaller text-orange text-uppercase">
-                      LATEST MESSAGE
-                    </p>
+                  <div class="col-sm-6 col-xs-12 push-half-top">
                     <h5 class="component-header flush-ends">
                       <a href="{{ at_site | media_url }}" data-automation-id="message-title">{{ at_site.title }}</a>
                     </h5>
@@ -140,48 +169,9 @@ paginate:
         </div>
       </div>
 
-      <!-- Online Message -->
-      <div class="col-xs-6 push-bottom" style="padding-left: 8px; padding-right: 8px;">
-        <div class="bg-white weekend-container">
-
-          <!-- Watch Online Image - Content Block-->
-          {{ watch_online_image.content_block | markdownify }}
-
-          <div class="soft-sides mobile-soft-half-sides push-half-ends">
-
-             <!-- Watch Online Details - Content Block-->
-            {{ watch_online_details.content_block | markdownify }}
-
-            <div class="row">
-              <div class="col-xs-12 weekend-message">
-                <hr>
-                <div class="row">
-                  <a href="{{ online | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
-                    <div class="">
-                      <img class="img-responsive img-full-width"
-                        src="{{ online.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                        sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
-                    </div>
-                  </a>
-                  <div class="col-sm-6 col-xs-12">
-                    <p class="flush-bottom font-size-smaller text-orange text-uppercase">
-                      LATEST MESSAGE
-                    </p>
-                    <h5 class="component-header flush-ends">
-                      <a href="{{ online | media_url }}" data-automation-id="message-title">{{ online.title }}</a>
-                    </h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
     </div>
-
   </div>
+    
 </section>
 
 <section class="soft-top bg-blue soft-bottom bg-topo push-bottom" style="position: relative; top: -1.5rem;">
