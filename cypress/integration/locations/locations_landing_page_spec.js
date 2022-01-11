@@ -1,7 +1,7 @@
 import { ContentfulQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
 
-const errorsToIgnore = [/.*> a.push is not a function*/, /.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
+const errorsToIgnore = [/.*> Script error.*/,/.*> a.push is not a function*/, /.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
 
 
 describe('Given I navigate to /locations and do not search:', function() {
