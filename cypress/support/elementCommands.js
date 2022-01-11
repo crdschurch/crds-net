@@ -27,5 +27,5 @@ Cypress.Commands.add('imgixShouldRunOnElement', { prevSubject: false }, (selecto
 
   cy.get(selector)
     .should('be.visible')
-    .and('have.attr', 'srcset');
+    .and('have.attr' , 'src');
 });

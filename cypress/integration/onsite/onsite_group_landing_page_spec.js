@@ -16,9 +16,9 @@ function sortByCategoryThenSlug(group1, group2){
   return 0;
 }
 
-const errorsToIgnore = [/.*import declarations may only appear at top level of a module.*/,  /.* > Cannot read property 'getAttribute' of null*/, /.* > Cannot set property 'status' of undefined*/];
-
-describe('Given I navigate to /onsite/group Page:', function() {
+const errorsToIgnore = [/.* > a.push is not a function*/,/.*import declarations may only appear at top level of a module.*/,  /.* > Cannot read property 'getAttribute' of null*/, /.* > Cannot set property 'status' of undefined*/];
+//Test no longer needed onsite group page is decommissioned
+describe.skip('Given I navigate to /onsite/group Page:', function() {
   let onsiteGroupList;
   before(function() {
     // Get Onsite Groups

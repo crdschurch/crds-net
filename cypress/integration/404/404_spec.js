@@ -1,5 +1,5 @@
 
-const errorsToIgnore =  [ /.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
+const errorsToIgnore =  [ /.* > a.push is not a function*/, /.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
 
 describe('Testing the 404 page:', function() {
   before(function() {

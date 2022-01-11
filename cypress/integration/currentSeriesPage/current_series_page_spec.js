@@ -1,5 +1,5 @@
 import { SeriesQueryBuilder } from 'crds-cypress-contentful';
-const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/,  /.* > Cannot read property 'getAttribute' of null*/, /.* > Cannot set property 'status' of undefined*/];
+const errorsToIgnore = [/.* > a.push is not a function*/,/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/,  /.* > Cannot read property 'getAttribute' of null*/, /.* > Cannot set property 'status' of undefined*/];
 
 describe('Tesing the Media/Series/[Current Series] page:', function () {
   let currentSeries;
@@ -29,6 +29,7 @@ describe('Tesing the Media/Series/[Current Series] page:', function () {
         .should('have.attr', 'style')
         .and('contain', currentSeries.background_image.sys_id);
     } else if (currentSeries.image && currentSeries.image.isPublished) {
+      cy.log(currentSeries.image.sys_id);
       cy.get('.jumbotron div')
         .should('have.attr', 'style')
         .and('contain', currentSeries.image.sys_id);

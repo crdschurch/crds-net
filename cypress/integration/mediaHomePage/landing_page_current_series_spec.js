@@ -1,9 +1,9 @@
-import { SeriesQueryBuilder} from 'crds-cypress-contentful';
+import { SeriesQueryBuilder } from 'crds-cypress-contentful';
 
-const errorsToIgnore =  [/.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
+const errorsToIgnore = [/.* > a.push is not a function*/, /.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
 
-describe('Testing the Current Series on the Media landing page:', function () {
- 
+describe.skip('Testing the Current Series on the Media landing page:', function () {
+  //This test is for queries 
   let currentSeries;
   before(function () {
     const qb = new SeriesQueryBuilder();
@@ -19,19 +19,19 @@ describe('Testing the Current Series on the Media landing page:', function () {
   });
 
   beforeEach(function () {
-    cy.get('div.media-body').as('featuredSeries')
+    cy.get('body > div:nth-child(9) > section.bg-tan-light.watch-section > div > div:nth-child(2)').as('featuredSeries')
       .should('have.length', 1)
       .scrollIntoView();
   });
 
   it('The current series title, title link, and description should match Contentful', function () {
     cy.get('@featuredSeries').within(() => {
-      cy.get('[data-automation-id="series-title"]').as('seriesTitle')
+      cy.get('[data-automation-id="message-title"]').as('seriesTitle')
         .should('be.visible')
         .and('have.text', currentSeries.title.text);
       cy.get('@seriesTitle')
         .should('have.attr', 'href', `/media/series/${currentSeries.slug.text}`);
-       
+
       cy.get('crds-button', { includeShadowDom: true })
         .should('be.visible')
         .should('have.attr', 'text', 'Watch the current teaching series');

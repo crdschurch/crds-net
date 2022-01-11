@@ -1,6 +1,6 @@
 import { oakleyLocationResponse, florenceLocationResponse } from '../../../fixtures/location_search_results';
 import { stubLocationSearchResponse } from './helpers/location_search';
-const errorsToIgnore = [ /.*> Cannot set property 'status' of undefined*/,  /.* > Cannot read property 'getAttribute' of null*/];
+const errorsToIgnore = [/.* > a.push is not a function*/, /.*> Cannot set property 'status' of undefined*/, /.*Cannot read property 'getAttribute' of null*/, /.* > Cannot read property 'getAttribute' of null*/];
 
 describe('Tests in range location result cards', function () {
   const nearestLocation = oakleyLocationResponse();
@@ -24,7 +24,7 @@ describe('Tests in range location result cards', function () {
 
     cy.get('@firstCard').first().within(() => {
       cy.get('.card-title [data-automation-id="location-name"]')
-      .invoke('text').should('eq', nearestLocation.location.location);
+        .invoke('text').should('eq', nearestLocation.location.location);
 
       cy.get('.distance').should('contain', 'miles');
     });

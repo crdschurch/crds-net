@@ -8,13 +8,16 @@ on:
 jobs:
  cypress-run:
     runs-on: ubuntu-latest
+    container: cypress/browsers:node12.13.0-chrome78-ff70
     steps:
     - name: Checkout
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
     - name: Cypress run
       uses: cypress-io/github-action@v2
       with:
         config-file: cypress/config/int_crossroads.json
+        browser: chrome
+        headless: true
       env:
        # pass the Vault Role and Secret ID as an environment variable
        VAULT_ROLE_ID: ${{ secrets.VAULT_ROLE_ID }}
