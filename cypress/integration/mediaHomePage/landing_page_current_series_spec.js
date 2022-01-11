@@ -19,7 +19,7 @@ describe.skip('Testing the Current Series on the Media landing page:', function 
   });
 
   beforeEach(function () {
-    cy.get('body > div:nth-child(9) > section.bg-tan-light.watch-section > div > div:nth-child(2)').as('featuredSeries')
+    cy.get('data-automation-id="live-message').as('featuredSeries')
       .should('have.length', 1)
       .scrollIntoView();
   });
