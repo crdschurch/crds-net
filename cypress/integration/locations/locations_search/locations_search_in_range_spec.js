@@ -1,6 +1,6 @@
 import { oakleyLocationResponse, florenceLocationResponse } from '../../../fixtures/location_search_results';
 import { stubLocationSearchResponse } from './helpers/location_search';
-const errorsToIgnore = [/.* > a.push is not a function*/, /.*> Cannot set property 'status' of undefined*/, /.*Cannot read property 'getAttribute' of null*/, /.* > Cannot read property 'getAttribute' of null*/];
+const errorsToIgnore = [/.*> Script error.*/,/.* > a.push is not a function*/, /.*> Cannot set property 'status' of undefined*/, /.*Cannot read property 'getAttribute' of null*/, /.* > Cannot read property 'getAttribute' of null*/];
 
 describe('Tests in range location result cards', function () {
   const nearestLocation = oakleyLocationResponse();

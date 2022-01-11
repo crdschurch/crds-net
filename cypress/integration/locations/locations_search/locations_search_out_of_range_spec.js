@@ -1,7 +1,7 @@
 import { oakleyLocationResponse } from '../../../fixtures/location_search_results';
 import { stubLocationSearchResponse } from './helpers/location_search';
 
-const errorsToIgnore = [/.*> Cannot convert undefined or null to object*/,/.* > a.push is not a function*/, /.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
+const errorsToIgnore = [/.*> Script error.*/,/.*> Cannot convert undefined or null to object*/,/.* > a.push is not a function*/, /.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
 
 describe('Tests out of range location result cards', function() {
   const outOfRangeLocation = oakleyLocationResponse();
