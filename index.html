@@ -72,6 +72,10 @@ paginate:
 {% assign watch_online_image = site.content_blocks | where: 'slug', 'watch-online-image' | first %}
 {% assign watch_online_details = site.content_blocks | where: 'slug', 'watch-online-details' | first %}
 {% assign watch_bottom_cta = site.content_blocks | where: 'slug', 'watch-bottom-cta' | first %}
+{% assign online_title = online.title | split: "|" %}
+{% assign live_title = at_site.title | split: "|" %}
+{% assign split_title = online.title | split: " " %}
+{% assign current_week = split_title | slice: -1 %}
 
 <section class="bg-black flush-top" style="top: -1.5rem; position: relative;" id="has-resi-player">
   <div class="container">
@@ -123,10 +127,11 @@ paginate:
                         sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
                     </div>
                   </a>
-                  <div class="col-sm-6 col-xs-12 push-half-top">
+                  <div class="col-sm-6 col-xs-12 soft-top">
                     <h5 class="component-header flush-ends">
-                      <a href="{{ online | media_url }}" data-automation-id="message-title">{{ online.title }}</a>
+                      <a href="{{ online | media_url }}" data-automation-id="message-title">{{ online_title | slice: 0 }} | week {{ current_week }}</a>
                     </h5>
+                    <p class="text-gray-light push-half-top">{{ series.title }}</p>
                   </div>
                 </div>
               </div>
@@ -155,10 +160,11 @@ paginate:
                         sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
                     </div>
                   </a>
-                  <div class="col-sm-6 col-xs-12 push-half-top">
+                  <div class="col-sm-6 col-xs-12 soft-top">
                     <h5 class="component-header flush-ends">
-                      <a href="{{ at_site | media_url }}" data-automation-id="message-title">{{ at_site.title }}</a>
+                      <a href="{{ at_site | media_url }}" data-automation-id="message-title">{{ live_title | slice: 0 }} | week {{ current_week }}</a>
                     </h5>
+                    <p class="text-gray-light push-half-top">{{ series.title }}</p>
                   </div>
                 </div>
               </div>
