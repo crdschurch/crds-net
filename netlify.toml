@@ -86,7 +86,7 @@ package = "./_plugins/netlify-plugin-health-check"
 [context.development.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-int.netlify.app"
   CRDS_MAP_DOMAIN = "crds-connect-int.netlify.app"
-  CRDS_FINANCE_ADMIN = "crds-finance-admin-int.netlify.app"
+  CRDS_FINANCE_ADMIN = "https://crds-finance-admin-int.netlify.app"
   CRDS_FIND_GROUPS = "findgroups-int.netlify.app"
   CRDS_OKTA_SIGNIN_ENDPOINT = "crds-signin-int.netlify.app"
   CRDS_ANGULAR_ENDPOINT = "crds-angular-int.netlify.app"
