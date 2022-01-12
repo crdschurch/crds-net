@@ -90,8 +90,8 @@ paginate:
 
 <!-- Curent Series Section -->
 <section class="bg-blue watch-section" style="margin-top:-24px;"> 
-  <div style="position: relative; background-image: url('{{ series.background_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}');" data-optimize-bg-img>
-    <div style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));">
+  <div class="home-jumbo-rel" style="background-image: url('{{ series.background_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}');" data-optimize-bg-img>
+    <div class="home-jumbo-overlay">
       <div class="container soft-bottom">
         <div class="row text-center push-top soft-ends">
           <div class="col-sm-12">
@@ -106,10 +106,10 @@ paginate:
           </div>
         </div>
   
-        <div class="row push-bottom" style="margin-right: 0; margin-left: 0;">
+        <div class="row push-bottom card-container-row">
   
           <!-- Online Message -->
-          <div class="col-sm-6 push-bottom" style="padding-left: 8px; padding-right: 8px;">
+          <div class="col-sm-6 push-bottom series-card-pad">
             <div class="bg-white weekend-container">
               <div class="col-md-12 col-sm-6 col-xs-12 push-top soft-sides">
                 <h4 class="component-header flush-ends push-quarter-bottom">Online Message</h4>
@@ -141,7 +141,7 @@ paginate:
             </div>
   
           <!-- In-Room Message -->
-          <div class="col-sm-6 push-bottom" style="padding-left: 8px; padding-right: 8px;">
+          <div class="col-sm-6 push-bottom series-card-pad">
             <div class="bg-white weekend-container">
               <div class="col-md-12 col-sm-6 col-xs-12 push-top soft-sides">
                 <h5 class="component-header flush-ends push-quarter-bottom">In-Room Message</h5>
@@ -180,7 +180,7 @@ paginate:
   </div>
 </section>
 
-<section class="soft-top bg-blue soft-bottom bg-topo" style="position: relative; top: -1.5rem;">
+<section class="soft-top bg-blue soft-bottom bg-topo best-content-pos">
   <div class="container">
     <div>
       <div class="col-sm-8 soft-ends">
