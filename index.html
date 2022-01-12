@@ -101,7 +101,7 @@ paginate:
             <h2 class="section-header flush-ends text-white">{{ series.title }}</h2>
             <p class="push-top col-sm-10 col-sm-offset-1">{{ series.description }}</p>
             <div class="row btn push-right">
-              <crds-button block="true" display="outline" color="white" href="/latest-weekend" text="Watch the current teaching series"></crds-button>
+              <crds-button block="true" display="outline" color="white" href="/watch" text="Watch the current teaching series"></crds-button>
             </div>
           </div>
         </div>
@@ -131,7 +131,7 @@ paginate:
                         <h5 class="component-header flush-ends">
                           <a href="{{ online | media_url }}" data-automation-id="message-title">{{ online_title | slice: 0 }} | week {{ current_week }}</a>
                         </h5>
-                        <p class="text-gray-light push-half-top">{{ series.title }}</p>
+                        <p class="text-gray-light push-quarter-top">{{ series.title }}</p>
                       </div>
                     </div>
                   </div>
@@ -164,7 +164,7 @@ paginate:
                         <h5 class="component-header flush-ends">
                           <a href="{{ at_site | media_url }}" data-automation-id="message-title">{{ live_title | slice: 0 }} | week {{ current_week }}</a>
                         </h5>
-                        <p class="text-gray-light push-half-top">{{ series.title }}</p>
+                        <p class="text-gray-light push-quarter-top">{{ series.title }}</p>
                       </div>
                     </div>
                   </div>
