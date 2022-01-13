@@ -7,7 +7,6 @@
 /tags /topics 302!
 /videos/tags /videos 302!
 /weekend-prompts /weekendfollowup 302!
-/*  /404/index.html 404
 /atriumevents/?site=oakley https://api.crossroads.net/atriumevents/eventlisting/oakley
 /atriumevents/?site=mason https://api.crossroads.net/atriumevents/eventlisting/mason
 /atriumevents/?site=florence https://api.crossroads.net/atriumevents/eventlisting/florence
@@ -15,3 +14,4 @@
 /atriumevents/?site=westside https://api.crossroads.net/atriumevents/eventlisting/westside
 /atriumevents/?site=eastside https://api.crossroads.net/atriumevents/eventlisting/eastside
 /atriumevents/?site=lexington https://api.crossroads.net/atriumevents/eventlisting/lexington
+/*  /404/index.html 404
