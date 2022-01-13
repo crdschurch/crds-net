@@ -1,7 +1,7 @@
 import { SeriesQueryBuilder} from 'crds-cypress-contentful';
 
-const errorsToIgnore = [/.* > a.push is not a function*/, /.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
-describe.skip('Testing the Current Series on the Homepage:', function() {
+const errorsToIgnore = [ /.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
+describe('Testing the Current Series on the Homepage:', function() {
   let currentSeries;
   before(function() {
     const qb = new SeriesQueryBuilder();
@@ -16,7 +16,7 @@ describe.skip('Testing the Current Series on the Homepage:', function() {
   });
  
   it('Current series title, description, and image should match Contentful', function() {
-    cy.get('[data-automation-id="message-title"]').as('seriesTitle')
+    cy.get('[data-automation-id="series-title"]').as('seriesTitle')
       .should('be.visible')
       .and('have.text', currentSeries.title.text);
     cy.get('@seriesTitle')
@@ -33,8 +33,10 @@ describe.skip('Testing the Current Series on the Homepage:', function() {
       });
   });
   it('"Watch current teaching series" button should link to the current series', function() {
-    cy.get('[href="/watch"]')
+    cy.get('[class="media featured"]').scrollIntoView();
+    cy.get('crds-button[text="Watch the current teaching series"]')
       .as('watchServiceButton')
-      .should('be.visible');
+      .should('be.visible')
+      .and('have.attr', 'href', `/media/series/${currentSeries.slug.text}`);
   });
 });

@@ -1,7 +1,6 @@
 import { SeriesQueryBuilder, normalizeText} from 'crds-cypress-contentful';
 
-const dayjs = require('dayjs');
-const errorsToIgnore = [/.* > a.push is not a function*/,/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/,  /.* > Cannot read property 'getAttribute' of null*/, /.* > Cannot set property 'status' of undefined*/, /.* > TypeError: Cypress.moment is not a function*/];
+const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/,  /.* > Cannot read property 'getAttribute' of null*/, /.* > Cannot set property 'status' of undefined*/, /.* > TypeError: Cypress.moment is not a function*/];
 
 describe('Testing the Current Series on the Media/Series page:', function () {
   let currentSeries;
@@ -17,15 +16,17 @@ describe('Testing the Current Series on the Media/Series page:', function () {
     cy.visit('/series');
   });
 
-  it('The Current series title, date range, and description should match Contentful', function () {
+  it.skip('The Current series title, date range, and description should match Contentful', function () {
     cy.get('.current-series').as('currentSeriesBlock')
       .within(() => {
         cy.get('h1').as('currentSeriesTitle')
           .should('be.visible')
           .and('have.text', currentSeries.title.text);
-    
-        const start = dayjs(currentSeries.starts_at.date).format('MM.DD.YYYY');
-        const end = dayjs(currentSeries.ends_at.date).format('MM.DD.YYYY');    
+
+        const start = currentSeries.starts_at ?
+          Cypress.moment(currentSeries.starts_at.date).format('MM.DD.YYYY') : '';
+        const end = currentSeries.ends_at ?
+          Cypress.moment(currentSeries.ends_at.date).format('MM.DD.YYYY') : '';    
         cy.get('date').as('currentSeriesDateRange')
           .should('be.visible')
           .and('contain', `${start} — ${end}`);

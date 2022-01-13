@@ -3,9 +3,9 @@ import { getRelativeMessageUrl } from '../../support/GetUrl';
 
 const soundOn = 'sound=11';
 const soundOff = 'sound=1';
-const errorsToIgnore = [/.*Cannot read property 'text' of undefined*/, /.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/, /.*> Cannot set property 'status' of undefined*/, /.* > Cannot read property 'getAttribute' of null*/];
+const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/, /.*> Cannot set property 'status' of undefined*/,  /.* > Cannot read property 'getAttribute' of null*/];
 
-describe.skip('Tests message with Bitmovin player and transcription', function () {
+describe('Tests message with Bitmovin player and transcription', function () {
   let relativeMessageURL;
 
   before(function () {
@@ -32,7 +32,7 @@ describe.skip('Tests message with Bitmovin player and transcription', function (
         });
 
       // Confirm autoplay has started by listening for the event
-      cy.get('@analytics.track', { timeout: 60000 })
+      cy.get('@analytics.track', {timeout: 60000})
         .should('have.been.calledWith', 'VideoStarted');
     });
 
@@ -46,7 +46,7 @@ describe.skip('Tests message with Bitmovin player and transcription', function (
           cy.subtitleSelect().find('option').should('have.length.gte', 2);
           cy.subtitleSelect().find('option[selected="selected"]').should('not.contain', 'off');
           cy.subtitleOverlay().should('exist').and('be.visible');
-        });
+      });
 
       // Confirm autoplay has started by listening for the event
       cy.get('@analytics.track')

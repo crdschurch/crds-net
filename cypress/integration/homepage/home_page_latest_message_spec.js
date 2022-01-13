@@ -1,8 +1,7 @@
 import { MessageQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 import { getRelativeMessageUrl } from '../../support/GetUrl';
 
-//[TODO update]
-describe.skip('Tests the Current Message on the Homepage', function() {
+describe('Tests the Current Message on the Homepage', function() {
   // const requestFilter = new RequestFilter(amplitude.isVideoStarted);
   let currentMessage;  
   const errorsToIgnore = [/.*> Cannot set property 'status' of undefined*/,  /.* > Cannot read property 'getAttribute' of null*/];
@@ -29,9 +28,9 @@ describe.skip('Tests the Current Message on the Homepage', function() {
     cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit('/');
   });
-  
+
   it('Checks title, image, and button have correct link', function() {
-    cy.get('[data-automation-id="message-title"]',{ timeout: 50000 }).as('title')
+    cy.get('.latest-message-headline').as('title')
       .scrollIntoView()
       //.text()
       .should('contain', currentMessage.title.text);
@@ -52,6 +51,15 @@ describe.skip('Tests the Current Message on the Homepage', function() {
         cy.get('.latest-message-btn').contains('Watch now')
           .should('be.visible')
           .and('have.attr', 'href', relativeAutoplayURL);
+      });
+  });
+
+  it('Checks description', function() {
+    cy.get('.latest-message-body')
+      .as('description')
+      .normalizedText()
+      .then((elementText) => {
+        expect(normalizeText(currentMessage.description.text)).to.have.string(elementText);
       });
   });
 
