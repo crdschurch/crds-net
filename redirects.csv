@@ -21,6 +21,7 @@ https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 /spouse-invite-landing inviteId=:inviteId,/spouse-invite-login/?inviteId=:inviteId&redirectUrl=/spouse-invite-landing?inviteId=:inviteId,302!
 https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,master
 /forms/*,${env:CRDS_FORM_MAKER}:splat,200!
+/finance/admin/*,${env:CRDS_FINANCE_ADMIN}/:splat,200!
 /volunteer/search/*,${env:CRDS_VOLUNTEER}:splat,200!
 /components/*,https://${env:CRDS_COMPONENTS_ENDPOINT}/dist/:splat,200!
 /undivided-training,https://undivided.netlify.app,301!
