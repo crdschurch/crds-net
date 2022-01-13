@@ -1,8 +1,8 @@
 import { MessageQueryBuilder } from 'crds-cypress-contentful';
 import { getRelativeMessageUrl } from '../../support/GetUrl';
-const errorsToIgnore = [/.* > a.push is not a function*/, /.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/, /.* > Cannot read property 'getAttribute' of null*/, /.* > Cannot set property 'status' of undefined*/];
+const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/,  /.* > Cannot read property 'getAttribute' of null*/, /.* > Cannot set property 'status' of undefined*/];
 
-describe.skip('Tests download links on message page', function () {
+describe('Tests download links on message page', function () {
   describe('Tests Bitmovin messages with audio file', () => {
     let bitmovinMessage;
 
@@ -10,7 +10,7 @@ describe.skip('Tests download links on message page', function () {
       const qb = new MessageQueryBuilder();
       qb.orderBy = '-fields.published_at';
       qb.select = 'fields.title,fields.slug,fields.video_file,fields.audio_file';
-      //  qb.searchFor = 'fields.bitmovin_url[exists]=true&fields.audio_file[exists]=true';
+      qb.searchFor = 'fields.bitmovin_url[exists]=true&fields.audio_file[exists]=true';
       cy.task('getCNFLResource', qb.queryParams)
         .then((message) => {
           bitmovinMessage = message;
