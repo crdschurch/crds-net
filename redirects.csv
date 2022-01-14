@@ -153,11 +153,11 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /signin,${env:CRDS_ONLINE_DOMAIN}/sign-in,301! Cookie=from_online
 /the-chaser,/weekendfollowup,302!
 /weekend-prompts,/weekendfollowup 302!
-/atriumevents/?site=oakley,https://api.crossroads.net/atriumevents/eventlisting/oakley,302!
-/atriumevents/?site=mason,https://api.crossroads.net/atriumevents/eventlisting/mason,302!
-/atriumevents/?site=florence,https://api.crossroads.net/atriumevents/eventlisting/florence,302!
-/atriumevents/?site=uptown,https://api.crossroads.net/atriumevents/eventlisting/uptown,302! 
-/atriumevents/?site=westside,https://api.crossroads.net/atriumevents/eventlisting/westside,302!
-/atriumevents/?site=eastside,https://api.crossroads.net/atriumevents/eventlisting/eastside,302!
-/atriumevents/?site=lexington,https://api.crossroads.net/atriumevents/eventlisting/lexington,302!
+/atriumevents/ site=oakley,https://api.crossroads.net/atriumevents/eventlisting/oakley,302!
+/atriumevents/ site=mason,https://api.crossroads.net/atriumevents/eventlisting/mason,302!
+/atriumevents/ site=florence,https://api.crossroads.net/atriumevents/eventlisting/florence,302!
+/atriumevents/ site=uptown,https://api.crossroads.net/atriumevents/eventlisting/uptown,302! 
+/atriumevents/ site=westside,https://api.crossroads.net/atriumevents/eventlisting/westside,302!
+/atriumevents/ site=eastside,https://api.crossroads.net/atriumevents/eventlisting/eastside,302!
+/atriumevents/ site=lexington,https://api.crossroads.net/atriumevents/eventlisting/lexington,302!
 /*,/404.html,404
