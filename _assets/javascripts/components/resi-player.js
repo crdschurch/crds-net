@@ -23,27 +23,19 @@ const isDayOfTheWeek = (day) => {
 };
 
 const isNotCtaRenderTime = () => {
-  // let isSunday = isDayOfTheWeek(0);
-
-  let isChristmasEve = isDayOfTheWeek(5);
-  let serviceWindow = (getEstTime() >= 1825 && getEstTime() <= 1945);
-  return isChristmasEve && serviceWindow;
+  let isSunday = isDayOfTheWeek(0);
+  let serviceWindow = (getEstTime() >= 825 && getEstTime() <= 1300);
+  return isSunday && serviceWindow;
 };
 
 const isServiceTime = () => {
-  // let isSunday = isDayOfTheWeek(0);
+  let isSunday = isDayOfTheWeek(0);
 
-  // let sundayServiceTimes = (
-  //   (getEstTime() >= 825 && getEstTime() <= 1300)
-  // );
-
-  let isChristmasEve = isDayOfTheWeek(5);
-
-  let christmasEveServiceTimes = (
-    (getEstTime() >= 1825 && getEstTime() <= 1945)
+  let sundayServiceTimes = (
+    (getEstTime() >= 825 && getEstTime() <= 1300)
   );
 
-  return isChristmasEve && christmasEveServiceTimes;
+  return isSunday && sundayServiceTimes;
 };
 
 const refreshPageForServiceStart = (hours, minutes, seconds) => {
@@ -74,7 +66,7 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
   document.getElementById('resi-player').remove();
 }
 
-if (isDayOfTheWeek(5)) {
-  refreshPageForServiceStart(18,25,1);
-  refreshPageForServiceStart(19,45,1);
+if (isDayOfTheWeek(0)) {
+  refreshPageForServiceStart(8,25,1);
+  refreshPageForServiceStart(13,1,1);
 }

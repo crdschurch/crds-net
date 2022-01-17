@@ -1,0 +1,24 @@
+.home-jumbo-rel {
+  position: relative;
+  background-size: cover;
+}
+
+.home-jumbo-overlay {
+  padding-top: 100px;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+}
+
+.card-containter-row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.series-card-pad {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.best-content-pos {
+  position: relative;
+  top: -1.5rem;
+}
