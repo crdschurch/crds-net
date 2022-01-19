@@ -50,6 +50,8 @@
 }
 
 .softer-cta {
-  padding-top: 116px;
-  padding-bottom: 124px;
+  @media screen and (min-width: $screen-sm) {
+    padding-top: 116px;
+    padding-bottom: 124px;    
+  }
 }
