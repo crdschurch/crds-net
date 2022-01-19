@@ -95,8 +95,8 @@ paginate:
       <div class="container soft-ends">
         <div class="row text-center push-top soft-ends">
           <div class="col-sm-12">
-            <p calss="flush-bottom font-size-small text-white text-uppercase">
-              <strong>Current Series</strong>
+            <p calss="flush-bottom font-size-small text-white">
+              <strong class="cs-header text-uppercase">Current Series</strong>
             </p>
             <h2 class="section-header flush-ends text-white">{{ series.title }}</h2>
             <p class="push-top col-sm-10 col-sm-offset-1">{{ series.description }}</p>
@@ -106,13 +106,13 @@ paginate:
           </div>
         </div>
   
-        <div class="row push-bottom card-container-row">
+        <div class="row push-bottom card- soft-bottom">
   
           <!-- Online Message -->
           <div class="col-md-6 col-md-offset-0 col-sm-12 push-bottom series-card-pad">
             <div class="bg-white weekend-container">
               <div class="col-md-12 col-sm-8 col-xs-12 push-top soft-sides">
-                <h4 class="component-header flush-ends push-quarter-bottom">Online Message</h4>
+                <h3 class="cs-med-header flush-ends push-quarter-bottom">Online Message</h3>
                 <p class="text-gray-light push-quarter-top">
                   25 minutes or less, created and optimized for video viewing.
               </div>
@@ -127,7 +127,7 @@ paginate:
                             sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
                         </div>
                       </a>
-                      <div class="col-sm-6 col-xs-12 soft-top">
+                      <div class="col-sm-6 col-xs-12">
                         <h5 class="component-header flush-ends">
                           <a href="{{ online | media_url }}" data-automation-id="message-title">{{ online_title | slice: 0 }} | week {{ current_week }}</a>
                         </h5>
@@ -144,7 +144,7 @@ paginate:
           <div class="col-md-6 col-md-offset-0 col-sm-12 push-bottom series-card-pad">
             <div class="bg-white weekend-container">
               <div class="col-md-12 col-sm-8 col-xs-12 push-top soft-sides">
-                <h5 class="component-header flush-ends push-quarter-bottom">In-Room Message</h5>
+                <h5 class="cs-med-header flush-ends push-quarter-bottom">In-Room Message</h5>
                 <p class="text-gray-light push-quarter-top">
                   65 minute service filmed in front of a live audience.
                 </p>
@@ -160,7 +160,7 @@ paginate:
                             sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
                         </div>
                       </a>
-                      <div class="col-sm-6 col-xs-12 soft-top">
+                      <div class="col-sm-6 col-xs-12">
                         <h5 class="component-header flush-ends">
                           <a href="{{ at_site | media_url }}" data-automation-id="message-title">{{ live_title | slice: 0 }} | week {{ current_week }}</a>
                         </h5>
@@ -183,7 +183,7 @@ paginate:
 <section class="soft-top bg-blue soft-bottom bg-topo best-content-pos">
   <div class="container">
     <div>
-      <div class="col-sm-8 soft-ends">
+      <div class="col-sm-8 mobile-hard soft-ends">
         <div>
           {% assign homepage_cards = site.content_blocks | where: 'slug', 'homepage-cards' | first %}
           {{ homepage_cards.content_block }}
