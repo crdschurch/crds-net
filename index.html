@@ -211,12 +211,12 @@ paginate:
 <section class="bg-tan-light">
   <div class="container">
     <div class="text-center push-bottom">
-      <div class="push-bottom text-blue mobile-push-half-sides">
+      <div class="text-blue mobile-push-half-sides">
         <h2 class="component-header-box text-orange">Articles, Podcasts, & More</h2>
       </div>
       <p class="text-blue font-family-serif font-size-large">Unfiltered & authentic takes on life</p>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 push-top">
       {% assign most_recent = page.home_collection.docs | sort: "published_at" | reverse | first %}
       <a href="{{ most_recent.url }}" class="overlay-card">
         <div class="bg-overlay"></div>
