@@ -1,6 +1,6 @@
 import { ContentfulQueryBuilder } from 'crds-cypress-contentful';
 
-const errorsToIgnore = [ /.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
+const errorsToIgnore = [/.*> Script error.*/,/.*> a.push is not a function*/,/.* > Cannot read property 'getAttribute' of null*/, /.* > errorList.find is not a function*/, /.* > Cannot set property 'status' of undefined*/];
 
 describe('Testing navigation between pages:', function() {
   it('(DE6321) Navigating to a location with a known redirect should land on the redirected page served by Netlify', function() {

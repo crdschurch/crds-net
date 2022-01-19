@@ -1,5 +1,5 @@
 import { ContentfulQueryBuilder } from 'crds-cypress-contentful';
-const errorsToIgnore = [/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/,  /.* > Cannot read property 'getAttribute' of null*/,  /.* > Cannot set property 'status' of undefined*/];
+const errorsToIgnore = [/.* > a.push is not a function*/,/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/,  /.* > Cannot read property 'getAttribute' of null*/,  /.* > Cannot set property 'status' of undefined*/];
 
 describe('Tests Video page with Bitmovin video', () => {
   let bitmovinVideo;
