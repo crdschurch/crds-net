@@ -10,7 +10,7 @@ CRDS.LocationFinder = class LocationFinder {
   }
 
   getLocationDistances(origin) {
-    const locationDistancesURL = `${this.gatewayAPIEndpoint}location/locations/proximities`;
+    const locationDistancesURL = `${this.gatewayAPIEndpoint}/location/locations/proximities/`;
     return $.ajax({
       url: locationDistancesURL,
       dataType: 'json',
