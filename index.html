@@ -218,6 +218,7 @@ paginate:
     </div>
     <div class="col-md-8 push-top">
       {% assign most_recent = page.home_collection.docs | sort: "published_at" | reverse | first %}
+      {% assign author = most_recent.author | first %}
       <a href="{{ most_recent.url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
@@ -228,7 +229,7 @@ paginate:
         <div class="overlay-card-content">
           <p class="overlay-card-category">{{ most_recent.category.title }}</p>
           <h2 class="overlay-card-title">{{ most_recent.title }}</h2>
-          <p class="overlay-card-author">{{ most_recent.author.full_name }}</p>
+          <p class="overlay-card-author">{{ author.full_name }}</p>
           {% include _media-label.html source=most_recent %}
         </div>
       </a>
@@ -265,8 +266,14 @@ paginate:
             </a>
 
             <div class="card-block hard soft-quarter-top">
-              <a class="text-orange font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{
-                category.title }}</a>
+              <a class="text-orange font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">
+                {% if category.title %}
+                  {{ category.title }}
+                {% else %}
+                  &nbsp;
+                {% endif %}
+
+              </a>
               <h3 class="component-header flush">
                 <a href="{{ item.url }}">{{ item.title }}</a>
               </h3>
