@@ -1,3 +1,50 @@
+.overlay-container {
+  @media screen and (max-width: $screen-md) {
+    padding-top: 10px;
+  }
+
+  .modal-title {
+    color: $cr-gray-darker;
+    font-family: "acumin-pro-extra-condensed";
+    font-size: 58px;
+    letter-spacing: -0.5px;
+    font-weight: normal;
+    text-transform: uppercase;
+    padding-top: 33px;
+  }
+
+  p {
+    color: $cr-gray;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 26px;
+    padding-top: 16px;
+  }
+
+  .image-container {
+    margin-top: 12px;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+  
+    @media screen and (min-width: $screen-md) {
+      margin-top: 0px;
+    }
+  
+    .icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
 .video-tpl {
   .feature-cards {
     .card {
