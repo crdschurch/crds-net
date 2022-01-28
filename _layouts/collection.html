@@ -28,6 +28,21 @@ layout: default
               
               <p class="font-family-serif font-size-large">{{ page.description }}</p>
             </div>
+            {% if page.trailer_video %}
+              <div>
+                <crds-button 
+                  data-target="#trailerModal" 
+                  data-toggle="modal" 
+                  color="white" 
+                  display="outline" 
+                  text="Watch the trailer"
+                  icon="play-thin" 
+                  icon-color="white" 
+                  icon-size="20" 
+                  icon-align="left">
+                </crds-button>
+              </div>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -81,3 +96,20 @@ layout: default
    
   </div>
 </section>
+
+{% if page.trailer_video %}
+  <div aria-labelledby="Trailer modal" class="modal fade" id="trailerModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header hard-bottom"><button aria-label="Close" class="close pull-right" data-dismiss="modal"
+            type="button"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body text-left push-ends hard-ends">
+            {% assign video_id = page.trailer_video | youtube_id %}
+            {% include _youtube-embed.html %}
+        </div>
+        <div class="modal-footer">{{ page.title }} Trailer</div>
+      </div>
+    </div>
+  </div>
+{% endif %}
