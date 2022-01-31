@@ -72,6 +72,10 @@ paginate:
 {% assign watch_online_image = site.content_blocks | where: 'slug', 'watch-online-image' | first %}
 {% assign watch_online_details = site.content_blocks | where: 'slug', 'watch-online-details' | first %}
 {% assign watch_bottom_cta = site.content_blocks | where: 'slug', 'watch-bottom-cta' | first %}
+{% assign online_title = online.title | split: "|" %}
+{% assign live_title = at_site.title | split: "|" %}
+{% assign split_title = online.title | split: " " %}
+{% assign current_week = split_title | slice: -1 %}
 
 <section class="bg-black flush-top" style="top: -1.5rem; position: relative;" id="has-resi-player">
   <div class="container">
@@ -130,16 +134,9 @@ paginate:
                         <p class="text-gray-light push-quarter-top">{{ series.title }}</p>
                       </div>
                     </div>
-                  </a>
-                  <div class="col-sm-6 col-xs-12">
-                    <p class="flush-bottom font-size-smaller text-orange text-uppercase">
-                      LATEST MESSAGE
-                    </p>
-                    <h5 class="component-header flush-ends">
-                      <a href="{{ at_site | media_url }}" data-automation-id="message-title">{{ at_site.title }}</a>
-                    </h5>
                   </div>
                 </div>
+  
               </div>
             </div>
   
@@ -170,29 +167,20 @@ paginate:
                         <p class="text-gray-light push-quarter-top">{{ series.title }}</p>
                       </div>
                     </div>
-                  </a>
-                  <div class="col-sm-6 col-xs-12">
-                    <p class="flush-bottom font-size-smaller text-orange text-uppercase">
-                      LATEST MESSAGE
-                    </p>
-                    <h5 class="component-header flush-ends">
-                      <a href="{{ online | media_url }}" data-automation-id="message-title">{{ online.title }}</a>
-                    </h5>
                   </div>
                 </div>
+  
               </div>
             </div>
-
           </div>
+  
         </div>
-      </div>
-
     </div>
-
+    </div>
   </div>
 </section>
 
-<section class="soft-top bg-blue soft-bottom bg-topo push-bottom" style="position: relative; top: -1.5rem;">
+<section class="soft-top bg-blue soft-bottom bg-topo best-content-pos">
   <div class="container">
     <div>
       <div class="col-sm-8 mobile-hard soft-ends">
@@ -207,45 +195,6 @@ paginate:
     </div>
   </div>
 </section>
-
-{% comment %}Your Impact Will be Massive{% endcomment %}
-<section class=" soft-ends">
-  <div class="container">
-    <div class="text-center push-bottom mobile-push-half-sides">
-      <h2 class="component-header-box text-blue">Your Impact Will be Massive</h2>
-    </div>
-    <div class=" push-bottom">
-      <div class="col-sm-8">
-        <!-- Good News Graphic -->
-        {{ good_news_graphic.content_block | markdownify }}
-
-      </div>
-      <div class="col-sm-4">
-        {% assign the_good_news = site.content_blocks | where: 'slug', 'good-news-home' | first %}
-        {{ the_good_news.content_block }}
-      </div>
-    </div>
-  </div>
-</section>
-
-
-{% comment %}Get Equipped: Watch the Weekend
-<section class="bg-tan-light soft-bottom">
-  <div class="container soft-ends hard-sides">
-    <div class="text-center push-bottom soft-ends mobile-push-half-sides">
-      <h2 class="component-header-box text-orange">Get Equipped: Watch the Weekend</h2>
-    </div>
-    <div class="col-md-8">
-      {% include home/_latest-message.html %}
-    </div>
-    <div class="col-md-4">
-      {% include home/_current-series.html %}
-      <div>
-        <a href="/watch/#ways-to-watch"><img src="//crds-media.imgix.net/34df7tsGquaZaP97trNmAL/a71dee0a17b96c679c4c9ba005a55b3b/many-ways-to-watch-monetate2.jpg?auto=format,compress&w=1800" /></a>
-      </div>
-    </div>
-  </div>
-</section>{% endcomment %}
 
 {% comment %}Kids Club Jumbotron{% endcomment %}
 {% include home/_kids-club-jumbotron.html %}
