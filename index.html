@@ -72,6 +72,10 @@ paginate:
 {% assign watch_online_image = site.content_blocks | where: 'slug', 'watch-online-image' | first %}
 {% assign watch_online_details = site.content_blocks | where: 'slug', 'watch-online-details' | first %}
 {% assign watch_bottom_cta = site.content_blocks | where: 'slug', 'watch-bottom-cta' | first %}
+{% assign online_title = online.title | split: "|" %}
+{% assign live_title = at_site.title | split: "|" %}
+{% assign split_title = online.title | split: " " %}
+{% assign current_week = split_title | slice: -1 %}
 
 <section class="bg-black flush-top" style="top: -1.5rem; position: relative;" id="has-resi-player">
   <div class="container">
@@ -84,110 +88,102 @@ paginate:
   </div>
 </section>
 
-<!-- Two Services Section -->
-<section class="bg-tan-light watch-section" style="margin-top:-24px;">
-  <div class="container soft-bottom">
-    <div class="row text-center push-ends soft-ends">
-      <div class="col-sm-12">
-        <p class="flush-bottom font-size-small text-orange text-uppercase">
-          <strong>Watch Weekly Teachings</strong>
-        </p>
-        <h3 class="section-header flush-ends text-gray-darker">
-          TWO INSPIRATIONAL MESSAGES<br>
-          EVERY WEEK
-        </h3>
-      </div>
-    </div>
-
-    <div class="row" style="margin-right: 0; margin-left: 0;">
-
-      <!-- Live Message -->
-      <div class="col-xs-6 push-bottom" style="padding-left: 8px; padding-right: 8px;">
-        <div class="bg-white weekend-container" data-automation-id="live-message">
-
-          <!-- Watch In Room Image - Content Block-->
-          {{ watch_in_room_image.content_block | markdownify }}
-
-          <div class="soft-sides mobile-soft-half-sides push-half-ends">
-
-            <!-- Watch In Room Details - Content Block-->
-            {{ watch_in_room_details.content_block | markdownify }}
-
-            <div class="row">
-              <div class="col-xs-12 weekend-message">
-                <hr>
-                <div class="row">
-                  <a href="{{ at_site | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
-                    <div class="">
-                      <img class="img-responsive img-full-width"
-                        src="{{ at_site.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                        sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
-                    </div>
-                  </a>
-                  <div class="col-sm-6 col-xs-12">
-                    <p class="flush-bottom font-size-smaller text-orange text-uppercase">
-                      LATEST MESSAGE
-                    </p>
-                    <h5 class="component-header flush-ends">
-                      <a href="{{ at_site | media_url }}" data-automation-id="message-title">{{ at_site.title }}</a>
-                    </h5>
-                  </div>
-                </div>
-              </div>
+<!-- Curent Series Section -->
+<section class="bg-blue watch-section" style="margin-top:-24px;"> 
+  <div class="home-jumbo-rel" style="background-image: url('{{ series.background_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}');" data-optimize-bg-img>
+    <div class="home-jumbo-overlay soft-ends">
+      <div class="container soft-ends">
+        <div class="row text-center push-top soft-ends">
+          <div class="col-sm-12">
+            <p calss="flush-bottom font-size-small text-white">
+              <strong class="cs-header text-uppercase">Current Series</strong>
+            </p>
+            <h2 class="section-header flush-ends text-white">{{ series.title }}</h2>
+            <p class="push-top col-sm-10 col-sm-offset-1">{{ series.description }}</p>
+            <div class="row btn push-right">
+              <crds-button block="true" display="outline" color="white" href="/watch" text="Watch the current teaching series"></crds-button>
             </div>
-
           </div>
         </div>
-      </div>
-
-      <!-- Online Message -->
-      <div class="col-xs-6 push-bottom" style="padding-left: 8px; padding-right: 8px;">
-        <div class="bg-white weekend-container" data-automation-id="online-message">
-
-          <!-- Watch Online Image - Content Block-->
-          {{ watch_online_image.content_block | markdownify }}
-
-          <div class="soft-sides mobile-soft-half-sides push-half-ends">
-
-             <!-- Watch Online Details - Content Block-->
-            {{ watch_online_details.content_block | markdownify }}
-
-            <div class="row">
-              <div class="col-xs-12 weekend-message">
-                <hr>
+  
+        <div class="row mobile-hard-bottom mobile-flush-bottom push-bottom soft-bottom">
+  
+          <!-- Online Message -->
+          <div class="col-md-6 col-md-offset-0 col-sm-12 push-bottom series-card-pad">
+            <div class="bg-white weekend-container">
+              <div class="col-md-12 col-sm-8 col-xs-12 push-top soft-sides">
+                <h3 class="cs-med-header flush-ends push-quarter-bottom">Online Message</h3>
+                <p class="text-gray-light push-quarter-top">
+                  25 minutes or less, created and optimized for video viewing.
+              </div>
                 <div class="row">
-                  <a href="{{ online | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
-                    <div class="">
-                      <img class="img-responsive img-full-width"
-                        src="{{ online.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                        sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+                  <div class="col-xs-12 weekend-message">
+                    <hr class="push-sides">
+                    <div class="row soft-sides soft-half-ends">
+                      <a href="{{ online | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
+                        <div class="">
+                          <img class="img-responsive img-full-width"
+                            src="{{ online.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                            sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+                        </div>
+                      </a>
+                      <div class="col-sm-6 col-xs-12">
+                        <h5 class="component-header flush-ends">
+                          <a href="{{ online | media_url }}" data-automation-id="message-title">{{ online_title | slice: 0 }} | week {{ current_week }}</a>
+                        </h5>
+                        <p class="text-gray-light push-quarter-top">{{ series.title }}</p>
+                      </div>
                     </div>
-                  </a>
-                  <div class="col-sm-6 col-xs-12">
-                    <p class="flush-bottom font-size-smaller text-orange text-uppercase">
-                      LATEST MESSAGE
-                    </p>
-                    <h5 class="component-header flush-ends">
-                      <a href="{{ online | media_url }}" data-automation-id="message-title">{{ online.title }}</a>
-                    </h5>
                   </div>
                 </div>
+  
               </div>
             </div>
-
+  
+          <!-- In-Room Message -->
+          <div class="col-md-6 col-md-offset-0 col-sm-12 push-bottom series-card-pad">
+            <div class="bg-white weekend-container">
+              <div class="col-md-12 col-sm-8 col-xs-12 push-top soft-sides">
+                <h5 class="cs-med-header flush-ends push-quarter-bottom">In-Room Message</h5>
+                <p class="text-gray-light push-quarter-top">
+                  65 minute service filmed in front of a live audience.
+                </p>
+              </div>
+                <div class="row">
+                  <div class="col-xs-12 weekend-message">
+                    <hr class="push-sides">
+                    <div class="row soft-sides soft-half-ends">
+                      <a href="{{ at_site | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
+                        <div class="">
+                          <img class="img-responsive img-full-width"
+                            src="{{ at_site.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                            sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
+                        </div>
+                      </a>
+                      <div class="col-sm-6 col-xs-12">
+                        <h5 class="component-header flush-ends">
+                          <a href="{{ at_site | media_url }}" data-automation-id="message-title">{{ live_title | slice: 0 }} | week {{ current_week }}</a>
+                        </h5>
+                        <p class="text-gray-light push-quarter-top">{{ series.title }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
           </div>
+  
         </div>
-      </div>
-
     </div>
-
+    </div>
   </div>
 </section>
 
-<section class="soft-top bg-blue soft-bottom bg-topo push-bottom" style="position: relative; top: -1.5rem;">
+<section class="soft-top bg-blue soft-bottom bg-topo best-content-pos">
   <div class="container">
     <div>
-      <div class="col-sm-8 soft-ends">
+      <div class="col-sm-8 mobile-hard soft-ends">
         <div>
           {% assign homepage_cards = site.content_blocks | where: 'slug', 'homepage-cards' | first %}
           {{ homepage_cards.content_block }}
@@ -199,45 +195,6 @@ paginate:
     </div>
   </div>
 </section>
-
-{% comment %}Your Impact Will be Massive{% endcomment %}
-<section class=" soft-ends">
-  <div class="container">
-    <div class="text-center push-bottom mobile-push-half-sides">
-      <h2 class="component-header-box text-blue">Your Impact Will be Massive</h2>
-    </div>
-    <div class=" push-bottom">
-      <div class="col-sm-8">
-        <!-- Good News Graphic -->
-        {{ good_news_graphic.content_block | markdownify }}
-
-      </div>
-      <div class="col-sm-4">
-        {% assign the_good_news = site.content_blocks | where: 'slug', 'good-news-home' | first %}
-        {{ the_good_news.content_block }}
-      </div>
-    </div>
-  </div>
-</section>
-
-
-{% comment %}Get Equipped: Watch the Weekend
-<section class="bg-tan-light soft-bottom">
-  <div class="container soft-ends hard-sides">
-    <div class="text-center push-bottom soft-ends mobile-push-half-sides">
-      <h2 class="component-header-box text-orange">Get Equipped: Watch the Weekend</h2>
-    </div>
-    <div class="col-md-8">
-      {% include home/_latest-message.html %}
-    </div>
-    <div class="col-md-4">
-      {% include home/_current-series.html %}
-      <div>
-        <a href="/watch/#ways-to-watch"><img src="//crds-media.imgix.net/34df7tsGquaZaP97trNmAL/a71dee0a17b96c679c4c9ba005a55b3b/many-ways-to-watch-monetate2.jpg?auto=format,compress&w=1800" /></a>
-      </div>
-    </div>
-  </div>
-</section>{% endcomment %}
 
 {% comment %}Kids Club Jumbotron{% endcomment %}
 {% include home/_kids-club-jumbotron.html %}
@@ -254,13 +211,14 @@ paginate:
 <section class="bg-tan-light">
   <div class="container">
     <div class="text-center push-bottom">
-      <div class="push-bottom text-blue mobile-push-half-sides">
+      <div class="text-blue mobile-push-half-sides">
         <h2 class="component-header-box text-orange">Articles, Podcasts, & More</h2>
       </div>
       <p class="text-blue font-family-serif font-size-large">Unfiltered & authentic takes on life</p>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 push-top">
       {% assign most_recent = page.home_collection.docs | sort: "published_at" | reverse | first %}
+      {% assign author = most_recent.author | first %}
       <a href="{{ most_recent.url }}" class="overlay-card">
         <div class="bg-overlay"></div>
         <div class="overlay-card-image">
@@ -271,7 +229,7 @@ paginate:
         <div class="overlay-card-content">
           <p class="overlay-card-category">{{ most_recent.category.title }}</p>
           <h2 class="overlay-card-title">{{ most_recent.title }}</h2>
-          <p class="overlay-card-author">{{ most_recent.author.full_name }}</p>
+          <p class="overlay-card-author">{{ author.full_name }}</p>
           {% include _media-label.html source=most_recent %}
         </div>
       </a>
@@ -308,8 +266,14 @@ paginate:
             </a>
 
             <div class="card-block hard soft-quarter-top">
-              <a class="text-orange font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">{{
-                category.title }}</a>
+              <a class="text-orange font-size-smaller font-family-base-mid text-uppercase" href="{{ category.url }}">
+                {% if category.title %}
+                  {{ category.title }}
+                {% else %}
+                  &nbsp;
+                {% endif %}
+
+              </a>
               <h3 class="component-header flush">
                 <a href="{{ item.url }}">{{ item.title }}</a>
               </h3>
@@ -337,7 +301,7 @@ paginate:
 
 {% comment %}Ready to start your adventure?{% endcomment %}
 <section class="bg-orange">
-  <div class="container soft-ends text-center">
+  <div class="container soft-ends text-center softer-cta">
     {% assign homepage_sign_up_cta = site.content_blocks | where: 'slug', 'homepage-sign-up-cta' | first %}
     {{ homepage_sign_up_cta.content_block }}
   </div>
