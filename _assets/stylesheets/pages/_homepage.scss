@@ -1,0 +1,58 @@
+.home-jumbo-rel {
+  position: relative;
+  background-size: cover;
+}
+
+.home-jumbo-overlay {
+  padding-top: 0px;
+
+  @media screen and (min-width: $screen-sm) {
+    padding-top: 80px;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+  }
+}
+
+.card-containter-row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.series-card-pad {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.best-content-pos {
+  position: relative;
+  top: -1.5rem;
+  margin-bottom: -24px;
+}
+
+.cs-header { 
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+}
+
+.btn-heavy {
+  font-weight: 600;
+}
+
+.abt-pad-20 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.cs-med-header {
+  font-family: "acumin-pro-extra-condensed",sans-serif;
+  font-size: 2.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.softer-cta {
+  @media screen and (min-width: $screen-sm) {
+    padding-top: 116px;
+    padding-bottom: 124px;    
+  }
+}
