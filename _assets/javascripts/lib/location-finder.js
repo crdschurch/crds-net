@@ -5,12 +5,19 @@
 window.CRDS = window.CRDS || {};
 
 CRDS.LocationFinder = class LocationFinder {
-  constructor() {
-    this.gatewayAPIEndpoint = `${window.CRDS.env.gatewayServerEndpoint}`;
-  }
-
   getLocationDistances(origin) {
-    const locationDistancesURL = `${this.gatewayAPIEndpoint}/location/locations/proximities/`;
+    let prefix = '';
+
+    if ('int' === `${window.CRDS.env.environment}`) {
+      prefix = 'https://api-int';
+    } else if ('demo' === `${window.CRDS.env.environment}`) {
+      prefix = 'https://api-demo';
+    } else {
+      prefix = 'https://api';
+    }
+
+    const locationDistancesURL = `${prefix}.crossroads.net/location/locations/proximities/`;
+
     return $.ajax({
       url: locationDistancesURL,
       dataType: 'json',

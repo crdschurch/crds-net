@@ -116,4 +116,10 @@ layout: default
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+    $('#trailerModal').on('hidden.bs.modal', function () {
+      $("#trailerModal iframe").attr("src", $("#trailerModal iframe").attr("src"));
+  });
+  </script>
 {% endif %}
