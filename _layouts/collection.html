@@ -25,7 +25,7 @@ layout: default
               {% else %}
               <h1 class="font-family-condensed-extra">{{page.title}}</h1>
               {% endif %}
-              
+
               <p class="font-family-serif font-size-large">{{ page.description }}</p>
             </div>
             {% if page.trailer_video %}
@@ -50,7 +50,7 @@ layout: default
   </div>
 </section>
 
-<section class="bg-black">
+<section class="bg-black collection">
   <div class="container soft-bottom">
 
     {% assign items = page.docs %}
@@ -76,10 +76,11 @@ layout: default
       <div class="soft-top" slot="tab-season-{{ season_number }}">
         {% assign episodes = group.items | sort: 'published_at' | reverse %}
         {% for episode in episodes %}
-        <div class="row soft-bottom">
+        <div class="row soft-bottom episode hide-episode load-more" data-season-{{season_number}}>
           <a href="{{ episode | media_url }}">
             <div class="col-sm-6 push-half-bottom">
-              <img class="full-width" src="{% if episode.podcast.image.url %}{{ episode.podcast.image.url  | imgix: site.imgix }}{% else %}{{ episode.image.url | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ episode.title }}" data-optimize-img>
+              <crds-image class="full-width" src="{% if episode.podcast.image.url %}{{ episode.podcast.image.url  | imgix: site.imgix }}{% else %}{{ episode.image.url | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+              aspect-ratio=0.5625 alt="{{ episode.title }}"></crds-image>
             </div>
             <div class="col-sm-6">
               <p class="text-uppercase text-orange font-size-smaller font-family-base-black flush-bottom">{{ page.title }}</p>
@@ -89,11 +90,14 @@ layout: default
            </a>
           </div>
         {% endfor %}
+        <div id="season-{{season_number}}-load-more" class="btn btn-small btn-primary">
+          Load More
+        </div>
       </div>
       {% endfor %}
     </crds-tabs>
     {% endif %}
-   
+
   </div>
 </section>
 
