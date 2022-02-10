@@ -55,6 +55,7 @@ module.exports = [
       'components/youtube',
       'components/toggle-tooltip',
       'components/resi-player',
+      'components/load-more',
     ],
   },
   {
