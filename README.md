@@ -136,16 +136,6 @@ collections:
 
 ## Build Logs
 
-Build logs are dependant on two environment variables
-- APPLICATION_NAME
-- LOGZIO_API_KEY
-
-To find an erroneous log use the following search term in the logz.io search bar:
-
-    type:"APPLICATION_NAME"
-
-APPLICATION_NAME is the value set to that environment variable
-
 Build logs output to `buildlogs.txt`
 
 * **Local development:**  
