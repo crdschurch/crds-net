@@ -23,11 +23,11 @@ const isDayOfTheWeek = (day) => {
 };
 
 const isSaturdayServiceTime = () => {
-  return isDayOfTheWeek(6) && getEstTime() >= 1455 && getEstTime() <= 2359;
+  return isDayOfTheWeek(6) && (getEstTime() >= 1455 && getEstTime() <= 2359);
 }
 
 const isSundayServiceTime = () => {
-  return isDayOfTheWeek(0) && getEstTime() >= 0 && getEstTime() <= 1300;
+  return isDayOfTheWeek(0) && (getEstTime() >= 0 && getEstTime() <= 1300);
 }
 
 const isNotCtaRenderTime = () => {
@@ -63,14 +63,8 @@ const refreshPageForServiceStart = (hours, minutes, seconds) => {
   startDate.setSeconds(seconds);
   startDate.setMinutes(minutes);
   startDate.setHours(hours);
-  /*
-   * The difference between the start date and the new date was resulting in
-   * millisecond values that resulted in timeouts that were hours long. Multiplying
-   * by 0.01 scaled it back so that the resulting millisecond values were
-   * minutes long when visiting the site minutes before the stream was supposed
-   * to start.
-   */
-  const timeout = (startDate.getTime() - new Date().getTime() + 1000) * 0.01;
+
+  const timeout = startDate.getTime() - new Date().getTime() + 1000;
 
   if (timeout <= 0) {
     return;
@@ -91,6 +85,8 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
 
 if (isDayOfTheWeek(6)) {
   refreshPageForServiceStart(14,55,1);
-} else if (isDayOfTheWeek(0)) {
+} 
+
+if (isDayOfTheWeek(0)) {
   refreshPageForServiceStart(13,1,1);
 }
