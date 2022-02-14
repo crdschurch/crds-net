@@ -15,7 +15,7 @@ https://forms-demo.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,
 https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 /,/h,200! Role=user
 /online/*,${env:CRDS_ONLINE_DOMAIN}/online/:splat,200! Role=user
-/online/*,${env:CRDS_APP_DOMAIN}/online/getstarted,200
+/online/*,${env:CRDS_ONLINE_DOMAIN}/online/getstarted,200
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
 /spouse-invite-landing inviteId=:inviteId response=decline,/spouse-invite-landing/?inviteId=:inviteId&response=decline,200!
