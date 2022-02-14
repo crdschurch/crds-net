@@ -1,4 +1,10 @@
 .overlay-container {
+  display: none;
+
+  .hydrated & {
+    display: block;
+  }
+
   @media screen and (max-width: $screen-md) {
     padding-top: 10px;
   }
