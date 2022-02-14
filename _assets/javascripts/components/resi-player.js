@@ -22,36 +22,20 @@ const isDayOfTheWeek = (day) => {
   }
 };
 
-const isSaturdayServiceTime = () => {
-  return isDayOfTheWeek(6) && (getEstTime() >= 1455 && getEstTime() <= 2359);
-}
-
-const isSundayServiceTime = () => {
-  return isDayOfTheWeek(0) && (getEstTime() >= 0 && getEstTime() <= 1300);
-}
-
 const isNotCtaRenderTime = () => {
-  // Remove after 2/13/2022 and before 2/18/2022
-  return isSaturdayServiceTime() || isSundayServiceTime();
-
-  // Uncomment after 2/13/2022 and before 2/18/2022
-  // let isSunday = isDayOfTheWeek(0);
-  // let serviceWindow = (getEstTime() >= 825 && getEstTime() <= 1300);
-  // return isSunday && serviceWindow;
+  let isSunday = isDayOfTheWeek(0);
+  let serviceWindow = (getEstTime() >= 825 && getEstTime() <= 1300);
+  return isSunday && serviceWindow;
 };
 
 const isServiceTime = () => {
-  // Remove after 2/13/2022 and before 2/18/2022
-  return isSaturdayServiceTime() || isSundayServiceTime();
+  let isSunday = isDayOfTheWeek(0);
 
-  // Uncomment after 2/13/2022 and before 2/18/2022
-  // let isSunday = isDayOfTheWeek(0);
+  let sundayServiceTimes = (
+    (getEstTime() >= 825 && getEstTime() <= 1300)
+  );
 
-  // let sundayServiceTimes = (
-  //   (getEstTime() >= 825 && getEstTime() <= 1300)
-  // );
-
-  // return isSunday && sundayServiceTimes;
+  return isSunday && sundayServiceTimes;
 };
 
 const refreshPageForServiceStart = (hours, minutes, seconds) => {
@@ -63,7 +47,6 @@ const refreshPageForServiceStart = (hours, minutes, seconds) => {
   startDate.setSeconds(seconds);
   startDate.setMinutes(minutes);
   startDate.setHours(hours);
-
   const timeout = startDate.getTime() - new Date().getTime() + 1000;
 
   if (timeout <= 0) {
@@ -83,10 +66,7 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
   document.getElementById('resi-player').remove();
 }
 
-if (isDayOfTheWeek(6)) {
-  refreshPageForServiceStart(14,55,1);
-} 
-
 if (isDayOfTheWeek(0)) {
+  refreshPageForServiceStart(8,25,1);
   refreshPageForServiceStart(13,1,1);
 }
