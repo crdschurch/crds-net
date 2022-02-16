@@ -238,9 +238,8 @@ paginate:
         <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
 
           {% assign recent = page.home_collection.docs | slice: 1, 2 %}
-          {% for item in recent %}
-
-          {% assign author = item.author | get_doc %}
+          {% for item in recent limit: 3 %}
+          {% assign author = item.author | first %}
           {% assign category = item.category | get_doc %}
           <div class="card carousel-cell card-2x">
             <a class="relative" href="{{ item.url }}">
