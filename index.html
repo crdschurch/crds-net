@@ -109,7 +109,7 @@ paginate:
         <div class="row mobile-hard-bottom mobile-flush-bottom push-bottom soft-bottom">
   
           <!-- Online Message -->
-          <div class="col-md-6 col-md-offset-0 col-sm-12 push-bottom series-card-pad">
+          <!-- <div class="col-md-6 col-md-offset-0 col-sm-12 push-bottom series-card-pad">
             <div class="bg-white weekend-container">
               <div class="col-md-12 col-sm-8 col-xs-12 push-top soft-sides">
                 <h3 class="cs-med-header flush-ends push-quarter-bottom">Online Message</h3>
@@ -138,10 +138,10 @@ paginate:
                 </div>
   
               </div>
-            </div>
+            </div> -->
   
           <!-- In-Room Message -->
-          <div class="col-md-6 col-md-offset-0 col-sm-12 push-bottom series-card-pad">
+          <div class="col-md-6 col-md-offset-3 col-sm-12 push-bottom series-card-pad">
             <div class="bg-white weekend-container">
               <div class="col-md-12 col-sm-8 col-xs-12 push-top soft-sides">
                 <h5 class="cs-med-header flush-ends push-quarter-bottom">In-Room Message</h5>
@@ -153,16 +153,16 @@ paginate:
                   <div class="col-xs-12 weekend-message">
                     <hr class="push-sides">
                     <div class="row soft-sides soft-half-ends">
-                      <a href="{{ at_site | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
+                      <a href="{{ online | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
                         <div class="">
                           <img class="img-responsive img-full-width"
-                            src="{{ at_site.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                            src="{{ online.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
                             sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
                         </div>
                       </a>
                       <div class="col-sm-6 col-xs-12">
                         <h5 class="component-header flush-ends">
-                          <a href="{{ at_site | media_url }}" data-automation-id="message-title">{{ live_title | slice: 0 }} | week {{ current_week }}</a>
+                          <a href="{{ online | media_url }}" data-automation-id="message-title">{{ live_title | slice: 0 }} | week {{ current_week }}</a>
                         </h5>
                         <p class="text-gray-light push-quarter-top">{{ series.title }}</p>
                       </div>

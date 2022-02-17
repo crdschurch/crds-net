@@ -1,7 +1,7 @@
 {% for serie in site.series %}
-{% if serie.live_messages %}
+{% if serie.videos %}
 {% assign lastest_series = serie %}
-{% assign lastest_live_message = lastest_series.live_messages | last | get_doc %}
+{% assign lastest_live_message = lastest_series.videos | last | get_doc %}
 {% endif %}
 {% endfor %}
 <div id="ondemand-cta" class="ondemand-card">
