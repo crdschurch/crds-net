@@ -151,6 +151,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /mancamp/,https://www.mancamp.us/?utm_source=crsrds-mancamp,301
 /getstarted/thank-you,https://online.crossroads.net/,301!
 /live,https://online.crossroads.net/,301!
+/live/*,https://online.crossroads.net/:splat,301!
 /signin,${env:CRDS_ONLINE_DOMAIN}/sign-in,301! Cookie=from_online
 /the-chaser,/weekendfollowup,302!
 /weekend-prompts,/weekendfollowup,302!
