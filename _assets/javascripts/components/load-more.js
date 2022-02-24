@@ -33,8 +33,6 @@ $(document).ready(function() {
     for ( let i = 0; i < totalNumberOfSeasons; i++ ) {
       let seasonNumber = `${i + 1}`;
       episodesBySeason[seasonNumber] = document.querySelectorAll(`[data-season-${seasonNumber}]`);
-      console.log(episodesBySeason[seasonNumber]);
-      console.log(episodesBySeason[seasonNumber].length);
       const loadMoreButton = document.getElementById(`season-${seasonNumber}-load-more`);
       loadMoreButton.addEventListener("click", function(e) {
         revealMoreEpisodes(e, episodesBySeason[seasonNumber]);
