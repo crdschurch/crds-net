@@ -160,3 +160,13 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /weekend-prompts,/weekendfollowup,302!
 /atriumevents/ site=:siteId,https://api.crossroads.net/atriumevents/eventlisting/:siteId,302!
 /*,/404.html,404
+/Oakley_qr,https://www.pollev.com/oakley,302!
+/Lexington_qr,https://www.pollev.com/lexington,302!
+/Mason_qr,https://www.pollev.com/mason,302!
+/Eastside_qr,https://www.pollev.com/eastside,302!
+/Westside_qr,https://www.pollev.com/westside,302!
+/Florence_qr,https://www.pollev.com/florence,302!
+/Uptown_qr,https://www.pollev.com/uptown,302!
+/Georgetown_qr,https://www.pollev.com/georgetown,302!
+/Columbus_qr,https://www.pollev.com/columbus,302!
+/Dayton_qr,https://www.pollev.com/dayton,302!
