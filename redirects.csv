@@ -14,11 +14,7 @@ http://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,30
 https://forms-demo.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 /,/h,200! Role=user
-/online/build/*,${env:CRDS_ONLINE_DOMAIN}/online/build/:splat,200!
-/online/join-a-cohort/,${env:CRDS_ONLINE_DOMAIN}/online/join-a-cohort/,200!
-/online/*,${env:CRDS_ONLINE_DOMAIN}/online/:splat,200! Role=user
-/online/*,${env:CRDS_ONLINE_DOMAIN}/online/:splat,200! Cookie=online_guest
-/online/*,/get-started,301!
+/online/*,${env:CRDS_ONLINE_DOMAIN}/online/:splat,200!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
 /spouse-invite-landing inviteId=:inviteId response=decline,/spouse-invite-landing/?inviteId=:inviteId&response=decline,200!
