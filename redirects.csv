@@ -14,10 +14,7 @@ http://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,30
 https://forms-demo.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 /,/h,200! Role=user
-/online/build/*,${env:CRDS_ONLINE_DOMAIN}/online/build/:splat,200!
-/online/join-a-cohort/,${env:CRDS_ONLINE_DOMAIN}/online/join-a-cohort/,200!
-/online/*,${env:CRDS_ONLINE_DOMAIN}/online/:splat,200! Role=user
-/online/*,${env:CRDS_ONLINE_DOMAIN}/online/:splat,200! Cookie=online_guest
+/online/*,${env:CRDS_ONLINE_DOMAIN}/online/:splat,200!
 /online/*,/getstarted,301!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
@@ -154,7 +151,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /adventure,/series/the-adventurous-life,301!
 /weeklyworship,/reopen,301!
 /mancamp/,https://www.mancamp.us/?utm_source=crsrds-mancamp,301
-/getstarted/thank-you,https://online.crossroads.net/,301!
 /live,https://online.crossroads.net/,301!
 /the-chaser,/weekendfollowup,302!
 /weekend-prompts,/weekendfollowup,302!
