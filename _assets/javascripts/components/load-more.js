@@ -21,7 +21,7 @@ $(document).ready(function() {
       episodes[i].classList.remove("hide-episode");
 
       if (undefined == episodes[i+1]) {
-        document.getElementById(e.target.id).classList.add('disabled');
+        document.getElementById(e.target.id).classList.add('hidden');
       }
     }
   }

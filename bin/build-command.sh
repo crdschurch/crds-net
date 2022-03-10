@@ -7,4 +7,3 @@
   ./bin/kickOffCypress.sh &&
   ./bin/adjustCrossroadsOnlineCanonicalURL.sh
 } 2>buildlog.txt
-./bin/logzio.sh
