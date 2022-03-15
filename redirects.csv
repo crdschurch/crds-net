@@ -15,7 +15,6 @@ https://forms-demo.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,
 https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 /,/h,200! Role=user
 /online/build/*,${env:CRDS_ONLINE_DOMAIN}/online/build/:splat,200!
-/online/join-a-cohort,${env:CRDS_ONLINE_DOMAIN}/online/join-a-cohort/,200!
 /online/join-a-cohort/,${env:CRDS_ONLINE_DOMAIN}/online/join-a-cohort/,200!
 /online/*,${env:CRDS_ONLINE_DOMAIN}/online/:splat,200! Role=user
 /online/*,${env:CRDS_ONLINE_DOMAIN}/online/:splat,200! Cookie=online_guest
