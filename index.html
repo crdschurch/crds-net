@@ -57,12 +57,12 @@ paginate:
 
 <!-- Assign Logged Out Home Ad -->
 {% assign logged_out_home_ad = site.content_blocks | where: 'slug', 'logged-out-home-ad' | first %}
-
+{% assign easter_service = site.content_blocks | where: 'slug', 'easter-service' | first %}
 <!-- From /Watch -->
 {% for serie in site.series %}
-  {% if serie.videos.size > 0 %}
-    {% assign series = serie %}
-  {% endif %}
+{% if serie.videos.size > 0 or serie.live_messages.size > 0 %}
+{% assign series = serie %}
+{% endif %}
 {% endfor %}
 
 {% assign online = series.videos | last | get_doc %}
@@ -89,6 +89,9 @@ paginate:
 </section>
 
 <!-- Curent Series Section -->
+{% if easter_service %}
+  {{ easter_service.content_block | liquify }}
+{% else %}
 <section class="bg-blue watch-section" style="margin-top:-24px;"> 
   <div class="home-jumbo-rel" style="background-image: url('{{ series.background_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}');" data-optimize-bg-img>
     <div class="home-jumbo-overlay soft-ends">
@@ -183,6 +186,7 @@ paginate:
     </div>
   </div>
 </section>
+{% endif %}
 
 <section class="soft-top bg-blue soft-bottom bg-topo best-content-pos">
   <div class="container">
