@@ -150,8 +150,8 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /adventure,/series/the-adventurous-life,301!
 /weeklyworship,/reopen,301!
 /mancamp/,https://www.mancamp.us/?utm_source=crsrds-mancamp,301
-/getstarted/thank-you,https://online.crossroads.net/,301!
-/live,https://online.crossroads.net/,301!
+/getstarted/thank-you,/online,301!
+/live,/online,301!
 /the-chaser,/weekendfollowup,302!
 /weekend-prompts,/weekendfollowup,302!
 /atriumevents/ site=:siteId,https://api.crossroads.net/atriumevents/eventlisting/:siteId,302!
