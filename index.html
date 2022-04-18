@@ -57,7 +57,7 @@ paginate:
 
 <!-- Assign Logged Out Home Ad -->
 {% assign logged_out_home_ad = site.content_blocks | where: 'slug', 'logged-out-home-ad' | first %}
-{% assign easter_service = site.content_blocks | where: 'slug', 'easter-service' | first %}
+
 <!-- From /Watch -->
 {% for serie in site.series %}
 {% if serie.videos.size > 0 or serie.live_messages.size > 0 %}
@@ -89,9 +89,6 @@ paginate:
 </section>
 
 <!-- Curent Series Section -->
-{% if easter_service %}
-  {{ easter_service.content_block | liquify }}
-{% else %}
 <section class="bg-blue watch-section" style="margin-top:-24px;"> 
   <div class="home-jumbo-rel" style="background-image: url('{{ series.background_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}');" data-optimize-bg-img>
     <div class="home-jumbo-overlay soft-ends">
@@ -112,12 +109,13 @@ paginate:
         <div class="row mobile-hard-bottom mobile-flush-bottom push-bottom soft-bottom">
   
           <!-- Online Message -->
+          {% if online %}
           {% if at_site %}
-          {% assign offset_classes = "col-md-offset-0" %}
+          {% assign online_offset_classes = "col-md-offset-0" %}
           {% else %}
-          {% assign offset_classes = "col-md-offset-3" %}
+          {% assign online_offset_classes = "col-md-offset-3" %}
           {% endif %}
-          <div class="col-md-6 {{ offset_classes }} col-sm-12 push-bottom series-card-pad">
+          <div class="col-md-6 {{ online_offset_classes }} col-sm-12 push-bottom series-card-pad">
             <div class="bg-white weekend-container">
               <div class="col-md-12 col-sm-8 col-xs-12 push-top soft-sides">
                 <h3 class="cs-med-header flush-ends push-quarter-bottom">Online Message</h3>
@@ -147,10 +145,16 @@ paginate:
 
             </div>
           </div>
+          {% endif %}
   
           <!-- In-Room Message -->
           {% if at_site %}
-          <div class="col-md-6 col-md-offset-0 col-sm-12 push-bottom series-card-pad">
+          {% if online %}
+          {% assign at_site_offset_classes = "col-md-offset-0" %}
+          {% else %}
+          {% assign at_site_offset_classes = "col-md-offset-3" %}
+          {% endif %}
+          <div class="col-md-6 {{ at_site_offset_classes }} col-sm-12 push-bottom series-card-pad">
             <div class="bg-white weekend-container">
               <div class="col-md-12 col-sm-8 col-xs-12 push-top soft-sides">
                 <h5 class="cs-med-header flush-ends push-quarter-bottom">In-Room Message</h5>
@@ -186,7 +190,6 @@ paginate:
     </div>
   </div>
 </section>
-{% endif %}
 
 <section class="soft-top bg-blue soft-bottom bg-topo best-content-pos">
   <div class="container">
