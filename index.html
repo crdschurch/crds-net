@@ -60,7 +60,7 @@ paginate:
 
 <!-- From /Watch -->
 {% for serie in site.series %}
-{% if serie.videos.size > 0 or serie.live_messages.size > 0 %}
+{% if serie.videos.size > 0 or serie.live_messages.size > 0 and serie.slug != 'easter-a-love-story' %}
 {% assign series = serie %}
 {% endif %}
 {% endfor %}
