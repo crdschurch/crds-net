@@ -1,5 +1,5 @@
 {% for serie in site.series %}
-{% if serie.live_messages %}
+{% if serie.live_messages and serie.slug != 'easter-a-love-story' %}
 {% assign lastest_series = serie %}
 {% assign lastest_live_message = lastest_series.live_messages | last | get_doc %}
 {% endif %}
