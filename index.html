@@ -60,7 +60,7 @@ paginate:
 
 <!-- From /Watch -->
 {% for serie in site.series %}
-{% if serie.videos.size > 0 or serie.live_messages.size > 0 %}
+{% if serie.videos.size > 0 or serie.live_messages.size > 0 and serie.slug != 'easter-a-love-story' %}
 {% assign series = serie %}
 {% endif %}
 {% endfor %}
@@ -96,6 +96,7 @@ paginate:
         <div class="row text-center push-top soft-ends">
           <div class="col-sm-12">
             <p calss="flush-bottom font-size-small text-white">
+              <h1>>> {{easter_service.title}}</h1>
               <strong class="cs-header text-uppercase">Current Series</strong>
             </p>
             <h2 class="section-header flush-ends text-white">{{ series.title }}</h2>
