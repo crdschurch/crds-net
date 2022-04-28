@@ -4,7 +4,11 @@ layout: default
 
 <!-- Pull only the promos that exist for the specific location if any -->
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
-{% assign series = site.series | last %}
+{% for serie in site.series %}
+{% if serie.slug != 'easter-a-love-story' %}
+{% assign series = serie %}
+{% endif %}
+{% endfor %}
 
 <!-- Resi Player -->
 {% include locations/_resi-player.html %}
@@ -248,6 +252,23 @@ layout: default
             </div>
           </div>
           {% endif %}
+          <!-- East Side Section -->
+    	  {% if page.name == 'East Side' %}
+	<div class="row align-items-center df-screen-sm push-top soft-top">
+            <div class="col-sm-6 push-bottom">
+              <img class="img-full-width" src="//crds-media.imgix.net/408fy0JnuUwWMfLuQ5ALeY/1fb48c9c428f41fb29b5e77fa95e4748/82259532_2841185142609302_791748466211553280_n.png"/>
+            </div>
+            <div class="col-sm-6 push-bottom">
+              <p class="text-orange text-uppercase flush-bottom"><strong>You Belong Here</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">Inclusion Ministry</h2>
+              <p>A fun, interactive group for students and young adults, grade 6 and up, with special needs . We meet on a weekly basis and have monthly hangouts as well. Whether you would like to join this group or volunteer for this group, we have a place for you!<br><br><strong>Sundays at 11:00am</strong></p>
+              <div class="soft-half-top">
+                <crds-button class="push-half-right" href="https://www.crossroads.net/groups/details/205153" color="blue" display="outline" text="More about East Side Inclusion Group">
+                </crds-button>
+              </div>
+            </div>
+          </div>
+    	  {% endif %}
         </div>
 
         <!-- Groups -->

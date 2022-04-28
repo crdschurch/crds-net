@@ -60,9 +60,9 @@ paginate:
 
 <!-- From /Watch -->
 {% for serie in site.series %}
-  {% if serie.videos.size > 0 %}
-    {% assign series = serie %}
-  {% endif %}
+{% if serie.videos.size > 0 or serie.live_messages.size > 0 and serie.slug != 'easter-a-love-story' %}
+{% assign series = serie %}
+{% endif %}
 {% endfor %}
 
 {% assign online = series.videos | last | get_doc %}
@@ -109,39 +109,52 @@ paginate:
         <div class="row mobile-hard-bottom mobile-flush-bottom push-bottom soft-bottom">
   
           <!-- Online Message -->
-          <div class="col-md-6 col-md-offset-0 col-sm-12 push-bottom series-card-pad">
+          {% if online %}
+          {% if at_site %}
+          {% assign online_offset_classes = "col-md-offset-0" %}
+          {% else %}
+          {% assign online_offset_classes = "col-md-offset-3" %}
+          {% endif %}
+          <div class="col-md-6 {{ online_offset_classes }} col-sm-12 push-bottom series-card-pad">
             <div class="bg-white weekend-container">
               <div class="col-md-12 col-sm-8 col-xs-12 push-top soft-sides">
                 <h3 class="cs-med-header flush-ends push-quarter-bottom">Online Message</h3>
                 <p class="text-gray-light push-quarter-top">
                   25 minutes or less, created and optimized for video viewing.
               </div>
-                <div class="row">
-                  <div class="col-xs-12 weekend-message">
-                    <hr class="push-sides">
-                    <div class="row soft-sides soft-half-ends">
-                      <a href="{{ online | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
-                        <div class="">
-                          <img class="img-responsive img-full-width"
-                            src="{{ online.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                            sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
-                        </div>
-                      </a>
-                      <div class="col-sm-6 col-xs-12">
-                        <h5 class="component-header flush-ends">
-                          <a href="{{ online | media_url }}" data-automation-id="message-title">{{ online_title | slice: 0 }} | week {{ current_week }}</a>
-                        </h5>
-                        <p class="text-gray-light push-quarter-top">{{ series.title }}</p>
+              <div class="row">
+                <div class="col-xs-12 weekend-message">
+                  <hr class="push-sides">
+                  <div class="row soft-sides soft-half-ends">
+                    <a href="{{ online | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
+                      <div class="">
+                        <img class="img-responsive img-full-width"
+                          src="{{ online.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                          sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
                       </div>
+                    </a>
+                    <div class="col-sm-6 col-xs-12">
+                      <h5 class="component-header flush-ends">
+                        <a href="{{ online | media_url }}" data-automation-id="message-title">{{ online_title | slice: 0 }} | week {{ current_week }}</a>
+                      </h5>
+                      <p class="text-gray-light push-quarter-top">{{ series.title }}</p>
                     </div>
                   </div>
                 </div>
-  
               </div>
+
             </div>
+          </div>
+          {% endif %}
   
           <!-- In-Room Message -->
-          <div class="col-md-6 col-md-offset-0 col-sm-12 push-bottom series-card-pad">
+          {% if at_site %}
+          {% if online %}
+          {% assign at_site_offset_classes = "col-md-offset-0" %}
+          {% else %}
+          {% assign at_site_offset_classes = "col-md-offset-3" %}
+          {% endif %}
+          <div class="col-md-6 {{ at_site_offset_classes }} col-sm-12 push-bottom series-card-pad">
             <div class="bg-white weekend-container">
               <div class="col-md-12 col-sm-8 col-xs-12 push-top soft-sides">
                 <h5 class="cs-med-header flush-ends push-quarter-bottom">In-Room Message</h5>
@@ -149,33 +162,31 @@ paginate:
                   65 minute service filmed in front of a live audience.
                 </p>
               </div>
-                <div class="row">
-                  <div class="col-xs-12 weekend-message">
-                    <hr class="push-sides">
-                    <div class="row soft-sides soft-half-ends">
-                      <a href="{{ at_site | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
-                        <div class="">
-                          <img class="img-responsive img-full-width"
-                            src="{{ at_site.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                            sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
-                        </div>
-                      </a>
-                      <div class="col-sm-6 col-xs-12">
-                        <h5 class="component-header flush-ends">
-                          <a href="{{ at_site | media_url }}" data-automation-id="message-title">{{ live_title | slice: 0 }} | week {{ current_week }}</a>
-                        </h5>
-                        <p class="text-gray-light push-quarter-top">{{ series.title }}</p>
+              <div class="row">
+                <div class="col-xs-12 weekend-message">
+                  <hr class="push-sides">
+                  <div class="row soft-sides soft-half-ends">
+                    <a href="{{ at_site | media_url }}" class="push-half-bottom col-sm-6 col-xs-12" data-automation-id="message-video">
+                      <div class="">
+                        <img class="img-responsive img-full-width"
+                          src="{{ at_site.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                          sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
                       </div>
+                    </a>
+                    <div class="col-sm-6 col-xs-12">
+                      <h5 class="component-header flush-ends">
+                        <a href="{{ at_site | media_url }}" data-automation-id="message-title">{{ live_title | slice: 0 }} | week {{ current_week }}</a>
+                      </h5>
+                      <p class="text-gray-light push-quarter-top">{{ series.title }}</p>
                     </div>
                   </div>
                 </div>
-  
               </div>
             </div>
           </div>
-  
+          {% endif %}
         </div>
-    </div>
+      </div>
     </div>
   </div>
 </section>
