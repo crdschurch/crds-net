@@ -1,4 +1,4 @@
-<div id="{% if include.isCard %}bitmovinPlayer{{video.slug | camelcase }}{% else %}VideoManager{% endif %}" data-video-player>
+<!-- <div id="{% if include.isCard %}bitmovinPlayer{{video.slug | camelcase }}{% else %}VideoManager{% endif %}" data-video-player>
   {% if recommended_collection.size > 0 %}
   {% assign sorted_collection = recommended_collection | sort: 'date' | reverse %}
     {% for item in sorted_collection %} 
@@ -27,31 +27,10 @@
       {% endif %}
     {% endfor %}
   {% endif %}
-</div>
+</div>-->
 
-<script src="https://bitmovin-a.akamaihd.net/bitmovin-player/stable/8.4.0/bitmovinplayer.js"></script>
-{% javascript_link_tag bitmovin %}
-<script type="text/javascript">
-  var timestamps = [];
-  
-  {% for time in video.timestamps %} 
-    timestamps.push({
-      "description": "{{time.description}}",
-      "minutes": {{time.minutes}},
-      "seconds": {{time.seconds}}
-    });
-  {% endfor %}
 
-  var videoManagerID = `{{ include.isCard }}` ? `bitmovinPlayer{{video.slug | camelcase }}` : 'VideoManager';
-  var bitmovinConfig = {
-      title: `{{ video.title }}`,
-      url: `{{ video.bitmovin_url }}`,
-      id: videoManagerID,
-      image: `{{ video.image.url | imgix: site.imgix }}`,
-      isCard: `{{ include.isCard }}`,
-      subtitles_url: '{{ video.transcription.url }}',
-      spn_subtitles_url: '{{ video.spn_transcription.url }}',
-      timestamps: timestamps
-  }
-  CRDS[videoManagerID] = new BitmovinManager(bitmovinConfig);
-</script>
+{% if recommended_collection.size > 0 %}
+  {% assign sorted_collection = recommended_collection | sort: 'date' | reverse %}
+{% endif %}
+<crds-bitmovin-player recommendedCollection={{sorted_collection}} video-id={{videoId}} title={{video.title}} is-card={{false}} is-stream={{false}} url={{video.bitmovin_url}}></crds-bitmovin-player>
