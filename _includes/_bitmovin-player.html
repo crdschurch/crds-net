@@ -1,35 +1,3 @@
-<!-- <div id="{% if include.isCard %}bitmovinPlayer{{video.slug | camelcase }}{% else %}VideoManager{% endif %}" data-video-player>
-  {% if recommended_collection.size > 0 %}
-  {% assign sorted_collection = recommended_collection | sort: 'date' | reverse %}
-    {% for item in sorted_collection %} 
-      {% if item.date < page.date %}
-        <div id="post-video-message" data-post-video-message>
-          {% assign image = item | card_image %}
-          <a href="{{ item | media_url }}" class="overlay-card flush-bottom">
-            <div class="bg-overlay"></div>
-            <div class="text-white soft-half absolute" style="top:0;left:0;background:rgba(0,0,0,.6);">
-              <span>Next {{ item.content_type | singularize | titleize }}</span>
-            </div>
-            <div class="overlay-card-image">
-              <img src="{% if image %}{{ image | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}"
-                alt="{{ image.title }}" data-optimize-img>
-            </div>
-            <div class="overlay-card-content">
-              <p class="overlay-card-category">{{ item.category.title }}</p>
-              <h2 class="overlay-card-title">{{ item.title | truncate: 55 }}</h2>
-              <p class="overlay-card-author">{{ item.author.full_name }}</p>
-              {% include _media-label.html source=item %}
-            </div>
-          </a>
-        </div>
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endif %}
-</div>-->
-
-
 {% if recommended_collection.size > 0 %}
   {% assign sorted_collection = recommended_collection | sort: 'date' | reverse %}
 {% endif %}
