@@ -60,9 +60,9 @@ paginate:
 
 <!-- From /Watch -->
 {% for serie in site.series %}
-  {% if serie.videos.size > 0 %}
-    {% assign series = serie %}
-  {% endif %}
+{% if serie.videos.size > 0 or serie.live_messages.size > 0 and serie.slug != 'easter-a-love-story' %}
+{% assign series = serie %}
+{% endif %}
 {% endfor %}
 
 {% assign online = series.videos | last | get_doc %}
@@ -109,12 +109,13 @@ paginate:
         <div class="row mobile-hard-bottom mobile-flush-bottom push-bottom soft-bottom">
   
           <!-- Online Message -->
+          {% if online %}
           {% if at_site %}
-          {% assign offset_classes = "col-md-offset-0" %}
+          {% assign online_offset_classes = "col-md-offset-0" %}
           {% else %}
-          {% assign offset_classes = "col-md-offset-3" %}
+          {% assign online_offset_classes = "col-md-offset-3" %}
           {% endif %}
-          <div class="col-md-6 {{ offset_classes }} col-sm-12 push-bottom series-card-pad">
+          <div class="col-md-6 {{ online_offset_classes }} col-sm-12 push-bottom series-card-pad">
             <div class="bg-white weekend-container">
               <div class="col-md-12 col-sm-8 col-xs-12 push-top soft-sides">
                 <h3 class="cs-med-header flush-ends push-quarter-bottom">Online Message</h3>
@@ -144,10 +145,16 @@ paginate:
 
             </div>
           </div>
+          {% endif %}
   
           <!-- In-Room Message -->
           {% if at_site %}
-          <div class="col-md-6 col-md-offset-0 col-sm-12 push-bottom series-card-pad">
+          {% if online %}
+          {% assign at_site_offset_classes = "col-md-offset-0" %}
+          {% else %}
+          {% assign at_site_offset_classes = "col-md-offset-3" %}
+          {% endif %}
+          <div class="col-md-6 {{ at_site_offset_classes }} col-sm-12 push-bottom series-card-pad">
             <div class="bg-white weekend-container">
               <div class="col-md-12 col-sm-8 col-xs-12 push-top soft-sides">
                 <h5 class="cs-med-header flush-ends push-quarter-bottom">In-Room Message</h5>
