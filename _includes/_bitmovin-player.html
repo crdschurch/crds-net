@@ -1,4 +1,9 @@
-{% if recommended_collection.size > 0 %}
+<!-- {% if recommended_collection.size > 0 %}
   {% assign sorted_collection = recommended_collection | sort: 'date' | reverse %}
-{% endif %}
-<crds-bitmovin-player recommendedCollection={{sorted_collection}} video-id={{videoId}} title={{video.title}} is-card={{false}} is-stream={{false}} url={{video.bitmovin_url}}></crds-bitmovin-player>
+{% endif %} -->
+<!-- {% if include.isCard %}
+  {% assign video_id = bitmovinPlayer{{video.slug | camelcase }} %}
+{% else %}
+  {% assign video_id = VideoManager %}
+{% endif %} -->
+<crds-bitmovin-player title="{{video.title}}" is-card={{false}} is-stream={{false}} url={{video.bitmovin_url}}></crds-bitmovin-player>
