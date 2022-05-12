@@ -20,7 +20,7 @@ paginate:
       {% for author in page.authors.docs %}
         <div class="card">
           <a href="{{ author.url }}">
-            <img class="card-img-top img-responsive" src="{{ author.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" data-optimize-img>
+            <img class="card-img-top img-responsive" src="{{ author.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card_face }}" sizes="{{ site.image_sizes.podcast_thumb }}" data-optimize-img>
           </a>
           <div class="card-block">
             <a href="{{ author.url }}">
