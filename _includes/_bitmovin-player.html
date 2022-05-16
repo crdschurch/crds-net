@@ -1,9 +1,15 @@
-<!-- {% if recommended_collection.size > 0 %}
-  {% assign sorted_collection = recommended_collection | sort: 'date' | reverse %}
-{% endif %} -->
-<!-- {% if include.isCard %}
-  {% assign video_id = bitmovinPlayer{{video.slug | camelcase }} %}
+
+{% if include.isCard %}
+  {% assign video_id = "bitmovinPlayer"{{video.slug | camelcase }} %}
+  {% assign is_card = include.isCard %}
 {% else %}
-  {% assign video_id = VideoManager %}
-{% endif %} -->
-<crds-bitmovin-player title="{{video.title}}" is-card={{false}} is-stream={{false}} url={{video.bitmovin_url}}></crds-bitmovin-player>
+  {% assign video_id = "VideoManager" %}
+  {% assign is_card = false %}
+{% endif %}
+
+{% if recommended_collection.size > 0 %}
+  {% assign sorted_collection = recommended_collection | sort: 'date' | reverse %}
+  <crds-bitmovin-player recommended-collection={{sorted_collection}} class="embed-responsive embed-responsive-16by9" video-id={{video_id}} title="{{video.title}}" is-card={{include.isCard}} is-stream={{false}} url={{video.bitmovin_url}}></crds-bitmovin-player>
+{% else %}
+  <crds-bitmovin-player class="embed-responsive embed-responsive-16by9" video-id={{video_id}} title="{{video.title}}" is-card={{is_card}} is-stream={{false}} url={{video.bitmovin_url}}></crds-bitmovin-player>
+{% endif %}
