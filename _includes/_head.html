@@ -72,8 +72,10 @@
     </script>
   {% endif %}
 
+  {% unless content contains 'crds-components.esm.js' %}
   <link rel="preload" href="{{site.components_endpoint}}/crds-components/crds-components.esm.js" as="script">
   <link rel="preload" href="{{site.components_endpoint}}/crds-components.js" as="script">
+  {% endunless %}
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
 
@@ -129,6 +131,7 @@
   <script id="MPWidgets" src="https://adminint.crossroads.net/widgets/dist/MPWidgets.js"></script>
   {% endif %}
 
+  {% unless content contains 'crds-components.esm.js' %}
   <script type="module" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components/crds-components.esm.js"></script>
   <script nomodule="" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components.js"></script>
   <script>
@@ -138,6 +141,7 @@
       window.componentsReady = true;
     }
   </script>
+  {% endunless %}
 
   {% include _gtm-head.html %}
   {% include _monetate-head.html %}
