@@ -9,7 +9,8 @@
 
 {% if recommended_collection.size > 0 %}
   {% assign sorted_collection = recommended_collection | sort: 'date' | reverse %}
-  <crds-bitmovin-player recommended-collection={{sorted_collection}} class="embed-responsive embed-responsive-16by9" video-id={{video_id}} title="{{video.title}}" is-card={{include.isCard}} is-stream={{false}} url={{video.bitmovin_url}}></crds-bitmovin-player>
+  {% assign json_collection = sorted_collection | jsonify_message: page.date %}
+  <crds-bitmovin-player recommended-collection="{{json_collection}}" class="embed-responsive embed-responsive-16by9" video-id="{{video_id}}" title="{{video.title}}" is-card="{{!!include.isCard}}" is-stream="{{false}}" url="{{video.bitmovin_url}}"></crds-bitmovin-player>
 {% else %}
   <crds-bitmovin-player class="embed-responsive embed-responsive-16by9" video-id={{video_id}} title="{{video.title}}" is-card={{is_card}} is-stream={{false}} url={{video.bitmovin_url}}></crds-bitmovin-player>
 {% endif %}
