@@ -42,7 +42,7 @@ function autoplayInit() {
   }, options);
 
   $("div[id^='bitmovinPlayer']").each(function (i, el) {
-      observer.observe(el.parentElement.parentElement);
+      observer.observe(el.parentElement.parentElement.parentElement.parentElement);
   });
 
 }
@@ -51,18 +51,18 @@ function showOverlayVideo() {
   setTimeout(() => {
       let videoPlayer = document.getElementById(currentPlayer);
       if (!videoPlayer) return; //ppl scroll too fast and video is goneeeee so cancel
-      videoContainer = videoPlayer.parentElement;
+      videoContainer = videoPlayer.parentElement.parentElement.parentElement;
       hideSiblings(videoContainer);
       videoContainer.style.opacity = '1';
-      if (!CRDS[currentPlayer]) document.addEventListener(currentPlayer, () => CRDS[currentPlayer].playVideo());
-      else CRDS[currentPlayer].playVideo();
+      var defPlayBitmovinVideo = new Event("play-bitmovin-video");
+      document.dispatchEvent(defPlayBitmovinVideo);
   }, 1000);
 }
 
-function showOverlayCard() {
-  if (!CRDS[currentPlayer]) document.addEventListener(currentPlayer, () => CRDS[currentPlayer].pauseVideo());
-  else CRDS[currentPlayer].pauseVideo();
-  let videoContainer = document.getElementById(currentPlayer).parentElement;
+function showOverlayCard() { 
+  var defPauseBitmovinVideo = new Event("pause-bitmovin-video");
+  document.dispatchEvent(defPauseBitmovinVideo);
+  let videoContainer = document.getElementById(currentPlayer).parentElement.parentElement.parentElement;
   showSiblings(videoContainer);
   videoContainer.style.opacity = '0';
 }
