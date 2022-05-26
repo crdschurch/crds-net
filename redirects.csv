@@ -17,6 +17,7 @@ https://embedint.crossroads.net/*,https://int.crossroads.net/giving/,302!
 https://embeddemo.crossroads.net/*,https://demo.crossroads.net/giving/,302!
 https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /,/h,200! Role=user
+/online/profile,/profile,301!
 /online/*,${env:CRDS_ONLINE_DOMAIN}/online/:splat,200!
 /signin,/online,200!,Cookie=online_registrant
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
