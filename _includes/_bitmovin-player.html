@@ -6,10 +6,37 @@
   {% assign is_card = false %}
 {% endif %}
 
+{% assign timestamps = video.timestamps | jsonify %}
+
 {% if recommended_collection.size > 0 %}
   {% assign sorted_collection = recommended_collection | sort: 'date' | reverse %}
   {% assign json_collection = sorted_collection | jsonify_message: page.date %}
-  <crds-bitmovin-player recommended-collection='{{json_collection}}' class="embed-responsive embed-responsive-16by9" video-id="{{video_id}}" title="{{video.title}}" is-card="{{is_card}}" url="{{video.bitmovin_url}}"></crds-bitmovin-player>
+  <crds-bitmovin-player 
+    recommended-collection='{{json_collection}}' 
+    class="embed-responsive embed-responsive-16by9" 
+    video-id="{{video_id}}" 
+    title="{{video.title}}" 
+    is-card="{{is_card}}" 
+    url="{{video.bitmovin_url}}"
+    image="{{video.image.url | imgix: site.imgix}}"
+    subtitles-url="{{video.transcription.url}}"
+    spn-subtitles-url="{{video.spn_transcription.url}}"
+    timestamps='{{timestamps}}'
+    content-type="{{video.content_type}}"
+    published-at="{{video.published_at}}"
+  ></crds-bitmovin-player>
 {% else %}
-  <crds-bitmovin-player class="embed-responsive embed-responsive-16by9" video-id="{{video_id}}" title="{{video.title}}" is-card="{{is_card}}" url={{video.bitmovin_url}}></crds-bitmovin-player>
+  <crds-bitmovin-player 
+    class="embed-responsive embed-responsive-16by9"
+    video-id="{{video_id}}" 
+    title="{{video.title}}" 
+    is-card="{{is_card}}" 
+    url={{video.bitmovin_url}}
+    image="{{video.image.url | imgix: site.imgix}}"
+    subtitles-url="{{video.transcription.url}}"
+    spn-subtitles-url="{{video.spn_transcription.url}}"
+    timestamps='{{timestamps}}'
+    content-type="{{video.content_type}}"
+    published-at="{{video.published_at}}"
+  ></crds-bitmovin-player>
 {% endif %}
