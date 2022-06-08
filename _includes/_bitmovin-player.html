@@ -1,57 +1,42 @@
-<div id="{% if include.isCard %}bitmovinPlayer{{video.slug | camelcase }}{% else %}VideoManager{% endif %}" data-video-player>
-  {% if recommended_collection.size > 0 %}
+{% if include.isCard %}
+  {% capture video_id %}bitmovinPlayer{{video.slug | camelcase}}{% endcapture %}
+  {% assign is_card = include.isCard %}
+{% else %}
+  {% assign video_id = "VideoManager" %}
+  {% assign is_card = false %}
+{% endif %}
+
+{% assign timestamps = video.timestamps | jsonify %}
+
+{% if recommended_collection.size > 0 %}
   {% assign sorted_collection = recommended_collection | sort: 'date' | reverse %}
-    {% for item in sorted_collection %} 
-      {% if item.date < page.date %}
-        <div id="post-video-message" data-post-video-message>
-          {% assign image = item | card_image %}
-          <a href="{{ item | media_url }}" class="overlay-card flush-bottom">
-            <div class="bg-overlay"></div>
-            <div class="text-white soft-half absolute" style="top:0;left:0;background:rgba(0,0,0,.6);">
-              <span>Next {{ item.content_type | singularize | titleize }}</span>
-            </div>
-            <div class="overlay-card-image">
-              <img src="{% if image %}{{ image | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-                sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}"
-                alt="{{ image.title }}" data-optimize-img>
-            </div>
-            <div class="overlay-card-content">
-              <p class="overlay-card-category">{{ item.category.title }}</p>
-              <h2 class="overlay-card-title">{{ item.title | truncate: 55 }}</h2>
-              <p class="overlay-card-author">{{ item.author.full_name }}</p>
-              {% include _media-label.html source=item %}
-            </div>
-          </a>
-        </div>
-        {% break %}
-      {% endif %}
-    {% endfor %}
-  {% endif %}
-</div>
-
-<script src="https://bitmovin-a.akamaihd.net/bitmovin-player/stable/8.4.0/bitmovinplayer.js"></script>
-{% javascript_link_tag bitmovin %}
-<script type="text/javascript">
-  var timestamps = [];
-  
-  {% for time in video.timestamps %} 
-    timestamps.push({
-      "description": "{{time.description}}",
-      "minutes": {{time.minutes}},
-      "seconds": {{time.seconds}}
-    });
-  {% endfor %}
-
-  var videoManagerID = `{{ include.isCard }}` ? `bitmovinPlayer{{video.slug | camelcase }}` : 'VideoManager';
-  var bitmovinConfig = {
-      title: `{{ video.title }}`,
-      url: `{{ video.bitmovin_url }}`,
-      id: videoManagerID,
-      image: `{{ video.image.url | imgix: site.imgix }}`,
-      isCard: `{{ include.isCard }}`,
-      subtitles_url: '{{ video.transcription.url }}',
-      spn_subtitles_url: '{{ video.spn_transcription.url }}',
-      timestamps: timestamps
-  }
-  CRDS[videoManagerID] = new BitmovinManager(bitmovinConfig);
-</script>
+  {% assign json_collection = sorted_collection | jsonify_message: page.date %}
+  <crds-bitmovin-player 
+    recommended-collection='{{json_collection}}' 
+    class="embed-responsive embed-responsive-16by9" 
+    video-id="{{video_id}}" 
+    title="{{video.title}}" 
+    is-card="{{is_card}}" 
+    url="{{video.bitmovin_url}}"
+    image="{{video.image.url | imgix: site.imgix}}"
+    subtitles-url="{{video.transcription.url}}"
+    spn-subtitles-url="{{video.spn_transcription.url}}"
+    timestamps='{{timestamps}}'
+    content-type="{{video.content_type}}"
+    published-at="{{video.published_at}}"
+  ></crds-bitmovin-player>
+{% else %}
+  <crds-bitmovin-player 
+    class="embed-responsive embed-responsive-16by9"
+    video-id="{{video_id}}" 
+    title="{{video.title}}" 
+    is-card="{{is_card}}" 
+    url={{video.bitmovin_url}}
+    image="{{video.image.url | imgix: site.imgix}}"
+    subtitles-url="{{video.transcription.url}}"
+    spn-subtitles-url="{{video.spn_transcription.url}}"
+    timestamps='{{timestamps}}'
+    content-type="{{video.content_type}}"
+    published-at="{{video.published_at}}"
+  ></crds-bitmovin-player>
+{% endif %}
