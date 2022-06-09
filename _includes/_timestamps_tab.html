@@ -3,13 +3,13 @@
     {% for timestamp in page.timestamps %}
         <tr>
             <td>
-                <a href="javascript:CRDS.VideoManager.seekTo({{timestamp.minutes}}, {{timestamp.seconds}})" class="timestamp-play"></a>
+                <a href="javascript:document.dispatchEvent(new CustomEvent('timestamp-bitmovin-video', { detail: { minutes: {{timestamp.minutes}}, seconds: {{timestamp.seconds}} }}))" class="timestamp-play"></a>
             </td>
             <td>
-                <a href="javascript:CRDS.VideoManager.seekTo({{timestamp.minutes}}, {{timestamp.seconds}})">{{timestamp.description}}</a>
+                <a href="javascript:document.dispatchEvent(new CustomEvent('timestamp-bitmovin-video', { detail: { minutes: {{timestamp.minutes}}, seconds: {{timestamp.seconds}} }}))">{{timestamp.description}}</a>
             </td>
             <td class="text-right">
-                <a href="javascript:CRDS.VideoManager.seekTo({{timestamp.minutes}}, {{timestamp.seconds}})">
+                <a href="javascript:document.dispatchEvent(new CustomEvent('timestamp-bitmovin-video', { detail: { minutes: {{timestamp.minutes}}, seconds: {{timestamp.seconds}} }}))">
                     {{timestamp.minutes}}:{% if timestamp.seconds < 10 %}0{% endif %}{{timestamp.seconds}}
                 </a>
             </td>

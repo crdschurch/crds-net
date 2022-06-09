@@ -20,7 +20,6 @@ CRDS.DistanceSorter = class DistanceSorter {
     this.locationsCarousel = DistanceSorter.getLocationsCarousel();
     this.cards = this.locationsCarousel.cards;
     this.locationFinder = new CRDS.LocationFinder();
-    this.isGeoAllowed();
   }
 
   static getLocationsCarousel() {

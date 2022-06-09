@@ -4,7 +4,7 @@
 {% assign handle = item.content_type %}
 {% case handle %}
   {% when 'message' %}
-    {% assign image = item.background_image.url %}
+    {% assign image = item.image.url %}
   {% when 'episode' %}
     {% if item.image != nil %}
       {% assign image = item.image.url %}
