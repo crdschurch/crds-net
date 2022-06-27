@@ -9,13 +9,13 @@
 [[plugins]]
 package = "@netlify/plugin-sitemap"
 
-[plugins.inputs]
-buildDir = "_site"
-filePath = "sitemap.xml"
-exclude = [
-  '**/page/**',
-  '**/tags/**'
-]
+  [plugins.inputs]
+  buildDir = "_site"
+  filePath = "sitemap.xml"
+  exclude = [
+    '**/page/**',
+    '**/tags/**'
+  ]
 
 [[plugins]]
 package = "./_plugins/netlify-plugin-contentful-redirects"
