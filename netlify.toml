@@ -199,3 +199,11 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy-int.netlify.app"
   CRDS_INVOICES = "crds-invoices-int.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer-int.netlify.app/"
+
+
+[[redirects]]
+  from = "/group-renew"
+  to = "/signin?redirectUrl=/group-renew=:groupIds"
+  status = 302
+  force = false
+  query = {groupIds = ":groupIds"}
