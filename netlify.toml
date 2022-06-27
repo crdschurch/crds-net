@@ -203,7 +203,7 @@ package = "./_plugins/netlify-plugin-health-check"
 
 [[redirects]]
   from = "/group-renew"
-  to = "/signin?redirectUrl=/group-renew=:groupIds"
+  to = "/signin?redirectUrl=/group-renew?groupIds=:groupIds"
   status = 302
   force = false
   query = {groupIds = ":groupIds"}
