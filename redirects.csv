@@ -17,6 +17,7 @@ https://embedint.crossroads.net/*,https://int.crossroads.net/giving/,302!
 https://embeddemo.crossroads.net/*,https://demo.crossroads.net/giving/,302!
 https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /,/h,200! Role=user
+*** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
 /unified/*,${env:CRDS_UNIFIED_DOMAIN}/unified:splat,200!
 /online/my-profile,/profile,301!
 /online/*,${env:CRDS_ONLINE_DOMAIN}/online/:splat,200!
