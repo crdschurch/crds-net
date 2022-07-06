@@ -44,7 +44,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /30-day-trial/, 30-day-challenge/,301!
 /connect/*,/findgroups,302!
 /findgroups/*,https://${env:CRDS_FIND_GROUPS}/:splat,200!
-/test/journey/groups/*,https://${env:CRDS_GROUPS_JOURNEY_ENDPOINT}/:splat,200!
+/test/journey/groups/*,https://${env:CRDS_GROUPS_JOURNEY_ENDPOINT}/:splat,200
 /groups/search/small-group/*,/groups/details/:splat,301!
 /groups/*,https://${env:CRDS_GROUPS_ENDPOINT}/:splat,200
 /group-leader/*,https://${env:CRDS_GROUP_LEADER_DOMAIN}/:splat,200!
