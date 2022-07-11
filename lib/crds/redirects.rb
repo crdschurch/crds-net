@@ -39,8 +39,23 @@ class Redirects
 
   def to_csv!(path = './redirects.csv', debug=true)
     rows = CSV.read(path)
-    rows.insert(18, *redirects)
-    rows.insert(18, *auth_required)
+
+    n = nil
+    rows.find do |row|
+      if row.first =~ /\*\*\*[^\*]*\*\*\*/
+        n = rows.find_index(row)
+      end
+    end
+
+    if n.nil?
+      n = (rows.length - 1)
+    else
+      rows.delete_at(n)
+    end
+
+    rows.insert(n, *redirects)
+    rows.insert(n, *auth_required)
+
     File.write(path, rows.map(&:to_csv).join)
     if debug
       puts "\nWrote #{redirects.size + auth_required.size} redirects from Contentful to #{path}"
