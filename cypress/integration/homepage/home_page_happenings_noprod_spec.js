@@ -1,6 +1,6 @@
 import { SeriesQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
-const errorsToIgnore = [/.*> a.push is not a function*/, /.*> Cannot read property 'attributes' of undefined*/, /.*> Cannot set property 'status' of undefined*/, /.* > Cannot read property 'getAttribute' of null*/];
+const errorsToIgnore = [/.*> Script error.*/, /.*> a.push is not a function*/, /.*> Cannot read property 'attributes' of undefined*/, /.*> Cannot set property 'status' of undefined*/, /.* > Cannot read property 'getAttribute' of null*/];
 describe('Testing the Current Series on the Homepage:', function () {
   let currentSeries;
   before(function () {
