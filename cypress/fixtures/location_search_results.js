@@ -46,6 +46,30 @@ export function florenceLocationResponse() {
   };
 }
 
+export function uptownLocationResponse() {
+  return {
+    'origin': '45219',
+    'location': {
+      'locationId': 11,
+      'location': 'Uptown',
+      'imageUrl': null,
+      'address': {
+        'addressId': null,
+        'addressLine1': '42 Calhoun St',
+        'addressLine2': null,
+        'city': 'Cincinnati',
+        'state': 'OH',
+        'zip': '45219',
+        'foreignCountry': null,
+        'county': null,
+        'longitude': -84.512890,
+        'latitude': 39.128290
+      }
+    },
+    'distance': 0
+  };
+}
+
 export function searchErrorResponse() {
   return {
     'message': 'LocationController: GET locations proximities -- ',

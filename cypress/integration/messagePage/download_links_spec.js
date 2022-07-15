@@ -18,6 +18,7 @@ describe.skip('Tests download links on message page', function () {
           getRelativeMessageUrl(bitmovinMessage)
             .then((url) => {
               cy.ignoreMatchingErrors(errorsToIgnore);
+              cy.log(`${Cypress.config().baseUrl}${url}`)
               cy.visit(`${Cypress.config().baseUrl}${url}`);
             });
         });
