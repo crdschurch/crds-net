@@ -5,7 +5,7 @@ import { getRelativeMessageUrl } from '../../support/GetUrl';
 describe.skip('Tests the Current Message on the Homepage', function() {
   // const requestFilter = new RequestFilter(amplitude.isVideoStarted);
   let currentMessage;  
-  const errorsToIgnore = [/.*> Cannot set property 'status' of undefined*/,  /.* > Cannot read property 'getAttribute' of null*/];
+  const errorsToIgnore = [/.*> a.push is not a function*/, /.*> Cannot set property 'status' of undefined*/,  /.* > Cannot read property 'getAttribute' of null*/,  /.*> Cannot read property 'attributes' of undefined*/];
 
   before(function() {
     const qb = new MessageQueryBuilder();

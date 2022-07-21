@@ -20,6 +20,6 @@ import './elementCommands';
 import './globalTestSetup';
 import './bitmovinPlayerCommands';
 
-require('cypress-plugin-retries');
+//require('cypress-plugin-retries');
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
