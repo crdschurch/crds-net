@@ -3,7 +3,7 @@ import { getRelativeMessageUrl } from '../../support/GetUrl';
 
 const soundOn = 'sound=11';
 const soundOff = 'sound=1';
-const errorsToIgnore = [/.*Cannot read property 'text' of undefined*/, /.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/, /.*> Cannot set property 'status' of undefined*/, /.* > Cannot read property 'getAttribute' of null*/];
+const errorsToIgnore = [/.*Cannot read property 'text' of undefined*/, /.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/, /.*> Cannot set property 'status' of undefined*/, /.* > Cannot read property 'getAttribute' of null*/, /.*uncaught exception*/];
 
 describe.skip('Tests message with Bitmovin player and transcription', function () {
   let relativeMessageURL;
@@ -21,7 +21,7 @@ describe.skip('Tests message with Bitmovin player and transcription', function (
   });
 
   describe('Tests message autoplays and query params applied', () => {
-    it.skip('Checks sound is on and subtitles off', function () {
+    it('Checks sound is on and subtitles off', function () {
       cy.ignoreMatchingErrors(errorsToIgnore);
       cy.visit(`${relativeMessageURL}?autoPlay=true&${soundOn}`);
 
@@ -36,7 +36,7 @@ describe.skip('Tests message with Bitmovin player and transcription', function (
         .should('have.been.calledWith', 'VideoStarted');
     });
 
-    it.skip('Checks sound is off and subtitles on', function () {
+    it('Checks sound is off and subtitles on', function () {
       cy.ignoreMatchingErrors(errorsToIgnore);
       cy.visit(`${relativeMessageURL}?autoPlay=true&${soundOff}`);
 

@@ -1,9 +1,9 @@
 import { SeriesQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
-const errorsToIgnore =[ /.*> Cannot set property 'status' of undefined*/,  /.* > Cannot read property 'getAttribute' of null*/];
-describe.skip('Testing the Current Series on the Homepage:', function() {
+const errorsToIgnore = [/.*> Script error.*/, /.*> a.push is not a function*/, /.*> Cannot read property 'attributes' of undefined*/, /.*> Cannot set property 'status' of undefined*/, /.* > Cannot read property 'getAttribute' of null*/];
+describe('Testing the Current Series on the Homepage:', function () {
   let currentSeries;
-  before(function() {
+  before(function () {
     const qb = new SeriesQueryBuilder();
     qb.orderBy = '-fields.published_at';
     qb.select = 'fields.title,fields.slug,fields.description,fields.image';
@@ -14,28 +14,24 @@ describe.skip('Testing the Current Series on the Homepage:', function() {
     cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit('/');
   });
-  it('Current series title, description, and image should match Contentful', function() {
-    cy.get('[data-automation-id="message-title"]').as('seriesTitle')
+  it('Current series title, description, and image should match Contentful', function () {
+    cy.get('.section-header').as('seriesTitle')
       .should('be.visible')
-      .and('have.text', currentSeries.title.text);
-    cy.get('@seriesTitle')
-      .should('have.attr', 'href', `/media/series/${currentSeries.slug.text}`);
-    cy.get('[data-automation-id="series-description"]').as('seriesDescription');
+      .invoke('text').should('eq', currentSeries.title.text);
+    cy.log(currentSeries.title.text)
+    cy.get('.col-sm-12 > .push-top').as('seriesDescription');
+  
+    cy.get('.home-jumbo-rel').as('seriesImageLink')
+      .scrollIntoView()
+      .should('have.attr', 'data-imgix-bg-processed', 'true')
+  });
+  it('"Watch current teaching series" button should link to the current series', function () {
+    cy.get('h2').contains(currentSeries.title.text).scrollIntoView();
     cy.get('crds-button', { includeShadowDom: true })
       .should('be.visible')
-      .should('have.attr', 'text', 'Take the 30 day challenge');
-    cy.get('[data-automation-id="series-image"]').as('seriesImageLink')
-      .scrollIntoView()
-      .should('have.attr', 'href', `/media/series/${currentSeries.slug.text}`)
-      .within(() => {
-        cy.imgixShouldRunOnElement('img', currentSeries.image);
-      });
-  });
-  it('"Watch current teaching series" button should link to the current series', function() {
-    cy.get('[class="media featured"]').scrollIntoView();
-    cy.get('crds-button[text="Watch the current teaching series"]')
+      .should('have.attr', 'text', 'Watch the current teaching series')
       .as('watchServiceButton')
       .should('be.visible')
-      .and('have.attr', 'href', `/media/series/${currentSeries.slug.text}`);
+      .and('have.attr', 'href', `/watch`);
   });
 });
