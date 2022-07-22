@@ -2,6 +2,7 @@
   "projectId": "dnbm5t",
   "baseUrl": "https://int.crossroads.net",
   "testFiles": "**/*spec.js",
+  "video": false,
   "env": {
     "RETRIES": 2,
     "stream_schedule_env": "/int",

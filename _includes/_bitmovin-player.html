@@ -12,7 +12,6 @@
   {% assign sorted_collection = recommended_collection | sort: 'date' | reverse %}
   {% assign json_collection = sorted_collection | jsonify_message: page.date | escape %}
   <crds-bitmovin-player 
-    recommended-collection='{{json_collection}}' 
     class="embed-responsive embed-responsive-16by9" 
     video-id="{{video_id}}" 
     title="{{video.title}}" 
