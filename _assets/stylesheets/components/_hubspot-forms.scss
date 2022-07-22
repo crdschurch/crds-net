@@ -28,6 +28,7 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
   &[type="checkbox"] {
     height: 13px;
     -webkit-appearance: auto;
+    width: auto;
   }
 }
 
