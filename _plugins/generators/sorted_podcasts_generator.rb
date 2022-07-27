@@ -15,6 +15,11 @@ module Jekyll
       podcasts = podcast_ids.map { |id| all_podcasts.detect { |p| p.data['id'] == id } }
       # Append the missing podcasts to the list.
       podcasts += (all_podcasts - podcasts).sort_by { |p| p.data['title'].downcase }
+
+      featured_title = "Crossroads Messages"
+      featured = podcasts.detect{|pod, i|  pod['title'].include?(featured_title) }
+      podcasts = podcasts.filter{|p| !p['title'].include?(featured_title) }.unshift(featured)
+
       # Store the collection on the site config object.
       site.config['ordered_podcasts'] = podcasts
     end
