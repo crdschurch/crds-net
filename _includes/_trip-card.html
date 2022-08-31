@@ -2,25 +2,17 @@
 {% assign trip_focus = item.focus | where: "focus", page.focus | join: ',' %}
 
 <div class="country-{{ targets| downcase | replace: ' ' , '-' | replace: '/' , '-' }} site-{{ item.crossroads_community | downcase | replace: ' ' , '-' }} audience-{{ item.audience | downcase | replace: ' ' , '-' }} focus-{{ trip_focus | downcase | replace: ' ' , '-' | replace: ',' , ' ' }} length-{{ item.length_in_days | downcase | replace: ' ' , '-' }} season-{{ item.season | downcase }} age-{{ item.age | downcase | replace: '+' , 'plus' }} card push-ends col-xs-12 col-sm-4">
-    <a href="/go/{{ item.country_slug }}{{item.slug }}">
-        <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}"
-            class="card-img-top img-responsive" alt="{{ item.country }}" data-optimize-img >
-    </a>
-    <div class="card-block hard-left hard-top">
-        <h3 class="font-family-condensed-extra text-uppercase font-size-h4 push-half-top"
-            style="line-height: .9em;">
-            {{ item.country }}<br>
-            <span style="color: #979797;">{{ item.trip_details}}</span>
-        </h3>
-        <p class="font-size-small font-family-base">{{ item.start_date | date:"%m/%d/%Y" }}<span> - </span>{{ item.end_date | date:"%m/%d/%Y" }}</p>
-        <hr style="width: 50px; margin: 20px 0px 20px 0px; border-top: 1px solid #797979;">
-        <p class="font-size-smaller font-family-base">
-            {{ item.trip_description | truncatewords: 40 }}
-        </p>
-        <crds-button
-        color="blue"
-        text="View all details"
-        href="/go/{{ item.country_slug }}{{ item.slug }}">
-      </crds-button>
+  <a href="/go/{{ item.country_slug }}{{item.slug }}" class="trip-overlay-card">
+    <div class="bg-overlay"></div>
+    <div class="trip-overlay-card-image">
+      <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}"
+          class="card-img-top img-responsive" alt="{{ item.country }}" data-optimize-img >      
     </div>
+
+    <div class="trip-overlay-card-content">
+      <h2 class="trip-overlay-card-title">{{ item.country }}</h2>
+      <p class="trip-overlay-card-date pull-left">{{ item.start_date | date:"%m/%d" }}<span> - </span>{{ item.end_date | date:"%m/%d/%Y" }}</p>
+      <p class="trip-overlay-card-cost pull-right">{{ item.total_cost }}</p>
+    </div>
+  </a>
 </div>

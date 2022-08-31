@@ -7,11 +7,9 @@ module Jekyll
         return
       end
 
-      message = [
-          messages.select{|m| m.date < page_date}.first
-      ].map do |m|
+      message = ([messages.select{|m| m.date < page_date}.first] || []).compact.map do |m|
           {
-            date: m.date,
+            date: m["date"],
             content_type: m["content_type"],
             category: m["category"],
             title: m["title"].truncate(55),
