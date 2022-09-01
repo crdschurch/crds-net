@@ -28,6 +28,7 @@
   <meta name="author" content="Crossroads" />
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="theme-color" content="#ffffff">
+  {% if page.contentful_id %}<meta property="cfl:entry_id" content="{{ page.contentful_id }}">{% endif %}
   <meta property="cfl:space_id" content="{{ site.ENV.CONTENTFUL_SPACE_ID }}">
   <meta property="cfl:env" content="{{ site.ENV.CONTENTFUL_ENV }}">
   <meta property="cfl:token" content="{{ site.ENV.CONTENTFUL_ACCESS_TOKEN }}">
