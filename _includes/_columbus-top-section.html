@@ -27,14 +27,8 @@
           <div class="location-top-info-item text-left push-bottom location-info-divider mobile-flush-bottom">
             <div>
 
-              <span class="font-family-base-bold font-size-smaller text-uppercase">Next In-Person Gathering</span>
+              <span class="font-family-base-bold font-size-smaller text-uppercase">Service Times</span>
               <p class="flush font-size-small">{{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}</p>
-              {% if page.address %}
-              <p class="flush font-family-base font-size-small">{{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}</p>
-              <a href="{{ page.map_url }}" class="text-orange" target="_blank">Get directions</a>
-              {% else %}
-              <p class="flush font-family-base font-size-small">Currently looking for new digs to house our ever-growing {{ page.name }} community.</p>
-              {% endif %}
               <hr class="visible-xs">
             </div>
           </div>
@@ -42,10 +36,11 @@
           <div class="location-top-info-item text-left push-bottom location-info-divider mobile-flush-bottom">
             <div>
 
-              <span class="soft-bottom text-uppercase font-family-base-bold font-size-smaller">Get to know us in 7 days</span>
-              <p class="flush-top font-family-base font-size-small">Sign up to receive daily emails for 1 week to get to know who we are and what we are running after. Then, you’ll just hear from us weekly to stay up to date on the latest events and happenings around here.</p>
-
-              <a class="pointer text-orange" data-toggle="modal" data-target="#subscribeModalForm">Sign up</a>
+              <span class="text-uppercase font-family-base-bold font-size-smaller">Address</span>
+              {% if page.address %}
+              <p class="flush font-family-base font-size-small">{{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+              <a href="{{ page.map_url }}" class="text-orange" target="_blank">Get directions</a>
+              {% endif %}
               <hr class="visible-xs">
             </div>
           </div>
