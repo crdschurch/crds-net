@@ -13,7 +13,7 @@ module NextLevelGenerator
       end
 
       if courses.present?
-        site.data['next_level_courses'] = courses.flatten
+        site.data['next_level_courses'] = courses.flatten.compact
       end
     end
   end
