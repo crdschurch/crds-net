@@ -47,7 +47,7 @@ layout: default
     <div class="anywhere-media-objects-container">
       <div class="anywhere-media-object">
         <a href="{{ latest_message | media_url }}">
-          <img src="{{ latest_message.image.url | imgix: site.imgix }}?auto=format,compress&w=150" alt="">
+          <img class="object-fit-cover" src="{{ latest_message.image.url | imgix: site.imgix }}?auto=format,compress&w=150" alt="">
         </a>
         <div class="anywhere-media-object-content">
           <span>Service Times</span>
@@ -58,7 +58,7 @@ layout: default
       </div>
 
       <div class="anywhere-media-object">
-        <img src="{{ page.community_pastor_image.url | imgix: site.imgix }}" alt="{{ page.community_pastor_name }}">
+        <img class="object-fit-cover" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" alt="{{ page.community_pastor_name }}">
         <div class="anywhere-media-object-content">
           <span>Leadership</span>
           <p>{{ page.community_pastor_name }} <br>Community Pastor</p>
@@ -221,7 +221,7 @@ layout: default
             </div>
 
             <div class="col-sm-4">
-              <img class="img-rounded-corners" src="//crds-media.imgix.net/2bzXPLexG5EGGCkyT93QMz/52b5f6f001a0d2cc94f7e2c4c2af0759/anywhere-cohort.jpg" alt="CR Gaming" />
+              <img class="img-rounded-corners" src="//crds-media.imgix.net/1sEnmtoiHj4GwW5NNbFU3s/4993ff65479e892c44d806037eb23b97/anhywhere-gaming.jpg" alt="CR Gaming" />
               <p class="flush-bottom font-family-base-bold soft-half-top">CR Gaming</p>
               <p>
                 Connect with other gamers. Squad up, make friends, and win. All skill levels welcome.
@@ -438,7 +438,7 @@ layout: default
 
           <div class="anywhere-team-grid push-ends soft-ends">
             <div>
-              <img class="img-circle img-size-4" src="//crds-media.imgix.net/1OXggg4SOnuuA3Kncf2G2h/dd93e0b4d69d79928d055562610785a8/scholar-damanuel-montgomery.jpg" alt="DaManuel Montgomery" />
+              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/1OXggg4SOnuuA3Kncf2G2h/dd93e0b4d69d79928d055562610785a8/scholar-damanuel-montgomery.jpg" alt="DaManuel Montgomery" />
               <p class="flush font-family-base-bold soft-half-top">DaManuel Montgomery</p>
               <p>D-Man is our Connections Guru. If you have a question about Crossroads, want to meet people, or are just trying to find your way around, he can help! Or even bigger things like finding your purpose and seeing where you can change the world. He just graduated with a degree in Human Development and Community Engagement, and he’s one of the kindest guys you’ll ever meet. (He’s also single, ladies. Just sayin.’) </p>
               <div>
@@ -446,7 +446,86 @@ layout: default
                 <a href="/">Watch my story</a>
               </div>
             </div>
-           
+            
+            <div>
+              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/3UffYgbLm5Eekc14Q8WmRN/f9953d930a2d1e3d92617f4703e396b0/Rasmussen_Abby-2648.jpg" alt="Abby Rasmussen" />
+              <p class="flush font-family-base-bold soft-half-top">Abby Rasmussen</p>
+              <p>Abby leads Anywhere Kids + Families. She’s a working mom of two, a licensed counselor, and guaranteed to not only diligently solve your question but make you laugh and feel more capable while she does. Talk to her about kid questions, God questions, parenting, trying to parent your kids through God questions, and getting resources to lead a home and family you freaking love.</p>
+              <div>
+                <a href="/">Let's connect</a>
+                <a href="/">Watch my story</a>
+              </div>
+            </div>
+
+            <div>
+              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/2p8POqNAt6E2GtTUUVQKOW/85e8a1d4c9e3ddabb0f4eaf92b3fada9/crssrds.jpeg" alt="Sam Hill" />
+              <p class="flush font-family-base-bold soft-half-top">Sam Hill</p>
+              <p>Sam leads Connections and Care. She’s building a team all over the country to make sure you have amazing Crossroads Anywhere reps near you—or at least in your time zone, to start. She’s the perfect person to call when you have a crisis or just feel stuck. Reach out to her to find people near you, become a regional leader, or for help in whatever you’re going through.</p>
+              <div>
+                <a href="/">Let's connect</a>
+                <a href="/">Watch my story</a>
+              </div>
+            </div>
+
+            <div>
+              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/2p8POqNAt6E2GtTUUVQKOW/85e8a1d4c9e3ddabb0f4eaf92b3fada9/crssrds.jpeg" alt="Sean Boyce" />
+              <p class="flush font-family-base-bold soft-half-top">Sean Boyce</p>
+              <p>Sean leads mentoring and communities. Who couldn’t use a good mentor in your life or some better people around? He has the gift of friendship and is passionate about relationships that matter. Reach out to him for help finding a mentor, building community near you, dealing with FOMO, and discussing all things NBA-related.</p>
+              <div>
+                <a href="/">Let's connect</a>
+                <a href="/">Watch my story</a>
+              </div>
+            </div>
+
+            <div>
+              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/2p8POqNAt6E2GtTUUVQKOW/85e8a1d4c9e3ddabb0f4eaf92b3fada9/crssrds.jpeg" alt="Kristen Zoeckler" />
+              <p class="flush font-family-base-bold soft-half-top">Kristen Zoeckler</p>
+              <p>Kristen is the glue that holds us all together. She’s an expert community leader, mentor, experience creator, intentional parent, and more. Reach out to her if you want someone to pray with you or have a question about Crossroads.</p>
+              <div>
+                <a href="/">Let's connect</a>
+                <a href="/">Watch my story</a>
+              </div>
+            </div>
+
+            <div>
+              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/2p8POqNAt6E2GtTUUVQKOW/85e8a1d4c9e3ddabb0f4eaf92b3fada9/crssrds.jpeg" alt="Nick Snider" />
+              <p class="flush font-family-base-bold soft-half-top">Nick Snider</p>
+              <p>Nick runs cohorts, co-leads the Better Answer podcast with Kyle, and is always working on new stuff for 20-somethings. Reach out to him to get connected to other 20-somethings, navigate community and God in real life, and how to find good coffee.</p>
+              <div>
+                <a href="/">Let's connect</a>
+                <a href="/">Watch my story</a>
+              </div>
+            </div>
+
+            <div>
+              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/2p8POqNAt6E2GtTUUVQKOW/85e8a1d4c9e3ddabb0f4eaf92b3fada9/crssrds.jpeg" alt="Kelley Maher" />
+              <p class="flush font-family-base-bold soft-half-top">Kelley Maher</p>
+              <p>Kelley leads prayer and healing. She creates spaces where we can experience Jesus’ power—no matter what we’re going through. Find freedom and hope by reaching out for zero judgment—just a friend who’s probably been there too and is now on the other side. We have groups for addiction, abortion, abuse, crisis, and more.</p>
+              <div>
+                <a href="/">Let's connect</a>
+                <a href="/">Watch my story</a>
+              </div>
+            </div>
+
+            <div>
+              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/2p8POqNAt6E2GtTUUVQKOW/85e8a1d4c9e3ddabb0f4eaf92b3fada9/crssrds.jpeg" alt="Brad Fahrenkamp" />
+              <p class="flush font-family-base-bold soft-half-top">Brad Fahrenkamp</p>
+              <p>Brad leads our prophetic prayer ministry and supernatural skills training. (Crazy, right? If by crazy, you mean really cool and intriguing.) He left his financial business to teach others to hear from God. Reach out to him about learning to hear God, spiritual warfare, activating the power of prayer in your life, and prophecy (the skill of hearing God for others.)</p>
+              <div>
+                <a href="/">Let's connect</a>
+                <a href="/">Watch my story</a>
+              </div>
+            </div>
+
+            <div>
+              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/3yqO8UrZ5gM7zH0wdHaHUS/a0a9d6e5787782a05b47928479d37e1d/content--team--reider-rachel_2x.jpg" alt="Rachel Reider" />
+              <p class="flush font-family-base-bold soft-half-top">Rachel Reider</p>
+              <p>Rachel leads community and spiritual growth. She’s over the idea that church is about making us nicer people, and she’s (appropriately) obsessed with helping people fully become who God made them to be. Reach out to her if you’re burnt out on church, deconstructing, want to activate your gifts, feel stuck spiritually, or want to know more about becoming an apprentice of Jesus (that not only changes your life but the lives of everyone around you.)</p>
+              <div>
+                <a href="/">Let's connect</a>
+                <a href="/">Watch my story</a>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -457,12 +536,22 @@ layout: default
 </section>
 
 <!-- Sign up  -->
-<section class="anywhere-sign-up" style="background-image: url('https://crds-media.imgix.net/760stbwPABJQQyMH3ciQqJ/d5373ba0178ea61d9007a93269d7e6b9/groups-2020-header-img3.jpg?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+<section class="anywhere-sign-up soft-ends" style="background-image: url('https://crds-media.imgix.net/1ie6HE8PwHcxZw3qSrOw4Y/4f61fa904ff40800a4dc2a99e1f8cefe/anywhere-form-image.jpg?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
   <div class="container soft-ends">
     <div class="row text-center">
       <div class="col-md-8 col-md-offset-2">
-        <h3 class="text-white font-family-condensed-extra font-size-giant text-uppercase">Be a part of a new kind of church</h3>
-        <p class="text-blue">This isn’t your typical church. God created everyone one us to live a life of adventure and to change the world for good. If that sounds perfect to you, then you’re in the right place. Create a profile to access spiritual training, life-changing experiences, and connections with others on this journey.</p>
+        <h3 class="text-white font-family-condensed-extra font-size-giant text-uppercase font-weight-300">Be a part of a new kind of church</h3>
+        <p class="text-blue font-family-serif">This isn’t your typical church. God created everyone one us to live a life of adventure and to change the world for good. If that sounds perfect to you, then you’re in the right place. Create a profile to access spiritual training, life-changing experiences, and connections with others on this journey.</p>
+      </div>
+    </div>
+    <div class="row text-center soft-ends">
+      <div class="col-sm-12" style="z-index: 1; margin-bottom: -20px;">
+        <crds-arrow text-color="orange" arrow-color="blue" arrow-size="default">Sign<br>Up</crds-arrow>
+      </div>
+      <div class="bg-white col-sm-12 col-md-4 col-md-offset-4 img-rounded-corners soft mobile-push-half-sides">
+        <div class="soft-half-top">
+          <crds-register provider="Okta" default-site-id="15" display-zipcode="true" display-header="false" button-text="Create an account"></crds-register>
+        </div>
       </div>
     </div>
   </div>

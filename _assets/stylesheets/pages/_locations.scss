@@ -465,11 +465,14 @@
   position: relative;
 
   &:before {
-    background-color: $cr-orange;
+    background-image: url('//crds-media.imgix.net/6mILEBC3woa0YzjnhN5eG4/9e393c862c5702419f38298a2c412f97/texture-topo-light-50_3x.png');
+    background-size: contain;
     opacity: 80%;
     content: "";
     height: 100%;
     left: 0;
+    right: 0;
+    bottom: 0;
     position: absolute;
     top: 0;
     width: 100%;
