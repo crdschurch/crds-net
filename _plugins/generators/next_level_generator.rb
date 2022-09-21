@@ -2,18 +2,18 @@ module NextLevelGenerator
   class Generator < Jekyll::Generator
     def generate(site)
       site.data['next_level_courses'] = []
-      videos = site.collections['videos'].docs
-      nextLevelCourses = site.collections['videos'].docs.select{ |doc| doc.data.dig('collections') }
-      nextLevelCourses.map do |nextLevelCourse|
-        nextLevelCourse.data['collections'] = nextLevelCourse.data['collections'].map do |collection|
-          if collection['featured_on_next_level_courses_landing_page'] === true
-            id = collection['id']
-            site.collections['collections'].docs.detect{ |doc| doc.data.dig('contentful_id') == id}
+      next_level_collections = site.collections['collections'].docs.select{ |c| c.data.dig('featured_on_next_level_courses_landing_page').present?}
+      courses = next_level_collections.map do |collection|  
+        collection.data['collections'].map do |video|
+          if video['content_type'] == 'video'
+            id = video['id']
+            site.collections['videos'].docs.detect{ |doc| doc.data.dig('contentful_id') == id}
           end
         end
       end
-      if nextLevelCourses.present?
-        site.data['next_level_courses'] = nextLevelCourses
+
+      if courses.present?
+        site.data['next_level_courses'] = courses.flatten
       end
     end
   end
