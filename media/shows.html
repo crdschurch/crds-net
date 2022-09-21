@@ -7,7 +7,7 @@ snail_trail: disabled
 {% assign shows_carousel = featured_shows_carousel.entries %}
 {% assign shows_carousel_length = featured_shows_carousel.entries | size %}
 {% assign featured_shows = site.collections | where: 'featured_on_shows_landing_page', true %}
-{% assign recent_episodes = site.data['shows'] | sort: 'published_at' | reverse %}
+{% assign recent_episodes = site.data['shows'] | sort: 'published_at' | reverse | exclude: site.data['next_level_courses'] %}
 
 {% for featured_episode in recent_episodes limit: 1 %}
 <section>
