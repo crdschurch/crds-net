@@ -6,10 +6,8 @@ module ShowsGenerator
       shows = site.collections['videos'].docs.select{ |doc| doc.data.dig('collections') }
       shows.map do |show|
         show.data['collections'] = show.data['collections'].map do |collection|
-          if collection['featured_on_shows_landing_page'] === true
-            id = collection['id']
-            site.collections['collections'].docs.detect{ |doc| doc.data.dig('contentful_id') == id}
-          end
+          id = collection['id']
+          site.collections['collections'].docs.detect{ |doc| doc.data.dig('contentful_id') == id}
         end
       end
       if shows.present?
