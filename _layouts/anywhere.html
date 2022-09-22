@@ -237,8 +237,8 @@ layout: default
                 <p>
                   Trade aimless scrolling for meaningful content, exercises designed to help you de-stress, and challenges that guarantee growth. 
                 </p>
-                <crds-button href="" class="push-half-right" display="outline" color="blue" text="Download for iOS"></crds-button>
-                <crds-button href="" display="outline" color="blue" text="Download for Android"></crds-button>
+                <crds-button href="https://apps.apple.com/us/app/crossroads-anywhere/id1029478803" class="push-half-right" display="outline" color="blue" text="Download for iOS"></crds-button>
+                <crds-button href="https://play.google.com/store/apps/details?id=net.crossroads.crossroads&hl=en_US&gl=US" display="outline" color="blue" text="Download for Android"></crds-button>
               </div>
 
               <div class="col-sm-6">
@@ -524,26 +524,28 @@ layout: default
 </section>
 
 <!-- Sign up  -->
-<section class="anywhere-sign-up soft-ends" style="background-image: url('https://crds-media.imgix.net/1ie6HE8PwHcxZw3qSrOw4Y/4f61fa904ff40800a4dc2a99e1f8cefe/anywhere-form-image.jpg?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
-  <div class="container soft-ends">
-    <div class="row text-center">
-      <div class="col-md-8 col-md-offset-2">
-        <h3 class="text-white font-family-condensed-extra font-size-giant text-uppercase font-weight-300">Be a part of a new kind of church</h3>
-        <p class="text-blue font-family-serif">This isn’t your typical church. God created everyone one us to live a life of adventure and to change the world for good. If that sounds perfect to you, then you’re in the right place. Create a profile to access spiritual training, life-changing experiences, and connections with others on this journey.</p>
+<crds-auth-content-signed-out>
+  <section class="anywhere-sign-up soft-ends" style="background-image: url('https://crds-media.imgix.net/1ie6HE8PwHcxZw3qSrOw4Y/4f61fa904ff40800a4dc2a99e1f8cefe/anywhere-form-image.jpg?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+    <div class="container soft-ends">
+      <div class="row text-center">
+        <div class="col-md-8 col-md-offset-2">
+          <h3 class="text-white font-family-condensed-extra font-size-giant text-uppercase font-weight-300">Be a part of a new kind of church</h3>
+          <p class="text-blue font-family-serif">This isn’t your typical church. God created everyone one us to live a life of adventure and to change the world for good. If that sounds perfect to you, then you’re in the right place. Create a profile to access spiritual training, life-changing experiences, and connections with others on this journey.</p>
+        </div>
       </div>
-    </div>
-    <div class="row text-center soft-ends">
-      <div class="col-sm-12" style="z-index: 1; margin-bottom: -20px;">
-        <crds-arrow text-color="orange" arrow-color="blue" arrow-size="default">Sign<br>Up</crds-arrow>
-      </div>
-      <div class="bg-white col-sm-12 col-md-4 col-md-offset-4 img-rounded-corners soft mobile-push-half-sides">
-        <div class="soft-half-top">
-          <crds-register provider="Okta" default-site-id="15" display-zipcode="true" display-header="false" button-text="Create an account"></crds-register>
+      <div class="row text-center soft-ends">
+        <div class="col-sm-12" style="z-index: 1; margin-bottom: -20px;">
+          <crds-arrow text-color="orange" arrow-color="blue" arrow-size="default">Sign<br>Up</crds-arrow>
+        </div>
+        <div class="bg-white col-sm-12 col-md-4 col-md-offset-4 img-rounded-corners soft mobile-push-half-sides">
+          <div class="soft-half-top">
+            <crds-register provider="Okta" default-site-id="15" display-zipcode="true" display-header="false" button-text="Create an account"></crds-register>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</crds-auth-content-signed-out>
 
 <!-- Kid's Club Form Modal -->
 <div class="modal" id="kidsClubModalForm" tabindex="-1" role="dialog" aria-labelledby="Subscribe email form">
