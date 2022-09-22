@@ -405,25 +405,13 @@ layout: default
               <p class="text-orange text-uppercase flush-bottom"><strong>Community pastor</strong></p>
               <h2 class="section-header flush-ends soft-half-bottom font-weight-300">{{ page.community_pastor_name }}</h2>
               {{ page.community_pastor_bio | markdownify }}
-
-              {% if page.community_pastor_email %}
-              <div class="soft-half-ends border-bottom">
-                <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.</p>
-                <crds-button href="mailto:{{ page.community_pastor_email }}" color="blue" text="Email me" target="_blank"></crds-button>
-              </div>
-              {% endif %}
-
-              <div class="soft-half-top">
-                {% if page.community_pastor_facebook_url %}
-                <crds-button href="{{ page.community_pastor_facebook_url }}" color="blue" display="outline"
-                  icon="facebook" icon-align="left" icon-color="blue" icon-size="16"
-                  text="Follow {{ pastor_full_name[0] }}" target="_blank"></crds-button>
+  
+              <div class="soft-half-ends">
+                {% if page.community_pastor_email %}
+                <a href="mailto:{{ page.community_pastor_email }}" class="text-gray-darker underline block">Let's Connect</a>
                 {% endif %}
-                {% if page.community_pastor_instagram_url %}
-                <crds-button href="{{ page.community_pastor_instagram_url }}" color="blue" display="outline"
-                  icon="instagram" icon-align="left" icon-color="blue" icon-size="16"
-                  text="Follow {{ pastor_full_name[0] }}" target="_blank"></crds-button>
-                {% endif %}
+                <a href="/" class="text-gray-darker underline block">Watch My Story</a>
+                <a href="/media/authors/andy-reider" class="text-gray-darker underline block">Follow me</a>
               </div>
             </div>
           </div>
