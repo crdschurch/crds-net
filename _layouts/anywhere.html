@@ -8,6 +8,7 @@ layout: default
 {% if serie.slug != 'easter-a-love-story' %}
 {% assign series = serie %}
 {% if serie.videos.size > 0 %}
+{% assign latest_message_series_image = serie.image.url %}
 {% assign latest_message = serie.videos | last | get_doc %}
 {% endif %}
 {% endif %}
@@ -47,7 +48,7 @@ layout: default
     <div class="anywhere-media-objects-container">
       <div class="anywhere-media-object">
         <a href="{{ latest_message | media_url }}">
-          <img class="object-fit-cover" src="{{ latest_message.image.url | imgix: site.imgix }}?auto=format,compress&w=150" alt="">
+          <img class="object-fit-cover" src="{{ latest_message_series_image | imgix: site.imgix }}?auto=format,compress&w=150" alt="">
         </a>
         <div class="anywhere-media-object-content">
           <span>Service Times</span>
