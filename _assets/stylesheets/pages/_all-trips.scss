@@ -8,7 +8,7 @@
   height: 300px;
 }
 .trip-overlay-card .trip-overlay-card-image img {
-  width: auto;
+  width: 100%;
   position: absolute;
   height: 100%;
   object-fit: cover;
@@ -163,6 +163,13 @@
       margin-left: -15px;
     }
 
+    #ourHolder .col-xs-offset-1 {
+      margin-left: 10%;
+    }
+    #ourHolder .col-xs-10 {
+      width: 80%;
+    }
+
     .volunteer-btn {
       padding: 0 4px;
       background-color: $cr-white;
@@ -217,6 +224,14 @@
     }
   }
 
+  @media only screen and (min-width: 500px) {
+    #ourHolder .col-xs-offset-1 {
+      margin-left: 0%;
+    }
+    #ourHolder .col-xs-10 {
+      width: 50%;
+    }
+  }
 
   @media only screen and (min-width: 768px) {
     .volunteer-flex {
@@ -226,6 +241,13 @@
 
     #ourHolder {
       margin-left: -15px;
+    }
+
+    #ourHolder .col-xs-offset-1 {
+      margin-left: 0%;
+    }
+    #ourHolder .col-xs-10 {
+      width: 33.33333%;
     }
 
     .panel-group {

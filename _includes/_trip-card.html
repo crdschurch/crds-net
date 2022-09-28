@@ -1,7 +1,7 @@
 {% assign targets = item.country | join: ',' %}
 {% assign trip_focus = item.focus | where: "focus", page.focus | join: ',' %}
 
-<div class="country-{{ targets| downcase | replace: ' ' , '-' | replace: '/' , '-' }} site-{{ item.crossroads_community | downcase | replace: ' ' , '-' }} audience-{{ item.audience | downcase | replace: ' ' , '-' }} focus-{{ trip_focus | downcase | replace: ' ' , '-' | replace: ',' , ' ' }} length-{{ item.length_in_days | downcase | replace: ' ' , '-' }} season-{{ item.season | downcase }} age-{{ item.age | downcase | replace: '+' , 'plus' }} card push-ends col-xs-12 col-sm-4">
+<div class="country-{{ targets| downcase | replace: ' ' , '-' | replace: '/' , '-' }} site-{{ item.crossroads_community | downcase | replace: ' ' , '-' }} audience-{{ item.audience | downcase | replace: ' ' , '-' }} focus-{{ trip_focus | downcase | replace: ' ' , '-' | replace: ',' , ' ' }} length-{{ item.length_in_days | downcase | replace: ' ' , '-' }} season-{{ item.season | downcase }} age-{{ item.age | downcase | replace: '+' , 'plus' }} card push-ends col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-4">
   <a href="/go/{{ item.country_slug }}{{item.slug }}" class="trip-overlay-card">
     <div class="bg-overlay"></div>
     <div class="trip-overlay-card-image">
@@ -15,4 +15,4 @@
       <p class="trip-overlay-card-cost pull-right">{{ item.total_cost }}</p>
     </div>
   </a>
-</div>
+</div> 
