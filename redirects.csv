@@ -55,7 +55,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /mycamps*,https://${env:CRDS_ANGULAR_ENDPOINT}/mycamps:splat,200!
 /camps/:campId/*,https://${env:CRDS_ANGULAR_ENDPOINT}/camps/:campId/,200!
 /childcare/*,https://${env:CRDS_CHILDCARE_ENDPOINT}/:splat,200!
-/corkboard*,https://${env:CRDS_CORKBOARD_ENDPOINT}/:splat,200!
 /invoices/*,https://${env:CRDS_INVOICES}/:splat,200!
 /undivided/*,https://undivided.com,301!
 /mptools/*,https://${env:CRDS_ANGULAR_ENDPOINT}/mptools/:splat,200!
