@@ -78,6 +78,10 @@
 }
 
 .recently-added-image-container {
+  @media(min-width: $screen-sm) {
+    margin-right: 15px;
+  }
+
   @media(min-width: $screen-md) {
     float: left;
     height: 100px;

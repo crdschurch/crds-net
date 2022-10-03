@@ -29,13 +29,10 @@ snail_trail: disabled
           <div class="hard-left col-sm-4">
             <div class="jumbotron-content mobile-soft-left">
               <div id="shows-jumbotron-content">
+                <img class="feature-logo soft-half-bottom" src="https://crds-media.imgix.net/1d0Y89DNY3I8tvcikYRsOy/75e4db90a6963df5e061662a5a5f6fcf/logos-next-level_2x.png" alt="Next Level Academy"  />
                 {% for show in featured_episode.collections %}
-                <a href="{{ site.url }}/media/collections{{ show.slug }}">
-                  {% if show.logo.url %}
-                  <img alt="{{ show.title }}" class="feature-logo soft-half-bottom" src="{{show.logo.url | imgix: site.imgix }}">
-                  {% else %}
-                  <h1 class="font-family-condensed-extra font-size-h1 text-uppercase text-white">{{ show.title }}</h1>
-                  {% endif %}
+                <a href="{{ site.url }}/media/collections/{{ show.slug }}">
+                  <h1 class="font-family-condensed-extra font-size-h3 text-uppercase text-white">{{ show.title }}</h1>
                 </a>
                 {% endfor %}
                 <a href="{{ site.url }}/media/videos/{{ featured_episode.slug }}">
@@ -49,7 +46,7 @@ snail_trail: disabled
                   <a href="{{ site.url }}/media/videos/{{ featured_episode.slug }}"><button class="more-videos btn btn-white">
                     Watch Now</button>
                   </a>
-                  <a href="{{ site.url }}/media/collections{{ show.slug }}"><button class="more-videos btn btn-white btn-outline">More Videos</button></a>
+                  <a href="{{ site.url }}/media/collections/{{ show.slug }}"><button class="more-videos btn btn-white btn-outline">More Videos</button></a>
                   <button id="mute-btn" class="video-control-button soft-sides mobile-flush-left">
                   <svg id="volume-slash" class="icon-video" width="40" height="40" fill="white" viewBox="0 0 32 32">
                     <g>

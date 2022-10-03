@@ -4,7 +4,7 @@
       <img class="recently-added-image" src="{{ episode.image.url | imgix: site.imgix }}?auto=format,compress&w=175" data-optimize-img>
     </a> 
   </div>
-  <div class="d-flex flex-column">
+  <div class="df-screen-sm flex-column">
     {% for show in episode.collections %}
     {% assign show_slug = show.slug %}
     {% assign shows_slug_check = show_slug | slice: 0 %}
