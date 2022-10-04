@@ -117,7 +117,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /event-checkin/*,https://${env:CRDS_EVENT_CHECKIN_ENDPOINT}/:splat,200!
 /media/music/,${env:CRDS_MUSIC_ENDPOINT},301!
 /music/,${env:CRDS_MUSIC_ENDPOINT},301!
-/anywhere,/live,301!
 /media/songs/god-of-the-breakthrough,${env:CRDS_MUSIC_ENDPOINT}/music/god-of-the-breakthrough/god-of-the-breakthrough,301!
 /media/songs/oh-the-power,${env:CRDS_MUSIC_ENDPOINT}/music/oh-the-power/oh-the-power,301!
 /media/songs/little-drummer-boy,${env:CRDS_MUSIC_ENDPOINT}/music/christmas/little-drummer-boy,301!
@@ -157,7 +156,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /weeklyworship,/reopen,301!
 /mancamp/,https://www.mancamp.us/?utm_source=crsrds-mancamp,301
 /getstarted/thank-you,/online,301!
-/live,/online,301!
 /the-chaser,/weekendfollowup,302!
 /weekend-prompts,/weekendfollowup,302!
 /atriumevents/ site=:siteId,https://api.crossroads.net/atriumevents/eventlisting/:siteId,302!
