@@ -16,7 +16,8 @@ https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 https://embedint.crossroads.net/*,https://int.crossroads.net/giving/,302!
 https://embeddemo.crossroads.net/*,https://demo.crossroads.net/giving/,302!
 https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
-/,/h,200! Role=user
+/,https://int-crds-unified.netlify.app/h,200! Role=user
+/,https://int-crds-unified.netlify.app/,200!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
