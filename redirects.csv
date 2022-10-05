@@ -19,13 +19,21 @@ https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /,${env:CRDS_UNIFIED_DOMAIN}h,200! Role=user
 /,${env:CRDS_UNIFIED_DOMAIN},200!
 /growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path,200! Role=user
+/growth-path,/signin,301!
 /receive-weekly-teaching,${env:CRDS_UNIFIED_DOMAIN}receive-weekly-teaching,200! Role=user
+/receive-weekly-teaching,/signin,301!
 /connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}connect-with-god-daily,200! Role=user
+/connect-with-god-daily,/signin,301!
 /serve-others,${env:CRDS_UNIFIED_DOMAIN}serve-others,200! Role=user
+/serve-others,/signin,301!
 /live-generously,${env:CRDS_UNIFIED_DOMAIN}live-generously,200! Role=user
+/live-generously,/signin,301!
 /join-community,${env:CRDS_UNIFIED_DOMAIN}join-community,200! Role=user
+/join-community,/signin,301!
 /get-baptized,${env:CRDS_UNIFIED_DOMAIN}get-baptized,200! Role=user
+/get-baptized,/signin,301!
 /share-your-story,${env:CRDS_UNIFIED_DOMAIN}share-your-story,200! Role=user
+/share-your-story,/signin,301!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
