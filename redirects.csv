@@ -16,16 +16,24 @@ https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 https://embedint.crossroads.net/*,https://int.crossroads.net/giving/,302!
 https://embeddemo.crossroads.net/*,https://demo.crossroads.net/giving/,302!
 https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
-/,https://deploy-preview-142--int-crds-unified.netlify.app/h,200! Role=user
-/,https://deploy-preview-142--int-crds-unified.netlify.app/,200!
+/,${env:CRDS_UNIFIED_DOMAIN}h,200! Role=user
+/,${env:CRDS_UNIFIED_DOMAIN},200!
+/growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path,200! Role=user
+/receive-weekly-teaching,${env:CRDS_UNIFIED_DOMAIN}receive-weekly-teaching,200! Role=user
+/connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}connect-with-god-daily,200! Role=user
+/serve-others,${env:CRDS_UNIFIED_DOMAIN}serve-others,200! Role=user
+/live-generously,${env:CRDS_UNIFIED_DOMAIN}live-generously,200! Role=user
+/join-community,${env:CRDS_UNIFIED_DOMAIN}join-community,200! Role=user
+/get-baptized,${env:CRDS_UNIFIED_DOMAIN}get-baptized,200! Role=user
+/share-your-story,${env:CRDS_UNIFIED_DOMAIN}share-your-story,200! Role=user
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
-/_next/static/*,https://deploy-preview-142--int-crds-unified.netlify.app/static/:splat,200
-/unified_assets/*,https://deploy-preview-142--int-crds-unified.netlify.app/unified_assets/:splat,200
-/unified_images/*,https://deploy-preview-142--int-crds-unified.netlify.app/unified_images/:splat,200
-/_next/*,https://deploy-preview-142--int-crds-unified.netlify.app/_next/:splat,200
-/_ipx/*,https://deploy-preview-142--int-crds-unified.netlify.app/_ipx/:splat,200
+/_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
+/unified_assets/*,${env:CRDS_UNIFIED_DOMAIN}unified_assets/:splat,200
+/unified_images/*,${env:CRDS_UNIFIED_DOMAIN}unified_images/:splat,200
+/_next/*,${env:CRDS_UNIFIED_DOMAIN}_next/:splat,200
+/_ipx/*,${env:CRDS_UNIFIED_DOMAIN}_ipx/:splat,200
 /online/my-profile,/profile,301!
 /online/*,${env:CRDS_ONLINE_DOMAIN}/online/:splat,200!
 /signin,/online,200!,Cookie=online_registrant
