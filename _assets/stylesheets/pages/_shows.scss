@@ -205,6 +205,20 @@ svg {
   width: 100%; 
 }
 
+.teaching-pastors-grid {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(1, 1fr);
+
+  @media (min-width: $screen-xs) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $screen-md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 .shows-pastors-card {
   display: flex;
   flex-direction: column;
@@ -215,6 +229,7 @@ svg {
     background-position: center;
     border-radius: 50%;
     height: 228px;
-    width: 228px
+    max-width: 228px;
+    width: 100%;
   }
 }

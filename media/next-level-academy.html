@@ -9,7 +9,7 @@ snail_trail: disabled
 {% assign next_level_carousel_length = featured_next_level_carousel.entries | size %}
 
 {% for featured_episode in recent_episodes limit: 1 %}
-<section>
+<section class="overflow-hidden">
   <div class="shows-landing-jumbotron">
     <div class="bg-video-player">
       {% if featured_episode.preview_video %}
@@ -23,7 +23,10 @@ snail_trail: disabled
       </div>
       {% endif %}
     </div> 
-    <div class="mobile-bg" style="background-image: url('{{ featured_episode.image.url | imgix: site.imgix }}');" data-optimize-bg-img>
+        
+    {% for show in featured_episode.collections %}
+    <div class="mobile-bg" style="background-image: url('{% if show.widescreen_thumbnail_image %}{{ show.widescreen_thumbnail_image.url | imgix: site.imgix }}{% else %}{{ show.image.url | imgix: site.imgix }}{% endif %}');"  data-optimize-bg-img>
+      {% endfor %}
       <div class="container">
         <div class="row soft-ends push-ends">
           <div class="hard-left col-sm-4">
@@ -104,10 +107,10 @@ snail_trail: disabled
     <div class="row">
       <h2 class="font-family-condensed-extra text-uppercase text-white shows-landing-page-title mobile-soft-left">Our Teaching Pastors</h2>
     </div>
-    <div class="row">
+    <div class="teaching-pastors-grid">
       {% for pastor in teaching_pastors %}
         {% assign item = pastor | get_doc %}
-        <div class="col-sm-6 col-md-3">
+        <div>
           <a class="shows-pastors-card text-center" href="{{ item | media_url }}">
             <div class="shows-pastors-card-img" style="background-image: url('{{ item.image.url | imgix: site.imgix }}?w=228&h=228&crop=bottom,center&fit=crop');"></div>
             <p class="font-family-condensed-extra font-size-h4 text-uppercase push-top text-white">{{ item.full_name }}</p>

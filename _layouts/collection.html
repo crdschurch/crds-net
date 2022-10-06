@@ -3,7 +3,7 @@ layout: default
 ---
 
 <section class="bg-black" data-grouping-media-type="show">
-  <div class="jumbotron jumbotron-xl flush-bottom" style="background-image: url('{{ page.image.url | imgix: site.imgix }}');" data-optimize-bg-img>
+  <div class="jumbotron jumbotron-xl flush-bottom" style="background-image: url('{% if page.widescreen_thumbnail_image %}{{ page.widescreen_thumbnail_image.url | imgix: site.imgix }}{% else %}{{ page.image.url | imgix: site.imgix }}{% endif %}');" data-optimize-bg-img>
     <div class="bg-overlay"></div>
     <div class="jumbotron-content push-ends">
       <div class="container">
@@ -117,7 +117,7 @@ layout: default
 
     {% for item in items %}
     <div class="row soft-bottom">
-      <a href="{{ item | media_url }}">
+      <a class="text-white" href="{{ item | media_url }}">
         <div class="col-sm-6 push-half-bottom">
           <crds-image class="full-width" src="{% if item.podcast.image.url %}{{ item.podcast.image.url  | imgix: site.imgix }}{% else %}{{ item.image.url | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
           aspect-ratio=0.5625 alt="{{ item.title }}"></crds-image>

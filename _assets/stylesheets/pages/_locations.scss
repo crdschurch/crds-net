@@ -484,6 +484,12 @@
 .anywhere-team-jumbotron {
   position: relative;
 
+  img {
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+  }
+
   > div {
     position: absolute;
     bottom: 0;
