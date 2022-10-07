@@ -107,7 +107,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_JOURNEY_ENDPOINT = "journey-groups-2022.netlify.app"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy-int.netlify.app"
   CRDS_INVOICES = "crds-invoices-int.netlify.app"
-  CRDS_CORKBOARD_ENDPOINT = "crds-corkboard-int.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer-int.netlify.app/"
 
 [context.runway.environment]
@@ -180,7 +179,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_JOURNEY_ENDPOINT = "journey-groups-2022.netlify.app"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy.netlify.app"
   CRDS_INVOICES = "crds-invoices.netlify.app"
-  CRDS_CORKBOARD_ENDPOINT = "crds-corkboard.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer.netlify.app/"
 
 [context.rebrand.environment]

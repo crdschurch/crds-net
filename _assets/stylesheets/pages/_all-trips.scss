@@ -1,3 +1,61 @@
+.trip-overlay-card {
+  display: block;
+  position: relative;
+  border-radius: 10px;
+  overflow: auto;
+}
+.trip-overlay-card .trip-overlay-card-image {
+  height: 300px;
+}
+.trip-overlay-card .trip-overlay-card-image img {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+.trip-overlay-card .trip-overlay-card-content {
+  background: transparent;
+  bottom: 0;
+  left: 0;
+  padding: 15px 15px 20px;
+  position: absolute;
+  right: 0;
+}
+.trip-overlay-card .trip-overlay-card-cost {
+  color: rgba(255,255,255,0.8);
+  font-size: 14px;
+  line-height: .9em;
+  margin-bottom: 0px;
+  text-transform: uppercase;
+  padding-top: 4px;
+}
+.trip-overlay-card .trip-overlay-card-title {
+  color: #fff;
+  font-family: "acumin-pro", sans-serif;
+  font-size: 1.5em;
+  line-height: 0.9;
+  margin-top: 0;
+  margin-bottom: 5px;
+  text-transform: none;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}
+.trip-overlay-card .trip-overlay-card-date {
+  color: rgba(255,255,255,0.8);
+  font-size: 14px;
+  margin-bottom: 0;
+}
+.trip-overlay-card .trip-overlay-card-content {
+  background: transparent;
+  bottom: 0;
+  left: 0;
+  padding: 15px 15px 20px;
+  position: absolute;
+  right: 0;
+}
+
+
 .all-trips {
   .active {
     background-color: $cr-blue !important;
@@ -105,6 +163,13 @@
       margin-left: -15px;
     }
 
+    #ourHolder .col-xs-offset-1 {
+      margin-left: 10%;
+    }
+    #ourHolder .col-xs-10 {
+      width: 80%;
+    }
+
     .volunteer-btn {
       padding: 0 4px;
       background-color: $cr-white;
@@ -159,6 +224,14 @@
     }
   }
 
+  @media only screen and (min-width: 500px) {
+    #ourHolder .col-xs-offset-1 {
+      margin-left: 0%;
+    }
+    #ourHolder .col-xs-10 {
+      width: 50%;
+    }
+  }
 
   @media only screen and (min-width: 768px) {
     .volunteer-flex {
@@ -168,6 +241,13 @@
 
     #ourHolder {
       margin-left: -15px;
+    }
+
+    #ourHolder .col-xs-offset-1 {
+      margin-left: 0%;
+    }
+    #ourHolder .col-xs-10 {
+      width: 33.33333%;
     }
 
     .panel-group {
