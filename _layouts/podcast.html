@@ -19,7 +19,7 @@ title: Podcast
               <li><a href="/media/podcasts">Podcasts</a></li>
             </ol>
 
-            <h1 class="font-family-condensed-extra font-size-h1 text-uppercase flush-top push-bottom">{{ page.title }}</h1>
+            <h1 data-media-title="{{page.title}}" data-media-id="{{page.id}}" class="font-family-condensed-extra font-size-h1 text-uppercase flush-top push-bottom">{{ page.title }}</h1>
 
             <hr class="hero">
             <p class="subtitle white-faded">{{ page.subtitle }}</p>
@@ -27,7 +27,7 @@ title: Podcast
             {% if page.apple_podcasts_url.size > 1 %}
             <p class="push-top">
               <div class="hard-sides">
-                <a href="{{ page.apple_podcasts_url }}" role="button" class="btn btn-white btn-subscribe soft-quarter-ends d-flex justify-content-between">
+                <a href="{{ page.apple_podcasts_url }}" role="button" class="btn btn-white btn-subscribe soft-quarter-ends d-flex justify-content-between" onclick="dataLayer.push({'event': 'ContentEngaged', 'event_action': 'subscribed'})">
                   <div class="d-flex flex-column push-quarter-right align-items-start btn-text">
                     <span class="text-blue font-size-small push-quarter-bottom">Apple Podcasts</span>
                     <span class="text-blue font-size-smallest text-uppercase">Subscribe</span>
