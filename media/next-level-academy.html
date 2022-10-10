@@ -3,14 +3,13 @@ layout: default
 snail_trail: disabled
 ---
 
-{% assign featured_shows_carousel = site.featured_media | where: 'page_path', 'shows-carousel' | first %}
-{% assign shows_carousel = featured_shows_carousel.entries %}
-{% assign shows_carousel_length = featured_shows_carousel.entries | size %}
-{% assign featured_shows = site.collections | where: 'featured_on_shows_landing_page', true %}
-{% assign recent_episodes = site.data['shows'] | sort: 'published_at' | reverse | exclude: site.data['next_level_courses'] %}
+{% assign featured_next_level_carousel = site.featured_media | where: 'page_path', 'next-level-carousel' | first %}
+{% assign recent_episodes = site.data['next_level_courses'] | sort: 'published_at' | reverse %}
+{% assign next_level_carousel = featured_next_level_carousel.entries %}
+{% assign next_level_carousel_length = featured_next_level_carousel.entries | size %}
 
 {% for featured_episode in recent_episodes limit: 1 %}
-<section>
+<section class="overflow-hidden">
   <div class="shows-landing-jumbotron">
     <div class="bg-video-player">
       {% if featured_episode.preview_video %}
@@ -24,19 +23,19 @@ snail_trail: disabled
       </div>
       {% endif %}
     </div> 
-    <div class="mobile-bg" style="background-image: url('{{ featured_episode.image.url | imgix: site.imgix }}');" data-optimize-bg-img>
+        
+    {% for show in featured_episode.collections %}
+    <div class="mobile-bg" style="background-image: url('{% if show.widescreen_thumbnail_image %}{{ show.widescreen_thumbnail_image.url | imgix: site.imgix }}{% else %}{{ show.image.url | imgix: site.imgix }}{% endif %}');"  data-optimize-bg-img>
+      {% endfor %}
       <div class="container">
         <div class="row soft-ends push-ends">
           <div class="hard-left col-sm-4">
             <div class="jumbotron-content mobile-soft-left">
               <div id="shows-jumbotron-content">
+                <img class="feature-logo soft-half-bottom" src="https://crds-media.imgix.net/1d0Y89DNY3I8tvcikYRsOy/75e4db90a6963df5e061662a5a5f6fcf/logos-next-level_2x.png" alt="Next Level Academy"  />
                 {% for show in featured_episode.collections %}
-                <a href="{{ site.url }}/media/collections{{ show.slug }}">
-                  {% if show.logo.url %}
-                  <img alt="{{ show.title }}" class="feature-logo soft-half-bottom" src="{{show.logo.url | imgix: site.imgix }}">
-                  {% else %}
-                  <h1 class="font-family-condensed-extra font-size-h1 text-uppercase text-white">{{ show.title }}</h1>
-                  {% endif %}
+                <a href="{{ site.url }}/media/collections/{{ show.slug }}">
+                  <h1 class="font-family-condensed-extra font-size-h3 text-uppercase text-white">{{ show.title }}</h1>
                 </a>
                 {% endfor %}
                 <a href="{{ site.url }}/media/videos/{{ featured_episode.slug }}">
@@ -50,7 +49,7 @@ snail_trail: disabled
                   <a href="{{ site.url }}/media/videos/{{ featured_episode.slug }}"><button class="more-videos btn btn-white">
                     Watch Now</button>
                   </a>
-                  <a href="{{ site.url }}/media/collections{{ show.slug }}"><button class="more-videos btn btn-white btn-outline">More Videos</button></a>
+                  <a href="{{ site.url }}/media/collections/{{ show.slug }}"><button class="more-videos btn btn-white btn-outline">More Videos</button></a>
                   <button id="mute-btn" class="video-control-button soft-sides mobile-flush-left">
                   <svg id="volume-slash" class="icon-video" width="40" height="40" fill="white" viewBox="0 0 32 32">
                     <g>
@@ -76,29 +75,30 @@ snail_trail: disabled
 </section>
 
 <section class="shows-carousel soft-top bg-black overflow-hidden"> 
-  <div class="container">
-    <div class="row">
-      <h2 class="font-family-condensed-extra text-uppercase flush-top text-white shows-landing-page-title mobile-soft-left">Shows</h2>
-    </div>
-    <div class="row soft-bottom push-bottom carousel-shows">
-      {% if shows_carousel_length > 4 %}
-      <crds-carousel shows="true" display-arrows="true" arrow-color="white" display-bullets="false" slide-count="{{ shows_carousel_length }}" slide-per-view="4">
-      {% else %}
-      <crds-carousel shows="true" display-arrows="false" display-bullets="false" slide-count="{{ shows_carousel_length }}" slide-per-view="4">
-      {% endif %}
-        <div slot="{% increment slot %}"></div>
-        {% for shows in shows_carousel %}
-        {% assign item = shows | get_doc %}
-        <div slot="{% increment slot %}">
-          <div style='max-width: 270px; width: 100%;'>
-            <crds-portrait-card-shows href="/media/collections{{ item.slug }}" lead='{{ item.description | truncate: 100 }}' title='{{ item.title }}' image-src='{{ item.image.url | imgix: site.imgix }}' logo='{{ item.logo.url | imgix: site.imgix }}' />
+    <div class="container">
+      <div class="row">
+        <h2 class="font-family-condensed-extra text-uppercase flush-top text-white shows-landing-page-title mobile-soft-left">Courses</h2>
+      </div>
+      <div class="row soft-bottom push-bottom carousel-shows">
+        {% if next_level_carousel_length > 4 %}
+        <crds-carousel shows="true" display-arrows="true" arrow-color="white" display-bullets="false" slide-count="{{ next_level_carousel_length }}" slide-per-view="4">
+        {% else %}
+        <crds-carousel shows="true" display-arrows="false" display-bullets="false" slide-count="{{ next_level_carousel_length }}" slide-per-view="4">
+        {% endif %}
+          <div slot="{% increment slot %}"></div>
+          {% for shows in next_level_carousel %}
+          {% assign item = shows | get_doc %}
+          <div slot="{% increment slot %}">
+            <div style='max-width: 270px; width: 100%;'>
+              <crds-portrait-card-shows href="/media/collections/{{ item.slug }}" lead='{{ item.description | truncate: 100 }}' title='{{ item.title }}' image-src='{{ item.image.url | imgix: site.imgix }}' logo='{{ item.logo.url | imgix: site.imgix }}' />
+            </div>
           </div>
-        </div>
-        {% endfor %}
-      </crds-carousel>
+          {% endfor %}
+        </crds-carousel>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
 
 {% assign featured_teaching_pastors = site.featured_media | where: 'page_path', 'shows-teaching-pastors' | first %}
 {% assign teaching_pastors = featured_teaching_pastors.entries %}
@@ -107,10 +107,10 @@ snail_trail: disabled
     <div class="row">
       <h2 class="font-family-condensed-extra text-uppercase text-white shows-landing-page-title mobile-soft-left">Our Teaching Pastors</h2>
     </div>
-    <div class="row">
+    <div class="teaching-pastors-grid">
       {% for pastor in teaching_pastors %}
         {% assign item = pastor | get_doc %}
-        <div class="col-sm-6 col-md-3">
+        <div>
           <a class="shows-pastors-card text-center" href="{{ item | media_url }}">
             <div class="shows-pastors-card-img" style="background-image: url('{{ item.image.url | imgix: site.imgix }}?w=228&h=228&crop=bottom,center&fit=crop');"></div>
             <p class="font-family-condensed-extra font-size-h4 text-uppercase push-top text-white">{{ item.full_name }}</p>

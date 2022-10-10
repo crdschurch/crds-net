@@ -3,7 +3,7 @@ layout: default
 ---
 
 <section class="bg-black" data-grouping-media-type="show">
-  <div class="jumbotron jumbotron-xl flush-bottom" style="background-image: url('{{ page.image.url | imgix: site.imgix }}');" data-optimize-bg-img>
+  <div class="jumbotron jumbotron-xl flush-bottom" style="background-image: url('{% if page.widescreen_thumbnail_image %}{{ page.widescreen_thumbnail_image.url | imgix: site.imgix }}{% else %}{{ page.image.url | imgix: site.imgix }}{% endif %}');" data-optimize-bg-img>
     <div class="bg-overlay"></div>
     <div class="jumbotron-content push-ends">
       <div class="container">
@@ -13,6 +13,16 @@ layout: default
             <ol class="breadcrumb flush hard">
               <li><a class="text-white" href="/media">Media</a></li>
               <li><a class="text-white" href="/media/shows">Shows</a></li>
+            </ol>
+          </div>
+        </div>
+        {% endif %}
+        {% if page.featured_on_next_level_courses_landing_page == true %}
+        <div class="push-bottom text-left">
+          <div class="bg-black-50 inline-block soft-half-sides">
+            <ol class="breadcrumb flush hard">
+              <li><a class="text-white" href="/media">Media</a></li>
+              <li><a class="text-white" href="/media/next-level-academy">Next Level Academy</a></li>
             </ol>
           </div>
         </div>
@@ -54,6 +64,7 @@ layout: default
   <div class="container soft-bottom">
 
     {% assign items = page.docs %}
+    {% if page.featured_on_shows_landing_page == true %}
 
     {% if items.size > 0 %}
 
@@ -101,7 +112,25 @@ layout: default
       {% endfor %}
     </crds-tabs>
     {% endif %}
+    
+    {% else %}
 
+    {% for item in items %}
+    <div class="row soft-bottom">
+      <a class="text-white" href="{{ item | media_url }}">
+        <div class="col-sm-6 push-half-bottom">
+          <crds-image class="full-width" src="{% if item.podcast.image.url %}{{ item.podcast.image.url  | imgix: site.imgix }}{% else %}{{ item.image.url | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+          aspect-ratio=0.5625 alt="{{ item.title }}"></crds-image>
+        </div>
+        <div class="col-sm-6">
+          <p class="text-uppercase text-orange font-size-smaller font-family-base-black flush-bottom">{{ page.title }}</p>
+          <h2 class="text-uppercase text-white font-family-condensed-extra font-size-h2 flush-top">{{ item.title }}</h2>
+          <p class="text-white font-size-smaller">{{ item.description }}</p>
+        </div>
+       </a>
+      </div>
+    {% endfor %}
+    {% endif %}
   </div>
 </section>
 

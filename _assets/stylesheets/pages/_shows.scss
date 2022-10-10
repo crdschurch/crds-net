@@ -78,6 +78,10 @@
 }
 
 .recently-added-image-container {
+  @media(min-width: $screen-sm) {
+    margin-right: 15px;
+  }
+
   @media(min-width: $screen-md) {
     float: left;
     height: 100px;
@@ -109,6 +113,7 @@
 }
 
 .shows-landing-jumbotron {
+  position: relative;
   background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
 
   @media(min-width: $screen-md) {
@@ -116,6 +121,17 @@
     display: flex;
     justify-content: center;
     min-height: 600px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    background: black;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -100;
   }
 }
 
@@ -201,6 +217,20 @@ svg {
   width: 100%; 
 }
 
+.teaching-pastors-grid {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(1, 1fr);
+
+  @media (min-width: $screen-xs) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $screen-md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 .shows-pastors-card {
   display: flex;
   flex-direction: column;
@@ -211,6 +241,7 @@ svg {
     background-position: center;
     border-radius: 50%;
     height: 228px;
-    width: 228px
+    max-width: 228px;
+    width: 100%;
   }
 }

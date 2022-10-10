@@ -16,10 +16,32 @@ https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 https://embedint.crossroads.net/*,https://int.crossroads.net/giving/,302!
 https://embeddemo.crossroads.net/*,https://demo.crossroads.net/giving/,302!
 https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
-/,/h,200! Role=user
+/,${env:CRDS_UNIFIED_DOMAIN}h,200! Role=user
+/,${env:CRDS_UNIFIED_DOMAIN},200!
+/growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path,200! Role=user
+/growth-path,/signin,301!
+/receive-teaching-weekly,${env:CRDS_UNIFIED_DOMAIN}receive-teaching-weekly,200! Role=user
+/receive-teaching-weekly,/signin,301!
+/connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}connect-with-god-daily,200! Role=user
+/connect-with-god-daily,/signin,301!
+/serve-others,${env:CRDS_UNIFIED_DOMAIN}serve-others,200! Role=user
+/serve-others,/signin,301!
+/live-generously,${env:CRDS_UNIFIED_DOMAIN}live-generously,200! Role=user
+/live-generously,/signin,301!
+/join-community,${env:CRDS_UNIFIED_DOMAIN}join-community,200! Role=user
+/join-community,/signin,301!
+/get-baptized,${env:CRDS_UNIFIED_DOMAIN}get-baptized,200! Role=user
+/get-baptized,/signin,301!
+/share-your-story,${env:CRDS_UNIFIED_DOMAIN}share-your-story,200! Role=user
+/share-your-story,/signin,301!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
+/_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
+/unified_assets/*,${env:CRDS_UNIFIED_DOMAIN}unified_assets/:splat,200
+/unified_images/*,${env:CRDS_UNIFIED_DOMAIN}unified_images/:splat,200
+/_next/*,${env:CRDS_UNIFIED_DOMAIN}_next/:splat,200
+/_ipx/*,${env:CRDS_UNIFIED_DOMAIN}_ipx/:splat,200
 /online/my-profile,/profile,301!
 /online/*,${env:CRDS_ONLINE_DOMAIN}/online/:splat,200!
 /signin,/online,200!,Cookie=online_registrant
@@ -55,7 +77,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /mycamps*,https://${env:CRDS_ANGULAR_ENDPOINT}/mycamps:splat,200!
 /camps/:campId/*,https://${env:CRDS_ANGULAR_ENDPOINT}/camps/:campId/,200!
 /childcare/*,https://${env:CRDS_CHILDCARE_ENDPOINT}/:splat,200!
-/corkboard*,https://${env:CRDS_CORKBOARD_ENDPOINT}/:splat,200!
 /invoices/*,https://${env:CRDS_INVOICES}/:splat,200!
 /undivided/*,https://undivided.com,301!
 /mptools/*,https://${env:CRDS_ANGULAR_ENDPOINT}/mptools/:splat,200!
@@ -118,7 +139,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /event-checkin/*,https://${env:CRDS_EVENT_CHECKIN_ENDPOINT}/:splat,200!
 /media/music/,${env:CRDS_MUSIC_ENDPOINT},301!
 /music/,${env:CRDS_MUSIC_ENDPOINT},301!
-/anywhere,/live,301!
 /media/songs/god-of-the-breakthrough,${env:CRDS_MUSIC_ENDPOINT}/music/god-of-the-breakthrough/god-of-the-breakthrough,301!
 /media/songs/oh-the-power,${env:CRDS_MUSIC_ENDPOINT}/music/oh-the-power/oh-the-power,301!
 /media/songs/little-drummer-boy,${env:CRDS_MUSIC_ENDPOINT}/music/christmas/little-drummer-boy,301!
@@ -158,7 +178,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /weeklyworship,/reopen,301!
 /mancamp/,https://www.mancamp.us/?utm_source=crsrds-mancamp,301
 /getstarted/thank-you,/online,301!
-/live,/online,301!
 /the-chaser,/weekendfollowup,302!
 /weekend-prompts,/weekendfollowup,302!
 /atriumevents/ site=:siteId,https://api.crossroads.net/atriumevents/eventlisting/:siteId,302!
