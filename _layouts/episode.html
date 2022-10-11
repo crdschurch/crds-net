@@ -13,7 +13,7 @@ layout: default
             <ol class="breadcrumb hard text-white">
               <li><a href="/media/">Media</a></li>
               <li><a href="/media/podcasts">Podcasts</a></li>
-              <li><a href="{{ podcast.url }}">{{ podcast.title }}</a></li>
+              <li><a data-media-title="{{podcast.title}}" data-media-id="{{podcast.id}}" href="{{ podcast.url }}">{{ podcast.title }}</a></li>
             </ol>
 
             <div class="episode-header-content">
