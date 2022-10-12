@@ -11,17 +11,17 @@
 {% endif %}
 
 <div class="social-share sidebar {% if include.type == 'light' %}text-gray-light{% else %}text-orange{% endif %}">
-  <a href="javascript:shareFacebook()">
+  <a data-engaged="shared" href="javascript:shareFacebook()">
     <svg class="icon" viewBox="0 0 256 256">
       <use xlink:href="/assets/svgs/icons.svg#facebook"></use>
     </svg>
   </a>
-  <a href="javascript:shareTwitter()">
+  <a data-engaged="shared" href="javascript:shareTwitter()">
     <svg class="icon" viewBox="0 0 256 256">
       <use xlink:href="/assets/svgs/icons.svg#twitter"></use>
     </svg>
   </a>
-  <a href="javascript:share();" class="clipboard"
+  <a data-engaged="shared" href="javascript:share();" class="clipboard"
     data-clipboard-text="{{ site.url }}{{ item.url }}"
     data-clipboard-success="{{ site.url }}{{ item.url }} copied to clipboard!">
     <svg class="icon" viewBox="0 0 256 256">
