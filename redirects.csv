@@ -42,9 +42,16 @@ https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /unified_images/*,${env:CRDS_UNIFIED_DOMAIN}unified_images/:splat,200
 /_next/*,${env:CRDS_UNIFIED_DOMAIN}_next/:splat,200
 /_ipx/*,${env:CRDS_UNIFIED_DOMAIN}_ipx/:splat,200
-/online/my-profile,/profile,301!
-/online/*,${env:CRDS_ONLINE_DOMAIN}/online/:splat,200!
-/signin,/online,200!,Cookie=online_registrant
+/online/,/anywhere,301!
+/online/next-level-academy,/media/next-level-academy,301!
+/online/next-level-academy/galatians,/media/collections/galatians,301!
+/online/next-level-academy/kidsemotions,/media/collections/kidsemotions,301!
+/online/next-level-academy/journeythroughholyweek,/media/collections/journeythroughholyweek,301!
+/online/next-level-academy/howtoreadthebible,/media/collections/howtoreadthebible,301!
+/online/next-level-academy/prayer101,/media/collections/prayer101,301!
+/online/next-level-academy/how-to-talk-to-your-kids,/media/collections/how-to-talk-to-your-kids,301!
+/online/next-level-academy/5discoveries,/media/collections/5discoveries,301!
+/online/*,/anywhere,301!
 /spouse-invite-landing inviteId=:inviteId response=decline,/spouse-invite-landing/?inviteId=:inviteId&response=decline,200!
 /spouse-invite-landing inviteId=:inviteId,/spouse-invite-landing/?inviteId=:inviteId,200! Role=user
 /spouse-invite-landing inviteId=:inviteId,/spouse-invite-login/?inviteId=:inviteId&redirectUrl=/spouse-invite-landing?inviteId=:inviteId,302!
