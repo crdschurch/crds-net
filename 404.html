@@ -4,7 +4,14 @@ title: Page Not Found
 permalink: /404.html
 ---
 
-<div class="container push-top">
+<div id="loading" class="container push-top" style="display: none;">
+  <div class="col-xs-12 push-bottom">
+    <h1 class="text-lowercase page-header">Please wait</h1>
+    <h2 class="tagline push-bottom">You are being redirected...</h2>
+  </div>
+</div>
+
+<div id="oops" class="container push-top" style="display: none;">
   <div class="col-xs-12">
     <h1 class="text-lowercase page-header">Oops</h1>
     <h2 class="tagline push-bottom">We're sorry. This page doesn't seem to exist.</h2>
@@ -25,3 +32,20 @@ permalink: /404.html
       alt="Page not found!">
   </div>
 </div>
+
+<script>
+  (function(){
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    let redirectUrl = params.redirectUrl;
+    if (redirectUrl) {
+      $('#loading').show();
+      setTimeout(function(){
+        window.location.replace('https://www.crossroads.net/signin/?redirectUrl=' + redirectUrl);
+      }, 2000)
+    } else {
+      $('#oops').show();
+    }
+  })()
+  </script>
