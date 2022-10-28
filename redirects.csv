@@ -72,6 +72,14 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /30daytrial/sign-up,/30-day-trial/sign-up,301!
 /30-day-trial/, 30-day-challenge/,301!
 /connect/*,/findgroups,302!
+/page/*,https://${env:CRDS_ROCK_ENDPOINT}/page/:splat,200!
+/mygiving/*,https://${env:CRDS_ROCK_ENDPOINT}/mygiving/:splat,200!
+/signuptoserve/*,https://${env:CRDS_ROCK_ENDPOINT}/signuptoserve/:splat,200!
+/mygroups/*,https://${env:CRDS_ROCK_ENDPOINT}/mygroups/:splat,200!
+/checkin/*,https://${env:CRDS_ROCK_ENDPOINT}/checkin/:splat,200!
+/tithetest/*,https://${env:CRDS_ROCK_ENDPOINT}/tithetest/:splat,200!
+/blueteam/*,https://${env:CRDS_ROCK_ENDPOINT}/blueteam/:splat,200!
+/EventDetails/*,https://${env:CRDS_ROCK_ENDPOINT}/EventDetails/:splat,200!
 /findgroups/*,https://${env:CRDS_ROCK_ENDPOINT}/findgroups/:splat,200!
 /Assets/*,https://${env:CRDS_ROCK_ENDPOINT}/Assets/:splat,200!
 /Scripts/*,https://${env:CRDS_ROCK_ENDPOINT}/Scripts/:splat,200!
