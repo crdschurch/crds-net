@@ -57,6 +57,7 @@ collections:
   articles:
     output: true
     permalink: /media/articles/:title
+    limit: 500
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
   humans_of_crossroads:
     output: true
@@ -116,6 +117,7 @@ collections:
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: true
     permalink: /media/:collection/:title
+    limit: 250
     has_many:
       - videos
       - live_messages
