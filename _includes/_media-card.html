@@ -1,12 +1,13 @@
 {% assign author = site.authors | where: "name",item.author | first %}
 {% assign item = include.item %}
+{% assign album_url = item.album_url %}
 
 {% if include.carousel == true %}
 <div class="card carousel-cell card-2x">
 {% else %}
 <div class="card">
 {% endif %}
-  <a class="relative" href="{{item | media_url }}">
+  <a class="relative" href="{% if item.content_type == 'song' %}{{ album_url }}{% else %}{{item | media_url }}{% endif %}">
     {% if item.content_type != nil %}
       {% include _media-label.html source= item %}
     {% else %}
