@@ -5,6 +5,8 @@
 {% case handle %}
   {% when 'message' %}
     {% assign image = item.image.url %}
+  {% when 'song' %}
+    {% assign image = item.bg_image.url %}
   {% when 'episode' %}
     {% if item.image != nil %}
       {% assign image = item.image.url %}

@@ -190,6 +190,9 @@ contentful:
       date: published_at
   sign_up_form:
     query: fields.pageType=OnsiteGroupSignupPage
+  song:
+    map:
+      date: published_at
   video:
     map:
       date: published_at
