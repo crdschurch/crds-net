@@ -1,4 +1,4 @@
-module GetAlbumSongs
+module GetSongAlbum
   class Generator < Jekyll::Generator
     def generate(site)
       albums = site.collections['albums'].docs
