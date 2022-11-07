@@ -34,6 +34,7 @@ https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /get-baptized,/signin,301!
 /share-your-story,${env:CRDS_UNIFIED_DOMAIN}share-your-story,200! Role=user
 /share-your-story,/signin,301!
+/prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
