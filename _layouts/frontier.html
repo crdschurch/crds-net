@@ -3,7 +3,7 @@ layout: default
 ---
 
 <!-- Pull only the promos that exist for the specific location if any -->
-{% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
+{% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "published_at" | reverse %}
 {% for serie in site.series %}
 {% if serie.slug != 'easter-a-love-story' %}
 {% assign series = serie %}
