@@ -18,6 +18,7 @@ https://embeddemo.crossroads.net/*,https://demo.crossroads.net/giving/,302!
 https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /,${env:CRDS_UNIFIED_DOMAIN}h,200! Role=user
 /,${env:CRDS_UNIFIED_DOMAIN},200!
+/signout,${env:CRDS_UNIFIED_DOMAIN}signout,200!
 /api/*,${env:CRDS_UNIFIED_DOMAIN}api/:splat,200!
 /growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path,200! Role=user
 /growth-path,/signin,301!
