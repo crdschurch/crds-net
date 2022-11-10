@@ -19,6 +19,7 @@ https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /,${env:CRDS_UNIFIED_DOMAIN}h,200! Role=user
 /,${env:CRDS_UNIFIED_DOMAIN},200!
 /signout,${env:CRDS_UNIFIED_DOMAIN}signout,200!
+/api/*,${env:CRDS_UNIFIED_DOMAIN}api/:splat,200!
 /growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path,200! Role=user
 /growth-path,/signin,301!
 /receive-teaching-weekly,${env:CRDS_UNIFIED_DOMAIN}receive-teaching-weekly,200! Role=user
@@ -35,6 +36,7 @@ https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /get-baptized,/signin,301!
 /share-your-story,${env:CRDS_UNIFIED_DOMAIN}share-your-story,200! Role=user
 /share-your-story,/signin,301!
+/prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
