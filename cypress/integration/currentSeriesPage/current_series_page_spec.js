@@ -36,5 +36,3 @@ describe('Testing the Media/Series/[Current Series] page:', function () {
     }
   });
 });
-
-// TODO: remove this before merge. Just making a change so I can create a draft PR.
