@@ -23,7 +23,7 @@ describe('Testing the Current Series on the Homepage:', function() {
       .should('have.attr', 'class', `section-header flush-ends text-white`);
     cy.get('crds-button', { includeShadowDom: true })
       .should('be.visible')
-      .should('have.attr', 'text', 'Watch the current teaching series')
+      .should('have.attr', 'text', 'View the series')
       .as('watchServiceButton')
       .should('be.visible')
       .and('have.attr', 'href', `/watch`);
