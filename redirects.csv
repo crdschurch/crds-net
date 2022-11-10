@@ -45,6 +45,14 @@ https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /blueteam/*,https://${env:CRDS_ROCK_ENDPOINT}/blueteam/:splat,200!
 /EventDetails/*,https://${env:CRDS_ROCK_ENDPOINT}/EventDetails/:splat,200!
 /findgroups/*,https://${env:CRDS_ROCK_ENDPOINT}/findgroups/:splat,200!
+/mygroups/*,https://${env:CRDS_ROCK_ENDPOINT}/mygroups/:splat,200!
+/checkinmanager/*,https://${env:CRDS_ROCK_ENDPOINT}/checkinmanager/:splat,200!
+/ChangePassword/*,https://${env:CRDS_ROCK_ENDPOINT}/ChangePassword/:splat,200!
+/FirstTimeLogin/*,https://${env:CRDS_ROCK_ENDPOINT}/FirstTimeLogin/:splat,200!
+/Auth/Logout/*,https://${env:CRDS_ROCK_ENDPOINT}/Auth/Logout/:splat,200!
+/NewAccount/*,https://${env:CRDS_ROCK_ENDPOINT}/NewAccount/:splat,200!
+/login/*,https://${env:CRDS_ROCK_ENDPOINT}/login/:splat,200!
+/ForgotUserName/*,https://${env:CRDS_ROCK_ENDPOINT}/ForgotUserName/:splat,200!
 /Assets/*,https://${env:CRDS_ROCK_ENDPOINT}/Assets/:splat,200!
 /Scripts/*,https://${env:CRDS_ROCK_ENDPOINT}/Scripts/:splat,200!
 /Themes/*,https://${env:CRDS_ROCK_ENDPOINT}/Themes/:splat,200!
