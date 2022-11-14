@@ -28,6 +28,7 @@
   <meta name="author" content="Crossroads" />
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="theme-color" content="#ffffff">
+  {% if page.contentful_id %}<meta property="cfl:entry_id" content="{{ page.contentful_id }}">{% endif %}
   <meta property="cfl:space_id" content="{{ site.ENV.CONTENTFUL_SPACE_ID }}">
   <meta property="cfl:env" content="{{ site.ENV.CONTENTFUL_ENV }}">
   <meta property="cfl:token" content="{{ site.ENV.CONTENTFUL_ACCESS_TOKEN }}">
@@ -72,8 +73,10 @@
     </script>
   {% endif %}
 
+  {% unless content contains 'crds-components.esm.js' %}
   <link rel="preload" href="{{site.components_endpoint}}/crds-components/crds-components.esm.js" as="script">
   <link rel="preload" href="{{site.components_endpoint}}/crds-components.js" as="script">
+  {% endunless %}
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
 
@@ -129,6 +132,7 @@
   <script id="MPWidgets" src="https://adminint.crossroads.net/widgets/dist/MPWidgets.js"></script>
   {% endif %}
 
+  {% unless content contains 'crds-components.esm.js' %}
   <script type="module" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components/crds-components.esm.js"></script>
   <script nomodule="" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components.js"></script>
   <script>
@@ -138,6 +142,7 @@
       window.componentsReady = true;
     }
   </script>
+  {% endunless %}
 
   {% include _gtm-head.html %}
   {% include _monetate-head.html %}

@@ -1,12 +1,12 @@
 import { oakleyLocationResponse, florenceLocationResponse } from '../../../fixtures/location_search_results';
 import { stubLocationSearchResponse } from './helpers/location_search';
-const errorsToIgnore = [/.*> Script error.*/,/.* > a.push is not a function*/, /.*> Cannot set property 'status' of undefined*/, /.*TypeError: Cannot read property 'getAttribute' of null*/, /.* > Cannot read property 'getAttribute' of null*/, /.*> Cannot read property 'getLocationDistances' of undefined*/];
+const errorsToIgnore = [/.*> Script error.*/, /.*> Cannot convert undefined or null to object*/, /.*> Cannot read property 'attributes' of undefined*/, /.* > a.push is not a function*/, /.*> Cannot set property 'status' of undefined*/, /.*TypeError: Cannot read property 'getAttribute' of null*/, /.* > Cannot read property 'getAttribute' of null*/, /.*> Cannot read property 'getLocationDistances' of undefined*/];
 
-describe.skip('Tests in range location result cards', function () {
+describe('Tests in range location result cards', function () {
   const nearestLocation = oakleyLocationResponse();
-  nearestLocation.distance = 15;
+  nearestLocation.distance = 1.2;
   const nextNearestLoc = florenceLocationResponse();
-  nextNearestLoc.distance = 20;
+  nextNearestLoc.distance = 11.5;
 
   before(function () {
     stubLocationSearchResponse([nextNearestLoc, nearestLocation]);
@@ -14,7 +14,8 @@ describe.skip('Tests in range location result cards', function () {
     cy.visit('/locations');
 
     const oakleyZip = '45209';
-    cy.get('#search-input').clear().type(oakleyZip);
+    cy.get('#search-input').clear().type(oakleyZip, '{enter}');
+    cy.get('#search-input').type('{enter}')
     cy.get('#input-search').click();
   });
 

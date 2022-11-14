@@ -27,14 +27,8 @@
           <div class="location-top-info-item text-left push-bottom location-info-divider mobile-flush-bottom">
             <div>
 
-              <span class="font-family-base-bold font-size-smaller text-uppercase">Services</span>
+              <span class="font-family-base-bold font-size-smaller text-uppercase">Service Times</span>
               <p class="flush font-size-small">{{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}</p>
-              {% if page.address %}
-              <p class="flush font-family-base font-size-small">{{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}</p>
-              <a href="{{ page.map_url }}" class="text-orange" target="_blank">Get directions</a>
-              {% else %}
-              <p class="flush font-family-base font-size-small">Currently looking for new digs to house our ever-growing {{ page.name }} community.</p>
-              {% endif %}
               <hr class="visible-xs">
             </div>
           </div>
@@ -42,10 +36,11 @@
           <div class="location-top-info-item text-left push-bottom location-info-divider mobile-flush-bottom">
             <div>
 
-              <span class="soft-bottom text-uppercase font-family-base-bold font-size-smaller">Get to know us in 5 days</span>
-              <p class="flush-top font-family-base font-size-small">Sign up for a weekly email so you can get to know who we are and what we are running after. It’s a no pressure kind of format and you can opt-out at any time.</p>
-
-              <a class="pointer text-orange" data-toggle="modal" data-target="#subscribeModalForm">Sign up</a>
+              <span class="text-uppercase font-family-base-bold font-size-smaller">Address</span>
+              {% if page.address %}
+              <p class="flush font-family-base font-size-small">{{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+              <a href="{{ page.map_url }}" class="text-orange" target="_blank">Get directions</a>
+              {% endif %}
               <hr class="visible-xs">
             </div>
           </div>
@@ -105,9 +100,7 @@
     <div class="flex-md-row-align-center row">
       <div class="col-md-7 col-sm-6 push-ends">
         <div class="embed-responsive embed-responsive-16by9 push-ends">
-          <video class="embed-responsive-item object-fit-cover" width="560" height="315" poster="//crds-media.imgix.net/7jOfEwrcHCfXpvtmWISeEB/557e45aaf7ebc8f0f23f268a7dbb25ae/crossroads-columbus-people.jpg" controls>
-            <source src="//videos.ctfassets.net/y3a9myzsdjan/2cWZ3G7xhM6OokQy1bfhcw/ed3ea2912b752e0543e0bcf02d7d5e43/Columbus_Welcome_V1.1.mp4" type="video/mp4"></source>
-          </video>
+          <iframe width="1280" height="720" src="https://www.youtube.com/embed/ZKbWiiFV8Ic" title="Welcome to Crossroads Columbus" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
       <div class="columbus-hello-col" >
@@ -122,7 +115,7 @@
               {% endif %}
               <h3 class="flush text-uppercase font-family-condensed-extra">Hello!</h3>
             </div>
-            <p class="text-gray">If you’re new to Crossroads, welcome! We’re a different kind of church that grew up, just down the road, in Cincinnati. There we built a huge community of people who believe they were born to make a difference. We would love to show you what that looks like! Join us for an online service, sign up for one of our upcoming events or reach out to me personally!</p>
+            <p class="text-gray">If you’re new to Crossroads, welcome! We’re a different kind of church that grew up, just down the road, in Cincinnati. There we built a huge community of people who believe they were born to make a difference. We would love to show you what that looks like! Join us for in-person services or reach out personally to connect.</p>
             <p class="text-gray">We look forward to seeing you! <br />Vicki</p>
             {% if page.community_pastor_email %}
               <crds-button href="mailto:{{ page.community_pastor_email }}" size="sm" color="orange" text="Email Vicki" target="_blank"></crds-button>
@@ -156,11 +149,11 @@
 
       <div class="col-sm-6">
         <div class="portrait-card-skeleton-condensed push-bottom">
-          <crds-portrait-card theme="condensed" lead="" title="Build the Church"
-          image-src="//crds-media.imgix.net/1IzQq01XGZAtULMc8Zf9cc/2319ef5827e77deb759aac6241175149/launch-team-sign-up-image.png">
-            <p class="push-half-ends">We’re a growing community that needs leaders and doers. Join our team and help build the church you want to belong to.</p>
-            <crds-button display="outline" class="push-half-right" data-target="#launchModalForm" data-toggle="modal" href="" color="white"
-              text="Join the Launch Team"></crds-button>
+          <crds-portrait-card theme="condensed" lead="" title="Connect with Us"
+          image-src="//crds-media.imgix.net/17X7Dk9DrauBm0yCXkogpG/80b36fedb56a12bc65a6b7068c2c1b92/DSC05800.jpg">
+            <p class="push-half-ends">Are you looking to learn more about Crossroads, or simply want to meet a friendly face before attending an event? You've come to the right place. Schedule a time to connect.</p>
+            <crds-button display="outline" class="push-half-right" href="https://calendly.com/crossroads-columbus-connections" color="white"
+              text="Let's Meet"></crds-button>
           </crds-portrait-card>
         </div>
       </div>

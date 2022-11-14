@@ -4,7 +4,9 @@
 {% assign handle = item.content_type %}
 {% case handle %}
   {% when 'message' %}
-    {% assign image = item.background_image.url %}
+    {% assign image = item.image.url %}
+  {% when 'song' %}
+    {% assign image = item.bg_image.url %}
   {% when 'episode' %}
     {% if item.image != nil %}
       {% assign image = item.image.url %}
@@ -18,15 +20,18 @@
 {% endcase %}
 
 {% assign url = item.url %}
+{% assign album_url = item.album_url %}
 
 {% if url %}
   {% assign url = item | media_url %}
+{% elsif album_url %}
+  {% assign url = item.album_url %}
 {% else %}
   {% assign doc = item | get_doc %}
   {% assign url = doc.url %}
 {% endif %}
 
-<a href="{{ item | media_url }}" class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
+<a href="{% if album_url %}{{ album_url }}{% else %}{{ item | media_url }}{% endif %}" class="overlay-card{% if include.size == 'xl' %} overlay-card-xl{% endif %}">
   {% if item.bitmovin_url == null %}
     <div class="bg-overlay"></div>
   {% endif %}

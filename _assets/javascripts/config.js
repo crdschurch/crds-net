@@ -52,9 +52,10 @@ module.exports = [
       'components/menu-squencher',
       'components/status-message',
       'components/global',
-      'components/youtube',
       'components/toggle-tooltip',
       'components/resi-player',
+      'components/load-more',
+      'components/analytics'
     ],
   },
   {
@@ -118,11 +119,6 @@ module.exports = [
       'vendor/animations.min',
       'vendor/ash-wednesday-experience',
     ],
-  },
-  {
-    name: 'bitmovin',
-    deps: ['vendor/moment-2.24.min', 'vendor/moment-timezone-0.5.25.min'],
-    files: ['components/bitmovin'],
   },
   {
     name: 'events',

@@ -4,7 +4,7 @@
       <img class="recently-added-image" src="{{ episode.image.url | imgix: site.imgix }}?auto=format,compress&w=175" data-optimize-img>
     </a> 
   </div>
-  <div>
+  <div class="df-screen-sm flex-column">
     {% for show in episode.collections %}
     {% assign show_slug = show.slug %}
     {% assign shows_slug_check = show_slug | slice: 0 %}
@@ -19,7 +19,7 @@
     <a href="/media/videos/{{ episode.slug }}">
       <h3 class="font-family-condensed-extra text-uppercase text-white flush-top shows-recently-added-subtitle">{{ episode.title }}</h3>
     </a>
-    <p class="font-size-smaller soft-half-top text-white shows-related-description">
+    <p class="font-size-smaller soft-half-top text-white">
         {{ episode.description }}
     </p>
   </div>  

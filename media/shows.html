@@ -7,7 +7,7 @@ snail_trail: disabled
 {% assign shows_carousel = featured_shows_carousel.entries %}
 {% assign shows_carousel_length = featured_shows_carousel.entries | size %}
 {% assign featured_shows = site.collections | where: 'featured_on_shows_landing_page', true %}
-{% assign recent_episodes = site.data['shows'] | sort: 'published_at' | reverse %}
+{% assign recent_episodes = site.data['shows'] | sort: 'published_at' | reverse | exclude: site.data['next_level_courses'] %}
 
 {% for featured_episode in recent_episodes limit: 1 %}
 <section>
@@ -82,15 +82,15 @@ snail_trail: disabled
     </div>
     <div class="row soft-bottom push-bottom carousel-shows">
       {% if shows_carousel_length > 4 %}
-      <crds-carousel display-arrows="true" arrow-color="white" display-bullets="false" slide-count="{{ shows_carousel_length }}" slide-per-view="4">
+      <crds-carousel shows="true" display-arrows="true" arrow-color="white" display-bullets="false" slide-count="{{ shows_carousel_length }}" slide-per-view="4">
       {% else %}
-      <crds-carousel display-arrows="false" display-bullets="false" slide-count="{{ shows_carousel_length }}" slide-per-view="4">
+      <crds-carousel shows="true" display-arrows="false" display-bullets="false" slide-count="{{ shows_carousel_length }}" slide-per-view="4">
       {% endif %}
-        <div slot="{% increment slot %}"></div>
+        <div slot="{% increment show_slot %}"></div>
         {% for shows in shows_carousel %}
         {% assign item = shows | get_doc %}
-        <div slot="{% increment slot %}">
-          <div style='width: 270px'>
+        <div slot="{% increment show_slot %}">
+          <div style='max-width: 270px; width: 100%;'>
             <crds-portrait-card-shows href="/media/collections{{ item.slug }}" lead='{{ item.description | truncate: 100 }}' title='{{ item.title }}' image-src='{{ item.image.url | imgix: site.imgix }}' logo='{{ item.logo.url | imgix: site.imgix }}' />
           </div>
         </div>

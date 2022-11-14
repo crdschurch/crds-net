@@ -1,7 +1,7 @@
-import { SeriesQueryBuilder, normalizeText} from 'crds-cypress-contentful';
+import { SeriesQueryBuilder, normalizeText } from 'crds-cypress-contentful';
 
 const dayjs = require('dayjs');
-const errorsToIgnore = [/.* > a.push is not a function*/,/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/,  /.* > Cannot read property 'getAttribute' of null*/, /.* > Cannot set property 'status' of undefined*/, /.* > TypeError: Cypress.moment is not a function*/];
+const errorsToIgnore = [/.* > Cannot read property 'attributes' of undefined*/, /.* > a.push is not a function*/, /.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/, /.* > Cannot read property 'getAttribute' of null*/, /.* > Cannot set property 'status' of undefined*/, /.* > TypeError: Cypress.moment is not a function*/];
 
 describe('Testing the Current Series on the Media/Series page:', function () {
   let currentSeries;
@@ -13,8 +13,8 @@ describe('Testing the Current Series on the Media/Series page:', function () {
       .then(series => {
         currentSeries = series;
       });
-    cy.ignoreMatchingErrors(errorsToIgnore);  
-    cy.visit('/series');
+    cy.ignoreMatchingErrors(errorsToIgnore);
+    cy.visit('int.crossroads.net/media/series');
   });
 
   it('The Current series title, date range, and description should match Contentful', function () {
@@ -23,9 +23,9 @@ describe('Testing the Current Series on the Media/Series page:', function () {
         cy.get('h1').as('currentSeriesTitle')
           .should('be.visible')
           .and('have.text', currentSeries.title.text);
-    
+
         const start = dayjs(currentSeries.starts_at.date).format('MM.DD.YYYY');
-        const end = dayjs(currentSeries.ends_at.date).format('MM.DD.YYYY');    
+        const end = dayjs(currentSeries.ends_at.date).format('MM.DD.YYYY');
         cy.get('date').as('currentSeriesDateRange')
           .should('be.visible')
           .and('contain', `${start} — ${end}`);
@@ -33,7 +33,7 @@ describe('Testing the Current Series on the Media/Series page:', function () {
 
         cy.get('div.col-xs-12.col-md-5 > a').as('viewSeriesButton')
           .should('be.visible')
-          .and('contain','View the series');
+          .and('contain', 'View the series');
       });
   });
 

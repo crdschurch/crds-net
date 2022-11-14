@@ -57,6 +57,7 @@ collections:
   articles:
     output: true
     permalink: /media/articles/:title
+    limit: 500
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
   humans_of_crossroads:
     output: true
@@ -116,6 +117,7 @@ collections:
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: true
     permalink: /media/:collection/:title
+    limit: 250
     has_many:
       - videos
       - live_messages
@@ -190,6 +192,9 @@ contentful:
       date: published_at
   sign_up_form:
     query: fields.pageType=OnsiteGroupSignupPage
+  song:
+    map:
+      date: published_at
   video:
     map:
       date: published_at
@@ -304,6 +309,7 @@ imgix_params:
   placeholder: "auto=format,compress&w=10"
   placeholder_face_detection: "fit=facearea&facepad=10&auto=format,compress&w=10"
   placeholder_card: "auto=format,compress&w=12&h=9&fit=crop"
+  placeholder_card_face: "crop=faces&facepad=10&auto=format,compress&w=10&h=10&fit=crop"
   placeholder_sixteen_nine: "auto=format,compress&w=16&h=9&fit=crop"
   placeholder_square: "auto=format,compress&w=10&h=10&fit=crop"
   placeholder_square_face_detection: "fit=facearea&facepad=10&auto=format,compress&w=10&h=10&fit=crop"

@@ -1,6 +1,6 @@
 <div>
   <div class="push-half-bottom">
-    <h3 class="font-family-serif font-size-small text-uppercase text-white flush">Our Best Content</h3>
+    <h3 class="font-family-serif font-size-small text-uppercase text-white flush">Most Popular</h3>
   </div>
   <div>
     <div>
@@ -10,7 +10,7 @@
       {% assign item = content | get_doc %}
       {% assign image = item.image.url %}
       {% if item.content_type == 'episode' %}
-      {% assign image =item.podcast.image.url %}
+      {% assign image = item.podcast_img %}
       {% endif %}
       {% if item.duration %}
       {% assign format = 'short' %}

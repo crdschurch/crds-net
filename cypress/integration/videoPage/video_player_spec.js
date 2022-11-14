@@ -1,5 +1,5 @@
 import { ContentfulQueryBuilder } from 'crds-cypress-contentful';
-const errorsToIgnore = [/.* > a.push is not a function*/,/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/,  /.* > Cannot read property 'getAttribute' of null*/,  /.* > Cannot set property 'status' of undefined*/];
+const errorsToIgnore = [/.* > Cannot read property 'attributes' of undefined*/, /.* > a.push is not a function*/, /.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/, /.* > Cannot read property 'getAttribute' of null*/, /.* > Cannot set property 'status' of undefined*/];
 
 describe('Tests Video page with Bitmovin video', () => {
   let bitmovinVideo;
@@ -17,7 +17,7 @@ describe('Tests Video page with Bitmovin video', () => {
   it('Checks video uses Bitmovin player', () => {
     cy.ignoreMatchingErrors(errorsToIgnore);
     cy.visit(`media/videos/${bitmovinVideo.slug.text}`);
-    
+
     cy.get('div[data-video-player]').as('videoPlayer')
       .should('have.prop', 'class')
       .and('contain', 'bitmovinplayer');
@@ -32,7 +32,7 @@ describe('Tests Video page with Bitmovin video', () => {
   });
 });
 
-describe.skip('Tests Video page with Youtube video', () => {
+describe('Tests Video page with Youtube video', () => {
   it('Checks video uses Youtube player', () => {
     const qb = new ContentfulQueryBuilder('video');
     qb.select = 'fields.slug';
@@ -43,8 +43,9 @@ describe.skip('Tests Video page with Youtube video', () => {
         cy.ignoreMatchingErrors(errorsToIgnore);
         cy.visit(`media/videos/${youtubeVideo.slug.text}`);
 
-        cy.get('div[data-video-player]').as('videoPlayer')
-          .should('have.prop', 'id', 'js-media-video');
+        cy.get('crds-youtube-player').as('videoPlayer')
+          .should('have.prop', 'class')
+          .and('contain', 'embed-responsive');
       });
   });
 });

@@ -13,9 +13,48 @@ https://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,3
 http://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 https://forms-demo.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
-/,/h,200! Role=user
+https://embedint.crossroads.net/*,https://int.crossroads.net/giving/,302!
+https://embeddemo.crossroads.net/*,https://demo.crossroads.net/giving/,302!
+https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
+/,${env:CRDS_UNIFIED_DOMAIN}h,200! Role=user
+/,${env:CRDS_UNIFIED_DOMAIN},200!
+/signout,${env:CRDS_UNIFIED_DOMAIN}signout,200!
+/api/*,${env:CRDS_UNIFIED_DOMAIN}api/:splat,200!
+/growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path,200! Role=user
+/growth-path,/signin,301!
+/receive-teaching-weekly,${env:CRDS_UNIFIED_DOMAIN}receive-teaching-weekly,200! Role=user
+/receive-teaching-weekly,/signin,301!
+/connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}connect-with-god-daily,200! Role=user
+/connect-with-god-daily,/signin,301!
+/serve-others,${env:CRDS_UNIFIED_DOMAIN}serve-others,200! Role=user
+/serve-others,/signin,301!
+/live-generously,${env:CRDS_UNIFIED_DOMAIN}live-generously,200! Role=user
+/live-generously,/signin,301!
+/join-community,${env:CRDS_UNIFIED_DOMAIN}join-community,200! Role=user
+/join-community,/signin,301!
+/get-baptized,${env:CRDS_UNIFIED_DOMAIN}get-baptized,200! Role=user
+/get-baptized,/signin,301!
+/share-your-story,${env:CRDS_UNIFIED_DOMAIN}share-your-story,200! Role=user
+/share-your-story,/signin,301!
+/prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
+*** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
+/_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
+/unified_assets/*,${env:CRDS_UNIFIED_DOMAIN}unified_assets/:splat,200
+/unified_images/*,${env:CRDS_UNIFIED_DOMAIN}unified_images/:splat,200
+/_next/*,${env:CRDS_UNIFIED_DOMAIN}_next/:splat,200
+/_ipx/*,${env:CRDS_UNIFIED_DOMAIN}_ipx/:splat,200
+/online/,/anywhere,301!
+/online/next-level-academy,/media/next-level-academy,301!
+/online/next-level-academy/galatians,/media/collections/galatians,301!
+/online/next-level-academy/kidsemotions,/media/collections/kidsemotions,301!
+/online/next-level-academy/journeythroughholyweek,/media/collections/journeythroughholyweek,301!
+/online/next-level-academy/howtoreadthebible,/media/collections/howtoreadthebible,301!
+/online/next-level-academy/prayer101,/media/collections/prayer101,301!
+/online/next-level-academy/how-to-talk-to-your-kids,/media/collections/how-to-talk-to-your-kids,301!
+/online/next-level-academy/5discoveries,/media/collections/5discoveries,301!
+/online/*,/anywhere,301!
 /spouse-invite-landing inviteId=:inviteId response=decline,/spouse-invite-landing/?inviteId=:inviteId&response=decline,200!
 /spouse-invite-landing inviteId=:inviteId,/spouse-invite-landing/?inviteId=:inviteId,200! Role=user
 /spouse-invite-landing inviteId=:inviteId,/spouse-invite-login/?inviteId=:inviteId&redirectUrl=/spouse-invite-landing?inviteId=:inviteId,302!
@@ -37,6 +76,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /30-day-trial/, 30-day-challenge/,301!
 /connect/*,/findgroups,302!
 /findgroups/*,https://${env:CRDS_FIND_GROUPS}/:splat,200!
+/test/journey/groups/*,https://${env:CRDS_GROUPS_JOURNEY_ENDPOINT}/:splat,200
 /groups/search/small-group/*,/groups/details/:splat,301!
 /groups/*,https://${env:CRDS_GROUPS_ENDPOINT}/:splat,200
 /group-leader/*,https://${env:CRDS_GROUP_LEADER_DOMAIN}/:splat,200!
@@ -47,7 +87,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /mycamps*,https://${env:CRDS_ANGULAR_ENDPOINT}/mycamps:splat,200!
 /camps/:campId/*,https://${env:CRDS_ANGULAR_ENDPOINT}/camps/:campId/,200!
 /childcare/*,https://${env:CRDS_CHILDCARE_ENDPOINT}/:splat,200!
-/corkboard*,https://${env:CRDS_CORKBOARD_ENDPOINT}/:splat,200!
 /invoices/*,https://${env:CRDS_INVOICES}/:splat,200!
 /undivided/*,https://undivided.com,301!
 /mptools/*,https://${env:CRDS_ANGULAR_ENDPOINT}/mptools/:splat,200!
@@ -110,7 +149,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /event-checkin/*,https://${env:CRDS_EVENT_CHECKIN_ENDPOINT}/:splat,200!
 /media/music/,${env:CRDS_MUSIC_ENDPOINT},301!
 /music/,${env:CRDS_MUSIC_ENDPOINT},301!
-/anywhere,/live,301!
 /media/songs/god-of-the-breakthrough,${env:CRDS_MUSIC_ENDPOINT}/music/god-of-the-breakthrough/god-of-the-breakthrough,301!
 /media/songs/oh-the-power,${env:CRDS_MUSIC_ENDPOINT}/music/oh-the-power/oh-the-power,301!
 /media/songs/little-drummer-boy,${env:CRDS_MUSIC_ENDPOINT}/music/christmas/little-drummer-boy,301!
@@ -149,9 +187,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /adventure,/series/the-adventurous-life,301!
 /weeklyworship,/reopen,301!
 /mancamp/,https://www.mancamp.us/?utm_source=crsrds-mancamp,301
-/getstarted/thank-you,https://online.crossroads.net/,301!
-/live,https://online.crossroads.net/,301!
-/signin,${env:CRDS_ONLINE_DOMAIN}/sign-in,301! Cookie=from_online
+/getstarted/thank-you,/online,301!
 /the-chaser,/weekendfollowup,302!
 /weekend-prompts,/weekendfollowup,302!
 /atriumevents/ site=:siteId,https://api.crossroads.net/atriumevents/eventlisting/:siteId,302!

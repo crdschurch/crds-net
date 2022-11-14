@@ -47,11 +47,7 @@ paginate:
       {{ oakley_ad.content_block | markdownify }}
       {{ uptown_ad.content_block | markdownify }}
 
-      <div class="col-md-8 col-lg-8 text-left">
-        <!-- Greeting -->
-        <div class="greeting-skeleton">
-          <crds-greeting default-name="friend"></crds-greeting>
-        </div>
+      <div class="col-md-8 col-lg-8 col-sm-10 text-left">
       </div>
       <div class="col-md-4 col-lg-4 text-left">
         <hr class="visible-xs visible-sm flush-top flush-bottom border-light-gray" />
@@ -66,7 +62,6 @@ paginate:
         <div class="col-xs-6 col-md-6 hard-left push-bottom push-top">
           <ul class="list-unstyled font-size-small font-family-base">
             <li><a class="text-orange" href="{{ site.url }}/serve-signup">Sign Up To Serve</a></li>
-            <li><a class="text-orange" href="{{ site.url }}/mycamps">My Student Camps</a></li>
             <li><a class="text-orange" href="{{ site.url }}/event-checkin">Event Check In</a></li>
             <li><a class="text-orange" href="{{ site.url }}/childcare">Event Childcare</a></li>
           </ul>
@@ -152,25 +147,6 @@ paginate:
     <div class="col-md-12">
       <div class="site-happenings-skeleton">
         <crds-happenings-horizontal></crds-happenings-horizontal>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <crds-tithe-challenge></crds-tithe-challenge>
-    </div>
-  </div>
-</section>
-
-<!-- Recommended Content: Life Stage -->
-<section class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="recommended-content-skeleton">
-        <crds-recommended-content></crds-recommended-content>
       </div>
     </div>
   </div>

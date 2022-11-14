@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "gulp",
+    "build": "gulp -L",
     "integration_test": "npx cypress run --config-file ./cypress/config/int_crossroads.json"
   },
   "repository": {
@@ -30,7 +30,7 @@
     "crds-cypress-config": "^1.0.1",
     "crds-cypress-contentful": "^2.0.2",
     "crds-cypress-login": "^2.0.0",
-    "crds-styles": "^4.0.11",
+    "crds-styles": "^4.1.19",
     "cypress": "^6.5.0",
     "cypress-plugin-retries": "^1.3.0",
     "del": "^3.0.0",
