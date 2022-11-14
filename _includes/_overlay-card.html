@@ -7,6 +7,12 @@
     {% assign image = item.image.url %}
   {% when 'song' %}
     {% assign image = item.bg_image.url %}
+  {% when 'collection' %}
+    {% if item.image == nil %}
+      {% assign image = item.logo.url %}
+    {% else %}
+      {% assign image = item.image.url %}
+    {% endif %}
   {% when 'episode' %}
     {% if item.image != nil %}
       {% assign image = item.image.url %}

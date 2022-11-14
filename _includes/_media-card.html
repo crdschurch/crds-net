@@ -19,11 +19,30 @@
     <div class="beige-overlay"></div>
     {% endif %} 
 
-    {% assign image = item.image.url %}
-
-    {% if item.content_type == 'episode' %}
-      {% assign image =item.podcast.image.url %}
-    {% endif %}
+    {% assign handle = item.content_type %}
+    {% case handle %}
+      {% when 'message' %}
+        {% assign image = item.image.url %}
+      {% when 'song' %}
+        {% assign image = item.bg_image.url %}
+      {% when 'collection' %}
+        {% if item.image == nil %}
+          {% assign image = item.logo.url %}
+        {% else %}
+          {% assign image = item.image.url %}
+        {% endif %}
+      {% when 'episode' %}
+        {% if item.image != nil %}
+          {% assign image = item.image.url %}
+        {% elsif item.podcast.featured_image != nil %}
+          {% assign image = item.podcast.featured_image.url %}
+        {% else %}
+          {% assign image = item.podcast.bg_image.url %}
+        {% endif %}
+      {% else %}
+        {% assign image = item.image.url %}
+    {% endcase %}
+    
     {% if image == blank %}
       {% assign image = item.bg_image.url %}
     {% endif %}
