@@ -17,6 +17,8 @@ https://embedint.crossroads.net/*,https://int.crossroads.net/giving/,302!
 https://embeddemo.crossroads.net/*,https://demo.crossroads.net/giving/,302!
 https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /,${env:CRDS_UNIFIED_DOMAIN},200!
+/signout,${env:CRDS_UNIFIED_DOMAIN}signout,200!
+/api/*,${env:CRDS_UNIFIED_DOMAIN}api/:splat,200!
 /growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path,200!
 /receive-teaching-weekly,${env:CRDS_UNIFIED_DOMAIN}receive-teaching-weekly,200!
 /connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}connect-with-god-daily,200!
@@ -25,6 +27,7 @@ https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /join-community,${env:CRDS_UNIFIED_DOMAIN}join-community,200!
 /get-baptized,${env:CRDS_UNIFIED_DOMAIN}get-baptized,200!
 /share-your-story,${env:CRDS_UNIFIED_DOMAIN}share-your-story,200!
+/prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
