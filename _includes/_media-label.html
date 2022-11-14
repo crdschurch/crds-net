@@ -12,7 +12,7 @@
   <svg class="icon" viewBox="0 0 256 256">
     {% if content_type == "article" %}
     <use xlink:href="/assets/svgs/icons.svg#media-article"></use>
-    {% elsif content_type == "video" or content_type == "message" %}
+    {% elsif content_type == "video" or content_type == "message" or content_type == "collection" or content_type == "series" %}
     <use xlink:href="/assets/svgs/icons.svg#media-video"></use>
     {% elsif content_type == "album" or content_type == "song" %}
     <use xlink:href="/assets/svgs/icons.svg#media-music"></use>
