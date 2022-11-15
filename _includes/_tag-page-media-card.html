@@ -16,39 +16,73 @@
     {% endif %}
 
     {% if item.content_type == "article" or "video" %}
-    <div class="beige-overlay"></div>
+      <div class="beige-overlay"></div>
     {% endif %} 
 
+    {% assign handle = item.content_type %}
     {% case handle %}
-    {% when 'message' %}
-      {% assign image = item.image.url %}
-    {% when 'song' %}
-      {% assign image = item.bg_image.url %}
-    {% when 'collection' %}
-      {% if item.image == nil %}
-        {% assign image = item.logo.url %}
-      {% else %}
-        {% assign image = item.image.url %}
-      {% endif %}
-    {% when 'episode' %}
-      {% if item.image != nil %}
-        {% assign image = item.image.url %}
-      {% elsif item.podcast.featured_image != nil %}
-        {% assign image = item.podcast.featured_image.url %}
-      {% else %}
-        {% assign image = item.podcast.bg_image.url %}
-      {% endif %}
-    {% else %}
-      {% if item.image != nil %}
-        {% assign image = item.image.url %}
-      {% else %}
-        {% assign image = site.default_image %}
-      {% endif %}
+      {% when 'album' %}
+        {% if item.image != nil %}
+          {% assign image = item.image.url %}
+        {% elsif item.image == nil and item.bg_image != nil %}
+          {% assign image = item.bg_image.url %}
+        {% else %}
+          {% assign image = site.default_image %}
+        {% endif %}
+      {% when 'article' %}
+        {% if item.image != nil %}
+          {% assign image = item.image.url %}
+        {% else %}
+          {% assign image = site.default_image %}
+        {% endif %}
+      {% when 'collection' %}
+        {% if item.image != nil %}
+          {% assign image = item.image.url %}
+        {% elsif item.logo != nil and item.image == nil %}
+          {% assign image = item.logo.url %}
+        {% else %}
+          {% assign image = site.default_image %}
+        {% endif %}
+      {% when 'episode' %}
+        {% if item.image != nil %}
+          {% assign image = item.image.url %}
+        {% elsif item.podcast.featured_image != nil %}
+          {% assign image = item.podcast.featured_image.url %}
+        {% else %}
+          {% assign image = item.podcast.bg_image.url %}
+        {% endif %}
+      {% when 'message' %}
+        {% if item.image != nil %}
+          {% assign image = item.image.url %}
+        {% else %}
+          {% assign image = site.default_image %}
+        {% endif %}
+      {% when 'podcast' %}
+        {% if item.image != nil %}
+          {% assign image = item.image.url %}
+        {% else %}
+          {% assign image = site.default_image %}
+        {% endif %}
+      {% when 'series' %}
+        {% if item.image != nil %}
+          {% assign image = item.image.url %}
+        {% else %}
+          {% assign image = site.default_image %}
+        {% endif %}
+      {% when 'song' %}
+        {% if item.bg_image != nil %}
+          {% assign image = item.bg_image.url %}
+        {% else %}
+          {% assign image = site.default_image %}
+        {% endif %}
+      {% when 'video' %}
+        {% if item.image != nil %}
+          {% assign image = item.image.url %}
+        {% else %}
+          {% assign image = site.default_image %}
+        {% endif %}
     {% endcase %}
 
-    {% if image == blank %}
-      {% assign image = item.bg_image.url %}
-    {% endif %}
     {% assign recommended_collection=site.messages %}
     {% include _video-player-card.html %}
 

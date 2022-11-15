@@ -1,20 +1,27 @@
 {% comment %}
 // This assures the messages content type uses the background image instead of the thumbnail image like all other content types.
 {% endcomment %}
+
 {% assign handle = item.content_type %}
 {% case handle %}
-  {% when 'message' %}
-    {% assign image = item.image.url %}
-  {% when 'song' %}
-    {% if item.bg_image != nil %}
+  {% when 'album' %}
+    {% if item.image != nil %}
+      {% assign image = item.image.url %}
+    {% elsif item.image == nil and item.bg_image != nil %}
       {% assign image = item.bg_image.url %}
+    {% else %}
+      {% assign image = site.default_image %}
+    {% endif %}
+  {% when 'article' %}
+    {% if item.image != nil %}
+      {% assign image = item.image.url %}
     {% else %}
       {% assign image = site.default_image %}
     {% endif %}
   {% when 'collection' %}
     {% if item.image != nil %}
       {% assign image = item.image.url %}
-    {% elsif item.logo != nil %}
+    {% elsif item.logo != nil and item.image == nil %}
       {% assign image = item.logo.url %}
     {% else %}
       {% assign image = site.default_image %}
@@ -27,7 +34,31 @@
     {% else %}
       {% assign image = item.podcast.bg_image.url %}
     {% endif %}
-  {% else %}
+  {% when 'message' %}
+    {% if item.image != nil %}
+      {% assign image = item.image.url %}
+    {% else %}
+      {% assign image = site.default_image %}
+    {% endif %}
+  {% when 'podcast' %}
+    {% if item.image != nil %}
+      {% assign image = item.image.url %}
+    {% else %}
+      {% assign image = site.default_image %}
+    {% endif %}
+  {% when 'series' %}
+    {% if item.image != nil %}
+      {% assign image = item.image.url %}
+    {% else %}
+      {% assign image = site.default_image %}
+    {% endif %}
+  {% when 'song' %}
+    {% if item.bg_image != nil %}
+      {% assign image = item.bg_image.url %}
+    {% else %}
+      {% assign image = site.default_image %}
+    {% endif %}
+  {% when 'video' %}
     {% if item.image != nil %}
       {% assign image = item.image.url %}
     {% else %}
