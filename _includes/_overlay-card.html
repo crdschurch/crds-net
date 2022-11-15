@@ -22,7 +22,11 @@
       {% assign image = item.podcast.bg_image.url %}
     {% endif %}
   {% else %}
-    {% assign image = item.image.url %}
+    {% if item.image != nil %}
+      {% assign image = item.image.url %}
+    {% else %}
+      {% assign image = site.default_image %}
+    {% endif %}
 {% endcase %}
 
 {% assign url = item.url %}
