@@ -1,10 +1,27 @@
 {% comment %}
 // This assures the messages content type uses the background image instead of the thumbnail image like all other content types.
 {% endcomment %}
+
 {% assign handle = item.content_type %}
 {% case handle %}
   {% when 'message' %}
-    {% assign image = item.background_image.url %}
+    {% assign image = item.image.url %}
+  {% when 'song' %}
+    {% assign image = item.bg_image.url %}
+  {% when 'collection' %}
+    {% if item.image == nil %}
+      {% assign image = item.logo.url %}
+    {% else %}
+      {% assign image = item.image.url %}
+    {% endif %}
+  {% when 'album' %}
+    {% assign image = item.image.url %}
+  {% when 'article' %}
+    {% assign image = item.image.url %}
+  {% when 'podcast' %}
+    {% assign image = item.image.url %}
+  {% when 'video' %}
+    {% assign image = item.image.url %}
   {% when 'episode' %}
     {% if item.image != nil %}
       {% assign image = item.image.url %}
@@ -13,9 +30,7 @@
     {% else %}
       {% assign image = item.podcast.bg_image.url %}
     {% endif %}
-  {% else %}
-    {% assign image = item.image.url %}
-{% endcase %}
+  {% endcase %}
 
 {% assign url = item.url %}
 

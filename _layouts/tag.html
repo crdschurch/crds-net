@@ -31,7 +31,7 @@ paginate:
   <div class="row">
     {% for item in page.tagged_media.offset %}
       <div class="col-md-6">
-        {% include _tag-page-overlay-card.html autoplay=true %}
+        {% include _overlay-card.html autoplay=true %}
       </div>
     {% endfor %}
   </div>
@@ -44,7 +44,7 @@ paginate:
     <div class="cards-4x" data-page="tagged_media">
       <div class="row" data-page-number="{{ page.tagged_media.page }}">
         {% for item in page.tagged_media.docs %}
-          {% include _tag-page-media-card.html autoplay=true %}
+          {% include _media-card.html autoplay=true %}
         {% endfor %}
       </div>
       <div class="loading hide">

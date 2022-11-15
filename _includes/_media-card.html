@@ -1,12 +1,13 @@
 {% assign author = site.authors | where: "name",item.author | first %}
 {% assign item = include.item %}
+{% assign album_url = item.album_url %}
 
 {% if include.carousel == true %}
 <div class="card carousel-cell card-2x">
 {% else %}
 <div class="card">
 {% endif %}
-  <a class="relative" href="{{item | media_url }}">
+  <a class="relative" href="{% if item.content_type == 'song' %}{{ album_url }}{% else %}{{item | media_url }}{% endif %}">
     {% if item.content_type != nil %}
       {% include _media-label.html source= item %}
     {% else %}
@@ -18,16 +19,42 @@
     <div class="beige-overlay"></div>
     {% endif %} 
 
-    {% assign image = item.image.url %}
+    {% assign handle = item.content_type %}
+    {% case handle %}
+      {% when 'message' %}
+        {% assign image = item.image.url %}
+      {% when 'song' %}
+        {% assign image = item.bg_image.url %}
+      {% when 'collection' %}
+        {% if item.image == nil %}
+          {% assign image = item.logo.url %}
+        {% else %}
+          {% assign image = item.image.url %}
+        {% endif %}
+      {% when 'album' %}
+        {% assign image = item.image.url %}
+      {% when 'article' %}
+        {% assign image = item.image.url %}
+      {% when 'podcast' %}
+        {% assign image = item.image.url %}
+      {% when 'video' %}
+        {% assign image = item.image.url %}
+      {% when 'episode' %}
+        {% if item.image != nil %}
+          {% assign image = item.image.url %}
+        {% elsif item.podcast.featured_image != nil %}
+          {% assign image = item.podcast.featured_image.url %}
+        {% else %}
+          {% assign image = item.podcast.bg_image.url %}
+        {% endif %}
+      {% endcase %}
 
-    {% if item.content_type == 'episode' %}
-      {% assign image =item.podcast.image.url %}
-    {% endif %}
     {% if image == blank %}
       {% assign image = item.bg_image.url %}
     {% endif %}
     {% assign recommended_collection=site.messages %}
     {% include _video-player-card.html %}
+
     {% if image %}
       <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
     {% else %}
