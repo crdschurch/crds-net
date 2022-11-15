@@ -33,6 +33,9 @@
     {% if image == blank %}
       {% assign image = item.bg_image.url %}
     {% endif %}
+    {% if image == nil %}
+      {% assign image = site.default_image %}
+    {% endif %}
     {% assign recommended_collection=site.messages %}
     {% include _video-player-card.html %}
     {% if image %}

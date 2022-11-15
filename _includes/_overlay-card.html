@@ -32,6 +32,10 @@
     {% endif %}
   {% endcase %}
 
+  {% if image == nil %}
+    {% assign image = site.default_image %}
+  {% endif %}
+
 {% assign url = item.url %}
 
 {% if url %}
