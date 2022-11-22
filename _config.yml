@@ -54,6 +54,8 @@ collections_dir: collections
 collections:
   albums:
     output: false
+  alerts:
+    output: true
   articles:
     output: true
     permalink: /media/articles/:title
