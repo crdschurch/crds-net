@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "gulp",
+    "build": "gulp -L",
     "integration_test": "npx cypress run --config-file ./cypress/config/int_crossroads.json"
   },
   "repository": {
