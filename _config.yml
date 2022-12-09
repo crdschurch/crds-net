@@ -1,4 +1,4 @@
-title: Crossroads Church
+title: Crossroads
 email: info@crossroads.net
 description: No matter what your beliefs, you are welcome here.
 baseurl: "/" # the subpath of your site, e.g. /blog
@@ -54,8 +54,6 @@ collections_dir: collections
 collections:
   albums:
     output: false
-  alerts:
-    output: true
   articles:
     output: true
     permalink: /media/articles/:title
