@@ -9,10 +9,10 @@ GIT
 
 GIT
   remote: https://github.com/ample/paging-mister-hyde.git
-  revision: 2b48123793af680e2970a01bff489ab17e6edfd5
-  tag: 1.0.0
+  revision: 702e18317b8a0913fe4f763983d01e9922d9af70
+  tag: 1.1.0
   specs:
-    paging-mister-hyde (1.0.0)
+    paging-mister-hyde (1.1.0)
       activesupport
       jekyll
 
