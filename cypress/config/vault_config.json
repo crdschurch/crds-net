@@ -4,7 +4,9 @@
       "secret": "Crossroads.Automation",
       "keys": [
         "CONTENTFUL_SPACE_ID", 
-        "CONTENTFUL_ACCESS_TOKEN"
+        "CONTENTFUL_ACCESS_TOKEN", 
+        "BITMOVIN_BUCKET", 
+        "BITMOVIN_DIRECTORY"
       ]
     }
    ]
