@@ -47,8 +47,6 @@
     {% else %}
       <link rel="canonical" href="{{ page | get_canonical_host }}">
     {% endif %}
-  {% else %}
-    <link rel="canonical" href="{{ page.url | absolute_url | chomp: 'index.html' }}">
   {% endif %}
 
   {% if page.content_type == "article" %}

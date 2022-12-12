@@ -1,7 +1,7 @@
 import { SeriesQueryBuilder } from 'crds-cypress-contentful';
 const errorsToIgnore = [/.* > a.push is not a function*/,/.*Script error.*/, /.*uncaught exception*/, /.*Cannot read property 'replace' of undefined*/, /.*> Cannot read property 'addEventListener' of null*/,  /.* > Cannot read property 'getAttribute' of null*/, /.* > Cannot set property 'status' of undefined*/];
 
-describe('Testing the Media/Series/[Current Series] page:', function () {
+describe('Tesing the Media/Series/[Current Series] page:', function () {
   let currentSeries;
   before(function () {
     const qb = new SeriesQueryBuilder();
