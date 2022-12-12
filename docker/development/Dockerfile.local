@@ -1,4 +1,4 @@
-FROM node:10.15.3
+FROM node:12.22.12
 
 # Install Ruby
 # To change versions you should just need to update the 3 ENV variables below
@@ -15,10 +15,10 @@ RUN set -eux; \
 	savedAptMark="$(apt-mark showmanual)"; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
-		bison \
-		dpkg-dev \
-		libgdbm-dev \
-		ruby \
+	bison \
+	dpkg-dev \
+	libgdbm-dev \
+	ruby \
 	; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
@@ -31,21 +31,21 @@ RUN set -eux; \
 	\
 	cd /usr/src/ruby; \
 	\
-# hack in "ENABLE_PATH_CHECK" disabling to suppress:
-#   warning: Insecure world writable dir
+	# hack in "ENABLE_PATH_CHECK" disabling to suppress:
+	#   warning: Insecure world writable dir
 	{ \
-		echo '#define ENABLE_PATH_CHECK 0'; \
-		echo; \
-		cat file.c; \
+	echo '#define ENABLE_PATH_CHECK 0'; \
+	echo; \
+	cat file.c; \
 	} > file.c.new; \
 	mv file.c.new file.c; \
 	\
 	autoconf; \
 	gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"; \
 	./configure \
-		--build="$gnuArch" \
-		--disable-install-doc \
-		--enable-shared \
+	--build="$gnuArch" \
+	--disable-install-doc \
+	--enable-shared \
 	; \
 	make -j "$(nproc)"; \
 	make install; \
@@ -53,21 +53,21 @@ RUN set -eux; \
 	apt-mark auto '.*' > /dev/null; \
 	apt-mark manual $savedAptMark > /dev/null; \
 	find /usr/local -type f -executable -not \( -name '*tkinter*' \) -exec ldd '{}' ';' \
-		| awk '/=>/ { print $(NF-1) }' \
-		| sort -u \
-		| xargs -r dpkg-query --search \
-		| cut -d: -f1 \
-		| sort -u \
-		| xargs -r apt-mark manual \
+	| awk '/=>/ { print $(NF-1) }' \
+	| sort -u \
+	| xargs -r dpkg-query --search \
+	| cut -d: -f1 \
+	| sort -u \
+	| xargs -r apt-mark manual \
 	; \
 	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
 	\
 	cd /; \
 	rm -r /usr/src/ruby; \
-# verify we have no "ruby" packages installed
+	# verify we have no "ruby" packages installed
 	! dpkg -l | grep -i ruby; \
 	[ "$(command -v ruby)" = '/usr/local/bin/ruby' ]; \
-# rough smoke test
+	# rough smoke test
 	ruby --version; \
 	gem --version; \
 	bundle --version
@@ -76,7 +76,7 @@ RUN set -eux; \
 
 WORKDIR /crds-net
 
-RUN gem install bundler jekyll --no-doc 
+RUN gem install bundler
 
 # Copy just the package files for js and ruby
 COPY package*.json ./
@@ -91,14 +91,6 @@ ENV CYPRESS_INSTALL_BINARY 0
 RUN npm ci 
 RUN bundle install
 
-# This script will be executed when container is started. Define an "entrypoint" in the docker-compose file to
-#  override this default and ignore the CMD below.
-ENTRYPOINT [ "./bin/local-build-command.sh" ]
+EXPOSE 4000
 
-# This value is appended to the default entrypoint command as its first argument.
-#  There's a quirk with Windows 10 where Jekyll sites served on docker are not accessible on localhost
-#  unless the site is served on host 0.0.0.0. To confuse things more, still use "localhost:4000" to 
-#  access the site once it's served.
-# I do not know if this workaround is necessary for Mac/Linux machines. If the site isn't accessible from "localhost:4000"
-#  on those OSs with this default, add "command: [""]" to the docker-compose file to override this command.
-# CMD ["0.0.0.0"]
+CMD [ "bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0" ]

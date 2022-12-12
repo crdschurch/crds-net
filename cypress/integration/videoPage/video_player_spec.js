@@ -36,7 +36,7 @@ describe('Tests Video page with Youtube video', () => {
   it('Checks video uses Youtube player', () => {
     const qb = new ContentfulQueryBuilder('video');
     qb.select = 'fields.slug';
-    qb.searchFor = 'fields.bitmovin_url[exists]=false,fields.canonincal_host=www.crossroads.net';
+    qb.searchFor = 'fields.bitmovin_url[exists]=false';
     cy.task('getCNFLResource', qb.queryParams)
       .then((youtubeVideo) => {
         cy.log(qb);
