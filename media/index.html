@@ -51,12 +51,13 @@ paginate:
 
     <!-- Media Sometimes Above the fold -->
     <div class="row push-ends">
-      {% assign media_top_feature = site.featured_media | where: 'page_path', 'media-top-featured' | first %}
-      {% assign featured_item = media_top_feature.entries %}
+      {% assign featured_articles = page.recent_media.docs | where: 'content_type', 'article' %}
+
       <div class="col-sm-8 col-md-9">
-        {% for content in featured_item %}
-        {% assign item = content | get_doc %}
-        {% include _overlay-card.html autoplay=true %}
+        {% assign latest_article = featured_articles | slice: 0, 1 %}
+        {% for item in latest_article %}
+          {% assign image = item.image.url %}
+          {% include _overlay-card.html autoplay=true %}
         {% endfor %}
       </div>
 
@@ -65,25 +66,14 @@ paginate:
           <h3 class="font-family-serif font-size-small text-uppercase text-gray-dark flush soft-half-ends">Popular</h3>
         </div>
         <div class="border-bottom-dashed-group">
-          {% assign popular_this_week =  site.featured_media | where: 'page_path', 'media-homepage-popular' | first %}
-          {% assign featured_popular_items = popular_this_week.entries %}
+          {% assign popular_articles = featured_articles | slice: 1, 4 %}
 
-          {% for content in featured_popular_items limit: 3 %}
-            {% assign item = content | get_doc %}
+          {% for item in popular_articles %}
             {% assign image = item.image.url %}
-
-            {% if item.content_type == 'episode' %}
-              {% assign image = item.podcast_img %}
-            {% endif %}
+            {% assign content_type = 'article' %}
 
             {% if item.duration %}
               {% assign format = 'short' %}
-            {% endif %}
-
-            {% if item.content_type == 'message' %}
-              {% assign content_type = 'video' %}
-            {% else %}
-              {% assign content_type = item.content_type %}
             {% endif %}
 
             <div class="push-bottom">
@@ -91,8 +81,8 @@ paginate:
                 url="{{ item | media_url }}"
                 image-src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}?auto=format"
                 type="{{ content_type }}"
-                title="{{ item.title }}"
                 duration="{{ item.duration | duration: format }}"
+                title="{{ item.title }}"
                 data-optimize-img
               ></crds-media-object>
             </div>
