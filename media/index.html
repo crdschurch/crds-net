@@ -81,8 +81,8 @@ paginate:
                 url="{{ item | media_url }}"
                 image-src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}?auto=format"
                 type="{{ content_type }}"
-                duration="{{ item.duration | duration: format }}"
                 title="{{ item.title }}"
+                duration="{{ item.duration | duration: format }}"
                 data-optimize-img
               ></crds-media-object>
             </div>
