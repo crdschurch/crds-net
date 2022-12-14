@@ -25,6 +25,7 @@ body input[type="button"]:not(#getStartedBtn):not(#myStuffBtn) {
   background-image: none;
   border: 1px solid #f4f4f4;
   border-radius: 0;
+
   &[type="checkbox"] {
     height: 13px;
     -webkit-appearance: auto;
@@ -78,6 +79,7 @@ input[type="checkbox"] {
   padding: 0px;
   span {
     padding-left: 10px;
+    color: #253746;
   }
 }
 [data-role="hsform"] .hs-error-msgs li {
@@ -169,5 +171,15 @@ input[type="checkbox"] {
 
   .form-control, .hs-input { 
     background-color: $cr-white; 
+  }
+}
+
+.hs-form-checkbox-display {
+  align-items: center;
+  display: flex;
+
+  .hs-input {
+    width: auto !important;
+    -webkit-appearance: auto !important;
   }
 }

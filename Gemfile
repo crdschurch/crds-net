@@ -52,13 +52,13 @@ group :jekyll_plugins do
   # gem 'jekyll-asset-pipeline', path: File.expand_path('../jekyll-asset-pipeline', __dir__)
   gem 'jekyll-asset-pipeline', git: 'https://github.com/crdschurch/jekyll-asset-pipeline', tag: '1.0.0'
   # gem 'jekyll-contentful', path: File.expand_path('../jekyll-contentful', __dir__)
-  gem "jekyll-contentful", git: 'https://github.com/crdschurch/jekyll-contentful.git', tag: '3.2.1'
+  gem "jekyll-contentful", git: 'https://github.com/crdschurch/jekyll-contentful.git', tag: '3.3.0'
   # gem 'jekyll-crds', path: File.expand_path('../jekyll-crds', __dir__)
   gem "jekyll-crds", git: 'https://github.com/crdschurch/jekyll-crds.git', tag: '2.3.3'
   # gem 'jekyll-placeholders', path: File.expand_path('../jekyll-placeholders', __dir__)
   gem "jekyll-placeholders", git: 'https://github.com/ample/jekyll-placeholders', tag: '1.0.0'
   # gem 'paging-mister-hyde', path: File.expand_path('../paging-mister-hyde', __dir__)
-  gem "paging-mister-hyde", git: 'https://github.com/ample/paging-mister-hyde.git', tag: '1.0.0'
+  gem "paging-mister-hyde", git: 'https://github.com/ample/paging-mister-hyde.git', tag: '1.1.0'
 
   gem 'jekyll-redirect-from'
   gem 'jekyll-feed', '~> 0.6'
