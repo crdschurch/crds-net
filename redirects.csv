@@ -51,6 +51,7 @@ https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /FirstTimeLogin/*,https://${env:CRDS_ROCK_ENDPOINT}/FirstTimeLogin/:splat,200!
 /Auth/Logout/*,https://${env:CRDS_ROCK_ENDPOINT}/Auth/Logout/:splat,200!
 /NewAccount/*,https://${env:CRDS_ROCK_ENDPOINT}/NewAccount/:splat,200!
+/login,https://${env:CRDS_ROCK_ENDPOINT}/login:splat,200!
 /login/*,https://${env:CRDS_ROCK_ENDPOINT}/login/:splat,200!
 /ForgotUserName/*,https://${env:CRDS_ROCK_ENDPOINT}/ForgotUserName/:splat,200!
 /Assets/*,https://${env:CRDS_ROCK_ENDPOINT}/Assets/:splat,200!
