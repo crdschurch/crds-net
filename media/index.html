@@ -179,7 +179,7 @@ paginate:
       </div>
 
       <div class="col-sm-4 col-md-3 border-bottom-dashed-group ">
-        {% assign more_recent = page.recent_media.docs | slice: 4, 3 %}
+        {% assign more_recent = page.recent_media.docs | slice: 7, 3 %}
         {% for item in more_recent %}
           {% assign image = item.image.url %}
 
