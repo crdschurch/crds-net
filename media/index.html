@@ -5,7 +5,6 @@ paginate:
   recent_media:
     collections:
       - articles
-      - messages
       - episodes
       - videos
       - albums
@@ -51,8 +50,15 @@ paginate:
 
     <!-- Media Sometimes Above the fold -->
     <div class="row push-ends">
-      {% assign media_top_feature = site.featured_media | where: 'page_path', 'media-top-featured' | first %}
-      {% assign featured_item = media_top_feature.entries %}
+      {% assign featured_articles = page.recent_media.docs %}
+
+      <div class="col-sm-8 col-md-9">
+        {% assign latest_article = featured_articles | slice: 0, 1 %}
+        {% for item in latest_article %}
+          {% assign image = item.image.url %}
+          {% include _overlay-card.html autoplay=true %}
+        {% endfor %}
+      </div>
       <div class="col-sm-8 col-md-9">
         {% for content in featured_item %}
         {% assign item = content | get_doc %}
@@ -129,7 +135,7 @@ paginate:
         <div class="border-top">
           <h3 class="font-family-serif font-size-small text-uppercase text-gray-dark flush soft-half-ends">Latest</h3>
         </div>
-        {% assign latest = page.recent_media.docs | slice: 0, 2 %}
+        {% assign latest = page.recent_media.docs | slice: 4, 2 %}
 
         {% for item in latest %}
           {% assign image = item.image.url %}
@@ -162,7 +168,7 @@ paginate:
     </div>
     <div class="row">
       <div class="col-sm-8 col-md-9 hard-sides">
-        {% assign recent = page.recent_media.docs | slice: 2, 2 %}
+        {% assign recent = page.recent_media.docs | slice: 6, 2 %}
         {% for item in recent %}
           {% assign image = item.image.url %}
 
@@ -190,7 +196,7 @@ paginate:
       </div>
 
       <div class="col-sm-4 col-md-3 border-bottom-dashed-group ">
-        {% assign more_recent = page.recent_media.docs | slice: 4, 3 %}
+        {% assign more_recent = page.recent_media.docs | slice: 8, 3 %}
         {% for item in more_recent %}
           {% assign image = item.image.url %}
 
