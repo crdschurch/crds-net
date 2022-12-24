@@ -71,11 +71,11 @@ title: Series
         {% assign tabs_array = "" | split: "|" %}
   
         {% if page.videos.size > 0 %}
-          {% assign tabs_array = tabs_array | push: "Live Service" %}
+          {% assign tabs_array = tabs_array | push: "Message Only" %}
         {% endif %}
   
         {% if page.live_messages.size > 0 %}
-          {% assign tabs_array = tabs_array | push: "Message Only" %}
+          {% assign tabs_array = tabs_array | push: "Live Service" %}
         {% endif %}
   
         <div>
