@@ -7,10 +7,10 @@ const isDST = (d) => {
 const getEstTime = () => {
   let today = new Date();
   let offset = isDST(today) ? -4.0 : -5.0;
-  let utc = today.getTime() + (today.getTimezoneOffset() * 60000);
-  let et = new Date(utc + (3600000 * offset));
+  let utc = today.getTime() + today.getTimezoneOffset() * 60000;
+  let et = new Date(utc + 3600000 * offset);
   let hour = et.getHours().toString();
-  let min = (et.getMinutes() <10 ? '0' : '') + et.getMinutes().toString();
+  let min = (et.getMinutes() < 10 ? '0' : '') + et.getMinutes().toString();
 
   let time = ''.concat(hour, min);
   return parseInt(time);
@@ -24,16 +24,14 @@ const isDayOfTheWeek = (day) => {
 
 let isSunday = isDayOfTheWeek(0);
 
-let sundayServiceTimes = (
-  (getEstTime() >= 825 && getEstTime() <= 1300)
-);
+let sundayServiceTimes = getEstTime() >= 825 && getEstTime() <= 1300;
 
 const isNotCtaRenderTime = () => {
-  return (isSunday && sundayServiceTimes);
+  return isSunday && sundayServiceTimes;
 };
 
 const isServiceTime = () => {
-  return (isSunday && sundayServiceTimes);
+  return isSunday && sundayServiceTimes;
 };
 
 const refreshPageForServiceStart = (hours, minutes, seconds) => {
@@ -65,6 +63,6 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
 }
 
 if (isSunday) {
-  refreshPageForServiceStart(8,25,1);
-  refreshPageForServiceStart(13,1,1);
+  refreshPageForServiceStart(8, 25, 1);
+  refreshPageForServiceStart(13, 1, 1);
 }

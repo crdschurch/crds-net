@@ -1,4 +1,4 @@
-title: Crossroads
+title: Crossroads Church
 email: info@crossroads.net
 description: No matter what your beliefs, you are welcome here.
 baseurl: "/" # the subpath of your site, e.g. /blog
@@ -54,9 +54,12 @@ collections_dir: collections
 collections:
   albums:
     output: false
+  alerts:
+    output: true
   articles:
     output: true
     permalink: /media/articles/:title
+    limit: 500
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
   humans_of_crossroads:
     output: true
@@ -116,6 +119,7 @@ collections:
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
     output: true
     permalink: /media/:collection/:title
+    limit: 250
     has_many:
       - videos
       - live_messages
@@ -190,6 +194,9 @@ contentful:
       date: published_at
   sign_up_form:
     query: fields.pageType=OnsiteGroupSignupPage
+  song:
+    map:
+      date: published_at
   video:
     map:
       date: published_at

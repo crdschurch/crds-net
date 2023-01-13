@@ -68,50 +68,50 @@ title: Series
       <div class="col-sm-10 col-sm-offset-1">
         {% if page.videos.size > 0 or page.live_messages.size > 0 %}
          <!-- Create tabs_array -->
-        {% assign tabs_array = "" | split: "|" %}
-  
-        {% if page.videos.size > 0 %}
-          {% assign tabs_array = tabs_array | push: "Online" %}
-        {% endif %}
-  
-        {% if page.live_messages.size > 0 %}
-          {% assign tabs_array = tabs_array | push: "At Sites" %}
-        {% endif %}
-  
-        <div>
-          <crds-tabs tabs='{{ tabs_array | jsonify }}' navigation-class="align-tabs-left component-header" horizontal-only>
-            <div slot="tab-online">
-              <div class="cards-3x">
-                <div class="row">
-                  {% for msg_obj in page.videos %}
-                    {% assign item = site.videos | where: 'slug', msg_obj.slug | first %}
-                    {% unless item %}
-                      {% assign item = site.messages | where: 'slug', msg_obj.slug | first %}
-                    {% endunless %}
-                    {% if item %}
-                      {% include _message-card.html %}
-                    {% endif %}
-                  {% endfor %}
+          {% assign tabs_array = "" | split: "|" %}
+    
+          {% if page.live_messages.size > 0 %}
+            {% assign tabs_array = tabs_array | push: "Live Service" %}
+          {% endif %}
+
+          {% if page.videos.size > 0 %}
+            {% assign tabs_array = tabs_array | push: "Message Only" %}
+          {% endif %}
+    
+          <div>
+            <crds-tabs tabs='{{ tabs_array | jsonify }}' navigation-class="align-tabs-left component-header" horizontal-only>
+              <div slot="tab-live-service">
+                <div class="cards-3x">
+                  <div class="row">
+                    {% for msg_obj in page.live_messages %}
+                      {% assign item = site.videos | where: 'slug', msg_obj.slug | first %}
+                      {% unless item %}
+                        {% assign item = site.messages | where: 'slug', msg_obj.slug | first %}
+                      {% endunless %}
+                      {% if item %}
+                        {% include _message-card.html %}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div slot="tab-at-sites">
-              <div class="cards-3x">
-                <div class="row">
-                  {% for msg_obj in page.live_messages %}
-                    {% assign item = site.videos | where: 'slug', msg_obj.slug | first %}
-                    {% unless item %}
-                      {% assign item = site.messages | where: 'slug', msg_obj.slug | first %}
-                    {% endunless %}
-                    {% if item %}
-                      {% include _message-card.html %}
-                    {% endif %}
-                  {% endfor %}
+              <div slot="tab-message-only">
+                <div class="cards-3x">
+                  <div class="row">
+                    {% for msg_obj in page.videos %}
+                      {% assign item = site.videos | where: 'slug', msg_obj.slug | first %}
+                      {% unless item %}
+                        {% assign item = site.messages | where: 'slug', msg_obj.slug | first %}
+                      {% endunless %}
+                      {% if item %}
+                        {% include _message-card.html %}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
                 </div>
               </div>
-            </div>
-          </crds-tabs>
-        </div>
+            </crds-tabs>
+          </div>
         {% endif %}
       </div>
 
@@ -133,4 +133,3 @@ title: Series
     </div>
   </div>
 </div>
-
