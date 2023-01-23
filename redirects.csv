@@ -41,32 +41,6 @@ https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /cohorts/*,${env:CRDS_UNIFIED_DOMAIN}cohorts/:splat,200!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
-/page/*,https://${env:CRDS_ROCK_ENDPOINT}/page/:splat,200!
-/mygiving/*,https://${env:CRDS_ROCK_ENDPOINT}/mygiving/:splat,200!
-/signuptoserve/*,https://${env:CRDS_ROCK_ENDPOINT}/signuptoserve/:splat,200!
-/mygroups/*,https://${env:CRDS_ROCK_ENDPOINT}/mygroups/:splat,200!
-/checkin/*,https://${env:CRDS_ROCK_ENDPOINT}/checkin/:splat,200!
-/tithetest/*,https://${env:CRDS_ROCK_ENDPOINT}/tithetest/:splat,200!
-/blueteam/*,https://${env:CRDS_ROCK_ENDPOINT}/blueteam/:splat,200!
-/EventDetails/*,https://${env:CRDS_ROCK_ENDPOINT}/EventDetails/:splat,200!
-/findgroups/*,https://${env:CRDS_ROCK_ENDPOINT}/findgroups/:splat,200!
-/mygroups/*,https://${env:CRDS_ROCK_ENDPOINT}/mygroups/:splat,200!
-/checkinmanager/*,https://${env:CRDS_ROCK_ENDPOINT}/checkinmanager/:splat,200!
-/ChangePassword,https://${env:CRDS_ROCK_ENDPOINT}/ChangePassword,200!
-/FirstTimeLogin,https://${env:CRDS_ROCK_ENDPOINT}/FirstTimeLogin,200!
-/Auth/Logout,https://${env:CRDS_ROCK_ENDPOINT}/Auth/Logout,200!
-/NewAccount,https://${env:CRDS_ROCK_ENDPOINT}/NewAccount,200!
-/login,https://${env:CRDS_ROCK_ENDPOINT}/login,200!
-/ForgotUserName,https://${env:CRDS_ROCK_ENDPOINT}/ForgotUserName,200!
-/api/*,https://${env:CRDS_ROCK_ENDPOINT}/api/:splat,200!
-/Assets/*,https://${env:CRDS_ROCK_ENDPOINT}/Assets/:splat,200!
-/Scripts/*,https://${env:CRDS_ROCK_ENDPOINT}/Scripts/:splat,200!
-/Themes/*,https://${env:CRDS_ROCK_ENDPOINT}/Themes/:splat,200!
-/GetImage.ashx,https://${env:CRDS_ROCK_ENDPOINT}/GetImage.ashx,200!
-/WebResource.axd,https://${env:CRDS_ROCK_ENDPOINT}/WebResource.axd,200!
-/ScriptResource.axd,https://${env:CRDS_ROCK_ENDPOINT}/ScriptResource.axd,200!
-/groups/search/small-group/*,https://${env:CRDS_ROCK_ENDPOINT}/groups/details/:splat,301!
-/groups/*,https://${env:CRDS_ROCK_ENDPOINT}/groups/:splat,200
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
 /_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
 /unified_assets/*,${env:CRDS_UNIFIED_DOMAIN}unified_assets/:splat,200
