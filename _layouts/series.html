@@ -77,12 +77,16 @@ title: Series
           {% if page.videos.size > 0 %}
             {% assign tabs_array = tabs_array | push: "Message Only" %}
           {% endif %}
-    
+
+          {% if page.live_messages == null or page.videos == null %}
+            {% assign row_align_class = "d-flex justify-content-center" %}
+          {% endif %}
+
           <div>
             <crds-tabs tabs='{{ tabs_array | jsonify }}' navigation-class="align-tabs-left component-header" horizontal-only>
               <div slot="tab-full-service">
                 <div class="cards-3x">
-                  <div class="row">
+                  <div class="row {{ row_align_class }}">
                     {% for msg_obj in page.live_messages %}
                       {% assign item = site.videos | where: 'slug', msg_obj.slug | first %}
                       {% unless item %}
@@ -97,11 +101,11 @@ title: Series
               </div>
               <div slot="tab-message-only">
                 <div class="cards-3x">
-                  <div class="row">
+                  <div class="row {{ row_align_class }}">
                     {% for msg_obj in page.videos %}
                       {% assign item = site.videos | where: 'slug', msg_obj.slug | first %}
                       {% unless item %}
-                        {% assign item = site.messages | where: 'slug', msg_obj.slug | first %}
+                        {% assign item = site.messages | where: 'slug', msg_obj.slug | first %}`
                       {% endunless %}
                       {% if item %}
                         {% include _message-card.html %}
