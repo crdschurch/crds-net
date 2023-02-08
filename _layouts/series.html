@@ -77,7 +77,7 @@ title: Series
           {% if page.videos.size > 0 %}
             {% assign tabs_array = tabs_array | push: "Message Only" %}
           {% endif %}
-    
+
           <div>
             <crds-tabs tabs='{{ tabs_array | jsonify }}' navigation-class="align-tabs-left component-header" horizontal-only>
               <div slot="tab-full-service">
