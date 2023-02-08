@@ -1,0 +1,13 @@
+{% assign training_topic = item.topic | where: "topic", page.topic | join: ',' %}
+
+<div class="topic-{{ training_topic | downcase | replace: ' ' , '-' | replace: ',' , ' ' }} card push-ends col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-4">
+  <a href="{{ item.sign_up_link }}">
+    <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}" class="img-responsive" alt="{{ item.title }}" data-optimize-img >      
+  </a>
+  <h3 class="font-family-condensed font-size-base flush-bottom">
+    <a href="{{ item.sign_up_link }}">
+      {{ item.title }}
+    </a>
+  </h3>
+  <p class="font-size-smaller push-quarter-top">{{ item.media }}</p>
+</div> 
