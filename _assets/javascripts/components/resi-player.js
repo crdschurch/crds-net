@@ -23,15 +23,19 @@ const isDayOfTheWeek = (day) => {
 };
 
 const isSaturdayServiceTime = () => {
-  return isDayOfTheWeek(6) && (getEstTime() >= 1455 && getEstTime() <= 1900);
+  return isDayOfTheWeek(6) && (getEstTime() >= 1455 && getEstTime() <= 2359);
+};
+
+const isSundayServiceTime = () => {
+  return isDayOfTheWeek(0) && (getEstTime() >= 0 && getEstTime() <= 830);
 };
 
 const isNotCtaRenderTime = () => {
-  return isSaturdayServiceTime();
+  return isSaturdayServiceTime() || isSundayServiceTime();
 };
 
 const isServiceTime = () => {
-  return isSaturdayServiceTime();
+  return isSaturdayServiceTime() || isSundayServiceTime();
 };
 
 const refreshPageForServiceStart = (hours, minutes, seconds) => {
@@ -64,5 +68,8 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
 
 if (isDayOfTheWeek(6)) {
   refreshPageForServiceStart(14,55,1);
-  refreshPageForServiceStart(19,0,1);
+} 
+
+if (isDayOfTheWeek(0)) {
+  refreshPageForServiceStart(8,30,1);
 } 
