@@ -3,7 +3,7 @@ layout: default
 snail_trail: disabled
 monetate_page_type: index-main
 meta:
-  title: Crossroads
+  title: You Were Born for Adventure
   description: Whatever your thoughts on church or your beliefs about God, you're welcome here.
   image:
     url: "//crds-media.imgix.net/7EFusaW9y0WFSxO9KCdumH/2edc127ce50430b3894692f7075122fb/spiritual-outfitters.jpg"
@@ -65,17 +65,24 @@ paginate:
 {% endif %}
 {% endfor %}
 
-{% assign online = series.videos | sort: 'published_at' | last | get_doc %}
-{% assign at_site = series.live_messages | sort: 'published_at' | last | get_doc %}
+{% if series.videos and series.videos.size != 0 %}
+  {% assign online = series.videos | sort: 'published_at' | last | get_doc %}
+  {% assign online_title = online.title | split: "|" %}
+  {% assign split_title = online.title | split: " " %}
+  {% assign current_week = split_title | slice: -1 %}
+{% endif %}
+
+{% if series.live_messages and series.live_messages.size != 0 %}
+  {% assign at_site = series.live_messages | sort: 'published_at' | last | get_doc %}
+  {% assign live_title = at_site.title | split: "|" %}
+{% endif %}
+
 {% assign watch_in_room_image = site.content_blocks | where: 'slug', 'watch-in-room-image' | first %}
 {% assign watch_in_room_details = site.content_blocks | where: 'slug', 'watch-in-room-details' | first %}
 {% assign watch_online_image = site.content_blocks | where: 'slug', 'watch-online-image' | first %}
 {% assign watch_online_details = site.content_blocks | where: 'slug', 'watch-online-details' | first %}
 {% assign watch_bottom_cta = site.content_blocks | where: 'slug', 'watch-bottom-cta' | first %}
-{% assign online_title = online.title | split: "|" %}
-{% assign live_title = at_site.title | split: "|" %}
-{% assign split_title = online.title | split: " " %}
-{% assign current_week = split_title | slice: -1 %}
+
 
 <section class="bg-black flush-top" style="top: -1.5rem; position: relative;" id="has-resi-player">
   <div class="container">
