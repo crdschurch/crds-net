@@ -30,26 +30,26 @@ https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
 /signin,${env:CRDS_ROCK_DOMAIN}login,301!
-/groups/*,/rock,301!
-/volunteer/*,/rock,301!
-/forms/*,/rock,301!
-/connect,/rock,301!
-/findgroups,/rock,301!
-/childcare,/rock,301!
-/trips,/rock,301!
-/finance/*,/rock,301!
-https://development.event-checkin.crossroads.net/*,/rock,301!
-http://development.event-checkin.crossroads.net/*,/rock,301!
-https://release.event-checkin.crossroads.net/*,/rock,301!
-https://event-checkin.crossroads.net/*,/rock,301!
-https://development.serve.crossroads.net/*,/rock,301!
-http://development.serve.crossroads.net/*,/rock,301!
-https://release.serve.crossroads.net/*,/rock,301!
-https://serve.crossroads.net/*,/rock,301!
-https://forms-int.crossroads.net/*,/rock,301!
-http://forms-int.crossroads.net/*,/rock,301!
-https://forms-demo.crossroads.net/*,/rock,301!
-https://forms.crossroads.net/*,/rock,301!
+/groups/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+/volunteer/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+/forms/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+/connect,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+/findgroups,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+/childcare,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+/trips,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+/finance/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+https://development.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+http://development.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+https://release.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+https://event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+https://development.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+http://development.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+https://release.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+https://serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+https://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+http://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+https://forms-demo.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
 /_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
 /unified_assets/*,${env:CRDS_UNIFIED_DOMAIN}unified_assets/:splat,200
