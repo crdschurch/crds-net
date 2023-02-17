@@ -63,6 +63,6 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
 }
 
 if (isSunday) {
-  refreshPageForServiceStart(8, 25, 1);
+  refreshPageForServiceStart(8, 40, 1);
   refreshPageForServiceStart(13, 1, 1);
 }
