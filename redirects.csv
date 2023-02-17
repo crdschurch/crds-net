@@ -9,7 +9,7 @@ https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /connect,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /findgroups,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /childcare,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/trips,https://${env:CRDS_APP_DOMAIN}/under-construction,301!
+/trips,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /finance/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /background-check,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /group-renew,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
