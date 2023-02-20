@@ -16,31 +16,31 @@ https://forms.crossroads.net/*,${env:CRDS_ROCK_ENV}/:splat,302!
 https://embedint.crossroads.net/*,${env:CRDS_ROCK_ENV}/mygiving/,302!
 https://embeddemo.crossroads.net/*,${env:CRDS_ROCK_ENV}/mygiving/,302!
 https://embed.crossroads.net/*,${env:CRDS_ROCK_ENV}/mygiving/,302!
-/,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK,.ROCK_AUTH
+/,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK
 /,${env:CRDS_UNIFIED_DOMAIN},200!
 /signout,${env:CRDS_ROCK_ENV}/Auth/Logout,200!
 /forgot-password,${env:CRDS_ROCK_ENV}/ForgotUserName,200!
 /api/*,${env:CRDS_UNIFIED_DOMAIN}api/:splat,200!
-/growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path,200! Cookie=.ROCK,.ROCK_AUTH
+/growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path,200! Cookie=.ROCK
 /growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path-logged-out,200!
-/receive-teaching-weekly,${env:CRDS_UNIFIED_DOMAIN}receive-teaching-weekly,200! Cookie=.ROCK,.ROCK_AUTH
+/receive-teaching-weekly,${env:CRDS_UNIFIED_DOMAIN}receive-teaching-weekly,200! Cookie=.ROCK
 /receive-teaching-weekly,${env:CRDS_ROCK_ENV}/login,302!
-/connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}connect-with-god-daily,200! Cookie=.ROCK,.ROCK_AUTH
+/connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}connect-with-god-daily,200! Cookie=.ROCK
 /connect-with-god-daily,${env:CRDS_ROCK_ENV}/login,302!
-/serve-others,${env:CRDS_UNIFIED_DOMAIN}serve-others,200! Cookie=.ROCK,.ROCK_AUTH
+/serve-others,${env:CRDS_UNIFIED_DOMAIN}serve-others,200! Cookie=.ROCK
 /serve-others,${env:CRDS_ROCK_ENV}/login,302!
-/live-generously,${env:CRDS_UNIFIED_DOMAIN}live-generously,200! Cookie=.ROCK,.ROCK_AUTH
+/live-generously,${env:CRDS_UNIFIED_DOMAIN}live-generously,200! Cookie=.ROCK
 /live-generously,${env:CRDS_ROCK_ENV}/login,302!
-/join-community,${env:CRDS_UNIFIED_DOMAIN}join-community,200! Cookie=.ROCK,.ROCK_AUTH
+/join-community,${env:CRDS_UNIFIED_DOMAIN}join-community,200! Cookie=.ROCK
 /join-community,${env:CRDS_ROCK_ENV}/login,302!
-/get-baptized,${env:CRDS_UNIFIED_DOMAIN}get-baptized,200! Cookie=.ROCK,.ROCK_AUTH
+/get-baptized,${env:CRDS_UNIFIED_DOMAIN}get-baptized,200! Cookie=.ROCK
 /get-baptized,${env:CRDS_ROCK_ENV}/login,302!
-/share-your-story,${env:CRDS_UNIFIED_DOMAIN}share-your-story,200! Cookie=.ROCK,.ROCK_AUTH
+/share-your-story,${env:CRDS_UNIFIED_DOMAIN}share-your-story,200! Cookie=.ROCK
 /share-your-story,${env:CRDS_ROCK_ENV}/login,302!
 /prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
 /cohorts,${env:CRDS_UNIFIED_DOMAIN}cohorts,200!
 /cohorts/*,${env:CRDS_UNIFIED_DOMAIN}cohorts/:splat,200!
-/group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Cookie=.ROCK,.ROCK_AUTH
+/group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Cookie=.ROCK
 /group-renew groupIds=:groupIds,${env:CRDS_ROCK_ENV}/login?redirectUrl=/group-renew?groupIds=:groupIds,302!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
 /_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
@@ -59,7 +59,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_ENV}/mygiving/,302!
 /online/next-level-academy/5discoveries,/media/collections/5discoveries,301!
 /online/*,/anywhere,301!
 /spouse-invite-landing inviteId=:inviteId response=decline,/spouse-invite-landing/?inviteId=:inviteId&response=decline,200!
-/spouse-invite-landing inviteId=:inviteId,/spouse-invite-landing/?inviteId=:inviteId,200! Cookie=.ROCK,.ROCK_AUTH
+/spouse-invite-landing inviteId=:inviteId,/spouse-invite-landing/?inviteId=:inviteId,200! Cookie=.ROCK
 /spouse-invite-landing inviteId=:inviteId,/spouse-invite-login/?inviteId=:inviteId&redirectUrl=/spouse-invite-landing?inviteId=:inviteId,302!
 https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,master
 /forms/*,${env:CRDS_FORM_MAKER}:splat,200!
@@ -98,14 +98,14 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /mptools/*,https://${env:CRDS_ANGULAR_ENDPOINT}/mptools/:splat,200!
 /profile,${env:CRDS_ROCK_ENV}/myaccount,200!
 /signin/reset-password/*,/reset-password-okta?token=:splat,302!
-/mancamp/signup-reg,/mancamp/signup-reg,200! Cookie=.ROCK,.ROCK_AUTH
+/mancamp/signup-reg,/mancamp/signup-reg,200! Cookie=.ROCK
 /mancamp/signup-reg,/mancamp-account?redirectUrl=/mancamp/signup-reg/,302!
 /impersonate,https://${env:CRDS_ANGULAR_ENDPOINT}/impersonate,200!
 /volunteer-sign-up,/404.html,404!
 /volunteer-sign-up/*,/volunteer,301!
 /volunteer-application/*,/volunteer,301!
 /serve-signup/*,${env:CRDS_ROCK_ENV}/signuptoserve,200!
-/sign-up/*,/sign-up/:splat,200! Cookie=.ROCK,.ROCK_AUTH
+/sign-up/*,/sign-up/:splat,200! Cookie=.ROCK
 /sign-up/*,${env:CRDS_ROCK_ENV}/login?redirectUrl=/sign-up/:splat,302!
 /mygroups,${env:CRDS_ROCK_ENV}/mygroups,200!
 /groups/create,${env:CRDS_ROCK_ENV}/groups/create,200!
