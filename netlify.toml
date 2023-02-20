@@ -60,6 +60,7 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy-int.netlify.app"
   CRDS_INVOICES = "crds-invoices-int.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer-int.netlify.app/"
+  CRDS_ROCK_ENV = "https://mydev.crossroads.net"
 
 [context.deploy-preview.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-int.netlify.app"
@@ -84,6 +85,7 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_JOURNEY_ENDPOINT = "journey-groups-2022.netlify.app"
   CRDS_INVOICES = "crds-invoices-int.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer-int.netlify.app/"
+  CRDS_ROCK_ENV = "https://mydev.crossroads.net"
 
 [context.development.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-int.netlify.app"
@@ -108,6 +110,7 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy-int.netlify.app"
   CRDS_INVOICES = "crds-invoices-int.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer-int.netlify.app/"
+  CRDS_ROCK_ENV = "https://mydev.crossroads.net"
 
 [context.runway.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-int.netlify.app"
@@ -132,6 +135,7 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy-int.netlify.app"
   CRDS_INVOICES = "crds-invoices-int.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer-int.netlify.app/"
+  CRDS_ROCK_ENV = "https://mydev.crossroads.net"
 
 [context.release.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-demo.netlify.app"
@@ -156,30 +160,7 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy-demo.netlify.app"
   CRDS_INVOICES = "crds-invoices-demo.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer-demo.netlify.app/"
-
-[context.rock.environment]
-  CRDS_PEOPLE_DOMAIN = "crds-people-demo.netlify.app"
-  CRDS_MAP_DOMAIN = "crds-connect-demo.netlify.app"
-  CRDS_FINANCE_ADMIN = "https://crds-finance-admin-demo.netlify.app/"
-  CRDS_ROCK_ENDPOINT = "rockdev.crossroads.net"
-  CRDS_OKTA_SIGNIN_ENDPOINT = "crds-signin-demo.netlify.app"
-  CRDS_ANGULAR_ENDPOINT = "crds-angular-demo.netlify.app"
-  CRDS_CHILDCARE_ENDPOINT = "crds-childcare-demo.netlify.app"
-  CRDS_SERVE_ENDPOINT = "serve-demo.netlify.app"
-  CRDS_PROFILE_ENDPOINT = "crds-profile-demo.netlify.app"
-  CRDS_EVENT_CHECKIN_ENDPOINT = "crds-event-checkin-demo.netlify.app"
-  CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
-  CRDS_FORM_MAKER = "https://crds-forms-demo.netlify.app/"
-  CRDS_COMPONENTS_ENDPOINT = "crds-components-demo.netlify.app"
-  CRDS_GIVING_HISTORY = 'https://giving-history-demo.netlify.app'
-  CRDS_COMPONENTS_ROOT_URL="https://int.crossroads.net"
-  CRDS_SEARCH_ENDPOINT = "int-crds-search.netlify.app"
-  CRDS_GROUP_LEADER_DOMAIN = "crds-group-leader-demo.netlify.app"
-  CRDS_GROUPS_ENDPOINT = "groups-demo.netlify.app"
-  CRDS_GROUPS_JOURNEY_ENDPOINT = "journey-groups-2022.netlify.app"
-  CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy-demo.netlify.app"
-  CRDS_INVOICES = "crds-invoices-demo.netlify.app"
-  CRDS_VOLUNTEER = "https://crds-volunteer-demo.netlify.app/"
+  CRDS_ROCK_ENV = "https://my.crossroads.net"
 
 [context.master.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people.netlify.app"
@@ -204,6 +185,7 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy.netlify.app"
   CRDS_INVOICES = "crds-invoices.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer.netlify.app/"
+  CRDS_ROCK_ENV = "https://my.crossroads.net"
 
 [context.rebrand.environment]
   CRDS_PEOPLE_DOMAIN = "crds-people-int.netlify.app"
@@ -228,3 +210,4 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_GROUPS_LEGACY_ENDPOINT = "crds-groups-legacy-int.netlify.app"
   CRDS_INVOICES = "crds-invoices-int.netlify.app"
   CRDS_VOLUNTEER = "https://crds-volunteer-int.netlify.app/"
+  CRDS_ROCK_ENV = "https://my.crossroads.net"
