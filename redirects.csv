@@ -1,43 +1,21 @@
 http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
 http://crossroads.net/*,https://www.crossroads.net/:splat,301!
 https://crossroads.net/*,https://www.crossroads.net/:splat,301!
-https://embedint.crossroads.net/*,https://int.crossroads.net/giving/,302!
-https://embeddemo.crossroads.net/*,https://demo.crossroads.net/giving/,302!
-https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
-/groups/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/volunteer/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/connect,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/findgroups,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/childcare,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/trips,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/finance/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/background-check,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/group-renew,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/30daytrial,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/group-leader,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/test/journey/groups/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/connect/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/mycamps*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/camps/:campId/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/profile/personal,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/profile/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/mancamp/signup-reg,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/impersonate,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/serve-signup,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/givinghistory,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/event-checkin/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-https://development.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-http://development.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-https://release.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-https://event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-https://development.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-http://development.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-https://release.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-https://serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+https://development.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/event-checkin/:splat,302!
+http://development.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/event-checkin/:splat,302!
+https://release.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/event-checkin/:splat,302!
+https://event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/event-checkin/:splat,302!
+https://development.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
+http://development.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
+https://release.serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
+https://serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/serve-signup/:splat,302!
 https://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 http://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 https://forms-demo.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
+https://embedint.crossroads.net/*,https://int.crossroads.net/giving/,302!
+https://embeddemo.crossroads.net/*,https://demo.crossroads.net/giving/,302!
+https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /,${env:CRDS_UNIFIED_DOMAIN}h,200! Role=user
 /,${env:CRDS_UNIFIED_DOMAIN},200!
 /signout,${env:CRDS_UNIFIED_DOMAIN}signout,200!
@@ -64,7 +42,6 @@ https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Role=user
 /group-renew groupIds=:groupIds,/signin?redirectUrl=/group-renew?groupIds=:groupIds,302!
 /signin,${env:CRDS_ROCK_DOMAIN}login,301!
-/sign-up/*,${env:CRDS_ROCK_DOMAIN}NewAccount,301!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
 /_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
 /unified_assets/*,${env:CRDS_UNIFIED_DOMAIN}unified_assets/:splat,200
