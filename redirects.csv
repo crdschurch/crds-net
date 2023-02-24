@@ -19,8 +19,8 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=${AUTH_COOKIE}
 /,${env:CRDS_UNIFIED_DOMAIN},200!
 /h,${env:CRDS_UNIFIED_DOMAIN}/h,200! Cookie=${AUTH_COOKIE}
-/signout,${env:CRDS_ROCK_DOMAIN}Auth/Logout,200!
-/forgot-password,${env:CRDS_ROCK_DOMAIN}ForgotUserName,200!
+/signout,${env:CRDS_ROCK_DOMAIN}Auth/Logout,301!
+/forgot-password,${env:CRDS_ROCK_DOMAIN}ForgotUserName,301!
 /api/*,${env:CRDS_UNIFIED_DOMAIN}api/:splat,200!
 /growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path,200! Cookie=${AUTH_COOKIE}
 /growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path-logged-out,200!
@@ -41,7 +41,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
 /cohorts,${env:CRDS_UNIFIED_DOMAIN}cohorts,200!
 /cohorts/*,${env:CRDS_UNIFIED_DOMAIN}cohorts/:splat,200!
-/group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,200! Cookie=${AUTH_COOKIE}
+/group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,301! Cookie=${AUTH_COOKIE}
 /group-renew groupIds=:groupIds,${env:CRDS_ROCK_DOMAIN}login?redirectUrl=/group-renew?groupIds=:groupIds,302!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
 /_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
@@ -78,9 +78,9 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /30daytrial,/30-day-trial,301!
 /30daytrial/sign-up,/30-day-trial/sign-up,301!
 /30-day-trial/, 30-day-challenge/,301!
+/findgroups,${env:CRDS_ROCK_DOMAIN}findgroups,301!
+/findgroups/*,https://${env:CRDS_ROCK_DOMAIN}findgroups,302!
 /connect/*,${env:CRDS_ROCK_DOMAIN}findgroups,302!
-/findgroups/*,https://${env:CRDS_FIND_GROUPS}/:splat,200!
-/findgroups,${env:CRDS_ROCK_DOMAIN}findgroups,200!
 /test/journey/groups/*,https://${env:CRDS_GROUPS_JOURNEY_ENDPOINT}/:splat,200
 /groups/search/small-group/*,/groups/details/:splat,301!
 /groups/*,https://${env:CRDS_GROUPS_ENDPOINT}/:splat,200
@@ -91,13 +91,13 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /proxy/gateway/*,${env:CRDS_GATEWAY_ENDPOINT}/:splat,200!
 /mycamps*,https://${env:CRDS_ANGULAR_ENDPOINT}/mycamps:splat,200!
 /camps/:campId/*,https://${env:CRDS_ANGULAR_ENDPOINT}/camps/:campId/,200!
+/childcare/childcare-signup,${env:CRDS_ROCK_DOMAIN}childcare,301!
+/childcareadmin,${env:CRDS_ROCK_DOMAIN}childcareadmin,301!
 /childcare/*,https://${env:CRDS_CHILDCARE_ENDPOINT}/:splat,200!
-/childcare/childcare-signup,${env:CRDS_ROCK_DOMAIN}childcare,200!
-/childcareadmin,${env:CRDS_ROCK_DOMAIN}childcareadmin,200!
 /invoices/*,https://${env:CRDS_INVOICES}/:splat,200!
 /undivided/*,https://undivided.com,301!
 /mptools/*,https://${env:CRDS_ANGULAR_ENDPOINT}/mptools/:splat,200!
-/profile,${env:CRDS_ROCK_DOMAIN}myaccount,200!
+/profile,${env:CRDS_ROCK_DOMAIN}myaccount,301!
 /signin,${env:CRDS_ROCK_DOMAIN}firsttimelogin,302!
 /signin/reset-password/*,/reset-password-okta?token=:splat,302!
 /mancamp/signup-reg,/mancamp/signup-reg,200! Cookie=${AUTH_COOKIE}
@@ -106,18 +106,19 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /volunteer-sign-up,/404.html,404!
 /volunteer-sign-up/*,/volunteer,301!
 /volunteer-application/*,/volunteer,301!
-/serve-signup/*,${env:CRDS_ROCK_DOMAIN}signuptoserve,200!
-/sign-up/*,/sign-up/:splat,200! Cookie=${AUTH_COOKIE}
+/serve-signup,${env:CRDS_ROCK_DOMAIN}signuptoserve,301!
+/serve-signup/*,${env:CRDS_ROCK_DOMAIN}signuptoserve,302!
+/sign-up/*,${env:CRDS_ROCK_DOMAIN}sign-up/:splat,301! Cookie=${AUTH_COOKIE}
 /sign-up/*,${env:CRDS_ROCK_DOMAIN}login?redirectUrl=/sign-up/:splat,302!
-/mygroups,${env:CRDS_ROCK_DOMAIN}mygroups,200!
-/groupleaderapplication,${env:CRDS_ROCK_DOMAIN}group-leader/home,200!
-/tithetest,${env:CRDS_ROCK_DOMAIN}tithetest,200!
-/blueteam,${env:CRDS_ROCK_DOMAIN}blueteam/signup,200!
-/preschool,${env:CRDS_ROCK_DOMAIN}Registration?RegistrationInstanceId=1&EventOccurrenceID=5,200!
+/mygroups,${env:CRDS_ROCK_DOMAIN}mygroups,301!
+/groupleaderapplication,${env:CRDS_ROCK_DOMAIN}group-leader/home,301!
+/tithetest,${env:CRDS_ROCK_DOMAIN}tithetest,301!
+/blueteam,${env:CRDS_ROCK_DOMAIN}blueteam/signup,301!
+/preschool,${env:CRDS_ROCK_DOMAIN}Registration?RegistrationInstanceId=1&EventOccurrenceID=5,301!
 /trips/*,/go,301!
 /waivers/*,/go,301!
 /give,${env:PUSHPAY_GIVE_ENDPOINT},301!
-/me/giving/*,${env:CRDS_ROCK_DOMAIN}mygiving,200!
+/me/giving/history,${env:CRDS_ROCK_DOMAIN}mygiving,301!
 /givinghistory,${env:CRDS_ROCK_DOMAIN}mygiving,301!
 /series/* autoPlay=:autoPlay sound=:sound,/media/series/:splat?autoPlay=:autoPlay&sound=:sound,302!
 /series/* autoPlay=:autoPlay,/media/series/:splat?autoPlay=:autoPlay,302!
@@ -157,7 +158,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /topics/*,/media/topics/:splat,302!
 /authors/*,/media/authors/:splat,302!
 /songs/*,/media/songs/:splat,302!
-/event-checkin/*,${env:CRDS_ROCK_DOMAIN}myevents,200!
+/event-checkin/*,${env:CRDS_ROCK_DOMAIN}myevents,301!
 /media/music/,${env:CRDS_MUSIC_ENDPOINT},301!
 /music/,${env:CRDS_MUSIC_ENDPOINT},301!
 /media/songs/god-of-the-breakthrough,${env:CRDS_MUSIC_ENDPOINT}/music/god-of-the-breakthrough/god-of-the-breakthrough,301!
