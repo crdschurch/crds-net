@@ -21,7 +21,7 @@ https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /serve-signup,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /register,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /tithetest/signup,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/30-day-trial/signup,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/30-day-trial/sign-up,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /cr-forms/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /blueteam/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 https://serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
@@ -30,6 +30,26 @@ http://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,30
 https://forms-demo.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 /sign-up/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/care/weddings/building-blocks-for-marriage/signup,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/dayton/volunteer-sign-up,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/eastside/inclusion-ministry,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/healing/eyeswideopen,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/lexington/dedication-signup,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/listening-training-post-survey,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/mason/fi-easter2021,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/oakley/infant-baptism-signup,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/online-prayer-nights,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/online-volunteer-consultation,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/onlinechurchvolunteersignup,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/preschool/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/summercamp/volunteer,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/summercampfa,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/tithetest/signup,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/uptown/ct101,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/westside/ct101,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/westside/fi-easter2021,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/westside/kc101,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/westside/mow,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /,${env:CRDS_UNIFIED_DOMAIN}h,200! Role=user
 /,${env:CRDS_UNIFIED_DOMAIN},200!
 /signout,${env:CRDS_UNIFIED_DOMAIN}signout,200!
@@ -97,6 +117,9 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /search-component/*,https://${env:CRDS_SEARCH_COMPONENT_ENDPOINT}/:splat,200!
 /proxy/content/*,${env:CRDS_CMS_ENDPOINT}/:splat,200!
 /proxy/gateway/*,${env:CRDS_GATEWAY_ENDPOINT}/:splat,200!
+/mycamps,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/mycamps/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/camps/:campId/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /mycamps*,https://${env:CRDS_ANGULAR_ENDPOINT}/mycamps:splat,200!
 /camps/:campId/*,https://${env:CRDS_ANGULAR_ENDPOINT}/camps/:campId/,200!
 /childcare/*,https://${env:CRDS_CHILDCARE_ENDPOINT}/:splat,200!
