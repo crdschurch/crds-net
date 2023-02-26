@@ -4,6 +4,10 @@ https://crossroads.net/*,https://www.crossroads.net/:splat,301!
 https://embedint.crossroads.net/*,https://int.crossroads.net/giving/,302!
 https://embeddemo.crossroads.net/*,https://demo.crossroads.net/giving/,302!
 https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
+https://development.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/event-checkin/:splat,302!
+http://development.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/event-checkin/:splat,302!
+https://release.event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/event-checkin/:splat,302!
+https://event-checkin.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/event-checkin/:splat,302!
 /groups/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /volunteer/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /connect,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
