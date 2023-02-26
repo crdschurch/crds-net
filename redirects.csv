@@ -29,7 +29,7 @@ https://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,3
 http://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 https://forms-demo.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
-/sign-in/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/sign-up/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /,${env:CRDS_UNIFIED_DOMAIN}h,200! Role=user
 /,${env:CRDS_UNIFIED_DOMAIN},200!
 /signout,${env:CRDS_UNIFIED_DOMAIN}signout,200!
