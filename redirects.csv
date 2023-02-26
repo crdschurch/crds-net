@@ -24,6 +24,8 @@ https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /30-day-trial/sign-up,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /cr-forms/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /blueteam/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/neighborhood-volunteer,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/neighborhood-volunteer/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 https://serve.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 https://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 http://forms-int.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
