@@ -46,6 +46,7 @@ https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 /georgetown/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /columbus/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /uptown/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/dayton/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /onlinechurchvoluntersignup/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 /dayton/volunteer-sign-up,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /eastside/inclusion-ministry,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
