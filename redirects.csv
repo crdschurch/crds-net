@@ -4,15 +4,6 @@ https://crossroads.net/*,https://www.crossroads.net/:splat,301!
 https://development.event-checkin.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}myevents,302!
 http://development.event-checkin.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}myevents,302!
 https://release.event-checkin.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}myevents,302!
-https://event-checkin.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}myevents,302!
-https://development.serve.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}signuptoserve,302!
-http://development.serve.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}signuptoserve,302!
-https://release.serve.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}signuptoserve,302!
-https://serve.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}signuptoserve,302!
-https://forms-int.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}:splat,302!
-http://forms-int.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}:splat,302!
-https://forms-demo.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}:splat,302!
-https://forms.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}:splat,302!
 https://embedint.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 https://embeddemo.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
@@ -77,14 +68,13 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /ourhistory,/our-history,301!
 /spiritualoutfitters,/spiritual-outfitters,301!
 /30daytrial,/30-day-trial,301!
-/30daytrial/sign-up,/30-day-trial/sign-up,301!
 /30-day-trial/, 30-day-challenge/,301!
 /findgroups,${env:CRDS_ROCK_DOMAIN}findgroups,301!
-/findgroups/*,https://${env:CRDS_ROCK_DOMAIN}findgroups,302!
+/findgroups/*,${env:CRDS_ROCK_DOMAIN}findgroups,302!
 /connect/*,${env:CRDS_ROCK_DOMAIN}findgroups,302!
 /test/journey/groups/*,https://${env:CRDS_GROUPS_JOURNEY_ENDPOINT}/:splat,200
 /groups/search/small-group/*,/groups/details/:splat,301!
-/groups/*,https://${env:CRDS_ROCK_DOMAIN}:splat,200
+/groups/*,https://${env:CRDS_ROCK_DOMAIN}mygroups,301!
 /groupleaderapplication,${env:CRDS_ROCK_DOMAIN}group-leader/home,301! Cookie=.ROCK_AUTH_DEV
 /groupleaderapplication,${env:CRDS_ROCK_DOMAIN}login,302!
 /group-leader/*,https://${env:CRDS_GROUP_LEADER_DOMAIN}/:splat,200!
@@ -92,19 +82,13 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /search-component/*,https://${env:CRDS_SEARCH_COMPONENT_ENDPOINT}/:splat,200!
 /proxy/content/*,${env:CRDS_CMS_ENDPOINT}/:splat,200!
 /proxy/gateway/*,${env:CRDS_GATEWAY_ENDPOINT}/:splat,200!
-/mycamps*,https://${env:CRDS_ANGULAR_ENDPOINT}/mycamps:splat,200!
-/camps/:campId/*,https://${env:CRDS_ANGULAR_ENDPOINT}/camps/:campId/,200!
-/childcare/childcare-signup,${env:CRDS_ROCK_DOMAIN}childcare,301!
 /childcareadmin,${env:CRDS_ROCK_DOMAIN}childcareadmin,301!
-/childcare/*,https://${env:CRDS_CHILDCARE_ENDPOINT}/:splat,200!
+/childcare,https://${env:CRDS_ROCK_ENDPOINT}/childcare,301!
 /invoices/*,https://${env:CRDS_INVOICES}/:splat,200!
 /undivided/*,https://undivided.com,301!
 /mptools/*,https://${env:CRDS_ANGULAR_ENDPOINT}/mptools/:splat,200!
 /signin,${env:CRDS_ROCK_DOMAIN}firsttimelogin,302!
 /signin/reset-password/*,/reset-password-okta?token=:splat,302!
-/mancamp/signup-reg,/mancamp/signup-reg,200! Cookie=.ROCK_AUTH_DEV
-/mancamp/signup-reg,/mancamp-account?redirectUrl=/mancamp/signup-reg/,302!
-/impersonate,https://${env:CRDS_ANGULAR_ENDPOINT}/impersonate,200!
 /volunteer-sign-up,/404.html,404!
 /volunteer-sign-up/*,/volunteer,301!
 /volunteer-application/*,/volunteer,301!
@@ -113,7 +97,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /sign-up/*,${env:CRDS_ROCK_DOMAIN}sign-up/:splat,301! Cookie=.ROCK_AUTH_DEV
 /sign-up/*,${env:CRDS_ROCK_DOMAIN}login?redirectUrl=/sign-up/:splat,302!
 /mygroups,${env:CRDS_ROCK_DOMAIN}mygroups,301!
-/groupleaderapplication,${env:CRDS_ROCK_DOMAIN}group-leader/home,301!
 /tithetest,${env:CRDS_ROCK_DOMAIN}tithetest,301!
 /blueteam,${env:CRDS_ROCK_DOMAIN}blueteam/signup,301!
 /preschool,${env:CRDS_ROCK_DOMAIN}Registration?RegistrationInstanceId=1&EventOccurrenceID=5,301!
