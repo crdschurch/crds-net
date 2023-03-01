@@ -71,16 +71,16 @@ title: Series
           {% assign tabs_array = "" | split: "|" %}
     
           {% if page.live_messages.size > 0 %}
-            {% assign tabs_array = tabs_array | push: "Live Service" %}
+            {% assign tabs_array = tabs_array | push: "Full Service" %}
           {% endif %}
 
           {% if page.videos.size > 0 %}
             {% assign tabs_array = tabs_array | push: "Message Only" %}
           {% endif %}
-    
+
           <div>
             <crds-tabs tabs='{{ tabs_array | jsonify }}' navigation-class="align-tabs-left component-header" horizontal-only>
-              <div slot="tab-live-service">
+              <div slot="tab-full-service">
                 <div class="cards-3x">
                   <div class="row">
                     {% for msg_obj in page.live_messages %}
