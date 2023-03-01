@@ -67,7 +67,7 @@ https://forms.crossroads.net/*,https://${env:CRDS_APP_DOMAIN}/forms/:splat,302!
 /summercamp/volunteer,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /summercampfa,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /tithetest/signup,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
-/,${env:CRDS_UNIFIED_DOMAIN}h,200! Role=user
+/,${env:CRDS_UNIFIED_DOMAIN}/h,200! Cookie=.ROCK_AUTH_DEV
 /,${env:CRDS_UNIFIED_DOMAIN},200!
 /h,${env:CRDS_UNIFIED_DOMAIN}/h,200! Cookie=.ROCK_AUTH_DEV
 /signout,${env:CRDS_ROCK_DOMAIN}Auth/Logout,301!
