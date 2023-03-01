@@ -24,6 +24,7 @@ const isDayOfTheWeek = (day) => {
 
 let isSunday = isDayOfTheWeek(0);
 
+
 let sundayServiceTimes = getEstTime() >= 830 && getEstTime() <= 1300;
 
 const isNotCtaRenderTime = () => {
