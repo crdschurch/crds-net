@@ -85,7 +85,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /mptools/*,https://${env:CRDS_ANGULAR_ENDPOINT}/mptools/:splat,200!
 /signin,${env:CRDS_ROCK_DOMAIN}firsttimelogin,302!
 /signin/reset-password/*,/reset-password-okta?token=:splat,302!
-/volunteer/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
+/volunter/search/*,https://${env:CRDS_APP_DOMAIN}/under-construction,302!
 /volunteer-sign-up,/404.html,404!
 /volunteer-sign-up/*,/volunteer,301!
 /volunteer-application/*,/volunteer,301!
