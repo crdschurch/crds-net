@@ -71,8 +71,8 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /findgroups/*,${env:CRDS_ROCK_DOMAIN}findgroups,302!
 /connect/*,${env:CRDS_ROCK_DOMAIN}findgroups,301!
 /test/journey/groups/*,https://${env:CRDS_GROUPS_JOURNEY_ENDPOINT}/:splat,200
-/groups/search/small-group/*,/groups/details/:splat,301!
-/groups/*,${env:CRDS_ROCK_DOMAIN}findgroups,301!
+/groups/search/small-group/*,${env:CRDS_ROCK_DOMAIN}findgroups,301!
+/groups/details/*,${env:CRDS_ROCK_DOMAIN}findgroups,301!
 /groupleaderapplication,${env:CRDS_ROCK_DOMAIN}group-leader/home,301! Cookie=.ROCK_AUTH
 /groupleaderapplication,${env:CRDS_ROCK_DOMAIN}login,302!
 /search/*,https://${env:CRDS_SEARCH_ENDPOINT}/:splat,200!
