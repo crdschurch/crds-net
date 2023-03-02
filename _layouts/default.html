@@ -2,10 +2,6 @@
 <html dir="ltr" lang="en-US">
   {% include _head.html %}
   <body class="{% if page.path == 'preview.html' %}preview{% endif %} crds-styles relative">
-    {% if page.url contains '/watch' or page.url contains '/go/partners/prison-ministry' or page.url contains '/lexington' %}
-    {% else %}
-      {% include _gtm_noscript.html %}
-    {% endif %}
     {% include _facebook_noscript.html %}
     {% include _monetate-body.html %}
 

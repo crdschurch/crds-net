@@ -24,7 +24,7 @@ const isDayOfTheWeek = (day) => {
 
 let isSunday = isDayOfTheWeek(0);
 
-let sundayServiceTimes = getEstTime() >= 825 && getEstTime() <= 1300;
+let sundayServiceTimes = getEstTime() >= 840 && getEstTime() <= 1300;
 
 const isNotCtaRenderTime = () => {
   return isSunday && sundayServiceTimes;
@@ -63,6 +63,6 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
 }
 
 if (isSunday) {
-  refreshPageForServiceStart(8, 25, 1);
+  refreshPageForServiceStart(8, 40, 1);
   refreshPageForServiceStart(13, 1, 1);
 }
