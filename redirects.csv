@@ -35,7 +35,6 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,301! Cookie=.ROCK_AUTH
 /group-renew groupIds=:groupIds,${env:CRDS_ROCK_DOMAIN}login?redirectUrl=/group-renew?groupIds=:groupIds,302!
 /profile,${env:CRDS_ROCK_DOMAIN}myaccount,301!
-/groups,https://${env:CRDS_APP_DOMAIN}/groups,302!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
 /_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
 /unified_assets/*,${env:CRDS_UNIFIED_DOMAIN}unified_assets/:splat,200
@@ -72,8 +71,8 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /findgroups/*,${env:CRDS_ROCK_DOMAIN}findgroups,302!
 /connect/*,${env:CRDS_ROCK_DOMAIN}findgroups,301!
 /test/journey/groups/*,https://${env:CRDS_GROUPS_JOURNEY_ENDPOINT}/:splat,200
-/groups/search/small-group/*,/groups/details/:splat,301!
-/groups/*,${env:CRDS_ROCK_DOMAIN}findgroups,301!
+/groups/search/small-group/*,${env:CRDS_ROCK_DOMAIN}findgroups,301!
+/groups/details/*,${env:CRDS_ROCK_DOMAIN}findgroups,301!
 /groupleaderapplication,${env:CRDS_ROCK_DOMAIN}group-leader/home,301! Cookie=.ROCK_AUTH
 /groupleaderapplication,${env:CRDS_ROCK_DOMAIN}login,302!
 /search/*,https://${env:CRDS_SEARCH_ENDPOINT}/:splat,200!
