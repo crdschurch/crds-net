@@ -7,8 +7,9 @@ https://release.event-checkin.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}myevents,3
 https://embedint.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 https://embeddemo.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
+/,${env:CRDS_UNIFIED_DOMAIN}h,200!
 /,${env:CRDS_UNIFIED_DOMAIN},200!
-/h,${env:CRDS_UNIFIED_DOMAIN}/h,200! Cookie=.ROCK_AUTH
+/h,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH
 /signout,${env:CRDS_ROCK_DOMAIN}Auth/Logout,301!
 /forgot-password,${env:CRDS_ROCK_DOMAIN}ForgotUserName,301!
 /api/*,${env:CRDS_UNIFIED_DOMAIN}api/:splat,200!
@@ -71,7 +72,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /connect/*,${env:CRDS_ROCK_DOMAIN}findgroups,301!
 /test/journey/groups/*,https://${env:CRDS_GROUPS_JOURNEY_ENDPOINT}/:splat,200
 /groups/search/small-group/*,/groups/details/:splat,301!
-/groups/,https://${env:CRDS_APP_DOMAIN}/groups/,301!
 /groups/*,${env:CRDS_ROCK_DOMAIN}findgroups,301!
 /groupleaderapplication,${env:CRDS_ROCK_DOMAIN}group-leader/home,301! Cookie=.ROCK_AUTH
 /groupleaderapplication,${env:CRDS_ROCK_DOMAIN}login,302!
