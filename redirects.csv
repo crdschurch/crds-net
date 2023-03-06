@@ -36,6 +36,7 @@ https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /get-baptized,/signin,302!
 /share-your-story,${env:CRDS_UNIFIED_DOMAIN}share-your-story,200! Role=user
 /share-your-story,/signin,302!
+/practices/*,${env:CRDS_UNIFIED_DOMAIN}practices/:splat,200!
 /prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
 /cohorts,${env:CRDS_UNIFIED_DOMAIN}cohorts,200!
 /cohorts/*,${env:CRDS_UNIFIED_DOMAIN}cohorts/:splat,200!
