@@ -41,7 +41,7 @@ https://embed.crossroads.net/*,https://www.crossroads.net/giving/,302!
 /practices/join-community,${env:CRDS_UNIFIED_DOMAIN}practices/join-community,200!
 /practices/serve-others,${env:CRDS_UNIFIED_DOMAIN}practices/serve-others,200!
 /practices/receive-teaching-weekly,${env:CRDS_UNIFIED_DOMAIN}practices/receive-teaching-weekly,200!
-/practices/connect-with-others,${env:CRDS_UNIFIED_DOMAIN}practices/connect-with-others,200!
+/practices/connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}practices/connect-with-god-daily,200!
 /practices/live-generously,${env:CRDS_UNIFIED_DOMAIN}practices/live-generously,200!
 /prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
 /cohorts,${env:CRDS_UNIFIED_DOMAIN}cohorts,200!
