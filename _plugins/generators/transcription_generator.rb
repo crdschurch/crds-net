@@ -24,8 +24,10 @@ module Jekyll
           rescue
             message.data['transcription'] = nil
           ensure
-            local_copy_of_remote_file.close
-            local_copy_of_remote_file.unlink
+            if local_copy_of_remote_file
+              local_copy_of_remote_file.close
+              local_copy_of_remote_file.unlink
+            end
           end
 
         end
