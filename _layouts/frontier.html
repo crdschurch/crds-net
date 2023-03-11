@@ -118,15 +118,16 @@ layout: default
               </div>
               {% endif %}
 
-              <a href="{{ series.url }}" title="{{ series.title }}">
-                <crds-image src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720" no-crop size="card"></crds-image>
+              <!-- Most Recent Message -->
+              {% assign message = site.messages | sort: "published_at" | reverse | first %}
+              <a href="{{ message.url }}" title="{{ message.title }}">
+                <crds-image src="{{ message.image.url | imgix: site.imgix }}?auto=format,compress&w=720" no-crop size="card"></crds-image>
               </a>
-              <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Series</strong></p>
-              <h2 class="font-family-condensed-extra text-uppercase flush">{{ series.title }}</h2>
+              <h2 class="font-family-condensed-extra text-uppercase flush">{{ message.title }}</h2>
               <div class="push-half-top push-bottom font-size-small text-gray-dark">
-                {{ series.description | markdownify }}
+                {{ message.description | markdownify }}
               </div>
-              <crds-button href="{{ series.url }}#at-sites" title="{{ series.title }}" text="Watch current teaching series"
+              <crds-button href="{{ message.url }}#at-sites" title="{{ message.title }}" text="Watch the latest Message"
                 color="orange"></crds-button>
 
             </div>
