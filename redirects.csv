@@ -29,6 +29,13 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /get-baptized,${env:CRDS_ROCK_DOMAIN}login,302!
 /share-your-story,${env:CRDS_UNIFIED_DOMAIN}share-your-story,200! Cookie=.ROCK_AUTH_DEV
 /share-your-story,${env:CRDS_ROCK_DOMAIN}login,302!
+/practices/get-baptized,${env:CRDS_UNIFIED_DOMAIN}practices/get-baptized,200!
+/practices/share-your-story,${env:CRDS_UNIFIED_DOMAIN}practices/share-your-story,200!
+/practices/join-community,${env:CRDS_UNIFIED_DOMAIN}practices/join-community,200!
+/practices/serve-others,${env:CRDS_UNIFIED_DOMAIN}practices/serve-others,200!
+/practices/receive-teaching-weekly,${env:CRDS_UNIFIED_DOMAIN}practices/receive-teaching-weekly,200!
+/practices/connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}practices/connect-with-god-daily,200!
+/practices/live-generously,${env:CRDS_UNIFIED_DOMAIN}practices/live-generously,200!
 /prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
 /cohorts,${env:CRDS_UNIFIED_DOMAIN}cohorts,200!
 /cohorts/*,${env:CRDS_UNIFIED_DOMAIN}cohorts/:splat,200!
