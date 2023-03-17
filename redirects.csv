@@ -1,5 +1,3 @@
-http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
-http://crossroads.net/*,https://www.crossroads.net/:splat,301!
 https://crossroads.net/*,https://www.crossroads.net/:splat,301!
 https://development.event-checkin.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}myevents,302!
 http://development.event-checkin.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}myevents,302!
