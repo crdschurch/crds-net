@@ -30,12 +30,12 @@
 }
 
 .closed-caption-container {
-  display: flex;
   align-items: center;
+  display: flex;
 
   .closed-caption-img {
-    margin: 8px 0 0 10px;
     height: 20px;
+    margin: 8px 0 0 10px;
   }
 }
 
