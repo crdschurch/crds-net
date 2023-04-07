@@ -29,6 +29,16 @@
   }
 }
 
+.closed-caption-container {
+  align-items: center;
+  display: flex;
+
+  .closed-caption-img {
+    height: 20px;
+    margin: 8px 0 0 10px;
+  }
+}
+
 .watch {
   .weekend-container {
     .watch-top-image {
