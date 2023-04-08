@@ -23,27 +23,31 @@ const isDayOfTheWeek = (day) => {
 };
 
 const isEasterLive = () => {
-  let easterIsLive = false;
+  let live = false;
+
+  let inRangeFri = getEstTime() >= 1900 && getEstTime() <= 2020;
+  let inRangeSat = getEstTime() >= 1500 && getEstTime() <= 1830;
+  let inRangeSun = getEstTime() >= 830 && getEstTime() <= 1400;
 
   // Fri 4/7
   // 7:00pm - 8:20pm
-  if (isDayOfTheWeek(5)) {
-    easterIsLive = getEstTime() >= 1900 && getEstTime() <= 2020;
+  if (isDayOfTheWeek(5) && inRangeFri) {
+    live = true;
   }
 
   // Sat 4/8
   // 3:00pm - 6:30pm
-  if (isDayOfTheWeek(6)) {
-    easterIsLive = getEstTime() >= 1500 && getEstTime() < 1830;
+  if (isDayOfTheWeek(6) && inRangeSat) {
+    live = true;
   }
 
   // Sun 4/9
   // 8:30am - 2:00pm
-  if (isDayOfTheWeek(0)) {
-    easterIsLive = getEstTime() >= 830 && getEstTime() <= 1400;
+  if (isDayOfTheWeek(0) && inRangeSun) {
+    live = true;
   }
 
-  return easterIsLive;
+  return live;
 };
 
 let easterIsLive = isEasterLive();
