@@ -22,16 +22,34 @@ const isDayOfTheWeek = (day) => {
   }
 };
 
-let isSunday = isDayOfTheWeek(0);
+const isEasterLive = () => {
+  let easterIsLive = false;
 
-let sundayServiceTimes = getEstTime() >= 830 && getEstTime() <= 1300;
+  // Fri 4/7 starting at 7:00pm
+  if (isDayOfTheWeek(5)) {
+    easterIsLive = getEstTime() >= 1900;
+  }
+  // Sat 4/8 all day, except between 2:00pm and 3:15pm
+  if (isDayOfTheWeek(6)) {
+    easterIsLive =
+      (getEstTime() >= 0 && getEstTime() < 1400) || (getEstTime() >= 1515 && getEstTime() <= 2359);
+  }
+  // Sun 4/9 until 11:59pm
+  if (isDayOfTheWeek(0)) {
+    easterIsLive = getEstTime() <= 2359;
+  }
+
+  return easterIsLive;
+};
+
+let easterIsLive = isEasterLive();
 
 const isNotCtaRenderTime = () => {
-  return isSunday && sundayServiceTimes;
+  return easterIsLive;
 };
 
 const isServiceTime = () => {
-  return isSunday && sundayServiceTimes;
+  return easterIsLive;
 };
 
 const refreshPageForServiceStart = (hours, minutes, seconds) => {
@@ -62,7 +80,20 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
   document.getElementById('resi-player').remove();
 }
 
-if (isSunday) {
-  refreshPageForServiceStart(8, 30, 1);
-  refreshPageForServiceStart(13, 1, 1);
+if (easterIsLive) {
+  // Refresh Friday at 7:01:01pm
+  if (isDayOfTheWeek(5)) {
+    refreshPageForServiceStart(19, 1, 1);
+  }
+
+  // Refresh Saturday 2:01:01pm and again at 3:15:01pm
+  if (isDayOfTheWeek(6)) {
+    refreshPageForServiceStart(14, 1, 1);
+    refreshPageForServiceStart(15, 15, 1);
+  }
+
+  // Refresh Sunday at 11:59:59pm
+  if (isDayOfTheWeek(0)) {
+    refreshPageForServiceStart(23, 59, 59);
+  }
 }
