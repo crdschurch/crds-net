@@ -7,6 +7,8 @@ https://embeddemo.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH
 /,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH_DEV
+/?new,${env:CRDS_UNIFIED_DOMAIN}h?new,200! Cookie=.ROCK_AUTH
+/?new,${env:CRDS_UNIFIED_DOMAIN}h?new,200! Cookie=.ROCK_AUTH_DEV
 /,${env:CRDS_UNIFIED_DOMAIN},200!
 /h,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH
 /h,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH_DEV
