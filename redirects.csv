@@ -5,13 +5,13 @@ https://release.event-checkin.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}myevents,3
 https://embedint.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 https://embeddemo.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
-/?new,${env:CRDS_UNIFIED_DOMAIN}h?new,200! Cookie=.ROCK_AUTH
-/?new,${env:CRDS_UNIFIED_DOMAIN}h?new,200! Cookie=.ROCK_AUTH_DEV
+/ new=:new,${env:CRDS_UNIFIED_DOMAIN}h?new=:new,200! Cookie=.ROCK_AUTH
+/ new=:new,${env:CRDS_UNIFIED_DOMAIN}h?new=:new,200! Cookie=.ROCK_AUTH_DEV
 /,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH
 /,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH_DEV
 /,${env:CRDS_UNIFIED_DOMAIN},200!
-/h?new,${env:CRDS_UNIFIED_DOMAIN}h?new,200! Cookie=.ROCK_AUTH
-/h?new,${env:CRDS_UNIFIED_DOMAIN}h?new,200! Cookie=.ROCK_AUTH_DEV
+/h new=:new,${env:CRDS_UNIFIED_DOMAIN}h?new=:new,200! Cookie=.ROCK_AUTH
+/h new=:new,${env:CRDS_UNIFIED_DOMAIN}h?new=:new,200! Cookie=.ROCK_AUTH_DEV
 /h,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH
 /h,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH_DEV
 /h,/,302!
