@@ -22,16 +22,27 @@ const isDayOfTheWeek = (day) => {
   }
 };
 
-let isSunday = isDayOfTheWeek(0);
+const isHorseWeek = () => {
+  // Sat, 4/22 between 3pm - 6:30pm
+  let inRangeSat = getEstTime() >= 1455 && getEstTime() <= 1830;
+  // Sun, 4/23 between 9am - 5pm
+  let inRangeSun = getEstTime() >= 855 && getEstTime() <= 1700;
 
-let sundayServiceTimes = getEstTime() >= 830 && getEstTime() <= 1300;
+  if ((isDayOfTheWeek(6) && inRangeSat) || (isDayOfTheWeek(0) && inRangeSun)) {
+    return true;
+  }
+
+  return false;
+};
+
+const isHorseWeekLive = isHorseWeek();
 
 const isNotCtaRenderTime = () => {
-  return isSunday && sundayServiceTimes;
+  return isHorseWeekLive;
 };
 
 const isServiceTime = () => {
-  return isSunday && sundayServiceTimes;
+  return isHorseWeekLive;
 };
 
 const refreshPageForServiceStart = (hours, minutes, seconds) => {
@@ -62,7 +73,17 @@ if (!isServiceTime() && document.getElementById('resi-player')) {
   document.getElementById('resi-player').remove();
 }
 
-if (isSunday) {
-  refreshPageForServiceStart(8, 30, 1);
-  refreshPageForServiceStart(13, 1, 1);
+if (isHorseWeekLive) {
+  // Refresh at times
+  if (isDayOfTheWeek(6)) {
+    // Sat, 4/22 @ 2:55pm
+    refreshPageForServiceStart(14, 55, 1);
+    // Sat, 4/22 @ 4:55pm
+    refreshPageForServiceStart(16, 55, 1);
+  } else if (isDayOfTheWeek(0)) {
+    // Sun, 4/23 @ 8:55am
+    refreshPageForServiceStart(8, 55, 1);
+    // Sun, 4/23 @ 10:55am
+    refreshPageForServiceStart(10, 55, 1);
+  }
 }
