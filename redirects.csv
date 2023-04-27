@@ -5,14 +5,16 @@ https://release.event-checkin.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}myevents,3
 https://embedint.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 https://embeddemo.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
-/,${env:CRDS_UNIFIED_DOMAIN}h,"200! Cookie=.ROCK_AUTH, .ROCK_AUTH_DEV"
+/,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH
+/,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH_DEV
 /,${env:CRDS_UNIFIED_DOMAIN},200!
-/h,${env:CRDS_UNIFIED_DOMAIN}h,"200! Cookie=.ROCK_AUTH, .ROCK_AUTH_DEV"
+/h,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH
+/h,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH_DEV
 /h,/,302!
 /signout,${env:CRDS_ROCK_DOMAIN}Auth/Logout,301!
 /forgot-password,${env:CRDS_ROCK_DOMAIN}ForgotUserName,301!
 /api/*,${env:CRDS_UNIFIED_DOMAIN}api/:splat,200!
-/growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path,"200! Cookie=.ROCK_AUTH, .ROCK_AUTH_DEV"
+/growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path,200! Cookie=.ROCK_AUTH
 /growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path,200! Cookie=.ROCK_AUTH_DEV
 /growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path-logged-out,200!
 /receive-teaching-weekly,${env:CRDS_UNIFIED_DOMAIN}receive-teaching-weekly,200! Cookie=.ROCK_AUTH
