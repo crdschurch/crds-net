@@ -560,7 +560,7 @@ layout: default
       <div class="col-md-8 col-md-offset-2">
         <h3 class="text-white font-family-condensed-extra font-size-giant text-uppercase font-weight-300">Be a part of a new kind of church</h3>
         <p class="text-blue font-family-serif">God created everyone one of us to live a life of adventure and to change the world for good. If that sounds interesting to you, then you’re in the right place. Create a profile to access spiritual training, life-changing experiences, and connections with others on this journey.<br /></p>
-        {% if site.ENV contains 'prod' %}
+        {% if site.crds_env contains 'prod' %}
           <crds-button href="https://my.crossroads.net/NewAccount" color="blue" text="Join Crossroads"></crds-button>
         {% else %}
           <crds-button href="https://mydev.crossroads.net/NewAccount" color="blue" text="Join Crossroads"></crds-button>
