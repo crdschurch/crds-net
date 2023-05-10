@@ -42,7 +42,6 @@ layout: default
           </div>
         </div>
       </div>
-      
     </div>
 
     <div class="anywhere-media-objects-container">
@@ -53,19 +52,25 @@ layout: default
         <div class="anywhere-media-object-content">
           <span>Service Times</span>
           <p>Available every Sunday</p>
-          <a class="font-size-small text-gray-darker underline" href="{{ latest_message | media_url }}"> Watch the latest message</a>
+          <a class="font-size-smaller text-gray-darker underline" href="{{ latest_message | media_url }}"> Watch the latest message</a>
         </div>
       </div>
-
       <div class="anywhere-media-object">
         <img class="object-fit-cover" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" alt="{{ page.community_pastor_name }}">
         <div class="anywhere-media-object-content">
           <span>Leadership</span>
           <p>{{ page.community_pastor_name }} <br>Community Pastor</p>
-          <a class="font-size-small text-gray-darker underline" href="#our-team"> Meet the team</a>
+          <a class="font-size-smaller text-gray-darker underline" href="#our-team"> Meet the team</a>
         </div>
       </div>
     </div>
+
+    <div class="row anywhere-app-button">
+      <div class="col-sm-12">
+        <a class="btn btn-orange" href="/app">Get the Crossroads Anywhere App</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
