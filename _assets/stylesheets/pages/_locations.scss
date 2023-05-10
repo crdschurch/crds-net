@@ -364,7 +364,9 @@
   &.anywhere {
     background-position-x: 90%;
     background-position-x: center;
-    padding-top: 30px;
+    @media (min-width: $screen-sm) {
+      padding-top: 30px;
+    }
 
     h1 {
       font-size: 90px;
@@ -404,12 +406,12 @@
 }
 
 .anywhere-app-button {
-  margin-bottom: 150px;
-
-  @media (min-width: $screen-sm) {
+  @media (min-width: $screen-xs) {
     margin-bottom: 90px;
   }
-  
+  @media (min-width: $screen-xs) {
+    margin-bottom: 150px;
+  }
 }
 
 .anywhere-media-objects-container {
