@@ -364,7 +364,7 @@
   &.anywhere {
     background-position-x: 90%;
     background-position-x: center;
-    @media (min-width: $screen-sm) {
+    @media (max-width: $screen-xs) {
       padding-top: 30px;
     }
 
