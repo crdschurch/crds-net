@@ -42,7 +42,6 @@ layout: default
           </div>
         </div>
       </div>
-      
     </div>
 
     <div class="anywhere-media-objects-container">
@@ -53,19 +52,25 @@ layout: default
         <div class="anywhere-media-object-content">
           <span>Service Times</span>
           <p>Available every Sunday</p>
-          <a class="font-size-small text-gray-darker underline" href="{{ latest_message | media_url }}"> Watch the latest message</a>
+          <a class="font-size-smaller text-gray-darker underline" href="{{ latest_message | media_url }}"> Watch the latest message</a>
         </div>
       </div>
-
       <div class="anywhere-media-object">
         <img class="object-fit-cover" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" alt="{{ page.community_pastor_name }}">
         <div class="anywhere-media-object-content">
           <span>Leadership</span>
           <p>{{ page.community_pastor_name }} <br>Community Pastor</p>
-          <a class="font-size-small text-gray-darker underline" href="#our-team"> Meet the team</a>
+          <a class="font-size-smaller text-gray-darker underline" href="#our-team"> Meet the team</a>
         </div>
       </div>
     </div>
+
+    <div class="row anywhere-app-button">
+      <div class="col-sm-12">
+        <a class="btn btn-orange" href="/app">Get the Crossroads Anywhere App</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -554,30 +559,21 @@ layout: default
 </section>
 
 <!-- Sign up  -->
-<crds-auth-content-signed-out>
-  <section class="anywhere-sign-up soft-ends" style="background-image: url('https://crds-media.imgix.net/1ie6HE8PwHcxZw3qSrOw4Y/4f61fa904ff40800a4dc2a99e1f8cefe/anywhere-form-image.jpg?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
-    <div class="container soft-ends">
-      <div class="row text-center">
-        <div class="col-md-8 col-md-offset-2">
-          <h3 class="text-white font-family-condensed-extra font-size-giant text-uppercase font-weight-300">Be a part of a new kind of church</h3>
-          <p class="text-blue font-family-serif">God created everyone one of us to live a life of adventure and to change the world for good. If that sounds interesting to you, then you’re in the right place. Create a profile to access spiritual training, life-changing experiences, and connections with others on this journey.</p>
-        </div>
-      </div>
-      <div class="row text-center soft-ends">
-        <div class="col-sm-12" style="z-index: 1; margin-bottom: -20px;">
-          <crds-arrow text-color="orange" arrow-color="blue" arrow-size="default">Sign<br>Up</crds-arrow>
-        </div>
-        <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-          <div class="bg-white img-rounded-corners soft">
-            <div class="soft-half-top">
-              <crds-register provider="Okta" default-site-id="15" display-zipcode="true" display-header="false" button-text="Create an account" needs-redirect="false"></crds-register>
-            </div>
-          </div>
-        </div>
+<section class="anywhere-sign-up soft-ends" style="background-image: url('https://crds-media.imgix.net/1ie6HE8PwHcxZw3qSrOw4Y/4f61fa904ff40800a4dc2a99e1f8cefe/anywhere-form-image.jpg?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+  <div class="container soft-ends">
+    <div class="row text-center">
+      <div class="col-md-8 col-md-offset-2">
+        <h3 class="text-white font-family-condensed-extra font-size-giant text-uppercase font-weight-300">Be a part of a new kind of church</h3>
+        <p class="text-blue font-family-serif">God created everyone one of us to live a life of adventure and to change the world for good. If that sounds interesting to you, then you’re in the right place. Create a profile to access spiritual training, life-changing experiences, and connections with others on this journey.<br /></p>
+        {% if site.crds_env contains 'prod' %}
+          <crds-button href="https://my.crossroads.net/NewAccount" color="blue" text="Join Crossroads"></crds-button>
+        {% else %}
+          <crds-button href="https://mydev.crossroads.net/NewAccount" color="blue" text="Join Crossroads"></crds-button>
+        {% endif %}
       </div>
     </div>
-  </section>
-</crds-auth-content-signed-out>
+  </div>
+</section>
 
 <!-- Kid's Club Form Modal -->
 <div class="modal" id="kidsClubModalForm" tabindex="-1" role="dialog" aria-labelledby="Subscribe email form">

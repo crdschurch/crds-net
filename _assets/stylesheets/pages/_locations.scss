@@ -363,6 +363,10 @@
 .locations-jumbotron {
   &.anywhere {
     background-position-x: 90%;
+    background-position-x: center;
+    @media (max-width: $screen-xs) {
+      padding-top: 30px;
+    }
 
     h1 {
       font-size: 90px;
@@ -401,6 +405,15 @@
   }
 }
 
+.anywhere-app-button {
+  @media (min-width: $screen-xs) {
+    margin-bottom: 90px;
+  }
+  @media (min-width: $screen-xs) {
+    margin-bottom: 150px;
+  }
+}
+
 .anywhere-media-objects-container {
   display: grid;
   max-width: 700px;
@@ -409,7 +422,7 @@
   z-index: 2;
   position: relative;
   grid-gap: 15px;
-  margin-bottom: 180px;
+  margin-bottom: 10px;
   justify-items: center;
   
   @media (min-width: $screen-sm) {

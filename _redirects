@@ -14,4 +14,5 @@
 /atriumevents/?site=westside https://api.crossroads.net/atriumevents/eventlisting/westside 302!
 /atriumevents/?site=eastside https://api.crossroads.net/atriumevents/eventlisting/eastside 302!
 /atriumevents/?site=lexington https://api.crossroads.net/atriumevents/eventlisting/lexington 302!
+/watch /born-wild 302!
 /*  /404/index.html 404
