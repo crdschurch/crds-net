@@ -18,6 +18,7 @@ module Jekyll
       @site.config['crds_env'] = ENV['CRDS_ENV'] if ENV['CRDS_ENV']
       @site.config['contentful_env'] = ENV['CONTENTFUL_ENV'] if ENV['CONTENTFUL_ENV']
       @site.config['music_url'] = ENV['CRDS_MUSIC_ENDPOINT'] if ENV['CRDS_MUSIC_ENDPOINT']
+      @site.config['contentful_space_id'] = ENV['CONTENTFUL_SPACE_ID'] if ENV['CONTENTFUL_SPACE_ID']
     end
 
     private
