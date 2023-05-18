@@ -15,7 +15,7 @@ Jekyll::Hooks.register :site, :after_init do |site|
   end
 
   data_endpoint = "https://#{ENV['CRDS_DATA_ENDPOINT'] || "crds-data.crossroads.net"}"
-  messages_url = "http://127.0.0.1:8080/messages/int.json"
+  messages_url = "#{data_endpoint}/messages/#{env}.json"
 
   begin
     response = URI.open(messages_url)
