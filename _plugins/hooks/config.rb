@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'json'
+
 Jekyll::Hooks.register :site, :after_init do |site|
   if ENV['NETLIFY']
     site.config['components_endpoint'] = "/components"
@@ -11,8 +14,12 @@ Jekyll::Hooks.register :site, :after_init do |site|
     else 'prod'
   end
 
+  data_endpoint = "https://#{ENV['CRDS_DATA_ENDPOINT'] || "crds-data.crossroads.net"}"
+  messages_url = "#{data_endpoint}/messages/#{env}.json"
+
+  site.config['current_message'] =  JSON.parse(URI.open(messages_url).read)
   site.config['components_root_url'] = ENV['CRDS_COMPONENTS_ROOT_URL'] unless ENV['CRDS_COMPONENTS_ROOT_URL'].nil?
-  site.config['data_host'] = "https://#{ENV['CRDS_DATA_ENDPOINT'] || "crds-data.crossroads.net"}"
+  site.config['data_host'] = data_endpoint
   site.config['data_file'] = "#{env}.json"
-    site.config['site_url'] = ENV['SITE_URL'];
+  site.config['site_url'] = ENV['SITE_URL'];  
 end
