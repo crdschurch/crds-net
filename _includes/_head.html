@@ -23,7 +23,12 @@
   <meta property="og:site_name" content="{{ site.title | escape }}">
   <meta name="apple-itunes-app" content="app-id=1029478803">
   <meta name="google-play-app" content="app-id=net.crossroads.crossroads">
+  <!-- Long titles were effecting article SEO. Removing "| Crossroads Church from the title on the Articles page." -->
+  {% if page.title != "Articles" %}
   <title>{{ page | meta_title }}</title>
+  {% else %}
+  <title>{{ page.title }}</title>
+  {% endif %}
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="author" content="Crossroads" />
   <meta name="msapplication-TileColor" content="#ffffff">
