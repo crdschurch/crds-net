@@ -1,9 +1,0 @@
-{
-  "name": "_functions",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "dependencies": {
-    "jsrsasign": "^10.8.6"
-  }
-}
