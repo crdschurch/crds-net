@@ -2,7 +2,14 @@
 "use strict";
 const JWT = require("jsrsasign");
 
-exports.handler = (_event, _context, callback) => {
+exports.handler = (event, _context, callback) => {
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ msg: "Method Not Allowed" }),
+    };
+  }
+
   const oHeader = { alg: "HS256", typ: "JWT" };
   const sHeader = JSON.stringify(oHeader);
   var expiration = new Date();
@@ -17,17 +24,19 @@ exports.handler = (_event, _context, callback) => {
     exp: Math.floor(expiration.getTime() / 1000),
   });
 
-  const body = JWT.jws.JWS.sign(
+  const token = JWT.jws.JWS.sign(
     "HS256",
     sHeader,
     sPayload,
     process.env.JWT_SECRET
   );
 
+  const body = JSON.stringify({ token, expiresAt: expiration });
+
   const headers = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+    "Access-Control-Allow-Methods": "POST",
   };
 
   return callback(null, {
