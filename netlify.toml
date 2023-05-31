@@ -3,6 +3,11 @@
   command = "bin/build-command.sh"
   functions = "_functions"
 
+[[headers]]
+    for = "/*"
+      [headers.values]
+      Access-Control-Allow-Origin = "*"
+
 [build.processing.html]
   pretty_urls = true
 
