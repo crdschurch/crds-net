@@ -4,16 +4,16 @@ const JWT = require("jsrsasign");
 
 exports.handler = (event, _context, callback) => {
   if (event.httpMethod !== "POST") {
-    return {
+    return callback(null, {
       statusCode: 405,
       body: JSON.stringify({ msg: "Method Not Allowed" }),
-    };
+    });
   }
 
   const oHeader = { alg: "HS256", typ: "JWT" };
   const sHeader = JSON.stringify(oHeader);
-  var expiration = new Date();
-  expiration.setHours(expiration.getHours() + 2160); // 90 days
+  var expiresAt = new Date();
+  expiresAt.setHours(expiresAt.getHours() + 2160); // 90 days
 
   const sPayload = JSON.stringify({
     app_metadata: {
@@ -21,7 +21,7 @@ exports.handler = (event, _context, callback) => {
         roles: ["user"],
       },
     },
-    exp: Math.floor(expiration.getTime() / 1000),
+    exp: Math.floor(expiresAt.getTime() / 1000),
   });
 
   const token = JWT.jws.JWS.sign(
@@ -31,7 +31,7 @@ exports.handler = (event, _context, callback) => {
     process.env.JWT_SECRET
   );
 
-  const body = JSON.stringify({ token, expiresAt: expiration });
+  const body = JSON.stringify({ token, expiresAt });
 
   const headers = {
     "Access-Control-Allow-Origin": "*",
