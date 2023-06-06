@@ -7,11 +7,15 @@ ENV RUBY_MAJOR 2.6
 ENV RUBY_VERSION 2.6.2
 ENV RUBY_DOWNLOAD_SHA256 91fcde77eea8e6206d775a48ac58450afe4883af1a42e5b358320beb33a445fa
 
+RUN echo "deb http://archive.debian.org/debian/ stretch main" > /etc/apt/sources.list \
+	cat /etc/apt/sources.list \
+	echo "deb http://deb.debian.org/debian/ stretch-updates main" >> /etc/apt/sources.list \
+	cat /etc/apt/sources.list
+
 # Below copied from the official Ruby docker image https://github.com/docker-library/ruby/blob/a564feaaee4c8647c299ab11d41498468bb9af7b/2.6/buster/Dockerfile
 # some of ruby's build scripts are written in ruby
 #   we purge system ruby later to make sure our final image uses what we just built
 RUN set -eux; \
-	\
 	savedAptMark="$(apt-mark showmanual)"; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
