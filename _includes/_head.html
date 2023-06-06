@@ -1,4 +1,11 @@
 <head>
+  <!-- Fix to remove " | Crossroads Church from Articles for SEO optimization" -->
+  {% if page.content_type == 'article' or page.title == 'Articles' %}
+  {% assign page_title = page.title %}
+  {% else %}
+  {% assign page_title = page | meta_title %}
+  {% endif %}
+
   {% if page.title != "Atrium Events" %}
   {% if site.jekyll_env == 'production' %}
     <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/ee6703e4-e14a-4e11-bf03-f5b7b37c7061/osano.js"></script>
@@ -11,11 +18,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="title" content="{{ page | meta_title }}">
+  <meta name="title" content="{{ page_title }}">
   <meta name="description" content="{{ page | meta_description | markdownify | strip_liquid | strip_html | strip_newlines | strip | truncate: 155 }}">
   <meta name="image" content="{{ page | meta_image | imgix: site.imgix }}?{{ site.imgix_params.meta_image }}">
   <meta property="og:description" content="{{ page | meta_description | markdownify | strip_liquid | strip_html | strip_newlines | strip | truncate: 155 }}">
-  <meta property="og:title" content="{{ page | meta_title }}">
+  <meta property="og:title" content="{{ page_title }}">
   <meta property="og:image" content="{{ page | meta_image | imgix: site.imgix }}?{{ site.imgix_params.meta_image }}">
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -23,12 +30,7 @@
   <meta property="og:site_name" content="{{ site.title | escape }}">
   <meta name="apple-itunes-app" content="app-id=1029478803">
   <meta name="google-play-app" content="app-id=net.crossroads.crossroads">
-  <!-- Long titles were effecting article SEO. Removing "| Crossroads Church from the title on the Articles page." -->
-  {% if page.title != "Articles" %}
-  <title>{{ page | meta_title }}</title>
-  {% else %}
-  <title>{{ page.title }}</title>
-  {% endif %}
+  <title>{{ page_title }}</title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="author" content="Crossroads" />
   <meta name="msapplication-TileColor" content="#ffffff">
