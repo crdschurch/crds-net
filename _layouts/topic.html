@@ -42,7 +42,7 @@ layout: default
                 {% if item.content_type == "article" or "video" %}
                 <div class="beige-overlay"></div>
                 {% endif %}            
-                {% assign image = item | card_image %}
+                {% assign image = item.image.url  %}
                 <img src="{% if image %}{{ image | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ image.title }}" sizes="{{ site.image_sizes.cards_3x }}" data-optimize-img>
                 {% include _media-label.html source=item %}
               </div>
