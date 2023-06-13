@@ -3,6 +3,24 @@ layout: default
 title: Podcast
 ---
 
+{% if page.title == 'The Aggressive Life with Brian Tome' %}
+    <!-- Conversion Pixel for [signup]- DO NOT MODIFY -->
+    <img src="https://arttrk.com/pixel/?ad_log=referer&action=signup&pixid=ebee528e-d9ee-4103-876aa29f6ee0eca2" width="1" height="1" border="0">
+    <!-- End ofConversion Pixel -->
+  {% endif %}
+
+  {% if page.title == 'A Better Answer' %}
+    <!-- Conversion Pixel for [registration]- DO NOT MODIFY -->
+    <img src="https://arttrk.com/pixel/?ad_log=referer&action=registration&pixid=ebee528e-d9ee-4103-876a-a29f6ee0eca2" width="1" height="1" border="0">
+    <!-- End of Conversion Pixel -->
+  {% endif %}
+
+  {% if page.title == 'Still Standing' %}
+    <!-- Conversion Pixel for [purchase]- DO NOT MODIFY -->
+    <img src="https://arttrk.com/pixel/?ad_log=referer&action=purchase&pixid=ebee528e-d9ee-4103-876a-a29f6ee0eca2" width="1" height="1" border="0">
+    <!-- End of Conversion Pixel -->
+  {% endif %}
+
 {% assign episodes = site.episodes | filter: 'podcast.title', page.title %}
 
 <section class="media-podcast-show" data-grouping-media-type="podcast">
