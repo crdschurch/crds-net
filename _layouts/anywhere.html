@@ -4,16 +4,6 @@ layout: default
 
 <!-- Pull only the promos that exist for the specific location if any -->
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "published_at" | reverse %}
-{% for serie in site.series %}
-{% if serie.slug != 'easter-a-love-story' %}
-{% assign series = serie %}
-{% if serie.videos.size > 0 %}
-{% assign latest_message_series_image = serie.image.url %}
-{% assign latest_message = serie.videos | last | get_doc %}
-{% endif %}
-{% endif %}
-{% endfor %}
-
 
 <!-- Featured Section -->
 {% if page.featured_section.size > 0 %}
@@ -23,6 +13,9 @@ layout: default
 {% endif %}
 
 {% include locations/_welcome-modal.html %}
+
+{% assign sorted_messages = site.messages | sort: 'published_at' %}
+{% assign current_message = sorted_messages | last %}
 
 <!-- Jumbotron section -->
 <section class="jumbotron locations-jumbotron anywhere flush-bottom width-100" style="background-image: url('//crds-media.imgix.net/4uYQgojJJBlABqZwIPqqwJ/b9794fa8acc3cc0cac58b86ea52331c0/crossroads-anywhere-header-img.jpg?{{ site.imgix_params.placeholder }}')"
@@ -42,30 +35,35 @@ layout: default
           </div>
         </div>
       </div>
-      
     </div>
 
     <div class="anywhere-media-objects-container">
       <div class="anywhere-media-object">
-        <a href="{{ latest_message | media_url }}">
-          <img class="object-fit-cover" src="{{ latest_message_series_image | imgix: site.imgix }}?auto=format,compress&w=150" alt="">
+        <a href="{{ current_message.url }}">
+          <img class="object-fit-cover" src="{{ current_message.image.url | imgix: site.imgix }}?auto=format,compress&w=150" alt="">
         </a>
         <div class="anywhere-media-object-content">
           <span>Service Times</span>
           <p>Available every Sunday</p>
-          <a class="font-size-small text-gray-darker underline" href="{{ latest_message | media_url }}"> Watch the latest message</a>
+          <a class="font-size-smaller text-gray-darker underline" href="{{ current_message.url }}"> Watch the latest message</a>
         </div>
       </div>
-
       <div class="anywhere-media-object">
         <img class="object-fit-cover" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" alt="{{ page.community_pastor_name }}">
         <div class="anywhere-media-object-content">
           <span>Leadership</span>
           <p>{{ page.community_pastor_name }} <br>Community Pastor</p>
-          <a class="font-size-small text-gray-darker underline" href="#our-team"> Meet the team</a>
+          <a class="font-size-smaller text-gray-darker underline" href="#our-team"> Meet the team</a>
         </div>
       </div>
     </div>
+
+    <div class="row anywhere-app-button">
+      <div class="col-sm-12">
+        <a class="btn btn-orange" href="/app">Get the Crossroads Anywhere App</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -89,16 +87,16 @@ layout: default
               </div>
               {% endif %}
 
-              <!-- Current Series -->
-              <a href="{{ series.url }}" title="{{ series.title }}">
-                <crds-image unified src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720" no-crop size="card"></crds-image>
+              <!-- Current Message -->
+              <a href="{{ current_message.url }}" title="{{ current_message.title }}">
+                <crds-image unified src="{{ current_message.image.url | imgix: site.imgix }}?auto=format,compress&w=720" no-crop size="card"></crds-image>
               </a>
-              <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Series</strong></p>
-              <h2 class="font-family-condensed-extra text-uppercase flush font-weight-300">{{ series.title }}</h2>
+              <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Message</strong></p>
+              <h2 class="font-family-condensed-extra text-uppercase flush font-weight-300">{{ current_message.title }}</h2>
               <div class="push-half-top push-bottom font-size-small text-gray-dark">
-                {{ series.description | markdownify }}
+                {{ current_message.description | markdownify }}
               </div>
-              <crds-button href="{{ series.url }}#online" title="{{ series.title }}" text="Watch current teaching series"
+              <crds-button href="{{ current_message.url }}" title="{{ current_message.title }}" text="Watch current message"
                 color="orange"></crds-button>
 
             </div>
@@ -158,7 +156,7 @@ layout: default
               <h2 class="section-header flush-ends soft-half-bottom font-weight-300">Eat together</h2>
               <p>What do church and eating together have in common? According to Jesus, a lot. He was the life of the party and he never missed an opportunity to turn a meal into something more.</p>
               <p>For centuries, church happened around a table. Eating together is one of the simplest ways to copy Jesus’ life. That thing we do 3x a day already, what if we did it more intentionally? </p>
-              <p>Eat with whoever you live with, and invite others to join. <a href="/media/articles/how-to-create-community-out-of-thin-air" class="text-gray-darker underline">Create community out of thin air</a>. Reach out to our team for more coaching on how to handle kids, find people, make it better, and more. </p>
+              <p>Eat with whoever you live with, and invite others to join. <a href="/media/articles/how-to-create-community-out-of-thin-air" class="text-gray-darker underline">Create community out of thin air</a>. Reach out to our team for more coaching on how to handle kids, find people, make it better, and more. </p>
             </div>
           </div>
 
@@ -198,7 +196,7 @@ layout: default
                 <img class="img-rounded-corners" src="//crds-media.imgix.net/4j2FLJze0GedIrQAySGZQt/4d70088fec1a6aab207019b0deb86bca/anywhere-meet-ups.jpg" alt="Find a meet-up" />
                 <p class="flush-bottom font-family-base-bold soft-half-top">Find a Meet-Up</p>
                 <p>
-                  Meet other Crossroads people near you (and the Crossroads staff who are here to support you.) Click here to request one in your area. 
+                  Meet other Crossroads people near you (and the Crossroads staff who are here to support you.) Click here to request one in your area. 
                 </p>
                 <crds-button href="https://www.crossroads.net/cr-forms/awrequestameetup" display="outline" color="blue" text="Request one near you"></crds-button>
               </div>
@@ -231,12 +229,12 @@ layout: default
             </div>
 
             <div class="col-sm-4 mobile-push-bottom mobile-soft-bottom">
-              <img class="img-rounded-corners" src="//crds-media.imgix.net/7kzwR219SHf633S4QejEPV/b402ef9ebca90d4b4892315e8bb8b6ea/anywhere-groups.jpg" alt="Find a Group" />
-              <p class="flush-bottom font-family-base-bold soft-half-top">Find a Group</p>
+              <img class="img-rounded-corners" src="//crds-media.imgix.net/4BGIfT8yvdDCCQRpdQ6qGY/98a45c8c37aec42999b41608b183c7f4/Rooted_Happening.png" alt="Rooted" />
+              <p class="flush-bottom font-family-base-bold soft-half-top">Rooted</p>
               <p>
-                There are groups all over on all sorts of topics. It’s a great way to meet people and experience God all from the comfort of your home. 
+                Learn to lean into one of the 7 Proven Practices—a daily rhythm of connecting with God. Learn more about the Bible, prayer, serving, sharing your story, and how to personally hear God’s voice. 
               </p>
-              <a class="text-gray-darker underline" href="https://www.crossroads.net/findgroups?www_crds_connect%5BrefinementList%5D%5BonlineGroup%5D%5B0%5D=virtual&www_crds_connect%5BrefinementList%5D%5Bsite%5D%5B0%5D=Online">Check out the Group Tool</a>
+              <a class="text-gray-darker underline" href="https://www.crossroads.net/cr-forms/ccanywhererootedinterest23/">Sign Up</a>
             </div>
             
             <div class="col-sm-4">
@@ -252,13 +250,14 @@ layout: default
           <div class="bg-gray-lightest img-rounded-corners soft push-ends">
             <div class="row text-gray-darker soft mobile-hard">
               <div class="col-sm-6 mobile-push-bottom mobile-soft-bottom">
-                <img class="img-rounded-corners" src="//crds-media.imgix.net/49pJx1xHj9OVmZikJbwlXz/06ff0b301746757d0c41bc008b33152b/screen-time-with-purpose.png" alt="Screen Time with a Purpose" />
-                <p class="flush-bottom font-family-base-bold soft-half-top">Screen Time with a Purpose</p>
+                <img class="img-rounded-corners" src="//crds-media.imgix.net/1sjkYdutboM5U1hvXi0xtl/25a55800d2f4eacfb7ae42a80d78a85b/Alpha_Happening.png" alt="Alpha" />
+                <p class="flush-bottom font-family-base-bold soft-half-top">Alpha</p>
                 <p>
-                  Trade aimless scrolling for meaningful content, exercises designed to help you de-stress, and challenges that guarantee growth. 
+                  Look at the basics of faith with other people that are asking the same questions. If you have questions about God, this is the perfect group to understand who Jesus is and why so many are people talking about Him. 
                 </p>
-                <crds-button href="https://apps.apple.com/us/app/crossroads-anywhere/id1029478803" target="_blank" class="push-half-right" display="outline" color="blue" text="Download for iOS"></crds-button>
-                <crds-button href="https://play.google.com/store/apps/details?id=net.crossroads.crossroads&hl=en_US&gl=US" target="_blank" display="outline" color="blue" text="Download for Android"></crds-button>
+                <crds-button href="https://www.crossroads.net/cr-forms/ccanywherealphainterest23/" target="_blank" class="push-half-right" display="outline" color="blue" text="Sign Up"></crds-button>
+                <!--<crds-button href="https://apps.apple.com/us/app/crossroads-anywhere/id1029478803" target="_blank" class="push-half-right" display="outline" color="blue" text="Download for iOS"></crds-button>
+                <crds-button href="https://play.google.com/store/apps/details?id=net.crossroads.crossroads&hl=en_US&gl=US" target="_blank" display="outline" color="blue" text="Download for Android"></crds-button>-->
               </div>
 
               <div class="col-sm-6">
@@ -457,7 +456,7 @@ layout: default
             <div>
               <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/GaTBhPPPNewuLLF5xwc15/00604b8c6285736ab742509b7d89775c/Rassmussen_Abby-3.jpg?dpr=1&fit=facearea&facepad=2&auto=compress" alt="Abby Rasmussen" />
               <p class="flush font-family-base-bold soft-half-top">Abby Rasmussen</p>
-              <p>Abby leads Anywhere Kids + Families. She’s a licensed counselor, working mom of two, and guaranteed to not only diligently solve your question but make you laugh and feel more capable while she does. Talk to her about kid questions, God questions, parenting, trying to parent your kids through God questions, and getting resources to lead a family you freaking love. </p>
+              <p>Abby leads Anywhere Kids + Families. She’s a licensed counselor, working mom of two, and guaranteed to not only diligently solve your question but make you laugh and feel more capable while she does. Talk to her about kid questions, God questions, parenting, trying to parent your kids through God questions, and getting resources to lead a family you freaking love. </p>
               <div>
                 <a class="text-gray-darker underline" href="https://email.crossroads.net/meetings/abby-rasmussen">Let's connect</a>
                 
@@ -537,7 +536,7 @@ layout: default
 
             <div>
               <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/40xLIlxuCznz7LH9m3sjoO/4a0b343ad37e10fae263d6d819cf25af/McDade_Eugene-2-6.jpg?dpr=1&fit=facearea&facepad=2&auto=compress" alt="Eugene McDade" />
-              <p class="flush font-family-base-bold soft-half-top">Eugene McDade </p>
+              <p class="flush font-family-base-bold soft-half-top">Eugene McDade </p>
               <p>If you’re curious about Crossroads but not ready to dive in, or your schedule is tight, talk to Eugene. He runs all sorts of short, easy, one-time experiences that help you test the waters and jumpstart your spiritual growth like Camps, Rooted, Alpha, trips, serving, and more. You can also drop into his ongoing group to get connected anytime. If you really want to get to know him (and enter a lively debate), ask him about Waffle House.</p>
               <div>
                 <a class="text-gray-darker underline" href="https://calendly.com/eugene-mcdade">Let's connect</a>
@@ -553,30 +552,21 @@ layout: default
 </section>
 
 <!-- Sign up  -->
-<crds-auth-content-signed-out>
-  <section class="anywhere-sign-up soft-ends" style="background-image: url('https://crds-media.imgix.net/1ie6HE8PwHcxZw3qSrOw4Y/4f61fa904ff40800a4dc2a99e1f8cefe/anywhere-form-image.jpg?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
-    <div class="container soft-ends">
-      <div class="row text-center">
-        <div class="col-md-8 col-md-offset-2">
-          <h3 class="text-white font-family-condensed-extra font-size-giant text-uppercase font-weight-300">Be a part of a new kind of church</h3>
-          <p class="text-blue font-family-serif">God created everyone one of us to live a life of adventure and to change the world for good. If that sounds interesting to you, then you’re in the right place. Create a profile to access spiritual training, life-changing experiences, and connections with others on this journey.</p>
-        </div>
-      </div>
-      <div class="row text-center soft-ends">
-        <div class="col-sm-12" style="z-index: 1; margin-bottom: -20px;">
-          <crds-arrow text-color="orange" arrow-color="blue" arrow-size="default">Sign<br>Up</crds-arrow>
-        </div>
-        <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-          <div class="bg-white img-rounded-corners soft">
-            <div class="soft-half-top">
-              <crds-register provider="Okta" default-site-id="15" display-zipcode="true" display-header="false" button-text="Create an account" needs-redirect="false"></crds-register>
-            </div>
-          </div>
-        </div>
+<section class="anywhere-sign-up soft-ends" style="background-image: url('https://crds-media.imgix.net/1ie6HE8PwHcxZw3qSrOw4Y/4f61fa904ff40800a4dc2a99e1f8cefe/anywhere-form-image.jpg?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+  <div class="container soft-ends">
+    <div class="row text-center">
+      <div class="col-md-8 col-md-offset-2">
+        <h3 class="text-white font-family-condensed-extra font-size-giant text-uppercase font-weight-300">Be a part of a new kind of church</h3>
+        <p class="text-blue font-family-serif">God created everyone one of us to live a life of adventure and to change the world for good. If that sounds interesting to you, then you’re in the right place. Create a profile to access spiritual training, life-changing experiences, and connections with others on this journey.<br /></p>
+        {% if site.crds_env contains 'prod' %}
+          <crds-button href="https://my.crossroads.net/NewAccount" color="blue" text="Join Crossroads"></crds-button>
+        {% else %}
+          <crds-button href="https://mydev.crossroads.net/NewAccount" color="blue" text="Join Crossroads"></crds-button>
+        {% endif %}
       </div>
     </div>
-  </section>
-</crds-auth-content-signed-out>
+  </div>
+</section>
 
 <!-- Kid's Club Form Modal -->
 <div class="modal" id="kidsClubModalForm" tabindex="-1" role="dialog" aria-labelledby="Subscribe email form">
@@ -604,4 +594,3 @@ layout: default
     </div>
   </div>
 </div>
-
