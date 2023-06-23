@@ -4,16 +4,6 @@ layout: default
 
 <!-- Pull only the promos that exist for the specific location if any -->
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "published_at" | reverse %}
-{% for serie in site.series %}
-{% if serie.slug != 'easter-a-love-story' %}
-{% assign series = serie %}
-{% if serie.videos.size > 0 %}
-{% assign latest_message_series_image = serie.image.url %}
-{% assign latest_message = serie.videos | last | get_doc %}
-{% endif %}
-{% endif %}
-{% endfor %}
-
 
 <!-- Featured Section -->
 {% if page.featured_section.size > 0 %}
@@ -23,6 +13,9 @@ layout: default
 {% endif %}
 
 {% include locations/_welcome-modal.html %}
+
+{% assign sorted_messages = site.messages | sort: 'published_at' %}
+{% assign current_message = sorted_messages | last %}
 
 <!-- Jumbotron section -->
 <section class="jumbotron locations-jumbotron anywhere flush-bottom width-100" style="background-image: url('//crds-media.imgix.net/4uYQgojJJBlABqZwIPqqwJ/b9794fa8acc3cc0cac58b86ea52331c0/crossroads-anywhere-header-img.jpg?{{ site.imgix_params.placeholder }}')"
@@ -46,13 +39,13 @@ layout: default
 
     <div class="anywhere-media-objects-container">
       <div class="anywhere-media-object">
-        <a href="{{ latest_message | media_url }}">
-          <img class="object-fit-cover" src="{{ latest_message_series_image | imgix: site.imgix }}?auto=format,compress&w=150" alt="">
+        <a href="{{ current_message.url }}">
+          <img class="object-fit-cover" src="{{ current_message.image.url | imgix: site.imgix }}?auto=format,compress&w=150" alt="">
         </a>
         <div class="anywhere-media-object-content">
           <span>Service Times</span>
           <p>Available every Sunday</p>
-          <a class="font-size-smaller text-gray-darker underline" href="{{ latest_message | media_url }}"> Watch the latest message</a>
+          <a class="font-size-smaller text-gray-darker underline" href="{{ current_message.url }}"> Watch the latest message</a>
         </div>
       </div>
       <div class="anywhere-media-object">
@@ -94,16 +87,16 @@ layout: default
               </div>
               {% endif %}
 
-              <!-- Current Series -->
-              <a href="{{ series.url }}" title="{{ series.title }}">
-                <crds-image unified src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720" no-crop size="card"></crds-image>
+              <!-- Current Message -->
+              <a href="{{ current_message.url }}" title="{{ current_message.title }}">
+                <crds-image unified src="{{ current_message.image.url | imgix: site.imgix }}?auto=format,compress&w=720" no-crop size="card"></crds-image>
               </a>
-              <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Series</strong></p>
-              <h2 class="font-family-condensed-extra text-uppercase flush font-weight-300">{{ series.title }}</h2>
+              <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Message</strong></p>
+              <h2 class="font-family-condensed-extra text-uppercase flush font-weight-300">{{ current_message.title }}</h2>
               <div class="push-half-top push-bottom font-size-small text-gray-dark">
-                {{ series.description | markdownify }}
+                {{ current_message.description | markdownify }}
               </div>
-              <crds-button href="{{ series.url }}#online" title="{{ series.title }}" text="Watch current teaching series"
+              <crds-button href="{{ current_message.url }}" title="{{ current_message.title }}" text="Watch current message"
                 color="orange"></crds-button>
 
             </div>
