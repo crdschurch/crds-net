@@ -110,7 +110,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /sign-up/*,${env:CRDS_ROCK_DOMAIN}login?redirectUrl=/sign-up/:splat,302!
 /mygroups,${env:CRDS_ROCK_DOMAIN}mygroups,301!
 /tithetest,${env:CRDS_ROCK_DOMAIN}tithetest,301!
-/blueteam,${env:CRDS_ROCK_DOMAIN}blueteam/signup,301!
 /trips/*,/go,301!
 /waivers/*,/go,301!
 /give,${env:PUSHPAY_GIVE_ENDPOINT},301!
