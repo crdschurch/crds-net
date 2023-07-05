@@ -13,6 +13,8 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /h,/,302!
 /annualreport/2020,https://annual-report.crossroads.net/,301!
 /annualreports,${env:CRDS_UNIFIED_DOMAIN}annualreports,200!
+/go,${env:CRDS_UNIFIED_DOMAIN}go,200!
+/go/*,${env:CRDS_UNIFIED_DOMAIN}go/:splat,200!
 /watch, ${env:CRDS_UNIFIED_DOMAIN}watch,200!
 /signout,${env:CRDS_ROCK_DOMAIN}Auth/Logout,301!
 /forgot-password,${env:CRDS_ROCK_DOMAIN}ForgotUserName,301!
