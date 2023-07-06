@@ -15,6 +15,8 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /annualreports,${env:CRDS_UNIFIED_DOMAIN}annualreports,200!
 /go,/go,200!
 /go/*,${env:CRDS_UNIFIED_DOMAIN}go/:splat,200!
+/world-impact-experience,/WIE,302!
+/WIE,/world-impact-experience,200!
 /watch, ${env:CRDS_UNIFIED_DOMAIN}watch,200!
 /signout,${env:CRDS_ROCK_DOMAIN}Auth/Logout,301!
 /forgot-password,${env:CRDS_ROCK_DOMAIN}ForgotUserName,301!
