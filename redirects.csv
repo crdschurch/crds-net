@@ -52,6 +52,10 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /cohorts/*,${env:CRDS_UNIFIED_DOMAIN}cohorts/:splat,200!
 /go,/go,200!
 /asia,${env:CRDS_UNIFIED_DOMAIN}go/asia,200!
+/india,${env:CRDS_UNIFIED_DOMAIN}go/asia/india,200!
+/nepal,${env:CRDS_UNIFIED_DOMAIN}go/asia/nepal,200!
+/caribbean,${env:CRDS_UNIFIED_DOMAIN}go/caribbean,200!
+/puerto-rico,${env:CRDS_UNIFIED_DOMAIN}go/caribbean,puerto-rico,200!
 /go/*,${env:CRDS_UNIFIED_DOMAIN}go/:splat,200!
 /world-impact-experience,/WIE,200!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,301! Cookie=.ROCK_AUTH
