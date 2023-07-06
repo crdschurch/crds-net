@@ -50,6 +50,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
 /cohorts,${env:CRDS_UNIFIED_DOMAIN}cohorts,200!
 /cohorts/*,${env:CRDS_UNIFIED_DOMAIN}cohorts/:splat,200!
+/go,/go,200!
 /go/*,${env:CRDS_UNIFIED_DOMAIN}go/:splat,200!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,301! Cookie=.ROCK_AUTH
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,301! Cookie=.ROCK_AUTH_DEV
