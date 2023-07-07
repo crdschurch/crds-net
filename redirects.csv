@@ -13,6 +13,16 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /h,/,302!
 /annualreport/2020,https://annual-report.crossroads.net/,301!
 /annualreports,${env:CRDS_UNIFIED_DOMAIN}annualreports,200!
+/go/alabama,${env:CRDS_UNIFIED_DOMAIN}go/mainland-usa/alabama,302!
+/go/Cape-Town,${env:CRDS_UNIFIED_DOMAIN}go/south-africa/cape-town,302!
+/go/durban,${env:CRDS_UNIFIED_DOMAIN}go/south-africa/durban,302!
+/go/guatemala,${env:CRDS_UNIFIED_DOMAIN}go/latin-america/guatemala,302!
+/go/india,${env:CRDS_UNIFIED_DOMAIN}go/asia/india,302!
+/go/Johannesburg,${env:CRDS_UNIFIED_DOMAIN}go/south-africa/johannesburg,302!
+/go/martin-county,${env:CRDS_UNIFIED_DOMAIN}go/mainland-usa/martin-county-ky,302!
+/go/nepal,${env:CRDS_UNIFIED_DOMAIN}go/asia/nepal,302!
+/go/nicaragua,${env:CRDS_UNIFIED_DOMAIN}go/latin-america/nicaragua,302!
+/go/puerto-rico,${env:CRDS_UNIFIED_DOMAIN}go/caribbean/puerto-rico,302!
 /go,/go,200!
 /asia,/go/asia,301!
 /india,/go/asia/india,301!
