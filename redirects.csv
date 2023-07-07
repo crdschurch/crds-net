@@ -13,6 +13,16 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /h,/,302!
 /annualreport/2020,https://annual-report.crossroads.net/,301!
 /annualreports,${env:CRDS_UNIFIED_DOMAIN}annualreports,200!
+/go/alabama,/go/mainland-usa/alabama,302!
+/go/Cape-Town,/go/south-africa/cape-town,302!
+/go/durban,/go/south-africa/durban,302!
+/go/guatemala,/go/latin-america/guatemala,302!
+/go/india,/go/asia/india,302!
+/go/Johannesburg,/go/south-africa/johannesburg,302!
+/go/martin-county,/go/mainland-usa/martin-county-ky,302!
+/go/nepal,/go/asia/nepal,302!
+/go/nicaragua,/go/latin-america/nicaragua,302!
+/go/puerto-rico,/go/caribbean/puerto-rico,302!g
 /go,/go,200!
 /asia,/go/asia,301!
 /india,/go/asia/india,301!
@@ -30,8 +40,8 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /durban,/go/south-africa/durban,301!
 /johannesburg,/go/south-africa/johannesburg,301!
 /go/*,${env:CRDS_UNIFIED_DOMAIN}go/:splat,200!
-/world-impact-experience,/WIE,302!
-/WIE,/world-impact-experience,200!
+/world-impact-experience,/wie,302!
+/wie,/world-impact-experience,200!
 /watch, ${env:CRDS_UNIFIED_DOMAIN}watch,200!
 /signout,${env:CRDS_ROCK_DOMAIN}Auth/Logout,301!
 /forgot-password,${env:CRDS_ROCK_DOMAIN}ForgotUserName,301!
