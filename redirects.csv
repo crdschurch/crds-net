@@ -42,6 +42,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /go/*,${env:CRDS_UNIFIED_DOMAIN}go/:splat,200!
 /world-impact-experience,/wie,302!
 /wie,/world-impact-experience,200!
+/WIE,/world-impact-experience,200!
 /watch, ${env:CRDS_UNIFIED_DOMAIN}watch,200!
 /signout,${env:CRDS_ROCK_DOMAIN}Auth/Logout,301!
 /forgot-password,${env:CRDS_ROCK_DOMAIN}ForgotUserName,301!
