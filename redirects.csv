@@ -53,6 +53,8 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /go,/go,200!
 /go/partners,/go/partners,200!
 /go/events,/go/events,200!
+/go/events/tutoring,/go/events/tutoring,200!
+/go/where-we-go,/go/where-we-go,200!
 /asia,/go/asia,301!
 /india,/go/asia/india,301!
 /nepal,/go/asia/nepal,301!
