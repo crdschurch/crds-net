@@ -51,6 +51,8 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /cohorts,${env:CRDS_UNIFIED_DOMAIN}cohorts,200!
 /cohorts/*,${env:CRDS_UNIFIED_DOMAIN}cohorts/:splat,200!
 /go,/go,200!
+/go/partners,/go/partners,200!
+/go/events,/go/events,200!
 /asia,/go/asia,301!
 /india,/go/asia/india,301!
 /nepal,/go/asia/nepal,301!
