@@ -50,6 +50,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
 /cohorts,${env:CRDS_UNIFIED_DOMAIN}cohorts,200!
 /cohorts/*,${env:CRDS_UNIFIED_DOMAIN}cohorts/:splat,200!
+/happenings,${env:CRDS_UNIFIED_DOMAIN}happenings,200!
 /go,/go,200!
 /go/local/*,/go/local/:splat,200!
 /go/partners/*,/go/partners/:splat,200!
