@@ -52,7 +52,8 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /cohorts/*,${env:CRDS_UNIFIED_DOMAIN}cohorts/:splat,200!
 /happenings,${env:CRDS_UNIFIED_DOMAIN}happenings,200!
 /go,/go,200!
-/go/local/*,/go/local/:splat,200!
+/go/local/christmas-gift-drive,/cgd,301!
+/go/local/*,/go/partners/:splat,301!
 /go/partners/*,/go/partners/:splat,200!
 /go/events/*,/go/events/:splat,200!
 /go/where-we-go,/go/where-we-go,200!
