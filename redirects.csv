@@ -53,8 +53,10 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /happenings,${env:CRDS_UNIFIED_DOMAIN}happenings,200!
 /go,/go,200!
 /go/local,/go/local,200!
-/go/local/,/go/local,200!
 /go/local/christmas-gift-drive,/cgd,301!
+/go/local/thanksgiving-food-drive,/tfd,301!
+/go/local/the-diner,/go/events/the-diner,301!
+/go/local/tutoring,/go/events/tutoring,301!
 /go/local/*,/go/partners/:splat,301!
 /go/partners/*,/go/partners/:splat,200!
 /go/events/*,/go/events/:splat,200!
