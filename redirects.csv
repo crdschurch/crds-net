@@ -12,6 +12,10 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /h,/,302!
 /annualreport/2020,https://annual-report.crossroads.net/,301!
 /annualreports,${env:CRDS_UNIFIED_DOMAIN}annualreports,200!
+/watch,/content-unavailable/,"302! Country=IN,NP"
+${env:CRDS_UNIFIED_DOMAIN}watch,/content-unavailable/,"302! Country=IN,NP"
+/h,/content-unavailable/,"302! Country=IN,NP"
+${env:CRDS_UNIFIED_DOMAIN}h,/content-unavailable/,"302! Country=IN,NP"
 /watch, ${env:CRDS_UNIFIED_DOMAIN}watch,200!
 /signout,${env:CRDS_ROCK_DOMAIN}Auth/Logout,301!
 /forgot-password,${env:CRDS_ROCK_DOMAIN}ForgotUserName,301!
@@ -82,9 +86,9 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /go/nicaragua,/go/latin-america/nicaragua,302!
 /go/puerto-rico,/go/caribbean/puerto-rico,302!
 /go/*,${env:CRDS_UNIFIED_DOMAIN}go/:splat,200!
-/watch,/content-unavailable/,"302! Country=IN,NP"
+
 /messages,/content-unavailable/,"302! Country=IN,NP"
-/h,/content-unavailable/,"302! Country=IN,NP"
+
 /world-impact-experience,/wie,302!
 /wie,/world-impact-experience,200!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,301! Cookie=.ROCK_AUTH
