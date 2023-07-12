@@ -55,6 +55,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /go/local,/go/local,200!
 /go/local/christmas-gift-drive,/cgd,301!
 /go/local/thanksgiving-food-drive,/tfd,301!
+/go/local/thanksgiving-day-fall-feast,/go/events/thanksgiving-day-fall-feast,301!
 /go/local/the-diner,/go/events/the-diner,301!
 /go/local/tutoring,/go/events/tutoring,301!
 /go/local/ewit,/go/partners/global-academy,301!
