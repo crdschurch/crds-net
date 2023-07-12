@@ -57,6 +57,15 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /happenings,${env:CRDS_UNIFIED_DOMAIN}happenings,200!
 /go,/go,200!
 /go/local,/go/local,200!
+/go/local/christmas-gift-drive,/cgd,302!
+/go/local/thanksgiving-food-drive,/tfd,302!
+/go/local/thanksgiving-day-fall-feast,/go/events/thanksgiving-day-fall-feast,302!
+/go/local/the-diner,/go/events/the-diner,302!
+/go/local/tutoring,/go/events/tutoring,302!
+/go/local/ewit,/go/partners/global-academy,302!
+/go/local/eve-center,https://www.evecenter.org,302!
+/go/partners/*,/go/partners/:splat,200!
+/go/events/*,/go/events/:splat,200!
 /go/where-we-go,/go/where-we-go,200!
 /asia,/go/asia,301!
 /india,/go/asia/india,301!
