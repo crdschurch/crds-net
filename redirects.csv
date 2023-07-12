@@ -64,7 +64,6 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /go/local/tutoring,/go/events/tutoring,302!
 /go/local/ewit,/go/partners/global-academy,302!
 /go/local/eve-center,https://www.evecenter.org,302!
-/go/local/*,/go/partners/:splat,301!
 /go/partners/*,/go/partners/:splat,200!
 /go/events/*,/go/events/:splat,200!
 /go/where-we-go,/go/where-we-go,200!
