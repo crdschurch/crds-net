@@ -23,11 +23,16 @@ class Redirects
 
   def to_csv!(path = './redirects.csv', debug=true)
     rows = CSV.read(path)
-
     n = nil
     rows.find do |row|
       if row.first =~ /\*\*\*[^\*]*\*\*\*/
         n = rows.find_index(row)
+      end
+    end
+
+    rows.each do |row|
+      if row.last.include? '.ROCK_AUTH' and ENV['CRDS_ENV'] == 'demo'
+        row.last.gsub!('.ROCK_AUTH', '.ROCK_AUTH_DEV')
       end
     end
 
