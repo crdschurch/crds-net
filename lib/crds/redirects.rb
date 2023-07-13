@@ -29,6 +29,10 @@ class Redirects
       if row.first =~ /\*\*\*[^\*]*\*\*\*/
         n = rows.find_index(row)
       end
+      
+      if row.first =~/.ROCK_AUTH/ and ENV['CRDS_ENV'] == 'demo'
+        row.first.gsub!('.ROCK_AUTH', '.ROCK_AUTH_DEV')
+      end
     end
 
     if n.nil?
