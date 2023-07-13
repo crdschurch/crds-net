@@ -1,5 +1,3 @@
-http://${env:CRDS_APP_DOMAIN}/*,https://${env:CRDS_APP_DOMAIN}/:splat,301!
-http://crossroads.net/*,https://www.crossroads.net/:splat,301!
 https://crossroads.net/*,https://www.crossroads.net/:splat,301!
 https://development.event-checkin.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}myevents,302!
 http://development.event-checkin.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}myevents,302!
@@ -7,14 +5,17 @@ https://release.event-checkin.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}myevents,3
 https://embedint.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 https://embeddemo.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
+/,/content-unavailable/,"302! Role=user Cookie=.ROCK_AUTH Country=IN,NP"
 /,${env:CRDS_UNIFIED_DOMAIN}h,200! Role=user Cookie=.ROCK_AUTH
 /,${env:CRDS_UNIFIED_DOMAIN},200!
+/h,/content-unavailable/,"302! Country=IN,NP"
 /h,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH
 /h,/,302!
 /qa/set-token,${env:CRDS_UNIFIED_DOMAIN}qa/set-token,200!
 /qa/get-token,${env:CRDS_UNIFIED_DOMAIN}qa/get-token,200!
 /annualreport/2020,https://annual-report.crossroads.net/,301!
 /annualreports,${env:CRDS_UNIFIED_DOMAIN}annualreports,200!
+/watch,/content-unavailable/,"302! Country=IN,NP"
 /go/alabama,/go/mainland-usa/alabama,302!
 /go/Cape-Town,/go/south-africa/cape-town,302!
 /go/durban,/go/south-africa/durban,302!
@@ -46,8 +47,10 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /durban,/go/south-africa/durban,301!
 /johannesburg,/go/south-africa/johannesburg,301!
 /go/*,${env:CRDS_UNIFIED_DOMAIN}go/:splat,200!
+/messages,/content-unavailable/,"302! Country=IN,NP"
 /world-impact-experience,/wie,302!
 /wie,/world-impact-experience,200!
+/watch,/content-unavailable/,"302! Country=IN,NP"
 /watch, ${env:CRDS_UNIFIED_DOMAIN}watch,200!
 /signout,${env:CRDS_ROCK_DOMAIN}Auth/Logout,301!
 /forgot-password,${env:CRDS_ROCK_DOMAIN}ForgotUserName,301!
@@ -78,12 +81,60 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
 /cohorts,${env:CRDS_UNIFIED_DOMAIN}cohorts,200!
 /cohorts/*,${env:CRDS_UNIFIED_DOMAIN}cohorts/:splat,200!
+/go,/go,200!
+/go/local,/go/local,200!
+/go/local/christmas-gift-drive,/cgd,302!
+/go/local/thanksgiving-food-drive,/tfd,302!
+/go/local/thanksgiving-day-fall-feast,/go/events/thanksgiving-day-fall-feast,302!
+/go/local/the-diner,/go/events/the-diner,302!
+/go/local/the-academy,/go/partners/the-academy,302!
+/go/local/the-outlet,/go/partners/the-outlet,302!
+/go/local/bloc,/go/partners/bloc,302!
+/go/local/citylink,/go/partners/citylink,302!
+/go/local/kentucky-refugee-ministry,/go/partners/kentucky-refugee-ministry,302!
+/go/local/prison-ministry,/go/partners/prison-ministry,302!
+/go/local/safe-families,/go/partners/safe-families,302!
+/go/local/wheels,/go/partners/wheels,302!
+/go/local/tutoring,/go/events/tutoring,302!
+/go/local/ewit,/go/partners/global-academy,302!
+/go/local/eve-center,https://www.evecenter.org,302!
+/go/partners/*,/go/partners/:splat,200!
+/go/events/*,/go/events/:splat,200!
+/go/where-we-go,/go/where-we-go,200!
+/asia,/go/asia,301!
+/india,/go/asia/india,301!
+/nepal,/go/asia/nepal,301!
+/caribbean,/go/caribbean,301!
+/puerto-rico,/go/caribbean/puerto-rico,301!
+/latin-america,/go/latin-america,301!
+/nicaragua,/go/latin-america/nicaragua,301!
+/guatemala,/go/latin-america/guatemala,301!
+/mainland-usa,/go/mainland-usa,301!
+/alabama,/go/mainland-usa/alabama,301!
+/martin-county,/go/mainland-usa/martin-county,301!
+/south-africa,/go/south-africa,301!
+/cape-town,/go/south-africa/cape-town,301!
+/durban,/go/south-africa/durban,301!
+/johannesburg,/go/south-africa/johannesburg,301!
+/go/alabama,/go/mainland-usa/alabama,302!
+/go/Cape-Town,/go/south-africa/cape-town,302!
+/go/durban,/go/south-africa/durban,302!
+/go/guatemala,/go/latin-america/guatemala,302!
+/go/india,/go/asia/india,302!
+/go/Johannesburg,/go/south-africa/johannesburg,302!
+/go/martin-county,/go/mainland-usa/martin-county-ky,302!
+/go/nepal,/go/asia/nepal,302!
+/go/nicaragua,/go/latin-america/nicaragua,302!
+/go/puerto-rico,/go/caribbean/puerto-rico,302!
+/go/*,${env:CRDS_UNIFIED_DOMAIN}go/:splat,200!
+/messages,/content-unavailable/,"302! Country=IN,NP"
+/world-impact-experience,/wie,302!
+/wie,/world-impact-experience,200!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,301! Cookie=.ROCK_AUTH
 /group-renew groupIds=:groupIds,${env:CRDS_ROCK_DOMAIN}login?redirectUrl=/group-renew?groupIds=:groupIds,302!
 /profile,${env:CRDS_ROCK_DOMAIN}myaccount,301!
-/media/articles/what-does-the-bible-say-about-the-devil, /content-unavailable/,"302! Country=AD,AE,AF,AG,AI,AL,AM,AO,AQ,AR,AS,AT,AU,AW,AX,AZ,BA,BB,BD,BE,BF,BG,BH,BI,BJ,BL,BM,BN,BO,BQ,BR,BS,BT,BV,BW,BY,BZ,CA,CC,CD,CF,CG,CH,CI,CK,CL,CM,CN,CO,CR,CU,CV,CW,CX,CY,CZ,DE,DJ,DK,DM,DO,DZ,EC,EE,EG,EH,ER,ES,ET,FI,FJ,FK,FM,FO,FR,GA,GB,GD,GE,GF,GG,GH,GI,GL,GM,GN,GP,GQ,GR,GS,GT,GU,GW,GY,HK,HM,HN,HR,HT,HU,ID,IE,IL,IM,IN,IO,IQ,IR,IS,IT,JE,JM,JO,JP,KE,KG,KH,KI,KM,KN,KP,KR,KW,KY,KZ,LA,LB,LC,LI,LK,LR,LS,LT,LU,LV,LY,MA,MC,MD,ME,MF,MG,MH,MK,ML,MM,MN,MO,MP,MQ,MR,MS,MT,MU,MV,MW,MX,MY,MZ,NA,NC,NE,NF,NG,NI,NL,NO,NP,NR,NU,NZ,OM,PA,PE,PF,PG,PH,PK,PL,PM,PN,PR,PS,PT,PW,PY,QA,RE,RO,RS,RU,RW,SA,SB,SC,SD,SE,SG,SH,SI,SJ,SK,SL,SM,SN,SO,SR,SS,ST,SV,SX,SY,SZ,TC,TD,TF,TG,TH,TJ,TK,TL,TM,TN,TO,TR,TT,TV,TW,TZ,UA,UG,UM,UY,UZ,VA,VC,VE,VG,VI,VN,VU,WF,WS,YE,YT,ZA,ZM,ZW"
+/media/articles/what-does-the-bible-say-about-the-devil,/content-unavailable/,"302! Country=AD,AE,AF,AG,AI,AL,AM,AO,AQ,AR,AS,AT,AU,AW,AX,AZ,BA,BB,BD,BE,BF,BG,BH,BI,BJ,BL,BM,BN,BO,BQ,BR,BS,BT,BV,BW,BY,BZ,CA,CC,CD,CF,CG,CH,CI,CK,CL,CM,CN,CO,CR,CU,CV,CW,CX,CY,CZ,DE,DJ,DK,DM,DO,DZ,EC,EE,EG,EH,ER,ES,ET,FI,FJ,FK,FM,FO,FR,GA,GB,GD,GE,GF,GG,GH,GI,GL,GM,GN,GP,GQ,GR,GS,GT,GU,GW,GY,HK,HM,HN,HR,HT,HU,ID,IE,IL,IM,IN,IO,IQ,IR,IS,IT,JE,JM,JO,JP,KE,KG,KH,KI,KM,KN,KP,KR,KW,KY,KZ,LA,LB,LC,LI,LK,LR,LS,LT,LU,LV,LY,MA,MC,MD,ME,MF,MG,MH,MK,ML,MM,MN,MO,MP,MQ,MR,MS,MT,MU,MV,MW,MX,MY,MZ,NA,NC,NE,NF,NG,NI,NL,NO,NP,NR,NU,NZ,OM,PA,PE,PF,PG,PH,PK,PL,PM,PN,PR,PS,PT,PW,PY,QA,RE,RO,RS,RU,RW,SA,SB,SC,SD,SE,SG,SH,SI,SJ,SK,SL,SM,SN,SO,SR,SS,ST,SV,SX,SY,SZ,TC,TD,TF,TG,TH,TJ,TK,TL,TM,TN,TO,TR,TT,TV,TW,TZ,UA,UG,UM,UY,UZ,VA,VC,VE,VG,VI,VN,VU,WF,WS,YE,YT,ZA,ZM,ZW"
 /daily-prayer-devotional/thank-you,/daily-prayer-devotional/thank-you,200! Cookie=.ROCK_AUTH
-/daily-prayer-devotional/thank-you,/daily-prayer-devotional/thank-you,200! Cookie=.ROCK_AUTH_DEV
 /daily-prayer-devotional/thank-you,${env:CRDS_ROCK_DOMAIN}login,302!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
 /_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
