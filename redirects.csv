@@ -11,42 +11,9 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /h,/content-unavailable/,"302! Country=IN,NP"
 /h,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH
 /h,/,302!
-/qa/set-token,${env:CRDS_UNIFIED_DOMAIN}qa/set-token,200!
 /qa/get-token,${env:CRDS_UNIFIED_DOMAIN}qa/get-token,200!
 /annualreport/2020,https://annual-report.crossroads.net/,301!
 /annualreports,${env:CRDS_UNIFIED_DOMAIN}annualreports,200!
-/watch,/content-unavailable/,"302! Country=IN,NP"
-/go/alabama,/go/mainland-usa/alabama,302!
-/go/Cape-Town,/go/south-africa/cape-town,302!
-/go/durban,/go/south-africa/durban,302!
-/go/guatemala,/go/latin-america/guatemala,302!
-/go/india,/go/asia/india,302!
-/go/Johannesburg,/go/south-africa/johannesburg,302!
-/go/martin-county,/go/mainland-usa/martin-county-ky,302!
-/go/nepal,/go/asia/nepal,302!
-/go/nicaragua,/go/latin-america/nicaragua,302!
-/go/puerto-rico,/go/caribbean/puerto-rico,302!g
-/go,/go,200!
-/go/local/*,/go/local/:splat,200!
-/go/partners/*,/go/partners/:splat,200!
-/go/events/*,/go/events/:splat,200!
-/go/where-we-go,/go/where-we-go,200!
-/asia,/go/asia,301!
-/india,/go/asia/india,301!
-/nepal,/go/asia/nepal,301!
-/caribbean,/go/caribbean,301!
-/puerto-rico,/go/caribbean/puerto-rico,301!
-/latin-america,/go/latin-america,301!
-/nicaragua,/go/latin-america/nicaragua,301!
-/guatemala,/go/latin-america/guatemala,301!
-/mainland-usa,/go/mainland-usa,301!
-/alabama,/go/mainland-usa/alabama,301!
-/martin-county,/go/mainland-usa/martin-county-ky,301!
-/south-africa,/go/south-africa,301!
-/cape-town,/go/south-africa/cape-town,301!
-/durban,/go/south-africa/durban,301!
-/johannesburg,/go/south-africa/johannesburg,301!
-/go/*,${env:CRDS_UNIFIED_DOMAIN}go/:splat,200!
 /messages,/content-unavailable/,"302! Country=IN,NP"
 /world-impact-experience,/wie,302!
 /wie,/world-impact-experience,200!
@@ -111,7 +78,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /guatemala,/go/latin-america/guatemala,301!
 /mainland-usa,/go/mainland-usa,301!
 /alabama,/go/mainland-usa/alabama,301!
-/martin-county,/go/mainland-usa/martin-county,301!
+/martin-county,/go/mainland-usa/martin-county-ky,301!
 /south-africa,/go/south-africa,301!
 /cape-town,/go/south-africa/cape-town,301!
 /durban,/go/south-africa/durban,301!
