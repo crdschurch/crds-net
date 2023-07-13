@@ -77,7 +77,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /guatemala,/go/latin-america/guatemala,301!
 /mainland-usa,/go/mainland-usa,301!
 /alabama,/go/mainland-usa/alabama,301!
-/martin-county,/go/mainland-usa/martin-county-ky,301!
+/martin-county,/go/mainland-usa/martin-county,301!
 /south-africa,/go/south-africa,301!
 /cape-town,/go/south-africa/cape-town,301!
 /durban,/go/south-africa/durban,301!
@@ -88,7 +88,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /go/guatemala,/go/latin-america/guatemala,302!
 /go/india,/go/asia/india,302!
 /go/Johannesburg,/go/south-africa/johannesburg,302!
-/go/martin-county,/go/mainland-usa/martin-county-ky,302!
+/go/martin-county,/go/mainland-usa/martin-county,302!
 /go/nepal,/go/asia/nepal,302!
 /go/nicaragua,/go/latin-america/nicaragua,302!
 /go/puerto-rico,/go/caribbean/puerto-rico,302!
