@@ -3,13 +3,16 @@ layout: default
 title: Series
 ---
 {% if page.background_image.url == nil %}
-  {% assign overflow-hidden = "overflow-hidden" %}
+{% assign overflow-hidden = "overflow-hidden" %}
 {% endif %}
 
 <div class="media-series-detail" data-grouping-media-type="series">
-  <div class="jumbotron jumbotron-xl soft-14-top soft-2-bottom mobile-soft-top {{ overflow-hidden }}" style="background-image: url('{{ page.background_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+  <div class="jumbotron jumbotron-xl soft-14-top soft-2-bottom mobile-soft-top {{ overflow-hidden }}"
+    style="background-image: url('{{ page.background_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
+    data-optimize-bg-img>
     {% if page.background_image.url == nil %}
-    <div class="blur" style="background-image: url('{{ page.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
+    <div class="blur"
+      style="background-image: url('{{ page.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
       data-optimize-bg-img></div>
     <div class="bg-overlay"></div>
     {% endif %}
@@ -19,7 +22,8 @@ title: Series
         <div class="row">
           <div class="col-sm-5 col-sm-push-7">
             <div>
-              <img class="feature-img img-full-width" src="{% if page.image.url %}{{ page.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}"/>
+              <img class="feature-img img-full-width"
+                src="{% if page.image.url %}{{ page.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}" />
             </div>
           </div>
 
@@ -30,19 +34,23 @@ title: Series
               <li><a href="/media/series">Series</a></li>
             </ol>
 
-            <h1 data-media-title="{{page.title}}" data-media-id="{{page.id}}" class="font-family-condensed-extra text-uppercase flush-top push-bottom">
+            <h1 data-media-title="{{page.title}}" data-media-id="{{page.id}}"
+              class="font-family-condensed-extra text-uppercase flush-top push-bottom">
               {{ page.title }}
             </h1>
             <hr class="hero">
 
             <div class="font-size-base">{{ page.description | markdownify }}</div>
             {% if page.youtube_url %}
-              <a href="{{ page.youtube_url}}" target="_blank" class="flush-left btn btn-white btn-outline btn-lg btn-block-mobile">Watch Trailer</a>
+            <a href="{{ page.youtube_url}}" target="_blank"
+              class="flush-left btn btn-white btn-outline btn-lg btn-block-mobile">Watch Trailer</a>
             {% endif %}
 
             <ul class="list-inline soft-half-top">
               <li class="middle">
-                <a href="//www.youtube.com/user/crdschurch" role="button" class="btn btn-white btn-subscribe soft-quarter-ends flush d-flex justify-content-between btn-block-mobile {{ include.css }}" onclick="dataLayer.push({'event': 'ContentEngaged', 'event_action': 'subscribed'})">
+                <a href="//www.youtube.com/user/crdschurch" role="button"
+                  class="btn btn-white btn-subscribe soft-quarter-ends flush d-flex justify-content-between btn-block-mobile {{ include.css }}"
+                  onclick="dataLayer.push({'event': 'ContentEngaged', 'event_action': 'subscribed'})">
                   <div class="d-flex flex-column push-quarter-right align-items-start btn-text">
                     <span class="font-size-small text-blue push-quarter-bottom">YouTube</span>
                     <span class="font-size-smallest text-blue text-uppercase">Subscribe</span>
@@ -67,21 +75,35 @@ title: Series
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
         {% if page.videos.size > 0 or page.live_messages.size > 0 %}
-          <div>
-                <div class="cards-3x">
-                  <div class="row">
-                    {% for msg_obj in page.live_messages %}
-                      {% assign item = site.videos | where: 'slug', msg_obj.slug | first %}
-                      {% unless item %}
-                        {% assign item = site.messages | where: 'slug', msg_obj.slug | first %}
-                      {% endunless %}
-                      {% if item %}
-                        {% include _message-card.html %}
-                      {% endif %}
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
+        <div class="cards-3x">
+          {% if page.live_messages.size > 0 %}
+          <div class="row">
+            {% for msg_obj in page.live_messages %}
+            {% assign item = site.videos | where: 'slug', msg_obj.slug | first %}
+            {% unless item %}
+            {% assign item = site.messages | where: 'slug', msg_obj.slug | first %}
+            {% endunless %}
+            {% if item %}
+            {% include _message-card.html %}
+            {% endif %}
+            {% endfor %}
+            {% elsif page.videos.size > 0 %}
+          </div>
+        </div>
+        <div class="cards-3x">
+          <div class="row">
+            {% for msg_obj in page.videos %}
+            {% assign item = site.videos | where: 'slug', msg_obj.slug | first %}
+            {% unless item %}
+            {% assign item = site.messages | where: 'slug', msg_obj.slug | first %}
+            {% endunless %}
+            {% if item %}
+            {% include _message-card.html %}
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
         {% endif %}
       </div>
 
@@ -90,7 +112,8 @@ title: Series
         <h2 class="component-header flush-bottom soft-half-bottom soft-top text-left push-top">Ways to get involved</h2>
         <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
           <div id="section-what-s-happening" class="feature-cards" data-automation-id="happenings-cards">
-            {% assign series_media = site.promos | where: "section", "Media Series Page"  | sort: 'date' | reverse | group_by: 'date' %}
+            {% assign series_media = site.promos | where: "section", "Media Series Page" | sort: 'date' | reverse |
+            group_by: 'date' %}
             {% for series_promo in series_media %}
             {% assign series_sorted_promos = series_promo.items | sort: 'title' %}
             {% for item in series_sorted_promos %}
