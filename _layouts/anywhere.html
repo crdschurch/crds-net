@@ -4,16 +4,6 @@ layout: default
 
 <!-- Pull only the promos that exist for the specific location if any -->
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "published_at" | reverse %}
-{% for serie in site.series %}
-{% if serie.slug != 'easter-a-love-story' %}
-{% assign series = serie %}
-{% if serie.videos.size > 0 %}
-{% assign latest_message_series_image = serie.image.url %}
-{% assign latest_message = serie.videos | last | get_doc %}
-{% endif %}
-{% endif %}
-{% endfor %}
-
 
 <!-- Featured Section -->
 {% if page.featured_section.size > 0 %}
@@ -23,6 +13,9 @@ layout: default
 {% endif %}
 
 {% include locations/_welcome-modal.html %}
+
+{% assign sorted_messages = site.messages | sort: 'published_at' %}
+{% assign current_message = sorted_messages | last %}
 
 <!-- Jumbotron section -->
 <section class="jumbotron locations-jumbotron anywhere flush-bottom width-100" style="background-image: url('//crds-media.imgix.net/4uYQgojJJBlABqZwIPqqwJ/b9794fa8acc3cc0cac58b86ea52331c0/crossroads-anywhere-header-img.jpg?{{ site.imgix_params.placeholder }}')"
@@ -46,13 +39,13 @@ layout: default
 
     <div class="anywhere-media-objects-container">
       <div class="anywhere-media-object">
-        <a href="{{ latest_message | media_url }}">
-          <img class="object-fit-cover" src="{{ latest_message_series_image | imgix: site.imgix }}?auto=format,compress&w=150" alt="">
+        <a href="{{ current_message.url }}">
+          <img class="object-fit-cover" src="{{ current_message.image.url | imgix: site.imgix }}?auto=format,compress&w=150" alt="">
         </a>
         <div class="anywhere-media-object-content">
           <span>Service Times</span>
           <p>Available every Sunday</p>
-          <a class="font-size-smaller text-gray-darker underline" href="{{ latest_message | media_url }}"> Watch the latest message</a>
+          <a class="font-size-smaller text-gray-darker underline" href="{{ current_message.url }}"> Watch the latest message</a>
         </div>
       </div>
       <div class="anywhere-media-object">
@@ -94,16 +87,16 @@ layout: default
               </div>
               {% endif %}
 
-              <!-- Current Series -->
-              <a href="{{ series.url }}" title="{{ series.title }}">
-                <crds-image unified src="{{ series.image.url | imgix: site.imgix }}?auto=format,compress&w=720" no-crop size="card"></crds-image>
+              <!-- Current Message -->
+              <a href="{{ current_message.url }}" title="{{ current_message.title }}">
+                <crds-image unified src="{{ current_message.image.url | imgix: site.imgix }}?auto=format,compress&w=720" no-crop size="card"></crds-image>
               </a>
-              <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Series</strong></p>
-              <h2 class="font-family-condensed-extra text-uppercase flush font-weight-300">{{ series.title }}</h2>
+              <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Message</strong></p>
+              <h2 class="font-family-condensed-extra text-uppercase flush font-weight-300">{{ current_message.title }}</h2>
               <div class="push-half-top push-bottom font-size-small text-gray-dark">
-                {{ series.description | markdownify }}
+                {{ current_message.description | markdownify }}
               </div>
-              <crds-button href="{{ series.url }}#online" title="{{ series.title }}" text="Watch current teaching series"
+              <crds-button href="{{ current_message.url }}" title="{{ current_message.title }}" text="Watch current message"
                 color="orange"></crds-button>
 
             </div>
@@ -163,7 +156,7 @@ layout: default
               <h2 class="section-header flush-ends soft-half-bottom font-weight-300">Eat together</h2>
               <p>What do church and eating together have in common? According to Jesus, a lot. He was the life of the party and he never missed an opportunity to turn a meal into something more.</p>
               <p>For centuries, church happened around a table. Eating together is one of the simplest ways to copy Jesus’ life. That thing we do 3x a day already, what if we did it more intentionally? </p>
-              <p>Eat with whoever you live with, and invite others to join. <a href="/media/articles/how-to-create-community-out-of-thin-air" class="text-gray-darker underline">Create community out of thin air</a>. Reach out to our team for more coaching on how to handle kids, find people, make it better, and more. </p>
+              <p>Eat with whoever you live with, and invite others to join. <a href="/media/articles/how-to-create-community-out-of-thin-air" class="text-gray-darker underline">Create community out of thin air</a>. Reach out to our team for more coaching on how to handle kids, find people, make it better, and more. </p>
             </div>
           </div>
 
@@ -203,7 +196,7 @@ layout: default
                 <img class="img-rounded-corners" src="//crds-media.imgix.net/4j2FLJze0GedIrQAySGZQt/4d70088fec1a6aab207019b0deb86bca/anywhere-meet-ups.jpg" alt="Find a meet-up" />
                 <p class="flush-bottom font-family-base-bold soft-half-top">Find a Meet-Up</p>
                 <p>
-                  Meet other Crossroads people near you (and the Crossroads staff who are here to support you.) Click here to request one in your area. 
+                  Meet other Crossroads people near you (and the Crossroads staff who are here to support you.) Click here to request one in your area. 
                 </p>
                 <crds-button href="https://www.crossroads.net/cr-forms/awrequestameetup" display="outline" color="blue" text="Request one near you"></crds-button>
               </div>
@@ -463,7 +456,7 @@ layout: default
             <div>
               <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/GaTBhPPPNewuLLF5xwc15/00604b8c6285736ab742509b7d89775c/Rassmussen_Abby-3.jpg?dpr=1&fit=facearea&facepad=2&auto=compress" alt="Abby Rasmussen" />
               <p class="flush font-family-base-bold soft-half-top">Abby Rasmussen</p>
-              <p>Abby leads Anywhere Kids + Families. She’s a licensed counselor, working mom of two, and guaranteed to not only diligently solve your question but make you laugh and feel more capable while she does. Talk to her about kid questions, God questions, parenting, trying to parent your kids through God questions, and getting resources to lead a family you freaking love. </p>
+              <p>Abby leads Anywhere Kids + Families. She’s a licensed counselor, working mom of two, and guaranteed to not only diligently solve your question but make you laugh and feel more capable while she does. Talk to her about kid questions, God questions, parenting, trying to parent your kids through God questions, and getting resources to lead a family you freaking love. </p>
               <div>
                 <a class="text-gray-darker underline" href="https://email.crossroads.net/meetings/abby-rasmussen">Let's connect</a>
                 
@@ -543,7 +536,7 @@ layout: default
 
             <div>
               <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/40xLIlxuCznz7LH9m3sjoO/4a0b343ad37e10fae263d6d819cf25af/McDade_Eugene-2-6.jpg?dpr=1&fit=facearea&facepad=2&auto=compress" alt="Eugene McDade" />
-              <p class="flush font-family-base-bold soft-half-top">Eugene McDade </p>
+              <p class="flush font-family-base-bold soft-half-top">Eugene McDade </p>
               <p>If you’re curious about Crossroads but not ready to dive in, or your schedule is tight, talk to Eugene. He runs all sorts of short, easy, one-time experiences that help you test the waters and jumpstart your spiritual growth like Camps, Rooted, Alpha, trips, serving, and more. You can also drop into his ongoing group to get connected anytime. If you really want to get to know him (and enter a lively debate), ask him about Waffle House.</p>
               <div>
                 <a class="text-gray-darker underline" href="https://calendly.com/eugene-mcdade">Let's connect</a>
@@ -601,4 +594,3 @@ layout: default
     </div>
   </div>
 </div>
-
