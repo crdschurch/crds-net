@@ -1,6 +1,6 @@
 <div class="card-deck carousel locations" data-crds-carousel="mobile-scroll" data-automation-id="locations-carousel">
   <div id="section-locations" class="feature-cards card-deck--expanded-layout">
-    {% assign locations_sorted_names = site.locations | sort: 'name' | group_by: 'name' %}
+    {% assign locations_sorted_names = site.locations | where: 'decommissioned', false | sort: 'name' | group_by: 'name' %}
     {% for name_group in locations_sorted_names %}
       {% assign locations_sorted_slugs = name_group.items | sort: 'slug' %}
       {% for location in locations_sorted_slugs %}
