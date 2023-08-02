@@ -96,7 +96,6 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /go/*,${env:CRDS_UNIFIED_DOMAIN}go/:splat,200!
 /world-impact-experience,/wie,302!
 /wie,/world-impact-experience,200!
-/georgetown-decommissioned,/georgetown,302!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,301! Cookie=.ROCK_AUTH
 /group-renew groupIds=:groupIds,${env:CRDS_ROCK_DOMAIN}login?redirectUrl=/group-renew?groupIds=:groupIds,302!
 /profile,${env:CRDS_ROCK_DOMAIN}myaccount,301!
