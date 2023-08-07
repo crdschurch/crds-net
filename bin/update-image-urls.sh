@@ -5,13 +5,9 @@ replace_image_urls() {
 
   if [[ "$file" =~ \.html$ ]]; then
     if [[ "$OSTYPE" == "darwin"* ]]; then
-      if ! sed -E -i '' -e 's#(https?:)?//images\.ctfassets\.net/[^/]+/([^/]+)/([^/]+)/([^/]+)#https://crds-media.imgix.net/\2/\3/\4#g' "$file"; then
-        echo "Error updating image URLs in: $file"
-      fi
+      sed -E -i '' -e 's#(https?:)?//images\.ctfassets\.net/[^/]+/([^/]+)/([^/]+)/([^/]+)#https://crds-media.imgix.net/\2/\3/\4#g' "$file"
     else
-      if ! sed -E -i -e 's#(https?:)?//images\.ctfassets\.net/[^/]+/([^/]+)/([^/]+)/([^/]+)#https://crds-media.imgix.net/\2/\3/\4#g' "$file"; then
-        echo "Error updating image URLs in: $file"
-      fi
+      sed -E -i -e 's#(https?:)?//images\.ctfassets\.net/[^/]+/([^/]+)/([^/]+)/([^/]+)#https://crds-media.imgix.net/\2/\3/\4#g' "$file"
     fi
   fi
 }
