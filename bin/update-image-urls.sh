@@ -2,10 +2,18 @@
 
 replace_image_urls() {
   local file="$1"
-  local search_pattern="//images\.ctfassets\.net/[^/]+/\(.*\)/\(.*\)/\(.*\)/\(.*\)\.\(jpg\|jpeg\|png\)"
-  local replacement="https://crds-media.imgix.net/\2/\3/\4.\5"
 
-  sed -E -i "s|$search_pattern|$replacement|g" "$file"
+  if [[ "$file" =~ \.html$ ]]; then
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+      if ! sed -E -i '' -e 's#(https?:)?//images\.ctfassets\.net/[^/]+/([^/]+)/([^/]+)/([^/]+)#https://crds-media.imgix.net/\2/\3/\4#g' "$file"; then
+        echo "Error updating image URLs in: $file"
+      fi
+    else
+      if ! sed -E -i -e 's#(https?:)?//images\.ctfassets\.net/[^/]+/([^/]+)/([^/]+)/([^/]+)#https://crds-media.imgix.net/\2/\3/\4#g' "$file"; then
+        echo "Error updating image URLs in: $file"
+      fi
+    fi
+  fi
 }
 
 site_directory="_site"
