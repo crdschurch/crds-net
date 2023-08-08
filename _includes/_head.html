@@ -81,7 +81,8 @@
     }
     </script>
   {% endif %}
-
+  {{site.components_endpoint}}
+  {{site.netlify}}
   {% unless content contains 'crds-components.esm.js' %}
   <link rel="preload" href="{{site.components_endpoint}}/crds-components/crds-components.esm.js" as="script">
   <link rel="preload" href="{{site.components_endpoint}}/crds-components.js" as="script">
