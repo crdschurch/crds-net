@@ -11,7 +11,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /h,/content-unavailable/,"302! Country=IN,NP"
 /h,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH
 /h,/,302!
-/register,/${env:CRDS_ROCK_DOMAIN}NewAccount,302!
+/register,${env:CRDS_ROCK_DOMAIN}NewAccount,302!
 /qa/set-token,${env:CRDS_UNIFIED_DOMAIN}qa/set-token,200!
 /qa/get-token,${env:CRDS_UNIFIED_DOMAIN}qa/get-token,200!
 /annualreport/2020,https://annual-report.crossroads.net/,301!
