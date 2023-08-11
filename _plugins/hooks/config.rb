@@ -1,5 +1,5 @@
 Jekyll::Hooks.register :site, :after_init do |site|
-  if ENV['NETLIFY']
+  if ENV['NETLIFY'] && ENV['CRDS_ENV'] === 'prod'
     site.config['components_endpoint'] = "/components"
     site.config['netlify'] = "#{ENV['NETLIFY']}"
   else
