@@ -49,7 +49,7 @@ layout: default
   <div class="container">
     <div class="row soft-half soft-top push-top mobile-flush-top">
       {% if page.community_pastor_name %}
-	{{ pagee.slug | jsonify }}
+	{{ page.slug | jsonify }}
         {% if page.slug == "uptown" or page.slug == "uptown-decommissioned" %}
           <crds-tabs tabs='["events & updates", "community pastor", "about", "groups"]' mobile-dropdown>
         {% else %}
