@@ -49,7 +49,11 @@ layout: default
   <div class="container">
     <div class="row soft-half soft-top push-top mobile-flush-top">
       {% if page.community_pastor_name %}
-      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "groups"]' mobile-dropdown>
+        {% if page.name == "Uptown" %}
+          <crds-tabs tabs='["events & updates", "community pastor", "about", "groups"]' mobile-dropdown>
+        {% else %}
+          <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & strudents", "groups"]' mobile-dropdown>
+        {% endif %}
       {% else %}
       <crds-tabs tabs='["events & updates", "about", "kids & students", "groups"]' mobile-dropdown>
       {% endif %}
