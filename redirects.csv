@@ -159,7 +159,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /volunteer-sign-up,/404.html,404!
 /volunteer-sign-up/*,/volunteer,301!
 /volunteer-application/*,/volunteer,301!
-/volunteer,${env:CRDS_UNIFIED_DOMAIN}/volunteer,301!
+/volunteer,${env:CRDS_UNIFIED_DOMAIN}volunteer,301!
 /serve-signup,${env:CRDS_ROCK_DOMAIN}signuptoserve,301!
 /serve-signup/*,${env:CRDS_ROCK_DOMAIN}signuptoserve,302!
 /sign-up/*,${env:CRDS_ROCK_DOMAIN}sign-up/:splat,301! Cookie=.ROCK_AUTH
