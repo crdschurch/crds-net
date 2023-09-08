@@ -505,7 +505,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /stocktransfer,/,302!
 /dwell,/,302!
 /atriumevents/ site=:siteId,https://api.crossroads.net/atriumevents/eventlisting/:siteId,302!
-/*,/404.html,404
 /2015yearinreview,/,302!
 /%7Ebruced/genealogy/,/,302!
 /%7Efreeebooks/nakedword/htmltext/madacota.html,/,302!
@@ -723,3 +722,4 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /my/care/funerals.php,/care,302!
 /my/care/counselors.php,/care,302!
 /my/connect/kidsclub.php,/groups,302!
+/*,/404.html,404
