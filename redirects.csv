@@ -171,6 +171,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /reachout/go/price-hill,/go,302!
 /reachout/go/partners,/go,302!
 /reachout/city.php,/go,302!
+/reachout/local/whiz-kids,/go,302!
 /goCincinnati,/go,302!
 /goneworleans,/go,302!
 /goindia/faq.htm,/go,302!
@@ -539,6 +540,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /jnazak/blog,/,302!
 /j/blog,/,302!
 /j,/,302!
+/freedom,/media/articles/more-than-big-gatherings-why-we-tackled-debt,302!
 /nightofprayer,/,302!
 /mycamps,/camps,302!
 /fostercare/foster-care-training/,/fostercare,302!
@@ -564,6 +566,8 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /downloads/playVideo.php&idMedia=827,/,302!
 /downloads/playVideo.php&idMedia=827,/,302!
 /downloads/playVideo/idMedia/651,/,302!
+/grow,/,302!
+/jumpschool,/,302!
 /corkboard/need,/,302!
 /redesign/news2.html,/,302!
 /consumed/calculator.php,/media/series/consumed,302!
