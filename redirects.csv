@@ -97,7 +97,6 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /cohorts,${env:CRDS_UNIFIED_DOMAIN}cohorts,200!
 /cohorts/*,${env:CRDS_UNIFIED_DOMAIN}cohorts/:splat,200!
 /happenings,${env:CRDS_UNIFIED_DOMAIN}happenings,200!
-/go,/go,200!
 /go/local,/go/local,200!
 /go/local/christmas-gift-drive,/cgd,302!
 /go/local/thanksgiving-food-drive,/tfd,302!
@@ -259,6 +258,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /volunteer-sign-up,/404.html,404!
 /volunteer-sign-up/*,/volunteer,301!
 /volunteer-application/*,/volunteer,301!
+/volunteer,${env:CRDS_UNIFIED_DOMAIN}volunteer,200!
 /my/serve/charities.htm,/volunteer,302!
 /my/serve/pastoralCare.php,/volunteer,302!
 /my/serve/overview.htm,/volunteer,302!
@@ -383,7 +383,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /my/media/search.php?chrSearch=the%20good%20life&page=2,/media,302!
 /my/media/playVideo.php?idMedia=1494,/media,302!
 /my/media/index.php?action=viewpage&filepath=pages/my/media/search.php,/media,302!
-/my/media/playVideo.php&idMedia=1494,/media/302!
 /my/media/index.php,/media,302!
 /my/media/help.php,/media,302!
 /my/media/playVideo.php?idMedia=1977&share=email,/media,302!
