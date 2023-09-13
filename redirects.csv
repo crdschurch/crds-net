@@ -63,6 +63,8 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /a/archives/wardollarback.php,/,302!
 /messages,/content-unavailable/,"302! Country=IN,NP"
 /watch,/content-unavailable/,"302! Country=IN,NP"
+/onlinevisionnight,/content-unavailable/,"302! Country=IN,NP"
+/media/series/this-is-us/we-go,/content-unavailable/,"302! Country=IN,NP"
 /watch, ${env:CRDS_UNIFIED_DOMAIN}watch,200!
 /signout,${env:CRDS_ROCK_DOMAIN}Auth/Logout,301!
 /forgot-password,${env:CRDS_ROCK_DOMAIN}ForgotUserName,301!
