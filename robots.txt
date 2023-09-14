@@ -1,8 +1,6 @@
 User-agent: *
 Disallow: /lockerroom/
 Disallow: /tmp
-Disallow: /
-Disallow: /h
 
 Sitemap: https://www.crossroads.net/sitemap.xml
 
