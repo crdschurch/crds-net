@@ -107,6 +107,13 @@ layout: default
               </div>
             {% endif %}
 
+            {% if page.worship_song %}
+              <div>
+                <h3 class="text-uppercase font-size-smaller font-family-base-bold flush">Worship Songs:</h3>
+                {{ page.worship_song | markdownify }}
+              </div>
+            {% endif %}
+
             {% if page.discussion %}
               {% assign discussion = page.discussion | get_doc %}
               {% include _collapsible-discussion-questions.html type='chaser' discussion=discussion %}
