@@ -5,9 +5,6 @@ layout: default
 <!-- Pull only the promos that exist for the specific location if any -->
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "published_at" | reverse %}
 
-<!-- Resi Player -->
-{% include locations/_resi-player.html %}
-
 <!-- Featured Section -->
 {% if page.featured_section.size > 0 %}
   <div class="overflow-hidden">
@@ -23,7 +20,6 @@ layout: default
 <!-- Jumbotron section -->
 {% if page.site_id != 23 %}
 <section class="jumbotron locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
-  id="has-resi-player"
   data-optimize-bg-img>
   {% include locations/_ondemand-card.html %}
   <div class="bg-overlay"></div>

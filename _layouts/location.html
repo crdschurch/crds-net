@@ -6,9 +6,6 @@ layout: default
 {% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
 {% assign series = site.series | last %}
 
-<!-- Resi Player -->
-{% include _resi-player.html %}
-
 <!-- Featured Section -->
 {% if page.featured_section.size > 0 %}
   <div class="overflow-hidden">
