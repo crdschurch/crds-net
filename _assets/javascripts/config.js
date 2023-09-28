@@ -53,7 +53,6 @@ module.exports = [
       'components/status-message',
       'components/global',
       'components/toggle-tooltip',
-      'components/resi-player',
       'components/load-more',
     ],
   },
