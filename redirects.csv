@@ -93,6 +93,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /practices/connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}practices/connect-with-god-daily,200!
 /practices/live-generously,${env:CRDS_UNIFIED_DOMAIN}practices/live-generously,200!
 /prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
+/clips,${env:CRDS_UNIFIED_DOMAIN}clips,200!
 /prayerexperience,/prayer,302!
 /free,/journeypartners/resources/free-2010/prayer-experience/,302!
 /free/prayerexperience.php,/journeypartners/resources/free-2010/prayer-experience/,302!
