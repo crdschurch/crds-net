@@ -83,8 +83,8 @@
   {% endif %}
   
   {% unless content contains 'crds-components.esm.js' %}
-  <link rel="preload" href="{{site.components_endpoint}}/crds-components/crds-components.esm.js" as="script">
-  <link rel="preload" href="{{site.components_endpoint}}/crds-components.js" as="script">
+  <link rel="preload" href="https://deploy-preview-2026--crds-components-demo.netlify.app/demo/build/crds-components.esm.js" as="script">
+  <link rel="preload" href="https://deploy-preview-2026--crds-components-demo.netlify.app/demo/build/crds-components.js" as="script">
   {% endunless %}
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
@@ -143,8 +143,8 @@
   {% endif %}
 
   {% unless content contains 'crds-components.esm.js' %}
-  <script type="module" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components/crds-components.esm.js"></script>
-  <script nomodule="" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components.js"></script>
+  <script type="module" onload="componentsLoaded()" src="https://deploy-preview-2026--crds-components-demo.netlify.app/demo/build/crds-components.esm.js"></script>
+  <script nomodule="" onload="componentsLoaded()" src="https://deploy-preview-2026--crds-components-demo.netlify.app/demo/build/crds-components.js"></script>
   <script>
     function componentsLoaded() {
       var componentsReady = new Event('components-ready');
