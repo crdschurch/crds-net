@@ -11,6 +11,11 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /h,/content-unavailable/,"302! Country=IN,NP"
 /h,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH
 /h,/,302!
+/_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
+/unified_assets/*,${env:CRDS_UNIFIED_DOMAIN}unified_assets/:splat,200
+/unified_images/*,${env:CRDS_UNIFIED_DOMAIN}unified_images/:splat,200
+/_next/*,${env:CRDS_UNIFIED_DOMAIN}_next/:splat,200
+/_ipx/*,${env:CRDS_UNIFIED_DOMAIN}_ipx/:splat,200
 /about/kidsclub.htm,/about,302!
 /about/index.php,/about,302!
 /about/buildingUse.php,/about,302!
@@ -193,11 +198,6 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /daily-prayer-devotional/thank-you,/daily-prayer-devotional/thank-you,200! Cookie=.ROCK_AUTH
 /daily-prayer-devotional/thank-you,${env:CRDS_ROCK_DOMAIN}login,302!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
-/_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
-/unified_assets/*,${env:CRDS_UNIFIED_DOMAIN}unified_assets/:splat,200
-/unified_images/*,${env:CRDS_UNIFIED_DOMAIN}unified_images/:splat,200
-/_next/*,${env:CRDS_UNIFIED_DOMAIN}_next/:splat,200
-/_ipx/*,${env:CRDS_UNIFIED_DOMAIN}_ipx/:splat,200
 /online/,/anywhere,301!
 /online/next-level-academy,/media/next-level-academy,301!
 /online/next-level-academy/galatians,/media/collections/galatians,301!
