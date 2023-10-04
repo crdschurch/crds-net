@@ -16,6 +16,8 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /unified_images/*,${env:CRDS_UNIFIED_DOMAIN}unified_images/:splat,200
 /_next/*,${env:CRDS_UNIFIED_DOMAIN}_next/:splat,200
 /_ipx/*,${env:CRDS_UNIFIED_DOMAIN}_ipx/:splat,200
+/.well-known/apple-app-site-association,/well-known/apple-app-site-association,200!
+/.well-known/assetlinks.json,/well-known/assetlinks.json,200!
 /about/kidsclub.htm,/about,302!
 /about/index.php,/about,302!
 /about/buildingUse.php,/about,302!
@@ -517,7 +519,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /.well-known/openid-configuration,/,302!
 /.well-known/nodeinfo,/,302!
 /.well-known/gpc.json,/,302!
-/.well-known/assetlinks.json,/,302!
 /-autumnskye/quaker.html,/,302!
 /wp-content/uploads/2013/10/02-Receive-Rest.mp3,/,302!
 /index.php/richmond-campus/media-menu/18-media/191-media-andover-76,/,302!

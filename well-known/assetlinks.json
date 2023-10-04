@@ -1,0 +1,14 @@
+[
+    {
+      "relation": [
+        "delegate_permission/common.handle_all_urls"
+      ],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "net.crossroads.crossroads",
+        "sha256_cert_fingerprints": [
+          "9E:29:F9:EB:BE:09:91:2C:D3:0D:20:A2:57:20:BE:FC:AE:00:4F:73:12:E6:F7:07:22:94:4D:41:E0:5B:05:1D"
+        ]
+      }
+    }
+  ]
