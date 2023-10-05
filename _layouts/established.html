@@ -8,9 +8,6 @@ layout: default
 {% assign sorted_messages = site.messages | sort: 'published_at' %}
 {% assign current_message = sorted_messages | last %}
 
-<!-- Resi Player -->
-{% include locations/_resi-player.html %}
-
 {% include locations/_welcome-modal.html %}
 
 <!-- Featured Section -->
@@ -22,9 +19,7 @@ layout: default
 
 <!-- Jumbotron section -->
 <section class="jumbotron locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
-  id="has-resi-player"
   data-optimize-bg-img>
-  {% include locations/_ondemand-card.html %}
   <div class="bg-overlay"></div>
   <div class="container">
     <div class="row location-title-row" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>

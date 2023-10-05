@@ -11,6 +11,13 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /h,/content-unavailable/,"302! Country=IN,NP"
 /h,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH
 /h,/,302!
+/_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
+/unified_assets/*,${env:CRDS_UNIFIED_DOMAIN}unified_assets/:splat,200
+/unified_images/*,${env:CRDS_UNIFIED_DOMAIN}unified_images/:splat,200
+/_next/*,${env:CRDS_UNIFIED_DOMAIN}_next/:splat,200
+/_ipx/*,${env:CRDS_UNIFIED_DOMAIN}_ipx/:splat,200
+/.well-known/apple-app-site-association,/well-known/apple-app-site-association,200!
+/.well-known/assetlinks.json,/well-known/assetlinks.json,200!
 /about/kidsclub.htm,/about,302!
 /about/index.php,/about,302!
 /about/buildingUse.php,/about,302!
@@ -93,6 +100,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /practices/connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}practices/connect-with-god-daily,200!
 /practices/live-generously,${env:CRDS_UNIFIED_DOMAIN}practices/live-generously,200!
 /prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
+/clips,${env:CRDS_UNIFIED_DOMAIN}clips,200!
 /prayerexperience,/prayer,302!
 /free,/journeypartners/resources/free-2010/prayer-experience/,302!
 /free/prayerexperience.php,/journeypartners/resources/free-2010/prayer-experience/,302!
@@ -192,11 +200,6 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /daily-prayer-devotional/thank-you,/daily-prayer-devotional/thank-you,200! Cookie=.ROCK_AUTH
 /daily-prayer-devotional/thank-you,${env:CRDS_ROCK_DOMAIN}login,302!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
-/_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
-/unified_assets/*,${env:CRDS_UNIFIED_DOMAIN}unified_assets/:splat,200
-/unified_images/*,${env:CRDS_UNIFIED_DOMAIN}unified_images/:splat,200
-/_next/*,${env:CRDS_UNIFIED_DOMAIN}_next/:splat,200
-/_ipx/*,${env:CRDS_UNIFIED_DOMAIN}_ipx/:splat,200
 /online/,/anywhere,301!
 /online/next-level-academy,/media/next-level-academy,301!
 /online/next-level-academy/galatians,/media/collections/galatians,301!
@@ -516,7 +519,6 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /.well-known/openid-configuration,/,302!
 /.well-known/nodeinfo,/,302!
 /.well-known/gpc.json,/,302!
-/.well-known/assetlinks.json,/,302!
 /-autumnskye/quaker.html,/,302!
 /wp-content/uploads/2013/10/02-Receive-Rest.mp3,/,302!
 /index.php/richmond-campus/media-menu/18-media/191-media-andover-76,/,302!
