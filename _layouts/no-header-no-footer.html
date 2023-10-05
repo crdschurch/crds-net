@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-  {% include _head.html %}
-  <body class="{% if page.path == 'preview.html' %}preview{% endif %} crds-styles relative">
-    {% include _facebook_noscript.html %}
-    {% include _monetate-body.html %}
+{% include _head.html %}
 
-    {% javascript_link_tag application_deferred async %}
+<body class="{% if page.path == 'preview.html' %}preview{% endif %} crds-styles relative">
+  {% include _facebook_noscript.html %}
+  {% include _monetate-body.html %}
 
-    {{ content }}
+  {% javascript_link_tag application_deferred async %}
 
-    {% include _subscribe-modal.html %}
-    {% if page.title == "Atrium Events" %}
-      {% javascript_link_tag events async %}
-    {% endif %}
+  {{ content }}
 
-    {% if page.preloader %}{% include _preloader.html %}{% endif %}
+  {% include _subscribe-modal.html %}
+  {% if page.title == "Atrium Events" %}
+  {% javascript_link_tag events async %}
+  {% endif %}
 
-    {% include _footer-script.html %}
-    <!-- Start of HubSpot Embed Code -->
-      <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/3993985.js"></script>
-    <!-- End of HubSpot Embed Code -->
+  {% if page.preloader %}{% include _preloader.html %}{% endif %}
 
-    {% if site.jekyll_env != "production" %}
-      <script src="https://cdn.userway.org/widget.js" data-account="4XbzePFiPE"></script>
-    {% endif %}
-  </body>
+  {% include _footer-script.html %}
+  <!-- Start of HubSpot Embed Code -->
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/3993985.js"></script>
+  <!-- End of HubSpot Embed Code -->
+
+  {% if site.jekyll_env == "production" %}
+  <script src="https://cdn.userway.org/widget.js" data-account="RCwaT3oWqd"></script>
+  {% endif %}
+</body>
+
 </html>

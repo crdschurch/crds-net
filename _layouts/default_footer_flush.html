@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-  {% include _head.html %}
-  <body class="{% if page.path == 'preview.html' %}preview{% endif %} crds-styles relative">
-    {% include _facebook_noscript.html %}
-    {% include _monetate-body.html %}
+{% include _head.html %}
 
-    {% javascript_link_tag application_deferred async %}
-    {% include header.html %}
-    <div>
+<body class="{% if page.path == 'preview.html' %}preview{% endif %} crds-styles relative">
+  {% include _facebook_noscript.html %}
+  {% include _monetate-body.html %}
+
+  {% javascript_link_tag application_deferred async %}
+  {% include header.html %}
+  <div>
     {{ content }}
-    </div>
-    {% include footer.html %}
+  </div>
+  {% include footer.html %}
 
-    {% include _subscribe-modal.html %}
-    {% if page.title == "Atrium Events" %}
-      {% javascript_link_tag events async %}
-    {% endif %}
+  {% include _subscribe-modal.html %}
+  {% if page.title == "Atrium Events" %}
+  {% javascript_link_tag events async %}
+  {% endif %}
 
-    {% if page.preloader %}{% include _preloader.html %}{% endif %}
+  {% if page.preloader %}{% include _preloader.html %}{% endif %}
 
-    {% include _footer-script.html %}
-    {% if site.jekyll_env != "production" %}
-      <script src="https://cdn.userway.org/widget.js" data-account="4XbzePFiPE"></script>
-    {% endif %}
-  </body>
+  {% include _footer-script.html %}
+  {% if site.jekyll_env == "production" %}
+  <script src="https://cdn.userway.org/widget.js" data-account="RCwaT3oWqd"></script>
+  {% endif %}
+</body>
+
 </html>
