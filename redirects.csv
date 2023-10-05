@@ -16,6 +16,8 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /unified_images/*,${env:CRDS_UNIFIED_DOMAIN}unified_images/:splat,200
 /_next/*,${env:CRDS_UNIFIED_DOMAIN}_next/:splat,200
 /_ipx/*,${env:CRDS_UNIFIED_DOMAIN}_ipx/:splat,200
+/.well-known/apple-app-site-association,/well-known/apple-app-site-association,200!
+/.well-known/assetlinks.json,/well-known/assetlinks.json,200!
 /register,${env:CRDS_ROCK_DOMAIN}NewAccount,302!
 /qa/set-token,${env:CRDS_UNIFIED_DOMAIN}qa/set-token,200!
 /qa/get-token,${env:CRDS_UNIFIED_DOMAIN}qa/get-token,200!
