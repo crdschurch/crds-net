@@ -11,6 +11,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /h,/content-unavailable/,"302! Country=IN,NP"
 /h,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH
 /h,/,302!
+
 /_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
 /unified_assets/*,${env:CRDS_UNIFIED_DOMAIN}unified_assets/:splat,200
 /unified_images/*,${env:CRDS_UNIFIED_DOMAIN}unified_images/:splat,200
@@ -99,6 +100,13 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /practices/receive-teaching-weekly,${env:CRDS_UNIFIED_DOMAIN}practices/receive-teaching-weekly,200!
 /practices/connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}practices/connect-with-god-daily,200!
 /practices/live-generously,${env:CRDS_UNIFIED_DOMAIN}practices/live-generously,200!
+/set-course/get-baptized,${env:CRDS_UNIFIED_DOMAIN}set-course/get-baptized,200!
+/set-course/share-your-story,${env:CRDS_UNIFIED_DOMAIN}set-course/share-your-story,200!
+/set-course/join-community,${env:CRDS_UNIFIED_DOMAIN}set-course/join-community,200!
+/set-course/serve-others,${env:CRDS_UNIFIED_DOMAIN}set-course/serve-others,200!
+/set-course/receive-teaching-weekly,${env:CRDS_UNIFIED_DOMAIN}set-course/receive-teaching-weekly,200!
+/set-course/connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}set-course/connect-with-god-daily,200!
+/set-course/live-generously,${env:CRDS_UNIFIED_DOMAIN}set-course/live-generously,200!
 /prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
 /clips,${env:CRDS_UNIFIED_DOMAIN}clips,200!
 /prayerexperience,/prayer,302!
