@@ -1,4 +1,5 @@
 https://crossroads.net/*,https://www.crossroads.net/:splat,301!
+https://attendance.crossroads.net/*,https://rock.crossroads.net/reporting/metrics,301!
 https://development.event-checkin.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}myevents,302!
 http://development.event-checkin.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}myevents,302!
 https://release.event-checkin.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}myevents,302!
