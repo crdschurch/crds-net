@@ -112,6 +112,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /go/nicaragua,/go/latin-america/nicaragua,302!
 /go/puerto-rico,/go/caribbean/puerto-rico,302!
 /go,${env:CRDS_UNIFIED_DOMAIN}go,200!
+/go/*,${env:CRDS_UNIFIED_DOMAIN}:splat,200
 /world-impact-experience,/wie,302!
 /wie,/world-impact-experience,200!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,301! Cookie=.ROCK_AUTH
