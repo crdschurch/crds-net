@@ -122,6 +122,8 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /go/south-africa/*,${env:CRDS_UNIFIED_DOMAIN}go/south-africa/:splat,200!
 /go/asia/*,${env:CRDS_UNIFIED_DOMAIN}go/asia/:splat,200!
 /go/latin-america/*,${env:CRDS_UNIFIED_DOMAIN}go/latin-america/:splat,200!
+/go/fundraising-importance,${env:CRDS_UNIFIED_DOMAIN}go/fundraising-importance,200!
+/go/fundraising,${env:CRDS_UNIFIED_DOMAIN}go/fundraising,200!
 /go,${env:CRDS_UNIFIED_DOMAIN}go,200!
 /go/*,${env:CRDS_UNIFIED_DOMAIN}:splat,200
 /world-impact-experience,/wie,302!
