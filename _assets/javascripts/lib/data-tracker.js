@@ -5,7 +5,7 @@ window.CRDS = window.CRDS || {};
 
 CRDS.DataTracker = class DataTracker {
   constructor() {
-    window['CRDS']._instances = window['CRDS']._instances || {};
+    window["CRDS"]._instances = window["CRDS"]._instances || {};
     this.debug = false;
 
     if (CRDS._instances["DataTracker"]) {
@@ -74,7 +74,7 @@ CRDS.DataTracker = class DataTracker {
     this.handleTrack(label, {
       Name: name,
       Target: target,
-      Type: type
+      Type: type,
     });
   }
 
@@ -84,20 +84,20 @@ CRDS.DataTracker = class DataTracker {
     const form = event.currentTarget;
     const searchInput = form.getElementsByTagName("input")[0];
     const name = form.dataset.trackSearch || form.id || "Unnamed Search";
-    const label = form.dataset.trackLabel || "SearchRequested";
+    const label = form.dataset.trackLabel;
     const target = form.outerHTML;
     const search = searchInput.value;
     this.handleTrack(label, {
       Name: name,
       Target: target,
-      SearchTerm: search
+      SearchTerm: search,
     });
   }
 
   handleTrack(label, properties) {
     this.log("handleTrack()");
-    var callAnalytics = setInterval(function () {
-      if(this.analytics !== undefined){
+    var callAnalytics = setInterval(function() {
+      if (this.analytics !== undefined) {
         this.analytics.track(label, properties);
         clearInterval(callAnalytics);
       }
