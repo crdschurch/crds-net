@@ -53,6 +53,21 @@ layout: default
                 </crds-button>
               </div>
             {% endif %}
+            {% if page.playlist_url %}
+              <div>
+                <crds-button 
+                  data-target="_blank" 
+                  color="white" 
+                  display="outline" 
+                  text="Season 3 Playlist"
+                  href="{{ page.playlist_url }}"
+                  icon="play-thin" 
+                  icon-color="white" 
+                  icon-size="20" 
+                  icon-align="left">
+                </crds-button>
+              </div>
+            {% endif %}
           </div>
         </div>
       </div>
