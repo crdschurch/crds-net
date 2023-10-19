@@ -138,6 +138,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /daily-prayer-devotional/thank-you,/daily-prayer-devotional/thank-you,200! Cookie=is_registered
 /daily-prayer-devotional/thank-you,/daily-prayer-devotional/thank-you,200! Cookie=.ROCK_AUTH
 /daily-prayer-devotional/thank-you,${env:CRDS_ROCK_DOMAIN}login,302!
+/prayerexperience,${env:CRDS_UNIFIED_DOMAIN}prayerexperience,200!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
 /online/,/anywhere,301!
 /online/next-level-academy,/media/next-level-academy,301!
