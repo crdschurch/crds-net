@@ -59,28 +59,6 @@ function liveStreamInit() {
     }
   });
 
-  // Analytics for Roll Call
-  var successInterval;
-  document.addEventListener("DOMContentLoaded", function() {
-    var el = document.querySelector("roll-call");
-
-    // These events are deprecated.
-
-    el.addEventListener("dismissed", function(event) {
-      analytics.track("RollCallDismissed", {
-        Source: "Crossroads.net",
-      });
-    });
-
-    // These events are introduced in v0.1.0
-
-    el.addEventListener("crds.rollcall.dismissModal", function(event) {
-      analytics.track("RollCallDismissed", {
-        Source: "Crossroads.net",
-      });
-    });
-  });
-
   window.env = window.env || {};
   env.rollcallFormId =
     "1FAIpQLScrO2WZ-ODPL5mJktWXBc283_MWH7RF3fFok2qUtMGzCorhKg";
