@@ -62,7 +62,7 @@ class Redirects
     rows.insert(n + flex_page_redirects_data.length, *redirects)
 
     all_rows = rows.map(&:to_csv).join.gsub('"', '')
-    
+
     File.write(path, all_rows)
     if debug
       puts "\nWrote #{redirects.size} redirects and #{flex_page_redirects.size} flex page redirects to #{path}"
@@ -70,20 +70,19 @@ class Redirects
   end
 
   private
+    def item_attrs(item)
+      [
+        item.dig('fields', 'from'),
+        item.dig('fields', 'to'),
+        "#{item.dig('fields', 'status_code') || 302}#{'!' if item.dig('fields', 'is_forced')}"
+      ]
+    end
 
-  def item_attrs(item)
-    [
-      item.dig('fields', 'from'),
-      item.dig('fields', 'to'),
-      "#{item.dig('fields', 'status_code') || 302}#{'!' if item.dig('fields', 'is_forced')}"
-    ]
-  end
+    def flex_item_attrs(item)
+      item.dig('fields', 'slug')
+    end
 
-  def flex_item_attrs(item)
-    item.dig('fields', 'slug')
-  end
-
-  def get_data(options)
-    self.class.get("/spaces/#{ENV['CONTENTFUL_SPACE_ID']}/environments/#{ENV['CONTENTFUL_ENV']}/entries", options)
-  end
+    def get_data(options)
+      self.class.get("/spaces/#{ENV['CONTENTFUL_SPACE_ID']}/environments/#{ENV['CONTENTFUL_ENV']}/entries", options)
+    end
 end
