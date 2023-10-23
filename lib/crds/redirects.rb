@@ -5,7 +5,6 @@ require 'pry'
 
 class Redirects
   include HTTParty
-  base_uri 'cdn.contentful.com'
 
   def initialize
     @redirect_options = {
@@ -18,7 +17,7 @@ class Redirects
 
     @flex_page_options = {
       query: {
-        access_token: ENV['CONTENTFUL_ACCESS_TOKEN'],
+        access_token: ENV['CRDS_ENV'] == 'prod' ? ENV['CONTENTFUL_ACCESS_TOKEN'] : ENV['CONTENTFUL_PREVIEW_TOKEN'],
         content_type: 'flexPage',
         limit: 1000
       }
@@ -30,9 +29,16 @@ class Redirects
   end
 
   def flex_page_redirects
-    data = JSON.parse(get_data(@flex_page_options)).dig('items').collect { |item| flex_item_attrs(item) }
-    transformed = data.map do |slug|
-      ["/#{slug},${env:CRDS_UNIFIED_DOMAIN}#{slug},200!"]
+    if ENV['CRDS_ENV'] == 'prod'
+      data = JSON.parse(get_data(@flex_page_options)).dig('items')
+    else
+      data = JSON.parse(get_preview_data(@flex_page_options)).dig('items')
+    end
+  
+    if data.nil? || data.empty?
+      transformed = []
+    else
+      transformed = data.collect { |item| ["/#{flex_item_attrs(item)},${env:CRDS_UNIFIED_DOMAIN}#{flex_item_attrs(item)},200!"] }
     end
   end
 
@@ -57,9 +63,12 @@ class Redirects
       rows.delete_at(n)
     end
 
-    flex_page_redirects_data = flex_page_redirects
-    rows.insert(n, *flex_page_redirects_data)
-    rows.insert(n + flex_page_redirects_data.length, *redirects)
+    if flex_page_redirects.length != 0
+      rows.insert(n, *flex_page_redirects)
+      rows.insert(n + flex_page_redirects.length, *redirects)
+    else
+      rows.insert(n, *redirects)
+    end
 
     all_rows = rows.map(&:to_csv).join.gsub('"', '')
 
@@ -83,6 +92,12 @@ class Redirects
     end
 
     def get_data(options)
+      self.class.base_uri('cdn.contentful.com')
+      self.class.get("/spaces/#{ENV['CONTENTFUL_SPACE_ID']}/environments/#{ENV['CONTENTFUL_ENV']}/entries", options)
+    end
+
+    def get_preview_data(options)
+      self.class.base_uri('preview.contentful.com')
       self.class.get("/spaces/#{ENV['CONTENTFUL_SPACE_ID']}/environments/#{ENV['CONTENTFUL_ENV']}/entries", options)
     end
 end
