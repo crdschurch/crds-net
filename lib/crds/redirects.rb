@@ -15,13 +15,28 @@ class Redirects
         limit: 1000
       }
     }
+
+    @flex_page_options = {
+      query: {
+        access_token: ENV['CONTENTFUL_ACCESS_TOKEN'],
+        content_type: 'flexPage',
+        limit: 1000
+      }
+    }
   end
 
   def redirects
     JSON.parse(get_data(@redirect_options)).dig('items').collect { |item| item_attrs(item) }
   end
 
-  def to_csv!(path = './redirects.csv', debug=true)
+  def flex_page_redirects
+    data = JSON.parse(get_data(@flex_page_options)).dig('items').collect { |item| flex_item_attrs(item) }
+    transformed = data.map do |slug|
+      ["/#{slug},${env:CRDS_UNIFIED_DOMAIN}#{slug},200!"]
+    end
+  end
+
+  def to_csv!(path = './redirects.csv', debug = true)
     rows = CSV.read(path)
     n = nil
     rows.find do |row|
@@ -42,25 +57,33 @@ class Redirects
       rows.delete_at(n)
     end
 
-    rows.insert(n, *redirects)
+    flex_page_redirects_data = flex_page_redirects
+    rows.insert(n, *flex_page_redirects_data)
+    rows.insert(n + flex_page_redirects_data.length, *redirects)
 
-    File.write(path, rows.map(&:to_csv).join)
+    all_rows = rows.map(&:to_csv).join.gsub('"', '')
+    
+    File.write(path, all_rows)
     if debug
-      puts "\nWrote #{redirects.size} redirects from Contentful to #{path}"
+      puts "\nWrote #{redirects.size} redirects and #{flex_page_redirects.size} flex page redirects to #{path}"
     end
   end
 
   private
 
-    def item_attrs(item)
-      [
-        item.dig('fields', 'from'),
-        item.dig('fields', 'to'),
-        "#{item.dig('fields', 'status_code') || 302}#{'!' if item.dig('fields', 'is_forced')}"
-      ]
-    end
+  def item_attrs(item)
+    [
+      item.dig('fields', 'from'),
+      item.dig('fields', 'to'),
+      "#{item.dig('fields', 'status_code') || 302}#{'!' if item.dig('fields', 'is_forced')}"
+    ]
+  end
 
-    def get_data(options)
-      self.class.get("/spaces/#{ENV['CONTENTFUL_SPACE_ID']}/environments/#{ENV['CONTENTFUL_ENV']}/entries", options)
-    end
+  def flex_item_attrs(item)
+    item.dig('fields', 'slug')
+  end
+
+  def get_data(options)
+    self.class.get("/spaces/#{ENV['CONTENTFUL_SPACE_ID']}/environments/#{ENV['CONTENTFUL_ENV']}/entries", options)
+  end
 end
