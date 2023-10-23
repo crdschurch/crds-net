@@ -3,7 +3,9 @@ layout: default
 ---
 
 <section class="bg-black" data-grouping-media-type="show">
-  <div class="jumbotron jumbotron-xl flush-bottom" style="background-image: url('{% if page.widescreen_thumbnail_image %}{{ page.widescreen_thumbnail_image.url | imgix: site.imgix }}{% else %}{{ page.image.url | imgix: site.imgix }}{% endif %}');" data-optimize-bg-img>
+  <div class="jumbotron jumbotron-xl flush-bottom"
+    style="background-image: url('{% if page.widescreen_thumbnail_image %}{{ page.widescreen_thumbnail_image.url | imgix: site.imgix }}{% else %}{{ page.image.url | imgix: site.imgix }}{% endif %}');"
+    data-optimize-bg-img>
     <div class="bg-overlay"></div>
     <div class="jumbotron-content push-ends">
       <div class="container">
@@ -39,22 +41,28 @@ layout: default
               <p class="font-family-serif font-size-large">{{ page.description }}</p>
             </div>
             {% if page.trailer_video %}
-              <div>
-                <crds-button 
-                  data-target="#trailerModal" 
-                  data-toggle="modal" 
-                  color="white" 
-                  display="outline" 
-                  text="Watch the trailer"
-                  icon="play-thin" 
-                  icon-color="white" 
-                  icon-size="20" 
-                  icon-align="left">
-                </crds-button>
-              </div>
+            <div>
+              <crds-button data-target="#trailerModal" data-toggle="modal" color="white" display="outline"
+                text="Watch the trailer" icon="play-thin" icon-color="white" icon-size="20" icon-align="left">
+              </crds-button>
+            </div>
+            {% endif %}
+            {% if page.playlist_url %}
+            <div>
+              <crds-button color="white" display="outline" href="{{ page.playlist_url }}" text="Season 3 Playlist"
+                target="_blank">
+              </crds-button>
+            </div>
             {% endif %}
           </div>
         </div>
+        {% if page.title == 'Real Encounters'%}
+        <div class="bg-orange text-black soft-top soft-bottom push-top" style="margin-top: 100px;"><span
+            style="font-weight: 600;">Stay up-to-date with all things
+            Crossroads</span><a href="https://share.hsforms.com/1YY_i9ZyZTy2KZf9WkIgxjg2dls1"
+            class="sign-up-button">Sign Up</a>
+        </div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -73,13 +81,14 @@ layout: default
     {% assign tabs_array = "" | split: "|" %}
 
     {% for season_number in season_numbers %}
-      {% if season_number %}
-      {% capture tab %}Season {{season_number}}{% endcapture %}
-      {% assign tabs_array = tabs_array | push: tab %}
-      {% endif %}
+    {% if season_number %}
+    {% capture tab %}Season {{season_number}}{% endcapture %}
+    {% assign tabs_array = tabs_array | push: tab %}
+    {% endif %}
     {% endfor %}
 
-    <crds-tabs tabs='{{tabs_array | jsonify }}' mobile-dropdown navigation-class="align-tabs-left shows" dropdown-icon-color="white">
+    <crds-tabs tabs='{{tabs_array | jsonify }}' mobile-dropdown navigation-class="align-tabs-left shows"
+      dropdown-icon-color="white">
       {% assign groups = items | sort: 'season_number' | reverse | group_by: 'season_number' %}
 
       {% for group in groups %}
@@ -90,16 +99,19 @@ layout: default
         <div class="row soft-bottom episode hide-episode load-more" data-season-{{season_number}}>
           <a href="{{ episode | media_url }}">
             <div class="col-sm-6 push-half-bottom">
-              <crds-image class="full-width" src="{% if episode.podcast.image.url %}{{ episode.podcast.image.url  | imgix: site.imgix }}{% else %}{{ episode.image.url | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-              aspect-ratio=0.5625 alt="{{ episode.title }}"></crds-image>
+              <crds-image class="full-width"
+                src="{% if episode.podcast.image.url %}{{ episode.podcast.image.url  | imgix: site.imgix }}{% else %}{{ episode.image.url | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                aspect-ratio=0.5625 alt="{{ episode.title }}"></crds-image>
             </div>
             <div class="col-sm-6">
-              <p class="text-uppercase text-orange font-size-smaller font-family-base-black flush-bottom">{{ page.title }}</p>
-              <h2 class="text-uppercase text-white font-family-condensed-extra font-size-h2 flush-top">{{ episode.title }}</h2>
+              <p class="text-uppercase text-orange font-size-smaller font-family-base-black flush-bottom">{{ page.title
+                }}</p>
+              <h2 class="text-uppercase text-white font-family-condensed-extra font-size-h2 flush-top">{{ episode.title
+                }}</h2>
               <p class="text-white font-size-smaller">{{ episode.description }}</p>
             </div>
-           </a>
-          </div>
+          </a>
+        </div>
         {% endfor %}
         <div class="text-center push-ends">
           <div class="load-more">
@@ -112,47 +124,70 @@ layout: default
       {% endfor %}
     </crds-tabs>
     {% endif %}
-    
+
     {% else %}
 
     {% for item in items %}
     <div class="row soft-bottom">
       <a class="text-white" href="{{ item | media_url }}">
         <div class="col-sm-6 push-half-bottom">
-          <crds-image class="full-width" src="{% if item.podcast.image.url %}{{ item.podcast.image.url  | imgix: site.imgix }}{% else %}{{ item.image.url | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-          aspect-ratio=0.5625 alt="{{ item.title }}"></crds-image>
+          <crds-image class="full-width"
+            src="{% if item.podcast.image.url %}{{ item.podcast.image.url  | imgix: site.imgix }}{% else %}{{ item.image.url | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+            aspect-ratio=0.5625 alt="{{ item.title }}"></crds-image>
         </div>
         <div class="col-sm-6">
-          <p class="text-uppercase text-orange font-size-smaller font-family-base-black flush-bottom">{{ page.title }}</p>
+          <p class="text-uppercase text-orange font-size-smaller font-family-base-black flush-bottom">{{ page.title }}
+          </p>
           <h2 class="text-uppercase text-white font-family-condensed-extra font-size-h2 flush-top">{{ item.title }}</h2>
           <p class="text-white font-size-smaller">{{ item.description }}</p>
         </div>
-       </a>
-      </div>
+      </a>
+    </div>
     {% endfor %}
     {% endif %}
   </div>
 </section>
 
 {% if page.trailer_video %}
-  <div aria-labelledby="Trailer modal" class="modal fade" id="trailerModal" role="dialog" tabindex="-1">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header hard-bottom"><button aria-label="Close" class="close pull-right" data-dismiss="modal"
-            type="button"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body text-left push-ends hard-ends">
-            {% assign video_id = page.trailer_video | youtube_id %}
-            {% include _youtube-embed.html %}
-        </div>
-        <div class="modal-footer">{{ page.title }} Trailer</div>
+<div aria-labelledby="Trailer modal" class="modal fade" id="trailerModal" role="dialog" tabindex="-1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header hard-bottom"><button aria-label="Close" class="close pull-right" data-dismiss="modal"
+          type="button"><span aria-hidden="true">&times;</span></button>
       </div>
+      <div class="modal-body text-left push-ends hard-ends">
+        {% assign video_id = page.trailer_video | youtube_id %}
+        {% include _youtube-embed.html %}
+      </div>
+      <div class="modal-footer">{{ page.title }} Trailer</div>
     </div>
   </div>
+</div>
 
-  <script type="text/javascript">
-    $('#trailerModal').on('hidden.bs.modal', function () {
-      $("#trailerModal iframe").attr("src", $("#trailerModal iframe").attr("src"));
+<script type="text/javascript">
+  $('#trailerModal').on('hidden.bs.modal', function () {
+    $("#trailerModal iframe").attr("src", $("#trailerModal iframe").attr("src"));
   });
-  </script>
+</script>
 {% endif %}
+
+<style>
+  .sign-up-button {
+    border: 1px solid black;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: 600;
+
+    &:hover {
+      color: black;
+    }
+
+    @media (max-width: 768px) {
+        margin-top: 20px !important;
+    }
+  }
+</style>

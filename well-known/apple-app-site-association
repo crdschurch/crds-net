@@ -1,0 +1,20 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "J4C8MHHH48.net.crossroads.crossroads",
+        "paths": [
+          "/app/*",
+          "/media/articles/*",
+          "/media/humans-of-crossroads/*",
+          "/media/podcasts/*",
+          "/media/topics/*",
+          "/media/series/*",
+          "/media/collections/*",
+          "/media/videos/*"
+        ]
+      }
+    ]
+  }
+}
