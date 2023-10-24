@@ -14,7 +14,7 @@
   <crds-bitmovin-player 
     recommended-collection='{{json_collection}}' 
     class="embed-responsive embed-responsive-16by9" 
-    video-id="{{video_id}}" 
+    entry-id="{{video.id}}" 
     title="{{video.title}}" 
     is-card="{{is_card}}" 
     url="{{video.bitmovin_url}}"
@@ -28,7 +28,7 @@
 {% else %}
   <crds-bitmovin-player 
     class="embed-responsive embed-responsive-16by9"
-    video-id="{{video_id}}" 
+    entry-id="{{video.id}}" 
     title="{{video.title}}" 
     is-card="{{is_card}}" 
     url={{video.bitmovin_url}}
