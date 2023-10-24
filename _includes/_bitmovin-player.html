@@ -1,8 +1,6 @@
 {% if include.isCard %}
-  {% capture video_id %}bitmovinPlayer{{video.slug | camelcase}}{% endcapture %}
   {% assign is_card = include.isCard %}
 {% else %}
-  {% assign video_id = "VideoManager" %}
   {% assign is_card = false %}
 {% endif %}
 
@@ -14,7 +12,7 @@
   <crds-bitmovin-player 
     recommended-collection='{{json_collection}}' 
     class="embed-responsive embed-responsive-16by9" 
-    video-id="{{video_id}}" 
+    entry-id="{{video.sys.id}}" 
     title="{{video.title}}" 
     is-card="{{is_card}}" 
     url="{{video.bitmovin_url}}"
@@ -28,7 +26,7 @@
 {% else %}
   <crds-bitmovin-player 
     class="embed-responsive embed-responsive-16by9"
-    video-id="{{video_id}}" 
+    entry-id="{{video.sys.id}}" 
     title="{{video.title}}" 
     is-card="{{is_card}}" 
     url={{video.bitmovin_url}}
