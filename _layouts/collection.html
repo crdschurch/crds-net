@@ -61,19 +61,17 @@ layout: default
     </div>
   </div>
 </section>
+<!-- This is the jumbotron specifically designed for the Real Encounters collection -->
 {% else %}
 <section class="bg-black">
-  <div class="jumbotron jumbotron-xl flush-bottom"
-    style="background-image: url('{% if page.widescreen_thumbnail_image %}{{ page.widescreen_thumbnail_image.url | imgix: site.imgix }}{% else %}{{ page.image.url | imgix: site.imgix }}{% endif %}'); height: 100vh;"
-    data-optimize-bg-img>
-    <div class="bg-overlay"></div>
+  <div class="jumbotron jumbotron-xl flush-bottom real-encounters-bg-image" data-optimize-bg-img>
   </div>
   <div style="background-color: black;">
     <div class="container" style="padding-bottom: 50px;">
       <div class="row">
         <div class="col-sm-5 text-left">
-          <div>
-            <p class="font-size-large text-white">{{ page.description }}</p>
+          <div style="margin-top: 40px;">
+            <p class="font-size-large text-white font-family-serif">{{ page.description }}</p>
           </div>
           {% if page.playlist_url %}
           <div>
@@ -83,7 +81,8 @@ layout: default
           </div>
           {% endif %}
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-5" style="margin-top: 60px;">
           <crds-youtube-player class="embed-responsive embed-responsive-16by9" video-id="E8V4lH5E_-M"
             title="Real Encounters With God" youtube-url="https://youtu.be/E8V4lH5E_-M"></crds-youtube-player>
         </div>
@@ -219,6 +218,15 @@ layout: default
 
     @media (max-width: 768px) {
       margin-top: 20px !important;
+    }
+  }
+
+  .real-encounters-bg-image {
+    background-image: url(//crds-media.imgix.net/16rPJFmOcAmoTlaDS7ItCG/168fc733701a592bb89799821b75f6ef/jumbo_desktop_x2.png?auto=compress,format);
+    height: 100vh;
+
+    @media (max-width: 768px) {
+      background-image: url(//crds-media.imgix.net/4YdWM8xCA3Gnz0N2l90sWb/83021850cd9c6d45a8fb77811fa972de/mobile_jumbo_x2.png?auto=compress,format);
     }
   }
 </style>
