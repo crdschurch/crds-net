@@ -19,7 +19,7 @@ class Redirects
       query: {
         access_token: ENV['CRDS_ENV'] == 'prod' ? ENV['CONTENTFUL_ACCESS_TOKEN'] : ENV['CONTENTFUL_PREVIEW_TOKEN'],
         content_type: 'flexPage',
-        limit: 2000
+        limit: 1000
       }
     }
   end
