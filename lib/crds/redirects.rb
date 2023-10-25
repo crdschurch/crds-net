@@ -30,7 +30,8 @@ class Redirects
 
   def flex_page_redirects
     if ENV['CRDS_ENV'] == 'prod'
-      data = JSON.parse(get_data(@flex_page_options)).dig('items')
+      # data = JSON.parse(get_data(@flex_page_options)).dig('items')
+      data = nil
     else
       data = JSON.parse(get_preview_data(@flex_page_options)).dig('items')
     end
