@@ -18,6 +18,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /_next/*,${env:CRDS_UNIFIED_DOMAIN}_next/:splat,200
 /_ipx/*,${env:CRDS_UNIFIED_DOMAIN}_ipx/:splat,200
 /israel,${env:CRDS_UNIFIED_DOMAIN}israel,200!
+/andi-test,${env:CRDS_UNIFIED_DOMAIN}andi-test,200!
 /.well-known/apple-app-site-association,/well-known/apple-app-site-association,200!
 /.well-known/assetlinks.json,/well-known/assetlinks.json,200!
 /register,${env:CRDS_ROCK_DOMAIN}NewAccount,302!
