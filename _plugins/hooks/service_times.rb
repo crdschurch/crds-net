@@ -10,7 +10,6 @@ Jekyll::Hooks.register :site, :pre_render do |site|
     data = JSON.parse(response)
     
     site.data['service_times'] = data['serviceTimes'][0]
-    puts site.data['service_times']
   rescue
     site.data['service_times'] = {}
   end
