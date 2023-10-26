@@ -30,7 +30,7 @@ class Redirects
 
   def flex_page_redirects
     if ENV['CRDS_ENV'] == 'prod'
-      # data = JSON.parse(get_data(@flex_page_options)).dig('items')
+      data = JSON.parse(get_data(@flex_page_options)).dig('items')
       data = nil
     else
       data = JSON.parse(get_preview_data(@flex_page_options)).dig('items')
@@ -39,7 +39,7 @@ class Redirects
     if data.nil? || data.empty?
       transformed = []
     else
-      transformed = data.collect { |item| ["/#{flex_item_attrs(item)},${env:CRDS_UNIFIED_DOMAIN}#{flex_item_attrs(item)},200!"] }
+      transformed = data.collect { |item| ["/#{flex_item_attrs(item)},#{ENV['CRDS_UNIFIED_DOMAIN']}#{flex_item_attrs(item)},200!"] }
     end
   end
 
@@ -65,6 +65,7 @@ class Redirects
     end
 
     if flex_page_redirects.length != 0
+      puts flex_page_redirects
       rows.insert(n, *flex_page_redirects)
       rows.insert(n + flex_page_redirects.length, *redirects)
     else
