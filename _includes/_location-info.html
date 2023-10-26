@@ -3,7 +3,23 @@
 
     <div class="location-top-info-item text-left push-bottom location-info-divider mobile-flush-bottom">
       <span class="font-family-base-bold font-size-smaller text-uppercase">Service Times</span>
-      <p class="flush font-size-small">{{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}</p>
+      <p class="flush font-size-small">
+        {% if site.data.service_times.size != 0 %}
+          {% assign service_times_str = site.data.service_times[location.name] %}
+          {% assign service_times_array = service_times_str | split: '|' %}
+          {% for time in service_times_array %}
+            {% assign parts = time | split: '^' %}
+            {% if location.name contains 'Anywhere' %}
+              <div>{{ parts[0] }} {{ parts[1] | replace: '%2C', ',' }}{% unless forloop.last %}<br />{% endunless %}</div>
+            {% else %}
+              <div>{{ parts[0] }}: {{ parts[1] | replace: '%2C', ',' }}{% unless forloop.last %}<br />{% endunless %}</div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if page.service_times %}
+          {{ page.service_times | markdownify | remove: '<p>' | remove: '</p>' }}
+        {% endif %}
+      </p>
       {% if page.name == "Oakley" %}
         <a class="text-orange" href="#about">Hang out during the week</a>
       {% endif %}
