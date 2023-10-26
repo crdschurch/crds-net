@@ -93,7 +93,7 @@ layout: default
           {% endif %}
         </div>
         <div class="col-md-2"></div>
-        <div class="col-md-5" style="margin-top: 60px;">
+        <div class="col-md-5 trailer">
           <crds-youtube-player class="embed-responsive embed-responsive-16by9" video-id="E8V4lH5E_-M"
             title="Real Encounters With God" youtube-url="https://youtu.be/E8V4lH5E_-M"></crds-youtube-player>
         </div>
@@ -255,6 +255,14 @@ layout: default
   .real-encounters {
     @media (max-width: 769px) {
       padding: 0 !important;
+    }
+  }
+
+  .trailer {
+    margin-top: 100px;
+
+    @media (max-width: 768px) {
+      margin-top: 60px;
     }
   }
 </style>
