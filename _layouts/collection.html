@@ -94,8 +94,8 @@ layout: default
         </div>
         <div class="col-md-2"></div>
         <div class="col-md-5 trailer">
-          <crds-youtube-player class="embed-responsive embed-responsive-16by9" video-id="E8V4lH5E_-M"
-            title="Real Encounters With God" youtube-url="https://youtu.be/E8V4lH5E_-M"></crds-youtube-player>
+          {% assign video_id = page.trailer_video | youtube_id %}
+          {% include _youtube-embed.html %}
         </div>
       </div>
       <div class="jumbotron" style="padding-top: 0; padding-bottom: 0;">
@@ -189,7 +189,7 @@ layout: default
   </div>
 </section>
 
-{% if page.trailer_video %}
+{% if page.trailer_video and page.title != 'Real Encounters' %}
 <div aria-labelledby="Trailer modal" class="modal fade" id="trailerModal" role="dialog" tabindex="-1">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -246,7 +246,7 @@ layout: default
     display: none;
     margin-bottom: -40px;
     padding: 360px 40px 0 40px;
-    
+
     @media (max-width: 769px) {
       display: block;
     }
@@ -277,12 +277,13 @@ layout: default
     }
   }
 
-  $(document).ready(function () {
+  $(window).on('load', function () {
     setBackgroundImage();
 
     $(window).resize(function () {
       setBackgroundImage();
     });
   });
+
 
 </script>
