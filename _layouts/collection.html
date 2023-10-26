@@ -2,6 +2,7 @@
 layout: default
 ---
 
+{% if page.title != 'Real Encounters' %}
 <section class="bg-black" data-grouping-media-type="show">
   <div class="jumbotron jumbotron-xl flush-bottom"
     style="background-image: url('{% if page.widescreen_thumbnail_image %}{{ page.widescreen_thumbnail_image.url | imgix: site.imgix }}{% else %}{{ page.image.url | imgix: site.imgix }}{% endif %}');"
@@ -32,7 +33,7 @@ layout: default
         <div class="row">
           <div class="col-sm-5 text-left">
             <div>
-              {% if page.logo %}
+              {% if page.logo and page.title != 'Real Encounters' %}
               <img class="full-width" src="{{ page.logo.url | imgix: site.imgix }}" alt="{{page.title}} logo" />
               {% else %}
               <h1 class="font-family-condensed-extra">{{page.title}}</h1>
@@ -56,17 +57,57 @@ layout: default
             {% endif %}
           </div>
         </div>
-        {% if page.title == 'Real Encounters'%}
-        <div class="bg-orange text-black soft-top soft-bottom push-top" style="margin-top: 100px;"><span
-            style="font-weight: 600;">Stay up-to-date with all things
-            Crossroads</span><a href="https://share.hsforms.com/1YY_i9ZyZTy2KZf9WkIgxjg2dls1"
-            class="sign-up-button">Sign Up</a>
-        </div>
-        {% endif %}
       </div>
     </div>
   </div>
 </section>
+
+<!-- This is the jumbotron specifically designed for the Real Encounters collection -->
+{% else %}
+<section class="bg-black">
+  <div class="jumbotron jumbotron-xl flush-bottom real-encounters" data-optimize-bg-img id="real-encounters-jumbotron">
+    <div class="row">
+      <div class="col-sm-4 real-encounters-desktop-image">
+        <img
+          src="//crds-media.imgix.net/339nu4aF903n8XaoLtjlvY/137d6fe776f171c276c3384bf906354f/real-encounters-4-logo.png?auto=compress,format" />
+      </div>
+      <div class="real-encounters-mobile-image">
+        <img
+          src="//crds-media.imgix.net/2K8quo4r2e0yV53a9Ov0DD/e6bb7cf136e4014a4247180bae200cb0/real-encounters-4-logo-mobile.png?auto=compress,format" />
+      </div>
+    </div>
+  </div>
+  <div style="background-color: black;">
+    <div class="container" style="padding-bottom: 50px;">
+      <div class="row">
+        <div class="col-md-5 text-left">
+          <div style="margin-top: 100px;">
+            <p class="font-size-large text-white font-family-serif">{{ page.description }}</p>
+          </div>
+          {% if page.playlist_url %}
+          <div>
+            <crds-button color="white" display="outline" href="{{ page.playlist_url }}" text="Season 3 Playlist"
+              target="_blank">
+            </crds-button>
+          </div>
+          {% endif %}
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5 trailer">
+          {% assign video_id = page.trailer_video | youtube_id %}
+          {% include _youtube-embed.html %}
+        </div>
+      </div>
+      <div class="jumbotron" style="padding-top: 0; padding-bottom: 0;">
+        <div class="bg-orange text-black soft-top soft-bottom push-top" style="margin-top: 20px;"><span
+            style="font-weight: 600;">Stay up-to-date with all things Crossroads</span><a
+            href="https://share.hsforms.com/1YY_i9ZyZTy2KZf9WkIgxjg2dls1" class="sign-up-button">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
 
 <section class="bg-black collection">
   <div class="container soft-bottom">
@@ -148,7 +189,7 @@ layout: default
   </div>
 </section>
 
-{% if page.trailer_video %}
+{% if page.trailer_video and page.title != 'Real Encounters' %}
 <div aria-labelledby="Trailer modal" class="modal fade" id="trailerModal" role="dialog" tabindex="-1">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -187,7 +228,62 @@ layout: default
     }
 
     @media (max-width: 768px) {
-        margin-top: 20px !important;
+      margin-top: 20px !important;
+    }
+  }
+
+  .real-encounters-desktop-image {
+    margin-top: 200px;
+    margin-left: 160px;
+
+    @media (max-width: 769px) {
+      display: none;
+    }
+  }
+
+  .real-encounters-mobile-image {
+    bottom: 0;
+    display: none;
+    margin-bottom: -40px;
+    padding: 360px 40px 0 40px;
+
+    @media (max-width: 769px) {
+      display: block;
+    }
+  }
+
+  .real-encounters {
+    @media (max-width: 769px) {
+      padding: 0 !important;
+    }
+  }
+
+  .trailer {
+    margin-top: 100px;
+
+    @media (max-width: 768px) {
+      margin-top: 40px;
     }
   }
 </style>
+
+<script>
+  // for switching the bg image on the real encounters jumbotron
+  function setBackgroundImage() {
+    if ($(window).width() < 769) {
+      $('#real-encounters-jumbotron').css('background-image', 'url(//crds-media.imgix.net/4YdWM8xCA3Gnz0N2l90sWb/6d6c1759329ad016d064636b7a1c6dcc/real-encounters-4-img-mobile.jpg?auto=compress,format)');
+    } else {
+      $('#real-encounters-jumbotron').css('background-image', 'url(//crds-media.imgix.net/16rPJFmOcAmoTlaDS7ItCG/ec9eb71a1f8f866f65eecdf5cc39b849/real-encounters-4-jumbo-desktop.jpg?auto=compress,format)');
+    }
+  }
+
+  $(window).on('load', function () {
+    setBackgroundImage();
+
+    $(window).resize(function () {
+      setBackgroundImage();
+    });
+  });
+
+
+</script>
