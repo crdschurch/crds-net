@@ -35,7 +35,21 @@
           <strong>Service Times:</strong>
           <br />
         {% endif %}
-        {{ location.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
+        {% if site.data.service_times.size != 0 %}
+          {% assign service_times_str = site.data.service_times[location.name] %}
+          {% assign service_times_array = service_times_str | split: '|' %}
+          {% for time in service_times_array %}
+            {% assign parts = time | split: '^' %}
+            {% if location.name == 'Anywhere' %}
+              <div>{{ parts[0] }} {{ parts[1] | replace: '%2C', ',' }}{% unless forloop.last %}<br />{% endunless %}</div>
+            {% else %}
+              <div>{{ parts[0] }}: {{ parts[1] | replace: '%2C', ',' }}{% unless forloop.last %}<br />{% endunless %}</div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if location.service_times %}
+          {{ location.service_times | markdownify | remove: '<p>' | remove: '</p>' }}
+        {% endif %}
       </div>
       <p class="push-half-bottom soft-quarter-bottom">
         {% if location.facebook_page_url %}
