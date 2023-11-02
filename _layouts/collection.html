@@ -79,23 +79,30 @@ layout: default
   </div>
   <div style="background-color: black;">
     <div class="container" style="padding-bottom: 50px;">
-      <div class="row">
-        <div class="col-md-5 text-left">
-          <div style="margin-top: 100px;">
-            <p class="font-size-large text-white font-family-serif">{{ page.description }}</p>
+      <div class="row" style="margin-top: 100px; margin-bottom: 60px;">
+        <div class="col-md-8 text-left">
+          <p class="font-size-large text-white font-family-serif">{{ page.description }}</p>
+          {% if page.trailer_video %}
+            <div>
+              <crds-button data-target="#trailerModal" data-toggle="modal" color="white" display="outline"
+                text="Watch the trailer" icon="play-thin" icon-color="white" icon-size="20" icon-align="left">
+              </crds-button>
+            </div>
+            {% endif %}
+        </div>
+        <!-- <div class="col-md-2"></div> -->
+        <div class="col-md-4">
+          <img
+            src="//crds-media.imgix.net/1CWBN5OH9MyJk3S7omxLog/007f388fb249284c11af0bb4937a2c13/Screenshot_2023-11-01_at_4.59.32_PM.png?auto=compress,format" />
+          {% if page.trailer_video %}
+          <div class="push-top push-bottom">
+            <strong class="text-white">Real Encounters Prayer</strong>
+            <p class="text-white">The Prayer Experience is now running at Crossroads Oakley for a limited time.</p>
           </div>
-          {% if page.playlist_url %}
           <div>
-            <crds-button color="white" display="outline" href="{{ page.playlist_url }}" text="Season 3 Playlist"
-              target="_blank">
-            </crds-button>
+            <a class="trailer-button" href="/prayerexperience">Find out more</a>
           </div>
           {% endif %}
-        </div>
-        <div class="col-md-2"></div>
-        <div class="col-md-5 trailer">
-          {% assign video_id = page.trailer_video | youtube_id %}
-          {% include _youtube-embed.html %}
         </div>
       </div>
       <div class="jumbotron" style="padding-top: 0; padding-bottom: 0;">
@@ -189,7 +196,7 @@ layout: default
   </div>
 </section>
 
-{% if page.trailer_video and page.title != 'Real Encounters' %}
+{% if page.trailer_video %}
 <div aria-labelledby="Trailer modal" class="modal fade" id="trailerModal" role="dialog" tabindex="-1">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -232,8 +239,25 @@ layout: default
     }
   }
 
+  .trailer-button {
+    border: 1px solid white;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 600;
+
+    &:hover {
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      margin-top: 20px !important;
+    }
+  }
+
   .real-encounters-desktop-image {
-    margin-top: 200px;
     margin-left: 160px;
 
     @media (max-width: 769px) {
