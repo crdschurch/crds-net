@@ -70,6 +70,7 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /happenings,${env:CRDS_UNIFIED_DOMAIN}happenings,200!
 /thanksgiving-food-drive,${env:CRDS_UNIFIED_DOMAIN}thanksgiving-food-drive,200!
 /cgd,${env:CRDS_UNIFIED_DOMAIN}cgd,200!
+/womens-retreat,${env:CRDS_UNIFIED_DOMAIN}womens-retreat,200!
 /go/local,/go/local,200!
 /go/local/christmas-gift-drive,/cgd,302!
 /go/local/thanksgiving-food-drive,/tfd,302!
