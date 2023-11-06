@@ -195,6 +195,7 @@ https://discipleship.crossroads.net/*,https://www.crossroads.net/huddle,301!,mas
 /sign-up/*,${env:CRDS_ROCK_DOMAIN}sign-up/:splat,301! Cookie=.ROCK_AUTH
 /sign-up/*,${env:CRDS_ROCK_DOMAIN}login?redirectUrl=/sign-up/:splat,302!
 /mygroups,${env:CRDS_ROCK_DOMAIN}mygroups,301!
+/mycamps,${env:CRDS_ROCK_DOMAIN}mycamps,301!
 /tithetest,${env:CRDS_ROCK_DOMAIN}tithetest,301!
 /trips/*,/go,301!
 /waivers/*,/go,301!
