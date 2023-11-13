@@ -142,6 +142,8 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /daily-prayer-devotional/thank-you,/daily-prayer-devotional/thank-you,200! Cookie=.ROCK_AUTH
 /daily-prayer-devotional/thank-you,${env:CRDS_ROCK_DOMAIN}login,302!
 /prayerexperience,${env:CRDS_UNIFIED_DOMAIN}prayerexperience,200!
+https://my.crossroads.net/Registration/dinner-oakley-1127,https://my.crossroads.net/Registration/dinner-oakley-nov28,302!
+https://my.crossroads.net/Registration?RegistrationInstanceId=606&Slug=focus-baptism-2023,https://my.crossroads.net/signups?RegistrationInstanceId=606&Slug=focus-baptism-2023,302!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
 /online/,/anywhere,301!
 /online/next-level-academy,/media/next-level-academy,301!
