@@ -7,71 +7,18 @@ https://embedint.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 https://embeddemo.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /,/content-unavailable/,"302! Country=IN,NP"
-/,${env:CRDS_UNIFIED_DOMAIN}h,200! Role=user Cookie=.ROCK_AUTH
-/,${env:CRDS_UNIFIED_DOMAIN},200!
 /h,/content-unavailable/,"302! Country=IN,NP"
-/h,${env:CRDS_UNIFIED_DOMAIN}h,200! Cookie=.ROCK_AUTH
 /h,/,302!
-/_next/static/*,${env:CRDS_UNIFIED_DOMAIN}static/:splat,200
-/unified_assets/*,${env:CRDS_UNIFIED_DOMAIN}unified_assets/:splat,200
-/unified_images/*,${env:CRDS_UNIFIED_DOMAIN}unified_images/:splat,200
-/_next/*,${env:CRDS_UNIFIED_DOMAIN}_next/:splat,200
-/_ipx/*,${env:CRDS_UNIFIED_DOMAIN}_ipx/:splat,200
-/israel,${env:CRDS_UNIFIED_DOMAIN}israel,200!
 /.well-known/apple-app-site-association,/well-known/apple-app-site-association,200!
 /.well-known/assetlinks.json,/well-known/assetlinks.json,200!
 /register,${env:CRDS_ROCK_DOMAIN}NewAccount,302!
-/qa/set-token,${env:CRDS_UNIFIED_DOMAIN}qa/set-token,200!
-/qa/get-token,${env:CRDS_UNIFIED_DOMAIN}qa/get-token,200!
 /annualreport/2020,https://annual-report.crossroads.net/,301!
-/annualreports,${env:CRDS_UNIFIED_DOMAIN}annualreports,200!
 /messages,/content-unavailable/,"302! Country=IN,NP"
 /watch,/content-unavailable/,"302! Country=IN,NP"
 /onlinevisionnight,/content-unavailable/,"302! Country=IN,NP"
 /media/series/this-is-us/we-go,/content-unavailable/,"302! Country=IN,NP"
-/watch, ${env:CRDS_UNIFIED_DOMAIN}watch,200!
 /signout,${env:CRDS_ROCK_DOMAIN}Auth/Logout,301!
 /forgot-password,${env:CRDS_ROCK_DOMAIN}ForgotUserName,301!
-/api/*,${env:CRDS_UNIFIED_DOMAIN}api/:splat,200!
-/growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path,200! Cookie=.ROCK_AUTH
-/growth-path,${env:CRDS_UNIFIED_DOMAIN}growth-path-logged-out,200!
-/receive-teaching-weekly,${env:CRDS_UNIFIED_DOMAIN}receive-teaching-weekly,200! Cookie=.ROCK_AUTH
-/receive-teaching-weekly,${env:CRDS_ROCK_DOMAIN}login,302!
-/connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}connect-with-god-daily,200! Cookie=.ROCK_AUTH
-/connect-with-god-daily,${env:CRDS_ROCK_DOMAIN}login,302!
-/serve-others,${env:CRDS_UNIFIED_DOMAIN}serve-others,200! Cookie=.ROCK_AUTH
-/serve-others,${env:CRDS_ROCK_DOMAIN}login,302!
-/live-generously,${env:CRDS_UNIFIED_DOMAIN}live-generously,200! Cookie=.ROCK_AUTH
-/live-generously,${env:CRDS_ROCK_DOMAIN}login,302!
-/join-community,${env:CRDS_UNIFIED_DOMAIN}join-community,200! Cookie=.ROCK_AUTH
-/join-community,${env:CRDS_ROCK_DOMAIN}login,302!
-/get-baptized,${env:CRDS_UNIFIED_DOMAIN}get-baptized,200! Cookie=.ROCK_AUTH
-/get-baptized,${env:CRDS_ROCK_DOMAIN}login,302!
-/share-your-story,${env:CRDS_UNIFIED_DOMAIN}share-your-story,200! Cookie=.ROCK_AUTH
-/share-your-story,${env:CRDS_ROCK_DOMAIN}login,302!
-/practices/get-baptized,${env:CRDS_UNIFIED_DOMAIN}practices/get-baptized,200!
-/practices/share-your-story,${env:CRDS_UNIFIED_DOMAIN}practices/share-your-story,200!
-/practices/join-community,${env:CRDS_UNIFIED_DOMAIN}practices/join-community,200!
-/practices/serve-others,${env:CRDS_UNIFIED_DOMAIN}practices/serve-others,200!
-/practices/receive-teaching-weekly,${env:CRDS_UNIFIED_DOMAIN}practices/receive-teaching-weekly,200!
-/practices/connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}practices/connect-with-god-daily,200!
-/practices/live-generously,${env:CRDS_UNIFIED_DOMAIN}practices/live-generously,200!
-/set-course/get-baptized,${env:CRDS_UNIFIED_DOMAIN}set-course/get-baptized,200!
-/set-course/share-your-story,${env:CRDS_UNIFIED_DOMAIN}set-course/share-your-story,200!
-/set-course/join-community,${env:CRDS_UNIFIED_DOMAIN}set-course/join-community,200!
-/set-course/serve-others,${env:CRDS_UNIFIED_DOMAIN}set-course/serve-others,200!
-/set-course/receive-teaching-weekly,${env:CRDS_UNIFIED_DOMAIN}set-course/receive-teaching-weekly,200!
-/set-course/connect-with-god-daily,${env:CRDS_UNIFIED_DOMAIN}set-course/connect-with-god-daily,200!
-/set-course/live-generously,${env:CRDS_UNIFIED_DOMAIN}set-course/live-generously,200!
-/prayer-night,${env:CRDS_UNIFIED_DOMAIN}prayer-night,200!
-/clips,${env:CRDS_UNIFIED_DOMAIN}clips,200!
-/cohorts,${env:CRDS_UNIFIED_DOMAIN}cohorts,200!
-/cohorts/*,${env:CRDS_UNIFIED_DOMAIN}cohorts/:splat,200!
-/happenings,${env:CRDS_UNIFIED_DOMAIN}happenings,200!
-/thanksgiving-food-drive,${env:CRDS_UNIFIED_DOMAIN}thanksgiving-food-drive,200!
-/happy-thanksgiving,${env:CRDS_UNIFIED_DOMAIN}happy-thanksgiving,200!
-/cgd,${env:CRDS_UNIFIED_DOMAIN}cgd,200!
-/womens-retreat,${env:CRDS_UNIFIED_DOMAIN}womens-retreat,200!
 /go/local,/go/local,200!
 /go/local/christmas-gift-drive,/cgd,302!
 /go/local/thanksgiving-food-drive,/tfd,302!
@@ -116,22 +63,6 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /go/nepal,/go/asia/nepal,302!
 /go/nicaragua,/go/latin-america/nicaragua,302!
 /go/puerto-rico,/go/caribbean/puerto-rico,302!
-/go/all-trips,${env:CRDS_UNIFIED_DOMAIN}go/all-trips,200!
-/go/mainland-usa,${env:CRDS_UNIFIED_DOMAIN}go/mainland-usa,200!
-/go/caribbean,${env:CRDS_UNIFIED_DOMAIN}go/caribbean,200!
-/go/south-africa,${env:CRDS_UNIFIED_DOMAIN}go/south-africa,200!
-/go/asia,${env:CRDS_UNIFIED_DOMAIN}go/asia,200!
-/go/latin-america,${env:CRDS_UNIFIED_DOMAIN}go/latin-america,200!
-/go/mainland-usa/*,${env:CRDS_UNIFIED_DOMAIN}go/mainland-usa/:splat,200!
-/go/caribbean/*,${env:CRDS_UNIFIED_DOMAIN}go/caribbean/:splat,200!
-/go/south-africa/*,${env:CRDS_UNIFIED_DOMAIN}go/south-africa/:splat,200!
-/go/asia/*,${env:CRDS_UNIFIED_DOMAIN}go/asia/:splat,200!
-/go/latin-america/*,${env:CRDS_UNIFIED_DOMAIN}go/latin-america/:splat,200!
-/go/fundraising-importance,${env:CRDS_UNIFIED_DOMAIN}go/fundraising-importance,200!
-/go/fundraising,${env:CRDS_UNIFIED_DOMAIN}go/fundraising,200!
-/go,${env:CRDS_UNIFIED_DOMAIN}go,200!
-/go/trips,${env:CRDS_UNIFIED_DOMAIN}go/trips,200!
-/go/*,${env:CRDS_UNIFIED_DOMAIN}:splat,200
 /world-impact-experience,/wie,302!
 /wie,/world-impact-experience,200!
 /group-renew groupIds=:groupIds,/group-renew?groupIds=:groupIds,301! Cookie=.ROCK_AUTH
@@ -141,7 +72,6 @@ https://embed.crossroads.net/*,${env:CRDS_ROCK_DOMAIN}mygiving/,302!
 /daily-prayer-devotional/thank-you,/daily-prayer-devotional/thank-you,200! Cookie=is_registered
 /daily-prayer-devotional/thank-you,/daily-prayer-devotional/thank-you,200! Cookie=.ROCK_AUTH
 /daily-prayer-devotional/thank-you,${env:CRDS_ROCK_DOMAIN}login,302!
-/prayerexperience,${env:CRDS_UNIFIED_DOMAIN}prayerexperience,200!
 *** CMS REDIRECTS WILL BE INSERTED HERE --- DO NOT REMOVE THIS LINE! ***
 /online/,/anywhere,301!
 /online/next-level-academy,/media/next-level-academy,301!
