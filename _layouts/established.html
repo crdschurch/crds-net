@@ -8,6 +8,23 @@ layout: default
 {% assign sorted_messages = site.messages | sort: 'published_at' %}
 {% assign current_message = sorted_messages | last %}
 
+<!-- Resi Player -->
+{% if site.data.livestreams %}
+  {% assign show_resi_player = false %}
+  {% for livestream in site.data.livestreams %}
+    {% if livestream.pages contains page.name %}
+      {% assign show_resi_player = true %}
+      {% assign url = livestream.url %}
+    {% elsif livestream.pages contains 'Churchwide (all location pages)' %}
+      {% assign show_resi_player = true %}
+      {% assign url = livestream.url %}
+    {% endif %}
+  {% endfor %}
+  {% if show_resi_player %}
+    {% include _resi-player.html url=url %}
+  {% endif %}
+{% endif %}
+
 {% include locations/_welcome-modal.html %}
 
 <!-- Featured Section -->
@@ -18,7 +35,7 @@ layout: default
 {% endif %}
 
 <!-- Jumbotron section -->
-<section class="jumbotron locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
+<section class="jumbotron locations-jumbotron flush-bottom width-100" id="has-resi-player" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
   data-optimize-bg-img>
   <div class="bg-overlay"></div>
   <div class="container">
@@ -29,7 +46,7 @@ layout: default
           <span class="font-family-base text-uppercase text-white">
             <strong>welcome to</strong>
           </span>
-          <h1 class="flush-ends font-family-condensed-extra text-uppercase soft-half-top">Crossroads <br />{{ page.name }}</h1>
+          <h1 class="flush-ends font-family-condensed-extra text-uppercase soft-half-top">Crossroads <br />{{ page.name }} ESTABLISHED</h1>
         </div>
       </div>
     </div>
