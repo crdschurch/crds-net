@@ -27,7 +27,7 @@
 
     if (isPageMatch && isTimeInRange(startTime, endTime)) {
       playerUrl = livestream.url || 'https://resi.media/cr-cinc-oh/Manifest.m3u8';
-      entryId = livestream.id;
+      entryId = livestream.id || 'VideoManager';
       isStream = true;
 
       // Refresh the page one minute after the livestream starts
