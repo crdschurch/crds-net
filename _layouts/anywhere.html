@@ -12,6 +12,9 @@ layout: default
   </div>
 {% endif %}
 
+<!-- Livestream player-->
+{% include _livestream.html %}
+
 {% include locations/_welcome-modal.html %}
 
 {% assign sorted_messages = site.messages | sort: 'published_at' %}
