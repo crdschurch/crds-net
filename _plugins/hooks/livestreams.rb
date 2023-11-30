@@ -10,8 +10,6 @@ Jekyll::Hooks.register :site, :pre_render do |site|
     data = JSON.parse(response)
 
     site.data['livestreams'] = data['livestreams']
-
-    Jekyll.logger.info "Livestreams data: #{site.data['livestreams']}"
   rescue => e
     Jekyll.logger.warn "Error fetching livestreams data: #{e.message}"
     site.data['livestreams'] = {}
