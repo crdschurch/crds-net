@@ -1,4 +1,3 @@
-<!-- Livestream -->
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     let livestreamData = {{ site.data.livestreams | jsonify | strip_newlines
@@ -15,6 +14,7 @@
 
   let isStream = false;
   let playerUrl = '';
+  let entryId = '';
   let currentPageTitle = "{{ page.name }}";
 
   livestreamData.forEach(function (livestream) {
@@ -27,6 +27,7 @@
 
     if (isPageMatch && isTimeInRange(startTime, endTime)) {
       playerUrl = livestream.url || 'https://resi.media/cr-cinc-oh/Manifest.m3u8';
+      entryId = livestream.id;
       isStream = true;
 
       // Refresh the page one minute after the livestream starts
@@ -56,9 +57,13 @@
         <div class="container">
           <div class="row push-ends">
             <div id="resi-video-player-container" class="col-sm-10 col-sm-offset-1">
-              <crds-bitmovin-player class="embed-responsive embed-responsive-16by9" video-id="crossroadsLiveWeekend"
+              <crds-bitmovin-player
+                class="embed-responsive embed-responsive-16by9"
+                video-id="crossroadsLiveWeekend"
                 is-stream="true"
-                url="${playerUrl}"></crds-bitmovin-player>
+                entry-id=${entryId}
+                url=${playerUrl}>
+              </crds-bitmovin-player>
             </div>
           </div>
         </div>
