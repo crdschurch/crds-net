@@ -18,6 +18,13 @@ package = "@netlify/plugin-sitemap"
   ]
 
 [[plugins]]
+package = "@helloample/netlify-plugin-redirects"
+  [plugins.inputs]
+    source = "./tmp/.redirects_cache"
+    destination = "./_site/_redirects"
+    defaultBranch = "development"
+
+[[plugins]]
 package = "./_plugins/netlify-plugin-health-check"
 
 [dev]
