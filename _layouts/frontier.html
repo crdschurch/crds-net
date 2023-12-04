@@ -12,14 +12,17 @@ layout: default
   </div>
 {% endif %}
 
-{% include locations/_welcome-modal.html %}
+<!-- Livestream player-->
+{% include _livestream.html %}
 
+{% include locations/_welcome-modal.html %}
+`
 {% assign sorted_messages = site.messages | sort: 'published_at' %}
 {% assign current_message = sorted_messages | last %}
 
 <!-- Jumbotron section -->
 {% if page.site_id != 23 %}
-<section class="jumbotron locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
+<section class="jumbotron locations-jumbotron flush-bottom width-100" id="has-resi-player" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
   data-optimize-bg-img>
   <div class="bg-overlay"></div>
   <div class="container">
