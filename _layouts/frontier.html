@@ -12,6 +12,9 @@ layout: default
   </div>
 {% endif %}
 
+<!-- Livestream player-->
+{% include _livestream.html %}
+
 {% include locations/_welcome-modal.html %}
 
 {% assign sorted_messages = site.messages | sort: 'published_at' %}
@@ -19,7 +22,7 @@ layout: default
 
 <!-- Jumbotron section -->
 {% if page.site_id != 23 %}
-<section class="jumbotron locations-jumbotron flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
+<section class="jumbotron locations-jumbotron flush-bottom width-100" id="has-resi-player" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
   data-optimize-bg-img>
   <div class="bg-overlay"></div>
   <div class="container">
@@ -224,6 +227,22 @@ layout: default
               <div class="soft-half-ends">
                 <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.</p>
                 <crds-button href="mailto:kelli.boone@crossroads.net" color="blue" text="Email me" target="_blank"></crds-button>
+              </div>
+            </div>
+          </div>
+
+	  <div class="row align-items-top df-screen-sm push-top soft-top">
+            <div class="col-xs-12 col-sm-6 push-bottom">
+              <img class="img-full-width" src="//crds-media.imgix.net/1pJvyI9X72hOlmJYSezjcV/0edeaedd3a8dc2494efc7d6b94c0b063/Kiefer_Reyes.png?auto=format,compress&w=1200"
+          data-optimize-img />
+            </div>
+            <div class="col-xs-12 col-sm-6 push-bottom flex-child">
+              <p class="text-orange text-uppercase flush-bottom"><strong>Connections Director</strong></p>
+              <h2 class="section-header flush-ends soft-half-bottom">Kiefer Reyes</h2>
+              <p>Kiefer Reyes is the Connections Director at Crossroads Columbus focusing on environments and volunteer teams. Prior to working at Crossroads, Kiefer worked in management at Costco Wholesale in various roles and capacities. He lives in King-Lincoln with his wife Alyssa and has four incredible kids - Ceci, Nazir, Mateo and Aniya. He’s passionate about developing a strong family culture, loves to go golfing, fishing, and is always down to visit a local brewery.</p>
+              <div class="soft-half-ends">
+                <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.</p>
+                <crds-button href="mailto:kiefer.reyes@crossroads.net" color="blue" text="Email me" target="_blank"></crds-button>
               </div>
             </div>
           </div>

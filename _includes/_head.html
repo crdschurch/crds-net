@@ -138,9 +138,6 @@
   document.dispatchEvent(envReady);
   window.envReady = true;
   </script>
-  {% if page.title == "My Groups MP Widget - Original Page" %}
-  <script id="MPWidgets" src="https://adminint.crossroads.net/widgets/dist/MPWidgets.js"></script>
-  {% endif %}
 
   {% unless content contains 'crds-components.esm.js' %}
   <script type="module" onload="componentsLoaded()" src="{{site.components_endpoint}}/crds-components/crds-components.esm.js"></script>
@@ -161,7 +158,6 @@
   }}();
   </script>
 
-  {% include _monetate-head.html %}
   {% include _facebook.html %}
   {% if page.js_vars %}{% include _js_vars.html %}{% endif %}
   {% javascript_link_tag application %}
