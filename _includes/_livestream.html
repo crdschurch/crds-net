@@ -1,0 +1,79 @@
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let livestreamData = {{ site.data.livestreams | jsonify | strip_newlines
+  }};
+
+  if (!livestreamData || livestreamData.length === 0) {
+    return;
+  }
+
+  function isTimeInRange(startTime, endTime) {
+    let currentTime = Date.now();
+    return currentTime >= startTime && currentTime <= endTime;
+  }
+
+  let isStream = false;
+  let playerUrl = '';
+  let entryId = '';
+  let currentPageTitle = "{{ page.name }}";
+
+  livestreamData.forEach(function (livestream) {
+    let startTime = new Date(livestream.startTime).getTime();
+    let endTime = new Date(livestream.endTime).getTime();
+
+    let isPageMatch = livestream.pages.some(function (page) {
+      return page === currentPageTitle || page === 'Churchwide (all location pages)';
+    });
+
+    if (isPageMatch && isTimeInRange(startTime, endTime)) {
+      playerUrl = livestream.url || 'https://resi.media/cr-cinc-oh/Manifest.m3u8';
+      entryId = livestream.id || 'VideoManager';
+      isStream = true;
+
+      // Refresh the page one minute after the livestream starts
+      let refreshStartTime = startTime + 60000;
+      if (refreshStartTime > Date.now()) {
+        setTimeout(function () {
+          location.reload(true);
+        }, refreshStartTime - Date.now());
+      }
+
+      // Refresh the page one minute after the livestream ends
+      let refreshEndTime = endTime + 60000;
+      if (refreshEndTime > Date.now()) {
+        setTimeout(function () {
+          location.reload(true);
+        }, refreshEndTime - Date.now());
+      }
+    }
+  });
+
+  if (isStream) {
+    let resiPlayerSection = document.createElement('section');
+    resiPlayerSection.className = 'bg-blue';
+    resiPlayerSection.id = 'resi-player';
+
+    resiPlayerSection.innerHTML = `
+        <div class="container">
+          <div class="row push-ends">
+            <div id="resi-video-player-container" class="col-sm-10 col-sm-offset-1">
+              <crds-bitmovin-player
+                class="embed-responsive embed-responsive-16by9"
+                video-id="crossroadsLiveWeekend"
+                is-stream="true"
+                entry-id=${entryId}
+                url=${playerUrl}>
+              </crds-bitmovin-player>
+            </div>
+          </div>
+        </div>
+      `;
+
+    let jumbotronSection = document.querySelector('.jumbotron');
+
+    if (jumbotronSection && jumbotronSection.parentNode) {
+      jumbotronSection.parentNode.insertBefore(resiPlayerSection, jumbotronSection);
+    }
+  }
+  });
+</script>
