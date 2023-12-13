@@ -1,5 +1,0 @@
-name: netlify-plugin-contentful-redirects
-inputs:
-  - name: destination
-    description: The file to which we're writing redirects to...
-    default: redirects.csv
