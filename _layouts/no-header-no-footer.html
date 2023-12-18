@@ -8,7 +8,7 @@
   {% javascript_link_tag application_deferred async %}
 
   {{ content }}
-
+  
   {% include _subscribe-modal.html %}
   {% if page.title == "Atrium Events" %}
   {% javascript_link_tag events async %}
@@ -22,7 +22,7 @@
   <!-- End of HubSpot Embed Code -->
 
   {% if site.jekyll_env == "production" %}
-    {% if page.url != "/christmas-story/" and page.url != "/christmas-story" %} 
+    {% if page.permalink != "/christmas-story/" and page.permalink != "/christmas-story" %} 
       <script src="https://cdn.userway.org/widget.js" data-account="RCwaT3oWqd"></script> 
     {% endif %}
   {% endif %}
