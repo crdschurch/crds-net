@@ -22,7 +22,13 @@
   <!-- End of HubSpot Embed Code -->
 
   {% if site.jekyll_env == "production" %}
-  <script src="https://cdn.userway.org/widget.js" data-account="RCwaT3oWqd"></script>
+    {% if page.url == "/christmas-story/" %}
+    {% endif %}
+    {% elseif page.url == "/christmas-story" %}
+    {% endif %}
+    {% else %}
+      <script src="https://cdn.userway.org/widget.js" data-account="RCwaT3oWqd"></script>
+    {% endif %}
   {% endif %}
 
 </body>
