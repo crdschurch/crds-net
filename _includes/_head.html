@@ -83,8 +83,8 @@
   {% endif %}
   
   {% unless content contains 'crds-components.esm.js' %}
-  <link rel="preload" href="https://components.crossroads.net/build/crds-components.esm.js" as="script">
-  <link rel="preload" href="https://components.crossroads.net/build/crds-components.js" as="script">
+  <link rel="preload" href="https://components-demo.crossroads.net/build/crds-components.esm.js" as="script">
+  <link rel="preload" href="https://components-demo.crossroads.net/build/crds-components.js" as="script">
   {% endunless %}
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
@@ -140,8 +140,8 @@
   </script>
 
   {% unless content contains 'crds-components.esm.js' %}
-  <script type="module" onload="componentsLoaded()" src="https://components.crossroads.net/build/crds-components.esm.js"></script>
-  <script nomodule="" onload="componentsLoaded()" src="https://components.crossroads.net/build/crds-components.js"></script>
+  <script type="module" onload="componentsLoaded()" src="https://components-demo.crossroads.net/build/crds-components.esm.js"></script>
+  <script nomodule="" onload="componentsLoaded()" src="https://components-demo.crossroads.net/build/crds-components.js"></script>
   <script>
     function componentsLoaded() {
       var componentsReady = new Event('components-ready');
