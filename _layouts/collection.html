@@ -2,8 +2,11 @@
 layout: default
 ---
 
+{% if page.title != 'Real Encounters' %}
 <section class="bg-black" data-grouping-media-type="show">
-  <div class="jumbotron jumbotron-xl flush-bottom" style="background-image: url('{% if page.widescreen_thumbnail_image %}{{ page.widescreen_thumbnail_image.url | imgix: site.imgix }}{% else %}{{ page.image.url | imgix: site.imgix }}{% endif %}');" data-optimize-bg-img>
+  <div class="jumbotron jumbotron-xl flush-bottom"
+    style="background-image: url('{% if page.widescreen_thumbnail_image %}{{ page.widescreen_thumbnail_image.url | imgix: site.imgix }}{% else %}{{ page.image.url | imgix: site.imgix }}{% endif %}');"
+    data-optimize-bg-img>
     <div class="bg-overlay"></div>
     <div class="jumbotron-content push-ends">
       <div class="container">
@@ -30,7 +33,7 @@ layout: default
         <div class="row">
           <div class="col-sm-5 text-left">
             <div>
-              {% if page.logo %}
+              {% if page.logo and page.title != 'Real Encounters' %}
               <img class="full-width" src="{{ page.logo.url | imgix: site.imgix }}" alt="{{page.title}} logo" />
               {% else %}
               <h1 class="font-family-condensed-extra">{{page.title}}</h1>
@@ -39,19 +42,18 @@ layout: default
               <p class="font-family-serif font-size-large">{{ page.description }}</p>
             </div>
             {% if page.trailer_video %}
-              <div>
-                <crds-button 
-                  data-target="#trailerModal" 
-                  data-toggle="modal" 
-                  color="white" 
-                  display="outline" 
-                  text="Watch the trailer"
-                  icon="play-thin" 
-                  icon-color="white" 
-                  icon-size="20" 
-                  icon-align="left">
-                </crds-button>
-              </div>
+            <div>
+              <crds-button data-target="#trailerModal" data-toggle="modal" color="white" display="outline"
+                text="Watch the trailer" icon="play-thin" icon-color="white" icon-size="20" icon-align="left">
+              </crds-button>
+            </div>
+            {% endif %}
+            {% if page.playlist_url %}
+            <div>
+              <crds-button color="white" display="outline" href="{{ page.playlist_url }}" text="Season 3 Playlist"
+                target="_blank">
+              </crds-button>
+            </div>
             {% endif %}
           </div>
         </div>
@@ -59,6 +61,60 @@ layout: default
     </div>
   </div>
 </section>
+
+<!-- This is the jumbotron specifically designed for the Real Encounters collection -->
+{% else %}
+<section class="bg-black">
+  <div class="jumbotron jumbotron-xl flush-bottom real-encounters" data-optimize-bg-img id="real-encounters-jumbotron">
+    <div class="row">
+      <div class="col-sm-4 real-encounters-desktop-image">
+        <img
+          src="//crds-media.imgix.net/339nu4aF903n8XaoLtjlvY/137d6fe776f171c276c3384bf906354f/real-encounters-4-logo.png?auto=compress,format" />
+      </div>
+      <div class="real-encounters-mobile-image">
+        <img
+          src="//crds-media.imgix.net/2K8quo4r2e0yV53a9Ov0DD/e6bb7cf136e4014a4247180bae200cb0/real-encounters-4-logo-mobile.png?auto=compress,format" />
+      </div>
+    </div>
+  </div>
+  <div style="background-color: black;">
+    <div class="container" style="padding-bottom: 50px;">
+      <div class="row" style="margin-top: 100px; margin-bottom: 60px;">
+        <div class="col-md-7 text-left">
+          <p class="font-size-large text-white font-family-serif">{{ page.description }}</p>
+          {% if page.trailer_video %}
+          <div class="push-top">
+            <crds-button data-target="#trailerModal" data-toggle="modal" color="white" display="outline"
+              text="Watch the trailer" icon="play-thin" icon-color="white" icon-size="20" icon-align="left">
+            </crds-button>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="col-md-4 col-md-offset-1">
+          <img
+            src="//crds-media.imgix.net/1CWBN5OH9MyJk3S7omxLog/007f388fb249284c11af0bb4937a2c13/Screenshot_2023-11-01_at_4.59.32_PM.png?auto=compress,format" />
+          {% if page.trailer_video %}
+          <div class="push-top push-bottom">
+            <strong class="text-white">Real Encounters Prayer</strong>
+            <p class="text-white">The Prayer Experience is now running at Crossroads Oakley for a limited time.</p>
+          </div>
+          <div>
+            <a class="trailer-button" href="/prayerexperience">Find out more</a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="jumbotron" style="padding-top: 0; padding-bottom: 0;">
+        <div class="bg-orange text-black soft-top soft-bottom push-top" style="margin-top: 20px;"><span
+            style="font-weight: 600;">Stay up-to-date with all things Crossroads</span><a
+            href="https://share.hsforms.com/1YY_i9ZyZTy2KZf9WkIgxjg2dls1" class="sign-up-button">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
 
 <section class="bg-black collection">
   <div class="container soft-bottom">
@@ -73,13 +129,14 @@ layout: default
     {% assign tabs_array = "" | split: "|" %}
 
     {% for season_number in season_numbers %}
-      {% if season_number %}
-      {% capture tab %}Season {{season_number}}{% endcapture %}
-      {% assign tabs_array = tabs_array | push: tab %}
-      {% endif %}
+    {% if season_number %}
+    {% capture tab %}Season {{season_number}}{% endcapture %}
+    {% assign tabs_array = tabs_array | push: tab %}
+    {% endif %}
     {% endfor %}
 
-    <crds-tabs tabs='{{tabs_array | jsonify }}' mobile-dropdown navigation-class="align-tabs-left shows" dropdown-icon-color="white">
+    <crds-tabs tabs='{{tabs_array | jsonify }}' mobile-dropdown navigation-class="align-tabs-left shows"
+      dropdown-icon-color="white">
       {% assign groups = items | sort: 'season_number' | reverse | group_by: 'season_number' %}
 
       {% for group in groups %}
@@ -90,16 +147,19 @@ layout: default
         <div class="row soft-bottom episode hide-episode load-more" data-season-{{season_number}}>
           <a href="{{ episode | media_url }}">
             <div class="col-sm-6 push-half-bottom">
-              <crds-image class="full-width" src="{% if episode.podcast.image.url %}{{ episode.podcast.image.url  | imgix: site.imgix }}{% else %}{{ episode.image.url | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-              aspect-ratio=0.5625 alt="{{ episode.title }}"></crds-image>
+              <crds-image class="full-width"
+                src="{% if episode.podcast.image.url %}{{ episode.podcast.image.url  | imgix: site.imgix }}{% else %}{{ episode.image.url | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                aspect-ratio=0.5625 alt="{{ episode.title }}"></crds-image>
             </div>
             <div class="col-sm-6">
-              <p class="text-uppercase text-orange font-size-smaller font-family-base-black flush-bottom">{{ page.title }}</p>
-              <h2 class="text-uppercase text-white font-family-condensed-extra font-size-h2 flush-top">{{ episode.title }}</h2>
+              <p class="text-uppercase text-orange font-size-smaller font-family-base-black flush-bottom">{{ page.title
+                }}</p>
+              <h2 class="text-uppercase text-white font-family-condensed-extra font-size-h2 flush-top">{{ episode.title
+                }}</h2>
               <p class="text-white font-size-smaller">{{ episode.description }}</p>
             </div>
-           </a>
-          </div>
+          </a>
+        </div>
         {% endfor %}
         <div class="text-center push-ends">
           <div class="load-more">
@@ -112,47 +172,142 @@ layout: default
       {% endfor %}
     </crds-tabs>
     {% endif %}
-    
+
     {% else %}
 
     {% for item in items %}
     <div class="row soft-bottom">
       <a class="text-white" href="{{ item | media_url }}">
         <div class="col-sm-6 push-half-bottom">
-          <crds-image class="full-width" src="{% if item.podcast.image.url %}{{ item.podcast.image.url  | imgix: site.imgix }}{% else %}{{ item.image.url | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
-          aspect-ratio=0.5625 alt="{{ item.title }}"></crds-image>
+          <crds-image class="full-width"
+            src="{% if item.podcast.image.url %}{{ item.podcast.image.url  | imgix: site.imgix }}{% else %}{{ item.image.url | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+            aspect-ratio=0.5625 alt="{{ item.title }}"></crds-image>
         </div>
         <div class="col-sm-6">
-          <p class="text-uppercase text-orange font-size-smaller font-family-base-black flush-bottom">{{ page.title }}</p>
+          <p class="text-uppercase text-orange font-size-smaller font-family-base-black flush-bottom">{{ page.title }}
+          </p>
           <h2 class="text-uppercase text-white font-family-condensed-extra font-size-h2 flush-top">{{ item.title }}</h2>
           <p class="text-white font-size-smaller">{{ item.description }}</p>
         </div>
-       </a>
-      </div>
+      </a>
+    </div>
     {% endfor %}
     {% endif %}
   </div>
 </section>
 
 {% if page.trailer_video %}
-  <div aria-labelledby="Trailer modal" class="modal fade" id="trailerModal" role="dialog" tabindex="-1">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header hard-bottom"><button aria-label="Close" class="close pull-right" data-dismiss="modal"
-            type="button"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body text-left push-ends hard-ends">
-            {% assign video_id = page.trailer_video | youtube_id %}
-            {% include _youtube-embed.html %}
-        </div>
-        <div class="modal-footer">{{ page.title }} Trailer</div>
+<div aria-labelledby="Trailer modal" class="modal fade" id="trailerModal" role="dialog" tabindex="-1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header hard-bottom"><button aria-label="Close" class="close pull-right" data-dismiss="modal"
+          type="button"><span aria-hidden="true">&times;</span></button>
       </div>
+      <div class="modal-body text-left push-ends hard-ends">
+        {% assign video_id = page.trailer_video | youtube_id %}
+        {% include _youtube-embed.html %}
+      </div>
+      <div class="modal-footer">{{ page.title }} Trailer</div>
     </div>
   </div>
+</div>
 
-  <script type="text/javascript">
-    $('#trailerModal').on('hidden.bs.modal', function () {
-      $("#trailerModal iframe").attr("src", $("#trailerModal iframe").attr("src"));
+<script type="text/javascript">
+  $('#trailerModal').on('hidden.bs.modal', function () {
+    $("#trailerModal iframe").attr("src", $("#trailerModal iframe").attr("src"));
   });
-  </script>
+</script>
 {% endif %}
+
+<style>
+  .sign-up-button {
+    border: 1px solid black;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: 600;
+
+    &:hover {
+      color: black;
+    }
+
+    @media (max-width: 768px) {
+      margin-top: 20px !important;
+    }
+  }
+
+  .trailer-button {
+    border: 1px solid white;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 600;
+
+    &:hover {
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      margin-top: 20px !important;
+    }
+  }
+
+  .real-encounters-desktop-image {
+    margin-left: 160px;
+
+    @media (max-width: 769px) {
+      display: none;
+    }
+  }
+
+  .real-encounters-mobile-image {
+    bottom: 0;
+    display: none;
+    margin-bottom: -40px;
+    padding: 360px 40px 0 40px;
+
+    @media (max-width: 769px) {
+      display: block;
+    }
+  }
+
+  .real-encounters {
+    @media (max-width: 769px) {
+      padding: 0 !important;
+    }
+  }
+
+  .trailer {
+    margin-top: 100px;
+
+    @media (max-width: 768px) {
+      margin-top: 40px;
+    }
+  }
+</style>
+
+<script>
+  // for switching the bg image on the real encounters jumbotron
+  function setBackgroundImage() {
+    if ($(window).width() < 769) {
+      $('#real-encounters-jumbotron').css('background-image', 'url(//crds-media.imgix.net/4YdWM8xCA3Gnz0N2l90sWb/6d6c1759329ad016d064636b7a1c6dcc/real-encounters-4-img-mobile.jpg?auto=compress,format)');
+    } else {
+      $('#real-encounters-jumbotron').css('background-image', 'url(//crds-media.imgix.net/16rPJFmOcAmoTlaDS7ItCG/ec9eb71a1f8f866f65eecdf5cc39b849/real-encounters-4-jumbo-desktop.jpg?auto=compress,format)');
+    }
+  }
+
+  $(window).on('load', function () {
+    setBackgroundImage();
+
+    $(window).resize(function () {
+      setBackgroundImage();
+    });
+  });
+
+
+</script>

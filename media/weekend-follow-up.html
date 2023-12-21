@@ -6,23 +6,40 @@ permalink: /weekendfollowup/
 ---
 
 {% assign discussion = site.chaser %}
-<div class="jumbotron flush-bottom" data-optimize-bg-img>
-  <img class="jumbotron-image" src="//crds-media.imgix.net/3AiK8lOQi5uaI3BW7CbHqU/9f334e8558257e835c6d7b5febd9677e/WeekendFollowUp_1045x589-02__1_.jpg">
-</div>
+
+<section>
+  <div class="jumbotron jumbotron-lg flush-bottom" style="background-image: url('//crds-media.imgix.net/30SpdSB5polFkY7SSSJfuI/9d74c430c72e3dd6e2116e2ca8b2dace/weekend-follow-up-topo-bg.jpg?{{ site.imgix_params.placeholder }}');" data-optimize-bg-img >
+    <div class="container soft-ends">
+      <div class="row">
+        <div class="col-xs-8 col-xs-offset-2 col-sm-10 col-sm-offset-1 text-center">
+          <img src="//crds-media.imgix.net/31Mw5sShaS24Pewds0aNpV/57576cfef7467efb71ff51cc511f31cf/weekend-follow-up-logo-new.png?auto=format,compress&w=1600" title="weekend follow up logo" alt="weekend follow up logo" data-optimize-img >
+        </div>
+        <div class="col-sm-12 soft-top">
+          <a href="#questions" data-smooth-scroll-to="questions" data-smooth-scroll-offset="50" class="btn btn-white outline btn-outline btn-sm">
+            View This Week's Questions
+          </a>
+          <a href="https://www.crossroads.net/app?type=ContentGuide&id=YgByghZWzk5PKC7xE" class="btn btn-white outline btn-outline btn-sm">
+            View In The Crossroads App
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <section class="container">
   <div class="row soft-top">
     <div class="col-sm-offset-2 col-sm-8">
-      <p class="lead">The Weekend Follow-Up is a set of discussion prompts to help your group unpack the weekend. These
+      <p class="font-family-serif font-size-base">The Weekend Follow-Up is a set of discussion prompts to help your group unpack the weekend. These
         questions are designed to help you move further and faster toward the full life you were made for.
 
         {% if site.chaser_message %}
-      <p class="bg-gray soft metadata push-ends">
+      <p class="bg-gray soft metadata push-ends" id="questions">
         For the Weekend of {{ site.chaser_message.date | date: '%B %-d, %Y' }}
       </p>
       {% endif %}
-      <div class="push-bottom" data-track-viewport='{ "duration": 60000, "event": "ChaserView" }'>
+      <div class="push-bottom">
 
         {% include _discussion-questions.html type='chaser' discussion=discussion %}
 

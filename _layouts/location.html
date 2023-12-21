@@ -70,10 +70,21 @@ layout: default
             <p>
               <strong class="text-orange">Service Times</strong>
               <br />
-              {{ page.service_times | markdownify | remove: '<p>'| remove: '</p>' }}
-            </p>
-          </div>
-        {% if page.name == 'Georgetown' %}
+              {% if site.data.service_times.size != 0 %}
+              {% assign service_times_str = site.data.service_times[page.name] %}
+              {% assign service_times_array = service_times_str | split: '|' %}
+              {% for time in service_times_array %}
+                {% assign parts = time | split: '^' %}
+                {% if parts[0] == 'Anywhere' %}
+                  <div>{{ parts[0] }} {{ parts[1] | replace: '%2C', ',' }}{% unless forloop.last %}<br>{% endunless %}</div>
+                {% else %}
+                  <div>{{ parts[0] }}: {{ parts[1] | replace: '%2C', ',' }}{% unless forloop.last %}<br>{% endunless %}</div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+            {% if page.service_times %}
+              {{ page.service_times | markdownify | remove: '<p>' | remove: '</p>' }}
+            {% endif %}
             <div class="col-sm-6">
               <p>
                 <strong class="text-orange">Office Address</strong>

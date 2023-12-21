@@ -6,10 +6,6 @@ module.exports = {
         "we are crossroads",
       ]);
       await run("./bin/health-check.sh", [
-        "_site/_redirects",
-        "/*	/404.html	404",
-      ]);
-      await run("./bin/health-check.sh", [
         "_site/assets/application.css",
         "Twitter, Inc.",
       ]);
