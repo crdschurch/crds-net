@@ -84,7 +84,7 @@
   
   {% unless content contains 'crds-components.esm.js' %}
   <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.esm.js" as="script">
-  <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.js" as="script">
+  <link rel="preload" href="{{ site.components_endpoint }}/crds-components.js" as="script">
   {% endunless %}
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
@@ -141,7 +141,7 @@
 
   {% unless content contains 'crds-components.esm.js' %}
   <script type="module" onload="componentsLoaded()" src="{{ site.ENV.components_endpoint }}/crds-components/crds-components.esm.js"></script>
-  <script nomodule="" onload="componentsLoaded()" src="{{ site.ENV.components_endpoint }}/crds-components/crds-components.js"></script>
+  <script nomodule="" onload="componentsLoaded()" src="{{ site.ENV.components_endpoint }}/crds-components.js"></script>
   <script>
     function componentsLoaded() {
       var componentsReady = new Event('components-ready');
