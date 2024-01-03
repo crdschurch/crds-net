@@ -140,8 +140,8 @@
   </script>
 
   {% unless content contains 'crds-components.esm.js' %}
-  <script type="module" onload="componentsLoaded()" src="{{ site.ENV.components_endpoint }}/crds-components/crds-components.esm.js"></script>
-  <script nomodule="" onload="componentsLoaded()" src="{{ site.ENV.components_endpoint }}/crds-components.js"></script>
+  <script type="module" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components/crds-components.esm.js"></script>
+  <script nomodule="" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components.js"></script>
   <script>
     function componentsLoaded() {
       var componentsReady = new Event('components-ready');
