@@ -84,7 +84,7 @@
   
   {% unless content contains 'crds-components.esm.js' %}
   <link rel="preload" href="{{ site.ENV.CRDS_COMPONENTS_ENDPOINT }}/crds-components/crds-components.esm.js" as="script">
-  <link rel="preload" href="{{ site.ENV.CRDS_COMPONENTS_ENDPOINT }}/crds-components/crds-components.js" as="script">
+  <link rel="preload" href="{{ site.ENV.CRDS_COMPONENTS_ENDPOINT }}/crds-components/crds-components.js" as="script"> 
   {% endunless %}
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
