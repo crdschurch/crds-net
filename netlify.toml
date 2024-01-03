@@ -140,7 +140,6 @@ package = "./_plugins/netlify-plugin-health-check"
   CRDS_EVENT_CHECKIN_ENDPOINT = "crds-event-checkin-demo.netlify.app"
   CRDS_FOCUS_MISSION = "https://crds.sandbox.focusmissions.com/"
   CRDS_FORM_MAKER = "https://crds-forms-demo.netlify.app/"
-  CRDS_COMPONENTS_ENDPOINT = "https://crds-components-demo.netlify.app/dist"
   CRDS_GIVING_HISTORY = 'https://giving-history-demo.netlify.app'
   CRDS_COMPONENTS_ROOT_URL="https://int.crossroads.net"
   CRDS_SEARCH_ENDPOINT = "int-crds-search.netlify.app"
