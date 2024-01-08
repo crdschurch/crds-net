@@ -15,6 +15,9 @@
             <div>{{ parts[0] }}: {{ parts[1] | replace: '%2C', ',' }}{% unless forloop.last %}<br>{% endunless %}</div>
           {% endif %}
         {% endfor %}
+        {% if page.name == "Dayton" %}
+        <crds-button class="push-half-right" data-toggle="modal" data-target="#daytonNewBuilding" color="orange" display="outline" text="New Building Coming Soon"></crds-button>
+        {% endif %}
       {% endif %}
       {% if page.service_times %}
         {{ page.service_times | markdownify | remove: '<p>' | remove: '</p>' }}
@@ -97,3 +100,37 @@
   </div>
   {% endif %}
 </div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="daytonNewBuilding">
+  <div class="modal-dialog soft-top" role="document">
+    <div class="modal-content">
+      <div class="modal-header hard-bottom">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body hard-top soft-bottom">
+        <div>
+          <h3 class="section-header text-center push-top">New Crossroads Dayton Building Coming Soon</h3>
+          <img class="imgix-fluid img-responsive" alt="go change the world" title="go change the world"
+          sizes="{{ site.image_sizes.full_width }}"
+          src="//crds-media.imgix.net/y3a9myzsdjan/6rClMM50vwzYbETLYd7FMa/6e5e2ae682e04698a36ba5956ae7eebb/Screenshot_2023-12-14_at_4.24.10_PM.png?auto=format,compress&w=1600&h=800&fit=crop"
+        data-optimize-img>
+        </div>
+        <p class="push-ends" style="font-size: 22px;">
+          More details coming soon about our new building in Dayton!
+        </p>
+        <!--<p class="push-ends" style="font-size: 22px;">
+          Want to see what's coming soon to our Dayton Community? Check out these artist renderings.
+        </p>
+        <div class="soft-bottom">
+        <a href="" class="btn btn-secondary">Learn More</a>
+        </div>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $("#daytonNewBuilding").modal('hide');
+    });
+</script>
