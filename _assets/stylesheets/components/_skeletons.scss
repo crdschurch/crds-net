@@ -1,11 +1,12 @@
 .shared-header-skeleton-logo {
   color: $cr-tan;
 
-  svg {
-    height: 44px;
-  }
+    svg {
+      margin-top: 2px;
+      margin-left: 9px;
+    }
+  
 }
-
 .greeting-skeleton {
   min-height: 87px;
   padding-top: 30px;
