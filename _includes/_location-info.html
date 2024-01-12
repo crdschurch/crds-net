@@ -15,9 +15,6 @@
             <div>{{ parts[0] }}: {{ parts[1] | replace: '%2C', ',' }}{% unless forloop.last %}<br>{% endunless %}</div>
           {% endif %}
         {% endfor %}
-        {% if page.name == "Dayton" %}
-        <crds-button class="push-half-right" data-toggle="modal" data-target="#daytonNewBuilding" color="orange" display="outline" text="New Building Coming Soon"></crds-button>
-        {% endif %}
       {% endif %}
       {% if page.service_times %}
         {{ page.service_times | markdownify | remove: '<p>' | remove: '</p>' }}
