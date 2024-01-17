@@ -1,9 +1,5 @@
 Jekyll::Hooks.register :site, :after_init do |site|
-  if ENV['NETLIFY'] && ENV['CRDS_ENV'] === 'prod'
-    site.config['components_endpoint'] = "/components"
-  else
-    site.config['components_endpoint'] = "https://#{ENV['CRDS_COMPONENTS_ENDPOINT'] || "components-demo.crossroads.net"}/dist"
-  end
+  site.config['components_endpoint'] = "https://#{ENV['CRDS_COMPONENTS_ENDPOINT'] || "components-demo.crossroads.net"}/dist"
 
   env = case ENV['JEKYLL_ENV']
     when 'int' then 'int'
