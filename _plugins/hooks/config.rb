@@ -1,5 +1,5 @@
 Jekyll::Hooks.register :site, :after_init do |site|
-  site.config['components_endpoint'] = "https://#{ENV['CRDS_COMPONENTS_ENDPOINT'] || "components-demo.crossroads.net"}/dist"
+  site.config['components_endpoint'] = "https://#{ENV['CRDS_COMPONENTS_ENDPOINT'] || "components.crossroads.net"}/dist"
 
   env = case ENV['JEKYLL_ENV']
     when 'int' then 'int'
