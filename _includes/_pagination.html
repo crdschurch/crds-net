@@ -49,12 +49,12 @@
       {% if count == paginator.page %}
         <li class="active" data-role="page"><a href="#">{{count}}</a></li>
       {% else %}
-        <li><a href="/{{ root }}/page/{{count}}" data-role="page">{{count}}</a></li>
+        <li><a rel="nofollow" href="/{{ root }}/page/{{count}}" data-role="page">{{count}}</a></li>
       {% endif %}
     {% endfor %}
     {% if paginator.next_page %}
       <li>
-        <a href="/{{ root }}/page/{{paginator.next_page}}" aria-label="Next">
+        <a rel="nofollow" href="/{{ root }}/page/{{paginator.next_page}}" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
