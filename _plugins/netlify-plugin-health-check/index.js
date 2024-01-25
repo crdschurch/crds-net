@@ -1,6 +1,5 @@
 module.exports = {
-  async onPostBuild({ utils: { run, build }, packageJson }) {
-    console.log('package.json', packageJson);
+  async onPostBuild({ utils: { run, build } }) {
     try {
       await run("./bin/health-check.sh", [
         "_site/index.html",
