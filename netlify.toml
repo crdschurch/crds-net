@@ -17,6 +17,9 @@ package = "@netlify/plugin-sitemap"
     '**/tags/**'
   ]
 
+[[plugins]]
+package = "./_plugins/netlify-plugin-health-check"
+
 [dev]
   BASEURL="/"
   CRDS_COMPONENTS_ENDPOINT="components-demo.crossroads.net"
