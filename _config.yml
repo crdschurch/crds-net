@@ -200,6 +200,7 @@ contentful:
   video:
     map:
       date: published_at
+  service_times:
 
 defaults:
   - scope:
