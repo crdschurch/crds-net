@@ -20,6 +20,7 @@
         {{ page.service_times | markdownify | remove: '<p>' | remove: '</p>' }}
       {% endif %}
       </p>
+      <pre>{{ JSON.stringify(site, null, 2) }}</pre>
       {% if page.name == "Oakley" %}
         <a class="text-orange" href="#about">Hang out during the week</a>
       {% endif %}
