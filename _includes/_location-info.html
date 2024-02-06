@@ -7,19 +7,24 @@
         {% assign standard_service_times = "" | split: "" %}
         {% assign special_service_time_label = "" %}
         {% assign standard_service_time_label = "" %}
-
+        {% assign current_date = "now" | date: "%s" %}
+    
         {% if page.service_times %}
           {% for time in page.service_times %}
             {% if time.is_special_service_time == true %}
-              {% assign special_service_time_label = time.service_time_label %}
-              {% assign special_service_times = special_service_times | concat: time.service_times %}
+              {% assign start_date = time.special_service_start_date | date: "%s" %}
+              {% assign end_date = time.special_service_end_date | date: "%s" %}
+              {% if current_date >= start_date and current_date <= end_date %}
+                {% assign special_service_time_label = time.service_time_label %}
+                {% assign special_service_times = special_service_times | concat: time.service_times %}
+              {% endif %}
             {% else %}
               {% assign standard_service_time_label = time.service_time_label %}
               {% assign standard_service_times = standard_service_times | concat: time.service_times %}
             {% endif %}
           {% endfor %}
         {% endif %}
-
+    
         {% if standard_service_time_label %}
           <span class="font-family-base-bold">{{ standard_service_time_label }}</span><br>
         {% endif %}        
@@ -28,11 +33,11 @@
           <!-- don't render the <br> if it's the last line rendered -->
           {% if forloop.index != standard_service_times.size %}<br>{% endif %}
         {% endfor %}
-
-        {% if page.service_times.size == 2 %}
+    
+        {% if current_date >= start_date and current_date <= end_date %}
         <br><br>
         {% endif %}
-
+    
         {% if special_service_time_label %}
           <span class="font-family-base-bold">{{ special_service_time_label }}</span><br>
         {% endif %}
@@ -42,6 +47,7 @@
           {% if forloop.index != special_service_times.size %}<br>{% endif %}
         {% endfor %}
       </p>
+
       {% if page.name == "Oakley" %}
         <a class="text-orange" href="#about">Hang out during the week</a>
       {% endif %}
