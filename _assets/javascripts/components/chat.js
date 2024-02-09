@@ -1,10 +1,14 @@
-$(document).ready(function(){
+$(document).ready(function() {
   $('[data-trigger=chat]').click(function(e) {
-    if(window.Intercom !== undefined) {
-       window.Intercom('show')
+    console.log('Chat button clicked');
+    if (window.Intercom !== undefined && window.Intercom) {
+      console.log('Intercom is defined, attempting to show widget.');
+      window.Intercom('show');
     } else {
-      window.location.href='/contactus/'
+      console.warn('Intercom is undefined');
+      window.location.href = '/contactus/';
     }
-    e.preventDefault()
-  })
-})
+
+    e.preventDefault();
+  });
+});
