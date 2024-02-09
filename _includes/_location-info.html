@@ -3,50 +3,36 @@
 
     <div class="location-top-info-item text-left push-bottom location-info-divider mobile-flush-bottom">
       <p class="flush font-size-small">
-        {% assign special_service_times = "" | split: "" %}
-        {% assign standard_service_times = "" | split: "" %}
-        {% assign special_service_time_label = "" %}
-        {% assign standard_service_time_label = "" %}
         {% assign current_date = "now" | date: "%s" %}
-    
+      
         {% if page.service_times %}
+          {% assign service_times_count = page.service_times | size %}
           {% for time in page.service_times %}
             {% if time.is_special_service_time == true %}
               {% assign start_date = time.special_service_start_date | date: "%s" %}
               {% assign end_date = time.special_service_end_date | date: "%s" %}
               {% if current_date >= start_date and current_date <= end_date %}
-                {% assign special_service_time_label = time.service_time_label %}
-                {% assign special_service_times = special_service_times | concat: time.service_times %}
+                <span class="font-family-base-bold">{{ time.service_time_label }}</span><br>
+                {% for service_time in time.service_times %}
+                  {{ service_time }}
+                  {% if forloop.index != time.service_times.size %}<br>{% endif %}
+                {% endfor %}
               {% endif %}
             {% else %}
-              {% assign standard_service_time_label = time.service_time_label %}
-              {% assign standard_service_times = standard_service_times | concat: time.service_times %}
+              <span class="font-family-base-bold">{{ time.service_time_label }}</span><br>
+              {% for service_time in time.service_times %}
+                {{ service_time }}
+                {% if forloop.index != time.service_times.size %}<br>{% endif %}
+              {% endfor %}
+            {% endif %}
+            {% if forloop.first and service_times_count == 2 %}
+              <!-- Insert double break only after the first item if both service times are present -->
+              <br><br>
             {% endif %}
           {% endfor %}
         {% endif %}
-    
-        {% if standard_service_time_label %}
-          <span class="font-family-base-bold">{{ standard_service_time_label }}</span><br>
-        {% endif %}        
-        {% for service_time in standard_service_times %}
-          {{ service_time }}
-          <!-- don't render the <br> if it's the last line rendered -->
-          {% if forloop.index != standard_service_times.size %}<br>{% endif %}
-        {% endfor %}
-    
-        {% if current_date >= start_date and current_date <= end_date %}
-        <br><br>
-        {% endif %}
-    
-        {% if special_service_time_label %}
-          <span class="font-family-base-bold">{{ special_service_time_label }}</span><br>
-        {% endif %}
-        {% for service_time in special_service_times %}
-          {{ service_time }}
-          <!-- don't render the <br> if it's the last line rendered -->
-          {% if forloop.index != special_service_times.size %}<br>{% endif %}
-        {% endfor %}
       </p>
+      
 
       {% if page.name == "Oakley" %}
         <a class="text-orange" href="#about">Hang out during the week</a>
