@@ -1,8 +1,9 @@
 <div data-page="articles">
   <div class="row" data-page-number="{{ page.articles.page }}">
     {% for item in page.articles.docs %}
-    <div class="col-sm-6">
+    <div id="article-card" class="col-sm-6">
       {% include _overlay-card.html collection="articles" title="h3" %}
+      {% include _media-label.html source = item %}
     </div>
     {% endfor %}
   </div>
