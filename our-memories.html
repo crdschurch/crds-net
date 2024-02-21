@@ -32,7 +32,7 @@ layout: default
       {% for story in stories %}
       <div class="story-card-outer">
         <div class="story-card">
-          <img src="{{ story.picture | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}"  sizes="{{ site.image_sizes.full_width }}" width="198" height="198" alt="{{story.name}}" data-optimize-img /> 
+          <img src="{{ story.picture | imgix: site.imgix }}?w=198"  sizes="{{ site.image_sizes.full_width }}" width="198" height="198" alt="{{story.name}}" /> 
           <div class="story-card-content">
             <p class="flush font-family-condensed-extra font-size-h4">{{ story.name }}</p>
             <p class="font-size-smaller text-gray-light">{{ story.site }}</p>

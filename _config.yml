@@ -146,6 +146,8 @@ collections:
   videos:
     output: true
     permalink: /media/:collection/:title
+  serviceTimes:
+    output: false
 
 contentful:
   album:
@@ -200,6 +202,7 @@ contentful:
   video:
     map:
       date: published_at
+  serviceTimes:
 
 defaults:
   - scope:
