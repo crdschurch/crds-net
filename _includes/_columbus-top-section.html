@@ -32,13 +32,17 @@
                   {% assign service_times_array = service_times_str | split: '|' %}
                   {% for time in service_times_array %}
                     {% assign parts = time | split: '^' %}
-                    <div>{{ parts[0] }}: {{ parts[1] | replace: '%2C', ',' }}{% unless forloop.last %}<br />{% endunless %}</div>
+                    {% if parts[0] == 'Anywhere' %}
+                      <div>{{ parts[0] }} {{ parts[1] | replace: '%2C', ',' }}{% unless forloop.last %}<br>{% endunless %}</div>
+                    {% else %}
+                      <div>{{ parts[0] }}: {{ parts[1] | replace: '%2C', ',' }}{% unless forloop.last %}<br>{% endunless %}</div>
+                    {% endif %}
                   {% endfor %}
                 {% endif %}
                 {% if page.service_times %}
                   {{ page.service_times | markdownify | remove: '<p>' | remove: '</p>' }}
                 {% endif %}
-              </p>
+                </p>
               <hr class="visible-xs">
             </div>
           </div>
