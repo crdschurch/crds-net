@@ -83,12 +83,12 @@
     </div>
     <crds-button type="primary" color="orange" text="Learn more" href="{{ location.url }}"></crds-button>
     {% if location.name == "Dayton" %}
-    <crds-button class="push-ends hydrated" data-target="#daytonNewBuilding" data-toggle="modal" href="" color="orange" display="outline" text="New Building Coming Soon"></crds-button>
+    <crds-button class="push-ends hydrated" data-target="#daytonNewBuildingLocations" data-toggle="modal" href="" color="orange" display="outline" text="New Building Coming Soon"></crds-button>
     {% endif %}
   </div>
 </div>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="daytonNewBuilding">
+<div class="modal fade" tabindex="-1" role="dialog" id="daytonNewBuildingLocations">
   <div class="modal-dialog soft-top" role="document">
     <div class="modal-content">
       <div class="modal-header hard-bottom">
@@ -115,6 +115,6 @@
 
 <script>
     $(document).ready(function(){
-        $("#daytonNewBuilding").modal('hide');
+        $("#daytonNewBuildingLocations").modal('hide');
     });
 </script>
