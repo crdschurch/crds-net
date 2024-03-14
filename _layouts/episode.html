@@ -34,15 +34,16 @@ layout: default
       <div class="col-sm-8 col-sm-offset-2">
         <div class="embedded-audio-player">
           {{ page.audio_embed_code }}
+          <div class="subscribe-buttons">
+            {% include _subscribe-buttons.html content_type=podcast row=false %}
+          </div>
+          <h2 class="component-header mobile-push-half-top">This episode</h2>
+
+          {% assign tabs = 'description show_notes' | split: ' ' %}
+          {% if page.show_notes or page.description %}
+            {% include _tabs.html tabs=tabs %}
+          {% endif %}
         </div>
-
-        <h2 class="component-header mobile-push-half-top">This episode</h2>
-
-        {% assign tabs = 'description show_notes' | split: ' ' %}
-        {% if page.show_notes or page.description %}
-          {% include _tabs.html tabs=tabs %}
-        {% endif %}
-
       </div>
     </div>
 
@@ -71,8 +72,6 @@ layout: default
         {% include _tags_list.html tags=page.tags %}
       </div>
     </div>
-
-    {% include _subscribe-buttons.html content_type=podcast %}
 
     {% if site.podcasts.size > 1 %}
       <div class="row push-top soft-half-top">

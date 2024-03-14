@@ -24,6 +24,14 @@ title: Articles
             <h1 data-media-title="{{page.title}}" data-media-id="{{page.id}}" class="overlay-card-title overlay-card-heading">{{ page.title | truncate: 70 }}</h1>
             <p class="overlay-card-author text-gray-light">{{ page.author.full_name }}</p>
             <div class="card-stamp text-white">
+              {% if page.podcast_episode != null %}
+                <span class="font-size-smallest soft-quarter-right">
+                  <a class="podcast-listen-now-link" href="{{page.podcast_slug}}">Listen Now</a>
+                </span>
+                <svg class="icon" viewBox="0 0 256 256">
+                  <use xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
+                </svg>
+              {% endif %}
               {% if page.duration %}
                 {% assign format = 'short' %}
               {% endif %}
