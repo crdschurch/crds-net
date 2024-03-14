@@ -29,36 +29,6 @@ module Jekyll
         # Merge featured docs and recent docs into one .docs property for the
         # collection.
         collection.data['docs'] = featured_docs.concat(recent_docs - featured_docs)
-
-        # Check for null 'author' object in articles.
-        collection.data['docs'].each do |doc|
-          if doc['content_type'] == 'article' && doc['author'].nil?
-            # Select all author documents
-            authors_docs = site.collections['authors'].docs
-            # Get author by 'slug'
-            author_obj = authors_docs.detect { |d| d.data['slug'] == 'crossroads' }
-
-            if author_obj # Check if author_obj is not nil
-              author = {
-                'full_name' => author_obj['full_name'],
-                'slug' => author_obj['slug'],
-                'summary' => author_obj['summary'],
-                'id' => author_obj['id'],
-                'content_type' => author_obj['content_type']
-              }
-              doc.data['author'] = author
-            else # Add hard coded author to article
-              author = {
-                'full_name' => 'Crossroads Church',
-                'slug' => 'crossroads',
-                'summary' => "Whatever your thoughts on church or your beliefs about God, you're welcome here.",
-                'id' => 'UcVRJdlG3JS8VB7R4Dvmp',
-                'content_type' => 'author'
-              }
-              doc.data['author'] = author
-            end
-          end
-        end
       end
     end
   end
