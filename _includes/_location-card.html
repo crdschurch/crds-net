@@ -82,5 +82,8 @@
       </p>
     </div>
     <crds-button type="primary" color="orange" text="Learn more" href="{{ location.url }}"></crds-button>
+    {% if location.name == "Dayton" %}
+    <crds-button class="push-ends hydrated" data-target="#daytonNewBuildingLocations" data-toggle="modal" href="" color="orange" display="outline" text="New Building Coming Soon"></crds-button>
+    {% endif %}
   </div>
 </div>
