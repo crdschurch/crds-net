@@ -87,21 +87,28 @@ layout: default
         <h2 class="text-uppercase font-family-serif font-size-base font-size-small text-gray-light flush-top">
           articles by brian
         </h2>
-        {% assign bt_articles = site.articles | where: 'author.full_name' , "Brian Tome" | reverse | slice: 0 %}
-        {% for item in bt_articles %}
-        {% include _media-card.html %}
+        {% assign bt_articles = "" | split: "" %}
+          {% for article in site.articles %}
+          {% if article.author.full_name and article.author.full_name == "Brian Tome" %}
+            {% assign bt_articles = bt_articles | push: article %}
+          {% endif %}
         {% endfor %}
+
+            {% assign first_article = bt_articles | reverse | slice: 0 %}
+            {% for item in first_article %}
+              {% include _media-card.html %}
+            {% endfor %}
 
         <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
           <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
-            {% assign bt_articles_carousel = site.articles | where: 'author.full_name' , "Brian Tome" | reverse | slice: 1, 2 %}
-            {% for item in bt_articles_carousel %}
-            {% include _media-card.html carousel = true %}
+            {% assign carousel_articles = bt_articles | reverse | slice: 1, 2 %}
+            {% for item in carousel_articles %}
+              {% include _media-card.html carousel = true %}
             {% endfor %}
           </div>
         </div>
         <div class="push-ends">
-          <crds-button color="orange" text="View all articles" href="/media/authors/brian-tome"></crds-button>
+          <crds-button color="orange" text="View all articles" href="/media/authors/briantome"></crds-button>
         </div>
       </div>
       <div class="col-sm-4">
