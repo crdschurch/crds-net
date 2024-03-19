@@ -15,7 +15,7 @@ title: Podcast
     <!-- End of Conversion Pixel -->
   {% endif %}
 
-  {% if page.title == 'Still Standing' %}
+  {% if page.slug == 'audio-articles' %}
     <!-- Conversion Pixel for [purchase]- DO NOT MODIFY -->
     <img src="https://arttrk.com/pixel/?ad_log=referer&action=purchase&pixid=ebee528e-d9ee-4103-876a-a29f6ee0eca2" width="1" height="1" border="0">
     <!-- End of Conversion Pixel -->
@@ -66,7 +66,7 @@ title: Podcast
               {% if page.spotify_url.size > 1 %}
               <p class="push-top">
                 <div class="hard-sides col-md-4">
-                  <a href="{{ page.apple_podcasts_url }}" role="button" class="btn btn-white btn-subscribe soft-quarter-ends d-flex justify-content-between" onclick="dataLayer.push({'event': 'ContentEngaged', 'event_action': 'subscribed'})">
+                  <a href="{{ page.spotify_url }}" role="button" class="btn btn-white btn-subscribe soft-quarter-ends d-flex justify-content-between" onclick="dataLayer.push({'event': 'ContentEngaged', 'event_action': 'subscribed'})">
                     <div class="d-flex flex-column push-quarter-right align-items-start btn-text">
                       <span class="text-blue font-size-small push-quarter-bottom">Spotify</span>
                       <span class="text-blue font-size-smallest text-uppercase">Subscribe</span>
