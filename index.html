@@ -65,7 +65,7 @@ paginate:
   {% assign online = series.videos | sort: 'published_at' | last | get_doc %}
   {% assign online_title = online.title | split: "|" %}
   {% assign split_title = online.title | split: " " %}
-  {% assign current_week = split_title | slice: -1 %} 
+  {% assign current_week = split_title | slice: -1 %}
 {% endif %}
 
 {% if series.live_messages and series.live_messages.size != 0 %}
