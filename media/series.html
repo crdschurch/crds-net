@@ -4,45 +4,15 @@ snail_trail: media
 title: Series
 paginate:
   series:
-    offset: 1
     sort: starts_at desc
 ---
-{% assign featuredSeries = page.series.offset | where_exp: 'series', 'series.is_student_ministry_series != true' %}
-{% assign otherSeries = page.series.docs | where_exp: 'series', 'series.is_student_ministry_series != true or series.is_student_ministry_series == nil' %}
 
+{% assign otherSeries = page.series.docs | where_exp: 'series', 'series.is_student_ministry_series == false or series.is_student_ministry_series == nil' %}
 <div class="container">
   <ol class="breadcrumb text-orange hard-sides hard-bottom push-top flush-bottom">
-    <li><a href="/media">Media</a></li>
+    <li><a href="/crossroadsstudents">Student Ministry</a></li>
   </ol>
   <h3 class="section-header font-size-h1 flush-top push-bottom">Series</h3>
-{% if featuredSeries.size == 1 %}
-  <!-- Begin current Series -->
-  {% for featured in featuredSeries %}
-    <div class="row soft-bottom current-series">
-      <div class="col-xs-12 col-md-7">
-        <a href="{{ featured.url }}" title="{{ featured.title }}">
-          <img class="img-full-width" src="{% if featured.image.url %}{{ featured.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine}}" alt="{{ featured.title }}" sizes="{{ site.image_sizes.full_width }}" data-optimize-img>
-        </a>
-      </div>
-
-      <div class="col-xs-12 col-md-5">
-        <label class="label label-default bg-gray-lightest text-capitalize no-border-radius font-family-accent text-capitalize soft-half-sides soft-quarter-ends text-gray-darker">Current Series</label>
-
-        <h1 class="font-family-condensed-extra text-uppercase flush-bottom">{{ featured.title }}</h1>
-
-        <date class="metadata">{{ featured.starts_at | date: "%m.%d.%Y" }} &mdash; {{ featured.ends_at | date: "%m.%d.%Y" }}</date>
-
-        <div class="push-half-top push-bottom font-size-base">
-          {{ featured.description | markdownify }}
-        </div>
-
-        <a href="{{ featured.url }}" title="{{ featured.title }}" class="btn btn-outline btn-blue" role="button">View the series</a>
-      </div>
-    </div>
-  {% endfor %}
-  <!-- End current series -->
-
-{% else %}
  <!-- Begin current Series -->
  {% for featured in otherSeries %}
    {% if forloop.first %}
@@ -70,7 +40,6 @@ paginate:
   {% endif %}
 {% endfor %}
 <!-- End current series -->
-{% endif %}
 
   <!-- 30 Day Challenge CTA -->
     <div class="row push-top">
