@@ -1,0 +1,99 @@
+---
+layout: default
+snail_trail: media
+title: Series
+paginate:
+series:
+sort: starts_at desc
+---
+
+{% assign otherSeries = page.series.docs | where_exp: 'series', 'series.is_student_ministry_series == true' %}
+<div class="container">
+  <ol class="breadcrumb text-orange hard-sides hard-bottom push-top flush-bottom">
+    <li><a href="/crossroadsstudents">Student Ministry</a></li>
+  </ol>
+  <h3 class="section-header font-size-h1 flush-top push-bottom">Series</h3>
+  <!-- Begin current Series -->
+  {% for featured in otherSeries %}
+  {% if forloop.first %}
+  <div class="row soft-bottom current-series">
+    <div class="col-xs-12 col-md-7">
+      <a href="{{ featured.url }}" title="{{ featured.title }}">
+        <img class="img-full-width"
+          src="{% if featured.image.url %}{{ featured.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine}}"
+          alt="{{ featured.title }}" sizes="{{ site.image_sizes.full_width }}" data-optimize-img>
+      </a>
+    </div>
+
+    <div class="col-xs-12 col-md-5">
+      <label
+        class="label label-default bg-gray-lightest text-capitalize no-border-radius font-family-accent text-capitalize soft-half-sides soft-quarter-ends text-gray-darker">Current
+        Series</label>
+
+      <h1 class="font-family-condensed-extra text-uppercase flush-bottom">{{ featured.title }}</h1>
+
+      <date class="metadata">{{ featured.starts_at | date: "%m.%d.%Y" }} &mdash; {{ featured.ends_at | date: "%m.%d.%Y"
+        }}</date>
+
+      <div class="push-half-top push-bottom font-size-base">
+        {{ featured.description | markdownify }}
+      </div>
+
+      <a href="{{ featured.url }}" title="{{ featured.title }}" class="btn btn-outline btn-blue" role="button">View the
+        series</a>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+  <!-- End current series -->
+
+  <!-- 30 Day Challenge CTA -->
+  <div class="row push-top">
+    <div class="col-sm-6 col-sm-offset-3 push-bottom">
+      <a href="//crossroads.net/app">
+        <img
+          src="//crds-media.imgix.net/21PQng2rQ0wxU5De4iWali/f3dbbbbbe3e5e03acbcf5eb8a014f380/image__1_.png?auto=format,compress&w=1600'"
+          alt="Anywhere App">
+      </a>
+      <a href="//crossroads.net/app" class="portrait-card-default" style="min-height: unset;" data-optimize-bg-img>
+        <div class="portrait-card-content">
+          <p class="portrait-card-lead text-uppercase">download the app</p>
+          <h2 class="portrait-card-title font-family-condensed-extra text-uppercase text-gray-dark">screentime with a
+            purpose</h2>
+          <div class="push-top">
+            <crds-button href="//crossroads.net/app" color="white" display="outline" text="Download App">
+            </crds-button>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <!-- End CTA -->
+
+  <!-- Begin previous series -->
+  <div class="container">
+    {% assign series_year = '' %}
+    {% assign current_year = site.time | date: '%Y' %}
+
+    {% for series in otherSeries %}
+    {% unless forloop.first %}
+    {% assign new_series_year = series.starts_at | date: '%Y' %}
+    {% assign item = series %}
+
+    {% if new_series_year != series_year %}
+    {% unless forloop.first %}</div>{% endunless %}
+  {% assign series_year = new_series_year %}
+  <h4 class="component-header font-size-h3 push-top soft-half-top">{{ series_year }} Series</h4>
+  <div class="row">
+    {% endif %}
+
+    <div class="{% if series_year == current_year %}col-xs-12 col-md-4{% else %}col-xs-6 col-md-2{% endif %}">
+      {% include _series-card.html %}
+    </div>
+
+    {% if forloop.last %}
+  </div>{% endif %}
+  {% endunless %}
+  {% endfor %}
+  <!-- End previous series -->
+</div>
