@@ -41,6 +41,24 @@ layout: default
               </div>
             </div>
           {% endif %}
+          <div class="video-language-controls">
+            <div onclick="switchVideoSource()" id="video-language-switch" class="btn btn-white btn-outline">Ver en Español</div>
+          </div>
+          <script>
+            function switchVideoSource() {
+              var currentText = document.getElementById("video-language-switch").innerText
+              var reloadVideoPlayer = new Event('reload-bitmovin-video');
+              if (currentText == "Ver en Español") {
+                document.getElementById("video-language-switch").innerText = "Watch in English";
+                document.getElementsByTagName("crds-bitmovin-player")[0].setAttribute("url", '{{page.source_url_spanish}}');
+              } else {
+                document.getElementById("video-language-switch").innerText = "Ver en Español";
+                document.getElementsByTagName("crds-bitmovin-player")[0].setAttribute("url", '{{page.source_url}}');
+              }
+
+              document.dispatchEvent(reloadVideoPlayer);
+            }
+          </script>
 
           <header>
             {% if page.audio_file.url or page.video_file.url or page.program.url or page.audio_source_url %}
@@ -84,7 +102,6 @@ layout: default
                 {% endfor %}
               </ol>
               <!-- End breadcrumbs -->
-
               <h1 data-media-title="{{ page.title }}" data-media-id="{{ page.id }}" class="font-family-condensed-extra text-uppercase flush-top push-bottom text-white">{{ page.title }}</h1>
             </div>
           </header>
