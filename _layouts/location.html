@@ -1,471 +1,89 @@
----
-layout: default
----
-
-<!-- Pull only the promos that exist for the specific location if any -->
-{% assign location_happenings = site.promos | where: "target_audience", page.name | sort: "date" | reverse %}
-{% assign series = site.series | last %}
-
-<!-- Featured Section -->
-{% if page.featured_section.size > 0 %}
-  <div class="overflow-hidden">
-    {{ page.featured_section }}
-  </div>
-{% endif %}
-
-<!-- Jumbotron section -->
-<div class="jumbotron jumbotron-xl flush-bottom width-100" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
-  id="location-page"  
-  data-optimize-bg-img>
-  <div class="bg-overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 push-ends mobile-soft-sides">
-        <div class="">
-          <span class="font-family-base text-uppercase text-white">
-            <strong>welcome to</strong>
-          </span>
-          <h1 class="font-family-condensed-extra text-uppercase">Crossroads <br />{{ page.name }}</h1>
-          {% if page.name == "Dayton" %} 
-          <div class="push-bottom">
-            <a href="{{ jekyll_env }}/dayton/volunteer-sign-up/" class="btn btn-orange" >Ways to get involved</a>
+<div class="card">
+  <a href="{{ location.url }}" class="block" data-automation-id="location-image">
+    <img src="{{ location.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card }}"
+      sizes="{{ site.image_sizes.cards_4x }}" alt="{{ location.title }}" data-optimize-img />
+  </a>
+  <div class="card-block">
+    <h4 class="card-title card-title--overlap text-uppercase">
+      <a href="{{ location.url }}" data-automation-id="location-name">{{ location.name }}</a>
+    </h4>
+    <div data-automation-id="location-address" class="push-bottom">
+      {% if location.address %}
+        {{ location.address | markdownify | remove: '<p>'| remove: '</p>' }} <br>
+        {% if location.slug != 'anywhere' %}
+          (<a target="_blank" href="{{ location.map_url }}" data-automation-id="location-map-url">Map</a>)
+        {% endif %}
+      {% else %}
+      <p>Currently looking for new digs to house our ever-growing {{ location.name }} community.</p>
+      {% endif %}
+    </div>
+    <div class="card-text">
+      {% if location.community_pastor_name %}
+      <div class="location-leader soft-half-sides soft-quarter-ends bg-tan-light text-gray-dark push-bottom">
+        <div class="d-flex push-quarter-sides align-items-center" style="flex-wrap: wrap;">
+          <div class="push-quarter-ends push-half-right" style="flex: 1 0;">
+            <strong>{{location.community_pastor_name}}</strong><br>
+            <span>Community Pastor</span>
           </div>
-          {% else %}
-          <div class="push-bottom">
-            <a href="javascript:void(0)" class="btn btn-orange" data-smooth-scroll-to="service-times" data-smooth-scroll-offset="95">View service times</a>
-          </div>
-          {% endif %}
-          <div>
-            {% if location_happenings.size > 0 %}
-            <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="happenings"  data-smooth-scroll-offset="50">See what's
-              happening at {{ page.name }}</a>
-            {% endif %}
-
-            {% if page.kids_club_hours or page.student_ministry_hours %}
-            <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="kids-and-students" data-smooth-scroll-offset="50">Kids &amp; Students</a>
-            {% endif %}
-
-            <a href="javascript:void(0)" class="btn btn-white btn-outline" data-smooth-scroll-to="community-care" data-smooth-scroll-offset="50">Community Care</a>
-          </div>
+          <img class="img-circle img-size-4 push-quarter-ends" style="width: 64px;"
+            src="{{ location.community_pastor_image.url | imgix: site.imgix }}?ar=1:1&fit=crop" sizes="64px 64px" />
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- Featured Section - Below Jumbotron-->
-{% if page.featured_below.size > 0 %}
-  {{ page.featured_below }}
-{% endif %}
-
-<!-- General Info Section -->
-<section class="bg-blue topo-overlay soft-ends">
-  <div class="container push-ends">
-    <div class="row push-ends soft-ends mobile-flush-top mobile-hard-top">
-      <div class="col-sm-6 soft-sides">
-        <h3 class="text-orange font-family-condensed-extra text-uppercase flush-top">About this location</h3>
-        <div class="lead">{{ page.description | markdownify }}</div>
-        <div class="row push-ends soft-half-top mobile-hard-bottom">
-          <div class="col-sm-6" id="service-times">
-            <p>
-              <strong class="text-orange">Service Times</strong>
-              <br />
-              {% if site.data.reference_service_times.size != 0 %}
-              {% assign service_times_str = site.data.reference_service_times[page.name] %}
-              {% assign service_times_array = service_times_str | split: '|' %}
-              {% for time in service_times_array %}
-                {% assign parts = time | split: '^' %}
-                {% if parts[0] == 'Anywhere' %}
-                  <div>{{ parts[0] }} {{ parts[1] | replace: '%2C', ',' }}{% unless forloop.last %}<br>{% endunless %}</div>
-                {% else %}
-                  <div>{{ parts[0] }}: {{ parts[1] | replace: '%2C', ',' }}{% unless forloop.last %}<br>{% endunless %}</div>
+      {% endif %}
+      <div data-automation-id="location-service-times" class="push-half-bottom">
+          <p class="flush font-size-small">
+            {% assign current_date = "now" | date: "%s" %}
+            
+            {% if location.service_times %}
+            {% assign service_times_count = location.service_times | size %}
+            {% for time in location.service_times %}
+              {% if time.is_special_service_time == true %}
+                {% assign start_date = time.special_service_start_date | date: "%s" %}
+                {% assign end_date = time.special_service_end_date | date: "%s" %}
+                {% if current_date >= start_date and current_date <= end_date %}
+                  <span class="font-family-base-bold">{{ time.service_time_label }}</span><br>
+                  {% for service_time in time.service_times %}
+                    {{ service_time }}
+                    {% if forloop.index != time.service_times.size %}<br>{% endif %}
+                  {% endfor %}
                 {% endif %}
-              {% endfor %}
-            {% endif %}
-            {% if page.reference_service_times %}
-              {{ page.reference_service_times | markdownify | remove: '<p>' | remove: '</p>' }}
-            {% endif %}
-            <div class="col-sm-6">
-              <p>
-                <strong class="text-orange">Office Address</strong>
-                <br />
-                1242 Paris Pike<br>Georgetown, KY 40324
-                <br />
-                <a href="https://goo.gl/maps/27isLrMevToZXtrh8" class="text-orange" target="_blank">Get directions</a>
-              </p>
-            </div>
-          </div>
-        {% else %}
-        {% if page.name == 'Richmond' %}
-          <div class="col-sm-6">
-            <!-- <p>
-              <strong class="text-orange">Office Address</strong>
-              <br />
-              105 S Third Street<br>Richmond, KY 40475
-              <br />
-              <a href="https://goo.gl/maps/uhwFUqkwe86k5N4W7" class="text-orange" target="_blank">Get directions</a>
-            </p> -->
-          </div>
-        </div>
-        {% else %}
-            <div class="col-sm-6">
-              <p>
-                <strong class="text-orange">Address</strong>
-                <br />
-                {{ page.address | markdownify | remove: '<p>' | remove: '</p>' }}
-                <br />
-                <a href="{{ page.map_url }}" class="text-orange" target="_blank">Get directions</a>
-              </p>
-            </div>
-          </div>
-        {% endif %} {% endif %}
-        <div>
-          <div class="col-sm-12 push-top soft-top hard-sides border-top">
-            {{ page.additional_info | markdownify }}
-          </div>
-        </div>
+              {% else %}
+                {% if location.slug != 'anywhere' %}
+                <span class="font-family-base-bold">{{ time.service_time_label }}</span><br>
+                {% endif %}
+                {% for service_time in time.service_times %}
+                  {{ service_time }}
+                  {% if forloop.index != time.service_times.size %}<br>{% endif %}
+                {% endfor %}
+              {% endif %}
+              {% if forloop.first and service_times_count == 2 %}
+                <!-- Insert double break only after the first item if both service times are present -->
+                <br><br>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </p>
       </div>
-      <div class="col-sm-5 col-sm-offset-1 mobile-push-half-sides mobile-soft-sides">
-        <div class="row border-top soft-ends">
-          <p class="text-orange"><strong>Social Media</strong></p>
-          <div>
-            <crds-button class="push-half-right" color="white" text="Follow us on Instagram" href="https://www.instagram.com/crsrds{{ page.slug | downcase }}" icon="instagram" icon-color="blue-dark" icon-align="left" icon-size="16"></crds-button>
-            <crds-button color="white" text="Follow us on Facebook" href="https://www.facebook.com/crsrds{{ page.slug | downcase }}" icon="facebook" icon-color="blue-dark" icon-align="left" icon-size="16"></crds-button>
-          </div>
-        </div>
-
-        {% if page.hubspot_form_id %}
-        <div class="row mobile-push-top soft bg-gray-lightest">
-          <h4 class="font-family-condensed-extra text-uppercase soft-half-bottom text-blue">Stay in the know. <br />Get the latest Crossroads updates.</h4>
-          <div class="form" data-role="hsform">
-            <!--
-              [if lte IE 8]>
-              <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
-              <![endif] -->
-              <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
-              <script>
-            hbspt.forms.create({
-              portalId: "3993985",
-              formId: "{{ page.hubspot_form_id }}",
-              css: "",
-              target: "[data-role=hsform]",
-              onFormReady($form, ctx) {
-                $('fieldset[data-reactid=".hbspt-forms-0.1:$0"]').removeClass('form-columns-2');
-                $('fieldset[data-reactid=".hbspt-forms-0.1:$1"]').removeClass('form-columns-2');
-                $('input[data-reactid=".hbspt-forms-0.1:$0.1:$firstname.$firstname.0"]').attr('placeholder', 'First name')
-                $('input[data-reactid=".hbspt-forms-0.1:$0.1:$lastname.$lastname.0"]').attr('placeholder', 'Last name')
-                $('input[data-reactid=".hbspt-forms-0.1:$1.1:$email.$email.0"]').attr('placeholder', 'Email')
-                $('input[data-reactid=".hbspt-forms-0.1:$1.1:$mobilephone.$mobilephone.0"]').attr('placeholder', 'Phone number')
-                $('label[data-reactid=".hbspt-forms-0.1:$0.1:$firstname.0"]').hide()
-                $('label[data-reactid=".hbspt-forms-0.1:$0.1:$lastname.0"]').hide()
-                $('label[data-reactid=".hbspt-forms-0.1:$1.1:$email.0"]').hide()
-                $('div[data-reactid=".hbspt-forms-0.1:$1.1:$email.$email"]').addClass('flush-right')
-                $('span[data-reactid=".hbspt-forms-0.1:$1.1:$mobilephone.0.0"]').hide()
-              }
-            });
-          </script>
-        </div>
-        </div>
-        {% else %}
-        <div class="col-sm-offset-1 col-sm-5 mobile-push-top soft">
-          <div style="position: relative; height: 0; padding-top: 56.25%;">
-            <iframe src="https://www.youtube.com/embed/geNzLq664rk?rel=0" frameborder="0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-            allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
+      <p class="push-half-bottom soft-quarter-bottom">
+        {% if location.facebook_page_url %}
+        <a href="{{ location.facebook_page_url }}" target="_blank" class="btn btn-blue btn-outline btn-small" style="border-radius: 50%; width: 26px; height: 26px; padding: 0; text-align: center; line-height: 28px">
+          <svg class="icon icon-1" viewBox="0 0 256 256">
+            <use xlink:href="/assets/svgs/icons.svg#facebook"></use>
+          </svg>
+        </a>
         {% endif %}
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Current Series Section -->
-<section id="series" class="bg-tan-light">
-  <div class="container push-bottom soft-ends">
-    <div class="row soft-ends push-bottom">
-      <div class="col-xs-12 col-sm-6 soft">
-        <a href="{{ series.url }}" title="{{ series.title }}">
-          <img class="img-full-width"
-            src="{% if series.image.url %}{{ series.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine}}"
-            alt="{{ series.title }}" sizes="{{ site.image_sizes.full_width }}" data-optimize-img>
+        {% if location.instagram_page_url %}
+        <a href="{{ location.instagram_page_url }}" target="_blank" class="btn btn-blue btn-outline btn-small"  style="border-radius: 50%; width: 26px; height: 26px; padding: 0; text-align: center; line-height: 28px">
+          <svg class="icon icon-1" viewBox="0 0 256 256">
+            <use xlink:href="/assets/svgs/icons.svg#instagram"></use>
+          </svg>
         </a>
-      </div>
-      <div class="col-xs-12 col-sm-6 soft">
-        <label
-          class="label label-default bg-gray-lightest text-capitalize no-border-radius font-family-accent text-capitalize soft-half-sides soft-quarter-ends">Current
-          Series</label>
-        <h2 class="font-family-condensed-extra text-uppercase flush-bottom">{{ series.title }}</h2>
-        <!-- <date class="metadata">{{ series.starts_at | date: "%m.%d.%Y" }} &mdash; {{ series.ends_at | date: "%m.%d.%Y"
-          }}</date> -->
-        <div class="push-half-top push-bottom font-size-small text-gray-dark">
-          {{ series.description | markdownify }}
-        </div>
-        <a href="{{ series.url }}" title="{{ series.title }}" class="btn btn-outline btn-blue" role="button">View the
-          series</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Spotlight section -->
-<section class="container push-top">
-  <div class="row push-top soft-top d-flex justify-content-center flex-column flex-sm-row">
-    <div class="card col-sm-4">
-      <img class="img-circle" src="{{ page.come_as_you_are_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
-        sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
-      <div class="card-block text-left">
-        <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">Come as you are</h4>
-        <p class="card-text">Seriously. This is a real place for real people. Regardless of what you think about God,
-          you are welcome here. In
-          a nutshell, you can wear jeans, or dress up if you want. The coffee is free, so grab a cup before you sit
-          down.
-          The music is great and you’ll hear straight up Biblical truth that you can apply to your everyday life. The
-          rest
-          is up to you.
-        </p>
-        {% if page.virtual_tour_url %}
-        <a href="{{ page.virtual_tour_url }}">Take a virtual tour</a>
         {% endif %}
-      </div>
+      </p>
     </div>
-    {% if page.community_pastor_image and page.community_pastor_name and page.community_pastor_bio %}
-    <div class="card col-sm-4">
-      <img class="img-circle" src="{{ page.community_pastor_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
-        sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
-      <div class="card-block text-left">
-        <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">Meet {{ page.community_pastor_name }}</h4>
-        {{ page.community_pastor_bio | markdownify }}
-      </div>
-    </div>
+    <crds-button type="primary" color="orange" text="Learn more" href="{{ location.url }}"></crds-button>
+    {% if location.name == "Dayton" %}
+    <crds-button class="push-ends hydrated" data-target="#daytonNewBuildingLocations" data-toggle="modal" href="" color="orange" display="outline" text="New Building Coming Soon"></crds-button>
     {% endif %}
-    {% if page.spotlight_text and page.spotlight_title and page.spotlight_image.url %}
-    <div class="card col-sm-4">
-      <img class="img-circle" src="{{ page.spotlight_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
-        sizes="{{ site.image_sizes.cards_4x }}" data-optimize-img />
-      <div class="card-block text-left">
-        <h4 class="card-title font-family-condensed-extra font-size-h3 text-uppercase">{{ page.spotlight_title }}</h4>
-        {{ page.spotlight_text | markdownify }}
-      </div>
-    </div>
-    {% endif %}
-  </div>
-</section>
-
-<!-- Happenings -->
-{% if location_happenings.size > 0 %}
-<div class="container soft-ends" id="happenings">
-  <crds-site-happenings location="{{ page.name }}" />
-</div>
-{% endif %}
-
-
-<!-- Uptown College Student section -->
-{% if page.name == 'Uptown' %}
-<div class="container push-bottom">
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <h3 class="section-header text-center push-half-bottom">This place was made for you</h3>
-    </div>
-  </div>
-  <div class="row push-ends soft-bottom">
-    <div class="col-md-12">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe width="320" height="240" src="https://www.youtube.com/embed/WhHT89JErOM" frameborder="0"
-          allowfullscreen=""></iframe>
-      </div>
-    </div>
   </div>
 </div>
-{% endif %}
-
-<!-- Oxford College Student section -->
-{% if page.name == 'Oxford' %}
-<div class="container push-bottom">
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <h3 class="section-header text-center push-half-bottom">College Students</h3>
-      <p class="lead">Hear stories from some of the Miami students who call this place home.</p>
-    </div>
-  </div>
-  <div class="row push-ends soft-bottom">
-    <div class="col-md-6">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe width="320" height="240" src="https://www.youtube.com/embed/j7VEsRktPxY" frameborder="0"
-          allowfullscreen=""></iframe>
-      </div>
-      <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Alyssa</h4>
-    </div>
-    <div class="col-md-6">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe width="320" height="240" src="https://www.youtube.com/embed/p9U8TpfEfWs" frameborder="0"
-          allowfullscreen=""></iframe>
-      </div>
-      <h4 class="card-title font-family-condensed-extra font-size-h4 text-uppercase">Meet Animaesh</h4>
-    </div>
-  </div>
-</div>
-{% endif %}
-
-
-<!-- Kids club / Student ministry-->
-{% if page.kids_club_hours or page.student_ministry_hours %}
-<section class="bg-tan-light">
-  <div class="container" id="kids-and-students">
-    <div class="col-md-12">
-      <h3 class="section-header text-center">For Kids &amp; Students</h3>
-    </div>
-    <!-- Lexington Preschool Section -->
-    {% if page.name == 'Lexington' %}
-    <div class="row soft-bottom">
-      <div class="col-sm-6 push-top soft-top soft-sides">
-        <h4>Weekday Preschool</h4>
-        <p class="text-white text-gray-dark">Crossroads Preschool provides a safe, fun and welcoming environment where kids can grow and develop
-          intellectually,
-          physically, socially , and emotionally through cognitive experiences and hands on activity. Music, art and
-          play
-          are used to encourage creative expression. Staff is trained to use positive management techniques which
-          encourages
-          children to set internal limits on his/her own behavior.</p>
-        <crds-button color="blue" display="outline" href="https://www.crossroads.net/preschool/" text="Check out Crossroads Preschool"></crds-button>
-      </div>
-      <div class="col-sm-6 soft-sides">
-        <img class="width-100" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-sites-preschool.jpg?w=29&h=19&fit=crop"
-          data-optimize-img>
-      </div>
-
-    </div>
-    {% endif %}
-    {% if page.kids_club_hours %}
-    <div class="row push-ends soft-bottom">
-      <div class="col-sm-6 soft-sides">
-        <img class="width-100" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-sites-kc.jpg?w=29&h=19&fit=crop"
-          data-optimize-img>
-      </div>
-      <div class="col-sm-6 push-top soft-top soft-sides text-gray-dark">
-        <h4>Your kids will love Kids' Club</h4>
-        <p dir="ltr">A fun learning environment designed especially for kids (birth through fifth grade). It’s free,
-          totally secure, and don't worry-we'll let you know if your child needs you at any point during the service.
-        </p>
-        <div></div>
-        <crds-button color="blue" display="outline" href="https://www.crossroads.net/kids-club/" target="_blank" text="Learn more about Kids' Club"></crds-button>
-        <p class="font-size-small push-half-top">
-          <em>{{ page.kids_club_hours | markdownify }}</em>
-        </p>
-      </div>
-    </div>
-    {% endif %}
-    {% if page.student_ministry_hours %}
-    <div class="row push-ends soft-bottom">
-      <div class="col-sm-push-6 col-sm-6 soft-sides">
-        <img class="width-100" src="https://crds-cms-uploads.imgix.net/content/images/crossroads-church-sites-sm.jpg?w=29&h=19&fit=crop"
-          data-optimize-img>
-      </div>
-      <div class="col-sm-pull-6 col-sm-6 push-top soft-top soft-sides text-gray-dark">
-        <h4>Student Ministry</h4>
-        <p>Middle School (grades 6-8) and High School (grades 9-12) students have a place to call their own. Students
-          are challenged
-          and encouraged through relevant teaching and fun events. Opportunities are provided for them to grow as they
-          connect
-          with God and with each other.&nbsp;
-        </p>
-        <p>
-          {{ page.student_ministry_hours | markdownify }}
-        </p>
-        <crds-button color="blue" display="outline" href="https://www.crossroads.net/studentministry/" text="Get more info on student ministry"></crds-button>
-      </div>
-    </div>
-    {% endif %}
-  </div>
-</section>
-{% endif %}
-
-<!-- Community Care -->
-{% if page.care_link %}
-<section class="container">
-  <div class="jumbotron jumbotron-sm soft-ends push-ends" id="community-care" style="background-image: url('//crds-media.imgix.net/563dNi01CVnrbOf2U6JPW1/95bcb3d80ea0d612e43de5afae4b2c0f/location-communtiy-care.png?{{ site.imgix_params.placeholder_sixteen_nine }}');" data-optimize-bg-img>
-    <div class="row text-center soft-ends">
-      <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 soft-ends">
-        <h2 class="section-header push-half-ends text-orange">Community Care</h2>
-        <p class="lead text-white">Prayer requests, listening appointments, hospital visits, or questions about weddings or funerals– we're here to help.</p>
-        <div>
-          <crds-button class="push-half-right" href="{{ page.care_link }}" color="white" target="_blank" text="Request care"></crds-button>
-          <crds-button href="/care" color="white" display="outline" text="View all services"></crds-button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-{% endif %}
-
-<!-- Go Deeper -->
-<section class="container">
-  <h3 class="collection-header clearfix push-bottom">go deeper</h3>
-  <div class="card-deck carousel" data-crds-carousel="mobile-scroll">
-    <div id="section-" class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
-      <div class="card">
-        <a href="https://www.crossroads.net/get-connected/" class="block">
-          <img alt="Serve" class="card-img-top card-img-constrained" src="https://crds-media.imgix.net/1YQbxGtQscSoWaM5vfyDs/8891b8c3da93e54f9c6392b8f9068686/get-involved-bg4.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27"
-            data-optimize-img>
-        </a>
-        <div class="card-block hard">
-          <h4 class="card-title font-family-condensed-extra text-uppercase">
-            <a href="https://www.crossroads.net/get-connected/">Get Connected</a>
-          </h4>
-          <div class="card-text">
-            <p>Discover what it’s like to find a group of people who’ll bring you food when life gets rough, help you change a tire in the rain, or make you laugh until you pee your pants a little.</p>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <a href="https://sgwayfinder.com/" class="block">
-          <img alt="Get in a Group" class="card-img-top card-img-constrained" src="https://crds-media.imgix.net/7emDm2UBzHPdpW5IJOxMNb/e5b336188a14af162434f187d342c83c/Untitled_design__19_.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27"
-            data-optimize-img>
-        </a>
-        <div class="card-block hard">
-          <h4 class="card-title font-family-condensed-extra text-uppercase">
-            <a href="https://sgwayfinder.com/">Wayfinder</a>
-          </h4>
-          <div class="card-text">
-            <p>Wayfinder is a spiritual growth tool to help identify a place in your life to focus your growth. Answer some questions to see where you are - not in a way to measure up, but to help you hear where God wants to take you next.</p>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <a href="https://www.crossroads.net/give" class="block">
-          <img alt="Give" class="card-img-top card-img-constrained" src="https://crds-cms-uploads.imgix.net/Uploads/crossroads-church-sites-give.jpg?auto=format&amp;crop=top&amp;fit=clamp&amp;ixjsv=2.2.3&amp;w=27" data-optimize-img>
-        </a>
-        <div class="card-block hard">
-          <h4 class="card-title font-family-condensed-extra text-uppercase">
-            <a href="https://www.crossroads.net/give">Give</a>
-          </h4>
-          <div class="card-text">
-            <p>Your generosity fuels the life change we experience around here. One way to show gratitude for what God is doing in our life is to give back to Him.</p>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <a href="https://itunes.apple.com/us/app/crossroads-anywhere/id1029478803?mt=8" class="block">
-          <img alt="Download the App" class="card-img-top card-img-constrained" src="https://crds-media.imgix.net/y3a9myzsdjan/6CAprwzhiH5x2lOdYwP5N6/ac996756bc212dc48baede8c37891621/search-widget-crossroads-app.jpg?auto=format&crop=top&fit=clamp&ixjsv=2.2.3&w=27" data-optimize-img>
-        </a>
-        <div class="card-block hard">
-          <h4 class="card-title font-family-condensed-extra text-uppercase">
-            <a href="https://itunes.apple.com/us/app/crossroads-anywhere/id1029478803?mt=8">Download the App</a>
-          </h4>
-          <div class="card-text">
-            <p>Build your spiritual fitness. Create a positive daily experience. Go deeper on a topic. Receive prayer. Journal your heart out. Never miss the live stream. Available on the App Store or Google Play.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="bg-orange soft">
-  <div class="container text-center soft push-ends">
-    <h2 class="text-white text-uppercase font-family-condensed-extra">We'd love to connect with you</h2>
-    <crds-button color="blue" text="Chat with us" data-trigger="chat"></crds-button>
-  </div>
-</div>
-
-<!--Facebook Pixel Script -->
-{% include _fb-pixel.html %}

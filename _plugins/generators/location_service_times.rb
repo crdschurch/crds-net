@@ -2,6 +2,7 @@ module LocationServiceTimes
   class Generator < Jekyll::Generator
     def generate(site)
       locations = site.collections['locations'].docs
+      
       locations.each do |location|
         next if location.data['reference_service_times'].nil? || !location.data['reference_service_times'].is_a?(Array)
         
