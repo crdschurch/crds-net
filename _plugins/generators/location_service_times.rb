@@ -9,7 +9,7 @@ module LocationServiceTimes
         
         location.data['reference_service_times'].each do |service_time_entry|
           service_time_id = service_time_entry['id']
-          service_time_doc = site.collections['serviceTimes'].docs.detect do |doc|
+          service_time_doc = site.collections['referenceServiceTimes'].docs.detect do |doc|
             doc.data.dig('contentful_id') == service_time_id
           end
           
