@@ -70,8 +70,8 @@ layout: default
             <p>
               <strong class="text-orange">Service Times</strong>
               <br />
-              {% if site.data.reference_service_times.size != 0 %}
-              {% assign service_times_str = site.data.reference_service_times[page.name] %}
+              {% if site.data.service_times.size != 0 %}
+              {% assign service_times_str = site.data.service_times[page.name] %}
               {% assign service_times_array = service_times_str | split: '|' %}
               {% for time in service_times_array %}
                 {% assign parts = time | split: '^' %}
@@ -82,7 +82,7 @@ layout: default
                 {% endif %}
               {% endfor %}
             {% endif %}
-            {% if page.reference_service_times %}
+            {% if page.service_times %}
               {{ page.reference_service_times | markdownify | remove: '<p>' | remove: '</p>' }}
             {% endif %}
             <div class="col-sm-6">
