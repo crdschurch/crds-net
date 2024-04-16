@@ -42,18 +42,18 @@
                 {% assign end_date = time.special_service_end_date | date: "%s" %}
                 {% if current_date >= start_date and current_date <= end_date %}
                   <span class="font-family-base-bold">{{ time.service_time_label }}</span><br>
-                  {% for service_time in time.reference_service_times %}
+                  {% for service_time in time.service_times %}
                     {{ service_time }}
-                    {% if forloop.index != time.reference_service_times.size %}<br>{% endif %}
+                    {% if forloop.index != time.service_times.size %}<br>{% endif %}
                   {% endfor %}
                 {% endif %}
               {% else %}
                 {% if location.slug != 'anywhere' %}
                 <span class="font-family-base-bold">{{ time.service_time_label }}</span><br>
                 {% endif %}
-                {% for service_time in time.reference_service_times %}
+                {% for service_time in time.service_times %}
                   {{ service_time }}
-                  {% if forloop.index != time.reference_service_times.size %}<br>{% endif %}
+                  {% if forloop.index != time.service_times.size %}<br>{% endif %}
                 {% endfor %}
               {% endif %}
               {% if forloop.first and reference_service_times_count == 2 %}
