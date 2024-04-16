@@ -17,7 +17,6 @@ module LocationServiceTimes
         end
         
         location.data['reference_service_times'] = full_reference_service_times unless full_reference_service_times.empty?
-        # binding.pry
       end
     end
   end
