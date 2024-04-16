@@ -5,24 +5,24 @@
       <p class="flush font-size-small">
         {% assign current_date = "now" | date: "%s" %}
       
-        {% if page.service_times %}
-          {% assign service_times_count = page.service_times | size %}
-          {% for time in page.service_times %}
+        {% if page.reference_service_times %}
+          {% assign service_times_count = page.reference_service_times | size %}
+          {% for time in page.reference_service_times %}
             {% if time.is_special_service_time == true %}
               {% assign start_date = time.special_service_start_date | date: "%s" %}
               {% assign end_date = time.special_service_end_date | date: "%s" %}
               {% if current_date >= start_date and current_date <= end_date %}
                 <span class="font-family-base-bold">{{ time.service_time_label }}</span><br>
-                {% for service_time in time.service_times %}
+                {% for service_time in time.reference_service_times %}
                   {{ service_time }}
-                  {% if forloop.index != time.service_times.size %}<br>{% endif %}
+                  {% if forloop.index != time.reference_service_times.size %}<br>{% endif %}
                 {% endfor %}
               {% endif %}
             {% else %}
               <span class="font-family-base-bold">{{ time.service_time_label }}</span><br>
-              {% for service_time in time.service_times %}
+              {% for service_time in time.reference_service_times %}
                 {{ service_time }}
-                {% if forloop.index != time.service_times.size %}<br>{% endif %}
+                {% if forloop.index != time.reference_service_times.size %}<br>{% endif %}
               {% endfor %}
             {% endif %}
             {% if forloop.first and service_times_count == 2 %}
