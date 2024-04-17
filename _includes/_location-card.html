@@ -34,9 +34,9 @@
           <p class="flush font-size-small">
             {% assign current_date = "now" | date: "%s" %}
             
-            {% if location.service_times %}
-            {% assign service_times_count = location.service_times | size %}
-            {% for time in location.service_times %}
+            {% if location.reference_service_times %}
+            {% assign reference_service_times_count = location.reference_service_times | size %}
+            {% for time in location.reference_service_times %}
               {% if time.is_special_service_time == true %}
                 {% assign start_date = time.special_service_start_date | date: "%s" %}
                 {% assign end_date = time.special_service_end_date | date: "%s" %}
@@ -56,7 +56,7 @@
                   {% if forloop.index != time.service_times.size %}<br>{% endif %}
                 {% endfor %}
               {% endif %}
-              {% if forloop.first and service_times_count == 2 %}
+              {% if forloop.first and reference_service_times_count == 2 %}
                 <!-- Insert double break only after the first item if both service times are present -->
                 <br><br>
               {% endif %}

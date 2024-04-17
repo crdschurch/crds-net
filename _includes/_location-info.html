@@ -5,9 +5,9 @@
       <p class="flush font-size-small">
         {% assign current_date = "now" | date: "%s" %}
       
-        {% if page.service_times %}
-          {% assign service_times_count = page.service_times | size %}
-          {% for time in page.service_times %}
+        {% if page.reference_service_times %}
+          {% assign service_times_count = page.reference_service_times | size %}
+          {% for time in page.reference_service_times %}
             {% if time.is_special_service_time == true %}
               {% assign start_date = time.special_service_start_date | date: "%s" %}
               {% assign end_date = time.special_service_end_date | date: "%s" %}
