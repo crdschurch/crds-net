@@ -5,7 +5,7 @@ $(document).ready(function() {
       console.log('Intercom is defined, attempting to show widget.');
       window.Intercom('show');
     } else {
-      console.log('Intercom is undefined, initializing mailto.');
+      console.warn('Intercom is undefined, initializing mailto.');
       window.location.href = 'mailto:hello@crossroads.net';
     }
 
