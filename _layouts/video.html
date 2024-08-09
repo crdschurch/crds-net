@@ -23,7 +23,11 @@ layout: default
               {% capture url_string %} {{ page.url | replace: '/', " " }}{% endcapture %}
               {% assign url="" %}
               <ol class="breadcrumb text-orange hard-sides">
-
+                {% if page.is_student_ministry_series_video %}
+                  <li><a href="/students">Student Ministry</a></li>
+                  <li><a href="/student-ministry/series">Series</a></li>
+                  <li><a href="/media/series/{{ page.series.slug }}">{{ page.series.title }}</a></li>
+                {% else %}
                 {% for breadcrumb in url_array %}
                 {% capture first_word %}{{ url_string | truncatewords: 1, "" }}{% endcapture %}
                 {% capture url %}{{ url }}/{{ first_word }}{% endcapture %}
@@ -32,6 +36,7 @@ layout: default
 
                 {% capture url_string %}{{ url_string | remove_first: first_word }}{% endcapture %}
                 {% endfor %}
+                {% endif %}
               </ol>
               <!-- End breadcrumbs -->
 

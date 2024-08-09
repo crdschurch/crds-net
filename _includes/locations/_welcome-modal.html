@@ -38,7 +38,7 @@
             <p class="font-family-base-bold text-white">{{ page.cta_btn_lead }}</p>
             <div>
               {% if page.cta_btn_url %}
-              <crds-button href="{{ page.cta_btn_url }}" color="white" display="outline" text="{{ page.cta_btn_text }}"></crds-button>
+              <crds-button target="_blank" href="{{ page.cta_btn_url }}" color="white" display="outline" text="{{ page.cta_btn_text }}"></crds-button>
               {% else %}
               <crds-button data-target="#subscribeModalForm" data-toggle="modal" color="white" display="outline" text="{{ page.cta_btn_text }}"></crds-button>
               {% endif %}
