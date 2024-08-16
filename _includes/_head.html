@@ -161,4 +161,21 @@
   {% include _facebook.html %}
   {% if page.js_vars %}{% include _js_vars.html %}{% endif %}
   {% javascript_link_tag application %}
+
+  <!-- Analytics Wrapper Script -->
+  <script src="https://demo-crds-analytics-wrapper.netlify.app/analytics-wrapper.iife.js"></script>
+
+  <script>
+    window.addEventListener('load', function() {
+      if (window.initializeAnalytics) {
+        window.initializeAnalytics({
+          commonProps: {
+            userId: '12345',
+          }
+        });
+      } else {
+        console.error('AnalyticsWrapper is not available.');
+      }
+    });
+  </script>
 </head>
