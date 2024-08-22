@@ -162,8 +162,12 @@
   {% if page.js_vars %}{% include _js_vars.html %}{% endif %}
   {% javascript_link_tag application %}
 
+  <script>
+    window.SEGMENT_WRITE_KEY = "{% if site.jekyll_env == 'production' %}nPCU8RuoHt5Ip7tj3UdS4ek0A53a8dGW{% else %}6urDjS9ewsjC9YAbSuihDc0TY7Xrv39b{% endif %}";
+  </script>
+
   <!-- Analytics Wrapper Script -->
-  <script src="https://demo-crds-analytics-wrapper.netlify.app/analytics-wrapper.iife.js"></script>
+  <script src="https://demo-crds-analytics-wrapper.netlify.app/analytics-wrapper.iife.js.gz"></script>
 
   <script>
     window.addEventListener('load', function() {
