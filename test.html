@@ -2,4 +2,18 @@
 layout: none
 ---
 
-The value of `site.crds_rock_env` is: `{{ site.config.crds_rock_env }}`
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Data</title>
+</head>
+
+<body>
+    <h1>Site Data</h1>
+    <pre>{{ site | jsonify | pretty_print }}</pre>
+</body>
+
+</html>
