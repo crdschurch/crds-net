@@ -22,6 +22,8 @@
   <product_name>
     {% if item.title %}
     {{ item.title | truncate: 128 | asciify }}
+    {% else %}
+    No title available
     {% endif %}
   </product_name>
   <brand_name>{{ path_one }}</brand_name>
@@ -31,6 +33,8 @@
       <category_name>
         {% if item.category.title %}
         {{ item.category.title | truncate: 128 | asciify }}
+        {% else %}
+        No title available
         {% endif %}
       </category_name>
     </category>
@@ -41,6 +45,8 @@
       <category_name>
         {% if tag.title %}
         {{ tag.title | truncate: 128 | asciify }}
+        {% else %}
+        No title available
         {% endif %}
       </category_name>
     </category>
