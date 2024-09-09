@@ -23,7 +23,7 @@
     {% if item.title %}
     {{ item.title | truncate: 128 | asciify }}
     {% else %}
-    No title available
+    No title available {{item.title}}
     {% endif %}
   </product_name>
   <brand_name>{{ path_one }}</brand_name>
@@ -34,7 +34,7 @@
         {% if item.category.title %}
         {{ item.category.title | truncate: 128 | asciify }}
         {% else %}
-        No title available
+        No title available {{ item.category.title }}
         {% endif %}
       </category_name>
     </category>
@@ -46,7 +46,7 @@
         {% if tag.title %}
         {{ tag.title | truncate: 128 | asciify }}
         {% else %}
-        No title available
+        No title available {{tag.title}}
         {% endif %}
       </category_name>
     </category>
