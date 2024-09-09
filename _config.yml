@@ -173,6 +173,41 @@ contentful:
   exclude:
     - migration
     - migrations
+    - guideComponentMultipleSelects
+    - guideComponentButtons
+    - guideComponentAudioUrls
+    - guideComponentYoutubeVideos
+    - guideComponentNativeVideoUrls
+    - guideComponentCreateNewChatButtons
+    - guideComponentGroupReaders
+    - guideComponentGroupSyncButtons
+    - guideComponentGroupSyncPersonPickers
+    - guideComponentMultipleChoicePhotos
+    - guideComponentProfileImageButtons
+    - guideComponentGroupSyncTimers
+    - guideComponentTimers
+    - guideComponentShortAnswers
+    - guideComponentListAnswers
+    - guideComponentMarkdownTexts
+    - guideComponentMultipleChoices
+    - guideOptionImages
+    - guideComponentGroupSyncMultipleChoices
+    - guideComponentRecalls
+    - guideComponentRecallMultiplies
+    - guideOptionBranchingReferences
+    - guideSubcomponentAssessmentCategories
+    - guideSubcomponentAssessmentOptionCategories
+    - guideSubcomponentAssessmentOptions
+    - guideComponentImageCarousels
+    - guideSubcomponentAssessmentQuestions
+    - guides
+    - guideComponentExpandableImages
+    - guideComponentRecallMultipleChoices
+    - guideOptionTexts
+    - guideLevels
+    - guideComponentAssessments
+    - guideComponentFullScreenVideos
+    - guideCards
   featured_media:
     map:
       page_path: path
