@@ -19,36 +19,18 @@
 
 <product>
   <product_id>{{ item.contentful_id }}</product_id>
-  <product_name>
-    {% if item.title %}
-    {{ item.title | truncate: 128 | asciify }}
-    {% else %}
-    No title available {{item.title}}
-    {% endif %}
-  </product_name>
+  <product_name>{{ item.title | truncate: 128 }}</product_name>
   <brand_name>{{ path_one }}</brand_name>
   <categories>
     {% if item.category.size > 0 %}
     <category>
-      <category_name>
-        {% if item.category.title %}
-        {{ item.category.title | truncate: 128 | asciify }}
-        {% else %}
-        No title available {{ item.category.title }}
-        {% endif %}
-      </category_name>
+      <category_name>{{ item.category.title | truncate: 128 }}</category_name>
     </category>
     {% endif %}
     {% if item.tags.size > 0 %}
     {% for tag in item.tags %}
     <category>
-      <category_name>
-        {% if tag.title %}
-        {{ tag.title | truncate: 128 | asciify }}
-        {% else %}
-        No title available {{tag.title}}
-        {% endif %}
-      </category_name>
+      <category_name>{{ tag.title | truncate: 128 }}</category_name>
     </category>
     {% endfor %}
     {% endif %}
