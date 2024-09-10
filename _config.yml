@@ -251,13 +251,6 @@ contentful:
     map:
       date: published_at
   serviceTimes:
-  tag:
-    - id
-    - contentful_id
-    - content_type
-    - title
-    - slug
-
 defaults:
   - scope:
       path: ""
