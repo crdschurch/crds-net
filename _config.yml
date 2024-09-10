@@ -173,41 +173,54 @@ contentful:
   exclude:
     - migration
     - migrations
-    - guideComponentMultipleSelects
-    - guideComponentButtons
-    - guideComponentAudioUrls
-    - guideComponentYoutubeVideos
-    - guideComponentNativeVideoUrls
-    - guideComponentCreateNewChatButtons
-    - guideComponentGroupReaders
-    - guideComponentGroupSyncButtons
-    - guideComponentGroupSyncPersonPickers
+    - guide
+    - guideCard
+    - guideComponentMultipleSelect
+    - guideComponentButton
+    - guideComponentAudioUrl
+    - guideComponentYoutubeVideo
+    - guideComponentNativeVideoUrl
+    - guideComponentCreateNewChatButton
+    - guideComponentGroupReader
+    - guideComponentGroupSyncButton
+    - guideComponentGroupSyncPersonPicker
+    - guideComponentProfileImageButton
+    - guideComponentGroupSyncTimer
+    - guideComponentTimer
+    - guideComponentShortAnswer
+    - guideComponentListAnswer
+    - guideComponentMarkdownText
+    - guideComponentMultipleChoice
+    - guideOptionImage
+    - guideComponentGroupSyncMultipleChoice
+    - guideComponentRecall
+    - guideOptionBranchingReference    
+    - guideSubcomponentAssessmentOption
+    - guideComponentImageCarousel
+    - guideSubcomponentAssessmentQuestion
+    - guideComponentExpandableImage
+    - guideComponentRecallMultipleChoice
+    - guideOptionText
+    - guideLevel
+    - guideComponentAssessment
+    - guideComponentFullScreenVideo
     - guideComponentMultipleChoicePhotos
-    - guideComponentProfileImageButtons
-    - guideComponentGroupSyncTimers
-    - guideComponentTimers
-    - guideComponentShortAnswers
-    - guideComponentListAnswers
-    - guideComponentMarkdownTexts
-    - guideComponentMultipleChoices
-    - guideOptionImages
-    - guideComponentGroupSyncMultipleChoices
-    - guideComponentRecalls
-    - guideComponentRecallMultiplies
-    - guideOptionBranchingReferences
-    - guideSubcomponentAssessmentCategories
-    - guideSubcomponentAssessmentOptionCategories
-    - guideSubcomponentAssessmentOptions
-    - guideComponentImageCarousels
-    - guideSubcomponentAssessmentQuestions
-    - guides
-    - guideComponentExpandableImages
-    - guideComponentRecallMultipleChoices
-    - guideOptionTexts
-    - guideLevels
-    - guideComponentAssessments
-    - guideComponentFullScreenVideos
-    - guideCards
+    - guideComponentRecallMultiply
+    - guideSubcomponentAssessmentCategory
+    - guideSubcomponentAssessmentOptionCategory
+    - flexJumbotron
+    - flexImage
+    - flexContentBlock
+    - flexPage
+    - flexTheme
+    - flexVideo
+    - flexFontCanvas
+    - flexColumn
+    - flexButton
+    - flexCarousel
+    - flexSlide
+    - flexSnippet
+    - flexCard
   featured_media:
     map:
       page_path: path
@@ -238,6 +251,12 @@ contentful:
     map:
       date: published_at
   serviceTimes:
+  tag:
+    - id
+    - contentful_id
+    - content_type
+    - title
+    - slug
 
 defaults:
   - scope:
