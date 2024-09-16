@@ -7,9 +7,9 @@ layout: default
 
 <!-- Featured Section -->
 {% if page.featured_section.size > 0 %}
-  <div class="overflow-hidden">
-    {{ page.featured_section }}
-  </div>
+<div class="overflow-hidden">
+  {{ page.featured_section }}
+</div>
 {% endif %}
 
 <!-- Livestream player-->
@@ -22,21 +22,26 @@ layout: default
 
 <!-- Jumbotron section -->
 {% if page.site_id != 23 %}
-<section class="jumbotron locations-jumbotron flush-bottom width-100" id="has-resi-player" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
+<section class="jumbotron locations-jumbotron flush-bottom width-100" id="has-resi-player"
+  style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
   data-optimize-bg-img>
   <div class="bg-overlay"></div>
   <div class="container">
-    <div class="row location-title-row" style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+    <div class="row location-title-row"
+      style="background-image: url('{{ page.bg_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}')"
+      data-optimize-bg-img>
       <div class="bg-overlay"></div>
       <div class="col-sm-12 push-ends mobile-soft-sides">
         <div>
           <span class="font-family-base text-uppercase text-white">
             <strong>welcome to</strong>
           </span>
-          <h1 class="flush-ends font-family-condensed-extra text-uppercase soft-half-top">Crossroads <br />{{ page.name }}</h1>
+          <h1 class="flush-ends font-family-condensed-extra text-uppercase soft-half-top">Crossroads <br />{{ page.name
+            }}</h1>
         </div>
         <div>
-          <p class="font-family-serif font-size-h6 text-white push-top">A place to know God, make friends, and explore the adventure of faith together.</p>
+          <p class="font-family-serif font-size-h6 text-white push-top">A place to know God, make friends, and explore
+            the adventure of faith together.</p>
         </div>
       </div>
     </div>
@@ -47,33 +52,36 @@ layout: default
 </section>
 
 <section class="bg-orange">
-   <div class="container">
-     <div class="row soft-half">
-       <div class="col-sm-12 text-center">
-         <p class="font-size-small text-primary flush-bottom">
-           <a href="{{site.ENV.CRDS_ROCK_DOMAIN}}planavisit" class="text-primary" target="_blank"><u>New? Plan Your First Visit</u></a>
-         </p>
-       </div>
-     </div>
-   </div>
- </section>
+  <div class="container">
+    <div class="row soft-half">
+      <div class="col-sm-12 text-center">
+        <p class="font-size-small text-primary flush-bottom">
+          <a href="{{site.ENV.CRDS_ROCK_DOMAIN}}planavisit" class="text-primary" target="_blank"><u>New? Plan Your First
+              Visit</u></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Impact Section -->
 <section class="bg-tan bg-topo-50 bg-contain">
   <div class="container soft-ends">
     <div class="text-center">
       <h2 class="component-header-box text-blue">Change your life. Impact others.</h2>
-      <p class="font-family-serif text-gray-darker font-size-base push-half">Your choices impact the world. We can’t wait to see what you’ll do next.</p>
+      <p class="font-family-serif text-gray-darker font-size-base push-half">Your choices impact the world. We can’t
+        wait to see what you’ll do next.</p>
     </div>
 
     <div class="row push-ends">
       <div class="col-sm-6">
         <div class="portrait-card-skeleton-condensed push-bottom">
           <crds-portrait-card theme="condensed" lead="Stay up-to-date" title="Never miss an event"
-          image-src="//crds-media.imgix.net/2g8yKVrxSIiaMKBsmxCWFW/7e0f90537c00c3d0f0d793b0c1233b86/stay-up-to-date.png">
-            <p class="push-half-ends">Doing life together is better than going it alone. Sign up to get notified when we’re gathering together or finding ways to get closer to God.</p>
-            <crds-button class="push-half-right" data-target="#subscribeModalForm" data-toggle="modal" href="" color="white"
-              text="Sign up"></crds-button>
+            image-src="//crds-media.imgix.net/2g8yKVrxSIiaMKBsmxCWFW/7e0f90537c00c3d0f0d793b0c1233b86/stay-up-to-date.png">
+            <p class="push-half-ends">Doing life together is better than going it alone. Sign up to get notified when
+              we’re gathering together or finding ways to get closer to God.</p>
+            <crds-button class="push-half-right" data-target="#subscribeModalForm" data-toggle="modal" href=""
+              color="white" text="Sign up"></crds-button>
           </crds-portrait-card>
         </div>
       </div>
@@ -81,10 +89,14 @@ layout: default
       <div class="col-sm-6">
         <div class="portrait-card-skeleton-condensed push-bottom">
           <crds-portrait-card theme="condensed" lead="Join us" title="Help launch the future"
-          image-src="//crds-media.imgix.net/1IzQq01XGZAtULMc8Zf9cc/2319ef5827e77deb759aac6241175149/launch-team-sign-up-image.png">
-            <p class="push-half-ends">Crossroads is a growing community that needs leaders and doers. Join our team and help build the church you want to belong to.</p>
-            <crds-button class="push-half-right" data-target="#launchModalForm" data-toggle="modal" href="" color="white"
-              text="Sign up"></crds-button>
+            image-src="//crds-media.imgix.net/1IzQq01XGZAtULMc8Zf9cc/2319ef5827e77deb759aac6241175149/launch-team-sign-up-image.png">
+            <p class="push-half-ends">Crossroads is a growing community that needs leaders and doers. Join our team and
+              help build the church you want to belong to. {% if page.name === 'Dayton' %}Learn more on the
+              <a href="https://www.crossroads.net/daytonlaunch">Launch Team Page</a> or sign up below
+              {% endif %}
+            </p>
+            <crds-button class="push-half-right" data-target="#launchModalForm" data-toggle="modal" href=""
+              color="white" text="Sign up"></crds-button>
           </crds-portrait-card>
         </div>
       </div>
@@ -101,45 +113,49 @@ layout: default
   <div class="container">
     <div class="text-center push-ends border-bottom-dashed push-top">
       <h3 class="component-header-box text-orange">{{ page.name }}</h3>
-      <p class="push-ends soft-bottom font-family-serif font-size-large">Grow in community and make a positive impact in your city.</p>
+      <p class="push-ends soft-bottom font-family-serif font-size-large">Grow in community and make a positive impact in
+        your city.</p>
     </div>
     <div>
       {% if page.community_pastor_name and page.site_id != 23 %}
-      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "care", "groups"]' mobile-dropdown>
-      {% elsif page.site_id == 23 %}
-      <crds-tabs tabs='["events & updates", "the team", "about", "kids & students", "care", "groups"]' mobile-dropdown>
-      {% else %}
-      <crds-tabs tabs='["events & updates", "about", "kids & students", "care", "groups"]' mobile-dropdown>
-      {% endif %}
+      <crds-tabs tabs='["events & updates", "community pastor", "about", "kids & students", "care", "groups"]'
+        mobile-dropdown>
+        {% elsif page.site_id == 23 %}
+        <crds-tabs tabs='["events & updates", "the team", "about", "kids & students", "care", "groups"]'
+          mobile-dropdown>
+          {% else %}
+          <crds-tabs tabs='["events & updates", "about", "kids & students", "care", "groups"]' mobile-dropdown>
+            {% endif %}
 
-        <!-- Events & Updates -->
-        <div slot="tab-events-updates" class="push-ends">
-          <div class="row" id="events-updates">
+            <!-- Events & Updates -->
+            <div slot="tab-events-updates" class="push-ends">
+              <div class="row" id="events-updates">
 
-            <div class="col-sm-8 push-bottom soft-bottom">
-              <!-- Featured Section - Below Jumbotron -->
-              {% assign hasPromo = false %}
-              {% if page.featured_below.size > 0 %}
-              {% assign hasPromo = true %}
-              <div class="push-bottom">
-                {{ page.featured_below }}
-              </div>
-              {% endif %}
+                <div class="col-sm-8 push-bottom soft-bottom">
+                  <!-- Featured Section - Below Jumbotron -->
+                  {% assign hasPromo = false %}
+                  {% if page.featured_below.size > 0 %}
+                  {% assign hasPromo = true %}
+                  <div class="push-bottom">
+                    {{ page.featured_below }}
+                  </div>
+                  {% endif %}
 
-              <a href="{{ current_message.url }}" title="{{ current_message.title }}">
-                <crds-image src="{{ current_message.image.url | imgix: site.imgix }}?auto=format,compress&w=720" no-crop size="card"></crds-image>
-              </a>
-              <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Message</strong></p>
-              <h2 class="font-family-condensed-extra text-uppercase flush">{{ current_message.title }}</h2>
-              <div class="push-half-top push-bottom font-size-small text-gray-dark">
-                {{ current_message.description | markdownify }}
-              </div>
-              <crds-button href="{{ current_message.url }}" title="{{ current_message.title }}" text="Watch current message"
-                color="orange"></crds-button>
+                  <a href="{{ current_message.url }}" title="{{ current_message.title }}">
+                    <crds-image src="{{ current_message.image.url | imgix: site.imgix }}?auto=format,compress&w=720"
+                      no-crop size="card"></crds-image>
+                  </a>
+                  <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Message</strong></p>
+                  <h2 class="font-family-condensed-extra text-uppercase flush">{{ current_message.title }}</h2>
+                  <div class="push-half-top push-bottom font-size-small text-gray-dark">
+                    {{ current_message.description | markdownify }}
+                  </div>
+                  <crds-button href="{{ current_message.url }}" title="{{ current_message.title }}"
+                    text="Watch current message" color="orange"></crds-button>
 
-            </div>
-            <div class="col-sm-4 push-bottom soft-bottom">
-              <!--<div class="bg-blue soft push-bottom">
+                </div>
+                <div class="col-sm-4 push-bottom soft-bottom">
+                  <!--<div class="bg-blue soft push-bottom">
                 <div class="soft-half-ends">
                   {% if page.site_id == 23 %}
                   <p class="font-family-base-bold font-size-smaller text-orange text-uppercase flush">Come hang out.</p>
@@ -151,231 +167,281 @@ layout: default
                   <crds-button href="{{ page.google_calendar_link }}" color="white" display="outline" text="View Calendar" target="_blank"></crds-button>
                 </div>
               </div>-->
-              <crds-site-happenings-locations location="{{ page.name }}" show-limit="4" has-promo="{{ hasPromo }}"></crds-site-happenings-locations>
-            </div>
-          </div>
-        </div>
-
-        <!-- Community Pastor or The Team -->
-        {% assign community_slot = "tab-community-pastor" %}
-        {% if page.site_id == 23 %}
-          {% assign community_slot = "tab-the-team" %}
-        {% endif %}
-
-        <div slot="{{ community_slot }}" class="push-ends">
-          <div class="row align-items-center df-screen-sm">
-            <div class="col-sm-6 push-bottom">
-              <img class="img-full-width" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" />
-            </div>
-            <div class="col-sm-6 push-bottom">
-              <p class="text-orange text-uppercase flush-bottom"><strong>Community pastor</strong></p>
-              <h2 class="section-header flush-ends soft-half-bottom">{{ page.community_pastor_name }}</h2>
-              {{ page.community_pastor_bio | markdownify }}
-
-              {% if page.community_pastor_email %}
-              <div class="soft-half-ends border-bottom">
-                <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.</p>
-                <crds-button href="mailto:{{ page.community_pastor_email }}" color="blue" text="Email me" target="_blank"></crds-button>
-              </div>
-              {% endif %}
-
-              <div class="soft-half-top">
-                {% if page.community_pastor_facebook_url %}
-                <crds-button href="{{ page.community_pastor_facebook_url }}" color="blue" display="outline"
-                  icon="facebook" icon-align="left" icon-color="blue" icon-size="16"
-                  text="Follow {{ pastor_full_name[0] }}" target="_blank"></crds-button>
-                {% endif %}
-                {% if page.community_pastor_instagram_url %}
-                <crds-button href="{{ page.community_pastor_instagram_url }}" color="blue" display="outline"
-                  icon="instagram" icon-align="left" icon-color="blue" icon-size="16"
-                  text="Follow {{ pastor_full_name[0] }}" target="_blank"></crds-button>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-
-          {% if page.site_id == 23 %}
-          <div class="row align-items-top df-screen-sm push-top soft-top">
-            <div class="col-xs-12 col-sm-6 col-sm-push-6 push-bottom">
-              <img class="img-full-width" src="//crds-media.imgix.net/3VeyWSjT4aCWbADOGkJJJ1/3e19dce995ba0dc422061e6c0f216311/Brenna_Cuadrado.png?auto=format,compress&w=1200"
-          data-optimize-img />
-            </div>
-            <div class="col-xs-12 col-sm-6 col-sm-pull-6 push-bottom flex-child">
-              <p class="text-orange text-uppercase flush-bottom"><strong>Engagement Director</strong></p>
-              <h2 class="section-header flush-ends soft-half-bottom">Brenna Cuadrado</h2>
-              <p>Brenna is the Engagement Director for Crossroads Columbus. She is a proud Dayton Flyer and a self-declared nerd. Brenna started her career in Research & Development as an engineer, and made the pivot to ministry in 2021. Brenna lives in Gahanna with her husband Javi and incredibly fun toddler, Sofía. She is an avid reader of fiction novels, loves a good cocktail, and spends way too much money on concerts.</p>
-              <div class="soft-half-ends">
-                <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.</p>
-                <crds-button href="mailto:brenna.maureen@crossroads.net" color="blue" text="Email me" target="_blank"></crds-button>
-              </div>
-            </div>
-          </div>
-
-	  <div class="row align-items-top df-screen-sm push-top soft-top">
-            <div class="col-xs-12 col-sm-6 push-bottom">
-              <img class="img-full-width" src="//crds-media.imgix.net/6v4ziOw34hHtqXcNU6HPBz/7bd0aca02bba8eeb081addbcef3d9d50/Matt_Sweasy.png?auto=format,compress&w=1200"
-          data-optimize-img />
-            </div>
-            <div class="col-xs-12 col-sm-6 push-bottom flex-child">
-              <p class="text-orange text-uppercase flush-bottom"><strong>Worship Leader</strong></p>
-              <h2 class="section-header flush-ends soft-half-bottom">Matt Sweasy</h2>
-              <p>Matt Sweasy is the Worship Leader at Crossroads Columbus. Prior to moving to Columbus, Matt has served as a Worship Pastor for the past 7 years in and around the Cincinnati area. He is passionate about the next generation of leaders and spends most of his time dreaming of ways to help others grow in confidence in who God has made them uniquely to be. Matt lives in the Polaris area with his wife Afton and two kids, Aleigha and Truman. He is an adventurer at heart, a big coffee snob, and the world’s biggest fan of Marvel movies.</p>
-              <div class="soft-half-ends">
-                <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.</p>
-                <crds-button href="mailto:matt.sweasy@crossroads.net" color="blue" text="Email me" target="_blank"></crds-button>
-              </div>
-            </div>
-          </div>
-		
-          <div class="row align-items-top df-screen-sm push-top soft-top">
-            <div class="col-xs-12 col-sm-6 col-sm-push-6 push-bottom">
-              <img class="img-full-width" src="//crds-media.imgix.net/1bAcRnuAcEsbrGQdxTEFc6/fea1a824431dddc9aac721b01f825fe1/IMG_6192.png?auto=format,compress&w=1200"
-          data-optimize-img />
-            </div>
-            <div class="col-xs-12 col-sm-6 col-sm-pull-6 push-bottom flex-child">
-              <p class="text-orange text-uppercase flush-bottom"><strong>ReachOut Coordinator</strong></p>
-              <h2 class="section-header flush-ends soft-half-bottom">Kelli Boone</h2>
-              <p>Kelli Boone is the ReachOut Coordinator at Crossroads Columbus. Kelli began her career in social work. After moving to Columbus in 2017, she focused mostly on real estate investing while exploring next steps for her career. Through that she developed a passion for anti-human trafficking work. She lives in Gahanna with her husband, Teno, and her two sweet girls - Reina and Cataleya. She loves thrifting, writing, and the outdoors, and enjoys connecting with people over a meal and deep conversation.</p>
-              <div class="soft-half-ends">
-                <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.</p>
-                <crds-button href="mailto:kelli.boone@crossroads.net" color="blue" text="Email me" target="_blank"></crds-button>
-              </div>
-            </div>
-          </div>
-
-	  <div class="row align-items-top df-screen-sm push-top soft-top">
-            <div class="col-xs-12 col-sm-6 push-bottom">
-              <img class="img-full-width" src="//crds-media.imgix.net/1pJvyI9X72hOlmJYSezjcV/0edeaedd3a8dc2494efc7d6b94c0b063/Kiefer_Reyes.png?auto=format,compress&w=1200"
-          data-optimize-img />
-            </div>
-            <div class="col-xs-12 col-sm-6 push-bottom flex-child">
-              <p class="text-orange text-uppercase flush-bottom"><strong>Connections Director</strong></p>
-              <h2 class="section-header flush-ends soft-half-bottom">Kiefer Reyes</h2>
-              <p>Kiefer Reyes is the Connections Director at Crossroads Columbus focusing on environments and volunteer teams. Prior to working at Crossroads, Kiefer worked in management at Costco Wholesale in various roles and capacities. He lives in King-Lincoln with his wife Alyssa and has four incredible kids - Ceci, Nazir, Mateo and Aniya. He’s passionate about developing a strong family culture, loves to go golfing, fishing, and is always down to visit a local brewery.</p>
-              <div class="soft-half-ends">
-                <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.</p>
-                <crds-button href="mailto:kiefer.reyes@crossroads.net" color="blue" text="Email me" target="_blank"></crds-button>
-              </div>
-            </div>
-          </div>
-
-          {% endif %}
-        </div>
-
-        <!-- About -->
-        <div slot="tab-about" class="push-ends">
-          <div class="row align-items-center df-screen-sm">
-            <div class="col-sm-6 push-bottom">
-              <img class="img-full-width" src="{% if page.about_image.url %}{{ page.about_image.url | imgix: site.imgix }}{% else %}{{  site.default_image | imgix: site.imgix }}{% endif %}" />
-            </div>
-            <div class="col-sm-6 push-bottom">
-              <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>
-              <h2 class="section-header flush-ends soft-half-bottom">Crossroads {{ page.name }}</h2>
-              {{ page.description | markdownify }}
-              <div class="soft-half-top soft-bottom">
-                <crds-button href="{{ page.facebook_page_url }}" color="blue" display="outline" target="_blank"
-                  icon="facebook" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
-                </crds-button>
-                <crds-button href="{{ page.instagram_page_url }}" color="blue" display="outline" target="_blank"
-                  icon="instagram" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
-                </crds-button>
-              </div>
-              {{ page.additional_info | markdownify }}
-            </div>
-          </div>
-          <div class="row align-items-center df-screen-sm push-top soft-top">
-              <div class="col-sm-6 col-sm-push-6 push-bottom">
-                <img class="img-full-width" src="//crds-media.imgix.net/5rncjmfpKINMWhX4Bq905/71baf8dcc6bb28045ccf93cfe808365b/what-to-expect-gfx.jpg"/>
-              </div>
-              <div class="col-sm-6 col-sm-pull-6 push-bottom">
-                <p class="text-orange text-uppercase flush-bottom"><strong>More about Crossroads</strong></p>
-                <h2 class="section-header flush-ends soft-half-bottom">Adventure awaits</h2>
-                <p>Whatever your thoughts on church or your beliefs about God, you are welcome here. Expect to be challenged. Expect to disagree with some things. Expect to hear a lot about a God who loves you and pursues you. Expect unfiltered conversations & Biblical truth. Expect opportunities to make a difference & make real friends. (And when we meet in person, free coffee)</p>
-                <div class="soft-half-top soft-bottom">
-                  <crds-button href="/about" color="blue" display="outline" text="More About Us"></crds-button>
+                  <crds-site-happenings-locations location="{{ page.name }}" show-limit="4"
+                    has-promo="{{ hasPromo }}"></crds-site-happenings-locations>
                 </div>
               </div>
-          </div>
-        </div>
+            </div>
 
-        <!-- Kids and Students -->
-        <div slot="tab-kids-students" class="push-ends">
-          <div class="row align-items-center df-screen-sm">
-            <div class="col-sm-6 push-bottom">
-              <img class="img-full-width" src="//crds-media.imgix.net/3SX7tTVQ0Wqi5WKRy5ikRd/cdc797e5c08a00d8031b4daef7ece443/crossroads-kids-club2.jpg"/>
-            </div>
-            <div class="col-sm-6 push-bottom">
-              <p class="text-orange text-uppercase flush-bottom"><strong>Kids' Club</strong></p>
-              <h2 class="section-header flush-ends soft-half-bottom">We help kids get to know God.</h2>
-              <p>Your kids will love Kids’ Club! A fun learning environment designed especially for kids (birth through fifth grade). It’s free, totally secure, and don’t worry-we’ll let you know if your child needs you at any point during the service.</p>
-              <em>{{ page.kids_club_hours | markdownify }}</em>
-              <div class="soft-half-top">
-                <crds-button class="push-half-right" href="/kids-club" color="blue" display="outline" text="More about Kids' Club">
-                </crds-button>
-                <!--<crds-button text="Sign up for the newsletter" color="orange" href="#"
-                  onClick="$('#kidsClubModalForm').modal(); return false;">
-                </crds-button>-->
-              </div>
-            </div>
-          </div>
-          {% if page.student_ministry_hours %}
-          <div class="row push-top soft-top">
-            <div class="align-items-center df-screen-sm">
-              <div class="col-sm-6 col-sm-push-6 push-bottom">
-                <img class="img-full-width" src="//crds-media.imgix.net/oxdr5OPdQne2BmLxiS0yO/3999db037b835a0756ef99bea20eaa22/crossroads-students-about.png"/>
-              </div>
-              <div class="col-sm-6 col-sm-pull-6 push-bottom">
-                <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>
-                <h2 class="section-header flush-ends soft-half-bottom">Crossroads Students</h2>
-                <p>Middle School (grades 6-8) and High School (grades 9-12) students have a place to call their own.
-                  Students are challenged and encouraged through relevant teaching and fun events. Opportunities are
-                  provided for them to grow as they connect with God and with each other. </p>
-                <div class="row">
-                  <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6 col-xl-4 soft-half-top soft-bottom">
-                    <crds-button href="/studentministry/" color="blue" display="outline"
-                      text="More about Crossroads Students">
-                    </crds-button>
-                  </div>
-                  {% if page.student_ministry_leader_email %}
-                  <div class="col-xs-12 col-sm-4 soft-half-top soft-bottom">
-                    <crds-button text="Email Us" target="_blank" color="blue" display="outline" href="mailto:{{ page.student_ministry_leader_email }}" />
+            <!-- Community Pastor or The Team -->
+            {% assign community_slot = "tab-community-pastor" %}
+            {% if page.site_id == 23 %}
+            {% assign community_slot = "tab-the-team" %}
+            {% endif %}
+
+            <div slot="{{ community_slot }}" class="push-ends">
+              <div class="row align-items-center df-screen-sm">
+                <div class="col-sm-6 push-bottom">
+                  <img class="img-full-width" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" />
+                </div>
+                <div class="col-sm-6 push-bottom">
+                  <p class="text-orange text-uppercase flush-bottom"><strong>Community pastor</strong></p>
+                  <h2 class="section-header flush-ends soft-half-bottom">{{ page.community_pastor_name }}</h2>
+                  {{ page.community_pastor_bio | markdownify }}
+
+                  {% if page.community_pastor_email %}
+                  <div class="soft-half-ends border-bottom">
+                    <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.
+                    </p>
+                    <crds-button href="mailto:{{ page.community_pastor_email }}" color="blue" text="Email me"
+                      target="_blank"></crds-button>
                   </div>
                   {% endif %}
+
+                  <div class="soft-half-top">
+                    {% if page.community_pastor_facebook_url %}
+                    <crds-button href="{{ page.community_pastor_facebook_url }}" color="blue" display="outline"
+                      icon="facebook" icon-align="left" icon-color="blue" icon-size="16"
+                      text="Follow {{ pastor_full_name[0] }}" target="_blank"></crds-button>
+                    {% endif %}
+                    {% if page.community_pastor_instagram_url %}
+                    <crds-button href="{{ page.community_pastor_instagram_url }}" color="blue" display="outline"
+                      icon="instagram" icon-align="left" icon-color="blue" icon-size="16"
+                      text="Follow {{ pastor_full_name[0] }}" target="_blank"></crds-button>
+                    {% endif %}
+                  </div>
                 </div>
-                <div>
-                  {{ page.student_ministry_hours | markdownify }}
+              </div>
+
+              {% if page.site_id == 23 %}
+              <div class="row align-items-top df-screen-sm push-top soft-top">
+                <div class="col-xs-12 col-sm-6 col-sm-push-6 push-bottom">
+                  <img class="img-full-width"
+                    src="//crds-media.imgix.net/3VeyWSjT4aCWbADOGkJJJ1/3e19dce995ba0dc422061e6c0f216311/Brenna_Cuadrado.png?auto=format,compress&w=1200"
+                    data-optimize-img />
+                </div>
+                <div class="col-xs-12 col-sm-6 col-sm-pull-6 push-bottom flex-child">
+                  <p class="text-orange text-uppercase flush-bottom"><strong>Engagement Director</strong></p>
+                  <h2 class="section-header flush-ends soft-half-bottom">Brenna Cuadrado</h2>
+                  <p>Brenna is the Engagement Director for Crossroads Columbus. She is a proud Dayton Flyer and a
+                    self-declared nerd. Brenna started her career in Research & Development as an engineer, and made the
+                    pivot to ministry in 2021. Brenna lives in Gahanna with her husband Javi and incredibly fun toddler,
+                    Sofía. She is an avid reader of fiction novels, loves a good cocktail, and spends way too much money
+                    on concerts.</p>
+                  <div class="soft-half-ends">
+                    <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.
+                    </p>
+                    <crds-button href="mailto:brenna.maureen@crossroads.net" color="blue" text="Email me"
+                      target="_blank"></crds-button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row align-items-top df-screen-sm push-top soft-top">
+                <div class="col-xs-12 col-sm-6 push-bottom">
+                  <img class="img-full-width"
+                    src="//crds-media.imgix.net/6v4ziOw34hHtqXcNU6HPBz/7bd0aca02bba8eeb081addbcef3d9d50/Matt_Sweasy.png?auto=format,compress&w=1200"
+                    data-optimize-img />
+                </div>
+                <div class="col-xs-12 col-sm-6 push-bottom flex-child">
+                  <p class="text-orange text-uppercase flush-bottom"><strong>Worship Leader</strong></p>
+                  <h2 class="section-header flush-ends soft-half-bottom">Matt Sweasy</h2>
+                  <p>Matt Sweasy is the Worship Leader at Crossroads Columbus. Prior to moving to Columbus, Matt has
+                    served as a Worship Pastor for the past 7 years in and around the Cincinnati area. He is passionate
+                    about the next generation of leaders and spends most of his time dreaming of ways to help others
+                    grow in confidence in who God has made them uniquely to be. Matt lives in the Polaris area with his
+                    wife Afton and two kids, Aleigha and Truman. He is an adventurer at heart, a big coffee snob, and
+                    the world’s biggest fan of Marvel movies.</p>
+                  <div class="soft-half-ends">
+                    <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.
+                    </p>
+                    <crds-button href="mailto:matt.sweasy@crossroads.net" color="blue" text="Email me"
+                      target="_blank"></crds-button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row align-items-top df-screen-sm push-top soft-top">
+                <div class="col-xs-12 col-sm-6 col-sm-push-6 push-bottom">
+                  <img class="img-full-width"
+                    src="//crds-media.imgix.net/1bAcRnuAcEsbrGQdxTEFc6/fea1a824431dddc9aac721b01f825fe1/IMG_6192.png?auto=format,compress&w=1200"
+                    data-optimize-img />
+                </div>
+                <div class="col-xs-12 col-sm-6 col-sm-pull-6 push-bottom flex-child">
+                  <p class="text-orange text-uppercase flush-bottom"><strong>ReachOut Coordinator</strong></p>
+                  <h2 class="section-header flush-ends soft-half-bottom">Kelli Boone</h2>
+                  <p>Kelli Boone is the ReachOut Coordinator at Crossroads Columbus. Kelli began her career in social
+                    work. After moving to Columbus in 2017, she focused mostly on real estate investing while exploring
+                    next steps for her career. Through that she developed a passion for anti-human trafficking work. She
+                    lives in Gahanna with her husband, Teno, and her two sweet girls - Reina and Cataleya. She loves
+                    thrifting, writing, and the outdoors, and enjoys connecting with people over a meal and deep
+                    conversation.</p>
+                  <div class="soft-half-ends">
+                    <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.
+                    </p>
+                    <crds-button href="mailto:kelli.boone@crossroads.net" color="blue" text="Email me"
+                      target="_blank"></crds-button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row align-items-top df-screen-sm push-top soft-top">
+                <div class="col-xs-12 col-sm-6 push-bottom">
+                  <img class="img-full-width"
+                    src="//crds-media.imgix.net/1pJvyI9X72hOlmJYSezjcV/0edeaedd3a8dc2494efc7d6b94c0b063/Kiefer_Reyes.png?auto=format,compress&w=1200"
+                    data-optimize-img />
+                </div>
+                <div class="col-xs-12 col-sm-6 push-bottom flex-child">
+                  <p class="text-orange text-uppercase flush-bottom"><strong>Connections Director</strong></p>
+                  <h2 class="section-header flush-ends soft-half-bottom">Kiefer Reyes</h2>
+                  <p>Kiefer Reyes is the Connections Director at Crossroads Columbus focusing on environments and
+                    volunteer teams. Prior to working at Crossroads, Kiefer worked in management at Costco Wholesale in
+                    various roles and capacities. He lives in King-Lincoln with his wife Alyssa and has four incredible
+                    kids - Ceci, Nazir, Mateo and Aniya. He’s passionate about developing a strong family culture, loves
+                    to go golfing, fishing, and is always down to visit a local brewery.</p>
+                  <div class="soft-half-ends">
+                    <p class="font font-family-base-bold font-size-smaller text-uppercase">I’d love to CONNECT WITH YOU.
+                    </p>
+                    <crds-button href="mailto:kiefer.reyes@crossroads.net" color="blue" text="Email me"
+                      target="_blank"></crds-button>
+                  </div>
+                </div>
+              </div>
+
+              {% endif %}
+            </div>
+
+            <!-- About -->
+            <div slot="tab-about" class="push-ends">
+              <div class="row align-items-center df-screen-sm">
+                <div class="col-sm-6 push-bottom">
+                  <img class="img-full-width"
+                    src="{% if page.about_image.url %}{{ page.about_image.url | imgix: site.imgix }}{% else %}{{  site.default_image | imgix: site.imgix }}{% endif %}" />
+                </div>
+                <div class="col-sm-6 push-bottom">
+                  <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>
+                  <h2 class="section-header flush-ends soft-half-bottom">Crossroads {{ page.name }}</h2>
+                  {{ page.description | markdownify }}
+                  <div class="soft-half-top soft-bottom">
+                    <crds-button href="{{ page.facebook_page_url }}" color="blue" display="outline" target="_blank"
+                      icon="facebook" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
+                    </crds-button>
+                    <crds-button href="{{ page.instagram_page_url }}" color="blue" display="outline" target="_blank"
+                      icon="instagram" icon-align="left" icon-color="blue" icon-size="16" text="Follow {{ page.name }}">
+                    </crds-button>
+                  </div>
+                  {{ page.additional_info | markdownify }}
+                </div>
+              </div>
+              <div class="row align-items-center df-screen-sm push-top soft-top">
+                <div class="col-sm-6 col-sm-push-6 push-bottom">
+                  <img class="img-full-width"
+                    src="//crds-media.imgix.net/5rncjmfpKINMWhX4Bq905/71baf8dcc6bb28045ccf93cfe808365b/what-to-expect-gfx.jpg" />
+                </div>
+                <div class="col-sm-6 col-sm-pull-6 push-bottom">
+                  <p class="text-orange text-uppercase flush-bottom"><strong>More about Crossroads</strong></p>
+                  <h2 class="section-header flush-ends soft-half-bottom">Adventure awaits</h2>
+                  <p>Whatever your thoughts on church or your beliefs about God, you are welcome here. Expect to be
+                    challenged. Expect to disagree with some things. Expect to hear a lot about a God who loves you and
+                    pursues you. Expect unfiltered conversations & Biblical truth. Expect opportunities to make a
+                    difference & make real friends. (And when we meet in person, free coffee)</p>
+                  <div class="soft-half-top soft-bottom">
+                    <crds-button href="/about" color="blue" display="outline" text="More About Us"></crds-button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          {% endif %}
-        </div>
 
-        <!-- Care -->
-        <div slot="tab-care" class="push-ends">
-          <div class="row align-items-center df-screen-sm">
-            <div class="col-sm-6 push-bottom">
-              <img class="img-full-width" src="//crds-media.imgix.net/6N4nLjk0vm3R230kgN2twX/91151f5ad6f4f46a7830d3a46c2438de/community-care-chat-with-us.jpg"/>
+            <!-- Kids and Students -->
+            <div slot="tab-kids-students" class="push-ends">
+              <div class="row align-items-center df-screen-sm">
+                <div class="col-sm-6 push-bottom">
+                  <img class="img-full-width"
+                    src="//crds-media.imgix.net/3SX7tTVQ0Wqi5WKRy5ikRd/cdc797e5c08a00d8031b4daef7ece443/crossroads-kids-club2.jpg" />
+                </div>
+                <div class="col-sm-6 push-bottom">
+                  <p class="text-orange text-uppercase flush-bottom"><strong>Kids' Club</strong></p>
+                  <h2 class="section-header flush-ends soft-half-bottom">We help kids get to know God.</h2>
+                  <p>Your kids will love Kids’ Club! A fun learning environment designed especially for kids (birth
+                    through fifth grade). It’s free, totally secure, and don’t worry-we’ll let you know if your child
+                    needs you at any point during the service.</p>
+                  <em>{{ page.kids_club_hours | markdownify }}</em>
+                  <div class="soft-half-top">
+                    <crds-button class="push-half-right" href="/kids-club" color="blue" display="outline"
+                      text="More about Kids' Club">
+                    </crds-button>
+                    <!--<crds-button text="Sign up for the newsletter" color="orange" href="#"
+                  onClick="$('#kidsClubModalForm').modal(); return false;">
+                </crds-button>-->
+                  </div>
+                </div>
+              </div>
+              {% if page.student_ministry_hours %}
+              <div class="row push-top soft-top">
+                <div class="align-items-center df-screen-sm">
+                  <div class="col-sm-6 col-sm-push-6 push-bottom">
+                    <img class="img-full-width"
+                      src="//crds-media.imgix.net/oxdr5OPdQne2BmLxiS0yO/3999db037b835a0756ef99bea20eaa22/crossroads-students-about.png" />
+                  </div>
+                  <div class="col-sm-6 col-sm-pull-6 push-bottom">
+                    <p class="text-orange text-uppercase flush-bottom"><strong>About</strong></p>
+                    <h2 class="section-header flush-ends soft-half-bottom">Crossroads Students</h2>
+                    <p>Middle School (grades 6-8) and High School (grades 9-12) students have a place to call their own.
+                      Students are challenged and encouraged through relevant teaching and fun events. Opportunities are
+                      provided for them to grow as they connect with God and with each other. </p>
+                    <div class="row">
+                      <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6 col-xl-4 soft-half-top soft-bottom">
+                        <crds-button href="/studentministry/" color="blue" display="outline"
+                          text="More about Crossroads Students">
+                        </crds-button>
+                      </div>
+                      {% if page.student_ministry_leader_email %}
+                      <div class="col-xs-12 col-sm-4 soft-half-top soft-bottom">
+                        <crds-button text="Email Us" target="_blank" color="blue" display="outline"
+                          href="mailto:{{ page.student_ministry_leader_email }}" />
+                      </div>
+                      {% endif %}
+                    </div>
+                    <div>
+                      {{ page.student_ministry_hours | markdownify }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
             </div>
-            <div class="col-sm-6 push-bottom">
-              <p class="text-orange text-uppercase flush-bottom"><strong>Community Care</strong></p>
-              <h2 class="section-header flush-ends soft-half-bottom">You don’t have to do this on your own. Ask or for help.</h2>
-              <p>We’re not counselors, but our team is trained to listen, ask questions and help you find the support you need. Tell us what you are going through. You will be heard without judgement, and we will pray for you if you’d like. Appointments can be made and discussions had over the phone or through virtual media (Facetime, Zoom or Google Hangouts).</p>
-              <p>From prayer requests, listening appointments, hospital visits, or questions about weddings or funerals– we're here to help.</p>
-              <div class="soft-half-top">
-                {% if page.care_link %}
-                <crds-button class="push-half-right" href="{{ page.care_link }}" color="blue" display="outline"
-                  text="Request care"></crds-button>
-                {% endif %}
+
+            <!-- Care -->
+            <div slot="tab-care" class="push-ends">
+              <div class="row align-items-center df-screen-sm">
+                <div class="col-sm-6 push-bottom">
+                  <img class="img-full-width"
+                    src="//crds-media.imgix.net/6N4nLjk0vm3R230kgN2twX/91151f5ad6f4f46a7830d3a46c2438de/community-care-chat-with-us.jpg" />
+                </div>
+                <div class="col-sm-6 push-bottom">
+                  <p class="text-orange text-uppercase flush-bottom"><strong>Community Care</strong></p>
+                  <h2 class="section-header flush-ends soft-half-bottom">You don’t have to do this on your own. Ask or
+                    for help.</h2>
+                  <p>We’re not counselors, but our team is trained to listen, ask questions and help you find the
+                    support you need. Tell us what you are going through. You will be heard without judgement, and we
+                    will pray for you if you’d like. Appointments can be made and discussions had over the phone or
+                    through virtual media (Facetime, Zoom or Google Hangouts).</p>
+                  <p>From prayer requests, listening appointments, hospital visits, or questions about weddings or
+                    funerals– we're here to help.</p>
+                  <div class="soft-half-top">
+                    {% if page.care_link %}
+                    <crds-button class="push-half-right" href="{{ page.care_link }}" color="blue" display="outline"
+                      text="Request care"></crds-button>
+                    {% endif %}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Groups -->
-        {% assign groups_tab = site.content_blocks | where: 'slug', 'locations-groups-tab' | first %}
-        {{ groups_tab.content_block | liquify }}
-      </crds-tabs>
+            <!-- Groups -->
+            {% assign groups_tab = site.content_blocks | where: 'slug', 'locations-groups-tab' | first %}
+            {{ groups_tab.content_block | liquify }}
+          </crds-tabs>
     </div>
   </div>
 </section>
@@ -385,9 +451,11 @@ layout: default
   <div class="container text-center push-ends">
     <h3 class="component-header-box text-orange">Stay in touch</h3>
     {% if page.site_id == 23 %}
-    <p class="push-half-ends font-family-serif text-white font-size-large">Get all the details on what we're bringing to Columbus.</p>
+    <p class="push-half-ends font-family-serif text-white font-size-large">Get all the details on what we're bringing to
+      Columbus.</p>
     {% else %}
-    <p class="push-half-ends font-family-serif text-white font-size-large">Get all the details happening at Crossroads {{ page.name }}.</p>
+    <p class="push-half-ends font-family-serif text-white font-size-large">Get all the details happening at Crossroads
+      {{ page.name }}.</p>
     {% endif %}
 
     <div class="soft-ends text-center">
@@ -396,11 +464,12 @@ layout: default
         text="Request care"></crds-button>
       {% endif %}
 
-      <crds-button class="push-half-right" target="_blank" href="https://share.hsforms.com/1YY_i9ZyZTy2KZf9WkIgxjg2dls1" color="white"
-        display="outline" text="Subscribe for updates"></crds-button>
+      <crds-button class="push-half-right" target="_blank" href="https://share.hsforms.com/1YY_i9ZyZTy2KZf9WkIgxjg2dls1"
+        color="white" display="outline" text="Subscribe for updates"></crds-button>
 
       <crds-button class="push-half-right" href="//www.facebook.com/crsrds{{ page.slug | downcase }}" color="white"
-        display="outline" icon="facebook" icon-align="left" icon-color="white" icon-size="16" text="Follow"></crds-button>
+        display="outline" icon="facebook" icon-align="left" icon-color="white" icon-size="16"
+        text="Follow"></crds-button>
       <crds-button href="//www.instagram.com/crsrds{{ page.slug | downcase }}" color="white" display="outline"
         icon="instagram" icon-align="left" icon-color="white" icon-size="16" text="Follow"></crds-button>
     </div>
@@ -411,7 +480,8 @@ layout: default
 <section class="bg-orange soft">
   <div class="container text-center push-ends">
     <h3 class="component-header-box text-white">We'd love to connect with you</h3>
-    <p class="font-family-serif font-size-large push-bottom push-half-top text-blue">Whether you have questions about Crossroads, faith, life, we are here to help.</p>
+    <p class="font-family-serif font-size-large push-bottom push-half-top text-blue">Whether you have questions about
+      Crossroads, faith, life, we are here to help.</p>
     <crds-button color="blue" text="Chat with us" data-trigger="chat"></crds-button>
   </div>
 </section>
@@ -427,7 +497,8 @@ layout: default
       <div class="modal-body text-left hard-bottom">
         <h4 class="font-family-condensed-extra text-uppercase soft-half-bottom text-blue">Stay in the know.
           <br />Get
-          the latest Crossroads updates.</h4>
+          the latest Crossroads updates.
+        </h4>
         <div class="form" data-role="hsform">
           <!--[if lte IE 8]>
             <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
