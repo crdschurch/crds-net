@@ -242,6 +242,7 @@ contentful:
     order: "published_at desc"
     map:
       date: published_at
+      is_student_ministry_series: is_student_ministry_series
   sign_up_form:
     query: fields.pageType=OnsiteGroupSignupPage
   song:
