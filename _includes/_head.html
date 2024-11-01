@@ -82,6 +82,8 @@
     </script>
   {% endif %}
   
+  <link rel="preload" href="{{ site.unified_components_endpoint }}/unified-components.js" as="script">
+
   {% unless content contains 'crds-components.esm.js' %}
   <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.esm.js" as="script">
   <link rel="preload" href="{{ site.components_endpoint }}/crds-components.js" as="script">
@@ -138,6 +140,8 @@
   document.dispatchEvent(envReady);
   window.envReady = true;
   </script>
+
+  <script type="module" src="{{ site.unified_components_endpoint }}/unified-components.js"></script>
 
   {% unless content contains 'crds-components.esm.js' %}
   <script type="module" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components/crds-components.esm.js"></script>
