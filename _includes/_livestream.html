@@ -3,57 +3,71 @@
     let livestreamData = {{ site.data.livestreams | jsonify | strip_newlines
   }};
 
-  if (!livestreamData || livestreamData.length === 0) {
-    return;
-  }
+    if (!livestreamData || livestreamData.length === 0) {
+      return;
+    }
 
-  function isTimeInRange(startTime, endTime) {
-    let currentTime = Date.now();
-    return currentTime >= startTime && currentTime <= endTime;
-  }
+    function isTimeInRange(startTime, endTime) {
+      let currentTime = Date.now();
+      return currentTime >= startTime && currentTime <= endTime;
+    }
 
-  let isStream = false;
-  let playerUrl = '';
-  let entryId = '';
-  let currentPageTitle = "{{ page.name }}";
+    let isStream = true; // TODO: set this to false.
+    let playerUrl = '';
+    let entryId = '';
+    let currentPageTitle = "{{ page.name }}";
 
-  livestreamData.forEach(function (livestream) {
-    let startTime = new Date(livestream.startTime).getTime();
-    let endTime = new Date(livestream.endTime).getTime();
+    livestreamData.forEach(function (livestream) {
+      let startTime = new Date(livestream.startTime).getTime();
+      let endTime = new Date(livestream.endTime).getTime();
 
-    let isPageMatch = livestream.pages.some(function (page) {
-      return page === currentPageTitle || page === 'Churchwide (all location pages)';
+      let isPageMatch = livestream.pages.some(function (page) {
+        return page === currentPageTitle || page === 'Churchwide (all location pages)';
+      });
+
+      if (isPageMatch && isTimeInRange(startTime, endTime)) {
+        playerUrl = livestream.url || 'https://resi.media/cr-cinc-oh/Manifest.m3u8';
+        entryId = livestream.id || 'VideoManager';
+        isStream = true;
+
+        // Refresh the page one minute after the livestream starts
+        let refreshStartTime = startTime + 60000;
+        if (refreshStartTime > Date.now()) {
+          setTimeout(function () {
+            location.reload(true);
+          }, refreshStartTime - Date.now());
+        }
+
+        // Refresh the page one minute after the livestream ends
+        let refreshEndTime = endTime + 60000;
+        if (refreshEndTime > Date.now()) {
+          setTimeout(function () {
+            location.reload(true);
+          }, refreshEndTime - Date.now());
+        }
+      }
     });
 
-    if (isPageMatch && isTimeInRange(startTime, endTime)) {
-      playerUrl = livestream.url || 'https://resi.media/cr-cinc-oh/Manifest.m3u8';
-      entryId = livestream.id || 'VideoManager';
-      isStream = true;
+    if (isStream) {
+      let livestreamBanner = document.createElement('div');
+      livestreamBanner.className = 'width-100';
+      livestreamBanner.style.cssText = 'width: 100vw; margin: 0; padding: 8px 0; text-align: center; background-color: #253746;';
+      livestreamBanner.innerHTML = `
+        <h2 class="font-family-condensed-extra" style="color: white; margin: 0; font-size: 22px;">When we’re a go, Brian will lead us through commitment. Enjoy the message in the
+            meantime.</h2>
+        <p style="color: white; margin: 0; font-weight: 600; font-size: 18px;">When it's time:</p>
+        <ol style="color: white; margin: 0; padding: 0; list-style-position: inside; text-align: center; font-size: 18px;">
+          <li>Join us for worship</li>
+          <li>Share this stream with others</li>
+        </ol>
+      `;
 
-      // Refresh the page one minute after the livestream starts
-      let refreshStartTime = startTime + 60000;
-      if (refreshStartTime > Date.now()) {
-        setTimeout(function () {
-          location.reload(true);
-        }, refreshStartTime - Date.now());
-      }
+      // Add the existing video player section
+      let resiPlayerSection = document.createElement('section');
+      resiPlayerSection.className = 'bg-blue';
+      resiPlayerSection.id = 'resi-player';
 
-      // Refresh the page one minute after the livestream ends
-      let refreshEndTime = endTime + 60000;
-      if (refreshEndTime > Date.now()) {
-        setTimeout(function () {
-          location.reload(true);
-        }, refreshEndTime - Date.now());
-      }
-    }
-  });
-
-  if (isStream) {
-    let resiPlayerSection = document.createElement('section');
-    resiPlayerSection.className = 'bg-blue';
-    resiPlayerSection.id = 'resi-player';
-
-    resiPlayerSection.innerHTML = `
+      resiPlayerSection.innerHTML = `
         <div class="container">
           <div class="row push-ends">
             <div id="resi-video-player-container" class="col-sm-10 col-sm-offset-1">
@@ -69,11 +83,12 @@
         </div>
       `;
 
-    let jumbotronSection = document.querySelector('.jumbotron');
+      let jumbotronSection = document.querySelector('.jumbotron');
 
-    if (jumbotronSection && jumbotronSection.parentNode) {
-      jumbotronSection.parentNode.insertBefore(resiPlayerSection, jumbotronSection);
+      if (jumbotronSection && jumbotronSection.parentNode) {
+        jumbotronSection.parentNode.insertBefore(resiPlayerSection, jumbotronSection);
+        jumbotronSection.parentNode.insertBefore(livestreamBanner, jumbotronSection);
+      }
     }
-  }
-  });
+    });
 </script>
