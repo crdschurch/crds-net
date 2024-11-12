@@ -12,7 +12,7 @@
       return currentTime >= startTime && currentTime <= endTime;
     }
 
-    let isStream = true; // TODO: set this to false.
+    let isStream = true; // TODO: set this back to false.
     let playerUrl = '';
     let entryId = '';
     let currentPageTitle = "{{ page.name }}";
@@ -51,7 +51,7 @@
     if (isStream) {
       let livestreamBanner = document.createElement('div');
       livestreamBanner.className = 'width-100';
-      livestreamBanner.style.cssText = 'width: 100vw; margin: 0; padding: 8px 0; text-align: center; background-color: #253746;';
+      livestreamBanner.style.cssText = 'width: 100vw; margin: 0; padding: 8px 0; text-align: center; background-color: black;';
       livestreamBanner.innerHTML = `
         <h2 style="color: white; margin: 0; font-size: 22px;">When we're a go, Brian will lead us through commitment. Enjoy the message in the
             meantime.</h2>
@@ -63,10 +63,14 @@
         <a href="https://www.crossroads.net/commit" style="display: inline-block; background-color: #ff8200; color: white; text-decoration: none; padding: 10px 20px; margin-top: 10px; border-radius: 0;">Commit</a>
       `;
 
-      // Add the existing video player section
       let resiPlayerSection = document.createElement('section');
-      resiPlayerSection.className = 'bg-blue';
       resiPlayerSection.id = 'resi-player';
+      resiPlayerSection.style.cssText = `
+        background-image: url('//crds-media.imgix.net/4MB9RBjdlYlJnvVTjfDLoc/423b1683847b0acb2534e9b409a12036/galaxy.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      `;
 
       resiPlayerSection.innerHTML = `
         <div class="container">
