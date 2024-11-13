@@ -3,58 +3,58 @@
     let livestreamData = {{ site.data.livestreams | jsonify | strip_newlines
   }};
 
-    if (!livestreamData || livestreamData.length === 0) {
-      return;
-    }
+  if (!livestreamData || livestreamData.length === 0) {
+    return;
+  }
 
-    function isTimeInRange(startTime, endTime) {
-      let currentTime = Date.now();
-      return currentTime >= startTime && currentTime <= endTime;
-    }
+  function isTimeInRange(startTime, endTime) {
+    let currentTime = Date.now();
+    return currentTime >= startTime && currentTime <= endTime;
+  }
 
-    let isStream = false;
-    let playerUrl = '';
-    let entryId = '';
-    let currentPageTitle = "{{ page.name }}";
+  let isStream = false;
+  let playerUrl = '';
+  let entryId = '';
+  let currentPageTitle = "{{ page.name }}";
 
-    livestreamData.forEach(function (livestream) {
-      let startTime = new Date(livestream.startTime).getTime();
-      let endTime = new Date(livestream.endTime).getTime();
+  livestreamData.forEach(function (livestream) {
+    let startTime = new Date(livestream.startTime).getTime();
+    let endTime = new Date(livestream.endTime).getTime();
 
-      let isPageMatch = livestream.pages.some(function (page) {
-        return page === currentPageTitle || page === 'Churchwide (all location pages)';
-      });
-
-      if (isPageMatch && isTimeInRange(startTime, endTime)) {
-        playerUrl = livestream.url || 'https://resi.media/cr-cinc-oh/Manifest.m3u8';
-        entryId = livestream.id || 'VideoManager';
-        isStream = true;
-
-        // Refresh the page one minute after the livestream starts
-        let refreshStartTime = startTime + 60000;
-        if (refreshStartTime > Date.now()) {
-          setTimeout(function () {
-            location.reload(true);
-          }, refreshStartTime - Date.now());
-        }
-
-        // Refresh the page one minute after the livestream ends
-        let refreshEndTime = endTime + 60000;
-        if (refreshEndTime > Date.now()) {
-          setTimeout(function () {
-            location.reload(true);
-          }, refreshEndTime - Date.now());
-        }
-      }
+    let isPageMatch = livestream.pages.some(function (page) {
+      return page === currentPageTitle || page === 'Churchwide (all location pages)';
     });
 
-    if (isStream) {
-      // Wait for custom element to be defined before creating player
-      customElements.whenDefined('crds-bitmovin-player').then(() => {
-        let livestreamBanner = document.createElement('div');
-        livestreamBanner.className = 'width-100';
-        livestreamBanner.style.cssText = 'width: 100vw; margin: -80px 0 0; padding: 8px 0; text-align: center; background-color: black;';
-        livestreamBanner.innerHTML = `
+    if (isPageMatch && isTimeInRange(startTime, endTime)) {
+      playerUrl = livestream.url || 'https://resi.media/cr-cinc-oh/Manifest.m3u8';
+      entryId = livestream.id || 'VideoManager';
+      isStream = true;
+
+      // Refresh the page one minute after the livestream starts
+      let refreshStartTime = startTime + 60000;
+      if (refreshStartTime > Date.now()) {
+        setTimeout(function () {
+          location.reload(true);
+        }, refreshStartTime - Date.now());
+      }
+
+      // Refresh the page one minute after the livestream ends
+      let refreshEndTime = endTime + 60000;
+      if (refreshEndTime > Date.now()) {
+        setTimeout(function () {
+          location.reload(true);
+        }, refreshEndTime - Date.now());
+      }
+    }
+  });
+
+  if (isStream) {
+    // Wait for custom element to be defined before creating player
+    customElements.whenDefined('crds-bitmovin-player').then(() => {
+      let livestreamBanner = document.createElement('div');
+      livestreamBanner.className = 'width-100';
+      livestreamBanner.style.cssText = 'width: 100vw; margin: -80px 0 0; padding: 8px 0; text-align: center; background-color: black;';
+      livestreamBanner.innerHTML = `
           <div style="position: relative; z-index: 1; margin-bottom: 120px;">
             <h4 class="tk-acumin-pro text-uppercase" style="color: #AEAEAE; margin: 0; font-size: 12px; font-weight: 600; line-height: 115%; letter-spacing: 2.52px; text-align: center;">You're Watching</h4>
             <h2 class="font-family-condensed-extra text-uppercase" style="color: white; margin: 0; margin-bottom: 36px;">Commitment Weekend</h2>
@@ -74,10 +74,10 @@
           </div>
         `;
 
-        let resiPlayerSection = document.createElement('section');
-        resiPlayerSection.className = 'bg-image';
-        resiPlayerSection.id = 'resi-player';
-        resiPlayerSection.style.cssText = `
+      let resiPlayerSection = document.createElement('section');
+      resiPlayerSection.className = 'bg-image';
+      resiPlayerSection.id = 'resi-player';
+      resiPlayerSection.style.cssText = `
           background-image: url('//crds-media.imgix.net/4MB9RBjdlYlJnvVTjfDLoc/423b1683847b0acb2534e9b409a12036/galaxy.png');
           background-size: cover;
           background-position: center;
@@ -86,8 +86,8 @@
           padding-bottom: 80px;
         `;
 
-        let gradientOverlay = document.createElement('div');
-        gradientOverlay.style.cssText = `
+      let gradientOverlay = document.createElement('div');
+      gradientOverlay.style.cssText = `
           position: absolute;
           bottom: 0;
           left: 0;
@@ -96,7 +96,7 @@
           background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
         `;
 
-        resiPlayerSection.innerHTML = `
+      resiPlayerSection.innerHTML = `
           <div class="container">
             <h2 class="font-family-condensed-extra text-uppercase" style="color: white; text-align: center; padding-top: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Welcome to Crossroads</h2>
             <div class="row push-ends">
@@ -113,15 +113,15 @@
           </div>
         `;
 
-        resiPlayerSection.appendChild(gradientOverlay);
+      resiPlayerSection.appendChild(gradientOverlay);
 
-        let jumbotronSection = document.querySelector('.jumbotron');
+      let jumbotronSection = document.querySelector('.jumbotron');
 
-        if (jumbotronSection && jumbotronSection.parentNode) {
-          jumbotronSection.parentNode.insertBefore(resiPlayerSection, jumbotronSection);
-          jumbotronSection.parentNode.insertBefore(livestreamBanner, jumbotronSection);
-        }
-      });
-    }
+      if (jumbotronSection && jumbotronSection.parentNode) {
+        jumbotronSection.parentNode.insertBefore(resiPlayerSection, jumbotronSection);
+        jumbotronSection.parentNode.insertBefore(livestreamBanner, jumbotronSection);
+      }
+    });
+  }
     });
 </script>
