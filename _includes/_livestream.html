@@ -49,31 +49,79 @@
   });
 
   if (isStream) {
-    let resiPlayerSection = document.createElement('section');
-    resiPlayerSection.className = 'bg-blue';
-    resiPlayerSection.id = 'resi-player';
+    // Wait for custom element to be defined before creating player
+    customElements.whenDefined('crds-bitmovin-player').then(() => {
+      let livestreamBanner = document.createElement('div');
+      livestreamBanner.className = 'width-100';
+      livestreamBanner.style.cssText = 'width: 100vw; margin: -80px 0 0; padding: 8px 0; text-align: center; background-color: black;';
+      livestreamBanner.innerHTML = `
+          <div style="position: relative; z-index: 1; margin-bottom: 120px;">
+            <h4 class="tk-acumin-pro text-uppercase" style="color: #AEAEAE; margin: 0; font-size: 12px; font-weight: 600; line-height: 115%; letter-spacing: 2.52px; text-align: center;">You're Watching</h4>
+            <h2 class="font-family-condensed-extra text-uppercase" style="color: white; margin: 0; margin-bottom: 36px;">Commitment Weekend</h2>
+            <p class="tk-acumin-pro" style="color: white; margin: 0; font-size: 18px; margin-bottom: 20px;">When we’re a go, Brian will lead us through commitment. Enjoy the message in the
+              meantime.</p>
+            <p class="tk-acumin-pro" style="color: white; margin: 0; font-weight: 600; font-size: 18px;">When it's time:</p>
+            <ol style="color: white; margin: 0; padding: 0; list-style-position: inside; text-align: center; font-size: 18px; margin-bottom: 20px;">
+              <li>Click the 'commit' button below.</li>
+              <li>Login with your Crossroads credentials or create an account.</li>
+            </ol>
+            <a href="https://www.crossroads.net/commit" style="display: inline-block; background-color: #ff8200; color: #253746; text-decoration: none; padding: 10px 16px; margin-top: 10px; border-radius: 10px; transition: background-color 0.2s;">Commit Now</a>
+            <style>
+              a[href="https://www.crossroads.net/commit"]:hover {
+                background-color: #cc6800 !important;
+              }
+            </style>
+          </div>
+        `;
 
-    resiPlayerSection.innerHTML = `
-        <div class="container">
-          <div class="row push-ends">
-            <div id="resi-video-player-container" class="col-sm-10 col-sm-offset-1">
-              <crds-bitmovin-player
-                class="embed-responsive embed-responsive-16by9"
-                video-id="crossroadsLiveWeekend"
-                is-stream="true"
-                entry-id=${entryId}
-                url=${playerUrl}>
-              </crds-bitmovin-player>
+      let resiPlayerSection = document.createElement('section');
+      resiPlayerSection.className = 'bg-image';
+      resiPlayerSection.id = 'resi-player';
+      resiPlayerSection.style.cssText = `
+          background-image: url('//crds-media.imgix.net/4MB9RBjdlYlJnvVTjfDLoc/423b1683847b0acb2534e9b409a12036/galaxy.png');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          position: relative;
+          padding-bottom: 80px;
+        `;
+
+      let gradientOverlay = document.createElement('div');
+      gradientOverlay.style.cssText = `
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 120px;
+          background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+        `;
+
+      resiPlayerSection.innerHTML = `
+          <div class="container">
+            <h2 class="font-family-condensed-extra text-uppercase" style="color: white; text-align: center; padding-top: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Welcome to Crossroads</h2>
+            <div class="row push-ends">
+              <div id="resi-video-player-container" class="col-sm-10 col-sm-offset-1">
+                <crds-bitmovin-player
+                  class="embed-responsive embed-responsive-16by9"
+                  video-id="crossroadsLiveWeekend"
+                  is-stream="true"
+                  entry-id=${entryId}
+                  url=${playerUrl}>
+                </crds-bitmovin-player>
+              </div>
             </div>
           </div>
-        </div>
-      `;
+        `;
 
-    let jumbotronSection = document.querySelector('.jumbotron');
+      resiPlayerSection.appendChild(gradientOverlay);
 
-    if (jumbotronSection && jumbotronSection.parentNode) {
-      jumbotronSection.parentNode.insertBefore(resiPlayerSection, jumbotronSection);
-    }
+      let jumbotronSection = document.querySelector('.jumbotron');
+
+      if (jumbotronSection && jumbotronSection.parentNode) {
+        jumbotronSection.parentNode.insertBefore(resiPlayerSection, jumbotronSection);
+        jumbotronSection.parentNode.insertBefore(livestreamBanner, jumbotronSection);
+      }
+    });
   }
-  });
+    });
 </script>
