@@ -43,6 +43,7 @@
     <h3 class="component-header flush">
       <a href="{{item | media_url }}">{{item.title }}</a>
     </h3>
+    {% if item.author != nil %}
     <p class="card-text soft-quarter-top">
       {% if item.author.id %}
         {% assign author =item.author | get_doc %}
@@ -55,5 +56,7 @@
         {% endfor %}
       {% endif %}
     </p>
+    {% endif %}
+
   </div>
 </div>

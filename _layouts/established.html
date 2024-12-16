@@ -43,6 +43,18 @@ layout: default
   </div>
 </section>
 
+<section class="bg-orange">
+  <div class="container">
+    <div class="row soft-half">
+      <div class="col-sm-12 text-center">
+        <p class="font-size-small text-primary flush-bottom">
+          <a href="{{site.ENV.CRDS_ROCK_DOMAIN}}planavisit" class="text-primary" target="_blank"><u>New? Plan Your First Visit</u></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="overflow-hidden">
   <div class="container">
     <div class="row soft-half soft-top push-top mobile-flush-top">
@@ -193,57 +205,21 @@ layout: default
                 <p>Middle School (grades 6-8) and High School (grades 9-12) students have a place to call their own.
                   Students are challenged and encouraged through relevant teaching and fun events. Opportunities are
                   provided for them to grow as they connect with God and with each other. </p>
-                <div class="soft-half-top soft-bottom">
-                  <crds-button href="/studentministry/" color="blue" display="outline"
-                    text="More about Crossroads Students">
-                  </crds-button>
+                <div class="row">
+                  <div class="col-xs-8 col-sm-8 col-md-7 col-lg-6 col-xl-4 soft-half-top soft-bottom">
+                    <crds-button href="/studentministry/" color="blue" display="outline"
+                      text="More about Crossroads Students">
+                    </crds-button>
+                  </div>
+                  {% if page.student_ministry_leader_email %}
+                  <div class="col-sm-4 soft-half-top soft-bottom">
+                    <crds-button text="Email Us" target="_blank" color="blue" display="outline" href="mailto:{{ page.student_ministry_leader_email }}" />
+                  </div>
+                  {% endif %}
                 </div>
                 <div>
                   {{ page.student_ministry_hours | markdownify }}
                 </div>
-                {% if page.student_ministry_leader_name %}
-                <div class="row row-no-gutters push-top">
-                  <div class="d-flex col-sm-6 col-xs-8">
-                    {% if page.student_ministry_leader_image %}
-                    <img class="img-circle img-size-4 object-fit-cover" src="{{ page.student_ministry_leader_image.url | imgix: site.imgix }}"
-                    sizes="{{ site.image_sizes.cards_4x }}"  alt="{{ page.student_ministry_leader_name }}" />
-                    {% else %}
-                    <img class="img-border img-circle img-size-4" src="https://crossroads-media.imgix.net/images/avatar.svg"  alt="{{ page.student_ministry_leader_name }}" />
-                    {% endif %}
-
-                    <div class="soft-half-left">
-                      <p class="flush text-uppercase"><strong>Leadership</strong></p>
-                      <p class="flush">{{ page.student_ministry_leader_name }}</p>
-                      <p>CS Leader</p>
-                    </div>
-                  </div>
-
-                  {% if page.student_ministry_leader_email %}
-                  <div class="col-sm-6 col-xs-4">
-                    <crds-button text="Email me" target="_blank" color="blue" display="outline" href="mailto:{{ page.student_ministry_leader_email }}" />
-                  </div>
-                  {% endif %}
-                </div>
-                {% endif %}
-
-                {% if page.slug == "mason" %}
-                <div class="row row-no-gutters push-top">
-                  <div class="d-flex col-sm-6 col-xs-8">
-                    <img class="img-border img-circle img-size-4" src="https://crossroads-media.imgix.net/images/avatar.svg"  alt="Olivia Smith" />
-
-                    <div class="soft-half-left">
-                      <p class="flush text-uppercase"><strong>Leadership</strong></p>
-                      <p class="flush">Olivia Smith</p>
-                      <p>SM Leader</p>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-6 col-xs-4">
-                    <crds-button text="Email me" target="_blank" color="blue" display="outline" href="mailto:olivia.smith@crossroads.net" />
-                  </div>
-                </div>
-                {% endif %}
-
               </div>
             </div>
           </div>
@@ -257,9 +233,9 @@ layout: default
             <div class="col-sm-6 push-bottom">
               <p class="text-orange text-uppercase flush-bottom"><strong>You Belong Here</strong></p>
               <h2 class="section-header flush-ends soft-half-bottom">Inclusion Ministry</h2>
-              <p>A fun, interactive group for students and young adults, grade 6 and up, with special needs . We meet on a weekly basis and have monthly hangouts as well. Whether you would like to join this group or volunteer for this group, we have a place for you!<br><br><strong>Sundays at 11:00am</strong></p>
+              <p>A fun, interactive group for students and young adults, grade 6 and up, with special needs . We meet on a weekly basis and have monthly hangouts as well. Whether you would like to join this group or volunteer for this group, we have a place for you!<br><br><strong>Sundays at 11:15am</strong></p>
               <div class="soft-half-top">
-                <crds-button class="push-half-right" href="https://www.crossroads.net/groups/details/205153" color="blue" display="outline" text="More about East Side Inclusion Group">
+                <crds-button class="push-half-right" href="https://my.crossroads.net/groups/details/234182" color="blue" display="outline" text="More about East Side Inclusion Group">
                 </crds-button>
               </div>
             </div>
@@ -293,7 +269,7 @@ layout: default
             >
             <p class="push-half-ends">We’ll keep you informed of new events, site changes, and all sorts of amazingly awesome
               stuff.</p>
-            <crds-button class="push-half-right" data-target="#subscribeModalForm" data-toggle="modal" href="" color="white"
+            <crds-button class="push-half-right" target="_blank" href="https://share.hsforms.com/1YY_i9ZyZTy2KZf9WkIgxjg2dls1" color="white"
               text="Sign up for our newsletter"></crds-button>
           </crds-portrait-card>
         </div>
@@ -313,7 +289,7 @@ layout: default
 </section>
 
 <!-- Modal -->
-<div aria-labelledby="Subscribe email form" class="modal fade" id="subscribeModalForm" role="dialog" tabindex="-1">
+<div aria-labelledby="Subscribe email form" class="modal fade" id="subscribeModalFormLocation" role="dialog" tabindex="-1">
   <div class="modal-dialog" role="document">
     <div class="modal-content bg-tan">
       <div class="modal-header hard-bottom"><button aria-label="Close" class="close pull-right" data-dismiss="modal"

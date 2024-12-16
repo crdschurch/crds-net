@@ -7,9 +7,9 @@ layout: default
 
 <!-- Featured Section -->
 {% if page.featured_section.size > 0 %}
-  <div class="overflow-hidden">
-    {{ page.featured_section }}
-  </div>
+<div class="overflow-hidden">
+  {{ page.featured_section }}
+</div>
 {% endif %}
 
 <!-- Livestream player-->
@@ -21,7 +21,8 @@ layout: default
 {% assign current_message = sorted_messages | last %}
 
 <!-- Jumbotron section -->
-<section class="jumbotron locations-jumbotron anywhere flush-bottom width-100" style="background-image: url('//crds-media.imgix.net/4uYQgojJJBlABqZwIPqqwJ/b9794fa8acc3cc0cac58b86ea52331c0/crossroads-anywhere-header-img.jpg?{{ site.imgix_params.placeholder }}')"
+<section class="jumbotron locations-jumbotron anywhere flush-bottom width-100"
+  style="background-image: url('//crds-media.imgix.net/4uYQgojJJBlABqZwIPqqwJ/b9794fa8acc3cc0cac58b86ea52331c0/crossroads-anywhere-header-img.jpg?{{ site.imgix_params.placeholder }}')"
   data-optimize-bg-img>
   <div class="bg-overlay"></div>
   <div class="torn-paper-overlay"></div>
@@ -32,9 +33,11 @@ layout: default
           <span class="font-family-base text-uppercase text-white">
             <strong>welcome to</strong>
           </span>
-          <h1 class="flush-ends font-family-condensed-extra text-uppercase soft-half-top">Crossroads<br />{{ page.name }}</h1>
+          <h1 class="flush-ends font-family-condensed-extra text-uppercase soft-half-top">Crossroads<br />{{ page.name
+            }}</h1>
           <div>
-            <p class="font-family-serif text-white push-top">A new kind of Church you can fully belong to—no matter who you are or where you live. Online, in person, anytime, anywhere.</p>
+            <p class="font-family-serif text-white push-top">A new kind of Church you can fully belong to—no matter who
+              you are or where you live. Online, in person, anytime, anywhere.</p>
           </div>
         </div>
       </div>
@@ -43,16 +46,19 @@ layout: default
     <div class="anywhere-media-objects-container">
       <div class="anywhere-media-object">
         <a href="{{ current_message.url }}">
-          <img class="object-fit-cover" src="{{ current_message.image.url | imgix: site.imgix }}?auto=format,compress&w=150" alt="">
+          <img class="object-fit-cover"
+            src="{{ current_message.image.url | imgix: site.imgix }}?auto=format,compress&w=150" alt="">
         </a>
         <div class="anywhere-media-object-content">
           <span>Service Times</span>
           <p>Available every Sunday</p>
-          <a class="font-size-smaller text-gray-darker underline" href="{{ current_message.url }}"> Watch the latest message</a>
+          <a class="font-size-smaller text-gray-darker underline" href="{{ current_message.url }}"> Watch the latest
+            message</a>
         </div>
       </div>
       <div class="anywhere-media-object">
-        <img class="object-fit-cover" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" alt="{{ page.community_pastor_name }}">
+        <img class="object-fit-cover" src="{{ page.community_pastor_image.url | imgix: site.imgix }}"
+          alt="{{ page.community_pastor_name }}">
         <div class="anywhere-media-object-content">
           <span>Leadership</span>
           <p>{{ page.community_pastor_name }} <br>Community Pastor</p>
@@ -75,7 +81,9 @@ layout: default
 <section class="overflow-hidden">
   <div class="container">
     <div class="row soft-half soft-top push-top mobile-flush-top">
-      <crds-tabs tabs='["events + updates", "connect in person", "connect online",  "kids & parents", "about", "our team"]' mobile-dropdown>
+      <crds-tabs
+        tabs='["events + updates", "connect in person", "connect online",  "kids & parents", "about", "our team"]'
+        mobile-dropdown>
         <!-- Events & Updates -->
         <div slot="tab-events-updates" class="push-ends">
           <div class="row" id="events-updates">
@@ -92,15 +100,17 @@ layout: default
 
               <!-- Current Message -->
               <a href="{{ current_message.url }}" title="{{ current_message.title }}">
-                <crds-image unified src="{{ current_message.image.url | imgix: site.imgix }}?auto=format,compress&w=720" no-crop size="card"></crds-image>
+                <crds-image unified src="{{ current_message.image.url | imgix: site.imgix }}?auto=format,compress&w=720"
+                  no-crop size="card"></crds-image>
               </a>
               <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Message</strong></p>
-              <h2 class="font-family-condensed-extra text-uppercase flush font-weight-300">{{ current_message.title }}</h2>
+              <h2 class="font-family-condensed-extra text-uppercase flush font-weight-300">{{ current_message.title }}
+              </h2>
               <div class="push-half-top push-bottom font-size-small text-gray-dark">
                 {{ current_message.description | markdownify }}
               </div>
-              <crds-button href="{{ current_message.url }}" title="{{ current_message.title }}" text="Watch current message"
-                color="orange"></crds-button>
+              <crds-button href="{{ current_message.url }}" title="{{ current_message.title }}"
+                text="Watch current message" color="orange"></crds-button>
 
             </div>
             <div class="col-sm-4 push-bottom soft-bottom">
@@ -108,30 +118,43 @@ layout: default
                 <span>Announcements</span>
                 <hr />
               </div>
-              <crds-site-happenings-locations unified location="Crossroads Church Online" show-limit="5" has-promo="{{ hasPromo }}"></crds-site-happenings-locations>
+              <crds-site-happenings-locations unified location="Crossroads Church Online" show-limit="5"
+                has-promo="{{ hasPromo }}"></crds-site-happenings-locations>
             </div>
           </div>
 
           <div class="bg-gray-lightest img-rounded-corners soft push-ends">
             <div class="row text-gray-darker soft mobile-hard">
               <div class="col-sm-6 mobile-push-bottom mobile-soft-bottom">
-                <img class="img-rounded-corners" src="//crds-media.imgix.net/49pJx1xHj9OVmZikJbwlXz/06ff0b301746757d0c41bc008b33152b/screen-time-with-purpose.png" alt="Screen Time with a Purpose" />
+                <img class="img-rounded-corners"
+                  src="//crds-media.imgix.net/49pJx1xHj9OVmZikJbwlXz/06ff0b301746757d0c41bc008b33152b/screen-time-with-purpose.png"
+                  alt="Screen Time with a Purpose" />
                 <p class="flush-bottom font-family-base-bold soft-half-top">Screen Time with a Purpose</p>
                 <p>
-                  Trade aimless scrolling for meaningful content, exercises designed to help you de-stress, and challenges that guarantee growth. 
+                  Trade aimless scrolling for meaningful content, exercises designed to help you de-stress, and
+                  challenges that guarantee growth.
                 </p>
-                <crds-button href="https://apps.apple.com/us/app/crossroads-anywhere/id1029478803" target="_blank" class="push-half-right" display="outline" color="blue" text="Download for iOS"></crds-button>
-                <crds-button href="https://play.google.com/store/apps/details?id=net.crossroads.crossroads&hl=en_US&gl=US" target="_blank" display="outline" color="blue" text="Download for Android"></crds-button>
+                <crds-button href="https://apps.apple.com/us/app/crossroads-anywhere/id1029478803" target="_blank"
+                  class="push-half-right" display="outline" color="blue" text="Download for iOS"></crds-button>
+                <crds-button
+                  href="https://play.google.com/store/apps/details?id=net.crossroads.crossroads&hl=en_US&gl=US"
+                  target="_blank" display="outline" color="blue" text="Download for Android"></crds-button>
               </div>
 
               <div class="col-sm-6">
-                <img class="img-rounded-corners" src="//crds-media.imgix.net/42bMW99sGZJyR4zmB7ZR1q/f5c75b5f3ce3b9292c2de554ae71a503/prayer-get-in-touch.png" alt="Get in Touch" />
+                <img class="img-rounded-corners"
+                  src="//crds-media.imgix.net/42bMW99sGZJyR4zmB7ZR1q/f5c75b5f3ce3b9292c2de554ae71a503/prayer-get-in-touch.png"
+                  alt="Get in Touch" />
                 <p class="flush-bottom font-family-base-bold soft-half-top">We’re Here For You</p>
                 <p>
-                  We have someone waiting to talk to you. His name is DaManuel, and he’s super nice. Ask him a question, hit him up for prayer, or tell him what’s weighing you down. He may not have all the answers, but he has a direct line to our whole support team and can connect you with someone who can help.
+                  We have someone waiting to talk to you. His name is DaManuel, and he’s super nice. Ask him a question,
+                  hit him up for prayer, or tell him what’s weighing you down. He may not have all the answers, but he
+                  has a direct line to our whole support team and can connect you with someone who can help.
                 </p>
-                <crds-button data-trigger="chat" class="push-half-right" display="outline" color="blue" text="Chat" icon-size="20" icon="chat-thin" icon-color="blue" icon-align="left"></crds-button>
-                <crds-button href="mailto:damanuel.montgomery@crossroads.net" display="outline" color="blue" text="Email" icon-size="20" icon="envelope-open" icon-color="blue" icon-align="left"></crds-button>
+                <crds-button data-trigger="chat" class="push-half-right" display="outline" color="blue" text="Chat"
+                  icon-size="20" icon="chat-thin" icon-color="blue" icon-align="left"></crds-button>
+                <crds-button href="mailto:damanuel.montgomery@crossroads.net" display="outline" color="blue"
+                  text="Email" icon-size="20" icon="envelope-open" icon-color="blue" icon-align="left"></crds-button>
               </div>
             </div>
           </div>
@@ -141,67 +164,96 @@ layout: default
         <div slot="tab-connect-in-person" class="push-ends">
           <div class="row align-items-center df-screen-sm">
             <div class="col-sm-6 push-bottom">
-              <img class="img-full-width img-rounded-corners" src="//crds-media.imgix.net/gzQhqdJKCzqyIcpvoSRav/d754a6a60946ba2111d6e80d9fe903fd/anywhere-connect-in-person.jpg"  alt="Find people near you" />
+              <img class="img-full-width img-rounded-corners"
+                src="//crds-media.imgix.net/gzQhqdJKCzqyIcpvoSRav/d754a6a60946ba2111d6e80d9fe903fd/anywhere-connect-in-person.jpg"
+                alt="Find people near you" />
             </div>
             <div class="col-sm-6" id="about">
               <p class="text-orange text-uppercase flush-bottom font-family-base-bold">Connect in person</p>
               <h2 class="section-header flush-ends soft-half-bottom font-weight-300">Find people near you. </h2>
-              <p>Church is not a building. It started with a bunch of people who were literally following Jesus around, eating together, and learning to do what He did. People were included, healed, changed, and connected. </p>
-              <p>It’s way more accessible than we realize. Whether you’re new to God and just looking for some better people to be around or you’re actively following Jesus, let’s connect. </p>
+              <p>Church is not a building. It started with a bunch of people who were literally following Jesus around,
+                eating together, and learning to do what He did. People were included, healed, changed, and connected.
+              </p>
+              <p>It’s way more accessible than we realize. Whether you’re new to God and just looking for some better
+                people to be around or you’re actively following Jesus, let’s connect. </p>
             </div>
           </div>
 
           <div class="row align-items-center df-screen-sm push-top">
             <div class="col-sm-6 col-sm-push-6 push-bottom">
-              <img class="img-full-width img-rounded-corners" src="//crds-media.imgix.net/6vnDqIqAQvfS9uLoWNJcdq/274fcf51324028b8215b5d43afba286d/anywhere-eat-together.jpg" alt="eat together" />
+              <img class="img-full-width img-rounded-corners"
+                src="//crds-media.imgix.net/6vnDqIqAQvfS9uLoWNJcdq/274fcf51324028b8215b5d43afba286d/anywhere-eat-together.jpg"
+                alt="eat together" />
             </div>
             <div class="col-sm-6 col-sm-pull-6 push-bottom">
               <h2 class="section-header flush-ends soft-half-bottom font-weight-300">Eat together</h2>
-              <p>What do church and eating together have in common? According to Jesus, a lot. He was the life of the party and he never missed an opportunity to turn a meal into something more.</p>
-              <p>For centuries, church happened around a table. Eating together is one of the simplest ways to copy Jesus’ life. That thing we do 3x a day already, what if we did it more intentionally? </p>
-              <p>Eat with whoever you live with, and invite others to join. <a href="/media/articles/how-to-create-community-out-of-thin-air" class="text-gray-darker underline">Create community out of thin air</a>. Reach out to our team for more coaching on how to handle kids, find people, make it better, and more. </p>
+              <p>What do church and eating together have in common? According to Jesus, a lot. He was the life of the
+                party and he never missed an opportunity to turn a meal into something more.</p>
+              <p>For centuries, church happened around a table. Eating together is one of the simplest ways to copy
+                Jesus’ life. That thing we do 3x a day already, what if we did it more intentionally? </p>
+              <p>Eat with whoever you live with, and invite others to join. <a
+                  href="/media/articles/how-to-create-community-out-of-thin-air"
+                  class="text-gray-darker underline">Create community out of thin air</a>. Reach out to our team for
+                more coaching on how to handle kids, find people, make it better, and more. </p>
             </div>
           </div>
 
           <div class="row align-items-center df-screen-sm">
             <div class="col-sm-6 push-bottom">
-              <img class="img-full-width img-rounded-corners" src="//crds-media.imgix.net/d8XlDyaJAXWukprVR7DAr/38c911c4ea878a587524cb92b7997bc8/anywhere-camp-promo.jpg" alt="Camps" />
+              <img class="img-full-width img-rounded-corners"
+                src="//crds-media.imgix.net/d8XlDyaJAXWukprVR7DAr/38c911c4ea878a587524cb92b7997bc8/anywhere-camp-promo.jpg"
+                alt="Camps" />
             </div>
             <div class="col-sm-6 push-bottom">
               <h2 class="section-header flush-ends soft-half-bottom font-weight-300">Camps</h2>
-              <p>Get a year’s worth of growth in one weekend by joining us at camp. We have an amazing plot of land where we host all kinds of weekend experiences that push you out of your comfort zone, connect you to hundreds of other people, and help you get free.</p>
+              <p>Get a year’s worth of growth in one weekend by joining us at camp. We have an amazing plot of land
+                where we host all kinds of weekend experiences that push you out of your comfort zone, connect you to
+                hundreds of other people, and help you get free.</p>
             </div>
           </div>
 
           <div class="row align-items-center df-screen-sm push-top">
             <div class="col-sm-6 col-sm-push-6 push-bottom">
-              <img class="img-full-width img-rounded-corners" src="//crds-media.imgix.net/miUP8S8yAMwe6Ft361QLx/c91532b2b1b2a50e5fa3203382317e35/anywhere-trip-promo-img.jpg" alt="Trips" />
+              <img class="img-full-width img-rounded-corners"
+                src="//crds-media.imgix.net/miUP8S8yAMwe6Ft361QLx/c91532b2b1b2a50e5fa3203382317e35/anywhere-trip-promo-img.jpg"
+                alt="Trips" />
             </div>
             <div class="col-sm-6 col-sm-pull-6 push-bottom">
               <h2 class="section-header flush-ends soft-half-bottom font-weight-300">Trips</h2>
-              <p>If there aren’t many people near you, let’s go somewhere together. Trips are an incredible way to get to know people, fast-track your growth, and experience what it feels like to follow Jesus’ example by serving others.</p>
+              <p>If there aren’t many people near you, let’s go somewhere together. Trips are an incredible way to get
+                to know people, fast-track your growth, and experience what it feels like to follow Jesus’ example by
+                serving others.</p>
             </div>
           </div>
 
           <div class="bg-gray-lightest img-rounded-corners soft push-ends">
             <div class="row text-gray-darker soft mobile-hard">
               <div class="col-sm-6 mobile-push-bottom mobile-soft-bottom">
-                <img class="img-rounded-corners" src="//crds-media.imgix.net/203VZpWyk9yafEiHnmWdYN/bdc7e185b06d65985c8285e52524ce79/anywhere-regional-leader.jpg" alt="Meet your regional leader" />
+                <img class="img-rounded-corners"
+                  src="//crds-media.imgix.net/203VZpWyk9yafEiHnmWdYN/bdc7e185b06d65985c8285e52524ce79/anywhere-regional-leader.jpg"
+                  alt="Meet your regional leader" />
                 <p class="flush-bottom font-family-base-bold soft-half-top">Meet your Regional Leader</p>
                 <p>
-                  We have leaders all over the country trained to connect with the Crossroads people in their area. They’re not pastors. They’re regular people who are following Jesus near you, and they’d love to meet.
+                  We have leaders all over the country trained to connect with the Crossroads people in their area.
+                  They’re not pastors. They’re regular people who are following Jesus near you, and they’d love to meet.
                 </p>
-                <crds-button href="https://www.crossroads.net/anywhere/regional-leaders/" class="push-half-right" display="outline" color="blue" text="Find a leader"></crds-button>
-                <crds-button href="https://www.crossroads.net/volunteer/search/detail/vol_101320210941SS25743" display="outline" color="blue" text="Become a leader"></crds-button>
+                <crds-button href="https://www.crossroads.net/anywhere/regional-leaders/" class="push-half-right"
+                  display="outline" color="blue" text="Find a leader"></crds-button>
+                <crds-button href="https://www.crossroads.net/volunteer/search/detail/vol_101320210941SS25743"
+                  display="outline" color="blue" text="Become a leader"></crds-button>
               </div>
 
               <div class="col-sm-6">
-                <img class="img-rounded-corners" src="//crds-media.imgix.net/4j2FLJze0GedIrQAySGZQt/4d70088fec1a6aab207019b0deb86bca/anywhere-meet-ups.jpg" alt="Find a meet-up" />
+                <img class="img-rounded-corners"
+                  src="//crds-media.imgix.net/4j2FLJze0GedIrQAySGZQt/4d70088fec1a6aab207019b0deb86bca/anywhere-meet-ups.jpg"
+                  alt="Find a meet-up" />
                 <p class="flush-bottom font-family-base-bold soft-half-top">Find a Meet-Up</p>
                 <p>
-                  Meet other Crossroads people near you (and the Crossroads staff who are here to support you.) Click here to request one in your area. 
+                  Meet other Crossroads people near you (and the Crossroads staff who are here to support you.) Click
+                  here to request one in your area.
                 </p>
-                <crds-button href="https://www.crossroads.net/cr-forms/awrequestameetup" display="outline" color="blue" text="Request one near you"></crds-button>
+                <crds-button href="https://www.crossroads.net/cr-forms/awrequestameetup" display="outline" color="blue"
+                  text="Request one near you"></crds-button>
               </div>
             </div>
           </div>
@@ -212,36 +264,52 @@ layout: default
         <div slot="tab-connect-online" class="push-ends">
           <div class="row align-items-center df-screen-sm">
             <div class="col-sm-6 push-bottom">
-              <img class="img-full-width img-rounded-corners" src="//crds-media.imgix.net/2SUloBCFclNJ9bnRbTNCt5/126d47205b8d0a832b4b7f08619b2d30/anywhere-connect-online.png"  alt="Make friends online. No shower required. " />
+              <img class="img-full-width img-rounded-corners"
+                src="//crds-media.imgix.net/2SUloBCFclNJ9bnRbTNCt5/126d47205b8d0a832b4b7f08619b2d30/anywhere-connect-online.png"
+                alt="Make friends online. No shower required. " />
             </div>
             <div class="col-sm-6 " id="about">
               <p class="text-orange text-uppercase flush-bottom font-family-base-bold">Connect online</p>
-              <h2 class="section-header flush-ends soft-half-bottom font-weight-300">Make friends online. No shower required.</h2>
-              <p>Maybe you haven’t embraced wearing “real pants” again since Covid. Maybe schedules are the worst, sitters are impossible, or we don’t have people near you. Whatever the barrier is, you can connect online wherever you are whenever you’re free. There are amazing people all over the world who call Crossroads home, and they’d love to connect with you too. </p>
+              <h2 class="section-header flush-ends soft-half-bottom font-weight-300">Make friends online. No shower
+                required.</h2>
+              <p>Maybe you haven’t embraced wearing “real pants” again since Covid. Maybe schedules are the worst,
+                sitters are impossible, or we don’t have people near you. Whatever the barrier is, you can connect
+                online wherever you are whenever you’re free. There are amazing people all over the world who call
+                Crossroads home, and they’d love to connect with you too. </p>
             </div>
           </div>
 
           <div class="row push-ends soft-ends">
             <div class="col-sm-4 mobile-push-bottom mobile-soft-bottom">
-              <img class="img-rounded-corners" src="//crds-media.imgix.net/2bzXPLexG5EGGCkyT93QMz/52b5f6f001a0d2cc94f7e2c4c2af0759/anywhere-cohort.jpg" alt="Join a Cohort" />
+              <img class="img-rounded-corners"
+                src="//crds-media.imgix.net/2bzXPLexG5EGGCkyT93QMz/52b5f6f001a0d2cc94f7e2c4c2af0759/anywhere-cohort.jpg"
+                alt="Join a Cohort" />
               <p class="flush-bottom font-family-base-bold soft-half-top">Join a Cohort</p>
               <p>
-                Cohorts are an easy way to jumpstart an area of your life in 21 days whenever you have the time to make it happen. Community and growth without the scheduling complexity on the topics you need. 
+                Cohorts are an easy way to jumpstart an area of your life in 21 days whenever you have the time to make
+                it happen. Community and growth without the scheduling complexity on the topics you need.
               </p>
-              <a class="text-gray-darker underline" href="https://www.crossroads.net/cohorts/">See when the next ones are happening</a>
+              <a class="text-gray-darker underline" href="https://www.crossroads.net/cohorts/">See when the next ones
+                are happening</a>
             </div>
 
             <div class="col-sm-4 mobile-push-bottom mobile-soft-bottom">
-              <img class="img-rounded-corners" src="//crds-media.imgix.net/4BGIfT8yvdDCCQRpdQ6qGY/98a45c8c37aec42999b41608b183c7f4/Rooted_Happening.png" alt="Rooted" />
+              <img class="img-rounded-corners"
+                src="//crds-media.imgix.net/4BGIfT8yvdDCCQRpdQ6qGY/98a45c8c37aec42999b41608b183c7f4/Rooted_Happening.png"
+                alt="Rooted" />
               <p class="flush-bottom font-family-base-bold soft-half-top">Rooted</p>
               <p>
-                Learn to lean into one of the 7 Proven Practices—a daily rhythm of connecting with God. Learn more about the Bible, prayer, serving, sharing your story, and how to personally hear God’s voice. 
+                Learn to lean into one of the 7 Proven Practices—a daily rhythm of connecting with God. Learn more about
+                the Bible, prayer, serving, sharing your story, and how to personally hear God’s voice.
               </p>
-              <a class="text-gray-darker underline" href="https://www.crossroads.net/cr-forms/ccanywhererootedinterest23/">Sign Up</a>
+              <a class="text-gray-darker underline"
+                href="https://www.crossroads.net/cr-forms/ccanywhererootedinterest23/">Sign Up</a>
             </div>
-            
+
             <div class="col-sm-4">
-              <img class="img-rounded-corners" src="//crds-media.imgix.net/1sEnmtoiHj4GwW5NNbFU3s/4993ff65479e892c44d806037eb23b97/anhywhere-gaming.jpg" alt="CR Gaming" />
+              <img class="img-rounded-corners"
+                src="//crds-media.imgix.net/1sEnmtoiHj4GwW5NNbFU3s/4993ff65479e892c44d806037eb23b97/anhywhere-gaming.jpg"
+                alt="CR Gaming" />
               <p class="flush-bottom font-family-base-bold soft-half-top">CR Gaming</p>
               <p>
                 Connect with other gamers. Squad up, make friends, and win. All skill levels welcome.
@@ -253,21 +321,30 @@ layout: default
           <div class="bg-gray-lightest img-rounded-corners soft push-ends">
             <div class="row text-gray-darker soft mobile-hard">
               <div class="col-sm-6 mobile-push-bottom mobile-soft-bottom">
-                <img class="img-rounded-corners" src="//crds-media.imgix.net/1sjkYdutboM5U1hvXi0xtl/25a55800d2f4eacfb7ae42a80d78a85b/Alpha_Happening.png" alt="Alpha" />
+                <img class="img-rounded-corners"
+                  src="//crds-media.imgix.net/1sjkYdutboM5U1hvXi0xtl/25a55800d2f4eacfb7ae42a80d78a85b/Alpha_Happening.png"
+                  alt="Alpha" />
                 <p class="flush-bottom font-family-base-bold soft-half-top">Alpha</p>
                 <p>
-                  Look at the basics of faith with other people that are asking the same questions. If you have questions about God, this is the perfect group to understand who Jesus is and why so many are people talking about Him. 
+                  Look at the basics of faith with other people that are asking the same questions. If you have
+                  questions about God, this is the perfect group to understand who Jesus is and why so many are people
+                  talking about Him.
                 </p>
-                <crds-button href="https://www.crossroads.net/cr-forms/ccanywherealphainterest23/" target="_blank" class="push-half-right" display="outline" color="blue" text="Sign Up"></crds-button>
+                <crds-button href="https://www.crossroads.net/cr-forms/ccanywherealphainterest23/" target="_blank"
+                  class="push-half-right" display="outline" color="blue" text="Sign Up"></crds-button>
                 <!--<crds-button href="https://apps.apple.com/us/app/crossroads-anywhere/id1029478803" target="_blank" class="push-half-right" display="outline" color="blue" text="Download for iOS"></crds-button>
                 <crds-button href="https://play.google.com/store/apps/details?id=net.crossroads.crossroads&hl=en_US&gl=US" target="_blank" display="outline" color="blue" text="Download for Android"></crds-button>-->
               </div>
 
               <div class="col-sm-6">
-                <img class="img-rounded-corners" src="//crds-media.imgix.net/2epgWJefwPOqyMQJe9p3NW/d9fb6bd1e0669e4e8b67db298b21fa1d/anywhere-monthly-prayer.png" alt="Check Out Monthly Prayer" />
+                <img class="img-rounded-corners"
+                  src="//crds-media.imgix.net/2epgWJefwPOqyMQJe9p3NW/d9fb6bd1e0669e4e8b67db298b21fa1d/anywhere-monthly-prayer.png"
+                  alt="Check Out Monthly Prayer" />
                 <p class="flush-bottom font-family-base-bold soft-half-top">Check Out Monthly Prayer</p>
                 <p>
-                  Miracles are real and not as rare as you might think. Get more out of your prayer life at our monthly prayer and worship experience. Receive prayer from our expert prophetic team. Unload whatever is holding you back, and pick up fresh strength instead. It’s like the gift you didn’t know you needed.
+                  Miracles are real and not as rare as you might think. Get more out of your prayer life at our monthly
+                  prayer and worship experience. Receive prayer from our expert prophetic team. Unload whatever is
+                  holding you back, and pick up fresh strength instead. It’s like the gift you didn’t know you needed.
                 </p>
                 <crds-button href="/online-prayer-nights/" display="outline" color="blue" text="Sign up"></crds-button>
               </div>
@@ -280,59 +357,80 @@ layout: default
         <div slot="tab-kids-parents" class="push-ends">
           <div class="row align-items-center df-screen-sm">
             <div class="col-sm-6 push-bottom">
-              <img class="img-full-width img-rounded-corners" src="//crds-media.imgix.net/38mYgZtfv4UJvDadAxYhs8/b4fade70ec7c39fe78e592aab6d579e4/crossroads-kids-club.jpeg"  alt="Kids Club" />
+              <img class="img-full-width img-rounded-corners"
+                src="//crds-media.imgix.net/38mYgZtfv4UJvDadAxYhs8/b4fade70ec7c39fe78e592aab6d579e4/crossroads-kids-club.jpeg"
+                alt="Kids Club" />
             </div>
             <div class="col-sm-6 push-bottom" id="about">
               <p class="text-orange text-uppercase flush-bottom font-family-base-bold">For Kids</p>
               <h2 class="section-header flush-ends soft-half-bottom font-weight-300">They’ll Love it</h2>
-              <p>Kids don’t get a mini God until they’re big enough for the real thing. They’re more wired to hear from Him than adults. Jesus says we should become like them!</p>
-              <p>Whether you’re new to God or you’ve been following Him for years, talking about faith as a family can build powerful little world changers. It starts in simple ways that anyone can do.</p>
-              <p>We’re here to partner with you in helping your kids meet God, grow in their faith, and change the spiritual direction of your family for generations to come.</p>
+              <p>Kids don’t get a mini God until they’re big enough for the real thing. They’re more wired to hear from
+                Him than adults. Jesus says we should become like them!</p>
+              <p>Whether you’re new to God or you’ve been following Him for years, talking about faith as a family can
+                build powerful little world changers. It starts in simple ways that anyone can do.</p>
+              <p>We’re here to partner with you in helping your kids meet God, grow in their faith, and change the
+                spiritual direction of your family for generations to come.</p>
               <div class="push-top">
                 <a href="mailto:abby.rasmussen@crossroads.net" class="text-gray-darker underline">Email Abby</a><br>
-                <a data-target="#kidsClubModalForm" data-toggle="modal" href="" class="text-gray-darker underline">Sign up for the Newsletter</a>
+                <a data-target="#kidsClubModalForm" data-toggle="modal" href="" class="text-gray-darker underline">Sign
+                  up for the Newsletter</a>
               </div>
             </div>
           </div>
 
           <div class="row align-items-center df-screen-sm push-top soft-top">
             <div class="col-sm-6 col-sm-push-6 push-bottom">
-              <img class="img-full-width img-rounded-corners" src="//crds-media.imgix.net/4ySjpSdTq0x7nHmUzFABgz/8e136eb875823c285922843fabb9386b/kids-club-app-3.jpg" alt="Kids Club app" />
+              <img class="img-full-width img-rounded-corners"
+                src="//crds-media.imgix.net/4ySjpSdTq0x7nHmUzFABgz/8e136eb875823c285922843fabb9386b/kids-club-app-3.jpg"
+                alt="Kids Club app" />
             </div>
             <div class="col-sm-6 col-sm-pull-6 push-bottom">
               <p class="text-orange text-uppercase flush-bottom font-family-base-bold">Get resources</p>
               <h2 class="section-header flush-ends soft-half-bottom font-weight-300">Kids’ Club App</h2>
-              <p>Download the new "Crossroads Kids' Club" App on any smart device. Fun and engaging content to help your kids grow in their walk with God!</p>
+              <p>Download the new "Crossroads Kids' Club" App on any smart device. Fun and engaging content to help your
+                kids grow in their walk with God!</p>
               <div class="push-top">
-                <a href="https://apps.apple.com/us/app/crossroads-kids-club/id1611355665" target="_blank" class="text-gray-darker underline">Download for iOS</a><br>
-                <a href="https://play.google.com/store/apps/details?id=com.apollos.crossroads_kids_club&hl=en_US&gl=US" target="_blank" class="text-gray-darker underline">Download for Android</a>
+                <a href="https://apps.apple.com/us/app/crossroads-kids-club/id1611355665" target="_blank"
+                  class="text-gray-darker underline">Download for iOS</a><br>
+                <a href="https://play.google.com/store/apps/details?id=com.apollos.crossroads_kids_club&hl=en_US&gl=US"
+                  target="_blank" class="text-gray-darker underline">Download for Android</a>
               </div>
             </div>
           </div>
 
           <div class="row align-items-center df-screen-sm push-top soft-top">
             <div class="col-sm-6 push-bottom">
-              <img class="img-full-width img-rounded-corners" src="//crds-media.imgix.net/746S9RPrtrWsuUedz9EfjQ/5acef37a0ecada59465050c9c78778f1/wontstopMe_final.jpg"  alt="Won't Stop Me" />
+              <img class="img-full-width img-rounded-corners"
+                src="//crds-media.imgix.net/746S9RPrtrWsuUedz9EfjQ/5acef37a0ecada59465050c9c78778f1/wontstopMe_final.jpg"
+                alt="Won't Stop Me" />
             </div>
             <div class="col-sm-6 push-bottom" id="about">
               <p class="text-orange text-uppercase flush-bottom font-family-base-bold">Music</p>
               <h2 class="section-header flush-ends soft-half-bottom font-weight-300">Won’t Stop Me</h2>
-              <p><strong>Kids' Club's latest album, Won't Stop Me just dropped.</strong> Dance parties, road trips, wake-up calls, rainy days, sunny days, and everything in between are a reason to fill your home with music that shows your kids who Jesus is. Stream it now in the Crossroads Kids' Club App or wherever you get music!</p>
+              <p><strong>Kids' Club's latest album, Won't Stop Me just dropped.</strong> Dance parties, road trips,
+                wake-up calls, rainy days, sunny days, and everything in between are a reason to fill your home with
+                music that shows your kids who Jesus is. Stream it now in the Crossroads Kids' Club App or wherever you
+                get music!</p>
               <div class="push-top">
-                <a href="https://music.apple.com/us/album/wont-stop-me/1616203033" target="_blank" class="text-gray-darker underline">Apple Music</a><br>
-                <a href="https://open.spotify.com/album/157phvdtt2DJWGRxXmhhhK?si=KKJkrvSoT8WuoXsuoyKz7A&nd=1" target="_blank" class="text-gray-darker underline">Spotify</a>
+                <a href="https://music.apple.com/us/album/wont-stop-me/1616203033" target="_blank"
+                  class="text-gray-darker underline">Apple Music</a><br>
+                <a href="https://open.spotify.com/album/157phvdtt2DJWGRxXmhhhK?si=KKJkrvSoT8WuoXsuoyKz7A&nd=1"
+                  target="_blank" class="text-gray-darker underline">Spotify</a>
               </div>
             </div>
           </div>
 
           <div class="row align-items-center df-screen-sm push-top soft-top">
             <div class="col-sm-6 col-sm-push-6 push-bottom">
-              <img class="img-full-width img-rounded-corners" src="//crds-media.imgix.net/1LY8TMG19F8Nnfkvbz0F66/58b9e630baf40f9ab8ae62612d9bdd5e/anywhere-parent-support.jpg" alt="Parent support" />
+              <img class="img-full-width img-rounded-corners"
+                src="//crds-media.imgix.net/1LY8TMG19F8Nnfkvbz0F66/58b9e630baf40f9ab8ae62612d9bdd5e/anywhere-parent-support.jpg"
+                alt="Parent support" />
             </div>
             <div class="col-sm-6 col-sm-pull-6 push-bottom">
               <p class="text-orange text-uppercase flush-bottom font-family-base-bold">Parent support</p>
               <h2 class="section-header flush-ends soft-half-bottom font-weight-300">Let us know you're out there</h2>
-              <p>Update your profile to let us know you’re out there. If you let us know the ages of your kids, we’ll send you a prize, and start sending parent resources.</p>
+              <p>Update your profile to let us know you’re out there. If you let us know the ages of your kids, we’ll
+                send you a prize, and start sending parent resources.</p>
               <div class="push-top">
                 <a href="/profile/kids" class="text-gray-darker underline">Update your profile</a>
               </div>
@@ -342,22 +440,33 @@ layout: default
           <div class="bg-gray-lightest img-rounded-corners soft push-ends">
             <div class="row text-gray-darker soft mobile-hard">
               <div class="col-sm-6 mobile-push-bottom mobile-soft-bottom">
-                <img class="img-rounded-corners" src="//crds-media.imgix.net/49pJx1xHj9OVmZikJbwlXz/06ff0b301746757d0c41bc008b33152b/screen-time-with-purpose.png" alt="Screen Time with a Purpose" />
+                <img class="img-rounded-corners"
+                  src="//crds-media.imgix.net/49pJx1xHj9OVmZikJbwlXz/06ff0b301746757d0c41bc008b33152b/screen-time-with-purpose.png"
+                  alt="Screen Time with a Purpose" />
                 <p class="flush-bottom font-family-base-bold soft-half-top">Screen Time with a Purpose</p>
                 <p>
-                  Trade aimless scrolling for meaningful content, exercises designed to help you de-stress, and challenges that guarantee growth. 
+                  Trade aimless scrolling for meaningful content, exercises designed to help you de-stress, and
+                  challenges that guarantee growth.
                 </p>
-                <crds-button href="https://apps.apple.com/us/app/crossroads-anywhere/id1029478803" target="_blank" class="push-half-right" display="outline" color="blue" text="Download for iOS"></crds-button>
-                <crds-button href="https://play.google.com/store/apps/details?id=net.crossroads.crossroads&hl=en_US&gl=US" target="_blank" display="outline" color="blue" text="Download for Android"></crds-button>
+                <crds-button href="https://apps.apple.com/us/app/crossroads-anywhere/id1029478803" target="_blank"
+                  class="push-half-right" display="outline" color="blue" text="Download for iOS"></crds-button>
+                <crds-button
+                  href="https://play.google.com/store/apps/details?id=net.crossroads.crossroads&hl=en_US&gl=US"
+                  target="_blank" display="outline" color="blue" text="Download for Android"></crds-button>
               </div>
 
               <div class="col-sm-6">
-                <img class="img-rounded-corners" src="//crds-media.imgix.net/42bMW99sGZJyR4zmB7ZR1q/f5c75b5f3ce3b9292c2de554ae71a503/prayer-get-in-touch.png" alt="We’re Here For You" />
+                <img class="img-rounded-corners"
+                  src="//crds-media.imgix.net/42bMW99sGZJyR4zmB7ZR1q/f5c75b5f3ce3b9292c2de554ae71a503/prayer-get-in-touch.png"
+                  alt="We’re Here For You" />
                 <p class="flush-bottom font-family-base-bold soft-half-top">We’re Here For You</p>
                 <p>
-                  We have someone waiting to talk to you. His name is DaManuel, and he’s super nice. Ask him a question, hit him up for prayer, or tell him what’s weighing you down. He may not have all the answers, but he has a direct line to our whole support team and can connect you with someone who can help.
+                  We have someone waiting to talk to you. His name is DaManuel, and he’s super nice. Ask him a question,
+                  hit him up for prayer, or tell him what’s weighing you down. He may not have all the answers, but he
+                  has a direct line to our whole support team and can connect you with someone who can help.
                 </p>
-                <crds-button href="mailto:damanuel.montgomery@crossroads.net" class="push-half-right" display="outline" color="blue" text="Email"></crds-button>
+                <crds-button href="mailto:damanuel.montgomery@crossroads.net" class="push-half-right" display="outline"
+                  color="blue" text="Email"></crds-button>
                 <crds-button data-trigger="chat" display="outline" color="blue" text="Chat"></crds-button>
               </div>
             </div>
@@ -369,26 +478,38 @@ layout: default
         <div slot="tab-about" class="push-ends">
           <div class="row align-items-center df-screen-sm">
             <div class="col-sm-6 push-bottom">
-              <img class="img-full-width img-rounded-corners" src="//crds-media.imgix.net/6yHxpnGB8C8y8zGIw6Y956/c3c6a48dd9c1e0587f721b44d6512871/anywhere-about.jpg"  alt="About" />
+              <img class="img-full-width img-rounded-corners"
+                src="//crds-media.imgix.net/6yHxpnGB8C8y8zGIw6Y956/c3c6a48dd9c1e0587f721b44d6512871/anywhere-about.jpg"
+                alt="About" />
             </div>
             <div class="col-sm-6 push-bottom" id="about">
               <p class="text-orange text-uppercase flush-bottom font-family-base-bold">About</p>
               <h2 class="section-header flush-ends soft-half-bottom font-weight-300">Crossroads Anywhere</h2>
-              <p>Following Jesus is not a list of dos and don’ts. It’s an invitation to a spiritual adventure that’s way bigger than Sunday mornings.</p>
+              <p>Following Jesus is not a list of dos and don’ts. It’s an invitation to a spiritual adventure that’s way
+                bigger than Sunday mornings.</p>
               <p>We just keep asking: what if the people who followed Jesus actually looked like Him?</p>
-              <p>What if we were the most loving people on earth? What if we moved in His power? What if we had fun and were inclusive like He was? What if we brought justice like He did? That’s what we’re after, and we’d love for you to join us—whoever you are, wherever you are.</p>
+              <p>What if we were the most loving people on earth? What if we moved in His power? What if we had fun and
+                were inclusive like He was? What if we brought justice like He did? That’s what we’re after, and we’d
+                love for you to join us—whoever you are, wherever you are.</p>
             </div>
           </div>
 
           <div class="row align-items-center df-screen-sm push-top soft-top">
             <div class="col-sm-6 col-sm-push-6 push-bottom">
-              <img class="img-full-width img-rounded-corners" src="//crds-media.imgix.net/uuAQdz3pVwemVcXChUTW4/8873fb7d8a24a017b7394e50931602c7/anywhere-what-to-expect.jpg" alt="What to expect" />
+              <img class="img-full-width img-rounded-corners"
+                src="//crds-media.imgix.net/uuAQdz3pVwemVcXChUTW4/8873fb7d8a24a017b7394e50931602c7/anywhere-what-to-expect.jpg"
+                alt="What to expect" />
             </div>
             <div class="col-sm-6 col-sm-pull-6 push-bottom">
               <p class="text-orange text-uppercase flush-bottom font-family-base-bold">New Here?</p>
               <h2 class="section-header flush-ends soft-half-bottom font-weight-300">What to expect</h2>
-              <p>We want the kind of church that goes way beyond the walls of a building and shows up IRL. We meet in-person and online, in homes, coffee shops, breweries, in our app—anywhere that people are connecting to follow Jesus together.</p>
-              <p>We’re not a content channel or Christian influencers. We’re regular humans with our own problems who found real freedom in Jesus. And we will do <a href="/media/articles/anything-short-of-sin-a-letter-from-the-editor" class="text-gray-darker underline">anything short of sin</a> to help others do the same. </p>
+              <p>We want the kind of church that goes way beyond the walls of a building and shows up IRL. We meet
+                in-person and online, in homes, coffee shops, breweries, in our app—anywhere that people are connecting
+                to follow Jesus together.</p>
+              <p>We’re not a content channel or Christian influencers. We’re regular humans with our own problems who
+                found real freedom in Jesus. And we will do <a
+                  href="/media/articles/anything-short-of-sin-a-letter-from-the-editor"
+                  class="text-gray-darker underline">anything short of sin</a> to help others do the same. </p>
               <p>No matter where you live, you can join us. No matter what you believe, you’re welcome.</p>
             </div>
           </div>
@@ -396,19 +517,27 @@ layout: default
           <div class="bg-gray-lightest img-rounded-corners soft push-ends">
             <div class="row text-gray-darker soft mobile-hard">
               <div class="col-sm-6 mobile-push-bottom mobile-soft-bottom">
-                <img class="img-rounded-corners" src="//crds-media.imgix.net/4jYZVqkbuNr6pCWuFDPdiq/41dfc8d88be5f3459851d82dc1361792/anywhere-wayfinder.jpg" alt="Anywhere Wayfinder" />
+                <img class="img-rounded-corners"
+                  src="//crds-media.imgix.net/4jYZVqkbuNr6pCWuFDPdiq/41dfc8d88be5f3459851d82dc1361792/anywhere-wayfinder.jpg"
+                  alt="Anywhere Wayfinder" />
                 <p class="flush-bottom font-family-base-bold soft-half-top">Take the Wayfinder</p>
                 <p>
-                  Not sure where you are with God or how to get started? Take the Wayfinder—a quiz to identify where you are spiritually and how to get moving again.
+                  Not sure where you are with God or how to get started? Take the Wayfinder—a quiz to identify where you
+                  are spiritually and how to get moving again.
                 </p>
-                <crds-button href="https://www.sgwayfinder.com/" display="outline" target="_blank" color="blue" text="Take the Wayfinder"></crds-button>
+                <crds-button href="https://www.sgwayfinder.com/" display="outline" target="_blank" color="blue"
+                  text="Take the Wayfinder"></crds-button>
               </div>
 
               <div class="col-sm-6">
-                <img class="img-rounded-corners" src="//crds-media.imgix.net/3gAE9M73GkKONWMzhq4NhX/a229b7a8d6a1352f563704d42d8d65c4/anywhere-grow-with-us.png" alt="Grow with us" />
+                <img class="img-rounded-corners"
+                  src="//crds-media.imgix.net/3gAE9M73GkKONWMzhq4NhX/a229b7a8d6a1352f563704d42d8d65c4/anywhere-grow-with-us.png"
+                  alt="Grow with us" />
                 <p class="flush-bottom font-family-base-bold soft-half-top">Grow with us</p>
                 <p>
-                  We believe there’s a path to the full life Jesus promises. Practices He modeled that we’re all trying to follow together. Join us in time-tested, data-proven practices to grow your faith and actually get some breakthrough. 
+                  We believe there’s a path to the full life Jesus promises. Practices He modeled that we’re all trying
+                  to follow together. Join us in time-tested, data-proven practices to grow your faith and actually get
+                  some breakthrough.
                 </p>
                 <crds-button href="/growth-path" display="outline" color="blue" text="View the practices"></crds-button>
               </div>
@@ -421,24 +550,29 @@ layout: default
         <div slot="tab-our-team" class="push-ends">
           <div class="row align-items-center df-screen-sm">
             <div class="col-sm-6 push-bottom">
-              <img class="img-full-width img-rounded-corners" alt="{{ page.community_pastor_name }}" src="{{ page.community_pastor_image.url | imgix: site.imgix }}" />
+              <img class="img-full-width img-rounded-corners" alt="{{ page.community_pastor_name }}"
+                src="{{ page.community_pastor_image.url | imgix: site.imgix }}" />
             </div>
             <div class="col-sm-6 push-bottom">
               <p class="text-orange text-uppercase flush-bottom"><strong>Community pastor</strong></p>
-              <h2 class="section-header flush-ends soft-half-bottom font-weight-300">{{ page.community_pastor_name }}</h2>
+              <h2 class="section-header flush-ends soft-half-bottom font-weight-300">{{ page.community_pastor_name }}
+              </h2>
               {{ page.community_pastor_bio | markdownify }}
-  
+
               <div class="soft-half-ends">
                 {% if page.community_pastor_email %}
-                <a href="https://email.crossroads.net/meetings/andy-reider" class="text-gray-darker underline block">Let's Connect</a>
+                <a href="https://email.crossroads.net/meetings/andy-reider"
+                  class="text-gray-darker underline block">Let's Connect</a>
                 {% endif %}
                 <a href="/media/authors/andy-reider" class="text-gray-darker underline block">Follow me</a>
               </div>
             </div>
           </div>
-          
+
           <div class="anywhere-team-jumbotron push-top">
-            <img class="img-rounded-corners" src="//crds-media.imgix.net/6nG8lIgFFWIjKr2xeFGbNH/661829bf8cc9dc52de1b294622bf2f2c/Anywhere_Team_Photo-min.jpeg?bri=-10&auto=compress" alt="Anywhere Team"/>
+            <img class="img-rounded-corners"
+              src="//crds-media.imgix.net/6YIPj5JHIEHTDw0qT4AFkT/fb522da1b05549b757284900dc32d856/Anywhere-team-2024.png?bri=-10&auto=compress"
+              alt="Anywhere Team" />
             <div>
               <span>Crossroads Anywhere</span>
               <span>The Team</span>
@@ -447,124 +581,173 @@ layout: default
 
           <div class="anywhere-team-grid push-ends soft-ends">
             <div>
-              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/6czQGKJyTzAXnXH7P7LdLp/429e140b24d1a260d005175a00d444d0/IMG_7296.jpeg?dpr=1&fit=facearea&facepad=2&auto=compress" alt="DaManuel Montgomery" />
-              <p class="flush font-family-base-bold soft-half-top">DaManuel Montgomery</p>
-              <p>D-Man is our Connections Manager. If you have a question about Crossroads, want to meet people, or are just trying to find your way around, he can help! Or even bigger things like finding your purpose and seeing where you can change the world. He just graduated with a degree in Human Development and Community Engagement, and he’s one of the kindest guys you’ll ever meet. (He’s also single, ladies. Just sayin.’) </p>
+              <img class="img-circle img-size-4 object-fit-cover"
+                src="//crds-media.imgix.net/525bcqElSgIZM6cY1FKYpb/9020aa72126bddc0870f88cb84644e1f/emily-rebella.png?dpr=1&fit=facearea&facepad=2&auto=compress"
+                alt="Abby Rasmussen" />
+              <p class="flush font-family-base-bold soft-half-top">Emily Rebella</p>
+              <p>Emily leads Anywhere Student Ministry and 20s Ministry. She is passionate about connecting young people
+                to safe, fun, and fruitful communities that spur deeper relationship with Jesus. Reach out to her if you
+                have any children, friends, or family members in those age groups that might be interested in getting
+                involved. She’s also a Wisconsin Badger alumni that loves talking about all things college football,
+                travel, and Gen-Z! </p>
               <div>
-                <a class="text-gray-darker underline" href="https://meetings.hubspot.com/damanuel/talk-appointment-with-damanuel">Let's connect</a>
-                
-              </div>
-            </div>
-            
-            <div>
-              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/GaTBhPPPNewuLLF5xwc15/00604b8c6285736ab742509b7d89775c/Rassmussen_Abby-3.jpg?dpr=1&fit=facearea&facepad=2&auto=compress" alt="Abby Rasmussen" />
-              <p class="flush font-family-base-bold soft-half-top">Abby Rasmussen</p>
-              <p>Abby leads Anywhere Kids + Families. She’s a licensed counselor, working mom of two, and guaranteed to not only diligently solve your question but make you laugh and feel more capable while she does. Talk to her about kid questions, God questions, parenting, trying to parent your kids through God questions, and getting resources to lead a family you freaking love. </p>
-              <div>
-                <a class="text-gray-darker underline" href="https://email.crossroads.net/meetings/abby-rasmussen">Let's connect</a>
-                
+                <a class="text-gray-darker underline" href="mailto:emily.rebella@crossroads.net">Let's connect</a>
+
               </div>
             </div>
 
             <div>
-              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/CqobCkoi8OLz0wk0rAHMQ/21de72c81e985e09b322ade41e345f39/220929_CrsrdsAny_Sam_Hill__23_of_27_-min.jpg?dpr=1&fit=facearea&facepad=2&auto=compress" alt="Sam Hill" />
+              <img class="img-circle img-size-4 object-fit-cover"
+                src="//crds-media.imgix.net/CqobCkoi8OLz0wk0rAHMQ/21de72c81e985e09b322ade41e345f39/220929_CrsrdsAny_Sam_Hill__23_of_27_-min.jpg?dpr=1&fit=facearea&facepad=2&auto=compress"
+                alt="Sam Hill" />
               <p class="flush font-family-base-bold soft-half-top">Sam Hill</p>
-              <p>Sam leads Connections and Care. She’s building a team all over the country to make sure you have amazing Crossroads Anywhere reps near you—or at least in your time zone, to start. She’s the perfect person to call when you have a crisis or just feel stuck. Reach out to her to find people near you, become a regional leader, or for help in whatever you’re going through.</p>
+              <p>Sam leads Connections and Care. She’s building a team all over the country to make sure you have
+                amazing Crossroads Anywhere reps near you—or at least in your time zone, to start. She’s the perfect
+                person to call when you have a crisis or just feel stuck. Reach out to her to find people near you,
+                become a regional leader, or for help in whatever you’re going through.</p>
               <div>
-                <a class="text-gray-darker underline" href="https://email.crossroads.net/meetings/sam-hill1">Let's connect</a>
-                
+                <a class="text-gray-darker underline" href="https://email.crossroads.net/meetings/sam-hill1">Let's
+                  connect</a>
+
               </div>
             </div>
 
             <div>
-              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/50lZi2Gr6WNhAvKCUafu6N/7c75a65374d0b43f3e5729c9adcffaec/220929_CrsrdsAny_Sean_19_of_27_-min.jpg?dpr=1&fit=facearea&facepad=2&auto=compress" alt="Sean Boyce" />
+              <img class="img-circle img-size-4 object-fit-cover"
+                src="//crds-media.imgix.net/54OD0NJ6oU5Soo6HkCwJmL/d690e40515bdaae3f338ca71b687d17e/0N3A4630.jpg?dpr=1&fit=facearea&facepad=2&auto=compress"
+                alt="Brent Barger" />
+              <p class="flush font-family-base-bold soft-half-top">Brent Barger</p>
+              <p>Brent hails from Lexington, KY and has been married to Ashley for over 29 years. He has 2 great kids,
+                Hadley and Nolan. Brent has been on staff with Crossroads for over 12 years and joined the Anywhere team
+                last year. He loves reading, sports, travel and helping coach his kids teams.</p>
+              <div>
+                <a class="text-gray-darker underline" href="mailto:brent.barger@crossroads.net">Let's connect</a>
+
+              </div>
+            </div>
+
+            <div>
+              <img class="img-circle img-size-4 object-fit-cover"
+                src="//crds-media.imgix.net/50lZi2Gr6WNhAvKCUafu6N/7c75a65374d0b43f3e5729c9adcffaec/220929_CrsrdsAny_Sean_19_of_27_-min.jpg?dpr=1&fit=facearea&facepad=2&auto=compress"
+                alt="Sean Boyce" />
               <p class="flush font-family-base-bold soft-half-top">Sean Boyce</p>
-              <p>Sean leads mentoring and communities. Who couldn’t use a good mentor in your life or some better people around? He has the gift of friendship and is passionate about relationships that matter. Reach out to him for help finding a mentor, building community near you, dealing with FOMO, and discussing all things NBA-related.</p>
+              <p>Sean leads mentoring and communities. Who couldn’t use a good mentor in your life or some better people
+                around? He has the gift of friendship and is passionate about relationships that matter. Reach out to
+                him for help finding a mentor, building community near you, dealing with FOMO, and discussing all things
+                NBA-related.</p>
               <div>
-                <a class="text-gray-darker underline" href="https://email.crossroads.net/meetings/sean-boyce">Let's connect</a>
-                
+                <a class="text-gray-darker underline" href="https://email.crossroads.net/meetings/sean-boyce">Let's
+                  connect</a>
+
               </div>
             </div>
 
             <div>
-              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/1EA8jjAjDcMvMfFHozT7QT/7a85e0ac322cff13f3e21aa0a75e8a6d/Zoeckler_Kristen-4.jpg?dpr=1&fit=facearea&facepad=2&auto=compress" alt="Kristen Zoeckler" />
-              <p class="flush font-family-base-bold soft-half-top">Kristen Zoeckler</p>
-              <p>Kristen is the glue that holds us all together. She’s an expert community leader, mentor, experience creator, intentional parent, and more. Reach out to her if you want someone to pray with you or have a question about Crossroads.</p>
-              <div>
-                <a class="text-gray-darker underline" href="mailto:kristen.zoeckler@crossroads.net">Let's connect</a>
-                
-              </div>
-            </div>
-
-            <div>
-              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/2miJCJevDChWXqbLAuRGrf/9ea8da4bd0adf077d7bac82e11e2b898/Nick_Headshots-10_small.JPG?dpr=1&fit=facearea&facepad=2&auto=compress" alt="Nick Snider" />
-              <p class="flush font-family-base-bold soft-half-top">Nick Snider</p>
-              <p>Nick runs cohorts, co-leads the Better Answer podcast with Kyle, and is always working on new stuff for 20-somethings. Reach out to him to get connected to other 20-somethings, navigate community and God in real life, and how to find good coffee.</p>
-              <div>
-                <a class="text-gray-darker underline" href="https://meetings.hubspot.com/nick-snider">Let's connect</a>
-                
-              </div>
-            </div>
-
-            <div>
-              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/3YFmnmpjCnDkyApTP2GCxy/a016113407e5a95f18934e92dcdd96cb/Kelley_Maher_headshot-min.jpg?dpr=1&fit=facearea&facepad=2&auto=compress" alt="Kelley Maher" />
+              <img class="img-circle img-size-4 object-fit-cover"
+                src="//crds-media.imgix.net/3YFmnmpjCnDkyApTP2GCxy/a016113407e5a95f18934e92dcdd96cb/Kelley_Maher_headshot-min.jpg?dpr=1&fit=facearea&facepad=2&auto=compress"
+                alt="Kelley Maher" />
               <p class="flush font-family-base-bold soft-half-top">Kelley Maher</p>
-              <p>Kelley leads prayer and healing. She creates spaces where we can experience Jesus’ power—no matter what we’re going through. Find freedom and hope by reaching out for zero judgment—just a friend who’s probably been there too and is now on the other side. We have groups for addiction, abortion, abuse, crisis, and more.</p>
+              <p>Kelley leads prayer and healing. She creates spaces where we can experience Jesus’ power—no matter what
+                we’re going through. Find freedom and hope by reaching out for zero judgment—just a friend who’s
+                probably been there too and is now on the other side. We have groups for addiction, abortion, abuse,
+                crisis, and more.</p>
               <div>
                 <a class="text-gray-darker underline" href="mailto:kelley.maher@crossroads.net">Let's connect</a>
-                <a class="text-gray-darker underline" href="https://www.crossroads.net/online-prayer-nights/">Check Out Monthly Prayer</a>
-                
+                <a class="text-gray-darker underline" href="https://www.crossroads.net/online-prayer-nights/">Check Out
+                  Monthly Prayer</a>
+
               </div>
             </div>
 
             <div>
-              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/1rHbDVJdx2BYzQxjicEHvP/9da63d6c76b375b06c1b6514d2c701c0/6530B374-90F8-4630-8B81-107B0896983E_1_105_c.jpeg?dpr=1&fit=facearea&facepad=2&auto=compress" alt="Brad Fahrenkamp" />
+              <img class="img-circle img-size-4 object-fit-cover"
+                src="//crds-media.imgix.net/1rHbDVJdx2BYzQxjicEHvP/9da63d6c76b375b06c1b6514d2c701c0/6530B374-90F8-4630-8B81-107B0896983E_1_105_c.jpeg?dpr=1&fit=facearea&facepad=2&auto=compress"
+                alt="Brad Fahrenkamp" />
               <p class="flush font-family-base-bold soft-half-top">Brad Fahrenkamp</p>
-              <p>Brad leads our prophetic prayer ministry and supernatural skills training. (Crazy, right? If by crazy, you mean really cool and intriguing.) He left his financial business to teach others to hear from God. Reach out to him about learning to hear God, spiritual warfare, activating the power of prayer in your life, and prophecy (the skill of hearing God for others.)</p>
+              <p>Brad leads our prophetic prayer ministry and supernatural skills training. (Crazy, right? If by crazy,
+                you mean really cool and intriguing.) He left his financial business to teach others to hear from God.
+                Reach out to him about learning to hear God, spiritual warfare, activating the power of prayer in your
+                life, and prophecy (the skill of hearing God for others.)</p>
               <div>
-                <a class="text-gray-darker underline" href="mailto:brad.fahrenkamp@volunteer.crossroads.net">Let's connect</a>
-                
+                <a class="text-gray-darker underline" href="mailto:brad.fahrenkamp@volunteer.crossroads.net">Let's
+                  connect</a>
+
               </div>
             </div>
 
             <div>
-              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/71EYG9yU8lh8jJOok8mFKN/5a9eeb104f9594f8315ad8b88bb5bee9/RR_headshot.jpg?dpr=1&fit=facearea&facepad=2&auto=compress" alt="Rachel Reider" />
+              <img class="img-circle img-size-4 object-fit-cover"
+                src="//crds-media.imgix.net/71EYG9yU8lh8jJOok8mFKN/5a9eeb104f9594f8315ad8b88bb5bee9/RR_headshot.jpg?dpr=1&fit=facearea&facepad=2&auto=compress"
+                alt="Rachel Reider" />
               <p class="flush font-family-base-bold soft-half-top">Rachel Reider</p>
-              <p>Rachel leads community and spiritual growth. She’s over the idea that church is about making us nicer people, and she’s (appropriately) obsessed with helping people fully become who God made them to be. Reach out to her if you’re burnt out on church, deconstructing, want to activate your gifts, feel stuck spiritually, or want to know more about becoming an apprentice of Jesus (that not only changes your life but the lives of everyone around you.)</p>
+              <p>Rachel leads community and spiritual growth. She’s over the idea that church is about making us nicer
+                people, and she’s (appropriately) obsessed with helping people fully become who God made them to be.
+                Reach out to her if you’re burnt out on church, deconstructing, want to activate your gifts, feel stuck
+                spiritually, or want to know more about becoming an apprentice of Jesus (that not only changes your life
+                but the lives of everyone around you.)</p>
               <div>
-                <a class="text-gray-darker underline" href="https://email.crossroads.net/meetings/rachel-reider">Let's connect</a>
-                
+                <a class="text-gray-darker underline" href="https://email.crossroads.net/meetings/rachel-reider">Let's
+                  connect</a>
+
               </div>
             </div>
 
             <div>
-              <img class="img-circle img-size-4 object-fit-cover" src="//crds-media.imgix.net/40xLIlxuCznz7LH9m3sjoO/4a0b343ad37e10fae263d6d819cf25af/McDade_Eugene-2-6.jpg?dpr=1&fit=facearea&facepad=2&auto=compress" alt="Eugene McDade" />
+              <img class="img-circle img-size-4 object-fit-cover"
+                src="//crds-media.imgix.net/40xLIlxuCznz7LH9m3sjoO/4a0b343ad37e10fae263d6d819cf25af/McDade_Eugene-2-6.jpg?dpr=1&fit=facearea&facepad=2&auto=compress"
+                alt="Eugene McDade" />
               <p class="flush font-family-base-bold soft-half-top">Eugene McDade </p>
-              <p>If you’re curious about Crossroads but not ready to dive in, or your schedule is tight, talk to Eugene. He runs all sorts of short, easy, one-time experiences that help you test the waters and jumpstart your spiritual growth like Camps, Rooted, Alpha, trips, serving, and more. You can also drop into his ongoing group to get connected anytime. If you really want to get to know him (and enter a lively debate), ask him about Waffle House.</p>
+              <p>If you’re curious about Crossroads but not ready to dive in, or your schedule is tight, talk to Eugene.
+                He runs all sorts of short, easy, one-time experiences that help you test the waters and jumpstart your
+                spiritual growth like Camps, Rooted, Alpha, trips, serving, and more. You can also drop into his ongoing
+                group to get connected anytime. If you really want to get to know him (and enter a lively debate), ask
+                him about Waffle House.</p>
               <div>
                 <a class="text-gray-darker underline" href="https://calendly.com/eugene-mcdade">Let's connect</a>
+              </div>
+            </div>
+
+            <div>
+              <img class="img-circle img-size-4 object-fit-cover"
+                src="//crds-media.imgix.net/Ej9K43MzgT1WNtmecwVDW/2212c5b3b4746eaf772e466fcdc7c738/crossroads-griff-ray.jpg?dpr=1&fit=facearea&facepad=2&auto=compress"
+                alt="Griff Ray" />
+              <p class="flush font-family-base-bold soft-half-top">Griff Ray</p>
+              <p>Griff leads our Community-Building team, which is focused on developing relationships in our Anywhere
+                Community. Griff is passionate about people and loves to see people doing life together as the church.
+                He also coaches several group leaders and develops communities in Florida and Kentucky. He is a beer
+                snob and a bit of a sci-fi nerd. He and his wife, Kristan, love the outdoors and hiking and are
+                part-time goat farmers in Stamping Ground, KY.</p>
+              <div>
+                <a class="text-gray-darker underline" href="https://email.crossroads.net/meetings/griff-ray">Let's
+                  connect</a>
+
               </div>
             </div>
           </div>
         </div>
 
-        
+
       </crds-tabs>
     </div>
   </div>
 </section>
 
 <!-- Sign up  -->
-<section class="anywhere-sign-up soft-ends" style="background-image: url('https://crds-media.imgix.net/1ie6HE8PwHcxZw3qSrOw4Y/4f61fa904ff40800a4dc2a99e1f8cefe/anywhere-form-image.jpg?{{ site.imgix_params.placeholder }}')" data-optimize-bg-img>
+<section class="anywhere-sign-up soft-ends"
+  style="background-image: url('https://crds-media.imgix.net/1ie6HE8PwHcxZw3qSrOw4Y/4f61fa904ff40800a4dc2a99e1f8cefe/anywhere-form-image.jpg')"
+  data-optimize-bg-img>
   <div class="container soft-ends">
     <div class="row text-center">
       <div class="col-md-8 col-md-offset-2">
-        <h3 class="text-white font-family-condensed-extra font-size-giant text-uppercase font-weight-300">Be a part of a new kind of church</h3>
-        <p class="text-blue font-family-serif">God created everyone one of us to live a life of adventure and to change the world for good. If that sounds interesting to you, then you’re in the right place. Create a profile to access spiritual training, life-changing experiences, and connections with others on this journey.<br /></p>
+        <h3 class="text-white font-family-condensed-extra font-size-giant text-uppercase font-weight-300">Be a part of a
+          new kind of church</h3>
+        <p class="text-blue font-family-serif">God created everyone one of us to live a life of adventure and to change
+          the world for good. If that sounds interesting to you, then you’re in the right place. Create a profile to
+          access spiritual training, life-changing experiences, and connections with others on this journey.<br /></p>
         {% if site.crds_env contains 'prod' %}
-          <crds-button href="https://my.crossroads.net/NewAccount" color="blue" text="Join Crossroads"></crds-button>
+        <crds-button href="https://my.crossroads.net/NewAccount" color="blue" text="Join Crossroads"></crds-button>
         {% else %}
-          <crds-button href="https://mydev.crossroads.net/NewAccount" color="blue" text="Join Crossroads"></crds-button>
+        <crds-button href="https://mydev.crossroads.net/NewAccount" color="blue" text="Join Crossroads"></crds-button>
         {% endif %}
       </div>
     </div>

@@ -41,8 +41,30 @@ layout: default
               </div>
             </div>
           {% endif %}
+          {% if page.source_url_spanish %}
+            <div class="video-language-controls">
+              <crds-button id="video-language-switch" onClick="switchVideoSource()" data-current-video-language="en" color="white" display="outline" text="Ver en Español" icon="play-thin" icon-color="white" icon-size="20" icon-align="left" tertiary>
+              </crds-button>
+            </div>
+            <script>
+              function switchVideoSource() {
+                var currentLanguage = document.getElementById("video-language-switch").getAttribute("data-current-video-language");
+                var reloadVideoPlayer = new Event('reload-bitmovin-video');
+                if (currentLanguage == "en") {
+                  document.getElementById("video-language-switch").setAttribute("text", "Watch in English");
+                  document.getElementsByTagName("crds-bitmovin-player")[0].setAttribute("url", '{{page.source_url_spanish}}');
+                  document.getElementById("video-language-switch").setAttribute("data-current-video-language", "sp");
+                } else {
+                  document.getElementById("video-language-switch").setAttribute("text", "Ver en Español");
+                  document.getElementsByTagName("crds-bitmovin-player")[0].setAttribute("url", '{{page.bitmovin_url}}');
+                  document.getElementById("video-language-switch").setAttribute("data-current-video-language", "en");
+                }
 
-          <header>
+                document.dispatchEvent(reloadVideoPlayer);
+              }
+            </script>
+          {% endif %}
+          <header id="action-buttons">
             {% if page.audio_file.url or page.video_file.url or page.program.url or page.audio_source_url %}
             <div class="sources push-quarter-top">
               {% if page.source_url %}
@@ -84,7 +106,6 @@ layout: default
                 {% endfor %}
               </ol>
               <!-- End breadcrumbs -->
-
               <h1 data-media-title="{{ page.title }}" data-media-id="{{ page.id }}" class="font-family-condensed-extra text-uppercase flush-top push-bottom text-white">{{ page.title }}</h1>
             </div>
           </header>

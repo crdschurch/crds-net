@@ -83,7 +83,7 @@ layout: default
               {% endfor %}
             {% endif %}
             {% if page.service_times %}
-              {{ page.service_times | markdownify | remove: '<p>' | remove: '</p>' }}
+              {{ page.reference_service_times | markdownify | remove: '<p>' | remove: '</p>' }}
             {% endif %}
             <div class="col-sm-6">
               <p>

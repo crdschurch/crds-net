@@ -1,3 +1,20 @@
+#article-card {
+  .card-stamp {
+    position: absolute;
+    bottom: 2em;
+    right: 1em;
+    height: 1.75em;
+    width: 4.3em;
+
+    @media screen and (max-width: $screen-sm) {
+      bottom: 0
+    }
+  }
+
+  .with-episode {
+    width: 8.5em;
+  }
+}
 .article-tpl {
   @media screen and (min-width: $screen-md) {
     margin-top: 30px;
@@ -158,4 +175,8 @@
   @media screen and (min-width: $screen-md) {
     font-size: 5rem;
   }
+}
+
+.podcast-listen-now-link {
+  color: white;
 }

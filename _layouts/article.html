@@ -24,6 +24,14 @@ title: Articles
             <h1 data-media-title="{{page.title}}" data-media-id="{{page.id}}" class="overlay-card-title overlay-card-heading">{{ page.title | truncate: 70 }}</h1>
             <p class="overlay-card-author text-gray-light">{{ page.author.full_name }}</p>
             <div class="card-stamp text-white">
+              {% if page.podcast_episode != null %}
+                <span class="font-size-smallest soft-quarter-right">
+                  <a class="podcast-listen-now-link" href="{{page.podcast_slug}}">Listen Now</a>
+                </span>
+                <svg class="icon" viewBox="0 0 256 256">
+                  <use xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
+                </svg>
+              {% endif %}
               {% if page.duration %}
                 {% assign format = 'short' %}
               {% endif %}
@@ -56,8 +64,6 @@ title: Articles
           </div>
         </div>
         {% endif %}
-
-        <iframe src="https://share.hsforms.com/1-ca6OFYhR3uThec74KwCkQ2dls1" width="100%" height="650px" style="padding-top: 20px;" frameborder="0" scrolling="no"></iframe>
 
         <!-- Author Section -->
         <div class="article-tpl-content article-tpl-author-section row row-no-gutters soft-ends">
@@ -94,6 +100,10 @@ title: Articles
               </div>
             </div>
           </div>
+        </div>
+        <div class="article-tpl-content article-tpl-author-section row row-no-gutters soft-ends">
+          <crds-weekly-banner theme="article" cta="Subscribe to the Weekly" header="BE NOTIFIED OF MORE AWESOMENESS" body="Your weekly punch of spiritual encouragement and amazing stories of faith to start the week off right. Sign up to get this goodness delivered to your inbox each Monday."  appcta="Read Articles in the App">
+          </crds-weekly-banner>
         </div>
 
       </div>

@@ -1,20 +1,20 @@
 ---
 layout: default
-snail_trail: media
-title: Series
+snail_trail: student-ministry
+title: Student Ministry Series
 paginate:
   series:
     sort: starts_at desc
 ---
 
-{% assign MediaSeries = page.series.docs | where_exp: 'series', 'series.is_student_ministry_series == false or series.is_student_ministry_series == nil' %}
+{% assign StudentMinistrySeries = page.series.docs | where_exp: 'series', 'series.is_student_ministry_series == true' %}
 <div class="container">
   <ol class="breadcrumb text-orange hard-sides hard-bottom push-top flush-bottom">
-    <li><a href="/media">Media</a></li>
+    <li><a href="/crossroadsstudents">Student Ministry</a></li>
   </ol>
   <h3 class="section-header font-size-h1 flush-top push-bottom">Series</h3>
  <!-- Begin current Series -->
- {% for featured in MediaSeries %}
+ {% for featured in StudentMinistrySeries %}
    {% if forloop.first %}
     <div class="row soft-bottom current-series">
       <div class="col-xs-12 col-md-7">
@@ -67,7 +67,7 @@ paginate:
   {% assign series_year = '' %}
   {% assign current_year = site.time | date: '%Y' %}
 
-  {% for series in MediaSeries %}
+  {% for series in StudentMinistrySeries %}
     {% unless forloop.first %}
       {% assign new_series_year = series.starts_at | date: '%Y' %}
       {% assign item = series %}
