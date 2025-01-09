@@ -22,7 +22,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
       source_path = candidates.find { |candidate| File.file?(candidate) }
 
       unless source_path
-        puts "Warning: No valid source file found for '#{page.url}' among these candidates:"
+        puts "Warning: No valid source file found for '#{page.url}' among these candidates for static page indexing:"
         candidates.each { |c| puts "  - #{c}" }
         next
       end
@@ -34,7 +34,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
       FileUtils.mkdir_p(File.dirname(dest_path))
 
       FileUtils.cp(source_path, dest_path)
-      puts "Copied: #{source_path} -> #{dest_path}"
+      puts "Copied: #{source_path} -> #{dest_path} for static page indexing"
     end
   end
 end
