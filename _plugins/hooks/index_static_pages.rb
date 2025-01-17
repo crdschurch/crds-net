@@ -105,10 +105,6 @@ Jekyll::Hooks.register :site, :post_write do |site|
     exit(1)
   end
 
-  puts "algolia_app_id: #{algolia_app_id}"
-  puts "algolia_api_key: #{algolia_api_key}"
-  puts "algolia_index_name: #{algolia_index_name}"
-
   begin
     client = Algolia::Search::Client.create(algolia_app_id, algolia_api_key)
     index  = client.init_index(algolia_index_name)
