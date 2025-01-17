@@ -15,6 +15,8 @@ gem "rack", ">= 2.0.6"
 gem 'hashie'
 gem 'uglifier'
 gem 'webvtt-ruby'
+gem 'nokogiri'
+gem 'algolia', '~> 2.0'
 
 # To fix security vulnerability
 gem 'sprockets', '~> 3.7.2'
