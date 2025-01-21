@@ -83,8 +83,23 @@
   {% endif %}
   
   {% unless content contains 'crds-components.esm.js' %}
-  <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.esm.js" as="script">
-  <link rel="preload" href="{{ site.components_endpoint }}/crds-components.js" as="script">
+    {% if site.use_unified_components %}
+      <script type="module" onload="componentsLoaded()" src="{{ site.unified_components_endpoint }}"></script>
+    {% else %}
+      <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.esm.js" as="script">
+      <link rel="preload" href="{{ site.components_endpoint }}/crds-components.js" as="script">
+      <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.css" as="style">
+      <link rel="stylesheet" href="{{ site.components_endpoint }}/crds-components/crds-components.css">
+      <script type="module" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components/crds-components.esm.js"></script>
+      <script nomodule="" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components.js"></script>
+    {% endif %}
+    <script>
+      function componentsLoaded() {
+        var componentsReady = new Event('components-ready');
+        document.dispatchEvent(componentsReady);
+        window.componentsReady = true;
+      }
+    </script>
   {% endunless %}
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
