@@ -1,6 +1,6 @@
 Jekyll::Hooks.register :site, :after_init do |site|
   site.config['components_endpoint'] = "https://#{ENV['CRDS_COMPONENTS_ENDPOINT'] || "components.crossroads.net"}/dist"
-  site.config['unified_components_endpoint'] = "https://#{ENV['CRDS_UNIFIED_COMPONENTS_ENDPOINT'] || "components.crossroads.net"}/dist/unified-components.js"
+  site.config['unified_components_endpoint'] = "https://#{ENV['CRDS_UNIFIED_COMPONENTS_ENDPOINT'] || "unified-components.crossroads.net"}/dist/unified-components.js"
   site.config['use_unified_components'] = ENV['USE_UNIFIED_COMPONENTS'] == 'true'
 
   env = case ENV['JEKYLL_ENV']
