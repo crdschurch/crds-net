@@ -88,14 +88,25 @@ layout: default
 
       <div class="col-sm-6">
         <div class="portrait-card-skeleton-condensed push-bottom">
+          {% if page.name == 'Dayton' %}
           <crds-portrait-card theme="condensed" lead="Join us" title="New Building Coming Soon"
             image-src="//images.ctfassets.net/y3a9myzsdjan/4VDFfpwmlUEsY5UwmhCttX/c1e5b97fd0f4eae3ddd1b73814b76305/11-16-2023_North_View_02__1_.png">
             <p></p>
             <crds-button class="push-half-right" data-toggle="modal" href="https://www.crossroads.net/daytonlaunch"
               color="white" text="Learn More"></crds-button>
             <crds-button class="push-half-right" data-toggle="modal" href="https://my.crossroads.net/Registration/daytonlaunchteam"
-              color="orange" text="Sign Up for the Launch Team"></crds-button>  
+              color="orange" text="Sign Up for the Launch Team"></crds-button>
           </crds-portrait-card>
+          {% endif %}
+          {% if page.name == 'Columbus' %}
+          <crds-portrait-card theme="condensed" lead="Join us" title="The Core Team"
+            image-src="//images.ctfassets.net/y3a9myzsdjan/1k2Oj0xxuWDq8ge9DvBdWE/4180959bdeb96186bb7a786214b1dc37/Screenshot_2024-10-04_at_5.06.06_PM.png">
+            <p>Crossroads is a growing community that needs leaders and doers. Join our team and
+              help build the church you want to belong to.</p>
+            <crds-button class="push-half-right" data-target="#launchModalForm" data-toggle="modal" href=""
+              color="orange" text="Sign Up"></crds-button>
+          </crds-portrait-card>
+          {% endif %}
         </div>
       </div>
     </div>
