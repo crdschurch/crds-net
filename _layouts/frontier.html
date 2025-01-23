@@ -186,7 +186,7 @@ layout: default
 
             <!-- Community Pastor or The Team -->
             {% assign community_slot = "tab-community-pastor" %}
-            {% if page.site_id == 23 %}
+            {% elsif page.site_id == 23 %}
             {% assign community_slot = "tab-the-team" %}
             {% endif %}
 
@@ -573,7 +573,7 @@ layout: default
       </div>
       <div class="modal-footer"></div>
     </div>
-  </div>{% endif %}
+  </div>
 </div>
 
 {% javascript_link_tag video-modal-close %}
