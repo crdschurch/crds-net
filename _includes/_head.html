@@ -82,10 +82,26 @@
     </script>
   {% endif %}
   
-  {% unless content contains 'crds-components.esm.js' %}
-  <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.esm.js" as="script">
-  <link rel="preload" href="{{ site.components_endpoint }}/crds-components.js" as="script">
-  {% endunless %}
+  {% if site.use_unified_components %}
+    <script type="module" onload="componentsLoaded()" src="{{ site.unified_components_endpoint }}"></script>
+  {% else %}
+    {% unless content contains 'crds-components.esm.js' %}
+      <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.esm.js" as="script">
+      <link rel="preload" href="{{ site.components_endpoint }}/crds-components.js" as="script">
+      <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.css" as="style">
+      <link rel="stylesheet" href="{{ site.components_endpoint }}/crds-components/crds-components.css">
+      <script type="module" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components/crds-components.esm.js"></script>
+      <script nomodule="" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components.js"></script>
+    {% endunless %}
+  {% endif %}
+
+  <script>
+    function componentsLoaded() {
+      var componentsReady = new Event('components-ready');
+      document.dispatchEvent(componentsReady);
+      window.componentsReady = true;
+    }
+  </script>
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
 
@@ -137,25 +153,6 @@
   var envReady = new Event('env-ready');
   document.dispatchEvent(envReady);
   window.envReady = true;
-  </script>
-
-  {% unless content contains 'crds-components.esm.js' %}
-  <script type="module" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components/crds-components.esm.js"></script>
-  <script nomodule="" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components.js"></script>
-  <script>
-    function componentsLoaded() {
-      var componentsReady = new Event('components-ready');
-      document.dispatchEvent(componentsReady);
-      window.componentsReady = true;
-    }
-  </script>
-  {% endunless %}
-
-  <script>
-  dataLayer.push({'event': 'segment_loaded'});
-  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://analytics.segment.crossroads.net/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="{% if site.jekyll_env == 'production' %}nPCU8RuoHt5Ip7tj3UdS4ek0A53a8dGW{% else %}6urDjS9ewsjC9YAbSuihDc0TY7Xrv39b{% endif %}";;analytics.SNIPPET_VERSION="4.15.3";
-  analytics.load("{% if site.jekyll_env == 'production' %}nPCU8RuoHt5Ip7tj3UdS4ek0A53a8dGW{% else %}6urDjS9ewsjC9YAbSuihDc0TY7Xrv39b{% endif %}");
-  }}();
   </script>
 
   {% include _facebook.html %}
