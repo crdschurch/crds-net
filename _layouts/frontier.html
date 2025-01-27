@@ -88,14 +88,24 @@ layout: default
 
       <div class="col-sm-6">
         <div class="portrait-card-skeleton-condensed push-bottom">
+          {% if page.name == 'Dayton' %}
           <crds-portrait-card theme="condensed" lead="Join us" title="New Building Coming Soon"
             image-src="//images.ctfassets.net/y3a9myzsdjan/4VDFfpwmlUEsY5UwmhCttX/c1e5b97fd0f4eae3ddd1b73814b76305/11-16-2023_North_View_02__1_.png">
             <p></p>
             <crds-button class="push-half-right" data-toggle="modal" href="https://www.crossroads.net/daytonlaunch"
               color="white" text="Learn More"></crds-button>
             <crds-button class="push-half-right" data-toggle="modal" href="https://my.crossroads.net/Registration/daytonlaunchteam"
-              color="orange" text="Sign Up for the Launch Team"></crds-button>  
+              color="orange" text="Sign Up for the Launch Team"></crds-button>
           </crds-portrait-card>
+          {% endif %}
+          {% if page.name == 'Columbus' %}
+          <crds-portrait-card theme="condensed" lead="Join us" title="Make an Impact. Sign up to Volunteer."
+            image-src="//images.ctfassets.net/y3a9myzsdjan/5gRoYiESU4OO0bTCDlWUfl/f81381d8d91720253651feb767169dea/2400616_Crds_Columbus_DavidSlaughter-12-DeNoiseAI-standard.jpg">
+            <p class="push-half-ends">Help create an environment that is welcoming and fun.</p>
+            <crds-button class="push-half-right" href="https://my.crossroads.net/volunteer?crossroads-community=columbus"
+              color="white" text="Sign Up"></crds-button>
+          </crds-portrait-card>
+          {% endif %}
         </div>
       </div>
     </div>
