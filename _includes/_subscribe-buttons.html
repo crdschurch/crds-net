@@ -56,21 +56,6 @@
           </a>
         </li>
         {% endif %}
-        {% if include.content_type.google_play_url.size > 1 %}
-        <li>
-          <a href="{{ include.content_type.google_play_url }}" role="button" class="btn btn-cyan btn-subscribe soft-quarter-ends d-flex justify-content-between">
-            <div class="d-flex flex-column push-quarter-right align-items-start  btn-text">
-              <span class="font-size-small push-quarter-bottom">Google Play</span>
-              <span class="font-size-smallest white-faded text-uppercase">Subscribe</span>
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 22 24">
-              <g fill="none" fill-rule="evenodd" transform="translate(-5 -4)">
-                <path fill="#FFF" fill-rule="nonzero" d="M19.303 14.985L8.78 4.609l13.387 7.558-2.865 2.818zM6.035 4C5.415 4.319 5 4.9 5 5.655v20.69c0 .755.415 1.336 1.035 1.655l12.233-12.002L6.035 4zm20.271 10.577l-2.808-1.599-3.132 3.024 3.132 3.024 2.865-1.598c.859-.67.859-2.18-.057-2.85zM8.781 27.395l13.387-7.558-2.865-2.817L8.78 27.395z" mask="url(#b)"/>
-              </g>
-            </svg>
-          </a>
-        </li>
-        {% endif %}
         {% if include.content_type.stitcher_url.size > 1 %}
         <li>
           <a href="{{ include.content_type.stitcher_url }}" role="button" class="btn btn-cyan btn-subscribe soft-quarter-ends d-flex justify-content-between">
