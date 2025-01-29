@@ -112,58 +112,84 @@ title: Podcast
     <div class="row soft-bottom push-bottom">
       <div class="col-sm-8 col-sm-offset-2">
         <h2 class="component-header">Episodes</h2>
-        <!-- Tabs -->
-        <!-- Nav tabs -->
-        <div>
-          <ul class="nav nav-tabs" role="tablist">
-            {% assign season_numbers = episodes | sort: 'season_number' | map: 'season_number' | uniq | reverse %}
-            {% for season_number in season_numbers %}
-              <li role="presentation" {% if forloop.first %}class="active"{% endif %}>
-                <a href="#season-{{ season_number }}" aria-controls="description" role="tab" data-toggle="tab">
-                  Season {{ season_number }}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
+        
+        {% if page.slug == 'messages' %}
+          <!-- Single list view for Messages podcast -->
+          {% assign sorted_episodes = episodes | sort: 'date' | reverse %}
+          {% for episode in sorted_episodes %}
+            <div class="push-top">
+              <a href="{{ episode.url }}">
+                <h3 class="list-title text-capitalize push-quarter-bottom">{{ episode.title }}</h3>
+              </a>
 
-        <!-- Tab Panes -->
-        <div class="tab-content">
-          {% assign groups = episodes | sort: 'season_number' | reverse | group_by: 'season_number' %}
+              <p class="metadata push-quarter-bottom">{{ episode.date | format_date }}
+                {% if episode.date != nil and episode.duration != nil %}
+                <span class="divider">•</span>
+                {% endif %}
+                {% if episode.duration %}
+                  {% include _read-time.html duration=episode.duration content_type='episode' %}
+                {% endif %}
+              </p>
 
-          {% for group in groups %}
-            {% assign season_number = group.items | map: 'season_number' | first %}
-            <div role="tabpanel" class="tab-pane {% if forloop.first %}active{% endif %}" id="season-{{ season_number }}">
-
-              {% assign episodes = group.items | sort: 'episode_number' | reverse %}
-              {% for episode in episodes %}
-                <div class="push-top">
-                  <a href="{{ episode.url }}">
-                    <h3 class="list-title text-capitalize push-quarter-bottom">Episode {{ episode.episode_number }}: {{ episode.title }}</h3>
-                  </a>
-
-                  <p class="metadata push-quarter-bottom">{{ episode.date | format_date }}
-                    {% if episode.date != nil and episode.duration != nil %}
-                    <span class="divider">•</span>
-                    {% endif %}
-                    {% if episode.duration %}
-                      {% include _read-time.html duration=episode.duration content_type='episode' %}
-                    {% endif %}
-                  </p>
-
-                  {% if episode.content != blank %}
-                  <p class="episode-description">{{ episode.content | strip_html | truncatewords: 35 }}</p>
-                  {% endif %}
-                </div>
-              {% endfor %}
+              {% if episode.content != blank %}
+              <p class="episode-description">{{ episode.content | strip_html | truncatewords: 35 }}</p>
+              {% endif %}
             </div>
-
-          {% else %}
-
-            <p class="font-family-base soft-ends push-bottom">Sorry we don't have any episodes here yet. Please check back soon!</p>
-
           {% endfor %}
-        </div>
+        {% else %}
+          <!-- Tabs view for other podcasts -->
+          <!-- Nav tabs -->
+          <div>
+            <ul class="nav nav-tabs" role="tablist">
+              {% assign season_numbers = episodes | sort: 'season_number' | map: 'season_number' | uniq | reverse %}
+              {% for season_number in season_numbers %}
+                <li role="presentation" {% if forloop.first %}class="active"{% endif %}>
+                  <a href="#season-{{ season_number }}" aria-controls="description" role="tab" data-toggle="tab">
+                    Season {{ season_number }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <!-- Tab Panes -->
+          <div class="tab-content">
+            {% assign groups = episodes | sort: 'season_number' | reverse | group_by: 'season_number' %}
+
+            {% for group in groups %}
+              {% assign season_number = group.items | map: 'season_number' | first %}
+              <div role="tabpanel" class="tab-pane {% if forloop.first %}active{% endif %}" id="season-{{ season_number }}">
+
+                {% assign episodes = group.items | sort: 'episode_number' | reverse %}
+                {% for episode in episodes %}
+                  <div class="push-top">
+                    <a href="{{ episode.url }}">
+                      <h3 class="list-title text-capitalize push-quarter-bottom">Episode {{ episode.episode_number }}: {{ episode.title }}</h3>
+                    </a>
+
+                    <p class="metadata push-quarter-bottom">{{ episode.date | format_date }}
+                      {% if episode.date != nil and episode.duration != nil %}
+                      <span class="divider">•</span>
+                      {% endif %}
+                      {% if episode.duration %}
+                        {% include _read-time.html duration=episode.duration content_type='episode' %}
+                      {% endif %}
+                    </p>
+
+                    {% if episode.content != blank %}
+                    <p class="episode-description">{{ episode.content | strip_html | truncatewords: 35 }}</p>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+
+            {% else %}
+
+              <p class="font-family-base soft-ends push-bottom">Sorry we don't have any episodes here yet. Please check back soon!</p>
+
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
     </div>
     {% endif %}
