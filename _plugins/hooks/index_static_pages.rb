@@ -84,12 +84,23 @@ Jekyll::Hooks.register :site, :post_write do |site|
     description = doc.at('meta[name="description"]')&.attr('content') || ""
     image       = doc.at('meta[name="image"]')&.attr('content') || ""
 
+    domain_env = ENV['CRDS_ENV']
+    domain = domain_env == 'demo' ? 'demo.crossroads.net' : 'www.crossroads.net'
+
+    # Get the permalink if available, otherwise use the slug
+    permalink = doc.at('meta[name="permalink"]')&.attr('content')
+    url = if permalink
+            "https://#{domain}#{permalink}"
+          else
+            "https://#{domain}#{slug}"
+          end
+
     record = {
       objectID: objectID,
       title: title,
       description: description,
       image: image,
-      slug: slug,
+      url: url,
       contentType: "page"
     }
 
