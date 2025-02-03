@@ -6,6 +6,7 @@
   {% assign page_title = page | meta_title %}
   {% endif %}
 
+  <!-- Osano -->
   {% if page.title != "Atrium Events" %}
   {% if site.jekyll_env == 'production' %}
   <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/ee6703e4-e14a-4e11-bf03-f5b7b37c7061/osano.js"></script>
@@ -13,6 +14,7 @@
   <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/65a23ab1-e0ce-4ccd-bc3c-2c8b89cb18f5/osano.js"></script>
   {% endif %}
   {% endif %}
+  <!-- End Osano -->
 
   <meta name="Netlify" content="This page was rendered with Netlify">
   <meta charset="UTF-8">
@@ -63,6 +65,7 @@
   <link rel="canonical" href="{{ page.url | absolute_url | chomp: 'index.html' }}">
   {% endif %}
 
+  <!-- Schema.org -->
   {% if page.content_type == "article" %}
   <script type="application/ld+json">
     {
@@ -86,7 +89,9 @@
     }
     </script>
   {% endif %}
+  <!-- End Schema.org -->
 
+  <!-- CRDS Components Loader -->
   {% if site.use_unified_components %}
   <script type="module" onload="componentsLoaded()" src="{{ site.unified_components_endpoint }}"></script>
   {% else %}
@@ -100,7 +105,9 @@
   <script nomodule="" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components.js"></script>
   {% endunless %}
   {% endif %}
+  <!-- End CRDS Components Loader -->
 
+  <!-- Segment Analytics -->
   <script>
     dataLayer.push({ 'event': 'segment_loaded' });
     !function () {
@@ -110,7 +117,9 @@
       }
     }();
   </script>
+  <!-- End Segment Analytics -->
 
+  <!-- Components Loader Function -->
   <script>
     function componentsLoaded() {
       var componentsReady = new Event('components-ready');
@@ -118,6 +127,7 @@
       window.componentsReady = true;
     }
   </script>
+  <!-- End Components Loader Function -->
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}"
     href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
@@ -172,6 +182,7 @@
     window.envReady = true;
   </script>
 
+  <!-- Facebook Pixel Code -->
   {% include _facebook.html %}
   {% if page.js_vars %}{% include _js_vars.html %}{% endif %}
   {% javascript_link_tag application %}
