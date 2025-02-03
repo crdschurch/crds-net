@@ -8,9 +8,9 @@
 
   {% if page.title != "Atrium Events" %}
   {% if site.jekyll_env == 'production' %}
-    <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/ee6703e4-e14a-4e11-bf03-f5b7b37c7061/osano.js"></script>
+  <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/ee6703e4-e14a-4e11-bf03-f5b7b37c7061/osano.js"></script>
   {% elsif site.jekyll_env == 'int' %}
-    <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/65a23ab1-e0ce-4ccd-bc3c-2c8b89cb18f5/osano.js"></script>
+  <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/65a23ab1-e0ce-4ccd-bc3c-2c8b89cb18f5/osano.js"></script>
   {% endif %}
   {% endif %}
 
@@ -19,14 +19,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no viewport-fit=cover">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="title" content="{{ page_title }}">
-  <meta name="description" content="{{ page | meta_description | markdownify | strip_liquid | strip_html | strip_newlines | strip | truncate: 155 }}">
+  <meta name="description"
+    content="{{ page | meta_description | markdownify | strip_liquid | strip_html | strip_newlines | strip | truncate: 155 }}">
   <meta name="image" content="{{ page | meta_image | imgix: site.imgix }}?{{ site.imgix_params.meta_image }}">
-  <meta property="og:description" content="{{ page | meta_description | markdownify | strip_liquid | strip_html | strip_newlines | strip | truncate: 155 }}">
+  <meta property="og:description"
+    content="{{ page | meta_description | markdownify | strip_liquid | strip_html | strip_newlines | strip | truncate: 155 }}">
   <meta property="og:title" content="{{ page_title }}">
   <meta property="og:image" content="{{ page | meta_image | imgix: site.imgix }}?{{ site.imgix_params.meta_image }}">
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <meta property="og:url"
+    content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <meta property="og:site_name" content="{{ site.title | escape }}">
   <meta name="apple-itunes-app" content="app-id=1029478803">
   <meta name="google-play-app" content="app-id=net.crossroads.crossroads">
@@ -35,7 +38,8 @@
   <meta name="author" content="Crossroads" />
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="theme-color" content="#ffffff">
-  {% if page.contentful_id %}<meta property="cfl:entry_id" content="{{ page.contentful_id }}">{% endif %}
+  {% if page.contentful_id %}
+  <meta property="cfl:entry_id" content="{{ page.contentful_id }}">{% endif %}
   <meta property="cfl:space_id" content="{{ site.ENV.CONTENTFUL_SPACE_ID }}">
   <meta property="cfl:env" content="{{ site.ENV.CONTENTFUL_ENV }}">
   <meta property="cfl:token" content="{{ site.ENV.CONTENTFUL_ACCESS_TOKEN }}">
@@ -43,23 +47,24 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@crsrdschurch">
 
-  {% if page.search_excluded or jekyll.environment != "production" or page.name == 'tag.html' or page.url contains "/page/" %}
-    <meta name="robots" content="noindex" />
-    <meta name="AdsBot-Google" content="noindex" />
+  {% if page.search_excluded or jekyll.environment != "production" or page.name == 'tag.html' or page.url contains
+  "/page/" %}
+  <meta name="robots" content="noindex" />
+  <meta name="AdsBot-Google" content="noindex" />
   {% endif %}
 
   {% if page.distribution_channels %}
-    {% if page.podcast.distribution_channels %}
-      <link rel="canonical" href="{{ page.podcast | get_canonical_host }}">
-    {% else %}
-      <link rel="canonical" href="{{ page | get_canonical_host }}">
-    {% endif %}
+  {% if page.podcast.distribution_channels %}
+  <link rel="canonical" href="{{ page.podcast | get_canonical_host }}">
   {% else %}
-    <link rel="canonical" href="{{ page.url | absolute_url | chomp: 'index.html' }}">
+  <link rel="canonical" href="{{ page | get_canonical_host }}">
+  {% endif %}
+  {% else %}
+  <link rel="canonical" href="{{ page.url | absolute_url | chomp: 'index.html' }}">
   {% endif %}
 
   {% if page.content_type == "article" %}
-    <script type="application/ld+json">
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Article",
@@ -81,19 +86,30 @@
     }
     </script>
   {% endif %}
-  
+
   {% if site.use_unified_components %}
-    <script type="module" onload="componentsLoaded()" src="{{ site.unified_components_endpoint }}"></script>
+  <script type="module" onload="componentsLoaded()" src="{{ site.unified_components_endpoint }}"></script>
   {% else %}
-    {% unless content contains 'crds-components.esm.js' %}
-      <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.esm.js" as="script">
-      <link rel="preload" href="{{ site.components_endpoint }}/crds-components.js" as="script">
-      <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.css" as="style">
-      <link rel="stylesheet" href="{{ site.components_endpoint }}/crds-components/crds-components.css">
-      <script type="module" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components/crds-components.esm.js"></script>
-      <script nomodule="" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components.js"></script>
-    {% endunless %}
+  {% unless content contains 'crds-components.esm.js' %}
+  <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.esm.js" as="script">
+  <link rel="preload" href="{{ site.components_endpoint }}/crds-components.js" as="script">
+  <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.css" as="style">
+  <link rel="stylesheet" href="{{ site.components_endpoint }}/crds-components/crds-components.css">
+  <script type="module" onload="componentsLoaded()"
+    src="{{ site.components_endpoint }}/crds-components/crds-components.esm.js"></script>
+  <script nomodule="" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components.js"></script>
+  {% endunless %}
   {% endif %}
+
+  <script>
+    dataLayer.push({ 'event': 'segment_loaded' });
+    !function () {
+      var analytics = window.analytics = window.analytics || []; if (!analytics.initialize) if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else {
+        analytics.invoked = !0; analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on", "addSourceMiddleware", "addIntegrationMiddleware", "setAnonymousId", "addDestinationMiddleware"]; analytics.factory = function (e) { return function () { var t = Array.prototype.slice.call(arguments); t.unshift(e); analytics.push(t); return analytics } }; for (var e = 0; e < analytics.methods.length; e++) { var key = analytics.methods[e]; analytics[key] = analytics.factory(key) } analytics.load = function (key, e) { var t = document.createElement("script"); t.type = "text/javascript"; t.async = !0; t.src = "https://analytics.segment.crossroads.net/analytics.js/v1/" + key + "/analytics.min.js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(t, n); analytics._loadOptions = e }; analytics._writeKey = "{% if site.jekyll_env == 'production' %}nPCU8RuoHt5Ip7tj3UdS4ek0A53a8dGW{% else %}6urDjS9ewsjC9YAbSuihDc0TY7Xrv39b{% endif %}";; analytics.SNIPPET_VERSION = "4.15.3";
+        analytics.load("{% if site.jekyll_env == 'production' %}nPCU8RuoHt5Ip7tj3UdS4ek0A53a8dGW{% else %}6urDjS9ewsjC9YAbSuihDc0TY7Xrv39b{% endif %}");
+      }
+    }();
+  </script>
 
   <script>
     function componentsLoaded() {
@@ -103,7 +119,8 @@
     }
   </script>
 
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}"
+    href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
 
   <link rel="apple-touch-icon" sizes="180x180" href="//d1tmclqz61gqwd.cloudfront.net/favicons/apple-touch-icon.png?v=2">
   <link rel="icon" type="image/png" sizes="32x32" href="//d1tmclqz61gqwd.cloudfront.net/favicons/favicon-32x32.png?v=2">
@@ -129,30 +146,30 @@
   <script> window.prerenderReady = true; </script>
 
   <script>
-  var CRDS = window.CRDS || {};
-  window.dataLayer = window.dataLayer || [];
+    var CRDS = window.CRDS || {};
+    window.dataLayer = window.dataLayer || [];
 
-  CRDS.rollCall = {
-    formUrl: '{{ site.ENV.ROLL_CALL_FORM_URL }}',
-    totalFieldId: '{{ site.ENV.ROLL_CALL_TOTAL_FIELD_ID }}',
-    urlFieldId: '{{ site.ENV.ROLL_CALL_URL_FIELD_ID }}'
-  }
+    CRDS.rollCall = {
+      formUrl: '{{ site.ENV.ROLL_CALL_FORM_URL }}',
+      totalFieldId: '{{ site.ENV.ROLL_CALL_TOTAL_FIELD_ID }}',
+      urlFieldId: '{{ site.ENV.ROLL_CALL_URL_FIELD_ID }}'
+    }
 
-  CRDS.env = {
-    "bitmovinPlayerLicense": '{{ site.bitmovin_player_license }}',
-    "bitmovinAnalyticsLicense": '{{ site.bitmovin_analytics_license }}',
-    environment: '{{ site.jekyll_env }}',
-    "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}',
-    "streamScheduleEndpoint": '{{ site.stream_schedule_endpoint }}',
-    "okta_client_id": '{{ site.okta_client_id }}',
-    "okta_oauth_base_url": '{{ site.okta_oauth_base_url }}'
-  }
+    CRDS.env = {
+      "bitmovinPlayerLicense": '{{ site.bitmovin_player_license }}',
+      "bitmovinAnalyticsLicense": '{{ site.bitmovin_analytics_license }}',
+      environment: '{{ site.jekyll_env }}',
+      "gatewayServerEndpoint": '{{ site.gateway_server_endpoint }}',
+      "streamScheduleEndpoint": '{{ site.stream_schedule_endpoint }}',
+      "okta_client_id": '{{ site.okta_client_id }}',
+      "okta_oauth_base_url": '{{ site.okta_oauth_base_url }}'
+    }
 
-  var JEKYLL_ENV = '{{ site.jekyll_env }}';
+    var JEKYLL_ENV = '{{ site.jekyll_env }}';
 
-  var envReady = new Event('env-ready');
-  document.dispatchEvent(envReady);
-  window.envReady = true;
+    var envReady = new Event('env-ready');
+    document.dispatchEvent(envReady);
+    window.envReady = true;
   </script>
 
   {% include _facebook.html %}
