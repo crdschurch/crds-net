@@ -6,15 +6,15 @@
   {% assign page_title = page | meta_title %}
   {% endif %}
 
-  <!-- Osano Cookie Compliance Manager - Production environment -->
+  <!-- Osano Cookie Compliance Manager -->
   {% if page.title != "Atrium Events" %}
   {% if site.jekyll_env == 'production' %}
   <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/ee6703e4-e14a-4e11-bf03-f5b7b37c7061/osano.js"></script>
   {% elsif site.jekyll_env == 'int' %}
-  <!-- Osano Cookie Compliance Manager - Integration environment -->
   <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/65a23ab1-e0ce-4ccd-bc3c-2c8b89cb18f5/osano.js"></script>
   {% endif %}
   {% endif %}
+  <!-- END: Osano Cookie Compliance Manager -->
 
   <meta name="Netlify" content="This page was rendered with Netlify">
   <meta charset="UTF-8">
@@ -89,6 +89,7 @@
     }
     </script>
   {% endif %}
+  <!-- END: Schema.org Article markup for SEO -->
 
   <!-- CRDS Components Loading -->
   {% if site.use_unified_components %}
@@ -103,8 +104,10 @@
   <script type="module" onload="componentsLoaded()"
     src="{{ site.components_endpoint }}/crds-components/crds-components.esm.js"></script>
   <script nomodule="" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components.js"></script>
+  <!-- END: Preload CRDS Component assets -->
   {% endunless %}
   {% endif %}
+  <!-- END: CRDS Components Loading -->
 
   <!-- Component Ready Event Handler -->
   <script>
@@ -114,6 +117,7 @@
       window.componentsReady = true;
     }
   </script>
+  <!-- END: Component Ready Event Handler -->
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}"
     href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
@@ -170,6 +174,7 @@
     document.dispatchEvent(envReady);
     window.envReady = true;
   </script>
+  <!-- END: Environment Configuration -->
 
   <!-- Segment Analytics Integration -->
   <script>
@@ -181,11 +186,14 @@
       }
     }();
   </script>
+  <!-- END: Segment Analytics Integration -->
 
   <!-- Facebook Pixel Integration -->
   {% include _facebook.html %}
+  <!-- END: Facebook Pixel Integration -->
   
   <!-- JavaScript Variables and Main Application Script -->
   {% if page.js_vars %}{% include _js_vars.html %}{% endif %}
   {% javascript_link_tag application %}
+  <!-- END: JavaScript Variables and Main Application Script -->
 </head>
