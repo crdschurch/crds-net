@@ -17,7 +17,7 @@ paginate:
  {% for featured in MediaSeries %}
    {% if forloop.first %}
     <div class="row soft-bottom current-series">
-      <div class="col-xs-12 col-md-7" style="background-image: linear-gradient(45deg, black, transparent)">
+      <div class="col-xs-12 col-md-7">
         <a href="{{ featured.url }}" title="{{ featured.title }}">
           <img class="img-full-width" src="{% if featured.image.url %}{{ featured.image.url | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine}}" alt="{{ featured.title }}" sizes="{{ site.image_sizes.full_width }}" data-optimize-img>
         </a>
