@@ -6,6 +6,7 @@
   {% assign page_title = page | meta_title %}
   {% endif %}
 
+  <!-- Osano Cookie Compliance Manager -->
   {% if page.title != "Atrium Events" %}
   {% if site.jekyll_env == 'production' %}
   <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/ee6703e4-e14a-4e11-bf03-f5b7b37c7061/osano.js"></script>
@@ -13,6 +14,7 @@
   <script src="https://cmp.osano.com/6olYRSI8uN8V3oE3/65a23ab1-e0ce-4ccd-bc3c-2c8b89cb18f5/osano.js"></script>
   {% endif %}
   {% endif %}
+  <!-- END: Osano Cookie Compliance Manager -->
 
   <meta name="Netlify" content="This page was rendered with Netlify">
   <meta charset="UTF-8">
@@ -63,6 +65,7 @@
   <link rel="canonical" href="{{ page.url | absolute_url | chomp: 'index.html' }}">
   {% endif %}
 
+  <!-- Schema.org Article markup for SEO -->
   {% if page.content_type == "article" %}
   <script type="application/ld+json">
     {
@@ -86,11 +89,14 @@
     }
     </script>
   {% endif %}
+  <!-- END: Schema.org Article markup for SEO -->
 
+  <!-- CRDS Components Loading -->
   {% if site.use_unified_components %}
   <script type="module" onload="componentsLoaded()" src="{{ site.unified_components_endpoint }}"></script>
   {% else %}
   {% unless content contains 'crds-components.esm.js' %}
+  <!-- Preload CRDS Component assets -->
   <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.esm.js" as="script">
   <link rel="preload" href="{{ site.components_endpoint }}/crds-components.js" as="script">
   <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.css" as="style">
@@ -98,9 +104,12 @@
   <script type="module" onload="componentsLoaded()"
     src="{{ site.components_endpoint }}/crds-components/crds-components.esm.js"></script>
   <script nomodule="" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components.js"></script>
+  <!-- END: Preload CRDS Component assets -->
   {% endunless %}
   {% endif %}
+  <!-- END: CRDS Components Loading -->
 
+  <!-- Component Ready Event Handler -->
   <script>
     function componentsLoaded() {
       var componentsReady = new Event('components-ready');
@@ -108,6 +117,7 @@
       window.componentsReady = true;
     }
   </script>
+  <!-- END: Component Ready Event Handler -->
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}"
     href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
@@ -135,16 +145,19 @@
   <!-- after -->
   <script> window.prerenderReady = true; </script>
 
+  <!-- Environment Configuration -->
   <script>
     var CRDS = window.CRDS || {};
     window.dataLayer = window.dataLayer || [];
 
+    // Roll Call form configuration
     CRDS.rollCall = {
       formUrl: '{{ site.ENV.ROLL_CALL_FORM_URL }}',
       totalFieldId: '{{ site.ENV.ROLL_CALL_TOTAL_FIELD_ID }}',
       urlFieldId: '{{ site.ENV.ROLL_CALL_URL_FIELD_ID }}'
     }
 
+    // Environment variables
     CRDS.env = {
       "bitmovinPlayerLicense": '{{ site.bitmovin_player_license }}',
       "bitmovinAnalyticsLicense": '{{ site.bitmovin_analytics_license }}',
@@ -161,7 +174,9 @@
     document.dispatchEvent(envReady);
     window.envReady = true;
   </script>
+  <!-- END: Environment Configuration -->
 
+  <!-- Segment Analytics Integration -->
   <script>
     dataLayer.push({ 'event': 'segment_loaded' });
     !function () {
@@ -171,9 +186,14 @@
       }
     }();
   </script>
+  <!-- END: Segment Analytics Integration -->
 
-  <!-- Facebook Pixel Code -->
+  <!-- Facebook Pixel Integration -->
   {% include _facebook.html %}
+  <!-- END: Facebook Pixel Integration -->
+  
+  <!-- JavaScript Variables and Main Application Script -->
   {% if page.js_vars %}{% include _js_vars.html %}{% endif %}
   {% javascript_link_tag application %}
+  <!-- END: JavaScript Variables and Main Application Script -->
 </head>
