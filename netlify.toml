@@ -27,7 +27,8 @@ package = "./_plugins/netlify-plugin-health-check"
     "osano.js"
   ]
   dynamicScripts = [
-    { domain = "analytics.segment.crossroads.net", pattern = "analytics\\.load\\(['\"]" }
+    { domain = "analytics.segment.crossroads.net", pattern = "analytics\\.load\\(['\"]" },
+    { domain = "www.googletagmanager.com", pattern = "dataLayer\\s*=\\s*window\\.dataLayer\\s*\\|\\|\\s*\\[\\]" }
   ]
   checkFiles = [
     "media/index.html"
