@@ -6,7 +6,7 @@ inputs:
     default: []
 
   - name: dynamicScripts
-    description: Array of objects containing domain and pattern for scripts that are dynamically loaded. Format - [{domain: "analytics.segment.crossroads.net", pattern: "analytics\\.load\\(['\\"]"}]
+    description: Array of objects containing domain and pattern for scripts that are dynamically loaded.
     required: false
     default: []
 
