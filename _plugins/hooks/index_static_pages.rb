@@ -112,7 +112,6 @@ Jekyll::Hooks.register :site, :post_write do |site|
     }
 
     records << record
-    puts records
   end
 
   algolia_app_id     = ENV['ALGOLIA_APP_ID']
