@@ -25,12 +25,12 @@ package = "./_plugins/netlify-plugin-health-check"
     "crds-components.esm.js",
     "crds-components.js",
     # "unified-components.js", # TODO: Uncomment this when unified components are ready
-    "widget.intercom.io/widget",
     "osano.js"
   ]
   dynamicScripts = [
     { domain = "analytics.segment.crossroads.net", pattern = "analytics\\.load\\(['\"]" },
-    { domain = "www.googletagmanager.com", pattern = "dataLayer\\s*=\\s*window\\.dataLayer\\s*\\|\\|\\s*\\[\\]" }
+    { domain = "www.googletagmanager.com", pattern = "dataLayer\\s*=\\s*window\\.dataLayer\\s*\\|\\|\\s*\\[\\]" },
+    { domain = "widget.intercom.io/widget", pattern = "Intercom\\(\\s*['\"]boot['\"]" }
   ]
   checkFiles = [
     "media/index.html"
