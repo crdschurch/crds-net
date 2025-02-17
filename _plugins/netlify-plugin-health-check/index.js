@@ -54,6 +54,10 @@ module.exports = {
     htmlFiles.forEach(htmlFile => {
       const html = fs.readFileSync(htmlFile, 'utf-8');
       
+      // Debug logging
+      console.log('Checking file:', htmlFile);
+      console.log('HTML content includes intercom?', html.includes('widget.intercom.io'));
+      
       // Check static scripts
       const scriptTags = findScriptTags(html);
       scriptsToCheck.forEach(script => {
@@ -65,7 +69,12 @@ module.exports = {
       
       // Check dynamic scripts
       dynamicScripts.forEach(({domain, pattern}) => {
-        if (new RegExp(pattern).test(html)) {
+        const regex = new RegExp(pattern);
+        const found = regex.test(html);
+        // Debug logging
+        console.log(`Checking ${domain} with pattern ${pattern}: ${found}`);
+        
+        if (found) {
           missingDynamic.delete(domain);
         }
       });
