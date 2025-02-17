@@ -24,11 +24,13 @@ package = "./_plugins/netlify-plugin-health-check"
   staticScripts = [
     "crds-components.esm.js",
     "crds-components.js",
+    # "unified-components.js", # TODO: Uncomment this when unified components are ready
     "osano.js"
   ]
   dynamicScripts = [
     { domain = "analytics.segment.crossroads.net", pattern = "analytics\\.load\\(['\"]" },
-    { domain = "www.googletagmanager.com", pattern = "dataLayer\\s*=\\s*window\\.dataLayer\\s*\\|\\|\\s*\\[\\]" }
+    { domain = "www.googletagmanager.com", pattern = "dataLayer\\s*=\\s*window\\.dataLayer\\s*\\|\\|\\s*\\[\\]" },
+    { domain = "intercom.dynamic.js", pattern = "window\\.intercomSettings\\s*=" }
   ]
   checkFiles = [
     "media/index.html"
