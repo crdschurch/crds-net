@@ -1,8 +1,20 @@
-name: health-check
+name: netlify-plugin-health-check
 inputs:
-  - name: criticalScripts
-    description: List of mission critical script paths to check
-    required: true
-  - name: checkFiles
-    description: List of specific HTML files to check (relative to _site). If not provided, checks all HTML files.
+  - name: staticScripts
+    description: Array of script URLs or filenames to check for in the HTML as static script tags
     required: false
+    default: []
+
+  - name: dynamicScripts
+    description: Array of objects containing domain and pattern for scripts that are dynamically loaded
+    required: false
+    default: []
+    example: |
+      dynamicScripts:
+        - domain: "analytics.segment.crossroads.net"
+          pattern: "analytics\\.load\\(['\"]"
+
+  - name: checkFiles
+    description: Array of file paths to check for scripts (relative to _site directory)
+    required: false
+    default: ["index.html"]
