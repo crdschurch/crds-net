@@ -29,7 +29,7 @@ package = "./_plugins/netlify-plugin-health-check"
     "analytics.js"
   ]
   checkFiles = [
-    "index.html"
+    "media/index.html"
   ]
 
 [dev]
