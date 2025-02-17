@@ -6,20 +6,15 @@ module.exports = {
     //----------------------------------------
     // Initialize Configuration
     //----------------------------------------
-    let criticalScripts = [...(inputs.staticScripts || [])];
+    const staticScripts = inputs.staticScripts || [];
     const dynamicScripts = inputs.dynamicScripts || [];
-    
-    // Add dynamic script domains to critical scripts
-    dynamicScripts.forEach(({domain}) => {
-      criticalScripts.push(domain);
-    });
-
     const checkFiles = inputs.checkFiles || [];
     const environment = process.env.JEKYLL_ENV || 'development';
     
+    let scriptsToCheck = [...staticScripts];
     // Filter out osano.js if not in production
     if (environment.toLowerCase() !== 'production') {
-      criticalScripts = criticalScripts.filter(script => script !== 'osano.js');
+      scriptsToCheck = scriptsToCheck.filter(script => script !== 'osano.js');
     }
     
     const publishDir = path.join(process.cwd(), '_site');
@@ -53,20 +48,25 @@ module.exports = {
     //----------------------------------------
     // Check Scripts
     //----------------------------------------
-    const missingScripts = new Set(criticalScripts);
+    const missingStatic = new Set(scriptsToCheck);
+    const missingDynamic = new Set(dynamicScripts.map(ds => ds.domain));
     
     htmlFiles.forEach(htmlFile => {
       const html = fs.readFileSync(htmlFile, 'utf-8');
-      const scriptTags = findScriptTags(html);
       
-      criticalScripts.forEach(script => {
-        const scriptFound = scriptTags.some(src => {
-          if (!src) return false;
-          return src.includes(script);
-        });
-
+      // Check static scripts
+      const scriptTags = findScriptTags(html);
+      scriptsToCheck.forEach(script => {
+        const scriptFound = scriptTags.some(src => src.includes(script));
         if (scriptFound) {
-          missingScripts.delete(script);
+          missingStatic.delete(script);
+        }
+      });
+      
+      // Check dynamic scripts
+      dynamicScripts.forEach(({domain, pattern}) => {
+        if (new RegExp(pattern).test(html)) {
+          missingDynamic.delete(domain);
         }
       });
     });
@@ -74,10 +74,11 @@ module.exports = {
     //----------------------------------------
     // Report Results
     //----------------------------------------
-    if (missingScripts.size > 0) {
+    const allMissing = [...missingStatic, ...missingDynamic];
+    if (allMissing.length > 0) {
       const message = `
-The following critical scripts are missing from the generated HTML:
-${[...missingScripts].map(script => `- ${script}`).join('\n')}
+The following scripts are missing from the generated HTML:
+${[...allMissing].map(script => `- ${script}`).join('\n')}
 
 Checked files:
 ${htmlFiles.map(file => `- ${path.relative(publishDir, file)}`).join('\n')}
@@ -88,15 +89,15 @@ ${htmlFiles.map(file => `- ${path.relative(publishDir, file)}`).join('\n')}
       } else {
         utils.status.show({
           title: "Health Check Warning",
-          summary: "Missing Critical Scripts",
+          summary: "Missing Scripts",
           text: message
         });
       }
     } else {
       utils.status.show({
         title: "Health Check Success",
-        summary: "All Critical Scripts Found",
-        text: `Successfully verified all ${criticalScripts.length} critical scripts across ${htmlFiles.length} files.`
+        summary: "All Scripts Found",
+        text: `Successfully verified all scripts across ${htmlFiles.length} files.`
       });
     }
   }
@@ -122,8 +123,6 @@ function getAllHtmlFiles(dir) {
 
 function findScriptTags(html) {
   const scriptSources = [];
-  
-  // Look for static script tags
   const scriptRegex = /<script[^>]*src=["']([^"']+)["'][^>]*>/g;
   let match;
   
@@ -133,14 +132,6 @@ function findScriptTags(html) {
       scriptSources.push(src);
     }
   }
-  
-  // Check for dynamic script initialization patterns
-  const dynamicScripts = inputs.dynamicScripts || [];
-  dynamicScripts.forEach(({domain, pattern}) => {
-    if (new RegExp(pattern).test(html)) {
-      scriptSources.push(domain);
-    }
-  });
   
   return scriptSources;
 }
