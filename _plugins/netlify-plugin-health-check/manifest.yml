@@ -6,13 +6,9 @@ inputs:
     default: []
 
   - name: dynamicScripts
-    description: Array of objects containing domain and pattern for scripts that are dynamically loaded
+    description: Array of objects containing domain and pattern for scripts that are dynamically loaded. Format - [{domain: "analytics.segment.crossroads.net", pattern: "analytics\\.load\\(['\\"]"}]
     required: false
     default: []
-    example: |
-      dynamicScripts:
-        - domain: "analytics.segment.crossroads.net"
-          pattern: "analytics\\.load\\(['\"]"
 
   - name: checkFiles
     description: Array of file paths to check for scripts (relative to _site directory)
