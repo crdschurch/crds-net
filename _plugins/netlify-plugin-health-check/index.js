@@ -6,7 +6,7 @@ module.exports = {
     //----------------------------------------
     // Initialize Configuration
     //----------------------------------------
-    const criticalScripts = [...(inputs.staticScripts || [])];
+    let criticalScripts = [...(inputs.staticScripts || [])];
     const dynamicScripts = inputs.dynamicScripts || [];
     
     // Add dynamic script domains to critical scripts
