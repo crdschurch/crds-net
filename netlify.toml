@@ -24,7 +24,9 @@ package = "./_plugins/netlify-plugin-health-check"
   criticalScripts = [
     "crds-components.esm.js",
     "crds-components.js",
-    "osano.js"
+    "osano.js",
+    # "unified-components.js",
+    "analytics.min.js"
   ]
   checkFiles = [
     "index.html"
