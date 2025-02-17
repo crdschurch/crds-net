@@ -3,6 +3,7 @@ require 'digest'
 require 'json'
 require 'securerandom'
 require 'algolia'
+require 'time'
 
 module ObjectIDGenerator
   CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.chars.freeze
@@ -65,6 +66,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
   html_files = Dir.glob(File.join(directory_path, '**', '*.html'))
 
   records = []
+  current_date = Time.now.strftime("%B %d, %Y")
 
   html_files.each do |file_path|
     doc = Nokogiri::HTML(File.read(file_path))
@@ -98,10 +100,15 @@ Jekyll::Hooks.register :site, :post_write do |site|
     record = {
       objectID: objectID,
       title: title,
-      description: description,
+      summarizedDescription: description,
       image: image,
       url: url,
-      contentType: "page"
+      contentType: "Page",
+      searchExcluded: false,
+      date: current_date,
+      distribution_channels: [
+        { site: "www.crossroads.net", canonical: true }
+      ],
     }
 
     records << record
