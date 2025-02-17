@@ -21,12 +21,13 @@ package = "@netlify/plugin-sitemap"
 package = "./_plugins/netlify-plugin-health-check"
 
   [plugins.inputs]
-  criticalScripts = [
+  staticScripts = [
     "crds-components.esm.js",
     "crds-components.js",
-    "osano.js",
-    # "unified-components.js",
-    "analytics.segment.crossroads.net"
+    "osano.js"
+  ]
+  dynamicScripts = [
+    { domain = "analytics.segment.crossroads.net", pattern = "analytics\\.load\\(['\"]" }
   ]
   checkFiles = [
     "media/index.html"

@@ -6,7 +6,14 @@ module.exports = {
     //----------------------------------------
     // Initialize Configuration
     //----------------------------------------
-    let criticalScripts = inputs.criticalScripts || [];
+    const criticalScripts = [...(inputs.staticScripts || [])];
+    const dynamicScripts = inputs.dynamicScripts || [];
+    
+    // Add dynamic script domains to critical scripts
+    dynamicScripts.forEach(({domain}) => {
+      criticalScripts.push(domain);
+    });
+
     const checkFiles = inputs.checkFiles || [];
     const environment = process.env.JEKYLL_ENV || 'development';
     
@@ -127,16 +134,10 @@ function findScriptTags(html) {
     }
   }
   
-  // Dynamic script patterns
-  const dynamicScripts = {
-    'analytics.segment.crossroads.net': /analytics\.load\(['"]/,
-    // Add more patterns here as needed:
-    // 'some.other.script.com': /some\.init\(/,
-  };
-  
   // Check for dynamic script initialization patterns
-  Object.entries(dynamicScripts).forEach(([domain, pattern]) => {
-    if (pattern.test(html)) {
+  const dynamicScripts = inputs.dynamicScripts || [];
+  dynamicScripts.forEach(({domain, pattern}) => {
+    if (new RegExp(pattern).test(html)) {
       scriptSources.push(domain);
     }
   });
