@@ -115,7 +115,8 @@ function getAllHtmlFiles(dir) {
 
 function findScriptTags(html) {
   const scriptSources = [];
-  // Simple regex to find src attribute in script tags
+  
+  // Look for static script tags
   const scriptRegex = /<script[^>]*src=["']([^"']+)["'][^>]*>/g;
   let match;
   
@@ -125,6 +126,20 @@ function findScriptTags(html) {
       scriptSources.push(src);
     }
   }
+  
+  // Dynamic script patterns
+  const dynamicScripts = {
+    'analytics.segment.crossroads.net': /analytics\.load\(['"]/,
+    // Add more patterns here as needed:
+    // 'some.other.script.com': /some\.init\(/,
+  };
+  
+  // Check for dynamic script initialization patterns
+  Object.entries(dynamicScripts).forEach(([domain, pattern]) => {
+    if (pattern.test(html)) {
+      scriptSources.push(domain);
+    }
+  });
   
   return scriptSources;
 }
