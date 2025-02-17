@@ -55,11 +55,17 @@ module.exports = {
       criticalScripts.forEach(script => {
         const scriptFound = scriptTags.some(src => {
           if (!src) return false;
+          // Remove protocol and www if present for consistent matching
+          const normalizedSrc = src.replace(/^https?:\/\/(www\.)?/, '');
+          const normalizedScript = script.replace(/^https?:\/\/(www\.)?/, '');
+          
           // Check if script is a filename or domain
-          if (script.includes('.')) {
-            return path.basename(src) === script || src.endsWith(`/${script}`) || src.includes(script);
+          if (normalizedScript.includes('.')) {
+            return path.basename(normalizedSrc) === normalizedScript || 
+                   normalizedSrc.endsWith(`/${normalizedScript}`) || 
+                   normalizedSrc.includes(normalizedScript);
           }
-          return src.includes(script);
+          return normalizedSrc.includes(normalizedScript);
         });
 
         if (scriptFound) {
