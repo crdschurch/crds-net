@@ -1,0 +1,8 @@
+name: health-check
+inputs:
+  - name: criticalScripts
+    description: List of mission critical script paths to check
+    required: true
+  - name: checkFiles
+    description: List of specific HTML files to check (relative to _site). If not provided, checks all HTML files.
+    required: false

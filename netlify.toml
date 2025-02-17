@@ -17,6 +17,18 @@ package = "@netlify/plugin-sitemap"
     '**/tags/**'
   ]
 
+[[plugins]]
+package = "./_plugins/netlify-plugin-health-check"
+
+  [plugins.inputs]
+  criticalScripts = [
+    "crds-components.esm.js",
+    "crds-components.js",
+    "osano.js"
+  ]
+  checkFiles = [
+    "index.html"
+  ]
 
 [dev]
   BASEURL="/"
