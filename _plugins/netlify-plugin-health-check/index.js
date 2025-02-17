@@ -53,10 +53,13 @@ module.exports = {
       const scriptTags = findScriptTags(html);
       
       criticalScripts.forEach(script => {
-        const scriptName = path.basename(script);
         const scriptFound = scriptTags.some(src => {
           if (!src) return false;
-          return path.basename(src) === scriptName || src.endsWith(`/${scriptName}`);
+          // Check if script is a filename or domain
+          if (script.includes('.')) {
+            return path.basename(src) === script || src.endsWith(`/${script}`) || src.includes(script);
+          }
+          return src.includes(script);
         });
 
         if (scriptFound) {
