@@ -6,9 +6,14 @@ module.exports = {
     //----------------------------------------
     // Initialize Configuration
     //----------------------------------------
-    const criticalScripts = inputs.criticalScripts || [];
+    let criticalScripts = inputs.criticalScripts || [];
     const checkFiles = inputs.checkFiles || [];
     const environment = process.env.JEKYLL_ENV || 'development';
+    
+    // Filter out osano.js if not in production
+    if (environment.toLowerCase() !== 'production') {
+      criticalScripts = criticalScripts.filter(script => script !== 'osano.js');
+    }
     
     const publishDir = path.join(process.cwd(), '_site');
     
