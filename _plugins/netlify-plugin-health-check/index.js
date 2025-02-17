@@ -115,12 +115,14 @@ function getAllHtmlFiles(dir) {
 
 function findScriptTags(html) {
   const scriptSources = [];
-  const scriptRegex = /<script[^>]+src=["']([^"']+)["'][^>]*>/g;
+  // Simple regex to find src attribute in script tags
+  const scriptRegex = /<script[^>]*src=["']([^"']+)["'][^>]*>/g;
   let match;
   
   while ((match = scriptRegex.exec(html)) !== null) {
-    if (match[1]) {
-      scriptSources.push(match[1]);
+    const src = match[1];
+    if (src) {
+      scriptSources.push(src);
     }
   }
   
