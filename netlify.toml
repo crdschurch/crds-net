@@ -30,7 +30,7 @@ package = "./_plugins/netlify-plugin-health-check"
   dynamicScripts = [
     { domain = "analytics.segment.crossroads.net", pattern = "analytics\\.load\\(['\"]" },
     { domain = "www.googletagmanager.com", pattern = "dataLayer\\s*=\\s*window\\.dataLayer\\s*\\|\\|\\s*\\[\\]" },
-    { domain = "widget.intercom.io/widget", pattern = "Intercom\\(\\s*['\"]boot['\"]" }
+    { domain = "widget.intercom.io/widget", pattern = "widget\\.intercom\\.io\\/widget\\/[a-zA-Z0-9]+" }
   ]
   checkFiles = [
     "media/index.html"
