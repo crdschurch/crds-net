@@ -26,7 +26,7 @@ package = "./_plugins/netlify-plugin-health-check"
     "crds-components.js",
     "osano.js",
     # "unified-components.js",
-    "analytics.js"
+    "analytics.segment.crossroads.net"
   ]
   checkFiles = [
     "media/index.html"
