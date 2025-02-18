@@ -14,7 +14,7 @@
             width="50" height="50" />
           <h3 class="component-header text-center text-white push-ends text-uppercase">New Here?</h3>
           <div class="text-center">
-            <crds-button href="https://www.crossroads.net/dayton-lp" color="blue" text="Yes"></crds-button>
+            <crds-button href="https://dayton.crossroads.net" color="blue" text="Yes"></crds-button>
             <crds-button data-dismiss="modal" color="blue" text="Nope"></crds-button>
           </div>
         </div>
@@ -36,7 +36,7 @@
       });
     }
 
-    var yesBtn = document.querySelector('#daytonModalOverlay a[href="https://www.crossroads.net/dayton-lp"]');
+    var yesBtn = document.querySelector('#daytonModalOverlay a[href="https://dayton.crossroads.net"]');
     if (yesBtn) {
       yesBtn.addEventListener('click', function () {
         localStorage.setItem('daytonModalShown', 'true');
