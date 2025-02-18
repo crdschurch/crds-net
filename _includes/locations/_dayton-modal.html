@@ -27,24 +27,29 @@
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function () {
     if (!localStorage.getItem('daytonModalShown')) {
-      $('#welcomeLocationOverlay').modal('hide');
-
+      window.disableWelcomeModal = true;
+    }
+    if (!localStorage.getItem('daytonModalShown')) {
+      $(window).off('load');
       $(window).on('load', function () {
         $('#daytonModalOverlay').modal('show');
       });
+    }
 
-      var yesBtn = document.querySelector('#daytonModalOverlay a[href="https://www.crossroads.net/dayton-lp"]');
-      if (yesBtn) {
-        yesBtn.addEventListener('click', function () {
-          localStorage.setItem('daytonModalShown', 'true');
-        });
-      }
-
-      $('#daytonModalOverlay').on('hidden.bs.modal', function () {
+    var yesBtn = document.querySelector('#daytonModalOverlay a[href="https://www.crossroads.net/dayton-lp"]');
+    if (yesBtn) {
+      yesBtn.addEventListener('click', function () {
         localStorage.setItem('daytonModalShown', 'true');
-        $('#welcomeLocationOverlay').modal('show');
       });
     }
+
+    $('#daytonModalOverlay').on('hidden.bs.modal', function () {
+      localStorage.setItem('daytonModalShown', 'true');
+      window.disableWelcomeModal = false;
+      if (typeof openLocationModal === 'function') {
+        openLocationModal();
+      }
+    });
   });
 </script>
 {% endif %}
