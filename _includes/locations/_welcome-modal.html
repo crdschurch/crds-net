@@ -31,7 +31,7 @@
             <p class="font-family-base-bold" style="font-size: 16px;">We’d love to meet with you!</p>
             <div class="push-bottom">
               <crds-button display="outline" data-dismiss="modal" color="white"
-              text="Explore Crossroads {{ page.name }}"></crds-button>
+                text="Explore Crossroads {{ page.name }}"></crds-button>
             </div>
           </div>
           <div class="col-md-5">
@@ -70,11 +70,13 @@
     });
   }
   $(document).ready(function () {
-    openLocationModal();
+    if (!window.disableWelcomeModal) {
+      openLocationModal();
+    }
   });
   
   $('#welcomeLocationOverlay').on('hidden.bs.modal', function () {
-      $("#welcomeLocationOverlay iframe").attr("src", $("#welcomeLocationOverlay iframe").attr("src"));
+    $("#welcomeLocationOverlay iframe").attr("src", $("#welcomeLocationOverlay iframe").attr("src"));
   });
   
 </script>
