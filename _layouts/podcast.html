@@ -113,7 +113,7 @@ title: Podcast
       <div class="col-sm-8 col-sm-offset-2">
         <h2 class="component-header">Episodes</h2>
         
-        {% if page.use_season_numbers %}
+        {% if page.use_season_numbers == true %}
           <!-- Tabs -->
           <div>
             <ul class="nav nav-tabs" role="tablist">
@@ -140,7 +140,7 @@ title: Podcast
                   <div class="push-top">
                     <a href="{{ episode.url }}">
                       <h3 class="list-title text-capitalize push-quarter-bottom">
-                        {% if page.use_episode_numbers %}Episode {{ episode.episode_number }}: {% endif %}{{ episode.title }}
+                        {% if page.use_episode_numbers == true %}Episode {{ episode.episode_number }}: {% endif %}{{ episode.title }}
                       </h3>
                     </a>
 
@@ -169,7 +169,7 @@ title: Podcast
             <div class="push-top">
               <a href="{{ episode.url }}">
                 <h3 class="list-title text-capitalize push-quarter-bottom">
-                  {% if page.use_episode_numbers %}Episode {{ episode.episode_number }}: {% endif %}{{ episode.title }}
+                  {% if page.use_episode_numbers == true %}Episode {{ episode.episode_number }}: {% endif %}{{ episode.title }}
                 </h3>
               </a>
 
