@@ -67,6 +67,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
 
   records = []
   current_date = Time.now.strftime("%B %d, %Y")
+  current_timestamp = Time.parse(current_date).to_i
 
   html_files.each do |file_path|
     doc = Nokogiri::HTML(File.read(file_path))
@@ -106,6 +107,8 @@ Jekyll::Hooks.register :site, :post_write do |site|
       contentType: "Page",
       searchExcluded: false,
       date: current_date,
+      timestamp: current_timestamp,
+      contentPriority: 1, # every record is a page so the value is always 1.
       distribution_channels: [
         { site: "www.crossroads.net", canonical: true }
       ],
@@ -126,6 +129,12 @@ Jekyll::Hooks.register :site, :post_write do |site|
   begin
     client = Algolia::Search::Client.create(algolia_app_id, algolia_api_key)
     index  = client.init_index(algolia_index_name)
+    
+    # Copy settings from crds_settings index
+    puts "Copying settings from 'crds_settings' to '#{algolia_index_name}'..."
+    client.copy_settings('crds_settings', algolia_index_name)
+    puts "Successfully copied settings from 'crds_settings' to '#{algolia_index_name}'"
+    
     index.save_objects(records)
 
     puts "Successfully indexed #{records.size} records to Algolia index '#{algolia_index_name}'."
