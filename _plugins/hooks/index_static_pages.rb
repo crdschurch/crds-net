@@ -101,6 +101,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
       objectID: objectID,
       title: title,
       summarizedDescription: description,
+      description: description,
       image: image,
       url: url,
       contentType: "Page",
