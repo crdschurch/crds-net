@@ -85,7 +85,6 @@ Jekyll::Hooks.register :site, :post_write do |site|
     objectID = ObjectIDGenerator.encode(slug_hash)[0...22]
 
     description = doc.at('meta[name="description"]')&.attr('content') || ""
-    image       = doc.at('meta[name="image"]')&.attr('content') || ""
 
     domain_env = ENV['CRDS_ENV']
     domain = domain_env == 'demo' ? 'demo.crossroads.net' : 'www.crossroads.net'
@@ -103,7 +102,6 @@ Jekyll::Hooks.register :site, :post_write do |site|
       title: title,
       summarizedDescription: description,
       description: description,
-      image: image,
       url: url,
       contentType: "Page",
       searchExcluded: false,
