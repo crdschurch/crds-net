@@ -227,16 +227,19 @@ This project is licensed under the [3-Clause BSD License](https://opensource.org
    cd crds-net
    ```
 
-2. Create your environment file:
-   ```bash
-   cp .envrc.example .envrc   # If you don't have one already
-   ```
-   Update the `.envrc` file with your environment variables. Contact someone on the team if you need to source them.
+2. Set up your environment variables:
+   - Copy the existing `.envrc` file from another developer or contact the team for the correct values
+   - Make sure your `.envrc` file is in your `.gitignore` (it should be by default)
+   - The `.envrc` file should contain all necessary environment variables including:
+     - Contentful credentials
+     - API keys
+     - Other sensitive information
 
 3. Build and start the Docker container:
    ```bash
    docker compose up --build
    ```
+   > **Note**: The first build will take several minutes as it downloads and installs all dependencies. Subsequent runs will be much faster.
 
 4. Access the site:
    - The site will be available at [http://localhost:4000](http://localhost:4000)
@@ -244,34 +247,41 @@ This project is licensed under the [3-Clause BSD License](https://opensource.org
 
 ## Development Workflow
 
-- The Docker setup includes:
-  - Ruby 2.7 with Jekyll 4.0
-  - Node.js 12.5 with npm 6
-  - All necessary dependencies for SASS compilation
-  - Live reload functionality
+### Starting the Development Server
+- First time setup: `docker compose up --build`
+- Subsequent runs: `docker compose up`
+- To stop the server: `docker compose down`
 
-- Local files are mounted into the container, so any changes you make locally will be reflected in the container
-- The site will automatically rebuild when changes are detected
+### Understanding the Build Process
+- **First Build (Long)**: Downloads and installs all dependencies
+- **Subsequent Runs (Fast)**: Uses cached layers from the first build
+- **When to Rebuild**: Only needed if you change:
+  - Dockerfile
+  - package.json
+  - Gemfile
+  - Other dependency files
+- **Regular Code Changes**: No rebuild needed, just refresh your browser
 
-## Common Tasks
+### Preserving Your Build
+- Avoid running `docker system prune` as it removes all cached images
+- Use `docker compose down` instead of `docker compose down -v` unless you specifically need to reset volumes
+- If you accidentally remove the image, you'll need to run the full build process again
 
-### Rebuilding the Container
+### Common Tasks
 
-If you need to rebuild the container (e.g., after dependency changes):
+#### Rebuilding the Container
+Only needed if you change dependencies:
 ```bash
-docker compose down -v
-docker system prune -f
+docker compose down
 docker compose up --build
 ```
 
-### Stopping the Container
-
+#### Stopping the Container
 ```bash
 docker compose down
 ```
 
-### Viewing Logs
-
+#### Viewing Logs
 ```bash
 docker compose logs -f
 ```
@@ -280,14 +290,13 @@ docker compose logs -f
 
 1. **Port Conflicts**: If port 4000 is already in use, modify the port mapping in `docker-compose.yml`
 
-2. **Node-sass Issues**: If you encounter node-sass binding issues, try:
+2. **Node-sass Issues**: If you encounter node-sass binding errors:
    ```bash
-   docker compose down -v
-   docker system prune -f
+   docker compose down
    docker compose up --build
    ```
 
-3. **Environment Variables**: Make sure all required environment variables are set in your `.envrc` file
+3. **Environment Variables**: Ensure all required variables are set in your `.envrc` file
 
 ## Architecture Notes
 
