@@ -80,10 +80,10 @@ meta:
 <strong>Protip:</strong> indentation matters in `yaml`.  Watchout for code formatting that may remove spaces and jack up your frontmatter.
 
 ## Submodules
-We’re using submodules to share code across multiple repos. You can think of a submodule as a repository within a repository. 
+We're using submodules to share code across multiple repos. You can think of a submodule as a repository within a repository. 
 
 ### Setup
-When you first clone a repository with submodules, you’ll need to initialize and the pull in the latest changes. Like so:
+When you first clone a repository with submodules, you'll need to initialize and the pull in the latest changes. Like so:
 
 ```bash
     $ git clone git@github.com:crdschurch/crds-net.git
@@ -211,3 +211,103 @@ As with most crdschurch repos, local feature development should be done against 
 
 ## License
 This project is licensed under the [3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause).
+
+# CRDS-NET Local Development With Docker
+
+## Prerequisites
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- Git
+
+## Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/crdschurch/crds-net.git
+   cd crds-net
+   ```
+
+2. Create your environment file:
+   ```bash
+   cp .envrc.example .envrc   # If you don't have one already
+   ```
+   Update the `.envrc` file with your environment variables. Contact someone on the team if you need to source them.
+
+3. Build and start the Docker container:
+   ```bash
+   docker compose up --build
+   ```
+
+4. Access the site:
+   - The site will be available at [http://localhost:4000](http://localhost:4000)
+   - Changes to your local files will automatically trigger a rebuild
+
+## Development Workflow
+
+- The Docker setup includes:
+  - Ruby 2.7 with Jekyll 4.0
+  - Node.js 12.5 with npm 6
+  - All necessary dependencies for SASS compilation
+  - Live reload functionality
+
+- Local files are mounted into the container, so any changes you make locally will be reflected in the container
+- The site will automatically rebuild when changes are detected
+
+## Common Tasks
+
+### Rebuilding the Container
+
+If you need to rebuild the container (e.g., after dependency changes):
+```bash
+docker compose down -v
+docker system prune -f
+docker compose up --build
+```
+
+### Stopping the Container
+
+```bash
+docker compose down
+```
+
+### Viewing Logs
+
+```bash
+docker compose logs -f
+```
+
+## Troubleshooting
+
+1. **Port Conflicts**: If port 4000 is already in use, modify the port mapping in `docker-compose.yml`
+
+2. **Node-sass Issues**: If you encounter node-sass binding issues, try:
+   ```bash
+   docker compose down -v
+   docker system prune -f
+   docker compose up --build
+   ```
+
+3. **Environment Variables**: Make sure all required environment variables are set in your `.envrc` file
+
+## Architecture Notes
+
+- The Docker setup uses x86_64 architecture for compatibility
+- Node-sass is configured to use Linux bindings
+- All environment variables are loaded from `.envrc`
+- Volume mounts are configured to preserve node_modules and other build artifacts
+
+## Contributing
+
+1. Create a new branch for your feature
+2. Make your changes
+3. Submit a pull request
+
+## Additional Resources
+
+- [Jekyll Documentation](https://jekyllrb.com/docs/)
+- [Docker Documentation](https://docs.docker.com/)
+- [Node-sass Documentation](https://github.com/sass/node-sass)
+
+## Support
+
+For any issues or questions, please contact the development team.

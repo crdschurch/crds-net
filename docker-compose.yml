@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: linux/amd64
+    volumes:
+      - .:/app:delegated
+      - /app/vendor
+      - /app/.git
+      - /app/_site
+      - /app/node_modules
+    ports:
+      - "4000:4000"
+    env_file:
+      - .envrc
+    command: bundle exec jekyll serve --host 0.0.0.0 --force_polling
+
+volumes:
+  node_modules: 
