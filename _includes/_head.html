@@ -94,7 +94,7 @@
   <!-- CRDS Components Loading -->
   {% if site.use_unified_components %}
   <script type="module" onload="componentsLoaded()" src="{{ site.unified_components_endpoint }}"></script>
-  {% else %}
+  {% endif %}
   {% unless content contains 'crds-components.esm.js' %}
   <!-- Preload CRDS Component assets -->
   <link rel="preload" href="{{ site.components_endpoint }}/crds-components/crds-components.esm.js" as="script">
@@ -106,7 +106,6 @@
   <script nomodule="" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components.js"></script>
   <!-- END: Preload CRDS Component assets -->
   {% endunless %}
-  {% endif %}
   <!-- END: CRDS Components Loading -->
 
   <!-- Component Ready Event Handler -->
@@ -191,7 +190,7 @@
   <!-- Facebook Pixel Integration -->
   {% include _facebook.html %}
   <!-- END: Facebook Pixel Integration -->
-  
+
   <!-- JavaScript Variables and Main Application Script -->
   {% if page.js_vars %}{% include _js_vars.html %}{% endif %}
   {% javascript_link_tag application %}
