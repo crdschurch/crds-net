@@ -55,10 +55,10 @@ layout: default
 																document.addEventListener('reload-bitmovin-video', function () {
 																	var bitmovinPlayer = document.getElementsByTagName("crds-bitmovin-player")[0];
 																	if (bitmovinPlayer) {
-														 
+																		const pauseEvent = new Event('pause-bitmovin-video');
 																	 let parent = bitmovinPlayer.parentNode;
 																	 let newPlayer = bitmovinPlayer.cloneNode(true);  
-																 
+																		document.dispatchEvent(pauseEvent);
 																	 parent.removeChild(bitmovinPlayer);  
 																	 parent.appendChild(newPlayer); 
 																	}
