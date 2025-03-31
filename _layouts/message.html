@@ -73,6 +73,9 @@ layout: default
 																var reloadVideoPlayer = new Event('reload-bitmovin-video');
 																var playEvent = new Event('play-bitmovin-video');
 																var pauseEvent = new Event('pause-bitmovin-video');
+
+
+																document.dispatchEvent(pauseEvent);
 																
 
                 if (currentLanguage == "en") {
@@ -90,7 +93,7 @@ layout: default
 																		youtubePlayer.style.display = "none";
 																		bitmovinPlayer.setAttribute("url", '{{page.source_url_spanish}}');
 																		bitmovinPlayer.setAttribute("key", '{{page.source_url_spanish}}');
-																		document.dispatchEvent(pauseEvent);
+										 
 																		document.dispatchEvent(reloadVideoPlayer);
 																	}
 											   
@@ -107,7 +110,7 @@ layout: default
                   bitmovinPlayer.setAttribute("url", '{{page.bitmovin_url}}');
                   bitmovinPlayer.setAttribute("key", '{{page.bitmovin_url}}');
 																		bitmovinPlayer.style.display = "block";
-																		document.dispatchEvent(pauseEvent);
+																 
 																		document.dispatchEvent(reloadVideoPlayer);
                 }
  
