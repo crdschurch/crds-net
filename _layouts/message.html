@@ -88,6 +88,7 @@ layout: default
 																		youtubePlayer.style.display = "none";
 																		bitmovinPlayer.setAttribute("url", '{{page.source_url_spanish}}');
 																		bitmovinPlayer.setAttribute("key", '{{page.source_url_spanish}}');
+																		document.dispatchEvent(pauseEvent);
 																		document.dispatchEvent(reloadVideoPlayer);
 																	}
 											   
@@ -104,6 +105,7 @@ layout: default
                   bitmovinPlayer.setAttribute("url", '{{page.bitmovin_url}}');
                   bitmovinPlayer.setAttribute("key", '{{page.bitmovin_url}}');
 																		bitmovinPlayer.style.display = "block";
+																		document.dispatchEvent(pauseEvent);
 																		document.dispatchEvent(reloadVideoPlayer);
                 }
  
