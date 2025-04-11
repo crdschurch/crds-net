@@ -17,6 +17,10 @@ layout: default
                     {% assign image = page.image.url %}
                     <!-- This is what content will show after a video plays -->
                     {% assign recommended_collection=site.messages %}
+																				{% if page.source_url_spanish %}
+																					<crds-youtube-player id="js-media-video" class="embed-responsive embed-responsive-16by9"  style="display: none;"></crds-youtube-player>
+																				 
+																				{% endif %}
                     <!--<iframe id="js-media-video" width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen data-video-player></iframe>-->
                     {% include _video-player.html video="video" %}
                     <script>
@@ -46,23 +50,7 @@ layout: default
               <crds-button id="video-language-switch" onClick="switchVideoSource()" data-current-video-language="en" color="white" display="outline" text="Ver en Español" icon="play-thin" icon-color="white" icon-size="20" icon-align="left" tertiary>
               </crds-button>
             </div>
-            <script>
-              function switchVideoSource() {
-                var currentLanguage = document.getElementById("video-language-switch").getAttribute("data-current-video-language");
-                var reloadVideoPlayer = new Event('reload-bitmovin-video');
-                if (currentLanguage == "en") {
-                  document.getElementById("video-language-switch").setAttribute("text", "Watch in English");
-                  document.getElementsByTagName("crds-bitmovin-player")[0].setAttribute("url", '{{page.source_url_spanish}}');
-                  document.getElementById("video-language-switch").setAttribute("data-current-video-language", "sp");
-                } else {
-                  document.getElementById("video-language-switch").setAttribute("text", "Ver en Español");
-                  document.getElementsByTagName("crds-bitmovin-player")[0].setAttribute("url", '{{page.bitmovin_url}}');
-                  document.getElementById("video-language-switch").setAttribute("data-current-video-language", "en");
-                }
-
-                document.dispatchEvent(reloadVideoPlayer);
-              }
-            </script>
+            
           {% endif %}
           <header id="action-buttons">
             {% if page.audio_file.url or page.video_file.url or page.program.url or page.audio_source_url %}
@@ -205,3 +193,88 @@ layout: default
     </div>
   </div>
 </div>
+{% if page.source_url_spanish %}
+	<script>
+			document.addEventListener("DOMContentLoaded", function() {
+				
+				function getYouTubeID(url) {
+					const parts = url.split("/");
+					const lastPart = parts.pop();  
+					return lastPart.split("?")[0];  
+				}
+
+				if(("{{page.source_url_spanish}}").includes('youtube.com') ||
+    ("{{page.source_url_spanish}}").includes('youtu.be')) {
+					document.getElementsByTagName("crds-youtube-player")[0].setAttribute("video-id", getYouTubeID("{{page.source_url_spanish}}"));
+				}
+				})
+		</script>
+
+<script>
+
+	document.addEventListener('reload-bitmovin-video', function () {
+		var bitmovinPlayer = document.getElementsByTagName("crds-bitmovin-player")[0];
+		if (bitmovinPlayer) {
+ 
+			let parent = bitmovinPlayer.parentNode;
+			let newPlayer = bitmovinPlayer.cloneNode(true);  
+ 
+			parent.removeChild(bitmovinPlayer);  
+			parent.appendChild(newPlayer); 
+		}
+});
+
+function switchVideoSource() {
+	var currentLanguage = document.getElementById("video-language-switch").getAttribute("data-current-video-language");
+	var videoSwitch = document.getElementById("video-language-switch");
+	var youtubePlayer = document.getElementsByTagName("crds-youtube-player")[0];
+	var bitmovinPlayer = document.getElementsByTagName("crds-bitmovin-player")[0];
+
+	var reloadVideoPlayer = new Event('reload-bitmovin-video');
+	var playEvent = new Event('play-bitmovin-video');
+	var pauseEvent = new Event('pause-bitmovin-video');
+
+
+	document.dispatchEvent(pauseEvent);
+	
+
+	if (currentLanguage == "en") {
+			videoSwitch.setAttribute("text", "Watch in English");
+			videoSwitch.setAttribute("data-current-video-language", "sp");
+
+			if(("{{page.source_url_spanish}}").includes('youtube.com') ||
+			("{{page.source_url_spanish}}").includes('youtu.be')) {
+			bitmovinPlayer.style.display = "none";
+			youtubePlayer.style.display = "block";
+			
+			document.dispatchEvent(pauseEvent);
+		} else {
+	
+			youtubePlayer.style.display = "none";
+			bitmovinPlayer.setAttribute("url", '{{page.source_url_spanish}}');
+			bitmovinPlayer.setAttribute("key", '{{page.source_url_spanish}}');
+
+ 
+		}
+
+	} else if (currentLanguage == "sp") {
+			videoSwitch.setAttribute("text", "Ver en Español");
+			videoSwitch.setAttribute("data-current-video-language", "en");
+			
+			const foundYoutubeIframe = document.querySelector(`iframe[src*="youtube.com/embed/"]`);
+			if(foundYoutubeIframe) {
+				foundYoutubeIframe.contentWindow.postMessage(`{"event":"command","func":"pauseVideo","args":""}`,'*');
+			}
+			youtubePlayer.style.display = "none";
+
+			bitmovinPlayer.setAttribute("url", '{{page.bitmovin_url}}');
+			bitmovinPlayer.setAttribute("key", '{{page.bitmovin_url}}');
+			bitmovinPlayer.style.display = "block";
+		
+ 
+	}
+
+}
+
+</script>
+{% endif %}
