@@ -215,81 +215,94 @@ layout: default
 	document.addEventListener('reload-bitmovin-video', function () {
 		var bitmovinPlayer = document.getElementsByTagName("crds-bitmovin-player")[0];
 		if (bitmovinPlayer) {
- 
+			// First destroy the existing player
+			if (bitmovinPlayer.player) {
+				bitmovinPlayer.player.destroy();
+			}
 			let parent = bitmovinPlayer.parentNode;
 			let newPlayer = bitmovinPlayer.cloneNode(true);  
- 
 			parent.removeChild(bitmovinPlayer);  
 			parent.appendChild(newPlayer); 
 		}
-});
+	});
 
-function switchVideoSource() {
-    var currentLanguage = document.getElementById("video-language-switch").getAttribute("data-current-video-language");
-    var videoSwitch = document.getElementById("video-language-switch");
-    var youtubePlayer = document.getElementsByTagName("crds-youtube-player")[0];
-    var bitmovinPlayer = document.getElementsByTagName("crds-bitmovin-player")[0];
+	function switchVideoSource() {
+		var currentLanguage = document.getElementById("video-language-switch").getAttribute("data-current-video-language");
+		var videoSwitch = document.getElementById("video-language-switch");
+		var youtubePlayer = document.getElementsByTagName("crds-youtube-player")[0];
+		var bitmovinPlayer = document.getElementsByTagName("crds-bitmovin-player")[0];
 
-    // Helper function to handle Bitmovin player switch
-    function switchToBitmovin(url) {
-        youtubePlayer.style.display = "none";
-        bitmovinPlayer.style.display = "block";
-        bitmovinPlayer.setAttribute("url", url);
-        bitmovinPlayer.setAttribute("key", url);
-        // Trigger reload of Bitmovin player
-        document.dispatchEvent(new Event('reload-bitmovin-video'));
-    }
+		// Helper function to handle Bitmovin player switch
+		function switchToBitmovin(url) {
+			// First destroy YouTube player if it exists
+			if (youtubePlayer && youtubePlayer.player) {
+				youtubePlayer.player.destroy();
+			}
+			youtubePlayer.style.display = "none";
+			bitmovinPlayer.style.display = "block";
+			bitmovinPlayer.setAttribute("url", url);
+			bitmovinPlayer.setAttribute("key", url);
+			// Trigger reload of Bitmovin player
+			document.dispatchEvent(new Event('reload-bitmovin-video'));
+		}
 
-    // Helper function to handle YouTube player switch
-    function switchToYoutube(url) {
-        bitmovinPlayer.style.display = "none";
-        youtubePlayer.style.display = "block";
-        youtubePlayer.setAttribute("video-id", getYouTubeID(url));
-    }
+		// Helper function to handle YouTube player switch
+		function switchToYoutube(url) {
+			// First destroy Bitmovin player if it exists
+			if (bitmovinPlayer && bitmovinPlayer.player) {
+				bitmovinPlayer.player.destroy();
+			}
+			bitmovinPlayer.style.display = "none";
+			youtubePlayer.style.display = "block";
+			youtubePlayer.setAttribute("video-id", getYouTubeID(url));
+		}
 
-    if (currentLanguage === "en") {
-        // Switching to Spanish
-        videoSwitch.setAttribute("text", "Watch in English");
-        videoSwitch.setAttribute("data-current-video-language", "sp");
+		if (currentLanguage === "en") {
+			// Switching to Spanish
+			videoSwitch.setAttribute("text", "Watch in English");
+			videoSwitch.setAttribute("data-current-video-language", "sp");
 
-        const spanishUrl = "{{page.source_url_spanish}}";
-        
-        if (spanishUrl.includes('youtube.com') || spanishUrl.includes('youtu.be')) {
-            // Spanish source is YouTube
-            switchToYoutube(spanishUrl);
-        } else {
-            // Spanish source is Broadcast Cloud
-            switchToBitmovin(spanishUrl);
-        }
-    } else {
-        // Switching back to English
-        videoSwitch.setAttribute("text", "Ver en Español");
-        videoSwitch.setAttribute("data-current-video-language", "en");
-        
-        // Always switch back to Bitmovin with original source
-        switchToBitmovin("{{page.bitmovin_url}}");
-    }
-}
+			const spanishUrl = "{{page.source_url_spanish}}";
+			
+			if (spanishUrl.includes('youtube.com') || spanishUrl.includes('youtu.be')) {
+				// Spanish source is YouTube
+				switchToYoutube(spanishUrl);
+			} else {
+				// Spanish source is Broadcast Cloud
+				switchToBitmovin(spanishUrl);
+			}
+		} else {
+			// Switching back to English
+			videoSwitch.setAttribute("text", "Ver en Español");
+			videoSwitch.setAttribute("data-current-video-language", "en");
+			
+			// Always switch back to Bitmovin with original source
+			switchToBitmovin("{{page.bitmovin_url}}");
+		}
+	}
 
-// Make sure this runs when the page loads to set up initial state
-document.addEventListener("DOMContentLoaded", function() {
-    // Set up initial state - Bitmovin player with original source
-    var bitmovinPlayer = document.getElementsByTagName("crds-bitmovin-player")[0];
-    var youtubePlayer = document.getElementsByTagName("crds-youtube-player")[0];
-    
-    if (bitmovinPlayer && youtubePlayer) {
-        bitmovinPlayer.style.display = "block";
-        youtubePlayer.style.display = "none";
-        bitmovinPlayer.setAttribute("url", "{{page.bitmovin_url}}");
-        bitmovinPlayer.setAttribute("key", "{{page.bitmovin_url}}");
-    }
-
-    // If we have a Spanish YouTube URL, prepare the YouTube player
-    if ("{{page.source_url_spanish}}".includes('youtube.com') || 
-        "{{page.source_url_spanish}}".includes('youtu.be')) {
-        youtubePlayer.setAttribute("video-id", getYouTubeID("{{page.source_url_spanish}}"));
-    }
-});
+	// Make sure this runs when the page loads to set up initial state
+	document.addEventListener("DOMContentLoaded", function() {
+		// Set up initial state - Bitmovin player with original source
+		var bitmovinPlayer = document.getElementsByTagName("crds-bitmovin-player")[0];
+		var youtubePlayer = document.getElementsByTagName("crds-youtube-player")[0];
+		
+		if (bitmovinPlayer && youtubePlayer) {
+			// Ensure only one player is visible at a time
+			bitmovinPlayer.style.display = "block";
+			youtubePlayer.style.display = "none";
+			
+			// Initialize Bitmovin player
+			bitmovinPlayer.setAttribute("url", "{{page.bitmovin_url}}");
+			bitmovinPlayer.setAttribute("key", "{{page.bitmovin_url}}");
+			
+			// Only prepare YouTube player if we have a Spanish YouTube URL
+			if ("{{page.source_url_spanish}}".includes('youtube.com') || 
+				"{{page.source_url_spanish}}".includes('youtu.be')) {
+				youtubePlayer.setAttribute("video-id", getYouTubeID("{{page.source_url_spanish}}"));
+			}
+		}
+	});
 
 </script>
 {% endif %}
