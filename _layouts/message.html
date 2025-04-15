@@ -215,8 +215,12 @@ layout: default
 	document.addEventListener('reload-bitmovin-video', function () {
 		var bitmovinPlayer = document.getElementsByTagName("crds-bitmovin-player")[0];
 		if (bitmovinPlayer) {
-			// First destroy the existing player
+			// destroy the existing player and its audio tracks
 			if (bitmovinPlayer.player) {
+				bitmovinPlayer.player.pause();
+				if (bitmovinPlayer.player.audio) {
+					bitmovinPlayer.player.audio.remove();
+				}
 				bitmovinPlayer.player.destroy();
 			}
 			let parent = bitmovinPlayer.parentNode;
@@ -234,8 +238,12 @@ layout: default
 
 		// Helper function to handle Bitmovin player switch
 		function switchToBitmovin(url) {
-			// First destroy YouTube player if it exists
 			if (youtubePlayer && youtubePlayer.player) {
+				youtubePlayer.player.pauseVideo();
+				const iframe = youtubePlayer.querySelector('iframe');
+				if (iframe) {
+					iframe.remove();
+				}
 				youtubePlayer.player.destroy();
 			}
 			youtubePlayer.style.display = "none";
@@ -248,8 +256,11 @@ layout: default
 
 		// Helper function to handle YouTube player switch
 		function switchToYoutube(url) {
-			// First destroy Bitmovin player if it exists
 			if (bitmovinPlayer && bitmovinPlayer.player) {
+				bitmovinPlayer.player.pause();
+				if (bitmovinPlayer.player.audio) {
+					bitmovinPlayer.player.audio.remove();
+				}
 				bitmovinPlayer.player.destroy();
 			}
 			bitmovinPlayer.style.display = "none";
@@ -265,10 +276,8 @@ layout: default
 			const spanishUrl = "{{page.source_url_spanish}}";
 			
 			if (spanishUrl.includes('youtube.com') || spanishUrl.includes('youtu.be')) {
-				// Spanish source is YouTube
 				switchToYoutube(spanishUrl);
 			} else {
-				// Spanish source is Broadcast Cloud
 				switchToBitmovin(spanishUrl);
 			}
 		} else {
@@ -283,16 +292,13 @@ layout: default
 
 	// Make sure this runs when the page loads to set up initial state
 	document.addEventListener("DOMContentLoaded", function() {
-		// Set up initial state - Bitmovin player with original source
 		var bitmovinPlayer = document.getElementsByTagName("crds-bitmovin-player")[0];
 		var youtubePlayer = document.getElementsByTagName("crds-youtube-player")[0];
 		
 		if (bitmovinPlayer && youtubePlayer) {
-			// Ensure only one player is visible at a time
 			bitmovinPlayer.style.display = "block";
 			youtubePlayer.style.display = "none";
 			
-			// Initialize Bitmovin player
 			bitmovinPlayer.setAttribute("url", "{{page.bitmovin_url}}");
 			bitmovinPlayer.setAttribute("key", "{{page.bitmovin_url}}");
 			
