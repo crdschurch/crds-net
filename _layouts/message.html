@@ -215,18 +215,15 @@ layout: default
 	document.addEventListener('reload-bitmovin-video', function () {
 		var bitmovinPlayer = document.getElementsByTagName("crds-bitmovin-player")[0];
 		if (bitmovinPlayer) {
-			// destroy the existing player and its audio tracks
-			if (bitmovinPlayer.player) {
-				bitmovinPlayer.player.pause();
-				if (bitmovinPlayer.player.audio) {
-					bitmovinPlayer.player.audio.remove();
-				}
-				bitmovinPlayer.player.destroy();
-			}
+			// Remove the entire player element and recreate it
 			let parent = bitmovinPlayer.parentNode;
-			let newPlayer = bitmovinPlayer.cloneNode(true);  
-			parent.removeChild(bitmovinPlayer);  
-			parent.appendChild(newPlayer); 
+			let newPlayer = document.createElement('crds-bitmovin-player');
+			// Copy all attributes from the old player
+			Array.from(bitmovinPlayer.attributes).forEach(attr => {
+				newPlayer.setAttribute(attr.name, attr.value);
+			});
+			parent.removeChild(bitmovinPlayer);
+			parent.appendChild(newPlayer);
 		}
 	});
 
@@ -238,34 +235,45 @@ layout: default
 
 		// Helper function to handle Bitmovin player switch
 		function switchToBitmovin(url) {
-			if (youtubePlayer && youtubePlayer.player) {
-				youtubePlayer.player.pauseVideo();
-				const iframe = youtubePlayer.querySelector('iframe');
-				if (iframe) {
-					iframe.remove();
-				}
-				youtubePlayer.player.destroy();
+			// Remove YouTube player completely
+			if (youtubePlayer) {
+				youtubePlayer.parentNode.removeChild(youtubePlayer);
 			}
-			youtubePlayer.style.display = "none";
-			bitmovinPlayer.style.display = "block";
-			bitmovinPlayer.setAttribute("url", url);
-			bitmovinPlayer.setAttribute("key", url);
-			// Trigger reload of Bitmovin player
-			document.dispatchEvent(new Event('reload-bitmovin-video'));
+			
+			// Create new Bitmovin player
+			let newBitmovinPlayer = document.createElement('crds-bitmovin-player');
+			newBitmovinPlayer.setAttribute("url", url);
+			newBitmovinPlayer.setAttribute("key", url);
+			newBitmovinPlayer.className = "embed-responsive embed-responsive-16by9";
+			
+			// Replace existing Bitmovin player
+			if (bitmovinPlayer) {
+				bitmovinPlayer.parentNode.replaceChild(newBitmovinPlayer, bitmovinPlayer);
+			} else {
+				// If no existing player, append to container
+				document.querySelector('[data-audio-video-control]').appendChild(newBitmovinPlayer);
+			}
 		}
 
 		// Helper function to handle YouTube player switch
 		function switchToYoutube(url) {
-			if (bitmovinPlayer && bitmovinPlayer.player) {
-				bitmovinPlayer.player.pause();
-				if (bitmovinPlayer.player.audio) {
-					bitmovinPlayer.player.audio.remove();
-				}
-				bitmovinPlayer.player.destroy();
+			// Remove Bitmovin player completely
+			if (bitmovinPlayer) {
+				bitmovinPlayer.parentNode.removeChild(bitmovinPlayer);
 			}
-			bitmovinPlayer.style.display = "none";
-			youtubePlayer.style.display = "block";
-			youtubePlayer.setAttribute("video-id", getYouTubeID(url));
+			
+			// Create new YouTube player
+			let newYoutubePlayer = document.createElement('crds-youtube-player');
+			newYoutubePlayer.setAttribute("video-id", getYouTubeID(url));
+			newYoutubePlayer.className = "embed-responsive embed-responsive-16by9";
+			
+			// Replace existing YouTube player
+			if (youtubePlayer) {
+				youtubePlayer.parentNode.replaceChild(newYoutubePlayer, youtubePlayer);
+			} else {
+				// If no existing player, append to container
+				document.querySelector('[data-audio-video-control]').appendChild(newYoutubePlayer);
+			}
 		}
 
 		if (currentLanguage === "en") {
@@ -296,9 +304,11 @@ layout: default
 		var youtubePlayer = document.getElementsByTagName("crds-youtube-player")[0];
 		
 		if (bitmovinPlayer && youtubePlayer) {
+			// Ensure only one player is visible at a time
 			bitmovinPlayer.style.display = "block";
 			youtubePlayer.style.display = "none";
 			
+			// Initialize Bitmovin player
 			bitmovinPlayer.setAttribute("url", "{{page.bitmovin_url}}");
 			bitmovinPlayer.setAttribute("key", "{{page.bitmovin_url}}");
 			
