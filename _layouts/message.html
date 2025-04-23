@@ -195,6 +195,15 @@ layout: default
 </div>
 {% if page.source_url_spanish %}
 	<script>
+// Function to get URL parameters
+			function getUrlParameter(name) {
+							name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+							var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+							var results = regex.exec(location.search);
+							return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+			}
+
+
 			document.addEventListener("DOMContentLoaded", function() {
 				
 				function getYouTubeID(url) {
@@ -202,23 +211,28 @@ layout: default
 					const lastPart = parts.pop();  
 					return lastPart.split("?")[0];  
 				}
-
 				if(("{{page.source_url_spanish}}").includes('youtube.com') ||
     ("{{page.source_url_spanish}}").includes('youtu.be')) {
 					document.getElementsByTagName("crds-youtube-player")[0].setAttribute("video-id", getYouTubeID("{{page.source_url_spanish}}"));
 				}
-				})
+
+				const autoPlay = getUrlParameter('autoPlay') === 'true';
+    var bitmovinPlayer = document.getElementsByTagName("crds-bitmovin-player")[0];
+
+				if (bitmovinPlayer && autoPlay) {
+					document.dispatchEvent(playEvent);	
+    }
+			})
 		</script>
 
 <script>
-
 	document.addEventListener('reload-bitmovin-video', function () {
 		var bitmovinPlayer = document.getElementsByTagName("crds-bitmovin-player")[0];
 		if (bitmovinPlayer) {
- 
 			let parent = bitmovinPlayer.parentNode;
 			let newPlayer = bitmovinPlayer.cloneNode(true);  
- 
+			var playEvent = new Event('play-bitmovin-video');
+			document.dispatchEvent(playEvent);
 			parent.removeChild(bitmovinPlayer);  
 			parent.appendChild(newPlayer); 
 		}
@@ -233,7 +247,8 @@ function switchVideoSource() {
 	var reloadVideoPlayer = new Event('reload-bitmovin-video');
 	var playEvent = new Event('play-bitmovin-video');
 	var pauseEvent = new Event('pause-bitmovin-video');
-
+	const autoPlay = getUrlParameter('autoPlay') === 'true';
+	const foundYoutubeIframe = document.querySelector(`iframe[src*="youtube.com/embed/"]`);
 
 	document.dispatchEvent(pauseEvent);
 	
@@ -248,12 +263,17 @@ function switchVideoSource() {
 			youtubePlayer.style.display = "block";
 			
 			document.dispatchEvent(pauseEvent);
+
+			if(foundYoutubeIframe && autoPlay) {
+				foundYoutubeIframe.contentWindow.postMessage(`{"event":"command","func":"playVideo","args":""}`,'*');
+			}
+
 		} else {
-	
+
 			youtubePlayer.style.display = "none";
 			bitmovinPlayer.setAttribute("url", '{{page.source_url_spanish}}');
 			bitmovinPlayer.setAttribute("key", '{{page.source_url_spanish}}');
-
+			document.dispatchEvent(pauseEvent);
  
 		}
 
@@ -261,7 +281,7 @@ function switchVideoSource() {
 			videoSwitch.setAttribute("text", "Ver en Español");
 			videoSwitch.setAttribute("data-current-video-language", "en");
 			
-			const foundYoutubeIframe = document.querySelector(`iframe[src*="youtube.com/embed/"]`);
+	
 			if(foundYoutubeIframe) {
 				foundYoutubeIframe.contentWindow.postMessage(`{"event":"command","func":"pauseVideo","args":""}`,'*');
 			}
@@ -270,8 +290,12 @@ function switchVideoSource() {
 			bitmovinPlayer.setAttribute("url", '{{page.bitmovin_url}}');
 			bitmovinPlayer.setAttribute("key", '{{page.bitmovin_url}}');
 			bitmovinPlayer.style.display = "block";
-		
- 
+
+			if(autoPlay) {
+				setTimeout(() => {
+						document.dispatchEvent(playEvent);
+					}, 1000);
+			}
 	}
 
 }
