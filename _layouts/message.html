@@ -218,9 +218,11 @@ layout: default
 
 				const autoPlay = getUrlParameter('autoPlay') === 'true';
     var bitmovinPlayer = document.getElementsByTagName("crds-bitmovin-player")[0];
-
+				var playEvent = new Event('play-bitmovin-video');
+				var readyEvent = new Event('bitmovin-ready');
+				
 				if (bitmovinPlayer && autoPlay) {
-					document.dispatchEvent(playEvent);	
+						document.dispatchEvent(playEvent);
     }
 			})
 		</script>
