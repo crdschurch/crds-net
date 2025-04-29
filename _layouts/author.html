@@ -20,25 +20,26 @@ layout: default
       {% assign articles = site.articles | filter: 'author.full_name', author.full_name | sort: 'date' | reverse %}
       {% assign videos = site.videos | filter: 'author.full_name', author.full_name | reverse %}
       {% assign messages = site.messages | filter: 'author.full_name', author.full_name | reverse %}
-      <!--{% assign featured = site.messages | filter: 'featuredToAuthor.full_name', author.full_name | reverse %}-->
       {% assign podcasts = site.podcasts | filter: 'author.full_name', author.full_name | reverse %}
+ 
 
-						<!--{% for message in messages %}
-						<script>console.log("{{ message.title }} - {{ message.description }}");</script>
-									{% if message.author.full_name == message.featuredToAuthor.full_name %}
-											{% assign featured = featured | push: message %}
+						{% assign all_items = articles | concat: videos | concat: messages | concat: podcasts %}
+						{% assign featured = "" | split: "" %}
 
-						 
-									{% endif %}
-							{% endfor %}-->
-
-							{% for message in site.messages %}
-							<script>console.log("{{ message.author }} - {{ message.slug }}");</script>
-								{% if author.full_name and message.featuredToAuthor.full_name == author.full_name %}
-										{% assign featured = featured | push: message %}
+						{% for item in all_items %}
+								{% if item.featured_to_author %}
+										{% for fta in item.featured_to_author %}
+												{% for item_author in item.author %}
+														{% if fta.id == item_author.id %}
+																{% assign featured = featured | push: item %}
+														{% endif %}
+												{% endfor %}
+										{% endfor %}
 								{% endif %}
 						{% endfor %}
-      
+
+ 
+				 
 
        <!-- Create tabs_array -->
 								{% assign tabs_array = "" | split: "|" %}
