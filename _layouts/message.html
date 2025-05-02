@@ -280,8 +280,9 @@ function switchVideoSource() {
 				}
 
 			} else {
-
-			youtubePlayer.style.display = "none";
+			if(youtubePlayer) {
+				youtubePlayer.style.display = "none";
+			}
 			bitmovinPlayer.setAttribute("url", '{{page.source_url_spanish}}');
 			bitmovinPlayer.setAttribute("key", '{{page.source_url_spanish}}');
 			document.dispatchEvent(pauseEvent);
