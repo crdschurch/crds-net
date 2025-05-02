@@ -206,15 +206,11 @@ layout: default
 
 			document.addEventListener("DOMContentLoaded", function() {
 				
-				function getYouTubeID(url) {
-					const parts = url.split("/");
-					const lastPart = parts.pop();  
-					return lastPart.split("?")[0];  
-				}
-				if(("{{page.source_url_spanish}}").includes('youtube.com') ||
-    ("{{page.source_url_spanish}}").includes('youtu.be')) {
-					document.getElementsByTagName("crds-youtube-player")[0].setAttribute("video-id", getYouTubeID("{{page.source_url_spanish}}"));
-				}
+			
+				//if(("{{page.source_url_spanish}}").includes('youtube.com') ||
+    //("{{page.source_url_spanish}}").includes('youtu.be')) {
+				//	document.getElementsByTagName("crds-youtube-player")[0].setAttribute("video-id", getYouTubeID("{{page.source_url_spanish}}"));
+				//}
 
 				const autoPlay = getUrlParameter('autoPlay') === 'true';
     var bitmovinPlayer = document.getElementsByTagName("crds-bitmovin-player")[0];
@@ -239,6 +235,12 @@ layout: default
 			parent.appendChild(newPlayer); 
 		}
 });
+
+function getYouTubeID(url) {
+		const parts = url.split("/");
+		const lastPart = parts.pop();  
+		return lastPart.split("?")[0];  
+}
 
 function switchVideoSource() {
 	var currentLanguage = document.getElementById("video-language-switch").getAttribute("data-current-video-language");
@@ -273,20 +275,21 @@ function switchVideoSource() {
 					videoContainer.appendChild(youtubePlayer);
 					} else {
 					youtubePlayer.style.display = "block";
-					}
+				}
 
+				bitmovinPlayer.style.display = "none";
 				if(foundYoutubeIframe && autoPlay) {
 					foundYoutubeIframe.contentWindow.postMessage(`{"event":"command","func":"playVideo","args":""}`,'*');
 				}
 
 			} else {
-			if(youtubePlayer) {
-				youtubePlayer.style.display = "none";
-			}
-			bitmovinPlayer.setAttribute("url", '{{page.source_url_spanish}}');
-			bitmovinPlayer.setAttribute("key", '{{page.source_url_spanish}}');
-			document.dispatchEvent(pauseEvent);
- 
+
+				if(youtubePlayer) {
+					youtubePlayer.style.display = "none";
+				}
+				bitmovinPlayer.setAttribute("url", '{{page.source_url_spanish}}');
+				bitmovinPlayer.setAttribute("key", '{{page.source_url_spanish}}');
+				document.dispatchEvent(pauseEvent);
 		}
 
 	} else if (currentLanguage == "sp") {
@@ -297,7 +300,10 @@ function switchVideoSource() {
 			if(foundYoutubeIframe) {
 				foundYoutubeIframe.contentWindow.postMessage(`{"event":"command","func":"pauseVideo","args":""}`,'*');
 			}
-			youtubePlayer.style.display = "none";
+
+			if(youtubePlayer) {
+				youtubePlayer.style.display = "none";
+			}
 
 			bitmovinPlayer.setAttribute("url", '{{page.bitmovin_url}}');
 			bitmovinPlayer.setAttribute("key", '{{page.bitmovin_url}}');
