@@ -14,33 +14,81 @@ layout: default
   <div class="container">
     <div class="row soft-half soft-top push-top">
 
+						{% assign featured = "" | split: "" %}
+ 
+							
       {% assign articles = site.articles | filter: 'author.full_name', author.full_name | sort: 'date' | reverse %}
       {% assign videos = site.videos | filter: 'author.full_name', author.full_name | reverse %}
       {% assign messages = site.messages | filter: 'author.full_name', author.full_name | reverse %}
       {% assign podcasts = site.podcasts | filter: 'author.full_name', author.full_name | reverse %}
+ 
+
+						{% assign all_items = articles | concat: videos | concat: messages | concat: podcasts %}
+						{% assign featured = "" | split: "" %}
+
+						{% for item in all_items %}
+								{% if item.featured_to_author %}
+										{% for fta in item.featured_to_author %}
+												{% for item_author in item.author %}
+														{% if fta.id == item_author.id %}
+																{% assign featured = featured | push: item %}
+														{% endif %}
+												{% endfor %}
+										{% endfor %}
+								{% endif %}
+						{% endfor %}
+
+ 
+				 
 
        <!-- Create tabs_array -->
-      {% assign tabs_array = "latest" | split: "|" %}
+								{% assign tabs_array = "" | split: "|" %}
+								
+								{% if featured.size > 0 %}
+									{% assign tabs_array = tabs_array | push: "featured" %}
+								{% endif %}
 
-      {% if articles.size > 0 %}
-        {% assign tabs_array = tabs_array | push: "articles" %}
-      {% endif %}
+								{% assign tabs_array = tabs_array | push: "latest" %}
 
-      {% if videos.size > 0 %}
-        {% assign tabs_array = tabs_array | push: "videos" %}
-      {% endif %}
+								{% if articles.size > 0 %}
+										{% assign tabs_array = tabs_array | push: "articles" %}
+								{% endif %}
 
-      {% if messages.size > 0 %}
-        {% assign tabs_array = tabs_array | push: "messages" %}
-      {% endif %}
+								{% if videos.size > 0 %}
+										{% assign tabs_array = tabs_array | push: "videos" %}
+								{% endif %}
 
-      {% if podcasts.size > 0 %}
-        {% assign tabs_array = tabs_array | push: "podcasts" %}
-      {% endif %}
+								{% if messages.size > 0 %}
+										{% assign tabs_array = tabs_array | push: "messages" %}
+								{% endif %}
 
-      {% assign latest_array = articles | concat: videos | concat: messages | sort: 'date' | reverse %}
+								{% if podcasts.size > 0 %}
+										{% assign tabs_array = tabs_array | push: "podcasts" %}
+								{% endif %}
+
+								<!-- Create latest_array -->
+								{% assign latest_array = articles | concat: videos | concat: messages | sort: 'date' | reverse %}
+
+					 
 
       <crds-tabs tabs='{{tabs_array | jsonify }}' mobile-dropdown navigation-class="align-tabs-left">
+
+
+							<!-- Featured -->
+								{% if featured.size > 0 %}
+								<div slot="tab-featured" class="push-ends">
+										<div data-card-deck class="card-deck">
+												<div class="cards-4x">
+														<div class="row">
+																{% for post in featured %}
+																		{% include _article-card.html post=post %}
+																{% endfor %}
+														</div>
+												</div>
+										</div>
+								</div>
+								{% endif %}
+
 
         <!-- Latest -->
         <div slot="tab-latest" class="push-ends">
