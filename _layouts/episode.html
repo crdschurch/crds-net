@@ -32,11 +32,9 @@ layout: default
   <div class="container push-top soft-top">
     <div class="row">
       <div class="col-sm-8 col-sm-offset-2" style="padding-top: 1rem;">
-								{% if page.video_url %}
-          {% assign is_youtube = page.video_url | contains: 'youtube.com' | contains: 'youtu.be' %}
-          {% if is_youtube %}
-            <crds-youtube-player id="podcast-episode-player" class="embed-responsive embed-responsive-16by9"></crds-youtube-player>
-          {% endif %}
+					{% if page.video_url %}
+            {% assign video_id = page.video_url | youtube_id %}
+            {% include _youtube-embed.html %}
         {% endif %}
         <div class="embedded-audio-player">
           {{ page.audio_embed_code }}
@@ -104,25 +102,3 @@ layout: default
 
   </div>
 </div>
-<script>
-	document.addEventListener("DOMContentLoaded", function() {
-			function getYouTubeID(url) {
-					const parts = url.split("/");
-					const lastPart = parts.pop();  
-					return lastPart.split("?")[0];  
-			}
-			function isValidYouTubeUrl(url) {
-					return url.includes('youtube.com') || url.includes('youtu.be');
-			}
-
-			const videoUrl = "{{page.video_url}}";
- 
-			if (videoUrl && isValidYouTubeUrl(videoUrl)) {
-					const player = document.getElementById("podcast-episode-player");
-					if (player) {
-							const videoId = getYouTubeID(videoUrl);
-							player.setAttribute("video-id", videoId);
-					}
-			}
-	});
-</script>
