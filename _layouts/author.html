@@ -25,11 +25,21 @@ layout: default
 
 						{% assign all_items = articles | concat: videos | concat: messages | concat: podcasts %}
 						{% assign featured = "" | split: "" %}
-
-						{% for item in all_items %}
+					
+						{% for item in all_items %} 
+						<script> console.log(item)</script>
 								{% if item.featured_to_author %}
+							
 										{% for fta in item.featured_to_author %}
 												{% for item_author in item.author %}
+														<script>
+																console.log(
+																		"Item: {{ item.title | escape }}\n",
+																		"FTA ID: {{ fta.id }}\n",
+																		"Author ID: {{ item_author.id }}\n",
+																		"Author email: {{ item_author.email }}\n"
+																);
+														</script>
 														{% if fta.id == item_author.id %}
 																{% assign featured = featured | push: item %}
 														{% endif %}
