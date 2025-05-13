@@ -23,13 +23,26 @@ layout: default
       {% assign podcasts = site.podcasts | filter: 'author.full_name', author.full_name | reverse %}
  
 
-						{% assign all_items = articles | concat: videos | concat: messages | concat: podcasts %}
+						{% assign all_items =  videos | concat: messages | concat: podcasts %}
 						{% assign featured = "" | split: "" %}
+
+
+						{% for item in articles %}
+							{% if item.featured_to_author %}
+							<script>
+																console.log(
+																		"tt FTA ID: {{ item.featured_to_author.id }}\n",
+																		"tt Author ID: {{ item.author.id }}\n",
+																);
+														</script>
+									{% if item.featured_to_author.id == item.author.id %}
+											{% assign featured = featured | push: item %}
+									{% endif %}
+							{% endif %}
+						{% endfor %}
 					
-						{% for item in all_items %} 
-						<script> console.log(item)</script>
+						{% for item in all_items %}
 								{% if item.featured_to_author %}
-							
 										{% for fta in item.featured_to_author %}
 												{% for item_author in item.author %}
 														<script>
@@ -49,7 +62,6 @@ layout: default
 						{% endfor %}
 
  
-				 
 
        <!-- Create tabs_array -->
 								{% assign tabs_array = "" | split: "|" %}
