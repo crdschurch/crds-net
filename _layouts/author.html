@@ -23,18 +23,13 @@ layout: default
       {% assign podcasts = site.podcasts | filter: 'author.full_name', author.full_name | reverse %}
  
 
+					
 						{% assign all_items =  videos | concat: messages | concat: podcasts %}
 						{% assign featured = "" | split: "" %}
 
 
 						{% for item in articles %}
 							{% if item.featured_to_author %}
-							<script>
-																console.log(
-																		"tt FTA ID: {{ item.featured_to_author.id }}\n",
-																		"tt Author ID: {{ item.author.id }}\n",
-																);
-														</script>
 									{% if item.featured_to_author.id == item.author.id %}
 											{% assign featured = featured | push: item %}
 									{% endif %}
@@ -45,14 +40,6 @@ layout: default
 								{% if item.featured_to_author %}
 										{% for fta in item.featured_to_author %}
 												{% for item_author in item.author %}
-														<script>
-																console.log(
-																		"Item: {{ item.title | escape }}\n",
-																		"FTA ID: {{ fta.id }}\n",
-																		"Author ID: {{ item_author.id }}\n",
-																		"Author email: {{ item_author.email }}\n"
-																);
-														</script>
 														{% if fta.id == item_author.id %}
 																{% assign featured = featured | push: item %}
 														{% endif %}
