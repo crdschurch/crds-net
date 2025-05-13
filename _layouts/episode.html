@@ -31,7 +31,11 @@ layout: default
 
   <div class="container push-top soft-top">
     <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
+      <div class="col-sm-8 col-sm-offset-2" style="padding-top: 1rem;">
+					{% if page.video_url %}
+            {% assign video_id = page.video_url | youtube_id %}
+            {% include _youtube-embed.html %}
+        {% endif %}
         <div class="embedded-audio-player">
           {{ page.audio_embed_code }}
           <div class="subscribe-buttons">
