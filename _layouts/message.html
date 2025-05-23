@@ -322,3 +322,18 @@ layout: default
 
 </script>
 {% endif %}
+
+<style>
+  /* Fix for button focus state */
+  .btn.btn-white.btn-outline.btn-tertiary:focus {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+  }
+
+  .btn.btn-white.btn-outline.btn-tertiary:hover:focus {
+    border: 1px solid rgba(255, 130, 0);
+    box-shadow: 0 0 0 2px rgba(255, 130, 0, 0.25);
+  }
+</style>
