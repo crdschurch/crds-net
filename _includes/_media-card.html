@@ -1,4 +1,4 @@
-==/{% assign author = site.authors | where: "name",item.author | first %}
+{% assign author = site.authors | where: "name",item.author | first %}
 {% assign item = include.item %}
 {% assign album_url = item.album_url %}
 
