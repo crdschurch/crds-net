@@ -93,7 +93,7 @@ title: Articles
               {% if page.title == "Preview" %}
               <p data-author-bio></p>
               {% else %}
-              <p class="font-size-smaller">{{ author.summary }}</p>
+              <p class="font-size-smaller">{{ author.summary | markdownify }}</p>
               {% endif %}
               <div>
                 {% include _author-social.html %}
