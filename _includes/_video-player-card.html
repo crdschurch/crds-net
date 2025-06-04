@@ -1,10 +1,7 @@
-{% comment %}
-// This assures the messages content type uses the background image instead of the thumbnail image like all other content types.
-{% endcomment %}
 {% assign handle = item.content_type %}
 {% case handle %}
   {% when 'message' %}
-    {% assign banner_image = item.background_image.url %}
+    {% assign banner_image = item.image.url %}
   {% when 'episode' %}
     {% assign banner_image = item.podcast.image.url %}
   {% else %}

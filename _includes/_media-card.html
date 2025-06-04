@@ -22,11 +22,9 @@
     {% assign image = item.image.url %}
 
     {% if item.content_type == 'episode' %}
-      {% assign image =item.podcast.image.url %}
+      {% assign image = item.podcast.image.url %}
     {% endif %}
-    {% if image == blank %}
-      {% assign image = item.bg_image.url %}
-    {% endif %}
+    
     {% assign recommended_collection=site.messages %}
     {% include _video-player-card.html %}
     {% if image %}
