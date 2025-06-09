@@ -4,57 +4,64 @@
 
 {% if include.carousel == true %}
 <div class="card carousel-cell card-2x">
-{% else %}
-<div class="card">
-{% endif %}
-  <a class="relative" href="{% if item.content_type == 'song' %}{{ album_url }}{% else %}{{item | media_url }}{% endif %}">
-    {% if item.content_type != nil %}
-      {% include _media-label.html source= item %}
-    {% else %}
-      {% include _media-label.html source= item content_type= include.content_type %}
-      error
+  {% else %}
+  <div class="card">
     {% endif %}
 
-    {% if item.content_type == "article" or "video" %}
-    <div class="beige-overlay"></div>
-    {% endif %} 
+    <div class="card-media relative">
 
-    {% assign image = item.image.url %}
+      <a class="block" href="{% if item.content_type == 'song' %}
+               {{ album_url }}
+             {% else %}
+               {{ item | media_url }}
+             {% endif %}">
 
-    {% if item.content_type == 'episode' %}
-      {% assign image = item.podcast.image.url %}
-    {% endif %}
-    
-    {% assign recommended_collection=site.messages %}
-    {% include _video-player-card.html %}
-    {% if image %}
-      <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
-    {% else %}
-      <img src="{{ site.default_image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}" sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
-    {% endif %}
-  </a>
-  <div class="card-block hard soft-quarter-top">
-    {% assign topic =item.category | get_doc %}
-    <a class="text-orange-dark font-size-smaller font-family-base-mid text-uppercase" href="{{ topic.url }}">
-      {{ topic.title }}
-    </a>
-    <h3 class="component-header flush">
-      <a href="{{item | media_url }}">{{item.title }}</a>
-    </h3>
-    {% if item.author != nil %}
-    <p class="card-text soft-quarter-top">
-      {% if item.author.id %}
-        {% assign author =item.author | get_doc %}
+        {% if item.content_type == 'article' or item.content_type == 'video' %}
+        <div class="beige-overlay"></div>
+        {% endif %}
+
+        {% assign image = item.image.url %}
+        {% if item.content_type == 'episode' %}
+        {% assign image = item.podcast.image.url %}
+        {% endif %}
+
+        {% assign recommended_collection = site.messages %}
+        {% include _video-player-card.html %}
+
+        {% if image %}
+        <img src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+          sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
+        {% else %}
+        <img src="{{ site.default_image | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+          sizes="{{ site.image_sizes.cards_2x }}" data-optimize-img>
+        {% endif %}
+      </a>
+
+      {% include _media-label.html source=item %}
+    </div>
+
+    <div class="card-block hard soft-quarter-top">
+      {% assign topic = item.category | get_doc %}
+      <a class="text-orange-dark font-size-smaller font-family-base-mid text-uppercase" href="{{ topic.url }}">{{
+        topic.title }}</a>
+
+      <h3 class="component-header flush">
+        <a href="{{ item | media_url }}">{{ item.title }}</a>
+      </h3>
+
+      {% if item.author %}
+      <p class="card-text soft-quarter-top">
+        {% if item.author.id %}
+        {% assign author = item.author | get_doc %}
         <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>
-      {% else %}
-        {% assign authors =item.author | get_docs %}
+        {% else %}
+        {% assign authors = item.author | get_docs %}
         {% for author in authors %}
-          <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>
-          {% unless forloop.last %}<span class="text-gray-light">&amp;</span>{% endunless %}
+        <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>{% unless
+        forloop.last %}<span class="text-gray-light">&amp;</span>{% endunless %}
         {% endfor %}
+        {% endif %}
+      </p>
       {% endif %}
-    </p>
-    {% endif %}
-
+    </div>
   </div>
-</div>
