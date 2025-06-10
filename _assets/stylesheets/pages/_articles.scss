@@ -179,4 +179,8 @@
 
 .podcast-listen-now-link {
   color: white;
+
+  &:hover {
+    color: $cr-orange !important;
+  }
 }

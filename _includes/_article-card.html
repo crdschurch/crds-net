@@ -3,17 +3,27 @@
 {% assign topic = post.category | get_doc %}
 
 <div class="card">
-  <a class="relative" href="{{ post.url }}">
-    <div class="beige-overlay"></div>
+  <div class="card-media relative">
+    <a class="block" href="{{ post.url }}">
+      <div class="beige-overlay"></div>
+      <img
+        src="{% if post.image %}{{ post.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+        sizes="{{ site.image_sizes.cards_3x }}" alt="{{ post.image.title }}" data-optimize-img>
+    </a>
 
     {% include _media-label.html source=post %}
-    <img src="{% if post.image %}{{ post.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}" alt="{{ post.image.title }}" sizes="{{ site.image_sizes.cards_3x }}" data-optimize-img>
-  </a>
-  <p class="text-orange-dark font-size-smaller push-quarter-top flush-bottom"><a href="{{ topic.url }}">{{ topic.title | upcase }}</a></p>
-  <a href="{{ post.url }}">
-    <h2 class="font-family-condensed-extra font-size-h3 flush-ends">{{ post.title | upcase }}</h2>
-  </a>
-  <p class="text-gray-light font-size-small flush-bottom push-quarter-top"><a href="{{ author.url }}">
-    {{ author.name | titleize }}
-  </a></p>
+  </div>
+
+  <p class="text-orange-dark font-size-smaller push-quarter-top flush-bottom">
+    <a href="{{ topic.url }}">{{ topic.title | upcase }}</a>
+  </p>
+
+  <h2 class="font-family-condensed-extra font-size-h3 flush-ends">
+    <a href="{{ post.url }}">{{ post.title | upcase }}</a>
+  </h2>
+
+  <p class="text-gray-light font-size-small flush-bottom push-quarter-top">
+    <a href="{{ author.url }}">{{ author.name | titleize }}</a>
+  </p>
+
 </div>
