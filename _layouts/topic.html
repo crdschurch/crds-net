@@ -127,8 +127,12 @@ layout: default
       <aside class="col-md-4">
         {% assign list_cards = media_items | slice: 3, 4 %}
         {% for item in list_cards %}
-        <a class="list-card" href="{{ item | media_url }}">
-          <div class="image">
+        <div class="list-card relative">
+          <a class="card-link-overlay" href="{{ item | media_url }}" aria-label="{{ item.title }}"></a>
+          <div class="image relative">
+            {% if item.content_type == 'article' or item.content_type == 'video' %}
+            <div class="beige-overlay"></div>
+            {% endif %}
             {% assign image = item | card_image %}
             <img
               src="{% if image %}{{ image | imgix: site.imgix }}{% else %}{{ site.default_image }}{% endif %}?{{ site.imgix_params.placeholder_sixteen_nine }}"
@@ -149,7 +153,7 @@ layout: default
             {{ authors | map: 'full_name' | join: ', ' }}
             {% endif %}
           </div>
-        </a>
+        </div>
         {% endfor %}
       </aside>
     </div>
