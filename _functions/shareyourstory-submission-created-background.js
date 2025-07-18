@@ -26,7 +26,9 @@ exports.handler = async (event, _context, callback) => {
   try {
     const { payload } = JSON.parse(event.body);
     const fields = payload.data;
-    const file = fields['file-upload'];
+    const file = fields['picture'];
+
+    console.log('Received submission:', fields);
 
     const token = await getBloomfireToken();
 
@@ -65,13 +67,9 @@ exports.handler = async (event, _context, callback) => {
     const { data: post } = await axios.post(
       'https://assets.crossroads.net/api/v2/posts',
       {
-        title: `${fields.fullName} Story`,
-        post_body: (fields.yourStory || '').trim(),
-        description: [
-          `Site: ${fields.yourSite}`,
-          `Email: ${fields.email}`,
-          `Phone: ${fields.phone}`,
-        ]
+        title: `${fields.name} Story`,
+        post_body: (fields.message || '').trim(),
+        description: [`Site: ${fields.site}`, `Email: ${fields.email}`, `Phone: ${fields.phone}`]
           .filter(Boolean)
           .join(' · '),
         category_ids: [process.env.BLOOMFIRE_CATEGORY_ID],
