@@ -1,8 +1,6 @@
-'use strict';
-
-const axios = require('axios');
-const FormData = require('form-data');
-const mime = require('mime-types');
+import axios from 'axios';
+import FormData from 'form-data';
+import mime from 'mime-types';
 
 // In-memory token cache
 let tokenCache = { token: null, fetched: 0, ttl: 0 };
@@ -19,7 +17,7 @@ async function getBloomfireToken() {
   return tokenCache.token;
 }
 
-exports.handler = async (event, _ctx, cb) => {
+export const handler = async (event, _ctx, cb) => {
   try {
     const { payload } = JSON.parse(event.body);
 
