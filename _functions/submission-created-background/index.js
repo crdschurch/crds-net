@@ -4,7 +4,7 @@ const axios = require('axios');
 const FormData = require('form-data');
 const mime = require('mime-types');
 
-/* -------- optional: simple in-memory token cache -------- */
+// In-memory token cache
 let tokenCache = { token: null, fetched: 0, ttl: 0 };
 async function getBloomfireToken() {
   const now = Date.now();
@@ -19,21 +19,19 @@ async function getBloomfireToken() {
   return tokenCache.token;
 }
 
-/* ---------- background handler ---------- */
 exports.handler = async (event, _ctx, cb) => {
   try {
     const { payload } = JSON.parse(event.body);
 
-    /* ------- 1. Scope to *this* form only ------- */
+    // Scope to the Share Your Story form only
     if (payload.form_name !== 'shareyourstory') {
       console.log(`Ignoring form "${payload.form_name}"`);
       return cb(null, { statusCode: 200, body: 'ignored' });
     }
 
     const fields = payload.data;
-    console.log('Processing shareyourstory submission:', fields);
+    console.log('Processing Share Your Story submission:', fields);
 
-    /* ------- 2. (Your existing Bloomfire logic) ------- */
     const token = await getBloomfireToken();
 
     const contents = [];
@@ -50,12 +48,21 @@ exports.handler = async (event, _ctx, cb) => {
 
       const stream = await axios.get(file.url, { responseType: 'stream' });
       const fd = new FormData();
+
       Object.entries(slot.form_data).forEach(([k, v]) => fd.append(k, v));
       fd.append('file', stream.data, {
         filename: file.filename,
         contentType: mime.lookup(file.filename) || 'application/octet-stream',
       });
-      await axios.post(slot.url, fd, { headers: fd.getHeaders(), maxBodyLength: Infinity });
+
+      const contentLength = await new Promise((res, rej) =>
+        fd.getLength((err, len) => (err ? rej(err) : res(len)))
+      );
+
+      await axios.post(slot.url, fd, {
+        headers: { ...fd.getHeaders({ 'Content-Length': contentLength }) },
+        maxBodyLength: Infinity,
+      });
 
       contents.push({ file: { ...slot.form_data, bucket: slot.bucket, key: slot.key } });
       console.log('File uploaded, key', slot.key);
@@ -78,7 +85,7 @@ exports.handler = async (event, _ctx, cb) => {
     console.log('✅ Bloomfire post created, id:', post.id);
     return cb(null, { statusCode: 200, body: JSON.stringify({ ok: true, id: post.id }) });
   } catch (err) {
-    console.error('❌ shareyourstory BG error', err);
+    console.error('❌ Share Your Story -> Bloomfire background function error:', err);
     return cb(null, { statusCode: 500, body: err.message });
   }
 };
