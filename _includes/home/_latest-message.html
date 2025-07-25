@@ -12,7 +12,7 @@
 				<a href="{{ item | media_url }}" data-automation-id="message-video">
 					<div class="media-video">
 						<img class="media-img full-width"
-							src="{{ item.image.url | imgix: site.imgix }}?auto=format,compress&w=750&h=422&fit=crop""
+							src="{{ item.webImage.url | imgix: site.imgix }}?auto=format,compress&w=750&h=422&fit=crop""
 							sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
 						{% include _video-player-card.html autoplay=true thumbnail=true %}
 					</div>
