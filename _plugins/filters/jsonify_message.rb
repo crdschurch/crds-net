@@ -15,7 +15,7 @@ module Jekyll
             title: m["title"].truncate(55),
             author: m["author"],
             duration: m["duration"],
-            image: m["image"],
+            image: m["webImage"],
             podcast: m["podcast"],
             album: m["album"],
             slug: m["slug"],

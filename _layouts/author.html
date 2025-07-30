@@ -215,7 +215,7 @@ layout: default
                   <a class="relative block" href="{{  message | media_url }}">
                     <div class="beige-overlay"></div>
                     <img class="media-img"
-                    src="{{ message.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
+                    src="{{ message.webImage.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_sixteen_nine }}"
                     sizes="{{ site.image_sizes.one_fourth }}" data-optimize-img />
                   </a>
                   <div class="card-block hard">
