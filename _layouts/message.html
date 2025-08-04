@@ -14,7 +14,7 @@ layout: default
                 {% comment %} audio_video_toggler.js handles switching between video and audio. {% endcomment %}
                 <div class="hide" data-audio-video-control>
                     {% assign video = page %}
-                    {% assign image = page.image.url %}
+                    {% assign image = page.webImage.url %}
                     <!-- This is what content will show after a video plays -->
                     {% assign recommended_collection=site.messages %}
 																				{% if page.source_url_spanish %}

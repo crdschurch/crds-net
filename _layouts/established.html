@@ -79,7 +79,7 @@ layout: default
 
               <!-- Current Message -->
               <a href="{{ current_message.url }}" title="{{ current_message.title }}">
-                <crds-image src="{{ current_message.image.url | imgix: site.imgix }}?auto=format,compress&w=720" no-crop size="card"></crds-image>
+                <crds-image src="{{ current_message.webImage.url | imgix: site.imgix }}?auto=format,compress&w=720" no-crop size="card"></crds-image>
               </a>
               <p class="text-orange text-uppercase flush-bottom push-top"><strong>Current Message</strong></p>
               <h2 class="font-family-condensed-extra text-uppercase flush">{{ current_message.title }}</h2>

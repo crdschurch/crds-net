@@ -1,7 +1,7 @@
-{% if item.image.url %}
-  {% assign image = item.image.url %}
+{% if item.webImage.url %}
+  {% assign image = item.webImage.url %}
 {% else %}
-  {% assign image = page.image.url %}
+  {% assign image = page.webImage.url %}
 {% endif %}
 
 <div class="card">
