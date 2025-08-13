@@ -105,6 +105,10 @@
     src="{{ site.components_endpoint }}/crds-components/crds-components.esm.js"></script>
   <script nomodule="" onload="componentsLoaded()" src="{{ site.components_endpoint }}/crds-components.js"></script>
   <!-- END: Preload CRDS Component assets -->
+  <!-- Preload Unified Components assets -->
+  <link rel="preload" href="{{ site.components_endpoint }}/unified-components.js" as="script">
+  <!-- Load Unified Components -->
+  <script src="{{ site.components_endpoint }}/unified-components.js"></script>
   {% endunless %}
   <!-- END: CRDS Components Loading -->
 
