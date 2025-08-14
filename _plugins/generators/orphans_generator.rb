@@ -5,7 +5,8 @@ module Jekyll
       # Ensure messages not associated w/ a series
       # are not included in site build...
       site.collections['messages'].docs.reject!{|doc|
-        doc.data.dig('series').blank?
+        doc.data.dig('series').blank? ||
+        doc.data.dig('is_spanish') == true
       }
     end
 
