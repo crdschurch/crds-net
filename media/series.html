@@ -7,7 +7,7 @@ paginate:
     sort: starts_at desc
 ---
 
-{% assign MediaSeries = page.series.docs | where_exp: 'series', 'series.is_student_ministry_series == false or series.is_student_ministry_series == nil' %}
+{% assign MediaSeries = page.series.docs | where_exp: 'series', 'series.is_spanish != true' | where_exp: 'series', 'series.is_student_ministry_series == false or series.is_student_ministry_series == nil' %}
 <div class="container">
   <ol class="breadcrumb text-orange hard-sides hard-bottom push-top flush-bottom">
     <li><a href="/media">Media</a></li>
@@ -77,8 +77,8 @@ paginate:
         {% assign series_year = new_series_year %}
         <h4 class="component-header font-size-h3 push-top soft-half-top">{{ series_year }} Series</h4>
         <div class="row">
-      {% endif %}
-
+          {% endif %}
+          
       <div class="{% if series_year == current_year %}col-xs-12 col-md-4{% else %}col-xs-6 col-md-2{% endif %}">
         {% include _series-card.html %}
       </div>
