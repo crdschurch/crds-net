@@ -8,6 +8,204 @@ title: Articles
 {% assign tags = page.tags | get_doc %}
 
 <article class="article-tpl" data-grouping-media-type="article">
+  <!-- Netlify Form Modal -->
+  <div id="crossroadsForm" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; background-color: rgba(0, 0, 0, 0.7); align-items: flex-start; justify-content: center;">
+    <div style="margin: 80px 15px 0; max-width: 744px; width: 744px; position: relative; border-radius: 20px; overflow: hidden; background: #253746; display: flex; padding: 11px 18px; justify-content: center; align-items: flex-end; gap: 3px; box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.75);" class="modal-container">
+      <button id="dismissForm" style="background: transparent; border: none; color: #fff; cursor: pointer; font-size: 24px; font-weight: bold; position: absolute; right: 15px; top: 15px; z-index: 1; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background-color 0.2s ease;" title="Close">&times;</button>
+      
+      <div style="padding: 40px 30px 30px; width: 100%;">
+        <h2 style="color: #fff; text-align: center; font-family: 'acumin-pro-extra-condensed', sans-serif; font-size: 54px; font-style: normal; font-weight: 500; line-height: 54px; letter-spacing: -0.2px; text-transform: uppercase; margin: 0 0 15px 0;">What if Crossroads came to your city?</h2>
+        <p style="color: #c7c7c7; text-align: center; font-size: 18px; font-style: normal; font-weight: 300; line-height: 24px; letter-spacing: -0.7px; margin: 0 0 25px 0;">Drop your info to know more:</p>
+        
+        <form name="marketing-campaign" method="POST" netlify netlify-honeypot="bot-field" id="articleSignupForm" style="display: flex; flex-direction: column; gap: 20px;">
+          <input type="hidden" name="form-name" value="marketing-campaign" />
+          <p style="display: none;">
+            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+          </p>
+          
+          <div style="display: flex; flex-direction: column;">
+            <label for="name" style="color: #fff; font-size: 13px; font-style: normal; font-weight: 300; line-height: 24px; margin-bottom: 5px; text-transform: uppercase;">Name</label>
+            <input type="text" id="name" name="name" required style="background: #f5f5f5; border: none; border-radius: 4px; box-sizing: border-box; color: #666; font-size: 16px; padding: 12px 15px; transition: background-color 0.2s ease; width: 100%;">
+          </div>
+          
+          <div style="display: flex; flex-direction: column;">
+            <label for="email" style="color: #fff; font-size: 13px; font-style: normal; font-weight: 300; line-height: 24px; margin-bottom: 5px; text-transform: uppercase;">Email</label>
+            <input type="email" id="email" name="email" required style="background: #f5f5f5; border: none; border-radius: 4px; box-sizing: border-box; color: #666; font-size: 16px; padding: 12px 15px; transition: background-color 0.2s ease; width: 100%;">
+          </div>
+          
+          <div style="display: flex; flex-direction: column;">
+            <label for="zip" style="color: #fff; font-size: 13px; font-style: normal; font-weight: 300; line-height: 24px; margin-bottom: 5px; text-transform: uppercase;">Zip</label>
+            <input type="text" id="zip" name="zip" required style="background: #f5f5f5; border: none; border-radius: 4px; box-sizing: border-box; color: #666; font-size: 16px; padding: 12px 15px; transition: background-color 0.2s ease; width: 100%;">
+          </div>
+          
+          <button type="submit" id="submitBtn" style="background-color: #ff8200; border: none; border-radius: 4px; color: #253746; cursor: pointer; font-size: 16px; font-weight: 400; height: 44px; margin-top: 10px; text-transform: none; transition: background-color 0.2s ease, opacity 0.2s ease; width: 100%; display: flex; align-items: center; justify-content: center;">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <style>
+    #crossroadsForm .modal-container {
+      width: 744px;
+      max-width: 744px;
+    }
+    
+    #crossroadsForm #dismissForm:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    
+    #crossroadsForm #submitBtn:hover:not(:disabled) {
+      background-color: #bb4900;
+    }
+    
+    #crossroadsForm #submitBtn:disabled {
+      background-color: #969592;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    
+    @media (max-width: 768px) {
+      #crossroadsForm .modal-container {
+        margin: 40px 15px 0 !important;
+        max-width: none !important;
+        width: calc(100% - 30px) !important;
+        padding: 8px 12px !important;
+      }
+      
+      #crossroadsForm .modal-container > div {
+        padding: 30px 20px 20px !important;
+      }
+      
+      #crossroadsForm h2 {
+        font-size: 40px !important;
+        line-height: 40px !important;
+      }
+      
+      #crossroadsForm p {
+        font-size: 16px !important;
+        line-height: 20px !important;
+      }
+      
+      #crossroadsForm button[title="Close"] {
+        right: 10px !important;
+        top: 10px !important;
+      }
+    }
+  </style>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('crossroadsForm');
+      const dismissBtn = document.getElementById('dismissForm');
+      const formElement = document.getElementById('articleSignupForm');
+      
+      // Check if form should be displayed
+      function shouldShowForm() {
+        // Check localStorage first
+        const hasInteracted = localStorage.getItem('crossroads-form-interacted');
+        if (hasInteracted === 'true') {
+          console.log('Form previously interacted with, not showing');
+          return false;
+        }
+        
+        // Check for utm_campaign=exp
+        const urlParams = new URLSearchParams(window.location.search);
+        const utmCampaign = urlParams.get('utm_campaign');
+        
+        if (utmCampaign === 'exp') {
+          console.log('utm_campaign=exp found, showing form');
+          return true;
+        } else {
+          console.log('utm_campaign is not "exp", not showing form');
+          return false;
+        }
+      }
+      
+      // Function to hide form and set localStorage
+      function hideFormAndRemember() {
+        form.style.display = 'none';
+        localStorage.setItem('crossroads-form-interacted', 'true');
+        console.log('Form hidden and localStorage set');
+      }
+      
+      // Show form if conditions are met
+      if (shouldShowForm()) {
+        form.style.display = 'flex';
+      }
+      
+      // Handle dismiss button
+      if (dismissBtn) {
+        dismissBtn.addEventListener('click', hideFormAndRemember);
+      }
+      
+      // Handle clicking on background overlay
+      if (form) {
+        form.addEventListener('click', function(e) {
+          if (e.target === form) {
+            hideFormAndRemember();
+          }
+        });
+      }
+      
+      // Handle escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && form.style.display === 'block') {
+          hideFormAndRemember();
+        }
+      });
+      
+      // Handle form submission
+      if (formElement) {
+        formElement.addEventListener('submit', function(e) {
+          e.preventDefault(); // Prevent default form submission
+          
+          const submitBtn = document.getElementById('submitBtn');
+          const formData = new FormData(formElement);
+          
+          // Disable submit button
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Submitting...';
+          
+          // Submit to Netlify
+          fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+          })
+          .then(response => {
+            if (response.ok) {
+              showSuccessMessage();
+            } else {
+              throw new Error('Form submission failed');
+            }
+          })
+          .catch(error => {
+            console.error('Form submission error:', error);
+            alert('Form submission failed. Please try again.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit';
+          });
+        });
+      }
+      
+      // Show success message
+      function showSuccessMessage() {
+        const modalContent = form.querySelector('div > div');
+        modalContent.innerHTML = `
+          <div style="padding: 40px 30px; text-align: center; width: 100%;">
+            <h2 style="color: #fff; text-align: center; font-family: 'acumin-pro-extra-condensed', sans-serif; font-size: 54px; font-style: normal; font-weight: 500; line-height: 54px; letter-spacing: -0.2px; text-transform: uppercase; margin: 0 0 15px 0;">Thank you!</h2>
+            <p style="color: #c7c7c7; text-align: center; font-size: 18px; font-style: normal; font-weight: 300; line-height: 24px; letter-spacing: -0.7px; margin: 0;">Thank you for your submission!</p>
+          </div>
+        `;
+        
+        // Close modal after 3 seconds
+        setTimeout(() => {
+          hideFormAndRemember();
+        }, 3000);
+      }
+    });
+  </script>
   <section class="container">
     <div class="row">
       <div class="col-md-9">
