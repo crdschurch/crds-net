@@ -2,29 +2,43 @@ class PopupModal extends HTMLElement {
   constructor() {
     super();
     this.hasBeenShown = false;
+    console.log('PopupModal: Component instantiated');
   }
 
   connectedCallback() {
+    console.log('PopupModal: Connected to DOM');
     this.checkAndShowModal();
   }
 
   checkAndShowModal() {
+    // Debug logging
+    console.log('PopupModal: Checking for UTM parameters...');
+    console.log('Current URL:', window.location.href);
+    
     // Check for UTM parameters
     const urlParams = new URLSearchParams(window.location.search);
     const hasUTMSource = urlParams.get('utm_source');
     const hasUTMCampaign = urlParams.get('utm_campaign');
     
+    console.log('UTM Source:', hasUTMSource);
+    console.log('UTM Campaign:', hasUTMCampaign);
+    
     // Only show if there are UTM parameters present
     if (!hasUTMSource && !hasUTMCampaign) {
+      console.log('PopupModal: No UTM parameters found, not showing modal');
       return;
     }
 
     // Check localStorage to see if form has been filled out before
     const hasFilledForm = localStorage.getItem('crossroads-marketing-form-completed');
+    console.log('Form previously completed:', hasFilledForm);
+    
     if (hasFilledForm === 'true') {
+      console.log('PopupModal: Form already completed, not showing modal');
       return;
     }
 
+    console.log('PopupModal: Showing modal');
     // Show the modal
     this.showModal();
   }
@@ -33,11 +47,12 @@ class PopupModal extends HTMLElement {
     if (this.hasBeenShown) return;
     
     this.hasBeenShown = true;
+    console.log('PopupModal: Creating modal HTML');
     
     // Create modal HTML using project's styling classes
     this.innerHTML = `
-      <div class="modal fade" id="marketingPopupModal" tabindex="-1" role="dialog" aria-labelledby="marketingModalLabel" style="display: block;">
-        <div class="modal-dialog" role="document">
+      <div class="modal fade show" id="marketingPopupModal" tabindex="-1" role="dialog" aria-labelledby="marketingModalLabel" style="display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1050; background-color: rgba(0,0,0,0.5);">
+        <div class="modal-dialog" role="document" style="margin: 30px auto; max-width: 500px;">
           <div class="modal-content bg-tan">
             <div class="modal-header hard-bottom">
               <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close" id="marketingPopupClose">
@@ -82,6 +97,9 @@ class PopupModal extends HTMLElement {
 
     // Capture UTM parameters and referrer for form submission
     this.captureUTMData();
+
+    console.log('PopupModal: Modal HTML created, adding event listeners');
+    console.log('Modal element in DOM:', document.getElementById('marketingPopupModal'));
 
     // Add event listeners
     document.getElementById('marketingPopupClose').addEventListener('click', this.closeModal.bind(this));

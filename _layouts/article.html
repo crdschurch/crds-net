@@ -8,6 +8,13 @@ title: Articles
 {% assign tags = page.tags | get_doc %}
 
 <article class="article-tpl" data-grouping-media-type="article">
+  <!-- Hidden form for Netlify detection -->
+  <form name="marketing-campaign" netlify hidden style="display: none;">
+    <input name="name" type="text" />
+    <input name="email" type="email" />
+    <input name="zip" type="text" />
+  </form>
+  
   <!-- Netlify Form Modal -->
   <div id="crossroadsForm" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; background-color: rgba(0, 0, 0, 0.7); align-items: flex-start; justify-content: center;">
     <div style="margin: 80px 15px 0; max-width: 744px; width: 744px; position: relative; border-radius: 20px; overflow: hidden; background: #253746; display: flex; padding: 11px 18px; justify-content: center; align-items: flex-end; gap: 3px; box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.75);" class="modal-container">
