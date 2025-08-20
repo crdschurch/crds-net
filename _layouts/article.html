@@ -103,9 +103,12 @@ title: Articles
   
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const form = document.getElementById('crossroadsForm');
-      const dismissBtn = document.getElementById('dismissForm');
-      const formElement = document.getElementById('articleSignupForm');
+      try {
+        console.log('DOMContentLoaded fired, starting form setup...');
+        const form = document.getElementById('crossroadsForm');
+        const dismissBtn = document.getElementById('dismissForm');
+        const formElement = document.getElementById('articleSignupForm');
+        console.log('Elements found:', {form, dismissBtn, formElement});
       
       // Check if form should be displayed
       function shouldShowForm() {
@@ -138,12 +141,18 @@ title: Articles
       
       // Show form if conditions are met
       if (shouldShowForm()) {
+        console.log('About to show form - setting display to flex');
         form.style.display = 'flex';
+        console.log('Form display set, adding event listeners...');
       }
       
       // Handle dismiss button
+      console.log('Setting up dismiss button...', dismissBtn);
       if (dismissBtn) {
         dismissBtn.addEventListener('click', hideFormAndRemember);
+        console.log('Dismiss button listener added');
+      } else {
+        console.error('Dismiss button not found!');
       }
       
       // Handle clicking on background overlay
@@ -165,34 +174,31 @@ title: Articles
       // Handle form submission
       if (formElement) {
         formElement.addEventListener('submit', function(e) {
-          e.preventDefault(); // Prevent default form submission
+          e.preventDefault();
           
           const submitBtn = document.getElementById('submitBtn');
-          const formData = new FormData(formElement);
           
           // Disable submit button
           submitBtn.disabled = true;
           submitBtn.textContent = 'Submitting...';
           
-          // Submit to Netlify
-          fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(formData).toString()
-          })
-          .then(response => {
-            if (response.ok) {
-              showSuccessMessage();
-            } else {
-              throw new Error('Form submission failed');
-            }
-          })
-          .catch(error => {
-            console.error('Form submission error:', error);
-            alert('Form submission failed. Please try again.');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit';
-          });
+          // Create a hidden iframe for submission
+          const iframe = document.createElement('iframe');
+          iframe.name = 'hidden_iframe';
+          iframe.style.display = 'none';
+          document.body.appendChild(iframe);
+          
+          // Set form target to hidden iframe
+          formElement.target = 'hidden_iframe';
+          
+          // Handle iframe load (form submission complete)
+          iframe.onload = function() {
+            showSuccessMessage();
+            document.body.removeChild(iframe);
+          };
+          
+          // Submit the form naturally (let Netlify handle it)
+          formElement.submit();
         });
       }
       
@@ -210,6 +216,11 @@ title: Articles
         setTimeout(() => {
           hideFormAndRemember();
         }, 3000);
+      }
+      
+      } catch (error) {
+        console.error('Modal script error:', error);
+        console.error('Stack trace:', error.stack);
       }
     });
   </script>
