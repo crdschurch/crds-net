@@ -1,1 +1,72 @@
+<!-- Crossroads Analytics Wrapper -->
+<script
+  src="{{ site.ENV.ANALYTICS_WRAPPER_URL | default: 'https://deploy-preview-22--demo-crds-analytics-wrapper.netlify.app/analytics-wrapper.js' }}"
+  crossorigin="anonymous"
+></script>
 
+<script>
+  // Choose Segment write key by Jekyll env
+  {% if site.jekyll_env == 'production' %}
+  var SEGMENT_WRITE_KEY = 'nPCU8RuoHt5Ip7tj3UdS4ek0A53a8dGW';
+  {% else %}
+  var SEGMENT_WRITE_KEY = '6urDjS9ewsjC9YAbSuihDc0TY7Xrv39b';
+  {% endif %}
+
+  // Initialize wrapper (autoTrack enabled by default)
+  window.CrossroadsAnalytics && window.CrossroadsAnalytics.initialize({
+    writeKey: SEGMENT_WRITE_KEY,
+    autoTrack: true,
+    debug: {{ site.jekyll_env != 'production' | jsonify }}
+  });
+
+  // Optional: set common properties once; merged into every event
+  window.CrossroadsAnalytics && window.CrossroadsAnalytics.setCommonProperties({
+    environment: '{{ site.jekyll_env }}',
+    site: 'crds-net'
+  });
+
+  // Compatibility alias for any existing code/tests that call window.analytics
+  window.analytics = window.analytics || {};
+  window.analytics.track = function(e, p) {
+    if (window.CrossroadsAnalytics && typeof window.CrossroadsAnalytics.track === 'function') {
+      window.CrossroadsAnalytics.track(e, p || {});
+    }
+  };
+  window.analytics.page = function(c, n, p) {
+    if (window.CrossroadsAnalytics && typeof window.CrossroadsAnalytics.page === 'function') {
+      window.CrossroadsAnalytics.page(c, n, p || {});
+    }
+  };
+  window.analytics.identify = function(id, t) {
+    if (window.CrossroadsAnalytics && typeof window.CrossroadsAnalytics.identify === 'function') {
+      window.CrossroadsAnalytics.identify(id, t || {});
+    }
+  };
+
+  // Fire a page view on full page loads (Jekyll)
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.CrossroadsAnalytics && typeof window.CrossroadsAnalytics.page === 'function') {
+      var canonical = (function() {
+        var l = document.querySelector('link[rel="canonical"]');
+        return l ? l.href : '';
+      })();
+
+      var pageProps = {
+        url: window.location.href,
+        path: window.location.pathname,
+        canonicalUrl: canonical,
+        referrer: document.referrer || '',
+        title: document.title,
+        contentType: {{ page.content_type | jsonify }},
+        contentfulEntryId: {{ page.contentful_id | jsonify }},
+        siteSection: {{ page.snail_trail | jsonify }},
+        distributionChannels: {{ page.distribution_channels | jsonify }},
+        environment: '{{ site.jekyll_env }}'
+      };
+
+      window.CrossroadsAnalytics.page(undefined, document.title, pageProps);
+    }
+  });
+  // Tip: add ?analyticsDebug=true to the URL to enable console logs while validating
+</script>
+<!-- END: Crossroads Analytics Wrapper -->
