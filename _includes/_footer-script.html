@@ -1,71 +1,187 @@
 <!-- Crossroads Analytics Wrapper -->
-<script
-  src="{{ site.ENV.ANALYTICS_WRAPPER_URL | default: 'https://deploy-preview-22--demo-crds-analytics-wrapper.netlify.app/analytics-wrapper.js' }}"
-></script>
-
 <script>
-  // Choose Segment write key by Jekyll env
-  {% if site.jekyll_env == 'production' %}
-  var SEGMENT_WRITE_KEY = 'nPCU8RuoHt5Ip7tj3UdS4ek0A53a8dGW';
-  {% else %}
-  var SEGMENT_WRITE_KEY = '6urDjS9ewsjC9YAbSuihDc0TY7Xrv39b';
-  {% endif %}
+  (function initAnalytics() {
+    // Guard: only run in browser
+    if (typeof window === 'undefined') return;
 
-  // Initialize wrapper (autoTrack enabled by default)
-  window.CrossroadsAnalytics && window.CrossroadsAnalytics.initialize({
-    writeKey: SEGMENT_WRITE_KEY,
-    autoTrack: true,
-    debug: {{ site.jekyll_env != 'production' | jsonify }}
-  });
+    // Configuration
+    {% if site.jekyll_env == 'production' %}
+    var SEGMENT_WRITE_KEY = 'nPCU8RuoHt5Ip7tj3UdS4ek0A53a8dGW';
+    {% else %}
+    var SEGMENT_WRITE_KEY = '6urDjS9ewsjC9YAbSuihDc0TY7Xrv39b';
+    {% endif %}
 
-  // Optional: set common properties once; merged into every event
-  window.CrossroadsAnalytics && window.CrossroadsAnalytics.setCommonProperties({
-    environment: '{{ site.jekyll_env }}',
-    site: 'crds-net'
-  });
+    var WRAPPER_SRC = '{{ site.ENV.ANALYTICS_WRAPPER_URL }}';
+    var DEBUG = {{ site.jekyll_env != 'production' | jsonify }};
 
-  // Compatibility alias for any existing code/tests that call window.analytics
-  window.analytics = window.analytics || {};
-  window.analytics.track = function(e, p) {
-    if (window.CrossroadsAnalytics && typeof window.CrossroadsAnalytics.track === 'function') {
-      window.CrossroadsAnalytics.track(e, p || {});
+    // Add browser polyfills for Node.js globals BEFORE loading script
+    if (typeof window.process === 'undefined') {
+      window.process = { env: {} };
     }
-  };
-  window.analytics.page = function(c, n, p) {
-    if (window.CrossroadsAnalytics && typeof window.CrossroadsAnalytics.page === 'function') {
-      window.CrossroadsAnalytics.page(c, n, p || {});
+    if (typeof window.global === 'undefined') {
+      window.global = window;
     }
-  };
-  window.analytics.identify = function(id, t) {
-    if (window.CrossroadsAnalytics && typeof window.CrossroadsAnalytics.identify === 'function') {
-      window.CrossroadsAnalytics.identify(id, t || {});
+
+    var doInitialize = function() {
+      try {
+        // If already initialized, just send page tracking
+        if (window.CrossroadsAnalytics && window.CrossroadsAnalytics.isInitialized && window.CrossroadsAnalytics.isInitialized()) {
+          if (DEBUG) console.log('[Analytics] Already initialized, tracking page');
+          sendPageView();
+          return;
+        }
+
+        // Check what methods are actually available
+        if (DEBUG && window.CrossroadsAnalytics) {
+          console.log('[Analytics] Available methods:', Object.keys(window.CrossroadsAnalytics));
+        }
+
+        // Configuration object
+        var config = {
+          writeKey: SEGMENT_WRITE_KEY,
+          autoTrack: true,
+          debug: DEBUG
+        };
+
+        // Try to initialize - check both method names
+        var initMethod = window.CrossroadsAnalytics && (window.CrossroadsAnalytics.initialize || window.CrossroadsAnalytics.initializeAnalytics);
+        if (!initMethod) {
+          if (DEBUG) console.warn('[Analytics] No initialize method found');
+          return;
+        }
+
+        var maybePromise = initMethod.call(window.CrossroadsAnalytics, config);
+
+        // Handle promise or immediate return
+        if (maybePromise && typeof maybePromise.then === 'function') {
+          maybePromise
+            .then(function() {
+              if (DEBUG) console.log('[Analytics] Initialized successfully');
+              setupCommonProperties();
+              if (window.CrossroadsAnalytics.ready) {
+                window.CrossroadsAnalytics.ready(sendPageView);
+              } else {
+                setTimeout(sendPageView, 100);
+              }
+            })
+            .catch(function(e) {
+              if (DEBUG) console.error('[Analytics] Init failed:', e);
+              setTimeout(sendPageView, 100);
+            });
+        } else {
+          if (DEBUG) console.log('[Analytics] Initialized synchronously');
+          setupCommonProperties();
+          if (window.CrossroadsAnalytics.ready) {
+            window.CrossroadsAnalytics.ready(sendPageView);
+          } else {
+            setTimeout(sendPageView, 100);
+          }
+        }
+      } catch (e) {
+        if (DEBUG) console.error('[Analytics] Initialization error:', e);
+      }
+    };
+
+    var setupCommonProperties = function() {
+      try {
+        if (window.CrossroadsAnalytics && window.CrossroadsAnalytics.setCommonProperties) {
+          window.CrossroadsAnalytics.setCommonProperties({
+            environment: '{{ site.jekyll_env }}',
+            site: 'crds-net'
+          });
+        }
+      } catch (e) {
+        if (DEBUG) console.warn('[Analytics] Common properties error:', e);
+      }
+    };
+
+    var sendPageView = function() {
+      try {
+        if (!window.CrossroadsAnalytics || !window.CrossroadsAnalytics.page) {
+          if (DEBUG) console.warn('[Analytics] Page method not available');
+          return;
+        }
+
+        var canonical = (function() {
+          var l = document.querySelector('link[rel="canonical"]');
+          return l ? l.href : '';
+        })();
+
+        var pageProps = {
+          url: window.location.href,
+          path: window.location.pathname,
+          canonicalUrl: canonical,
+          referrer: document.referrer || '',
+          title: document.title,
+          contentType: {{ page.content_type | jsonify }},
+          contentfulEntryId: {{ page.contentful_id | jsonify }},
+          siteSection: {{ page.snail_trail | jsonify }},
+          distributionChannels: {{ page.distribution_channels | jsonify }},
+          environment: '{{ site.jekyll_env }}'
+        };
+
+        window.CrossroadsAnalytics.page(undefined, document.title, pageProps);
+        if (DEBUG) console.log('[Analytics] Page tracked:', document.title);
+      } catch (e) {
+        if (DEBUG) console.error('[Analytics] Page tracking error:', e);
+      }
+    };
+
+    var loadAnalyticsScript = function() {
+      var script = document.createElement('script');
+      script.src = WRAPPER_SRC;
+      script.async = true;
+
+      script.addEventListener('load', function() {
+        if (DEBUG) console.log('[Analytics] Script loaded');
+        doInitialize();
+      }, { once: true });
+
+      script.addEventListener('error', function() {
+        if (DEBUG) console.error('[Analytics] Script failed to load');
+      }, { once: true });
+
+      document.head.appendChild(script);
+    };
+
+    // Setup compatibility aliases
+    window.analytics = window.analytics || {};
+    window.analytics.track = function(e, p) {
+      if (window.CrossroadsAnalytics && typeof window.CrossroadsAnalytics.track === 'function') {
+        window.CrossroadsAnalytics.track(e, p || {});
+      }
+    };
+    window.analytics.page = function(c, n, p) {
+      if (window.CrossroadsAnalytics && typeof window.CrossroadsAnalytics.page === 'function') {
+        window.CrossroadsAnalytics.page(c, n, p || {});
+      }
+    };
+    window.analytics.identify = function(id, t) {
+      if (window.CrossroadsAnalytics && typeof window.CrossroadsAnalytics.identify === 'function') {
+        window.CrossroadsAnalytics.identify(id, t || {});
+      }
+    };
+
+    // If already present and loaded, initialize immediately
+    if (window.CrossroadsAnalytics) {
+      doInitialize();
+      return;
     }
-  };
 
-  // Fire a page view on full page loads (Jekyll)
-  document.addEventListener('DOMContentLoaded', function() {
-    if (window.CrossroadsAnalytics && typeof window.CrossroadsAnalytics.page === 'function') {
-      var canonical = (function() {
-        var l = document.querySelector('link[rel="canonical"]');
-        return l ? l.href : '';
-      })();
-
-      var pageProps = {
-        url: window.location.href,
-        path: window.location.pathname,
-        canonicalUrl: canonical,
-        referrer: document.referrer || '',
-        title: document.title,
-        contentType: {{ page.content_type | jsonify }},
-        contentfulEntryId: {{ page.contentful_id | jsonify }},
-        siteSection: {{ page.snail_trail | jsonify }},
-        distributionChannels: {{ page.distribution_channels | jsonify }},
-        environment: '{{ site.jekyll_env }}'
-      };
-
-      window.CrossroadsAnalytics.page(undefined, document.title, pageProps);
+    // Check if script is already loading
+    var existingScript = document.querySelector('script[src="' + WRAPPER_SRC + '"]');
+    if (existingScript) {
+      existingScript.addEventListener('load', doInitialize, { once: true });
+      return;
     }
-  });
+
+    // Load the analytics script
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadAnalyticsScript, { once: true });
+    } else {
+      loadAnalyticsScript();
+    }
+  })();
   // Tip: add ?analyticsDebug=true to the URL to enable console logs while validating
 </script>
 <!-- END: Crossroads Analytics Wrapper -->
