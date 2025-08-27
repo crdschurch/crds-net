@@ -5,7 +5,8 @@
   <div class="row soft-bottom">
     <div class="flex-start flex-align-center">
       <div class="article-detail-social">
-        <crds-heart-button theme="button" contentful-id="{{ item.contentful_id }}" contentful-slug= "{{ item.slug }}" contentful-type="{{ item.content_type | upcase }}"></crds-heart-button>
+        <crds-heart-button theme="button" contentful-id="{{ item.contentful_id }}" contentful-slug="{{ item.slug }}"
+          contentful-type="{{ item.content_type | upcase }}"></crds-heart-button>
       </div>
       <div class="social-share sidebar">
         <a data-engaged="shared" href="javascript:shareFacebook()">
@@ -30,7 +31,7 @@
   </div>
 
   {% if include.media_metric != false %}
-    <crds-media-metrics-share slug="{{ item.slug }}" type="{{ item.content_type | upcase }}" />  
+  <crds-media-metrics-share slug="{{ item.slug }}" type="{{ item.content_type | upcase }}" />
   {% endif %}
 </section>
 
@@ -38,16 +39,16 @@
   function shareFacebook() {
     const mediaMetricShare = new Event('mediaMetricInteractionShare');
     document.dispatchEvent(mediaMetricShare);
-    
-    let link = `https://www.facebook.com/sharer/sharer.php?u=https://www.crossroads.net/media{{ page.url }}`;
+
+    let link = `https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}`;
     window.open(link, '_blank');
   }
 
   function shareTwitter() {
     const mediaMetricShare = new Event('mediaMetricInteractionShare');
     document.dispatchEvent(mediaMetricShare);
-    
-    let link = `https://twitter.com/home?status={{ page.title | escape | titleize }}%20{{ site.url }}{{ page.url }}`;
+
+    let link = `https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}%20{{ site.url }}{{ page.url }}`;
     window.open(link, '_blank');
   }
 
