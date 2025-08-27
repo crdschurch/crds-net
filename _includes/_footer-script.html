@@ -5,11 +5,7 @@
     if (typeof window === 'undefined') return;
 
     // Configuration
-    {% if site.jekyll_env == 'production' %}
-    var SEGMENT_WRITE_KEY = 'nPCU8RuoHt5Ip7tj3UdS4ek0A53a8dGW';
-    {% else %}
-    var SEGMENT_WRITE_KEY = '6urDjS9ewsjC9YAbSuihDc0TY7Xrv39b';
-    {% endif %}
+    var SEGMENT_WRITE_KEY = '{{ site.ENV.SEGMENT_WRITE_KEY }}';
 
     var WRAPPER_SRC = '{{ site.ENV.ANALYTICS_WRAPPER_URL }}';
 
