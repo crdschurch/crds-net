@@ -36,8 +36,8 @@
           autoTrack: true
         };
 
-        // Try to initialize - check both method names
-        var initMethod = window.CrossroadsAnalytics && (window.CrossroadsAnalytics.initialize || window.CrossroadsAnalytics.initializeAnalytics);
+        // Try to initialize - check both method names (prefer initializeAnalytics)
+        var initMethod = window.CrossroadsAnalytics && (window.CrossroadsAnalytics.initializeAnalytics || window.CrossroadsAnalytics.initialize);
         if (!initMethod) {
           return;
         }
@@ -49,6 +49,10 @@
           maybePromise
             .then(function() {
               setupCommonProperties();
+              // Enable auto-tracking after successful initialization
+              if (window.CrossroadsAnalytics.setupDataAttributeListeners) {
+                window.CrossroadsAnalytics.setupDataAttributeListeners();
+              }
               if (window.CrossroadsAnalytics.ready) {
                 window.CrossroadsAnalytics.ready(sendPageView);
               } else {
@@ -60,6 +64,10 @@
             });
         } else {
           setupCommonProperties();
+          // Enable auto-tracking after successful initialization
+          if (window.CrossroadsAnalytics.setupDataAttributeListeners) {
+            window.CrossroadsAnalytics.setupDataAttributeListeners();
+          }
           if (window.CrossroadsAnalytics.ready) {
             window.CrossroadsAnalytics.ready(sendPageView);
           } else {
@@ -134,7 +142,12 @@
     window.analytics = window.analytics || {};
     window.analytics.track = function(e, p) {
       if (window.CrossroadsAnalytics && typeof window.CrossroadsAnalytics.track === 'function') {
-        window.CrossroadsAnalytics.track(e, p || {});
+        // Map legacy video event names to analytics wrapper schema
+        var eventName = e;
+        if (e === 'VideoStarted') {
+          eventName = 'VideoPlaybackStarted';
+        }
+        window.CrossroadsAnalytics.track(eventName, p || {});
       }
     };
     window.analytics.page = function(c, n, p) {
