@@ -103,12 +103,6 @@ collections:
     filename: "{{ permalink }} index"
     output: true
     permalink: /:permalink/index.html
-  perspective_sets:
-    output: true
-    permalink: /media/perspectives/sets/:title
-  perspectives:
-    output: true
-    permalink: /media/:collection/:title
   podcasts:
     output: true
     permalink: /media/:collection/:title
@@ -230,12 +224,6 @@ contentful:
     belongs_to:
       series: videos
   page:
-  perspective:
-    map:
-      date: published_at
-  perspective_set:
-    map:
-      date: published_at
   podcast:
   query:
   series:
@@ -309,18 +297,6 @@ defaults:
     values:
       layout: onsite-groups/detail
       snail_trail: connect
-  - scope:
-      path: ""
-      type: perspective_sets
-    values:
-      layout: perspective_set
-      snail_trail: media
-  - scope:
-      path: ""
-      type: perspectives
-    values:
-      layout: perspective
-      snail_trail: media
   - scope:
       path: ""
       type: podcasts

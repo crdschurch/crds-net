@@ -21,7 +21,4 @@ layout: none
   <!-- Series -->
   {% include _product-feed.html collection=site.series %}
 
-  <!-- Perspectives -->
-  {% include _product-feed.html collection=site.perspectives %}
-
 </catalog>
