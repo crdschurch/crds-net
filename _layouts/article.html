@@ -14,64 +14,81 @@ title: Articles
     <input name="email" type="email" />
     <input name="zip" type="text" />
   </form>
-  
+
   <!-- Netlify Form Modal -->
-  <div id="crossroadsForm" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; background-color: rgba(0, 0, 0, 0.7); align-items: flex-start; justify-content: center;">
-    <div style="margin: 80px 15px 0; max-width: 744px; width: 744px; position: relative; border-radius: 20px; overflow: hidden; background: #253746; display: flex; padding: 11px 18px; justify-content: center; align-items: flex-end; gap: 3px; box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.75);" class="modal-container">
-      <button id="dismissForm" style="background: transparent; border: none; color: #fff; cursor: pointer; font-size: 24px; font-weight: bold; position: absolute; right: 15px; top: 15px; z-index: 1; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background-color 0.2s ease;" title="Close">&times;</button>
-      
+  <div id="crossroadsForm"
+    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; background-color: rgba(0, 0, 0, 0.7); align-items: flex-start; justify-content: center;">
+    <div
+      style="margin: 80px 15px 0; max-width: 744px; width: 744px; position: relative; border-radius: 20px; overflow: hidden; background: #253746; display: flex; padding: 11px 18px; justify-content: center; align-items: flex-end; gap: 3px; box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.75);"
+      class="modal-container">
+      <button id="dismissForm"
+        style="background: transparent; border: none; color: #fff; cursor: pointer; font-size: 24px; font-weight: bold; position: absolute; right: 15px; top: 15px; z-index: 1; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background-color 0.2s ease;"
+        title="Close">&times;</button>
+
       <div style="padding: 40px 30px 30px; width: 100%;">
-        <h2 style="color: #fff; text-align: center; font-family: 'acumin-pro-extra-condensed', sans-serif; font-size: 54px; font-style: normal; font-weight: 500; line-height: 54px; letter-spacing: -0.2px; text-transform: uppercase; margin: 0 0 15px 0;">What if Crossroads came to your city?</h2>
-        <p style="color: #c7c7c7; text-align: center; font-size: 18px; font-style: normal; font-weight: 300; line-height: 24px; letter-spacing: -0.7px; margin: 0 0 25px 0;">Drop your info to know more:</p>
-        
-        <form name="marketing-campaign" method="POST" netlify netlify-honeypot="bot-field" id="articleSignupForm" style="display: flex; flex-direction: column; gap: 20px;">
+        <h2
+          style="color: #fff; text-align: center; font-family: 'acumin-pro-extra-condensed', sans-serif; font-size: 54px; font-style: normal; font-weight: 500; line-height: 54px; letter-spacing: -0.2px; text-transform: uppercase; margin: 0 0 15px 0;">
+          What if Crossroads came to your city?</h2>
+        <p
+          style="color: #c7c7c7; text-align: center; font-size: 18px; font-style: normal; font-weight: 300; line-height: 24px; letter-spacing: -0.7px; margin: 0 0 25px 0;">
+          Drop your info to know more:</p>
+
+        <form name="marketing-campaign" method="POST" netlify netlify-honeypot="bot-field" id="articleSignupForm"
+          style="display: flex; flex-direction: column; gap: 20px;">
           <input type="hidden" name="form-name" value="marketing-campaign" />
           <p style="display: none;">
             <label>Don't fill this out if you're human: <input name="bot-field" /></label>
           </p>
-          
+
           <div style="display: flex; flex-direction: column;">
-            <label for="name" style="color: #fff; font-size: 13px; font-style: normal; font-weight: 300; line-height: 24px; margin-bottom: 5px; text-transform: uppercase;">Name</label>
-            <input type="text" id="name" name="name" required style="background: #f5f5f5; border: none; border-radius: 4px; box-sizing: border-box; color: #666; font-size: 16px; padding: 12px 15px; transition: background-color 0.2s ease; width: 100%;">
+            <label for="name"
+              style="color: #fff; font-size: 13px; font-style: normal; font-weight: 300; line-height: 24px; margin-bottom: 5px; text-transform: uppercase;">Name</label>
+            <input type="text" id="name" name="name" required
+              style="background: #f5f5f5; border: none; border-radius: 4px; box-sizing: border-box; color: #666; font-size: 16px; padding: 12px 15px; transition: background-color 0.2s ease; width: 100%;">
           </div>
-          
+
           <div style="display: flex; flex-direction: column;">
-            <label for="email" style="color: #fff; font-size: 13px; font-style: normal; font-weight: 300; line-height: 24px; margin-bottom: 5px; text-transform: uppercase;">Email</label>
-            <input type="email" id="email" name="email" required style="background: #f5f5f5; border: none; border-radius: 4px; box-sizing: border-box; color: #666; font-size: 16px; padding: 12px 15px; transition: background-color 0.2s ease; width: 100%;">
+            <label for="email"
+              style="color: #fff; font-size: 13px; font-style: normal; font-weight: 300; line-height: 24px; margin-bottom: 5px; text-transform: uppercase;">Email</label>
+            <input type="email" id="email" name="email" required
+              style="background: #f5f5f5; border: none; border-radius: 4px; box-sizing: border-box; color: #666; font-size: 16px; padding: 12px 15px; transition: background-color 0.2s ease; width: 100%;">
           </div>
-          
+
           <div style="display: flex; flex-direction: column;">
-            <label for="zip" style="color: #fff; font-size: 13px; font-style: normal; font-weight: 300; line-height: 24px; margin-bottom: 5px; text-transform: uppercase;">Zip</label>
-            <input type="text" id="zip" name="zip" required style="background: #f5f5f5; border: none; border-radius: 4px; box-sizing: border-box; color: #666; font-size: 16px; padding: 12px 15px; transition: background-color 0.2s ease; width: 100%;">
+            <label for="zip"
+              style="color: #fff; font-size: 13px; font-style: normal; font-weight: 300; line-height: 24px; margin-bottom: 5px; text-transform: uppercase;">Zip</label>
+            <input type="text" id="zip" name="zip" required
+              style="background: #f5f5f5; border: none; border-radius: 4px; box-sizing: border-box; color: #666; font-size: 16px; padding: 12px 15px; transition: background-color 0.2s ease; width: 100%;">
           </div>
-          
-          <button type="submit" id="submitBtn" style="background-color: #ff8200; border: none; border-radius: 4px; color: #253746; cursor: pointer; font-size: 16px; font-weight: 400; height: 44px; margin-top: 10px; text-transform: none; transition: background-color 0.2s ease, opacity 0.2s ease; width: 100%; display: flex; align-items: center; justify-content: center;">Submit</button>
+
+          <button type="submit" id="submitBtn"
+            style="background-color: #ff8200; border: none; border-radius: 4px; color: #253746; cursor: pointer; font-size: 16px; font-weight: 400; height: 44px; margin-top: 10px; text-transform: none; transition: background-color 0.2s ease, opacity 0.2s ease; width: 100%; display: flex; align-items: center; justify-content: center;">Submit</button>
         </form>
       </div>
     </div>
   </div>
-  
+
   <style>
     #crossroadsForm .modal-container {
       width: 744px;
       max-width: 744px;
     }
-    
+
     #crossroadsForm #dismissForm:hover {
       background-color: rgba(255, 255, 255, 0.1);
       color: #fff;
     }
-    
+
     #crossroadsForm #submitBtn:hover:not(:disabled) {
       background-color: #bb4900;
     }
-    
+
     #crossroadsForm #submitBtn:disabled {
       background-color: #969592;
       cursor: not-allowed;
       opacity: 0.6;
     }
-    
+
     @media (max-width: 768px) {
       #crossroadsForm .modal-container {
         margin: 40px 15px 0 !important;
@@ -79,145 +96,170 @@ title: Articles
         width: calc(100% - 30px) !important;
         padding: 8px 12px !important;
       }
-      
-      #crossroadsForm .modal-container > div {
+
+      #crossroadsForm .modal-container>div {
         padding: 30px 20px 20px !important;
       }
-      
+
       #crossroadsForm h2 {
         font-size: 40px !important;
         line-height: 40px !important;
       }
-      
+
       #crossroadsForm p {
         font-size: 16px !important;
         line-height: 20px !important;
       }
-      
+
       #crossroadsForm button[title="Close"] {
         right: 10px !important;
         top: 10px !important;
       }
     }
   </style>
-  
+
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       try {
         console.log('DOMContentLoaded fired, starting form setup...');
         const form = document.getElementById('crossroadsForm');
         const dismissBtn = document.getElementById('dismissForm');
         const formElement = document.getElementById('articleSignupForm');
-        console.log('Elements found:', {form, dismissBtn, formElement});
-      
-      // Check if form should be displayed
-      function shouldShowForm() {
-        // Check localStorage first
-        const hasInteracted = localStorage.getItem('crossroads-form-interacted');
-        if (hasInteracted === 'true') {
-          console.log('Form previously interacted with, not showing');
-          return false;
+        console.log('Elements found:', { form, dismissBtn, formElement });
+
+        let hasReached50Percent = false;
+
+        // Check if form should be displayed
+        function shouldShowForm() {
+          // Check localStorage first
+          const hasInteracted = localStorage.getItem('crossroads-form-interacted');
+          if (hasInteracted === 'true') {
+            console.log('Form previously interacted with, not showing');
+            return false;
+          }
+
+          // Check for utm_campaign=exp
+          const urlParams = new URLSearchParams(window.location.search);
+          const utmCampaign = urlParams.get('utm_campaign');
+
+          if (utmCampaign === 'exp' && hasReached50Percent) {
+            console.log('utm_campaign=exp found and 50% scroll depth reached, showing form');
+            return true;
+          } else {
+            console.log('Conditions not met for showing form - utm_campaign:', utmCampaign, 'hasReached50Percent:', hasReached50Percent);
+            return false;
+          }
         }
-        
-        // Check for utm_campaign=exp
-        const urlParams = new URLSearchParams(window.location.search);
-        const utmCampaign = urlParams.get('utm_campaign');
-        
-        if (utmCampaign === 'exp') {
-          console.log('utm_campaign=exp found, showing form');
-          return true;
+
+        // Function to calculate scroll depth percentage
+        function getScrollDepthPercentage() {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const documentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          return documentHeight > 0 ? (scrollTop / documentHeight) * 100 : 0;
+        }
+
+        // Function to check and potentially show form based on scroll depth
+        function checkScrollDepthAndShowForm() {
+          const scrollDepth = getScrollDepthPercentage();
+
+          if (scrollDepth >= 50 && !hasReached50Percent) {
+            hasReached50Percent = true;
+            console.log('50% scroll depth reached');
+
+            // Check if form should be displayed now that we've reached 50%
+            if (shouldShowForm()) {
+              console.log('About to show form - setting display to flex');
+              form.style.display = 'flex';
+              console.log('Form display set');
+            }
+          }
+        }
+
+        // Add scroll event listener to monitor scroll depth
+        window.addEventListener('scroll', checkScrollDepthAndShowForm);
+
+        // Function to hide form and set localStorage
+        function hideFormAndRemember() {
+          form.style.display = 'none';
+          localStorage.setItem('crossroads-form-interacted', 'true');
+          console.log('Form hidden and localStorage set');
+        }
+
+        // Initial check on page load (in case user refreshes at 50%+ scroll position)
+        checkScrollDepthAndShowForm();
+
+        // Handle dismiss button
+        console.log('Setting up dismiss button...', dismissBtn);
+        if (dismissBtn) {
+          dismissBtn.addEventListener('click', hideFormAndRemember);
+          console.log('Dismiss button listener added');
         } else {
-          console.log('utm_campaign is not "exp", not showing form');
-          return false;
+          console.error('Dismiss button not found!');
         }
-      }
-      
-      // Function to hide form and set localStorage
-      function hideFormAndRemember() {
-        form.style.display = 'none';
-        localStorage.setItem('crossroads-form-interacted', 'true');
-        console.log('Form hidden and localStorage set');
-      }
-      
-      // Show form if conditions are met
-      if (shouldShowForm()) {
-        console.log('About to show form - setting display to flex');
-        form.style.display = 'flex';
-        console.log('Form display set, adding event listeners...');
-      }
-      
-      // Handle dismiss button
-      console.log('Setting up dismiss button...', dismissBtn);
-      if (dismissBtn) {
-        dismissBtn.addEventListener('click', hideFormAndRemember);
-        console.log('Dismiss button listener added');
-      } else {
-        console.error('Dismiss button not found!');
-      }
-      
-      // Handle clicking on background overlay
-      if (form) {
-        form.addEventListener('click', function(e) {
-          if (e.target === form) {
+
+        // Handle clicking on background overlay
+        if (form) {
+          form.addEventListener('click', function (e) {
+            if (e.target === form) {
+              hideFormAndRemember();
+            }
+          });
+        }
+
+        // Handle escape key
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && form.style.display === 'block') {
             hideFormAndRemember();
           }
         });
-      }
-      
-      // Handle escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && form.style.display === 'block') {
-          hideFormAndRemember();
+
+        // Handle form submission
+        if (formElement) {
+          formElement.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            // Create a hidden iframe for submission
+            const iframe = document.createElement('iframe');
+            iframe.name = 'hidden_iframe';
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+
+            // Set form target to hidden iframe
+            formElement.target = 'hidden_iframe';
+
+            // Handle iframe load (form submission complete)
+            iframe.onload = function () {
+              showSuccessMessage();
+              document.body.removeChild(iframe);
+            };
+
+            // Submit the form naturally (let Netlify handle it)
+            formElement.submit();
+          });
         }
-      });
-      
-      // Handle form submission
-      if (formElement) {
-        formElement.addEventListener('submit', function(e) {
-          e.preventDefault();
-          
-          const submitBtn = document.getElementById('submitBtn');
-          
-          // Disable submit button
-          submitBtn.disabled = true;
-          submitBtn.textContent = 'Submitting...';
-          
-          // Create a hidden iframe for submission
-          const iframe = document.createElement('iframe');
-          iframe.name = 'hidden_iframe';
-          iframe.style.display = 'none';
-          document.body.appendChild(iframe);
-          
-          // Set form target to hidden iframe
-          formElement.target = 'hidden_iframe';
-          
-          // Handle iframe load (form submission complete)
-          iframe.onload = function() {
-            showSuccessMessage();
-            document.body.removeChild(iframe);
-          };
-          
-          // Submit the form naturally (let Netlify handle it)
-          formElement.submit();
-        });
-      }
-      
-      // Show success message
-      function showSuccessMessage() {
-        const modalContent = form.querySelector('div > div');
-        modalContent.innerHTML = `
+
+        // Show success message
+        function showSuccessMessage() {
+          const modalContent = form.querySelector('div > div');
+          modalContent.innerHTML = `
           <div style="padding: 40px 30px; text-align: center; width: 100%;">
             <h2 style="color: #fff; text-align: center; font-family: 'acumin-pro-extra-condensed', sans-serif; font-size: 54px; font-style: normal; font-weight: 500; line-height: 54px; letter-spacing: -0.2px; text-transform: uppercase; margin: 0 0 15px 0;">Thank you!</h2>
             <p style="color: #c7c7c7; text-align: center; font-size: 18px; font-style: normal; font-weight: 300; line-height: 24px; letter-spacing: -0.7px; margin: 0;">Thank you for your submission!</p>
           </div>
         `;
-        
-        // Close modal after 3 seconds
-        setTimeout(() => {
-          hideFormAndRemember();
-        }, 3000);
-      }
-      
+
+          // Close modal after 3 seconds
+          setTimeout(() => {
+            hideFormAndRemember();
+          }, 3000);
+        }
+
       } catch (error) {
         console.error('Modal script error:', error);
         console.error('Stack trace:', error.stack);
@@ -231,25 +273,27 @@ title: Articles
           <!-- Jumbotron -->
           <div class="overlay-card-image">
             <div class="beige-overlay"></div>
-            <img src="{% if page.image.url %}{{ page.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}"
+            <img
+              src="{% if page.image.url %}{{ page.image.url | imgix: site.imgix }}{% else %}{{ site.default_image | imgix: site.imgix }}{% endif %}?{{ site.imgix_params.placeholder }}"
               sizes="{% if include.size == 'xl' %}{{ site.image_sizes.full_width }}{% else %}{{ site.image_sizes.card_2x }}{% endif %}"
               alt="{{ page.image | alt }}" data-optimize-img>
           </div>
           <div class="overlay-card-content">
             <p class="overlay-card-category">{{ page.category.title }}</p>
-            <h1 data-media-title="{{page.title}}" data-media-id="{{page.id}}" class="overlay-card-title overlay-card-heading">{{ page.title | truncate: 70 }}</h1>
+            <h1 data-media-title="{{page.title}}" data-media-id="{{page.id}}"
+              class="overlay-card-title overlay-card-heading">{{ page.title | truncate: 70 }}</h1>
             <p class="overlay-card-author text-gray-light">{{ page.author.full_name }}</p>
             <div class="card-stamp text-white">
               {% if page.podcast_episode != null %}
-                <span class="font-size-smallest soft-quarter-right">
-                  <a class="podcast-listen-now-link" href="{{page.podcast_slug}}">Listen Now</a>
-                </span>
-                <svg class="icon" viewBox="0 0 256 256">
-                  <use xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
-                </svg>
+              <span class="font-size-smallest soft-quarter-right">
+                <a class="podcast-listen-now-link" href="{{page.podcast_slug}}">Listen Now</a>
+              </span>
+              <svg class="icon" viewBox="0 0 256 256">
+                <use xlink:href="/assets/svgs/icons.svg#media-podcast"></use>
+              </svg>
               {% endif %}
               {% if page.duration %}
-                {% assign format = 'short' %}
+              {% assign format = 'short' %}
               {% endif %}
               <span class="font-size-smallest soft-quarter-right">{{ page.duration | duration: format }}</span>
               <svg class="icon" viewBox="0 0 256 256">
@@ -264,7 +308,7 @@ title: Articles
           {% if page.lead_text %}
           <div class="lead">{{ page.lead_text | markdownify }}</div>
           {% endif %}
-          
+
           {{ page.content }}
         </div>
 
@@ -288,7 +332,8 @@ title: Articles
               <a class="push-half-right" href="{{ author.url }}" data-author-link>
                 <img data-author-img
                   src="{{ author.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
-                  class="img-circle img-size-5" sizes="{{ site.image_sizes.avatar }}" alt="{{ author.full_name }}" data-optimize-img>
+                  class="img-circle img-size-5" sizes="{{ site.image_sizes.avatar }}" alt="{{ author.full_name }}"
+                  data-optimize-img>
               </a>
 
               <div>
@@ -318,7 +363,9 @@ title: Articles
           </div>
         </div>
         <div class="article-tpl-content article-tpl-author-section row row-no-gutters soft-ends">
-          <crds-weekly-banner theme="article" cta="Subscribe to the Weekly" header="BE NOTIFIED OF MORE AWESOMENESS" body="Your weekly punch of spiritual encouragement and amazing stories of faith to start the week off right. Sign up to get this goodness delivered to your inbox each Monday."  appcta="Read Articles in the App">
+          <crds-weekly-banner theme="article" cta="Subscribe to the Weekly" header="BE NOTIFIED OF MORE AWESOMENESS"
+            body="Your weekly punch of spiritual encouragement and amazing stories of faith to start the week off right. Sign up to get this goodness delivered to your inbox each Monday."
+            appcta="Read Articles in the App">
           </crds-weekly-banner>
         </div>
 
@@ -328,49 +375,47 @@ title: Articles
       <div class="col-md-3 col-md-3 hidden-sm hidden-xs">
         <div class="push-half-bottom border-ends">
           <div class="border-ends flex-space-between flex-align-center">
-            <h3 class="font-family-serif font-size-small text-uppercase text-gray-light flush soft-half-ends">Popular This Week</h3>
+            <h3 class="font-family-serif font-size-small text-uppercase text-gray-light flush soft-half-ends">Popular
+              This Week</h3>
             <a class="font-size-smaller font-family-base-bold" href="/media/articles">view all</a>
           </div>
         </div>
 
         <div class="border-bottom-dashed-group">
-          {% assign popular_this_week =  site.featured_media | where: 'page_path', 'media-homepage-popular' | first %}
+          {% assign popular_this_week = site.featured_media | where: 'page_path', 'media-homepage-popular' | first %}
           {% assign featured_popular_items = popular_this_week.entries %}
-      
+
           {% for content in featured_popular_items limit: 4 %}
           {% assign item = content | get_doc %}
           {% assign image = item.image.url %}
-      
+
           {% if item.content_type == 'episode' %}
-            {% assign image = item.podcast_img %}
+          {% assign image = item.podcast_img %}
           {% endif %}
-      
+
           {% if item.duration %}
-            {% assign format = 'short' %}
+          {% assign format = 'short' %}
           {% endif %}
-      
+
           {% if item.content_type == 'message' %}
-            {% assign content_type = 'video' %}
+          {% assign content_type = 'video' %}
           {% else %}
-            {% assign content_type = item.content_type %}
+          {% assign content_type = item.content_type %}
           {% endif %}
           <div class="push-bottom">
             <div class="article-detail-media-object">
-              <crds-media-object
-                url="{{ item | media_url }}"
+              <crds-media-object url="{{ item | media_url }}"
                 image-src="{{ image | imgix: site.imgix }}?{{ site.imgix_params.placeholder }}?auto=format"
-                type="{{ content_type }}"
-                title="{{ item.title }}"
-                duration="{{ item.duration | duration: format }}"
-                data-optimize-img
-              ></crds-media-object>
+                type="{{ content_type }}" title="{{ item.title }}" duration="{{ item.duration | duration: format }}"
+                data-optimize-img></crds-media-object>
             </div>
           </div>
           {% endfor %}
         </div>
 
         <div class="border-top">
-          <h3 class="font-family-serif font-size-small text-uppercase text-gray-lightest flush soft-half-ends">Latest Weekly Message</h3>
+          <h3 class="font-family-serif font-size-small text-uppercase text-gray-lightest flush soft-half-ends">Latest
+            Weekly Message</h3>
           <div class="push-half-bottom">
             {% include media-homepage/_latest-message.html %}
           </div>
@@ -384,8 +429,10 @@ title: Articles
     <!-- Popular in category -->
     <div class="push-top row soft-ends">
       <div class="border-top flex-space-between push-half-sides soft-half-top">
-        <h3 class="flush font-family-serif font-size-small soft-bottom text-gray-light text-uppercase" data-grouping-media-topic="{{ page.category.title }}">Popular in {{ page.category.title }}</h3>
-        <a class="font-size-smaller font-family-base-bold" href="/media/articles/filters/{{ page.category.title }}">view all</a>
+        <h3 class="flush font-family-serif font-size-small soft-bottom text-gray-light text-uppercase"
+          data-grouping-media-topic="{{ page.category.title }}">Popular in {{ page.category.title }}</h3>
+        <a class="font-size-smaller font-family-base-bold" href="/media/articles/filters/{{ page.category.title }}">view
+          all</a>
       </div>
       {% assign page_category = topic.slug %}
       {% assign posts = site.articles | where: "category.slug", page_category | exclude: page.title %}
@@ -404,18 +451,21 @@ title: Articles
       </div>
       <div class="card-deck carousel" data-crds-carousel="mobile-scroll" data-carousel-id="carousel-3cm29">
         <div class="feature-cards card-deck--expanded-layout" data-crds-carousel="mobile-scroll">
-          {% assign media_featured_authors = site.featured_media | where: 'page_path', 'article-detail-popular-authors' | first %}
+          {% assign media_featured_authors = site.featured_media | where: 'page_path', 'article-detail-popular-authors'
+          | first %}
           {% assign featured_authors = media_featured_authors.entries %}
           {% for content in featured_authors limit: 6 %}
           {% assign item = content | get_doc %}
           <div class="col-md-2 carousel-cell">
             <div class="d-flex flex-align-center flex-column justify-content-center push-half-top">
               <a href="{{ item | media_url }}">
-                <img src="{{ item.image.url | imgix: site.imgix }}?auto=format,compress&w=140&h=140&fit=crop" alt="{{ author_full_name }}" class="img-circle" width="140px">
+                <img src="{{ item.image.url | imgix: site.imgix }}?auto=format,compress&w=140&h=140&fit=crop"
+                  alt="{{ author_full_name }}" class="img-circle" width="140px">
               </a>
               <div class="push-half-top text-center">
-                <a href="{{ item | media_url }}" class="text-blue font-family-base-bold font-size-smaller">{{ item.full_name }}</a>
-              </div> 
+                <a href="{{ item | media_url }}" class="text-blue font-family-base-bold font-size-smaller">{{
+                  item.full_name }}</a>
+              </div>
             </div>
           </div>
           {% endfor %}
@@ -425,13 +475,16 @@ title: Articles
 
     <!-- Popular Topics -->
     <div class="row soft-sides soft-ends push-ends">
-      <h3 class="font-family-serif font-size-small text-uppercase text-gray-lighter flush soft-half-ends">Popular Topics</h3>        
+      <h3 class="font-family-serif font-size-small text-uppercase text-gray-lighter flush soft-half-ends">Popular Topics
+      </h3>
       <div class="text-capitalize">
-        {% assign media_popular_topics = site.featured_media | where: 'page_path', 'article-detail-popular-topics' | first %}
+        {% assign media_popular_topics = site.featured_media | where: 'page_path', 'article-detail-popular-topics' |
+        first %}
         {% assign popular_topics = media_popular_topics.entries %}
         {% for content in popular_topics %}
         {% assign item = content | get_doc %}
-        <crds-button class="push-half-right" text="{{ item.title }}" href="{{ item | media_url }}" display="outline" color="blue"></crds-button>
+        <crds-button class="push-half-right" text="{{ item.title }}" href="{{ item | media_url }}" display="outline"
+          color="blue"></crds-button>
         {% endfor %}
       </div>
     </div>
@@ -442,11 +495,11 @@ title: Articles
 
 <script type="text/javascript">
   setTimeout(
-    function(){
+    function () {
       const mediaMetricView = new Event('mediaMetricInteractionView');
       document.dispatchEvent(mediaMetricView);
-    }, 
-  30000);
+    },
+    30000);
 </script>
 
 {% javascript_link_tag autoplay async %}
