@@ -45,13 +45,6 @@ layout: default
               </div>
             </div>
           {% endif %}
-          {% if page.source_url_spanish %}
-            <div class="video-language-controls">
-              <crds-button id="video-language-switch" onClick="switchVideoSource()" data-current-video-language="en" color="white" display="outline" text="Ver en Español" icon="play-thin" icon-color="white" icon-size="20" icon-align="left" tertiary>
-              </crds-button>
-            </div>
-            
-          {% endif %}
           <header id="action-buttons">
             {% if page.audio_file.url or page.video_file.url or page.program.url or page.audio_source_url %}
             <div class="sources push-quarter-top">
@@ -177,7 +170,7 @@ layout: default
       </section>
       {% endif %}
 
-      {% assign limited = site.series | sort: "start_date" | reverse | exclude: page.series | slice: 0, 6 %}
+      {% assign limited = site.series | where_exp: 'series', 'series.is_spanish != true' | sort: "start_date" | reverse | exclude: page.series | slice: 0, 6 %}
       <section class="col-md-10 col-md-offset-1">
         <h2 class="component-header flush-top">Recent Series</h2>
         <div class="cards-3x">
