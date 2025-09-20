@@ -54,11 +54,6 @@ $(document).ready(function () {
     });
 });
 
-function scroll(myID) {
-    var offset = jQuery("#" + myID).offset()
-    window.scrollTo(0, offset.top);
-}
-
 $('#myTabs a[href="#overview"]').tab('show') // Select tab by name
 $('#myTabs a[href="#itinerary"]').tab('show') // Select tab by name
 $('#myTabs a[href="#lodging"]').tab('show') // Select tab by name
