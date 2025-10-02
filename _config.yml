@@ -223,6 +223,7 @@ contentful:
       date: published_at
     belongs_to:
       series: videos
+    query: fields.isSpanish[ne]=true
   page:
   podcast:
   query:
@@ -230,6 +231,7 @@ contentful:
     order: "published_at desc"
     map:
       date: published_at
+    query: fields.isSpanish[ne]=true
   sign_up_form:
     query: fields.pageType=OnsiteGroupSignupPage
   song:
