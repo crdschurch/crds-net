@@ -4,6 +4,10 @@ import mime from 'mime-types';
 
 // In-memory token cache
 let tokenCache = { token: null, fetched: 0, ttl: 0 };
+
+// In-memory cache to track processed submissions (prevents duplicates)
+const processedSubmissions = new Set();
+
 async function getBloomfireToken() {
   const now = Date.now();
   if (!tokenCache.token || now - tokenCache.fetched > (tokenCache.ttl - 60) * 1000) {
@@ -26,6 +30,16 @@ export const handler = async (event, _ctx, cb) => {
       console.log(`Ignoring form "${payload.form_name}"`);
       return cb(null, { statusCode: 200, body: 'ignored' });
     }
+
+    // Check for duplicate submission using Netlify's submission ID
+    const submissionId = payload.id;
+    if (processedSubmissions.has(submissionId)) {
+      console.log(`⏭️  Skipping duplicate submission: ${submissionId}`);
+      return cb(null, { statusCode: 200, body: 'duplicate' });
+    }
+
+    // Mark as processed immediately to prevent race conditions
+    processedSubmissions.add(submissionId);
 
     const fields = payload.data;
     console.log('Processing Share Your Story submission:', fields);
