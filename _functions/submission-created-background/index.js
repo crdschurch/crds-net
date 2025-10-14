@@ -80,17 +80,18 @@ export const handler = async (event, _ctx, cb) => {
       console.log('File uploaded, key', slot.key);
     }
 
+    const fromThanksgivingPage = fields.referrer.includes("?happy-thanksgiving=true")
+
     const { data: post } = await axios.post(
       'https://assets.crossroads.net/api/v2/posts',
       {
         title: `${fields.name} Story`,
         post_body: (fields.message || '').trim(),
-        description: [`Site: ${fields.site}`, `Email: ${fields.email}`, `Phone: ${fields.phone}`]
+        description: [`Site: ${fields.site}`, `Email: ${fields.email}`, `Phone: ${fields.phone}`, `From /happy-thanksgiving: ${fromThanksgivingPage}`]
           .filter(Boolean)
           .join(' · '),
         category_ids: [process.env.BLOOMFIRE_CATEGORY_ID],
-        contents,
-        tags: fields?.fromThanksgiving === 'true' ? ['happy-thanksgiving'] : [],
+        contents
       },
       { headers: { Authorization: `Bloomfire-Session-Token ${token}` } }
     );
