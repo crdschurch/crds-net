@@ -90,7 +90,7 @@ export const handler = async (event, _ctx, cb) => {
           .join(' · '),
         category_ids: [process.env.BLOOMFIRE_CATEGORY_ID],
         contents,
-        from_thanksgiving_page: fields?.fromThanksgiving === 'true',
+        tags: fields?.fromThanksgiving === 'true' ? ['happy-thanksgiving'] : [],
       },
       { headers: { Authorization: `Bloomfire-Session-Token ${token}` } }
     );
