@@ -85,12 +85,11 @@ export const handler = async (event, _ctx, cb) => {
       {
         title: `${fields.name} Story`,
         post_body: (fields.message || '').trim(),
-        description: [`Site: ${fields.site}`, `Email: ${fields.email}`, `Phone: ${fields.phone}`]
+        description: [`Site: ${fields.site}`, `Email: ${fields.email}`, `Phone: ${fields.phone}`, `From /happy-thanksgiving: ${fields.fromThanksgiving}`]
           .filter(Boolean)
           .join(' · '),
         category_ids: [process.env.BLOOMFIRE_CATEGORY_ID],
-        contents,
-        tags: fields?.fromThanksgiving === 'true' ? ['happy-thanksgiving'] : [],
+        contents
       },
       { headers: { Authorization: `Bloomfire-Session-Token ${token}` } }
     );
