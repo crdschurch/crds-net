@@ -63,15 +63,9 @@ export const handler = async (event, _ctx, cb) => {
       return { file: { ...slot.form_data, bucket: slot.bucket, key: slot.key } };
     }
 
-    // Upload picture if present
+    // Upload picture if present (supports both images and videos now)
     if (fields.picture) {
       const uploaded = await uploadFileToBloomfire(fields.picture, token);
-      if (uploaded) contents.push(uploaded);
-    }
-
-    // Upload video if present
-    if (fields.video) {
-      const uploaded = await uploadFileToBloomfire(fields.video, token);
       if (uploaded) contents.push(uploaded);
     }
 
@@ -91,6 +85,12 @@ export const handler = async (event, _ctx, cb) => {
     return cb(null, { statusCode: 200, body: JSON.stringify({ ok: true, id: post.id }) });
   } catch (err) {
     console.error("❌ Share Your Story -> Bloomfire background function error:", err);
+    // Log full error details for debugging
+    if (err.response) {
+      console.error("Response status:", err.response.status);
+      console.error("Response data:", JSON.stringify(err.response.data, null, 2));
+      console.error("Response headers:", err.response.headers);
+    }
     return cb(null, { statusCode: 500, body: err.message });
   }
 };
