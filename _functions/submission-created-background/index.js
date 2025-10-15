@@ -80,7 +80,7 @@ export const handler = async (event, _ctx, cb) => {
       console.log('File uploaded, key', slot.key);
     }
 
-    const fromThanksgivingPage = fields.referrer.includes("?happy-thanksgiving=true")
+    const fromThanksgivingPage = fields.referrer.includes("?happy-thanksgiving=true") || false;
 
     const { data: post } = await axios.post(
       'https://assets.crossroads.net/api/v2/posts',
