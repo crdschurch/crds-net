@@ -63,14 +63,16 @@ export const handler = async (event, _ctx, cb) => {
       return { file: { ...slot.form_data, bucket: slot.bucket, key: slot.key } };
     }
 
+    // Upload picture if present
     if (fields.picture) {
       const uploaded = await uploadFileToBloomfire(fields.picture, token);
-      if (uploaded) contents.push({ type: "image", ...uploaded });
+      if (uploaded) contents.push(uploaded);
     }
 
+    // Upload video if present
     if (fields.video) {
       const uploaded = await uploadFileToBloomfire(fields.video, token);
-      if (uploaded) contents.push({ type: "video", ...uploaded });
+      if (uploaded) contents.push(uploaded);
     }
 
     const { data: post } = await axios.post(
