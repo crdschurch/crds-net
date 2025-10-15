@@ -80,10 +80,10 @@ meta:
 <strong>Protip:</strong> indentation matters in `yaml`.  Watchout for code formatting that may remove spaces and jack up your frontmatter.
 
 ## Submodules
-We’re using submodules to share code across multiple repos. You can think of a submodule as a repository within a repository. 
+We're using submodules to share code across multiple repos. You can think of a submodule as a repository within a repository. 
 
 ### Setup
-When you first clone a repository with submodules, you’ll need to initialize and the pull in the latest changes. Like so:
+When you first clone a repository with submodules, you'll need to initialize and the pull in the latest changes. Like so:
 
 ```bash
     $ git clone git@github.com:crdschurch/crds-net.git
@@ -211,3 +211,112 @@ As with most crdschurch repos, local feature development should be done against 
 
 ## License
 This project is licensed under the [3-Clause BSD License](https://opensource.org/licenses/BSD-3-Clause).
+
+# CRDS-NET Local Development With Docker
+
+## Prerequisites
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- Git
+
+## Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/crdschurch/crds-net.git
+   cd crds-net
+   ```
+
+2. Set up your environment variables:
+   - Copy the existing `.envrc` file from another developer or contact the team for the correct values
+   - Make sure your `.envrc` file is in your `.gitignore` (it should be by default)
+   - The `.envrc` file should contain all necessary environment variables including:
+     - Contentful credentials
+     - API keys
+     - Other sensitive information
+
+3. Build and start the Docker container:
+   ```bash
+   docker compose up --build
+   ```
+   > **Note**: The first build will take several minutes as it downloads and installs all dependencies. Subsequent runs will be much faster.
+
+4. Access the site:
+   - The site will be available at [http://localhost:4000](http://localhost:4000)
+   - Changes to your local files will automatically trigger a rebuild
+
+## Development Workflow
+
+### Starting the Development Server
+- First time setup: `docker compose up --build`
+- Subsequent runs: `docker compose up`
+- To stop the server: `docker compose down`
+
+### Understanding the Build Process
+- **First Build (Long)**: Downloads and installs all dependencies
+- **Subsequent Runs (Fast)**: Uses cached layers from the first build
+- **When to Rebuild**: Only needed if you change:
+  - Dockerfile
+  - package.json
+  - Gemfile
+  - Other dependency files
+- **Regular Code Changes**: No rebuild needed, just refresh your browser
+
+### Preserving Your Build
+- Avoid running `docker system prune` as it removes all cached images
+- Use `docker compose down` instead of `docker compose down -v` unless you specifically need to reset volumes
+- If you accidentally remove the image, you'll need to run the full build process again
+
+### Common Tasks
+
+#### Rebuilding the Container
+Only needed if you change dependencies:
+```bash
+docker compose down
+docker compose up --build
+```
+
+#### Stopping the Container
+```bash
+docker compose down
+```
+
+#### Viewing Logs
+```bash
+docker compose logs -f
+```
+
+## Troubleshooting
+
+1. **Port Conflicts**: If port 4000 is already in use, modify the port mapping in `docker-compose.yml`
+
+2. **Node-sass Issues**: If you encounter node-sass binding errors:
+   ```bash
+   docker compose down
+   docker compose up --build
+   ```
+
+3. **Environment Variables**: Ensure all required variables are set in your `.envrc` file
+
+## Architecture Notes
+
+- The Docker setup uses x86_64 architecture for compatibility
+- Node-sass is configured to use Linux bindings
+- All environment variables are loaded from `.envrc`
+- Volume mounts are configured to preserve node_modules and other build artifacts
+
+## Contributing
+
+1. Create a new branch for your feature
+2. Make your changes
+3. Submit a pull request
+
+## Additional Resources
+
+- [Jekyll Documentation](https://jekyllrb.com/docs/)
+- [Docker Documentation](https://docs.docker.com/)
+- [Node-sass Documentation](https://github.com/sass/node-sass)
+
+## Support
+
+For any issues or questions, please contact the development team.
