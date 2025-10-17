@@ -4,6 +4,10 @@ import mime from "mime-types";
 
 // In-memory token cache
 let tokenCache = { token: null, fetched: 0, ttl: 0 };
+
+// In-memory cache to track processed submissions (prevents duplicates)
+const processedSubmissions = new Set();
+
 async function getBloomfireToken() {
   const now = Date.now();
   if (!tokenCache.token || now - tokenCache.fetched > (tokenCache.ttl - 60) * 1000) {
@@ -26,6 +30,16 @@ export const handler = async (event, _ctx, cb) => {
       console.log(`Ignoring form "${payload.form_name}"`);
       return cb(null, { statusCode: 200, body: "ignored" });
     }
+
+    // Check for duplicate submission using Netlify's submission ID
+    const submissionId = payload.id;
+    if (processedSubmissions.has(submissionId)) {
+      console.log(`⏭️  Skipping duplicate submission: ${submissionId}`);
+      return cb(null, { statusCode: 200, body: 'duplicate' });
+    }
+
+    // Mark as processed immediately to prevent race conditions
+    processedSubmissions.add(submissionId);
 
     const fields = payload.data;
     console.log("Processing Share Your Story submission:", fields);
@@ -69,14 +83,18 @@ export const handler = async (event, _ctx, cb) => {
       if (uploaded) contents.push(uploaded);
     }
 
+    const fromThanksgivingPage = fields.referrer.includes("?happy-thanksgiving=true") || false;
+
     const { data: post } = await axios.post(
       "https://assets.crossroads.net/api/v2/posts",
       {
         title: `${fields.name} Story`,
-        post_body: (fields.message || "").trim(),
-        description: [`Site: ${fields.site}`, `Email: ${fields.email}`, `Phone: ${fields.phone}`].filter(Boolean).join(" · "),
+        post_body: (fields.message || '').trim(),
+        description: [`Site: ${fields.site}`, `Email: ${fields.email}`, `Phone: ${fields.phone}`, `From /happy-thanksgiving: ${fromThanksgivingPage}`]
+          .filter(Boolean)
+          .join(' · '),
         category_ids: [process.env.BLOOMFIRE_CATEGORY_ID],
-        contents,
+        contents
       },
       { headers: { Authorization: `Bloomfire-Session-Token ${token}` } }
     );

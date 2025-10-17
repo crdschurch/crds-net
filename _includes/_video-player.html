@@ -1,8 +1,15 @@
-{% if video.bitmovin_url %}
-    {% include _bitmovin-player.html isCard = include.isCard %}
-{% elsif video.source_url or video.youtube_id %}
-    {% assign video_id = video.source_url | youtube_id %}
+{% if video.source_url %}
+    {% if video.source_url contains 'youtube.com' or video.source_url contains 'youtu.be' %}
+        {% assign video_id = video.source_url | youtube_id %}
+        {% include _youtube-embed.html %}
+    {% else %}
+        {% include _bitmovin-player.html isCard = include.isCard %}
+    {% endif %}
+{% elsif video.youtube_id %}
+    {% assign video_id = video.youtube_id %}
     {% include _youtube-embed.html %}
+{% elsif video.bitmovin_url %}
+    {% include _bitmovin-player.html isCard = include.isCard %}
 {% endif %}
 
 {% if include.media_metric != false %}
