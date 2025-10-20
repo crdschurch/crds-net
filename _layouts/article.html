@@ -435,7 +435,7 @@ title: Articles
           all</a>
       </div>
       {% assign page_category = topic.slug %}
-      {% assign posts = site.articles | where: "category.slug", page_category | exclude: page.title | reverse %}
+      {% assign posts = site.articles | where: "category.slug", page_category | exclude: page.title | sort: 'date' | reverse %}
       {% for post in posts limit: 3 %}
       <div class="col-md-4">
         {% include _article-card.html post=post %}
