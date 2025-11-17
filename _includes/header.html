@@ -26,7 +26,7 @@
     {% if site.use_auth0 %}
       <shared-header authflow="auth0"></shared-header>
     {% else %}
-      <shared-header authflow="cookie"></shared-header>
+      <shared-header authflow="cookie"></shared-header> 
     {% endif %}
   {% else %}
     <crds-shared-header env="{{ site.crds_env }}"></crds-shared-header>
