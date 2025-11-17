@@ -23,7 +23,11 @@
     </svg>
   </div>
   {% if site.use_unified_components %}
-    <shared-header></shared-header>
+    {% if site.use_auth0 %}
+      <shared-header authflow="auth0"></shared-header>
+    {% else %}
+      <shared-header authflow="cookie"></shared-header>
+    {% endif %}
   {% else %}
     <crds-shared-header env="{{ site.crds_env }}"></crds-shared-header>
   {% endif %}
