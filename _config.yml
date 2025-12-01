@@ -117,8 +117,6 @@ collections:
     has_many:
       - videos
       - live_messages
-  sign_offs:
-    output: false
   sign_up_forms:
     output: true
     permalink: /sign-up/:slug
@@ -188,7 +186,7 @@ contentful:
     - guideOptionImage
     - guideComponentGroupSyncMultipleChoice
     - guideComponentRecall
-    - guideOptionBranchingReference    
+    - guideOptionBranchingReference
     - guideSubcomponentAssessmentOption
     - guideComponentImageCarousel
     - guideSubcomponentAssessmentQuestion
