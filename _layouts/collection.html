@@ -65,17 +65,11 @@ layout: default
 <!-- This is the jumbotron specifically designed for the Real Encounters collection -->
 {% else %}
 <section class="bg-black">
-  <div class="jumbotron jumbotron-xl flush-bottom real-encounters" data-optimize-bg-img id="real-encounters-jumbotron">
-    <div class="row">
-      <div class="col-sm-4 real-encounters-desktop-image">
-        <img
-          src="//crds-media.imgix.net/339nu4aF903n8XaoLtjlvY/137d6fe776f171c276c3384bf906354f/real-encounters-4-logo.png?auto=compress,format" />
-      </div>
-      <div class="real-encounters-mobile-image">
-        <img
-          src="//crds-media.imgix.net/2K8quo4r2e0yV53a9Ov0DD/e6bb7cf136e4014a4247180bae200cb0/real-encounters-4-logo-mobile.png?auto=compress,format" />
-      </div>
-    </div>
+  <div class="jumbotron jumbotron-xl flush-bottom real-encounters">
+    <picture class="real-encounters-hero">
+      <source media="(max-width: 768px)" srcset="//crds-media.imgix.net/v3fN6E6NJaW12E6AjfmIw/5595d419d238e64e34250044840b76f0/real-encounters-run-jumbotron-mobile.jpg?auto=compress,format">
+      <img src="//crds-media.imgix.net/1pROQhxzYOtxcn4NY8J9n7/33cf1ea5a70b576956e492dd1e9c3ad6/real-encounters-run-jumbotron.jpg?auto=compress,format" alt="Real Encounters" loading="eager">
+    </picture>
   </div>
   <div style="background-color: black;">
     <div class="container" style="padding-bottom: 50px;">
@@ -244,29 +238,19 @@ layout: default
     }
   }
 
-  .real-encounters-desktop-image {
-    margin-left: 160px;
-
-    @media (max-width: 769px) {
-      display: none;
-    }
-  }
-
-  .real-encounters-mobile-image {
-    bottom: 0;
-    display: none;
-    margin-bottom: -40px;
-    padding: 360px 40px 0 40px;
-
-    @media (max-width: 769px) {
-      display: block;
-    }
-  }
-
   .real-encounters {
-    @media (max-width: 769px) {
-      padding: 0 !important;
-    }
+    padding: 0 !important;
+  }
+
+  .real-encounters-hero {
+    display: block;
+    width: 100%;
+  }
+
+  .real-encounters-hero img {
+    display: block;
+    height: auto;
+    width: 100%;
   }
 
   .trailer {
@@ -277,24 +261,3 @@ layout: default
     }
   }
 </style>
-
-<script>
-  // for switching the bg image on the real encounters jumbotron
-  function setBackgroundImage() {
-    if ($(window).width() < 769) {
-      $('#real-encounters-jumbotron').css('background-image', 'url(//crds-media.imgix.net/4YdWM8xCA3Gnz0N2l90sWb/6d6c1759329ad016d064636b7a1c6dcc/real-encounters-4-img-mobile.jpg?auto=compress,format)');
-    } else {
-      $('#real-encounters-jumbotron').css('background-image', 'url(//crds-media.imgix.net/16rPJFmOcAmoTlaDS7ItCG/ec9eb71a1f8f866f65eecdf5cc39b849/real-encounters-4-jumbo-desktop.jpg?auto=compress,format)');
-    }
-  }
-
-  $(window).on('load', function () {
-    setBackgroundImage();
-
-    $(window).resize(function () {
-      setBackgroundImage();
-    });
-  });
-
-
-</script>
