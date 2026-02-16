@@ -1,6 +1,9 @@
 User-agent: *
 Disallow: /lockerroom/
 Disallow: /tmp
+Disallow: /giving-test
+Disallow: /giving-test/
+Disallow: /admin/
 
 Sitemap: https://www.crossroads.net/sitemap.xml
 
