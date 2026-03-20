@@ -25,13 +25,7 @@ end
 
 def invoke_global_search_sync(source:, env:)
   sync_token = ENV['GLOBAL_SEARCH_SYNC_TOKEN']
-  sync_disabled = ENV['GLOBAL_SEARCH_SYNC_DISABLED'].to_s.downcase == 'true'
-  search_domain = ENV['SEARCH_DOMAIN'] || (env == 'demo' ? 'https://demo.crossroads.net' : 'https://www.crossroads.net')
-
-  if sync_disabled
-    puts "[global-search-trigger] skipped because GLOBAL_SEARCH_SYNC_DISABLED=true"
-    return
-  end
+  search_domain = env == 'demo' ? 'https://demo.crossroads.net' : 'https://www.crossroads.net'
 
   if sync_token.nil? || sync_token.strip.empty?
     puts "[global-search-trigger] skipped because GLOBAL_SEARCH_SYNC_TOKEN is missing"
