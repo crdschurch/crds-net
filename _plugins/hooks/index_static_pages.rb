@@ -4,6 +4,8 @@ require 'json'
 require 'securerandom'
 require 'algolia'
 require 'time'
+require 'net/http'
+require 'uri'
 
 module ObjectIDGenerator
   CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.chars.freeze
@@ -19,6 +21,36 @@ module ObjectIDGenerator
     end
     encoded
   end
+end
+
+def invoke_global_search_sync(source:, env:)
+  sync_token = ENV['GLOBAL_SEARCH_SYNC_TOKEN']
+  sync_disabled = ENV['GLOBAL_SEARCH_SYNC_DISABLED'].to_s.downcase == 'true'
+  search_domain = ENV['SEARCH_DOMAIN'] || (env == 'demo' ? 'https://demo.crossroads.net' : 'https://www.crossroads.net')
+
+  if sync_disabled
+    puts "[global-search-trigger] skipped because GLOBAL_SEARCH_SYNC_DISABLED=true"
+    return
+  end
+
+  if sync_token.nil? || sync_token.strip.empty?
+    puts "[global-search-trigger] skipped because GLOBAL_SEARCH_SYNC_TOKEN is missing"
+    return
+  end
+
+  sync_url = "#{search_domain.sub(%r{/$}, '')}/.netlify/functions/sync-global-search-background"
+  uri = URI.parse(sync_url)
+  params = URI.decode_www_form(String(uri.query)) << ['env', env] << ['source', source] << ['applySettings', 'true'] << ['dryRun', 'false']
+  uri.query = URI.encode_www_form(params)
+
+  request = Net::HTTP::Post.new(uri)
+  request['x-global-search-sync-token'] = sync_token
+
+  response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
+    http.request(request)
+  end
+
+  puts "[global-search-trigger] source=#{source} env=#{env} status=#{response.code}"
 end
 
 # Copy static pages to the _site_static directory
@@ -137,6 +169,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
     index.save_objects(records)
 
     puts "Successfully indexed #{records.size} records to Algolia index '#{algolia_index_name}'."
+    invoke_global_search_sync(source: 'static', env: domain_env == 'demo' ? 'demo' : 'prod')
   rescue StandardError => e
     puts "Error during indexing: #{e.message}"
   end
