@@ -94,6 +94,8 @@ Jekyll::Hooks.register :site, :post_write do |site|
   records = []
   current_date = Time.now.strftime("%B %d, %Y")
   current_timestamp = Time.parse(current_date).to_i
+  resolved_env = ENV['CRDS_ENV'] == 'demo' ? 'demo' : 'prod'
+  domain = resolved_env == 'demo' ? 'demo.crossroads.net' : 'www.crossroads.net'
 
   html_files.each do |file_path|
     doc = Nokogiri::HTML(File.read(file_path))
@@ -111,9 +113,6 @@ Jekyll::Hooks.register :site, :post_write do |site|
     objectID = ObjectIDGenerator.encode(slug_hash)[0...22]
 
     description = doc.at('meta[name="description"]')&.attr('content') || ""
-
-    domain_env = ENV['CRDS_ENV']
-    domain = domain_env == 'demo' ? 'demo.crossroads.net' : 'www.crossroads.net'
 
     # Get the permalink if available, otherwise use the slug
     permalink = doc.at('meta[name="permalink"]')&.attr('content')
@@ -163,7 +162,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
     index.save_objects(records)
 
     puts "Successfully indexed #{records.size} records to Algolia index '#{algolia_index_name}'."
-    invoke_global_search_sync(source: 'static', env: domain_env == 'demo' ? 'demo' : 'prod')
+    invoke_global_search_sync(source: 'static', env: resolved_env)
   rescue StandardError => e
     puts "Error during indexing: #{e.message}"
   end
