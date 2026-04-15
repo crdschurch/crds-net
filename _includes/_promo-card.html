@@ -1,14 +1,14 @@
 {% assign targets = item.target_audience | join: ',' %}
 
-<div class="card" data-filter="{{ targets }}">  
+<div class="card" data-filter="{{ targets }}">
   {% if item.link_url %}
     <a href="{{ item.link_url }}" class="block">
-      <img src="{{ item.image.url | imgix: site.imgix }}" 
+      <img src="{{ item.image.url | imgix: site.imgix }}"
         alt="{{ item.title }}">
     </a>
   {% else %}
     <div class="block">
-      <img src="{{ item.image.url | imgix: site.imgix }}" 
+      <img src="{{ item.image.url | imgix: site.imgix }}"
         alt="{{ item.title }}">
     </div>
   {% endif %}
