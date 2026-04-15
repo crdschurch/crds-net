@@ -16,11 +16,89 @@ layout: default
 
 						{% assign featured = "" | split: "" %}
  
-							
-      {% assign articles = site.articles | filter: 'author.full_name', author.full_name | sort: 'date' | reverse %}
-      {% assign videos = site.videos | filter: 'author.full_name', author.full_name | reverse %}
-      {% assign messages = site.messages | filter: 'author.full_name', author.full_name | reverse %}
-      {% assign podcasts = site.podcasts | filter: 'author.full_name', author.full_name | reverse %}
+      {% assign articles = "" | split: "" %}
+      {% for item in site.articles %}
+        {% assign matches_author = false %}
+        {% if item.person %}
+          {% for contributor in item.person %}
+            {% if contributor.slug == author.slug %}
+              {% assign matches_author = true %}
+            {% endif %}
+          {% endfor %}
+        {% elsif item.author and item.author.slug == author.slug %}
+          {% assign matches_author = true %}
+        {% endif %}
+        {% if matches_author %}
+          {% assign articles = articles | push: item %}
+        {% endif %}
+      {% endfor %}
+      {% assign articles = articles | sort: 'date' | reverse %}
+
+      {% assign videos = "" | split: "" %}
+      {% for item in site.videos %}
+        {% assign matches_author = false %}
+        {% if item.person %}
+          {% for contributor in item.person %}
+            {% if contributor.slug == author.slug %}
+              {% assign matches_author = true %}
+            {% endif %}
+          {% endfor %}
+        {% elsif item.author %}
+          {% for contributor in item.author %}
+            {% if contributor.slug == author.slug %}
+              {% assign matches_author = true %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if matches_author %}
+          {% assign videos = videos | push: item %}
+        {% endif %}
+      {% endfor %}
+      {% assign videos = videos | reverse %}
+
+      {% assign messages = "" | split: "" %}
+      {% for item in site.messages %}
+        {% assign matches_author = false %}
+        {% if item.person %}
+          {% for contributor in item.person %}
+            {% if contributor.slug == author.slug %}
+              {% assign matches_author = true %}
+            {% endif %}
+          {% endfor %}
+        {% elsif item.author %}
+          {% for contributor in item.author %}
+            {% if contributor.slug == author.slug %}
+              {% assign matches_author = true %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if matches_author %}
+          {% assign messages = messages | push: item %}
+        {% endif %}
+      {% endfor %}
+      {% assign messages = messages | reverse %}
+
+      {% assign podcasts = "" | split: "" %}
+      {% for item in site.podcasts %}
+        {% assign matches_author = false %}
+        {% if item.person %}
+          {% for contributor in item.person %}
+            {% if contributor.slug == author.slug %}
+              {% assign matches_author = true %}
+            {% endif %}
+          {% endfor %}
+        {% elsif item.author %}
+          {% for contributor in item.author %}
+            {% if contributor.slug == author.slug %}
+              {% assign matches_author = true %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if matches_author %}
+          {% assign podcasts = podcasts | push: item %}
+        {% endif %}
+      {% endfor %}
+      {% assign podcasts = podcasts | reverse %}
  
 
 					
@@ -29,21 +107,17 @@ layout: default
 
 
 						{% for item in articles %}
-							{% if item.featured_to_author %}
-									{% if item.featured_to_author.id == item.author.id %}
-											{% assign featured = featured | push: item %}
-									{% endif %}
+							{% if item.featured_to_author and item.featured_to_author.slug == author.slug %}
+								{% assign featured = featured | push: item %}
 							{% endif %}
 						{% endfor %}
 					
 						{% for item in all_items %}
 								{% if item.featured_to_author %}
 										{% for fta in item.featured_to_author %}
-												{% for item_author in item.author %}
-														{% if fta.id == item_author.id %}
-																{% assign featured = featured | push: item %}
-														{% endif %}
-												{% endfor %}
+												{% if fta.slug == author.slug %}
+													{% assign featured = featured | push: item %}
+												{% endif %}
 										{% endfor %}
 								{% endif %}
 						{% endfor %}
@@ -254,4 +328,3 @@ layout: default
    </div>
   </div>
 </section>
-

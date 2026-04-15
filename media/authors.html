@@ -2,11 +2,11 @@
 layout: default
 snail_trail: media
 title: Authors
+permalink: /media/authors/index.html
 paginate:
-  authors:
+  people:
     per: 8
 ---
-
 <div class="container">
   <ol class="breadcrumb hard-sides push-top">
     <li><a href="/media">Media</a></li>
@@ -17,24 +17,20 @@ paginate:
   <div data-card-deck class="card-deck">
     <div class="cards-4x">
       <div class="row">
-      {% for author in page.authors.docs %}
+      {% for person in page.people.docs %}
         <div class="card">
-          <a href="{{ author.url }}">
-            <img class="card-img-top img-responsive" src="{{ author.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card_face }}" sizes="{{ site.image_sizes.podcast_thumb }}" data-optimize-img>
+          <a href="{{ person.url }}">
+            <img class="card-img-top img-responsive" src="{{ person.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_card_face }}" sizes="{{ site.image_sizes.podcast_thumb }}" data-optimize-img>
           </a>
           <div class="card-block">
-            <a href="{{ author.url }}">
-              <h4 class="card-title card-title--overlap text-uppercase">{{ author.full_name }}</h4>
+            <a href="{{ person.url }}">
+              <h4 class="card-title card-title--overlap text-uppercase">{{ person.name | default: person.full_name }}</h4>
             </a>
-
-            <h5 class="card-subtitle">{% include _count.html collection=site.articles key="author" subject=author label="article" %}</h5>
-            <h5 class="card-subtitle">{% include _count.html collection=site.podcasts key="authors" subject=author label="podcast" %}</h5>
-            <h5 class="card-subtitle">{% include _count.html collection=site.videos key="authors" subject=author label="video" %}</h5>
           </div>
         </div>
       {% endfor %}
       </div>
     </div>
   </div>
-  {% include _pagination.html collection="authors" link_root="authors" %}
+  {% include _pagination.html collection="people" link_root="authors" %}
 </div>
