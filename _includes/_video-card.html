@@ -32,9 +32,16 @@
         <h5 class="card-title font-size-smaller push-quarter-bottom">{{ video.title }}</h5>
         {% endif %}
         <div class="font-size-smaller push-quarter-top push-half-bottom">
-          {% for person in video.authors %}
-          {% assign video_author = site.authors | where: "name", person | first %}
-          <a class="text-gray" href="{{ video_author.url }}">{{ person }}</a>
+          {% assign contributors = video.person | default: video.author %}
+          {% for contributor_ref in contributors %}
+          {% assign contributor_page = site.people | where: 'slug', contributor_ref.slug | first %}
+          {% assign contributor = contributor_page | default: contributor_ref %}
+          {% assign contributor_link = contributor_page.url %}
+          {% if contributor_link %}
+          <a class="text-gray" href="{{ contributor_link }}">{{ contributor.name | default: contributor.full_name }}</a>
+          {% else %}
+          <span class="text-gray">{{ contributor.name | default: contributor.full_name }}</span>
+          {% endif %}
           {% unless forloop.last %}
           <span class="text-gray">&amp;</span>
           {% endunless %}

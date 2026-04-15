@@ -9,13 +9,13 @@
 
   <div class="media-body">
     <h1 class="font-family-condensed-extra text-uppercase text-white" data-author-name>
-      {{ author.full_name }}
+      {{ author.name | default: author.full_name }}
     </h1>
 
     {% if page.title == "Preview" %}
       <p data-author-bio></p>
     {% else %}
-      <span class="markdown">{{ author.summary | markdownify }}</span>
+      <span class="markdown">{{ author.bio | default: author.summary | markdownify }}</span>
     {% endif %}
 
     <div class="social-inline">

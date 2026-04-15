@@ -3,7 +3,27 @@ layout: default_footer_flush
 title: Articles
 ---
 
-{% assign author = page.author | get_doc %}
+{% assign author_page = nil %}
+{% if page.person %}
+  {% for contributor_ref in page.person %}
+    {% assign matched_author_page = site.people | where: 'slug', contributor_ref.slug | first %}
+    {% if matched_author_page %}
+      {% assign author_page = matched_author_page %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% if author_page %}
+  {% assign author = author_page %}
+{% else %}
+  {% assign author = page.author | get_doc %}
+  {% assign author_page = author %}
+{% endif %}
+{% assign author_name = author.name | default: author.full_name %}
+{% assign author_bio = author.bio | default: author.summary %}
+{% assign author_link = author_page.url %}
+{% assign author_image = author.image | default: author_page.image %}
+{% assign author_social = author_page | default: author %}
 {% assign topic = page.category | get_doc %}
 {% assign tags = page.tags | get_doc %}
 
@@ -282,7 +302,7 @@ title: Articles
             <p class="overlay-card-category">{{ page.category.title }}</p>
             <h1 data-media-title="{{page.title}}" data-media-id="{{page.id}}"
               class="overlay-card-title overlay-card-heading">{{ page.title | truncate: 70 }}</h1>
-            <p class="overlay-card-author text-gray-light">{{ page.author.full_name }}</p>
+            <p class="overlay-card-author text-gray-light">{{ author_name }}</p>
             <div class="card-stamp text-white">
               {% if page.podcast_episode != null %}
               <span class="font-size-smallest soft-quarter-right">
@@ -329,12 +349,19 @@ title: Articles
         <div class="article-tpl-content article-tpl-author-section row row-no-gutters soft-ends">
           <div>
             <address class="article-tpl-author">
-              <a class="push-half-right" href="{{ author.url }}" data-author-link>
+              {% if author_link %}
+                <a class="push-half-right" href="{{ author_link }}" data-author-link>
+                  <img data-author-img
+                    src="{{ author_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+                    class="img-circle img-size-5" sizes="{{ site.image_sizes.avatar }}" alt="{{ author_name }}"
+                    data-optimize-img>
+                </a>
+              {% else %}
                 <img data-author-img
-                  src="{{ author.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
-                  class="img-circle img-size-5" sizes="{{ site.image_sizes.avatar }}" alt="{{ author.full_name }}"
+                  src="{{ author_image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}"
+                  class="img-circle img-size-5 push-half-right" sizes="{{ site.image_sizes.avatar }}" alt="{{ author_name }}"
                   data-optimize-img>
-              </a>
+              {% endif %}
 
               <div>
                 <small class="font-size-smaller text-gray">
@@ -342,9 +369,13 @@ title: Articles
                 </small>
                 <br>
                 <h2 class="flush font-family-condensed-extra font-size-h4 text-gray-dark text-uppercase">
-                  <a href="{{ author.url }}" data-grouping-media-author="{{ author.full_name }}">
-                    {{ author.full_name }}
-                  </a>
+                  {% if author_link %}
+                    <a href="{{ author_link }}" data-grouping-media-author="{{ author_name }}">
+                      {{ author_name }}
+                    </a>
+                  {% else %}
+                    <span data-grouping-media-author="{{ author_name }}">{{ author_name }}</span>
+                  {% endif %}
                 </h2>
               </div>
             </address>
@@ -354,10 +385,10 @@ title: Articles
               {% if page.title == "Preview" %}
               <p data-author-bio></p>
               {% else %}
-              <p class="font-size-smaller">{{ author.summary | markdownify }}</p>
+              <p class="font-size-smaller">{{ author_bio | markdownify }}</p>
               {% endif %}
               <div>
-                {% include _author-social.html %}
+                {% include _author-social.html author=author_social %}
               </div>
             </div>
           </div>
@@ -458,15 +489,27 @@ title: Articles
           {% assign featured_authors = media_featured_authors.entries %}
           {% for content in featured_authors limit: 6 %}
           {% assign item = content | get_doc %}
+          {% assign item_author_page = site.people | where: 'slug', item.slug | first %}
+          {% assign item_author_link = item_author_page.url %}
           <div class="col-md-2 carousel-cell">
             <div class="d-flex flex-align-center flex-column justify-content-center push-half-top">
-              <a href="{{ item | media_url }}">
+              {% if item_author_link %}
+                <a href="{{ item_author_link }}">
+                  <img src="{{ item.image.url | imgix: site.imgix }}?auto=format,compress&w=140&h=140&fit=crop"
+                    alt="{{ item.name | default: item.full_name }}" class="img-circle" width="140px">
+                </a>
+              {% else %}
                 <img src="{{ item.image.url | imgix: site.imgix }}?auto=format,compress&w=140&h=140&fit=crop"
-                  alt="{{ author_full_name }}" class="img-circle" width="140px">
-              </a>
+                  alt="{{ item.name | default: item.full_name }}" class="img-circle" width="140px">
+              {% endif %}
               <div class="push-half-top text-center">
-                <a href="{{ item | media_url }}" class="text-blue font-family-base-bold font-size-smaller">{{
-                  item.full_name }}</a>
+                {% if item_author_link %}
+                  <a href="{{ item_author_link }}" class="text-blue font-family-base-bold font-size-smaller">{{
+                    item.name | default: item.full_name }}</a>
+                {% else %}
+                  <span class="text-blue font-family-base-bold font-size-smaller">{{
+                    item.name | default: item.full_name }}</span>
+                {% endif %}
               </div>
             </div>
           </div>

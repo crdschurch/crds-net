@@ -110,11 +110,20 @@ snail_trail: disabled
     <div class="teaching-pastors-grid">
       {% for pastor in teaching_pastors %}
         {% assign item = pastor | get_doc %}
+        {% assign pastor_page = site.people | where: 'slug', item.slug | first %}
+        {% assign pastor_link = pastor_page.url %}
         <div>
-          <a class="shows-pastors-card text-center" href="{{ item | media_url }}">
-            <div class="shows-pastors-card-img" style="background-image: url('{{ item.image.url | imgix: site.imgix }}?w=228&h=228&crop=bottom,center&fit=crop');"></div>
-            <p class="font-family-condensed-extra font-size-h4 text-uppercase push-top text-white">{{ item.full_name }}</p>
-          </a>
+          {% if pastor_link %}
+            <a class="shows-pastors-card text-center" href="{{ pastor_link }}">
+              <div class="shows-pastors-card-img" style="background-image: url('{{ item.image.url | imgix: site.imgix }}?w=228&h=228&crop=bottom,center&fit=crop');"></div>
+              <p class="font-family-condensed-extra font-size-h4 text-uppercase push-top text-white">{{ item.name | default: item.full_name }}</p>
+            </a>
+          {% else %}
+            <div class="shows-pastors-card text-center">
+              <div class="shows-pastors-card-img" style="background-image: url('{{ item.image.url | imgix: site.imgix }}?w=228&h=228&crop=bottom,center&fit=crop');"></div>
+              <p class="font-family-condensed-extra font-size-h4 text-uppercase push-top text-white">{{ item.name | default: item.full_name }}</p>
+            </div>
+          {% endif %}
         </div>
       {% endfor %}
     </div>

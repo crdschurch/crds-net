@@ -44,7 +44,6 @@
   <div class="overlay-card-content">
     <p class="overlay-card-category">{{ item.category.title }}</p>
     <h2 class="overlay-card-title {% if include.title == 'h2' %}font-size-h2{% endif %}">{{ item.title | truncate: 60 }}</h2>
-    <p class="overlay-card-author">{{ item.author.full_name }}</p>
+    <p class="overlay-card-author">{% if item.person %}{{ item.person | map: 'name' | join: ', ' }}{% elsif item.author.id %}{{ item.author.full_name }}{% else %}{{ item.author | map: 'full_name' | join: ', ' }}{% endif %}</p>
   </div>
 </a>
-

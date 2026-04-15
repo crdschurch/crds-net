@@ -51,12 +51,15 @@ layout: default
           <div class="topic soft-quarter-top">{{ page.title }}</div>
           <h3 class="title flush-ends">{{ item.title }}</h3>
           <div class="credit">
-            {% if item.author %}
-            {% assign author = item.author | get_doc %}
-            {{ author.full_name }}
-            {% elsif item.authors %}
-            {% assign authors = item.author | get_docs %}
-            {{ authors | map:'full_name' | join:', ' }}
+            {% if item.person %}
+            {{ item.person | map:'name' | join:', ' }}
+            {% elsif item.author %}
+              {% if item.author.id %}
+              {% assign author = item.author | get_doc %}
+              {{ author.full_name }}
+              {% else %}
+              {{ item.author | map:'full_name' | join:', ' }}
+              {% endif %}
             {% endif %}
           </div>
         </div>
@@ -112,12 +115,15 @@ layout: default
           </div>
 
           <p class="credit">
-            {% if item.author %}
-            {% assign author = item.author | get_doc %}
-            {{ author.full_name }}
-            {% elsif item.authors %}
-            {% assign authors = item.author | get_docs %}
-            {{ authors | map:'full_name' | join:', ' }}
+            {% if item.person %}
+            {{ item.person | map:'name' | join:', ' }}
+            {% elsif item.author %}
+              {% if item.author.id %}
+              {% assign author = item.author | get_doc %}
+              {{ author.full_name }}
+              {% else %}
+              {{ item.author | map:'full_name' | join:', ' }}
+              {% endif %}
             {% endif %}
           </p>
         </div>
@@ -145,12 +151,15 @@ layout: default
             {{ item | content | markdownify | strip_html | truncate: 125 }}
           </div>
           <div class="credit">
-            {% if item.author %}
-            {% assign author = item.author | get_doc %}
-            {{ author.full_name }}
-            {% elsif item.authors %}
-            {% assign authors = item.author | get_docs %}
-            {{ authors | map: 'full_name' | join: ', ' }}
+            {% if item.person %}
+            {{ item.person | map:'name' | join:', ' }}
+            {% elsif item.author %}
+              {% if item.author.id %}
+              {% assign author = item.author | get_doc %}
+              {{ author.full_name }}
+              {% else %}
+              {{ item.author | map:'full_name' | join:', ' }}
+              {% endif %}
             {% endif %}
           </div>
         </div>
