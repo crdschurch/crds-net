@@ -105,6 +105,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
       url: url,
       contentType: "Page",
       searchExcluded: false,
+      deletionExcluded: true,
       date: current_date,
       timestamp: current_timestamp,
       contentPriority: 1, # every record is a page so the value is always 1.
