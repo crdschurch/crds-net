@@ -27,6 +27,9 @@ layout: default
                   <li><a href="/students">Student Ministry</a></li>
                   <li><a href="/student-ministry/series">Series</a></li>
                   <li><a href="/media/series/{{ page.series.slug }}">{{ page.series.title }}</a></li>
+                {% elsif page.is_young_adult_series_video %}
+                  <li><a href="/young-adults">Young Adults</a></li>
+                  <li><a href="/media/series/{{ page.series.slug }}">{{ page.series.title }}</a></li>
                 {% else %}
                 {% for breadcrumb in url_array %}
                 {% capture first_word %}{{ url_string | truncatewords: 1, "" }}{% endcapture %}
