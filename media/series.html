@@ -7,7 +7,7 @@ paginate:
     sort: starts_at desc
 ---
 
-{% assign MediaSeries = page.series.docs | where_exp: 'series', 'series.is_spanish != true' | where_exp: 'series', 'series.is_student_ministry_series == false or series.is_student_ministry_series == nil' %}
+{% assign MediaSeries = page.series.docs | where_exp: 'series', 'series.is_spanish != true' | where_exp: 'series', 'series.is_student_ministry_series == false or series.is_student_ministry_series == nil' | where_exp: 'series', 'series.is_young_adult_series == false or series.is_young_adult_series == nil' %}
 <div class="container">
   <ol class="breadcrumb text-orange hard-sides hard-bottom push-top flush-bottom">
     <li><a href="/media">Media</a></li>
