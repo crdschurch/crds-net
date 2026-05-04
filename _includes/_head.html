@@ -67,6 +67,7 @@
 
   <!-- Schema.org Article markup for SEO -->
   {% if page.content_type == "article" %}
+  {% assign primary_contributor = page.person | first | default: page.author %}
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -76,7 +77,7 @@
       "datePublished": "{{ page.published_at }}",
       "author": {
         "@type": "Person",
-        "name": "{{ page.author.full_name }}"
+        "name": "{{ primary_contributor.name | default: primary_contributor.full_name }}"
       },
       "publisher": {
         "@type": "Organization",

@@ -46,15 +46,17 @@ function setAuthorInfo(name, slug, bio, img) {
   }
 
   for (var k = 0; k < authorLinks.length; k += 1) {
-    authorLinks[k].href = `/authors/${slug}`;
+    authorLinks[k].href = `/media/authors/${slug}`;
   }
 
   authorBio.innerText = bio;
 
-  getAsset(img).then(function(res) {
-    var imgUrl = `${res.fields.file.url}?auto=format,compress&w=80&h=80&fit=crop`;
-    replaceImg(imgUrl, authorImg);
-  });
+  if (img) {
+    getAsset(img).then(function(res) {
+      var imgUrl = `${res.fields.file.url}?auto=format,compress&w=80&h=80&fit=crop`;
+      replaceImg(imgUrl, authorImg);
+    });
+  }
 }
 
 function replaceImg(src, el) {
@@ -89,9 +91,35 @@ function renderPage(data) {
     hidePreloader();
   }
 
-  if (data.author) {
+  if (data.person && data.person.length) {
+    Promise.all(data.person.map(function(personRef) {
+      return getEntry(personRef.sys.id);
+    })).then(function(people) {
+      var author = people.find(function(person) {
+        return person.fields.roles && person.fields.roles.indexOf('Author') > -1;
+      });
+
+      if (author) {
+        setAuthorInfo(
+          author.fields.name || author.fields.full_name,
+          author.fields.slug,
+          author.fields.bio || author.fields.summary,
+          author.fields.image && author.fields.image.sys ? author.fields.image.sys.id : null
+        );
+      } else {
+        hidePreloader();
+      }
+    }).catch(function(err) {
+      console.log(err);
+    });
+  } else if (data.author && data.author.sys && data.author.sys.id) {
     getEntry(data.author.sys.id).then(function(res) {
-      setAuthorInfo(res.fields.full_name, res.fields.slug, res.fields.summary, res.fields.image.sys.id);
+      setAuthorInfo(
+        res.fields.name || res.fields.full_name,
+        res.fields.slug,
+        res.fields.bio || res.fields.summary,
+        res.fields.image && res.fields.image.sys ? res.fields.image.sys.id : null
+      );
     }).catch(function(err) {
       console.log(err);
     });

@@ -1,16 +1,26 @@
-{% assign author_full_name = item.full_name | split: " " %}
+{% assign author_name = item.name | default: item.full_name %}
+{% assign author_bio = item.bio | default: item.summary %}
+{% assign author_page = site.people | where: 'slug', item.slug | first %}
+{% assign author_link = author_page.url %}
+{% assign author_full_name = author_name | split: " " %}
 
 <div class="push-half-top">
   <div class="flex-align-center">
     <div>
-      <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" class="img-circle img-size-5" sizes="{{ site.image_sizes.avatar }}" data-optimize-img>
+      {% if author_link %}
+        <a href="{{ author_link }}"><img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" class="img-circle img-size-5" sizes="{{ site.image_sizes.avatar }}" data-optimize-img></a>
+      {% else %}
+        <img src="{{ item.image.url | imgix: site.imgix }}?{{ site.imgix_params.placeholder_square }}" class="img-circle img-size-5" sizes="{{ site.image_sizes.avatar }}" data-optimize-img>
+      {% endif %}
     </div>
     <div class="push-left">
       <p class="flush-bottom font-family-base-mid media-author-card-title">{{ author_full_name | join: "<br />" }}</p>
-      <a href="{{ item | media_url }}" class="font-family-base-mid font-size-smaller font-family-base-bold text-orange-dark">View articles</a>
+      {% if author_link %}
+        <a href="{{ author_link }}" class="font-family-base-mid font-size-smaller font-family-base-bold text-orange-dark">View articles</a>
+      {% endif %}
     </div>
   </div>
   <div class="push-half-top">
-    <p class="font-size-smaller">{{ item.summary | strip_html | truncate: 150 }}</p>
+    <p class="font-size-smaller">{{ author_bio | strip_html | truncate: 150 }}</p>
   </div>
 </div>

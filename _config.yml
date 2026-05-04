@@ -65,7 +65,7 @@ collections:
     output: true
     permalink: /media/humans-of-crossroads/:slug
   authors:
-    output: true
+    output: false
     permalink: /media/:collection/:title
   categories:
     output: true
@@ -103,6 +103,9 @@ collections:
     filename: "{{ permalink }} index"
     output: true
     permalink: /:permalink/index.html
+  people:
+    output: true
+    permalink: /media/authors/:title
   podcasts:
     output: true
     permalink: /media/:collection/:title
@@ -259,6 +262,12 @@ defaults:
   - scope:
       path: ""
       type: authors
+    values:
+      layout: author
+      snail_trail: disabled
+  - scope:
+      path: ""
+      type: people
     values:
       layout: author
       snail_trail: disabled

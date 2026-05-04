@@ -53,13 +53,19 @@ layout: default
 
     <div class="row push-bottom soft-bottom">
       <div class="col-sm-8 col-sm-offset-2">
-        {% for author_obj in podcast.author %}
-          {% assign author = site.authors | where: 'full_name', author_obj.full_name | first %}
-          {% if author %}
-            {% if forloop.first %}<p class="push-ends">Hosted by {% endif %}
-              <a href="{{ author.url }}" data-grouping-media-author="{{ author.full_name | titleize }}">{{ author.full_name | titleize }}</a> {% if forloop.last == false %} and {% endif %}
-            {% if forloop.last %}</p>{% endif %}
-          {% endif %}
+        {% assign contributors = podcast.person | default: podcast.author %}
+        {% for contributor_ref in contributors %}
+          {% assign contributor_page = site.people | where: 'slug', contributor_ref.slug | first %}
+          {% assign contributor = contributor_page | default: contributor_ref %}
+          {% assign contributor_name = contributor.name | default: contributor.full_name %}
+          {% assign contributor_link = contributor_page.url %}
+          {% if forloop.first %}<p class="push-ends">Hosted by {% endif %}
+            {% if contributor_link %}
+              <a href="{{ contributor_link }}" data-grouping-media-author="{{ contributor_name | titleize }}">{{ contributor_name | titleize }}</a>
+            {% else %}
+              <span data-grouping-media-author="{{ contributor_name | titleize }}">{{ contributor_name | titleize }}</span>
+            {% endif %} {% if forloop.last == false %} and {% endif %}
+          {% if forloop.last %}</p>{% endif %}
         {% endfor %}
 
         <p>{{ page.published_at | format_date }} {% if page.duration != nil %} <span class="divider push-quarter-sides">•</span> {% include _read-time.html duration=page.duration content_type='episode' %} {% endif %}</p>

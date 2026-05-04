@@ -1,5 +1,14 @@
 {% assign post = include.post %}
-{% assign author = post.author | get_doc %}
+{% assign contributor_ref = post.person | first %}
+{% if contributor_ref %}
+  {% assign contributor_page = site.people | where: 'slug', contributor_ref.slug | first %}
+  {% assign contributor = contributor_page | default: contributor_ref %}
+{% else %}
+  {% assign contributor = post.author | get_doc %}
+  {% assign contributor_page = contributor %}
+{% endif %}
+{% assign contributor_name = contributor.name | default: contributor.full_name %}
+{% assign contributor_link = contributor_page.url %}
 {% assign topic = post.category | get_doc %}
 
 <div class="card">
@@ -23,7 +32,11 @@
   </h2>
 
   <p class="text-gray-light font-size-small flush-bottom push-quarter-top">
-    <a href="{{ author.url }}">{{ author.name | titleize }}</a>
+    {% if contributor_link %}
+      <a href="{{ contributor_link }}">{{ contributor_name | titleize }}</a>
+    {% else %}
+      <span>{{ contributor_name | titleize }}</span>
+    {% endif %}
   </p>
 
 </div>

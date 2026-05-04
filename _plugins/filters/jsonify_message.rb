@@ -14,6 +14,7 @@ module Jekyll
             category: m["category"],
             title: m["title"].truncate(55),
             author: m["author"],
+            person: m["person"],
             duration: m["duration"],
             image: m["image"],
             podcast: m["podcast"],

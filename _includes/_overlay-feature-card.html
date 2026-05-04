@@ -11,7 +11,7 @@
         <div class="overlay-feature-card-content">
           <p class="overlay-feature-card-category">{{ item.category.title }}</p>
           <h1 class="overlay-feature-card-title">{{ item.title | truncate: 55 }}</h1>
-          <p class="overlay-feature-card-author">{{ item.author | map: 'full_name' | join: ', ' }}</p>
+          <p class="overlay-feature-card-author">{% if item.person %}{{ item.person | map: 'name' | join: ', ' }}{% elsif item.author.id %}{{ item.author.full_name }}{% else %}{{ item.author | map: 'full_name' | join: ', ' }}{% endif %}</p>
         </div>
       </div>
     </div>

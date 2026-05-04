@@ -1,4 +1,3 @@
-{% assign author = site.authors | where: "name",item.author | first %}
 {% assign item = include.item %}
 {% assign album_url = item.album_url %}
 
@@ -49,17 +48,28 @@
         <a href="{{ item | media_url }}">{{ item.title }}</a>
       </h3>
 
-      {% if item.author %}
+      {% if item.person or item.author %}
       <p class="card-text soft-quarter-top">
-        {% if item.author.id %}
-        {% assign author = item.author | get_doc %}
-        <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>
-        {% else %}
-        {% assign authors = item.author | get_docs %}
-        {% for author in authors %}
-        <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>{% unless
+        {% if item.person %}
+        {% for contributor_ref in item.person %}
+        {% assign contributor_page = site.people | where: 'slug', contributor_ref.slug | first %}
+        {% assign contributor = contributor_page | default: contributor_ref %}
+        {% assign contributor_link = contributor_page.url %}
+        {% if contributor_link %}
+        <a class="text-gray-light font-size-smaller" href="{{ contributor_link }}">{{ contributor.name | default: contributor.full_name }}</a>{% else %}<span class="text-gray-light font-size-smaller">{{ contributor.name | default: contributor.full_name }}</span>{% endif %}{% unless
         forloop.last %}<span class="text-gray-light">&amp;</span>{% endunless %}
         {% endfor %}
+        {% else %}
+          {% if item.author.id %}
+          {% assign author = item.author | get_doc %}
+          <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>
+          {% else %}
+          {% assign authors = item.author | get_docs %}
+          {% for author in authors %}
+          <a class="text-gray-light font-size-smaller" href="{{ author.url }}">{{ author.full_name }}</a>{% unless
+          forloop.last %}<span class="text-gray-light">&amp;</span>{% endunless %}
+          {% endfor %}
+          {% endif %}
         {% endif %}
       </p>
       {% endif %}
