@@ -7,7 +7,7 @@ paginate:
     sort: starts_at desc
 ---
 
-{% assign StudentMinistrySeries = page.series.docs | where_exp: 'series', 'series.is_student_ministry_series == true' %}
+{% assign StudentMinistrySeries = page.series.docs | where_exp: 'series', 'series.is_student_ministry_series_derived == true' %}
 <div class="container">
   <ol class="breadcrumb text-orange hard-sides hard-bottom push-top flush-bottom">
     <li><a href="/crossroadsstudents">Student Ministry</a></li>

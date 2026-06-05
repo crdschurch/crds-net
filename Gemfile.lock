@@ -27,8 +27,8 @@ GIT
 
 GIT
   remote: https://github.com/crdschurch/jekyll-contentful.git
-  revision: 9e74211ef97f97d8b0556fa262df93c08daa87f7
-  tag: 3.3.1
+  revision: b17329fdb324ae06cdd6dae2e4047676a04e9837
+  branch: feature/series-audience-tags
   specs:
     jekyll-contentful (3.3.1)
       activesupport
