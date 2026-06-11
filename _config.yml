@@ -107,7 +107,7 @@ collections:
     output: true
     permalink: /media/authors/:title
   podcasts:
-    output: false
+    output: true
     permalink: /media/:collection/:title
   promos:
     filename: "{{ published_at | date: '%Y-%m-%d-%H-%M-%S' }}-{{ title | slugify }}-{{ slug }}"
