@@ -57,7 +57,7 @@ collections:
   alerts:
     output: true
   articles:
-    output: true
+    output: false
     permalink: /media/articles/:title
     limit: 500
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
@@ -78,7 +78,7 @@ collections:
   discussions:
     output: false
   episodes:
-    output: true
+    output: false
     permalink: /media/podcasts/(:podcast/:slug)/:title
   featured_media:
     output: false
@@ -88,7 +88,7 @@ collections:
     output: true
     permalink: /:slug
   messages:
-    output: true
+    output: false
     permalink: /media/series/(:series/:slug)/:title
   meta:
     output: false
@@ -107,14 +107,14 @@ collections:
     output: true
     permalink: /media/authors/:title
   podcasts:
-    output: true
+    output: false
     permalink: /media/:collection/:title
   promos:
     filename: "{{ published_at | date: '%Y-%m-%d-%H-%M-%S' }}-{{ title | slugify }}-{{ slug }}"
     output: false
   series:
     filename: "{{ published_at | date: '%Y-%m-%d' }}-{{ slug }}"
-    output: true
+    output: false
     permalink: /media/:collection/:title
     limit: 250
     has_many:
@@ -139,7 +139,7 @@ collections:
   trip_partners:
     output: false
   videos:
-    output: true
+    output: false
     permalink: /media/:collection/:title
   serviceTimes:
     output: false
