@@ -4,6 +4,8 @@ require 'json'
 require 'securerandom'
 require 'algolia'
 require 'time'
+require 'net/http'
+require 'uri'
 
 module ObjectIDGenerator
   CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.chars.freeze
@@ -19,6 +21,33 @@ module ObjectIDGenerator
     end
     encoded
   end
+end
+
+def invoke_global_search_sync(source:, env:)
+  sync_token = ENV['GLOBAL_SEARCH_SYNC_TOKEN']
+
+  if sync_token.nil? || sync_token.strip.empty?
+    puts "[global-search-trigger] skipped because GLOBAL_SEARCH_SYNC_TOKEN is missing"
+    return
+  end
+
+  search_domain = env == 'demo' ? 'https://demo.crossroads.net' : 'https://www.crossroads.net'
+  sync_url = "#{search_domain.sub(%r{/$}, '')}/.netlify/functions/sync-global-search-background"
+  uri = URI.parse(sync_url)
+  params = URI.decode_www_form(String(uri.query))
+  params << ['env', env]
+  params << ['slice', 'crds_net_static']
+  params << ['applySettings', 'false']
+  uri.query = URI.encode_www_form(params)
+
+  request = Net::HTTP::Post.new(uri)
+  request['x-global-search-sync-token'] = sync_token
+
+  response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
+    http.request(request)
+  end
+
+  puts "[global-search-trigger] source=#{source} env=#{env} status=#{response.code}"
 end
 
 # Copy static pages to the _site_static directory
@@ -68,6 +97,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
   records = []
   current_date = Time.now.strftime("%B %d, %Y")
   current_timestamp = Time.parse(current_date).to_i
+  resolved_env = ENV['CRDS_ENV'] == 'demo' ? 'demo' : 'prod'
 
   html_files.each do |file_path|
     doc = Nokogiri::HTML(File.read(file_path))
@@ -86,8 +116,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
 
     description = doc.at('meta[name="description"]')&.attr('content') || ""
 
-    domain_env = ENV['CRDS_ENV']
-    domain = domain_env == 'demo' ? 'demo.crossroads.net' : 'www.crossroads.net'
+    domain = resolved_env == 'demo' ? 'demo.crossroads.net' : 'www.crossroads.net'
 
     # Get the permalink if available, otherwise use the slug
     permalink = doc.at('meta[name="permalink"]')&.attr('content')
@@ -137,6 +166,11 @@ Jekyll::Hooks.register :site, :post_write do |site|
     index.save_objects(records)
 
     puts "Successfully indexed #{records.size} records to Algolia index '#{algolia_index_name}'."
+    begin
+      invoke_global_search_sync(source: 'static', env: resolved_env)
+    rescue StandardError => callback_error
+      puts "[global-search-trigger:error] source=static env=#{resolved_env} message=#{callback_error.message}"
+    end
   rescue StandardError => e
     puts "Error during indexing: #{e.message}"
   end
