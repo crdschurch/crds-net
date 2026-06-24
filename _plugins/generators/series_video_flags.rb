@@ -5,6 +5,9 @@ module GetSeriesVideoFlags
       series_entries = site.collections['series'].docs
 
       videos.each do |video|
+        video.data['is_student_ministry_series_video'] = false
+        video.data['is_young_adult_series_video'] = false
+
         series_id = video.data.dig('series', 'id')
         next unless series_id.present?
 
