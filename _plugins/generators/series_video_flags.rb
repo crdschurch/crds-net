@@ -7,6 +7,7 @@ module GetSeriesVideoFlags
       videos.each do |video|
         video.data['is_student_ministry_series_video'] = false
         video.data['is_young_adult_series_video'] = false
+        video.data['ministry_series_type'] = 'standard'
 
         series_id = video.data.dig('series', 'id')
         next unless series_id.present?
@@ -16,6 +17,8 @@ module GetSeriesVideoFlags
 
         video.data['is_student_ministry_series_video'] = series.data['is_student_ministry_series']
         video.data['is_young_adult_series_video'] = series.data['is_young_adult_series']
+        video.data['ministry_series_type'] = 'student_ministry' if series.data['is_student_ministry_series']
+        video.data['ministry_series_type'] = 'young_adult' if series.data['is_young_adult_series']
       end
     end
   end
