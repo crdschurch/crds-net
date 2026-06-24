@@ -1,5 +1,7 @@
 module GetSeriesVideoFlags
   class Generator < Jekyll::Generator
+    priority :high
+
     def generate(site)
       videos = site.collections['videos'].docs
       series_entries = site.collections['series'].docs
