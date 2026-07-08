@@ -232,6 +232,9 @@ contentful:
     order: "published_at desc"
     map:
       date: published_at
+    metadata_tag_flags:
+      is_student_ministry_series_derived: students
+      is_young_adult_series_derived: youngAdult
     query: fields.isSpanish[ne]=true
   sign_up_form:
     query: fields.pageType=OnsiteGroupSignupPage

@@ -39,7 +39,7 @@ permalink: /weekendfollowup/
         For the Weekend of {{ site.chaser_message.date | date: '%B %-d, %Y' }}
       </p>
       {% endif %}
-      <div class="push-bottom">
+      <div class="push-bottom" {% unless site.chaser_message %}id="questions"{% endunless %}>
 
         {% include _discussion-questions.html type='chaser' discussion=discussion %}
 
@@ -58,6 +58,12 @@ permalink: /weekendfollowup/
 </section>
 
 <style>
+  html {
+    scroll-behavior: smooth;
+  }
+  #questions {
+    scroll-margin-top: 50px;
+  }
   .jumbotron-image {
     object-fit: cover;
     width: 100%;
