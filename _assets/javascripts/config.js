@@ -71,7 +71,6 @@ module.exports = [
       'components/clipboard',
       'components/images',
       'components/preview',
-      'components/page-preview',
       'components/menu-squencher',
     ],
   },

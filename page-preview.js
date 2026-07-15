@@ -1,4 +1,6 @@
 async function getPreviewEntry() {
+
+    console.log("=== entering getPreviewEntry ===");
     const url = new URL(window.location.href);
 
     const id = url.searchParams.get("id");
@@ -22,6 +24,7 @@ async function getPreviewEntry() {
 
 
 async function renderPreview() {
+    console.log("=== entering renderPreview ===");
     try {
         const entry = await getPreviewEntry();
 
