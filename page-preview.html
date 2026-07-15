@@ -15,7 +15,6 @@ layout: default
     Loading preview...
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
 async function getPreviewEntry() {
     console.log("=== entering getPreviewEntry ===");
@@ -56,7 +55,7 @@ async function renderPreview() {
             fields.permalink || "";
 
         document.querySelector("#body").innerHTML =
-            marked.parse(fields.body || "");
+            fields.body || "";
 
         document.querySelector("#loading").style.display = "none";
 
