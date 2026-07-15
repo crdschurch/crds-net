@@ -6,13 +6,14 @@ async function getPreviewEntry() {
     const id = url.searchParams.get("id");
     const spaceId = url.searchParams.get("space_id");
     const accessToken = url.searchParams.get("access_token");
+    const environment = url.searchParams.get("contentful_env") || "master";
 
     if (!id || !spaceId || !accessToken) {
         throw new Error("Missing preview parameters");
     }
 
     const response = await fetch(
-        `https://preview.contentful.com/spaces/${spaceId}/entries/${id}?access_token=${accessToken}`
+        `https://preview.contentful.com/spaces/${spaceId}/environments/${environment}/entries/${id}?access_token=${accessToken}`
     );
 
     if (!response.ok) {
