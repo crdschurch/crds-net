@@ -1,6 +1,7 @@
 // -------------------------
 // DOM Elements
 // -------------------------
+console.log("=== Initializing page preview...");
 
 const title = document.querySelector("[data-title]");
 const permalink = document.querySelector("[data-permalink]");
