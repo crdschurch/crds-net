@@ -16,7 +16,8 @@ module Jekyll
       def client
         @client ||= ::Contentful::Client.new(
           space: ENV['CONTENTFUL_SPACE_ID'],
-          access_token: ENV['CONTENTFUL_ACCESS_TOKEN']
+          access_token: ENV['CONTENTFUL_ACCESS_TOKEN'],
+          environment: ENV['CONTENTFUL_ENV'] || 'master'
         )
       end
 

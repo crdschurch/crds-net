@@ -11,8 +11,10 @@ module GetSeriesVideoFlags
         series = series_entries.detect { |doc| doc.data.dig('contentful_id') == series_id }
         next unless series.present?
 
-        video.data['is_student_ministry_series_video'] = series.data['is_student_ministry_series']
-        video.data['is_young_adult_series_video'] = series.data['is_young_adult_series']
+        video.data['is_student_ministry_series_video'] =
+          series.data['is_student_ministry_series_derived']
+        video.data['is_young_adult_series_video'] =
+          series.data['is_young_adult_series_derived']
       end
     end
   end
