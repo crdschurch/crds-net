@@ -1,3 +1,5 @@
+console.log("SCRIPT FILE LOADED - TOP OF FILE");
+
 async function getPreviewEntry() {
 
     console.log("=== entering getPreviewEntry ===");
