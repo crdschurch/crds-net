@@ -1,64 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contentful Page Preview</title>
-
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-            line-height: 1.6;
-        }
-
-        h1 {
-            margin-bottom: 0.5rem;
-        }
-
-        .permalink {
-            color: #666;
-            margin-bottom: 2rem;
-        }
-
-        #preloader {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            z-index: 9999;
-            transition: opacity .25s ease;
-        }
-    </style>
+    <title>Page Preview</title>
 </head>
+
 <body>
 
-<div id="preloader" data-preview-preloader>
+<h1 id="title"></h1>
+
+<p>
+    <strong>Permalink:</strong>
+    <span id="permalink"></span>
+</p>
+
+<div id="body"></div>
+
+<div id="loading">
     Loading preview...
 </div>
 
-<main>
 
-    <h1 data-title></h1>
-
-    <div class="permalink">
-        <strong>Permalink:</strong>
-        <span data-permalink></span>
-    </div>
-
-    <article data-body></article>
-
-</main>
-
-<!-- Markdown parser -->
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-<!-- Preview logic -->
-<script src="./page-preview.js"></script>
+<script src="/assets/javascripts/components/page-preview.js"></script>
 
 </body>
 </html>
