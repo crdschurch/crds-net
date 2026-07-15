@@ -1,17 +1,19 @@
 async function getPreviewEntry() {
+
     console.log("=== entering getPreviewEntry ===");
     const url = new URL(window.location.href);
 
     const id = url.searchParams.get("id");
     const spaceId = url.searchParams.get("space_id");
+    const accessToken = url.searchParams.get("access_token");
     const environment = url.searchParams.get("contentful_env") || "master";
 
-    if (!id || !spaceId) {
+    if (!id || !spaceId || !accessToken) {
         throw new Error("Missing preview parameters");
     }
 
     const response = await fetch(
-        `/.netlify/functions/preview-entry?id=${id}&space_id=${spaceId}&environment=${environment}`
+        `https://preview.contentful.com/spaces/${spaceId}/environments/${environment}/entries/${id}?access_token=${accessToken}`
     );
 
     if (!response.ok) {
