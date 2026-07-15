@@ -41,12 +41,6 @@ async function renderPreview() {
 
         const fields = entry.fields;
 
-        document.querySelector("#title").innerText =
-            fields.title || "";
-
-        document.querySelector("#permalink").innerText =
-            fields.permalink || "";
-
         document.querySelector("#body").innerHTML =
             fields.body || "";
 
