@@ -64,6 +64,8 @@ collections:
   humans_of_crossroads:
     output: true
     permalink: /media/humans-of-crossroads/:slug
+  kcResources:
+    output: false
   authors:
     output: false
     permalink: /media/:collection/:title

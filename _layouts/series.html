@@ -89,6 +89,9 @@ title: Series
             {% unless item %}
             {% assign item = site.messages | where: 'slug', msg_obj.slug | first %}
             {% endunless %}
+            {% unless item %}
+            {% assign item = site.kcResources | where: 'slug', msg_obj.slug | first %}
+            {% endunless %}
             {% if item %}
             {% include _message-card.html %}
             {% endif %}
@@ -103,6 +106,9 @@ title: Series
           {% assign item = site.videos | where: 'slug', msg_obj.slug | first %}
           {% unless item %}
           {% assign item = site.messages | where: 'slug', msg_obj.slug | first %}
+          {% endunless %}
+          {% unless item %}
+          {% assign item = site.kcResources | where: 'slug', msg_obj.slug | first %}
           {% endunless %}
           {% if item %}
           {% include _message-card.html %}
