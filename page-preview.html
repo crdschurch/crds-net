@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div id="body"></div>
+<div id="preview-container"></div>
 
 <div id="loading">
     Loading preview...
@@ -32,15 +32,182 @@ async function getPreviewEntry() {
     return response.json();
 }
 
+function parseMarkdown(markdown) {
+    marked.setOptions({
+        sanitize: false,
+        smartLists: true,
+        smartypants: false
+    });
+    return marked.parse(markdown);
+}
+
+async function fetchAsset(assetId, accessToken, spaceId, environment) {
+    const url = `https://preview.contentful.com/spaces/${spaceId}/assets/${assetId}?access_token=${accessToken}`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Unable to fetch asset");
+    return response.json();
+}
+
+async function fetchEntry(entryId, accessToken, spaceId, environment) {
+    const url = `https://preview.contentful.com/spaces/${spaceId}/environments/${environment}/entries/${entryId}?access_token=${accessToken}`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Unable to fetch entry");
+    return response.json();
+}
+
+async function renderArticle(entry) {
+    const fields = entry.fields;
+    const container = document.querySelector("#preview-container");
+    const url = new URL(window.location.href);
+    const accessToken = url.searchParams.get("access_token");
+    const spaceId = url.searchParams.get("space_id");
+    const environment = url.searchParams.get("contentful_env") || "master";
+    
+    let heroImageHtml = "";
+    let authorHtml = "";
+    let discussionQuestionsHtml = "";
+    
+    // Handle hero image if it exists
+    if (fields.image && fields.image.sys && fields.image.sys.id) {
+        try {
+            const asset = await fetchAsset(fields.image.sys.id, accessToken, spaceId, environment);
+            const imageUrl = asset.fields.file.url;
+            heroImageHtml = `<div style="margin-bottom: 2rem; border-radius: 4px; overflow: hidden;"><img src="${imageUrl}?w=800&h=400&fit=fill" alt="${fields.title}" style="width: 100%; height: auto; display: block;"></div>`;
+        } catch (err) {
+            console.error("Error loading hero image:", err);
+        }
+    }
+    
+    // Handle discussion questions if they exist
+    if (fields.discussion_questions && fields.discussion_questions.length > 0) {
+        const questions = fields.discussion_questions;
+        let questionsHtml = questions.map((q, idx) => {
+            const questionText = q.question || q;
+            return `<li style="margin-bottom: 1rem;">${questionText}</li>`;
+        }).join("");
+        
+        discussionQuestionsHtml = `
+            <div style="background-color: #f5f5f5; padding: 1.5rem; border-radius: 4px; margin: 2rem 0;">
+                <p><strong>Discussion Questions</strong></p>
+                <ol style="margin: 0.5rem 0 0 1.5rem; padding: 0;">
+                    ${questionsHtml}
+                </ol>
+                <p style="margin-top: 1rem; font-size: 0.9rem;"><a href="#" style="color: #0066cc; text-decoration: none;">See all questions</a></p>
+            </div>
+        `;
+    }
+    
+    // Handle author information if it exists
+    if (fields.person && fields.person.length > 0) {
+        try {
+            const people = await Promise.all(
+                fields.person.map(personRef => fetchEntry(personRef.sys.id, accessToken, spaceId, environment))
+            );
+            const author = people.find(person => person.fields.roles && person.fields.roles.indexOf('Author') > -1);
+            
+            if (author) {
+                const authorName = author.fields.name || author.fields.full_name || "Anonymous";
+                const authorBio = author.fields.bio || author.fields.summary || "";
+                let authorImageHtml = "";
+                
+                if (author.fields.image && author.fields.image.sys && author.fields.image.sys.id) {
+                    try {
+                        const authorAsset = await fetchAsset(author.fields.image.sys.id, accessToken, spaceId, environment);
+                        const authorImageUrl = authorAsset.fields.file.url;
+                        authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=crop" alt="${authorName}" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 1rem; object-fit: cover;">`;
+                    } catch (err) {
+                        console.error("Error loading author image:", err);
+                    }
+                }
+                
+                authorHtml = `
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #eee;">
+                        <div style="display: flex; align-items: flex-start;">
+                            ${authorImageHtml}
+                            <div>
+                                <p style="font-weight: bold; margin: 0 0 0.5rem 0;">${authorName}</p>
+                                <p style="margin: 0; color: #666; font-size: 0.95rem;">${authorBio}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        } catch (err) {
+            console.error("Error loading author info:", err);
+        }
+    } else if (fields.author && fields.author.sys && fields.author.sys.id) {
+        try {
+            const author = await fetchEntry(fields.author.sys.id, accessToken, spaceId, environment);
+            const authorName = author.fields.name || author.fields.full_name || "Anonymous";
+            const authorBio = author.fields.bio || author.fields.summary || "";
+            let authorImageHtml = "";
+            
+            if (author.fields.image && author.fields.image.sys && author.fields.image.sys.id) {
+                try {
+                    const authorAsset = await fetchAsset(author.fields.image.sys.id, accessToken, spaceId, environment);
+                    const authorImageUrl = authorAsset.fields.file.url;
+                    authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=crop" alt="${authorName}" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 1rem; object-fit: cover;">`;
+                } catch (err) {
+                    console.error("Error loading author image:", err);
+                }
+            }
+            
+            authorHtml = `
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #eee;">
+                    <div style="display: flex; align-items: flex-start;">
+                        ${authorImageHtml}
+                        <div>
+                            <p style="font-weight: bold; margin: 0 0 0.5rem 0;">${authorName}</p>
+                            <p style="margin: 0; color: #666; font-size: 0.95rem;">${authorBio}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } catch (err) {
+            console.error("Error loading author info:", err);
+        }
+    }
+    
+    const html = `
+        <article class="article-tpl" style="padding: 2rem 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        ${heroImageHtml}
+                        <h1 style="margin-bottom: 1rem;">${fields.title || ""}</h1>
+                        ${fields.published_at ? `<p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">Published: ${new Date(fields.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>` : ""}
+                        ${fields.tags && fields.tags.length > 0 ? `<p style="margin-bottom: 1rem;"><strong>Tags:</strong> ${fields.tags.join(", ")}</p>` : ""}
+                        <div style="line-height: 1.6; color: #333; margin: 1.5rem 0;">
+                            ${parseMarkdown(fields.body || "")}
+                        </div>
+                        ${discussionQuestionsHtml}
+                        ${authorHtml}
+                    </div>
+                </div>
+            </div>
+        </article>
+    `;
+    
+    container.innerHTML = html;
+}
+
+function renderPage(entry) {
+    const fields = entry.fields;
+    const container = document.querySelector("#preview-container");
+    container.innerHTML = fields.body || "";
+}
 
 async function renderPreview() {
     try {
         const entry = await getPreviewEntry();
+        const contentTypeId = entry.sys.contentType.sys.id;
 
-        const fields = entry.fields;
-
-        document.querySelector("#body").innerHTML =
-            fields.body || "";
+        if (contentTypeId === "article") {
+            await renderArticle(entry);
+        } else {
+            // Default to page rendering for all other types
+            renderPage(entry);
+        }
 
         document.querySelector("#loading").style.display = "none";
 
