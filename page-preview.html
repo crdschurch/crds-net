@@ -215,13 +215,14 @@ async function renderArticle(entry) {
                 }))).join("");
                 
                 discussionQuestionsHtml = `
-                    <div style="background-color: #f5f5f5; padding: 2rem; border-radius: 4px; margin: 2rem 0;">
-                        <p style="font-style: italic; margin: 0 0 1rem 0; font-weight: bold;"><strong>Disclaimer:</strong> This article is 100% human-generated.</p>
+                    <div style="border-radius: 4px; margin: 2rem 0; border-top: 1px solid rgb(216, 216, 216); margin-bottom: 20px; padding-top: 25px">
+                        <p style="font-style: italic; margin: 0 0 1rem 0;"><strong>Disclaimer:</strong> This article is 100% human-generated.</p>
                         <p style="margin: 0 0 1.5rem 0; font-size: 16px;">Process, journal or discuss the themes of this article - here's a few questions to get the ball rolling…</p>
-                        <ol style="margin: 1rem 0 1.5rem 1.5rem; padding: 0; counter-reset: item;">
-                            ${questionsHtml}
-                        </ol>
-                        <p style="margin-top: 1rem; font-size: 0.9rem;"><a href="#" style="color: #0066cc; text-decoration: none;">See all questions</a></p>
+                        <div style="background-color: #f5f5f5; border-radius: 6px; padding: 25px;">
+                            <ol style="margin: 1rem 0 1.5rem 1.5rem; padding: 0; counter-reset: item;">
+                                ${questionsHtml}
+                            </ol>
+                        </div>
                     </div>
                 `;
             }
@@ -257,7 +258,7 @@ async function renderArticle(entry) {
                             ${authorImageHtml}
                             <div>
                                 <p style="font-weight: bold; margin: 0 0 0.5rem 0;">${authorName}</p>
-                                <p style="margin: 0; color: #666; font-size: 0.95rem;">${authorBio}</p>
+                                <p style="margin: 0; color: #00000; font-size: 20px;">${authorBio}</p>
                             </div>
                         </div>
                     </div>
@@ -289,7 +290,7 @@ async function renderArticle(entry) {
                         ${authorImageHtml}
                         <div>
                             <p style="font-weight: bold; margin: 0 0 0.5rem 0;">${authorName}</p>
-                            <p style="margin: 0; color: #666; font-size: 0.95rem;">${authorBio}</p>
+                            <p style="margin: 0; color: #000000; font-size: 20px;">${authorBio}</p>
                         </div>
                     </div>
                 </div>
@@ -305,6 +306,15 @@ async function renderArticle(entry) {
     const interactionSection = createInteractionSection(fields);
     
     const html = `
+    <div style="font-size: 16px; font-weight: 400; line-height: 1.4;">
+        <a href="https://www.crossroads.net/media" style="color: #6E6D6B; text-decoration: none;">
+            Media
+        </a>
+        <span style="color: #666; margin: 0 12px;">/</span>
+        <a href="https://www.crossroads.net/media/articles" style="color: #6E6D6B; text-decoration: underline;">
+            Articles
+        </a>
+        </div>
         <article class="article-tpl" style="padding: 0;">
             <div style="width: 100%; display: flex; justify-content: center;">
                 ${heroImageHtml}
@@ -319,6 +329,7 @@ async function renderArticle(entry) {
                         </div>
                         ${discussionQuestionsHtml}
                         ${authorHtml}
+                        ${interactionSection}
                     </div>
                 </div>
             </div>
