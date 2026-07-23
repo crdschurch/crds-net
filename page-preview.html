@@ -35,20 +35,22 @@ async function getPreviewEntry() {
 }
 
 function parseMarkdown(markdown) {
+    console.log('==== Parsing markdown:', markdown);
     const renderer = new marked.Renderer();
 
-    renderer.heading = function(text, level) {
-        switch (level) {
+    renderer.heading = function(token) {
+        const text = this.parser.parseInline(token.tokens);
+
+        switch (token.depth) {
             case 3:
                 return `<h3 style="padding: 20px 0 10px; font-size: 26px;">${text}</h3>`;
             default:
-                return `<h${level}>${text}</h${level}>`;
+                return `<h${token.depth}>${text}</h${token.depth}>`;
         }
     };
 
     marked.setOptions({
         renderer,
-        sanitize: false,
         smartLists: true,
         smartypants: false
     });
