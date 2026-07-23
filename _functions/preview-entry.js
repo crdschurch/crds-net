@@ -7,12 +7,16 @@ exports.handler = async function (event) {
 
   const accessToken = process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN;
 
+  console.log("==== Token present:", !!NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN);
+  console.log("==== Token present:", !!NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN);
+  console.log("==== Token length:", process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN?.length);
+
   const response = await fetch(
     `https://preview.contentful.com/spaces/${space_id}/environments/${environment}/entries/${id}?access_token=${accessToken}`
   );
 
   if (!response.ok) {
-    return { statusCode: response.status, body: JSON.stringify({ error: "Unable to fetch preview entry" }) };
+    return { statusCode: response.status, body: JSON.stringify({ error: " inside preview-entry Unable to fetch preview entry" }) };
   }
 
   const data = await response.json();

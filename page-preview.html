@@ -27,7 +27,7 @@ async function getPreviewEntry() {
     );
 
     if (!response.ok) {
-        throw new Error("Unable to fetch preview entry");
+        throw new Error("in page-preview Unable to fetch preview entry");
     }
 
     return response.json();
