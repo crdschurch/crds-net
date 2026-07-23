@@ -25,7 +25,6 @@ async function getPreviewEntry() {
     const response = await fetch(
         `/.netlify/functions/preview-entry?id=${id}&space_id=${spaceId}&environment=${environment}`
     );
-    console.log('==== response', response);
 
     if (!response.ok) {
         throw new Error("in page-preview Unable to fetch preview entry");
@@ -35,7 +34,6 @@ async function getPreviewEntry() {
 }
 
 function parseMarkdown(markdown) {
-    console.log('==== Parsing markdown:', markdown);
     const renderer = new marked.Renderer();
 
     renderer.heading = function(token) {
@@ -104,7 +102,6 @@ function createInteractionSection(fields) {
 
 async function renderArticle(entry) {
     const fields = entry.fields;
-    console.log("=== Rendering article:", fields);
     const container = document.querySelector("#preview-container");
     const url = new URL(window.location.href);
     const accessToken = entry.previewAccessToken;
@@ -125,13 +122,10 @@ async function renderArticle(entry) {
             // Prepare author info for overlay
             let authorOverlayHtml = "";
             if (fields.person && fields.person.length > 0) {
-                console.log("=== 113 fields", fields);
                 try {
                     const personRef = fields.person[0];
-                    console.log("=== 116 personRef", personRef);
                     if (personRef && personRef.sys && personRef.sys.id) {
                         const author = await fetchEntry(personRef.sys.id, accessToken, spaceId, environment);
-                        console.log("=== 119 author", author);
                         
                         const authorName = author.fields.name || author.fields.full_name || "Anonymous";
                         let authorImageHtml = "";
@@ -139,7 +133,6 @@ async function renderArticle(entry) {
                         if (author.fields.image && author.fields.image.sys && author.fields.image.sys.id) {
                             try {
                                 const authorAsset = await fetchAsset(author.fields.image.sys.id, accessToken, spaceId, environment);
-                                console.log("=== 127 authorAsset", authorAsset);
                                 const authorImageUrl = authorAsset.fields.file.url;
                                 authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=fill&f=face" alt="${authorName}" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 0.75rem; object-fit: cover;">`;
                             } catch (err) {
@@ -161,7 +154,6 @@ async function renderArticle(entry) {
                     console.error("Error loading author info for overlay:", err);
                 }
             } else if (fields.author && fields.author.sys && fields.author.sys.id) {
-                console.log("=== 135");
                 try {
                     const author = await fetchEntry(fields.author.sys.id, accessToken, spaceId, environment);
                     const authorName = author.fields.name || author.fields.full_name || "Anonymous";
@@ -209,19 +201,14 @@ async function renderArticle(entry) {
     
     // Handle discussion questions if they exist
     if (fields.discussion && fields.discussion.sys && fields.discussion.sys.id) {
-        console.log("=== 201 fields.discussion:", fields.discussion);
         try {
             const discussionQuestions = await fetchEntry(fields.discussion.sys.id, accessToken, spaceId, environment);
-            console.log("=== 204 Discussion questions:", discussionQuestions);
             if (discussionQuestions && discussionQuestions.fields && discussionQuestions.fields.discussion_questions && discussionQuestions.fields.discussion_questions.length > 0) {
                 const questions = discussionQuestions.fields.discussion_questions;
-                console.log("=== 207 questions:", questions);
                 let questionsHtml = (await Promise.all(questions.map(async (q, idx) => {
                     try {
                         const questionEntry = await fetchEntry(q.sys.id, accessToken, spaceId, environment);
-                        console.log("=== 207 questionEntry:", questionEntry);
                         const questionText = questionEntry.fields.question || questionEntry.fields.title || "";
-                        console.log("=== 209 questionText:", questionText);
                         return `<li style="margin-bottom: 1rem;">${questionText}</li>`;
                     } catch (err) {
                         console.error("Error loading question:", err);
@@ -316,7 +303,6 @@ async function renderArticle(entry) {
     }
     
     const leadText = fields.lead_text || "";
-    console.log("=== Lead text:", leadText);
     
     const interactionSection = createInteractionSection(fields);
     
