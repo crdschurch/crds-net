@@ -244,6 +244,9 @@ contentful:
   video:
     map:
       date: published_at
+    kids_club_metadata_tag_ids:
+      - kids.Club
+      - kidsClub
   serviceTimes:
 defaults:
   - scope:
