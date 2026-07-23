@@ -25,6 +25,7 @@ async function getPreviewEntry() {
     const response = await fetch(
         `/.netlify/functions/preview-entry?id=${id}&space_id=${spaceId}&environment=${environment}`
     );
+    console.log('==== response', response);
 
     if (!response.ok) {
         throw new Error("in page-preview Unable to fetch preview entry");
