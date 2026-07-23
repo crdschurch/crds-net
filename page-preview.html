@@ -57,6 +57,36 @@ async function fetchEntry(entryId, accessToken, spaceId, environment) {
     return response.json();
 }
 
+function createInteractionSection(fields) {
+    const interactionCount = fields.interaction_count || 0;
+    return `
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #eee;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <button style="background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center; gap: 0.25rem;" title="Like">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #666;">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span style="color: #666; font-size: 14px;">${interactionCount}</span>
+                </button>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button style="background: none; border: none; cursor: pointer; padding: 0; color: #666; display: flex; align-items: center; justify-content: center;" title="Copy link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                    </svg>
+                </button>
+                <button style="background: none; border: none; cursor: pointer; padding: 0; color: #1B5294; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px;" onclick="window.open('https://www.crossroads.net/', '_blank');" title="Share on Facebook">
+                    f
+                </button>
+                <button style="background: none; border: none; cursor: pointer; padding: 0; color: #000; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px;" onclick="window.open('https://www.crossroads.net/', '_blank');" title="Share on X">
+                    𝕏
+                </button>
+            </div>
+        </div>
+    `;
+}
+
 async function renderArticle(entry) {
     const fields = entry.fields;
     console.log("=== Rendering article:", fields);
@@ -80,6 +110,7 @@ async function renderArticle(entry) {
             // Prepare author info for overlay
             let authorOverlayHtml = "";
             if (fields.person && fields.person.length > 0) {
+                console.log("=== 100");
                 try {
                     const people = await Promise.all(
                         fields.person.map(personRef => fetchEntry(personRef.sys.id, accessToken, spaceId, environment))
@@ -94,7 +125,7 @@ async function renderArticle(entry) {
                             try {
                                 const authorAsset = await fetchAsset(author.fields.image.sys.id, accessToken, spaceId, environment);
                                 const authorImageUrl = authorAsset.fields.file.url;
-                                authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=crop" alt="${authorName}" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 0.75rem; object-fit: cover;">`;
+                                authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=fill&f=face" alt="${authorName}" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 0.75rem; object-fit: cover;">`;
                             } catch (err) {
                                 console.error("Error loading author image:", err);
                             }
@@ -105,7 +136,7 @@ async function renderArticle(entry) {
                                 ${authorImageHtml}
                                 <div style="text-align: left;">
                                     <p style="color: white; margin: 0; font-size: 14px; font-weight: 500;">${authorName}</p>
-                                    ${fields.published_at ? `<p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 12px;">${new Date(fields.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</p>` : ""}
+                                    ${fields.published_at ? `<p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 12px;">${new Date(fields.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })} • ${fields.duration ? Math.round(fields.duration / 60) : ''} min read</p>` : ""}
                                 </div>
                             </div>
                         `;
@@ -114,6 +145,7 @@ async function renderArticle(entry) {
                     console.error("Error loading author info for overlay:", err);
                 }
             } else if (fields.author && fields.author.sys && fields.author.sys.id) {
+                console.log("=== 135");
                 try {
                     const author = await fetchEntry(fields.author.sys.id, accessToken, spaceId, environment);
                     const authorName = author.fields.name || author.fields.full_name || "Anonymous";
@@ -123,7 +155,7 @@ async function renderArticle(entry) {
                         try {
                             const authorAsset = await fetchAsset(author.fields.image.sys.id, accessToken, spaceId, environment);
                             const authorImageUrl = authorAsset.fields.file.url;
-                            authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=crop" alt="${authorName}" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 0.75rem; object-fit: cover;">`;
+                            authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=fill&f=face" alt="${authorName}" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 0.75rem; object-fit: cover;">`;
                         } catch (err) {
                             console.error("Error loading author image:", err);
                         }
@@ -134,7 +166,7 @@ async function renderArticle(entry) {
                             ${authorImageHtml}
                             <div style="text-align: left;">
                                 <p style="color: white; margin: 0; font-size: 14px; font-weight: 500;">${authorName}</p>
-                                ${fields.published_at ? `<p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 12px;">${new Date(fields.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })} • 11 min read</p>` : ""}
+                                ${fields.published_at ? `<p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 12px;">${new Date(fields.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })} • ${fields.duration ? Math.round(fields.duration / 60) : ''} min read</p>` : ""}
                             </div>
                         </div>
                     `;
@@ -147,6 +179,7 @@ async function renderArticle(entry) {
                 <div style="width: 100%; margin: 0 auto 2rem; border-radius: 4px; overflow: hidden; max-width: 1248px; margin-left: auto; margin-right: auto;">
                     <div style="position: relative; width: 100%; height: 500px; background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${imageUrl}?w=1200&h=600&fit=fill') center/cover;">
                         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem;">
+                            <a href="https://www.crossroads.net/media/articles" style="background-color: rgba(255, 255, 255, 0.2); color: white; padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 12px; text-decoration: none; margin-bottom: 1rem; display: inline-block; border: 1px solid rgba(255, 255, 255, 0.5);">Articles</a>
                             <h1 style="color: white; font-size: 62px; font-weight: bold; text-align: center; margin: 0; line-height: 1.2; max-width: 90%;">${fields.title || ""}</h1>
                             ${authorOverlayHtml}
                         </div>
@@ -159,8 +192,9 @@ async function renderArticle(entry) {
     }
     
     // Handle discussion questions if they exist
-    if (fields.discussion_questions && fields.discussion_questions.length > 0) {
-        const questions = fields.discussion_questions;
+    const discussionQuestions = await fetchEntry(fields.discussion.sys.id, accessToken, spaceId, environment);
+    if (discussionQuestions && discussionQuestions > 0) {
+        const questions = discussionQuestions;
         let questionsHtml = questions.map((q, idx) => {
             const questionText = q.question || q;
             return `<li style="margin-bottom: 1rem;">${questionText}</li>`;
@@ -194,7 +228,7 @@ async function renderArticle(entry) {
                     try {
                         const authorAsset = await fetchAsset(author.fields.image.sys.id, accessToken, spaceId, environment);
                         const authorImageUrl = authorAsset.fields.file.url;
-                        authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=crop" alt="${authorName}" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 1rem; object-fit: cover;">`;
+                        authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=fill&f=face" alt="${authorName}" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 1rem; object-fit: cover;">`;
                     } catch (err) {
                         console.error("Error loading author image:", err);
                     }
@@ -226,7 +260,7 @@ async function renderArticle(entry) {
                 try {
                     const authorAsset = await fetchAsset(author.fields.image.sys.id, accessToken, spaceId, environment);
                     const authorImageUrl = authorAsset.fields.file.url;
-                    authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=crop" alt="${authorName}" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 1rem; object-fit: cover;">`;
+                    authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=fill&f=face" alt="${authorName}" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 1rem; object-fit: cover;">`;
                 } catch (err) {
                     console.error("Error loading author image:", err);
                 }
@@ -248,15 +282,18 @@ async function renderArticle(entry) {
         }
     }
     
-    const leadText = fields.excerpt || fields.lead || "";
-    console.log("Lead text:", leadText);
-    console.log("Discussion questions:", fields.discussion_questions);
+    const leadText = fields.lead_text || "";
+    console.log("=== Lead text:", leadText);
+    console.log("=== Discussion questions:", fields.discussion_questions);
+    
+    const interactionSection = createInteractionSection(fields);
     
     const html = `
         <article class="article-tpl" style="padding: 0;">
             <div style="width: 100%; display: flex; justify-content: center;">
                 ${heroImageHtml}
             </div>
+            ${interactionSection}
             <div class="container" style="padding: 2rem 0;">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
@@ -266,6 +303,7 @@ async function renderArticle(entry) {
                         </div>
                         ${discussionQuestionsHtml}
                         ${authorHtml}
+                        ${interactionSection}
                     </div>
                 </div>
             </div>
