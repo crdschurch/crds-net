@@ -110,25 +110,21 @@ async function renderArticle(entry) {
             // Prepare author info for overlay
             let authorOverlayHtml = "";
             if (fields.person && fields.person.length > 0) {
-                console.log("=== 100 fields", fields);
+                console.log("=== 113 fields", fields);
                 try {
-                    const people = await Promise.all(
-                        fields.person.map(personRef => {
-                            if (personRef && personRef.sys && personRef.sys.id) {
-                                return fetchEntry(personRef.sys.id, accessToken, spaceId, environment);
-                            }
-                            return null;
-                        })
-                    );
-                    const author = people.find(person => person && person.fields && person.fields.roles && person.fields.roles.indexOf('Author') > -1);
-                    
-                    if (author) {
+                    const personRef = fields.person[0];
+                    console.log("=== 116 personRef", personRef);
+                    if (personRef && personRef.sys && personRef.sys.id) {
+                        const author = await fetchEntry(personRef.sys.id, accessToken, spaceId, environment);
+                        console.log("=== 119 author", author);
+                        
                         const authorName = author.fields.name || author.fields.full_name || "Anonymous";
                         let authorImageHtml = "";
                         
                         if (author.fields.image && author.fields.image.sys && author.fields.image.sys.id) {
                             try {
                                 const authorAsset = await fetchAsset(author.fields.image.sys.id, accessToken, spaceId, environment);
+                                console.log("=== 127 authorAsset", authorAsset);
                                 const authorImageUrl = authorAsset.fields.file.url;
                                 authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=fill&f=face" alt="${authorName}" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 0.75rem; object-fit: cover;">`;
                             } catch (err) {
@@ -197,36 +193,42 @@ async function renderArticle(entry) {
     }
     
     // Handle discussion questions if they exist
-    const discussionQuestions = await fetchEntry(fields.discussion.sys.id, accessToken, spaceId, environment);
-    if (discussionQuestions && discussionQuestions > 0) {
-        const questions = discussionQuestions;
-        let questionsHtml = questions.map((q, idx) => {
-            const questionText = q.question || q;
-            return `<li style="margin-bottom: 1rem;">${questionText}</li>`;
-        }).join("");
-        
-        discussionQuestionsHtml = `
-            <div style="background-color: #f5f5f5; padding: 1.5rem; border-radius: 4px; margin: 2rem 0;">
-                <p><strong>Discussion Questions</strong></p>
-                <ol style="margin: 0.5rem 0 0 1.5rem; padding: 0;">
-                    ${questionsHtml}
-                </ol>
-                <p style="margin-top: 1rem; font-size: 0.9rem;"><a href="#" style="color: #0066cc; text-decoration: none;">See all questions</a></p>
-            </div>
-        `;
+    if (fields.discussion && fields.discussion.sys && fields.discussion.sys.id) {
+        console.log("=== 201 fields.discussion:", fields.discussion);
+        try {
+            const discussionQuestions = await fetchEntry(fields.discussion.sys.id, accessToken, spaceId, environment);
+            console.log("=== 204 Discussion questions:", discussionQuestions);
+            if (discussionQuestions && discussionQuestions.fields && discussionQuestions.fields.discussion_questions && discussionQuestions.fields.discussion_questions.length > 0) {
+                const questions = discussionQuestions.fields.discussion_questions;
+                console.log("=== 207 questions:", questions);
+                let questionsHtml = questions.map((q, idx) => {
+                    const questionText = q.question || q;
+                    return `<li style="margin-bottom: 1rem;">${questionText}</li>`;
+                }).join("");
+                
+                discussionQuestionsHtml = `
+                    <div style="background-color: #f5f5f5; padding: 2rem; border-radius: 4px; margin: 2rem 0;">
+                        <p style="font-style: italic; margin: 0 0 1rem 0; font-weight: bold;"><strong>Disclaimer:</strong> This article is 100% human-generated.</p>
+                        <p style="margin: 0 0 1.5rem 0; font-size: 16px;">Process, journal or discuss the themes of this article - here's a few questions to get the ball rolling…</p>
+                        <ol style="margin: 1rem 0 1.5rem 1.5rem; padding: 0; counter-reset: item;">
+                            ${questionsHtml}
+                        </ol>
+                        <p style="margin-top: 1rem; font-size: 0.9rem;"><a href="#" style="color: #0066cc; text-decoration: none;">See all questions</a></p>
+                    </div>
+                `;
+            }
+        } catch (err) {
+            console.error("Error loading discussion questions:", err);
+        }
     }
-
-    console.log("=== Discussion questions:", discussionQuestions);
 
     // Handle author information if it exists
     if (fields.person && fields.person.length > 0) {
         try {
-            const people = await Promise.all(
-                fields.person.map(personRef => fetchEntry(personRef.sys.id, accessToken, spaceId, environment))
-            );
-            const author = people.find(person => person.fields.roles && person.fields.roles.indexOf('Author') > -1);
-            
-            if (author) {
+            const personRef = fields.person[0];
+            if (personRef && personRef.sys && personRef.sys.id) {
+                const author = await fetchEntry(personRef.sys.id, accessToken, spaceId, environment);
+                
                 const authorName = author.fields.name || author.fields.full_name || "Anonymous";
                 const authorBio = author.fields.bio || author.fields.summary || "";
                 let authorImageHtml = "";
