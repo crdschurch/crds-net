@@ -40,6 +40,8 @@ function parseMarkdown(markdown) {
         const text = this.parser.parseInline(token.tokens);
 
         switch (token.depth) {
+            case 2:
+                return `<h2 style="font-size: 30px; margin: 54px 0 24px">${text}</h2>`;
             case 3:
                 return `<h3 style="padding: 20px 0 10px; font-size: 26px;">${text}</h3>`;
             default:
