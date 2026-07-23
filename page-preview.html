@@ -35,11 +35,24 @@ async function getPreviewEntry() {
 }
 
 function parseMarkdown(markdown) {
+    const renderer = new marked.Renderer();
+
+    renderer.heading = function(text, level) {
+        switch (level) {
+            case 3:
+                return `<h3 style="padding: 20px 0 10px; font-size: 26px;">${text}</h3>`;
+            default:
+                return `<h${level}>${text}</h${level}>`;
+        }
+    };
+
     marked.setOptions({
+        renderer,
         sanitize: false,
         smartLists: true,
         smartypants: false
     });
+
     return marked.parse(markdown);
 }
 
@@ -216,8 +229,8 @@ async function renderArticle(entry) {
                 
                 discussionQuestionsHtml = `
                     <div style="border-radius: 4px; margin: 2rem 0; border-top: 1px solid rgb(216, 216, 216); margin-bottom: 20px; padding-top: 25px">
-                        <p style="font-style: italic; margin: 0 0 1rem 0;"><strong>Disclaimer:</strong> This article is 100% human-generated.</p>
-                        <p style="margin: 0 0 1.5rem 0; font-size: 16px;">Process, journal or discuss the themes of this article - here's a few questions to get the ball rolling…</p>
+                        <p style="font-size: 19px; font-style: italic; margin: 0 0 1rem 0;"><strong>Disclaimer:</strong> This article is 100% human-generated.</p>
+                        <p style="margin: 0 0 1.5rem 0; font-size: 20px;">Process, journal or discuss the themes of this article - here's a few questions to get the ball rolling…</p>
                         <div style="background-color: #f5f5f5; border-radius: 6px; padding: 25px;">
                             <ol style="margin: 1rem 0 1.5rem 1.5rem; padding: 0; counter-reset: item;">
                                 ${questionsHtml}
@@ -253,7 +266,7 @@ async function renderArticle(entry) {
                 }
                 
                 authorHtml = `
-                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #eee;">
+                    <div style="margin-top: 2rem; padding-top: 2rem; padding-bottom: 2rem; border-top: 1px solid #eee;">
                         <div style="display: flex; align-items: flex-start;">
                             ${authorImageHtml}
                             <div>
@@ -306,15 +319,6 @@ async function renderArticle(entry) {
     const interactionSection = createInteractionSection(fields);
     
     const html = `
-    <div style="font-size: 16px; font-weight: 400; line-height: 1.4;">
-        <a href="https://www.crossroads.net/media" style="color: #6E6D6B; text-decoration: none;">
-            Media
-        </a>
-        <span style="color: #666; margin: 0 12px;">/</span>
-        <a href="https://www.crossroads.net/media/articles" style="color: #6E6D6B; text-decoration: underline;">
-            Articles
-        </a>
-        </div>
         <article class="article-tpl" style="padding: 0;">
             <div style="width: 100%; display: flex; justify-content: center;">
                 ${heroImageHtml}
@@ -323,8 +327,8 @@ async function renderArticle(entry) {
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         ${interactionSection}
-                        ${leadText ? `<p style="font-style: italic; color: #333; font-size: 16px; margin-bottom: 1.5rem; line-height: 1.6;">${leadText}</p>` : ""}
-                        <div style="line-height: 1.8; color: #333; margin: 1.5rem 0; font-size: 18px;">
+                        ${leadText ? `<p style="color: rgb(31, 57, 71); font-family: lexia-italic, serif; font-size: 30px; margin-bottom: 20px;">${leadText}</p>` : ""}
+                        <div style="line-height: 1.5; color: #1F3947; margin: 1.5rem 0; font-size: 18px;">
                             ${parseMarkdown(fields.body || "")}
                         </div>
                         ${discussionQuestionsHtml}
