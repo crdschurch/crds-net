@@ -68,13 +68,88 @@ async function renderArticle(entry) {
     let heroImageHtml = "";
     let authorHtml = "";
     let discussionQuestionsHtml = "";
+    let heroOverlayContent = "";
     
     // Handle hero image if it exists
     if (fields.image && fields.image.sys && fields.image.sys.id) {
         try {
             const asset = await fetchAsset(fields.image.sys.id, accessToken, spaceId, environment);
             const imageUrl = asset.fields.file.url;
-            heroImageHtml = `<div style="margin-bottom: 2rem; border-radius: 4px; overflow: hidden;"><img src="${imageUrl}?w=800&h=400&fit=fill" alt="${fields.title}" style="width: 100%; height: auto; display: block;"></div>`;
+            
+            // Prepare author info for overlay
+            let authorOverlayHtml = "";
+            if (fields.person && fields.person.length > 0) {
+                try {
+                    const people = await Promise.all(
+                        fields.person.map(personRef => fetchEntry(personRef.sys.id, accessToken, spaceId, environment))
+                    );
+                    const author = people.find(person => person.fields.roles && person.fields.roles.indexOf('Author') > -1);
+                    
+                    if (author) {
+                        const authorName = author.fields.name || author.fields.full_name || "Anonymous";
+                        let authorImageHtml = "";
+                        
+                        if (author.fields.image && author.fields.image.sys && author.fields.image.sys.id) {
+                            try {
+                                const authorAsset = await fetchAsset(author.fields.image.sys.id, accessToken, spaceId, environment);
+                                const authorImageUrl = authorAsset.fields.file.url;
+                                authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=crop" alt="${authorName}" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 0.75rem; object-fit: cover;">`;
+                            } catch (err) {
+                                console.error("Error loading author image:", err);
+                            }
+                        }
+                        
+                        authorOverlayHtml = `
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1rem;">
+                                ${authorImageHtml}
+                                <div style="text-align: left;">
+                                    <p style="color: white; margin: 0; font-size: 14px; font-weight: 500;">${authorName}</p>
+                                    ${fields.published_at ? `<p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 12px;">Jul 31, 2024 • 11 min read</p>` : ""}
+                                </div>
+                            </div>
+                        `;
+                    }
+                } catch (err) {
+                    console.error("Error loading author info for overlay:", err);
+                }
+            } else if (fields.author && fields.author.sys && fields.author.sys.id) {
+                try {
+                    const author = await fetchEntry(fields.author.sys.id, accessToken, spaceId, environment);
+                    const authorName = author.fields.name || author.fields.full_name || "Anonymous";
+                    let authorImageHtml = "";
+                    
+                    if (author.fields.image && author.fields.image.sys && author.fields.image.sys.id) {
+                        try {
+                            const authorAsset = await fetchAsset(author.fields.image.sys.id, accessToken, spaceId, environment);
+                            const authorImageUrl = authorAsset.fields.file.url;
+                            authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=crop" alt="${authorName}" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 0.75rem; object-fit: cover;">`;
+                        } catch (err) {
+                            console.error("Error loading author image:", err);
+                        }
+                    }
+                    
+                    authorOverlayHtml = `
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1rem;">
+                            ${authorImageHtml}
+                            <div style="text-align: left;">
+                                <p style="color: white; margin: 0; font-size: 14px; font-weight: 500;">${authorName}</p>
+                                ${fields.published_at ? `<p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 12px;">Jul 31, 2024 • 11 min read</p>` : ""}
+                            </div>
+                        </div>
+                    `;
+                } catch (err) {
+                    console.error("Error loading author info for overlay:", err);
+                }
+            }
+            
+            heroImageHtml = `
+                <div style="position: relative; width: 100%; height: 500px; margin-bottom: 2rem; border-radius: 4px; overflow: hidden; background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${imageUrl}?w=1200&h=600&fit=fill') center/cover;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem;">
+                        <h1 style="color: white; font-size: 62px; font-weight: bold; text-align: center; margin: 0; line-height: 1.2; max-width: 90%;">${fields.title || ""}</h1>
+                        ${authorOverlayHtml}
+                    </div>
+                </div>
+            `;
         } catch (err) {
             console.error("Error loading hero image:", err);
         }
@@ -170,16 +245,18 @@ async function renderArticle(entry) {
         }
     }
     
+    const leadText = fields.excerpt || fields.lead || "";
+    
     const html = `
-        <article class="article-tpl" style="padding: 2rem 0;">
-            <div class="container">
+        <article class="article-tpl" style="padding: 0;">
+            <div style="width: 100%;">
+                ${heroImageHtml}
+            </div>
+            <div class="container" style="padding: 2rem 0;">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        ${heroImageHtml}
-                        <h1 style="margin-bottom: 1rem;">${fields.title || ""}</h1>
-                        ${fields.published_at ? `<p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">Published: ${new Date(fields.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>` : ""}
-                        ${fields.tags && fields.tags.length > 0 ? `<p style="margin-bottom: 1rem;"><strong>Tags:</strong> ${fields.tags.join(", ")}</p>` : ""}
-                        <div style="line-height: 1.6; color: #333; margin: 1.5rem 0;">
+                        ${leadText ? `<p style="font-style: italic; color: #333; font-size: 16px; margin-bottom: 1.5rem; line-height: 1.6;">${leadText}</p>` : ""}
+                        <div style="line-height: 1.8; color: #333; margin: 1.5rem 0; font-size: 18px;">
                             ${parseMarkdown(fields.body || "")}
                         </div>
                         ${discussionQuestionsHtml}
