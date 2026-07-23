@@ -107,7 +107,7 @@ async function renderArticle(entry) {
     console.log("=== Rendering article:", fields);
     const container = document.querySelector("#preview-container");
     const url = new URL(window.location.href);
-    const accessToken = url.searchParams.get("access_token");
+    const accessToken = entry.previewAccessToken;
     const spaceId = url.searchParams.get("space_id");
     const environment = url.searchParams.get("contentful_env") || "master";
     

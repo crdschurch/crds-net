@@ -7,9 +7,6 @@ exports.handler = async function (event) {
 
   const accessToken = process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN;
 
-  console.log("==== Token present:", !!accessToken);
-  console.log("==== Token length:", accessToken?.length);
-
   const response = await fetch(
     `https://preview.contentful.com/spaces/${space_id}/environments/${environment}/entries/${id}?access_token=${accessToken}`
   );
@@ -23,6 +20,6 @@ exports.handler = async function (event) {
   return {
     statusCode: 200,
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: JSON.stringify({ ...data, previewAccessToken: accessToken }),
   };
 };
