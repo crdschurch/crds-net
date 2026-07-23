@@ -66,7 +66,7 @@ function createInteractionSection(fields) {
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #666;">
                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                     </svg>
-                    <span style="color: #666; font-size: 14px;">${interactionCount}</span>
+                    <span style="color: #666; font-size: 14px;">${interactionCount} likes</span>
                 </button>
             </div>
             <div style="display: flex; align-items: center; gap: 1rem;">
@@ -110,12 +110,17 @@ async function renderArticle(entry) {
             // Prepare author info for overlay
             let authorOverlayHtml = "";
             if (fields.person && fields.person.length > 0) {
-                console.log("=== 100");
+                console.log("=== 100 fields", fields);
                 try {
                     const people = await Promise.all(
-                        fields.person.map(personRef => fetchEntry(personRef.sys.id, accessToken, spaceId, environment))
+                        fields.person.map(personRef => {
+                            if (personRef && personRef.sys && personRef.sys.id) {
+                                return fetchEntry(personRef.sys.id, accessToken, spaceId, environment);
+                            }
+                            return null;
+                        })
                     );
-                    const author = people.find(person => person.fields.roles && person.fields.roles.indexOf('Author') > -1);
+                    const author = people.find(person => person && person.fields && person.fields.roles && person.fields.roles.indexOf('Author') > -1);
                     
                     if (author) {
                         const authorName = author.fields.name || author.fields.full_name || "Anonymous";
@@ -210,7 +215,9 @@ async function renderArticle(entry) {
             </div>
         `;
     }
-    
+
+    console.log("=== Discussion questions:", discussionQuestions);
+
     // Handle author information if it exists
     if (fields.person && fields.person.length > 0) {
         try {
@@ -284,7 +291,6 @@ async function renderArticle(entry) {
     
     const leadText = fields.lead_text || "";
     console.log("=== Lead text:", leadText);
-    console.log("=== Discussion questions:", fields.discussion_questions);
     
     const interactionSection = createInteractionSection(fields);
     
@@ -293,7 +299,11 @@ async function renderArticle(entry) {
             <div style="width: 100%; display: flex; justify-content: center;">
                 ${heroImageHtml}
             </div>
-            ${interactionSection}
+            <div style="width: 100%; display: flex; justify-content: center;">
+                <div style="width: 100%; max-width: 1248px; margin-left: auto; margin-right: auto; padding: 0 1rem;">
+                    ${interactionSection}
+                </div>
+            </div>
             <div class="container" style="padding: 2rem 0;">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
