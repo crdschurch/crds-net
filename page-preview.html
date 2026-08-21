@@ -1,0 +1,366 @@
+---
+layout: default
+---
+
+<div id="preview-container"></div>
+
+<div id="loading">
+    Loading preview...
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<script>
+async function getPreviewEntry() {
+    const url = new URL(window.location.href);
+
+    const id = url.searchParams.get("id");
+    const spaceId = url.searchParams.get("space_id");
+    const environment = url.searchParams.get("contentful_env") || "master";
+
+    if (!id || !spaceId) {
+        throw new Error("Missing preview parameters");
+    }
+
+    const response = await fetch(
+        `/.netlify/functions/preview-entry?id=${id}&space_id=${spaceId}&environment=${environment}`
+    );
+
+    if (!response.ok) {
+        throw new Error("in page-preview Unable to fetch preview entry");
+    }
+
+    return response.json();
+}
+
+function parseMarkdown(markdown) {
+    const renderer = new marked.Renderer();
+
+    renderer.heading = function(token) {
+        const text = this.parser.parseInline(token.tokens);
+
+        switch (token.depth) {
+            case 2:
+                return `<h2 style="font-size: 30px; margin: 54px 0 24px">${text}</h2>`;
+            case 3:
+                return `<h3 style="padding: 20px 0 10px; font-size: 26px;">${text}</h3>`;
+            default:
+                return `<h${token.depth}>${text}</h${token.depth}>`;
+        }
+    };
+
+    marked.setOptions({
+        renderer,
+        smartLists: true,
+        smartypants: false
+    });
+
+    return marked.parse(markdown);
+}
+
+async function fetchAsset(assetId, accessToken, spaceId, environment) {
+    const url = `https://preview.contentful.com/spaces/${spaceId}/assets/${assetId}?access_token=${accessToken}`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Unable to fetch asset");
+    return response.json();
+}
+
+async function fetchEntry(entryId, accessToken, spaceId, environment) {
+    const url = `https://preview.contentful.com/spaces/${spaceId}/environments/${environment}/entries/${entryId}?access_token=${accessToken}`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Unable to fetch entry");
+    return response.json();
+}
+
+function createInteractionSection(fields) {
+    const interactionCount = fields.interaction_count || 0;
+    return `
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; border-top: 1px solid #eee;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <button style="background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center; gap: 0.25rem;" title="Like">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #666;">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span style="color: #666; font-size: 14px;">${interactionCount} likes</span>
+                </button>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button style="background: none; border: none; cursor: pointer; padding: 0; color: #666; display: flex; align-items: center; justify-content: center;" title="Copy link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                    </svg>
+                </button>
+                <button style="background: none; border: none; cursor: pointer; padding: 0; color: #1B5294; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px;" onclick="window.open('https://www.crossroads.net/', '_blank');" title="Share on Facebook">
+                    f
+                </button>
+                <button style="background: none; border: none; cursor: pointer; padding: 0; color: #000; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px;" onclick="window.open('https://www.crossroads.net/', '_blank');" title="Share on X">
+                    𝕏
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+async function renderArticle(entry) {
+    const fields = entry.fields;
+    const container = document.querySelector("#preview-container");
+    const url = new URL(window.location.href);
+    const accessToken = entry.previewAccessToken;
+    const spaceId = url.searchParams.get("space_id");
+    const environment = url.searchParams.get("contentful_env") || "master";
+    
+    let heroImageHtml = "";
+    let authorHtml = "";
+    let discussionQuestionsHtml = "";
+    let heroOverlayContent = "";
+    
+    // Handle hero image if it exists
+    if (fields.image && fields.image.sys && fields.image.sys.id) {
+        try {
+            const asset = await fetchAsset(fields.image.sys.id, accessToken, spaceId, environment);
+            const imageUrl = asset.fields.file.url;
+            
+            // Prepare author info for overlay
+            let authorOverlayHtml = "";
+            if (fields.person && fields.person.length > 0) {
+                try {
+                    const personRef = fields.person[0];
+                    if (personRef && personRef.sys && personRef.sys.id) {
+                        const author = await fetchEntry(personRef.sys.id, accessToken, spaceId, environment);
+                        
+                        const authorName = author.fields.name || author.fields.full_name || "Anonymous";
+                        let authorImageHtml = "";
+                        
+                        if (author.fields.image && author.fields.image.sys && author.fields.image.sys.id) {
+                            try {
+                                const authorAsset = await fetchAsset(author.fields.image.sys.id, accessToken, spaceId, environment);
+                                const authorImageUrl = authorAsset.fields.file.url;
+                                authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=fill&f=face" alt="${authorName}" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 0.75rem; object-fit: cover;">`;
+                            } catch (err) {
+                                console.error("Error loading author image:", err);
+                            }
+                        }
+                        
+                        authorOverlayHtml = `
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1rem;">
+                                ${authorImageHtml}
+                                <div style="text-align: left;">
+                                    <p style="color: white; margin: 0; font-size: 14px; font-weight: 500;">${authorName}</p>
+                                    ${fields.published_at ? `<p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 12px;">${new Date(fields.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })} • ${fields.duration ? Math.round(fields.duration / 60) : ''} min read</p>` : ""}
+                                </div>
+                            </div>
+                        `;
+                    }
+                } catch (err) {
+                    console.error("Error loading author info for overlay:", err);
+                }
+            } else if (fields.author && fields.author.sys && fields.author.sys.id) {
+                try {
+                    const author = await fetchEntry(fields.author.sys.id, accessToken, spaceId, environment);
+                    const authorName = author.fields.name || author.fields.full_name || "Anonymous";
+                    let authorImageHtml = "";
+                    
+                    if (author.fields.image && author.fields.image.sys && author.fields.image.sys.id) {
+                        try {
+                            const authorAsset = await fetchAsset(author.fields.image.sys.id, accessToken, spaceId, environment);
+                            const authorImageUrl = authorAsset.fields.file.url;
+                            authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=fill&f=face" alt="${authorName}" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 0.75rem; object-fit: cover;">`;
+                        } catch (err) {
+                            console.error("Error loading author image:", err);
+                        }
+                    }
+                    
+                    authorOverlayHtml = `
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1rem;">
+                            ${authorImageHtml}
+                            <div style="text-align: left;">
+                                <p style="color: white; margin: 0; font-size: 14px; font-weight: 500;">${authorName}</p>
+                                ${fields.published_at ? `<p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 12px;">${new Date(fields.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })} • ${fields.duration ? Math.round(fields.duration / 60) : ''} min read</p>` : ""}
+                            </div>
+                        </div>
+                    `;
+                } catch (err) {
+                    console.error("Error loading author info for overlay:", err);
+                }
+            }
+            
+            heroImageHtml = `
+                <div style="width: 100%; margin: 0 auto 2rem; border-radius: 4px; overflow: hidden; max-width: 1248px; margin-left: auto; margin-right: auto;">
+                    <div style="position: relative; width: 100%; height: 500px; background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${imageUrl}?w=1200&h=600&fit=fill') center/cover;">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem;">
+                            <a href="https://www.crossroads.net/media/articles" style="background-color: rgba(255, 255, 255, 0.2); color: white; padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 12px; text-decoration: none; margin-bottom: 1rem; display: inline-block; border: 1px solid rgba(255, 255, 255, 0.5);">Articles</a>
+                            <h1 style="color: white; font-size: 62px; font-weight: bold; text-align: center; margin: 0; line-height: 1.2; max-width: 90%;">${fields.title || ""}</h1>
+                            ${authorOverlayHtml}
+                        </div>
+                    </div>
+                </div>
+            `;
+        } catch (err) {
+            console.error("Error loading hero image:", err);
+        }
+    }
+    
+    // Handle discussion questions if they exist
+    if (fields.discussion && fields.discussion.sys && fields.discussion.sys.id) {
+        try {
+            const discussionQuestions = await fetchEntry(fields.discussion.sys.id, accessToken, spaceId, environment);
+            if (discussionQuestions && discussionQuestions.fields && discussionQuestions.fields.discussion_questions && discussionQuestions.fields.discussion_questions.length > 0) {
+                const questions = discussionQuestions.fields.discussion_questions;
+                let questionsHtml = (await Promise.all(questions.map(async (q, idx) => {
+                    try {
+                        const questionEntry = await fetchEntry(q.sys.id, accessToken, spaceId, environment);
+                        const questionText = questionEntry.fields.question || questionEntry.fields.title || "";
+                        return `<li style="margin-bottom: 1rem;">${questionText}</li>`;
+                    } catch (err) {
+                        console.error("Error loading question:", err);
+                        return `<li style="margin-bottom: 1rem;">Error loading question</li>`;
+                    }
+                }))).join("");
+                
+                discussionQuestionsHtml = `
+                    <div style="border-radius: 4px; margin: 2rem 0; border-top: 1px solid rgb(216, 216, 216); margin-bottom: 20px; padding-top: 25px">
+                        <p style="font-size: 19px; font-style: italic; margin: 0 0 1rem 0;"><strong>Disclaimer:</strong> This article is 100% human-generated.</p>
+                        <p style="margin: 0 0 1.5rem 0; font-size: 20px;">Process, journal or discuss the themes of this article - here's a few questions to get the ball rolling…</p>
+                        <div style="background-color: #f5f5f5; border-radius: 6px; padding: 25px;">
+                            <ol style="margin: 1rem 0 1.5rem 1.5rem; padding: 0; counter-reset: item;">
+                                ${questionsHtml}
+                            </ol>
+                        </div>
+                    </div>
+                `;
+            }
+        } catch (err) {
+            console.error("Error loading discussion questions:", err);
+        }
+    }
+
+    // Handle author information if it exists
+    if (fields.person && fields.person.length > 0) {
+        try {
+            const personRef = fields.person[0];
+            if (personRef && personRef.sys && personRef.sys.id) {
+                const author = await fetchEntry(personRef.sys.id, accessToken, spaceId, environment);
+                
+                const authorName = author.fields.name || author.fields.full_name || "Anonymous";
+                const authorBio = author.fields.bio || author.fields.summary || "";
+                let authorImageHtml = "";
+                
+                if (author.fields.image && author.fields.image.sys && author.fields.image.sys.id) {
+                    try {
+                        const authorAsset = await fetchAsset(author.fields.image.sys.id, accessToken, spaceId, environment);
+                        const authorImageUrl = authorAsset.fields.file.url;
+                        authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=fill&f=face" alt="${authorName}" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 1rem; object-fit: cover;">`;
+                    } catch (err) {
+                        console.error("Error loading author image:", err);
+                    }
+                }
+                
+                authorHtml = `
+                    <div style="margin-top: 2rem; padding-top: 2rem; padding-bottom: 2rem; border-top: 1px solid #eee;">
+                        <div style="display: flex; align-items: flex-start;">
+                            ${authorImageHtml}
+                            <div>
+                                <p style="font-weight: bold; margin: 0 0 0.5rem 0;">${authorName}</p>
+                                <p style="margin: 0; color: #00000; font-size: 20px;">${authorBio}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        } catch (err) {
+            console.error("Error loading author info:", err);
+        }
+    } else if (fields.author && fields.author.sys && fields.author.sys.id) {
+        try {
+            const author = await fetchEntry(fields.author.sys.id, accessToken, spaceId, environment);
+            const authorName = author.fields.name || author.fields.full_name || "Anonymous";
+            const authorBio = author.fields.bio || author.fields.summary || "";
+            let authorImageHtml = "";
+            
+            if (author.fields.image && author.fields.image.sys && author.fields.image.sys.id) {
+                try {
+                    const authorAsset = await fetchAsset(author.fields.image.sys.id, accessToken, spaceId, environment);
+                    const authorImageUrl = authorAsset.fields.file.url;
+                    authorImageHtml = `<img src="${authorImageUrl}?w=80&h=80&fit=fill&f=face" alt="${authorName}" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 1rem; object-fit: cover;">`;
+                } catch (err) {
+                    console.error("Error loading author image:", err);
+                }
+            }
+            
+            authorHtml = `
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #eee;">
+                    <div style="display: flex; align-items: flex-start;">
+                        ${authorImageHtml}
+                        <div>
+                            <p style="font-weight: bold; margin: 0 0 0.5rem 0;">${authorName}</p>
+                            <p style="margin: 0; color: #000000; font-size: 20px;">${authorBio}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } catch (err) {
+            console.error("Error loading author info:", err);
+        }
+    }
+    
+    const leadText = fields.lead_text || "";
+    
+    const interactionSection = createInteractionSection(fields);
+    
+    const html = `
+        <article class="article-tpl" style="padding: 0;">
+            <div style="width: 100%; display: flex; justify-content: center;">
+                ${heroImageHtml}
+            </div>
+            <div class="container" style="padding: 2rem 0;">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        ${interactionSection}
+                        ${leadText ? `<p style="color: rgb(31, 57, 71); font-family: lexia-italic, serif; font-size: 30px; margin-bottom: 20px;">${leadText}</p>` : ""}
+                        <div style="line-height: 1.5; color: #1F3947; margin: 1.5rem 0; font-size: 18px;">
+                            ${parseMarkdown(fields.body || "")}
+                        </div>
+                        ${discussionQuestionsHtml}
+                        ${authorHtml}
+                        ${interactionSection}
+                    </div>
+                </div>
+            </div>
+        </article>
+    `;
+    
+    container.innerHTML = html;
+}
+
+function renderPage(entry) {
+    const fields = entry.fields;
+    const container = document.querySelector("#preview-container");
+    container.innerHTML = fields.body || "";
+}
+
+async function renderPreview() {
+    try {
+        const entry = await getPreviewEntry();
+        const contentTypeId = entry.sys.contentType.sys.id;
+
+        if (contentTypeId === "article") {
+            await renderArticle(entry);
+        } else {
+            // Default to page rendering for all other types
+            renderPage(entry);
+        }
+
+        document.querySelector("#loading").style.display = "none";
+
+    } catch(error) {
+        console.error(error);
+
+        document.querySelector("#loading").innerText =
+            error.message;
+    }
+}
+
+
+renderPreview();
+</script>
