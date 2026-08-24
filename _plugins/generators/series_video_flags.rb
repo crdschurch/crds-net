@@ -1,10 +1,16 @@
 module GetSeriesVideoFlags
   class Generator < Jekyll::Generator
+    priority :high
+
     def generate(site)
       videos = site.collections['videos'].docs
       series_entries = site.collections['series'].docs
 
       videos.each do |video|
+        video.data['is_student_ministry_series_video'] = false
+        video.data['is_young_adult_series_video'] = false
+        video.data['ministry_series_type'] = 'standard'
+
         series_id = video.data.dig('series', 'id')
         next unless series_id.present?
 
@@ -15,6 +21,11 @@ module GetSeriesVideoFlags
           series.data['is_student_ministry_series_derived']
         video.data['is_young_adult_series_video'] =
           series.data['is_young_adult_series_derived']
+        if series.data['is_student_ministry_series_derived']
+          video.data['ministry_series_type'] = 'student_ministry'
+        elsif series.data['is_young_adult_series_derived']
+          video.data['ministry_series_type'] = 'young_adult'
+        end
       end
     end
   end
