@@ -79,15 +79,30 @@ module UpcomingHappenings
       end
 
       def display_date(promo)
-        start_date = parse_date(promo.fields[:event_start_date])
+        start_date_value = promo.fields[:event_start_date]
+        start_date = parse_date(start_date_value)
         end_date = parse_date(promo.fields[:event_end_date])
         sign_up_date = parse_date(promo.fields[:sign_up_date])
 
         if start_date && end_date
-          format_date_range(start_date, end_date)
-        elsif start_date || sign_up_date
-          format_full_date(start_date || sign_up_date)
+          start_date == end_date ? format_full_date(start_date) : format_date_range(start_date, end_date)
+        elsif start_date
+          format_event_start_date(start_date_value, promo.fields[:show_time])
+        elsif sign_up_date
+          format_full_date(sign_up_date)
         end
+      end
+
+      def format_event_start_date(value, show_time)
+        date = parse_date(value)
+        formatted_date = format_full_date(date)
+        return formatted_date unless show_time
+
+        date_time = parse_date_time(value)
+        return formatted_date unless date_time
+
+        formatted_time = date_time.strftime('%I:%M %p').sub(/\A0/, '')
+        "#{formatted_date} at #{formatted_time}"
       end
 
       def format_date_range(start_date, end_date)
@@ -110,6 +125,12 @@ module UpcomingHappenings
 
       def parse_date(value)
         Date.parse(value.to_s) if value
+      rescue ArgumentError
+        nil
+      end
+
+      def parse_date_time(value)
+        DateTime.parse(value.to_s) if value
       rescue ArgumentError
         nil
       end
