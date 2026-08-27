@@ -1,0 +1,67 @@
+{% assign happenings_config = site.data.upcoming_happenings[include.page_key] %}
+{% assign happenings = happenings_config.promos %}
+
+<section id="happenings">
+  <div class="container push-ends">
+    <div class="row mobile-flush-ends mobile-hard-ends">
+      <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 push-ends soft-bottom text-center">
+        <p class="font-size-smaller text-orange text-uppercase flush-bottom" style="letter-spacing: 3px;">
+          <strong>{{ happenings_config.eyebrow }}</strong>
+        </p>
+        <h2 class="section-header text-gray-darker flush-top">
+          {{ happenings_config.title }}
+        </h2>
+      </div>
+
+      {% for happening in happenings %}
+        <div class="row flex-row soft-bottom push-bottom card-block">
+          {% if happening.image.url %}
+            <div class="col-xs-12 col-md-6 col-md-push-6 push-half-bottom">
+              <img class="img-full-width img-responsive border-radius"
+                src="{{ happening.image.url | imgix: site.imgix }}?auto=format,compress&w=800"
+                alt="{{ happening.image.alt }}"
+                data-optimize-img>
+            </div>
+          {% endif %}
+
+          <div class="flex-child col-xs-12 soft col-md-5 col-md-pull-6 push-half-bottom"
+            style="margin-top: auto; margin-bottom: auto;">
+            {% if happening.display_date %}
+              <p class="font-size-small text-gray-dark flush-bottom">
+                <strong>{{ happening.display_date }}</strong>
+              </p>
+            {% endif %}
+
+            <h2 class="section-header text-gray-darker flush-ends">
+              {{ happening.title }}
+            </h2>
+
+            {% if happening.location %}
+              <p class="text-gray-dark push-half-top flush-bottom">
+                {% if happening.map_url_link %}<a href="{{ happening.map_url_link }}">{% endif %}
+                  {{ happening.location }}
+                {% if happening.map_url_link %}</a>{% endif %}
+              </p>
+            {% endif %}
+
+            {% if happening.description %}
+              <div class="text-gray-dark push-half-top">
+                {{ happening.description | markdownify }}
+              </div>
+            {% endif %}
+
+            {% if happening.link_url %}
+              <a href="{{ happening.link_url }}" class="btn btn-secondary btn-md text-white">
+                {{ happening.featured_cta | default: "Learn More" }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      {% else %}
+        <div class="col-xs-12 text-center push-bottom">
+          <p class="text-gray-dark">There are no happenings scheduled right now.</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
