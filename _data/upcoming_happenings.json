@@ -3,5 +3,10 @@
     "eyebrow": "Crossroads Indy",
     "title": "Happenings",
     "tags": ["indy"]
+  },
+  "detroit": {
+    "eyebrow": "Crossroads Detroit",
+    "title": "Happenings",
+    "tags": ["detroit"]
   }
 }
