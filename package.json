@@ -56,6 +56,6 @@
     "dayjs": "^1.10.7",
     "gulp-replace": "^1.0.0",
     "jsrsasign": "^10.9.0",
-    "replace-in-file": "^6.1.0"
+    "replace-in-file": "^9.0.0"
   }
 }
