@@ -1,4 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>crdschurch/crds-dependency-management"]
+  "extends": ["github>crdschurch/crds-dependency-management:default.json"]
 }
