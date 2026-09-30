@@ -1,4 +1,4 @@
-FROM node:10.15.3
+FROM node:24.21.0
 
 # Install Ruby
 # To change versions you should just need to update the 3 ENV variables below
