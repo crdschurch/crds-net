@@ -22,7 +22,7 @@
   "homepage": "https://github.com/crdschurch/crds-net#readme",
   "devDependencies": {
     "@babel/core": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-env": "^8.0.0",
     "@helloample/netlify-plugin-redirects": "1.3.0",
     "@netlify/plugin-sitemap": "^0.8.1",
     "bootstrap-sass": "^3.4.0",
