@@ -16,7 +16,7 @@ gem 'hashie'
 gem 'uglifier'
 gem 'webvtt-ruby'
 gem 'nokogiri'
-gem 'algolia', '~> 2.0'
+gem 'algolia', '~> 3.0'
 
 # To fix security vulnerability
 gem 'sprockets', '~> 3.7.2'
