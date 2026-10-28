@@ -58,6 +58,58 @@ function parseMarkdown(markdown) {
     return marked.parse(markdown);
 }
 
+function escapeDiscussionText(text) {
+    return text.replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+}
+
+// Discussion fields are plain text with optional links, not general Markdown.
+// Use the existing Markdown lexer for links and retain other tokens literally.
+function renderDiscussionText(copy) {
+    const text = typeof copy === "string" ? copy.trim() : "";
+    const html = marked.Lexer.lexInline(text, { gfm: true }).map(token => {
+        if (token.type === "link") {
+            try {
+                const url = new URL(token.href);
+                if (["https:", "http:", "mailto:"].includes(url.protocol)) {
+                    return `<a href="${escapeDiscussionText(url.href)}">${escapeDiscussionText(token.text)}</a>`;
+                }
+            } catch (error) {
+                // Invalid destinations remain visible as literal text.
+            }
+        }
+        return escapeDiscussionText(token.raw);
+    }).join("");
+    return `<div style="white-space: pre-wrap; overflow-wrap: anywhere;">${html}</div>`;
+}
+
+function renderDiscussionFields(fields) {
+    const copy = id => typeof fields[id] === "string" ? fields[id].trim() : "";
+    const questions = Array.from({ length: 12 }, (_, i) => copy(`question${i + 1}`)).filter(Boolean);
+    const bonusQuestions = Array.from({ length: 5 }, (_, i) => copy(`bonusQuestion${i + 1}`)).filter(Boolean);
+    const list = items => {
+        if (!items.length) return "";
+        const rows = items.map(item => `<li style="margin-bottom: 1rem;">${renderDiscussionText(item)}</li>`).join("");
+        return `<ol style="margin: 1rem 0 1.5rem; padding-left: 1.5rem;">${rows}</ol>`;
+    };
+    const section = (title, body) => body
+        ? `<section style="margin: 1.5rem 0;"><h3 style="font-size: 20px; margin-bottom: 0.75rem;">${title}</h3>${body}</section>`
+        : "";
+    if (!questions.length && !bonusQuestions.length && !["scripture", "prayer", "bonusIntro", "outro"].some(copy)) {
+        return "";
+    }
+
+    const scripture = copy("scripture") ? section("Scripture", `<blockquote>${renderDiscussionText(copy("scripture"))}</blockquote>`) : "";
+    const prayer = copy("prayer") ? section("Prayer", renderDiscussionText(copy("prayer"))) : "";
+    const bonusIntro = copy("bonusIntro") ? renderDiscussionText(copy("bonusIntro")) : "";
+    const bonus = section("Bonus Questions", bonusIntro + list(bonusQuestions));
+    const outro = copy("outro") ? `<div style="margin-top: 1.5rem;">${renderDiscussionText(copy("outro"))}</div>` : "";
+    return `<div style="font-size: 16px;">${scripture}${list(questions)}${prayer}${bonus}${outro}</div>`;
+}
+
 async function fetchAsset(assetId, accessToken, spaceId, environment) {
     const url = `https://preview.contentful.com/spaces/${spaceId}/assets/${assetId}?access_token=${accessToken}`;
     const response = await fetch(url);
@@ -204,28 +256,16 @@ async function renderArticle(entry) {
     // Handle discussion questions if they exist
     if (fields.discussion && fields.discussion.sys && fields.discussion.sys.id) {
         try {
-            const discussionQuestions = await fetchEntry(fields.discussion.sys.id, accessToken, spaceId, environment);
-            if (discussionQuestions && discussionQuestions.fields && discussionQuestions.fields.discussion_questions && discussionQuestions.fields.discussion_questions.length > 0) {
-                const questions = discussionQuestions.fields.discussion_questions;
-                let questionsHtml = (await Promise.all(questions.map(async (q, idx) => {
-                    try {
-                        const questionEntry = await fetchEntry(q.sys.id, accessToken, spaceId, environment);
-                        const questionText = questionEntry.fields.question || questionEntry.fields.title || "";
-                        return `<li style="margin-bottom: 1rem;">${questionText}</li>`;
-                    } catch (err) {
-                        console.error("Error loading question:", err);
-                        return `<li style="margin-bottom: 1rem;">Error loading question</li>`;
-                    }
-                }))).join("");
+            const discussion = await fetchEntry(fields.discussion.sys.id, accessToken, spaceId, environment);
+            const discussionHtml = renderDiscussionFields(discussion.fields);
+            if (discussionHtml) {
                 
                 discussionQuestionsHtml = `
                     <div style="border-radius: 4px; margin: 2rem 0; border-top: 1px solid rgb(216, 216, 216); margin-bottom: 20px; padding-top: 25px">
                         <p style="font-size: 19px; font-style: italic; margin: 0 0 1rem 0;"><strong>Disclaimer:</strong> This article is 100% human-generated.</p>
                         <p style="margin: 0 0 1.5rem 0; font-size: 20px;">Process, journal or discuss the themes of this article - here's a few questions to get the ball rolling…</p>
                         <div style="background-color: #f5f5f5; border-radius: 6px; padding: 25px;">
-                            <ol style="margin: 1rem 0 1.5rem 1.5rem; padding: 0; counter-reset: item;">
-                                ${questionsHtml}
-                            </ol>
+                            ${discussionHtml}
                         </div>
                     </div>
                 `;

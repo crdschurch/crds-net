@@ -75,8 +75,6 @@ collections:
     permalink: /media/collections/:title
   content_blocks:
     output: false
-  discussions:
-    output: false
   episodes:
     output: false
     permalink: /media/podcasts/(:podcast/:slug)/:title
@@ -159,13 +157,12 @@ contentful:
     map:
       description: content
       content_block: content
-  discussion:
-    map:
-      date: published_at
   episode:
     map:
       date: published_at
   exclude:
+    - discussion
+    - discussion_question
     - migration
     - migrations
     - guide
