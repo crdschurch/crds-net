@@ -116,11 +116,6 @@ layout: default
               </div>
             {% endif %}
 
-            {% if page.discussion %}
-              {% assign discussion = page.discussion | get_doc %}
-              {% include _collapsible-discussion-questions.html type='chaser' discussion=discussion %}
-            {% endif %}
-
             <!-- List of contributors -->
             {% if page.authors %}
             {% for author_name in page.authors %}
