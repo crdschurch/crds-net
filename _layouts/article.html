@@ -304,7 +304,12 @@ title: Articles
         </div>
 
         <!-- Content -->
-        <div class="soft-ends article-tpl-content font-size-base">
+        <div class="soft-ends article-tpl-content font-size-base" 
+             data-analytics-event="ContentEngaged"
+             data-analytics-contenttype="article-body"
+             data-analytics-contentid="{{ page.slug }}"
+             data-analytics-contenttitle="{{ page.title | escape }}"
+             data-analytics-source="article_content">
           {% if page.lead_text %}
           <div class="lead">{{ page.lead_text | markdownify }}</div>
           {% endif %}
