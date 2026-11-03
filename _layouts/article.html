@@ -336,15 +336,6 @@ title: Articles
           {% include _article-social-share.html %}
         </div>
 
-        <!-- Discussion Questions -->
-        {% if page.discussion %} {% assign discussion = page.discussion | get_doc %}
-        <div class="border-bottom-dashed article-tpl-content">
-          <div class="">
-            {% include _collapsible-discussion-questions.html discussion=discussion %}
-          </div>
-        </div>
-        {% endif %}
-
         <!-- Author Section -->
         <div class="article-tpl-content article-tpl-author-section row row-no-gutters soft-ends">
           <div>

@@ -1,12 +1,33 @@
+---
+layout: null
+permalink: /_redirects
+sitemap: false
+---
+{% assign discussion_host = 'https://www.crossroads.net' %}
+{% if site.contentful_env == 'demo' or site.crds_env == 'demo' %}
+{% assign discussion_host = 'https://demo.crossroads.net' %}
+{% endif %}
+# Retired landing pages now live on the Unified website, not this Jekyll origin.
+/weekendfollowup {{ discussion_host }}/weekendfollowup 302!
+/weekendfollowup/ {{ discussion_host }}/weekendfollowup 302!
+/the-chaser {{ discussion_host }}/weekendfollowup 302!
+/thechaser {{ discussion_host }}/weekendfollowup 302!
+/weekend-prompts {{ discussion_host }}/weekendfollowup 302!
+/followup {{ discussion_host }}/weekendfollowup 302!
+/chaser {{ discussion_host }}/weekendfollowup 302!
+/push {{ discussion_host }}/weekendfollowup 302!
+/media/push {{ discussion_host }}/weekendfollowup 302!
+/media/weekendfollowup {{ discussion_host }}/weekendfollowup 302!
+/media/weekendfollowup/ {{ discussion_host }}/weekendfollowup 302!
+/media/post-weekend-push {{ discussion_host }}/weekendfollowup 302!
+/media/post-weekend-push/ {{ discussion_host }}/weekendfollowup 302!
 /albums /music 302!
-/the-chaser /weekendfollowup 302!
 /episodes /podcasts 302!
 /message /series 302!
 /message/* /series 302!
 /perspectives/sets /perspectives 302!
 /tags /topics 302!
 /videos/tags /videos 302!
-/weekend-prompts /weekendfollowup 302!
 /atriumevents/?site=oakley https://api.crossroads.net/atriumevents/eventlisting/oakley 302!
 /atriumevents/?site=mason https://api.crossroads.net/atriumevents/eventlisting/mason 302!
 /atriumevents/?site=florence https://api.crossroads.net/atriumevents/eventlisting/florence 302!
